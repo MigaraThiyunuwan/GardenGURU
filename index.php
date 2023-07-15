@@ -7,7 +7,7 @@
 <html >
 <!-- navo -->
 <!-- dcdv -->
-<!-- migara thiyunuwan -->
+<!-- mighujara thiyunuwan -->
 
 <head>
   <meta charset="utf-8">
