@@ -5,9 +5,7 @@
 
 <!DOCTYPE html>
 <html >
-<!-- navo -->
-<!-- dcdv -->
-<!-- mighujara thiyunuwan -->
+
 
 <head>
   <meta charset="utf-8">
