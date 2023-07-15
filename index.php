@@ -5,9 +5,10 @@
 
 <!DOCTYPE html>
 <html >
-
+<!-- navo -->
 <!-- dcdv -->
-<!-- malki -->
+<!-- mighujara thiyunuwan -->
+
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="./css/boostrapmin.css">
