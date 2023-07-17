@@ -37,7 +37,7 @@
     <style>
 
 .page-header { 
-    background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/AboutUs/header_img.webp) center center no-repeat !important;
+    background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/AboutUs/header_img.jpg) center center no-repeat !important;
     background-size: cover !important;
 }
     </style>
@@ -84,16 +84,51 @@
     
         <div class="container text-center py-5">
             <h1 class="display-3 text-white mb-4 animated slideInDown">About Us</h1>
-            <nav aria-label="breadcrumb animated slideInDown">
                 <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">About</li>
+                    <li class="breadcrumb-item">Nurture&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Your&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Green&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thumb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; with&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Us!</li>
                 </ol>
-            </nav>
         </div>
     </div>
     <!-- Page Header End -->
+
+    <!-- About Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5 align-items-end">
+                <div class="col-lg-3 col-md-5 wow fadeInUp" data-wow-delay="0.1s">
+                    <img class="img-fluid rounded" data-wow-delay="0.1s" src="../images/AboutUs/about_start.jpg" >
+                </div>
+                <div class="col-lg-6 col-md-7 wow fadeInUp" data-wow-delay="0.3s">
+                    <h1 class="display-1 text-primary mb-0">15</h1>
+                    <p class="text-primary mb-4">Year of Experience</p>
+                    <h1 class="display-6 mb-4">Blooming Your Gardening Dreams with Us.</h1>
+                    <p class="mb-4">Join our community of passionate gardeners, immerse yourself in the art of nurturing plants, and let nature's charm unfold in your own backyard.
+                    Get ready to discover the joy of gardening and witness the magic that unfolds when you connect with the earth. 
+                    </p>
+                    <a class="btn btn-primary py-3 px-4" href="#">Explore More</a>
+                </div>
+                <div class="col-lg-3 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="row g-5">
+                        <div class="col-12 col-sm-6 col-lg-12">
+                            <div class="border-start ps-4">
+                                <i class="fa fa-award fa-3x text-primary mb-3"></i>
+                                <h4 class="mb-3">Award Winning</h4>
+                                <span>Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna</span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-12">
+                            <div class="border-start ps-4">
+                                <i class="fa fa-users fa-3x text-primary mb-3"></i>
+                                <h4 class="mb-3">Dedicated Team</h4>
+                                <span>Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
 
 
 
