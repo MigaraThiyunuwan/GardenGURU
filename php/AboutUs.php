@@ -15,11 +15,10 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
 
+    
+
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
-
-    <!-- Favicon -->
-    <link href="img/favicon.html" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -34,6 +33,14 @@
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <style>
+
+.page-header { 
+    background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/AboutUs/header_img.webp) center center no-repeat !important;
+    background-size: cover !important;
+}
+    </style>
 </head>
 
 <body>
@@ -73,7 +80,8 @@
     <!-- Navbar End -->
 
     <!-- Page Header Start -->
-    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" >
+    
         <div class="container text-center py-5">
             <h1 class="display-3 text-white mb-4 animated slideInDown">About Us</h1>
             <nav aria-label="breadcrumb animated slideInDown">
