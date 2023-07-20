@@ -7,7 +7,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Gardener - Gardening Website Template</title>
+    <title>GardenGURU</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -60,7 +60,7 @@
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-        <a href="index-2.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <img src="../images/logo.png" style="width:220px;height:50px;">
             <!-- <h1 class="m-0">Garden<B>GURU</B></h1> -->
         </a>
@@ -69,7 +69,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index-2.html" class="nav-item nav-link active">Home</a>
+                <a href="../index.php" class="nav-item nav-link active">Home</a>
                 <a href="AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="service.html" class="nav-item nav-link">Services</a>
                 <a href="project.html" class="nav-item nav-link">Projects</a>
@@ -83,7 +83,7 @@
                         <a href="404.html" class="dropdown-item">404 Page</a>
                     </div>
                 </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                <a href="ContactUs.php" class="nav-item nav-link">Contact</a>
             </div>
             <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
         </div>
@@ -138,6 +138,24 @@
         </div>
     </div>
     <!-- About End -->
+
+
+ <!-- Vision and Mission Grid Start -->
+ <div class="container-xxl py-5 bg-light">
+        <div class="container">
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-6 col-md-8 text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h2 class="display-4 mb-4">Our Vision</h2>
+                    <p class="lead">To create a greener and more sustainable world by inspiring and empowering individuals to connect with nature through gardening.</p>
+                </div>
+                <div class="col-lg-6 col-md-8 text-center wow fadeInUp" data-wow-delay="0.3s">
+                    <h2 class="display-4 mb-4">Our Mission</h2>
+                    <p class="lead">To provide gardening enthusiasts with the knowledge, tools, and resources they need to cultivate beautiful and thriving gardens, while promoting environmental conservation and awareness.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Vision and Mission Grid End -->
 
         <!-- Team Start -->
         <div class="container-xxl py-5">
