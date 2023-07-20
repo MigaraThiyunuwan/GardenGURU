@@ -40,6 +40,17 @@
     background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/AboutUs/header_img.jpg) center center no-repeat !important;
     background-size: cover !important;
 }
+
+        .team-members-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px; 
+        }
+        .team-item {
+            max-width: 300px;
+            
+        }
     </style>
 </head>
 
@@ -105,22 +116,20 @@
                     <p class="mb-4">Join our community of passionate gardeners, immerse yourself in the art of nurturing plants, and let nature's charm unfold in your own backyard.
                     Get ready to discover the joy of gardening and witness the magic that unfolds when you connect with the earth. 
                     </p>
-                    <a class="btn btn-primary py-3 px-4" href="#">Explore More</a>
+                    <h4>"Nurture Your Green Thumb with Us!"</h4>
                 </div>
                 <div class="col-lg-3 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="row g-5">
                         <div class="col-12 col-sm-6 col-lg-12">
                             <div class="border-start ps-4">
-                                <i class="fa fa-award fa-3x text-primary mb-3"></i>
-                                <h4 class="mb-3">Award Winning</h4>
-                                <span>Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna</span>
+                            <img src="../images/AboutUs/farming.png" alt="Ad 1">
+                                <h5 class="mb-3">"Discover Premium Gardening Tools Exclusively at Our Store"</h5>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 col-lg-12">
                             <div class="border-start ps-4">
-                                <i class="fa fa-users fa-3x text-primary mb-3"></i>
-                                <h4 class="mb-3">Dedicated Team</h4>
-                                <span>Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna</span>
+                            <img src="../images/AboutUs/diliveryy.png" alt="Ad 1">
+                                <h5 class="mb-3">"Home Delivery: Bring Your Favorite Plants Right to Your Doorstep!"</h5>
                             </div>
                         </div>
                     </div>
@@ -139,8 +148,8 @@
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="team-item rounded">
-                        <img class="img-fluid" src="../images/AboutUs/Migara.jpg" alt="">
+                    <div class="team-item rounded" >
+                        <img class="img-fluid" src="../images/AboutUs/Migaranew.jpg" alt="">
                         <div class="team-text">
                             <h4 class="mb-0">M.P.M.Thiyunuwan</h4>
                             <p class="text-primary">Full Stack Developer</p>
@@ -166,9 +175,24 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="team-item rounded">
+                        <img class="img-fluid" src="../images/AboutUs/dharani.jpg" alt="">
+                        <div class="team-text">
+                            <h4 class="mb-0">D.K.Gunasekara</h4>
+                            <p class="text-primary">Full Stack Developer</p>
+                            <div class="team-social d-flex">
+                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-members-container">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="team-item rounded">
-                        <img class="img-fluid" src="../images/AboutUs/Navodya.jpg" alt="">
+                        <img class="img-fluid" src="../images/AboutUs/navonew.jpg" alt="">
                         <div class="team-text">
                             <h4 class="mb-0">J.A.N.Navodya</h4>
                             <p class="text-primary">Full Stack Developer</p>
@@ -180,7 +204,22 @@
                         </div>
                     </div>
                 </div>
-                
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="team-item rounded">
+                        <img class="img-fluid" src="../images/AboutUs/lashan.jpg" alt="">
+                        <div class="team-text">
+                            <h4 class="mb-0">I.M.L.S.Ilankoon</h4>
+                            <p class="text-primary">Full Stack Developer</p>
+                            <div class="team-social d-flex">
+                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -192,9 +231,9 @@
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Our Office</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
@@ -219,17 +258,28 @@
                     <a class="btn btn-link" href="#">Support</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Newsletter</h4>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-                    <div class="position-relative w-100">
-                        <input class="form-control bg-light border-light w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
-                    </div>
+                <img src="../images/logo.png" style="width:220px;height:50px;">
                 </div>
             </div>
         </div>
     </div>
     <!-- Footer End -->
+
+
+
+ <!-- Copyright Start -->
+ <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="index.php">GardenGURU</a>, All Right Reserved.
+                </div>
+             
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+
 
 
 
