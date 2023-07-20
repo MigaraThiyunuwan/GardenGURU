@@ -37,6 +37,7 @@
                 <a href="./php/AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="service.html" class="nav-item nav-link">Services</a>
                 <a href="project.html" class="nav-item nav-link">Projects</a>
+                <a href="./php/blog.php" class="nav-item nav-link">Blog</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu bg-light m-0">
@@ -244,7 +245,7 @@
                             </div>
                             <h4 class="mb-3">Blog</h4>
                             <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                            <a class="btn btn-sm" href="#"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
+                            <a class="btn btn-sm" href="./php/blog.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>
                 </div>
