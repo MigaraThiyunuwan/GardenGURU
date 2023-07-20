@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Gardener - Gardening Website Template</title>
+    <title>GardenGURU</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -69,7 +69,7 @@
                         <a href="404.html" class="dropdown-item">404 Page</a>
                     </div>
                 </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                <a href="ContactUs.php" class="nav-item nav-link">Contact</a>
             </div>
             <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
         </div>
@@ -93,16 +93,25 @@
     <div class="container">
         <div class="row g-5">
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                <!-- Sri Lanka Map -->
-                <div class="position-relative rounded overflow-hidden h-100">
-                    <iframe class="position-relative w-100 h-100"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.325308137682!2d80.75488261404492!3d7.873054394305739!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2803a658bb181%3A0x58cc2b7f9f115f48!2sSri%20Lanka!5e0!3m2!1sen!2sbd!4v1603821008626!5m2!1sen!2sbd"
-                        frameborder="0" style="min-height: 450px; border:0;" allowfullscreen="" aria-hidden="false"
-                        tabindex="0"></iframe>
-                </div>
+            <div class="position-relative rounded overflow-hidden h-100">
+                
+            <br><p class="fs-5 fw-bold text-primary">Contact Us</p>
+                <p>Welcome to our gardening haven! We're thrilled that you're considering getting in touch with us. Whether you have questions about our gardening services, need expert advice on plant care, or simply want to share your green thumb stories, we're here to listen and assist.</p>
+                        
+                <br><p class="fs-5 fw-bold text-primary">Get in Touch</p>
+                <div class="contact-details">
+                        <!-- Add your contact details here -->
+                        <p><img src="../images/ContactUs/mail.png"> Email: gardenguru@gardening.com</p>
+                        <p><img src="../images/ContactUs/facebook.png"> Facebook: <a href="https://www.facebook.com/GardenGURU" target="_blank">facebook.com/GardenGURU</a></p>
+                        <p><img src="../images/ContactUs/instagram.png"> Instagram: <a href="https://www.instagram.com/GardenGURU" target="_blank">instagram.com/GardenGURU</a></p>
+                        <p><img src="../images/ContactUs/contactno.png"> Contact No: 055 1456788</p>
+                    </div><br>
+                    
+                    <img class="position-relative w-75 h-20" src="../images/logo.png" alt="Company Logo">
+                    </div>
+                   
             </div>
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                <p class="fs-5 fw-bold text-primary">Contact Us</p>
                 <h1 class="display-5 mb-5">Reach out and let's connect!</h1>
                 <p class="mb-4">We're here to help! If you have any questions or need assistance, feel free to get in touch with us. We'd be delighted to assist you!</p>
                 <form>
