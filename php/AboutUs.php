@@ -139,6 +139,24 @@
     </div>
     <!-- About End -->
 
+
+ <!-- Vision and Mission Grid Start -->
+ <div class="container-xxl py-5 bg-light">
+        <div class="container">
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-6 col-md-8 text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h2 class="display-4 mb-4">Our Vision</h2>
+                    <p class="lead">To create a greener and more sustainable world by inspiring and empowering individuals to connect with nature through gardening.</p>
+                </div>
+                <div class="col-lg-6 col-md-8 text-center wow fadeInUp" data-wow-delay="0.3s">
+                    <h2 class="display-4 mb-4">Our Mission</h2>
+                    <p class="lead">To provide gardening enthusiasts with the knowledge, tools, and resources they need to cultivate beautiful and thriving gardens, while promoting environmental conservation and awareness.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Vision and Mission Grid End -->
+
         <!-- Team Start -->
         <div class="container-xxl py-5">
         <div class="container">
