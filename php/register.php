@@ -171,7 +171,7 @@
                         </div>
 
                         <!-- Submit Button -->
-                        <input type="submit" value="Create New Account" class="btn btn-block btn-primary" >
+                        <input type="submit" value="Create New Account" class="btn btn-primary my-3 w-100" >
                         <!-- <div class="form-group col-lg-12 mx-auto mb-0">
                             <a href="#" class="btn btn-primary btn-block py-2">
                                 <span class="font-weight-bold">Create your account</span>

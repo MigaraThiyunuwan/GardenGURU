@@ -84,7 +84,15 @@
                                     </label>
                                     <span class="ml-auto" style="padding-left: 120px;"><a href="#" class="forgot-pass">Forgot Password?</a></span>
                                 </div>
-                                <input type="submit" value="Log In" class="btn btn-block btn-primary">
+
+                                <!-- <input type="submit" value="Login" class="btn btn-primary my-3 w-100"> -->
+
+                               
+                                    <button class="btn btn-primary my-3 w-100">
+                                        login
+                                    </button>
+                               
+
                                 <div class="mb-4" style="margin-top: 15px;">
                                     <p class="mb-4">Don't have an account yet? <a href="./register.php" style="color: #38761d;">Cick Here</a> to create one.</p>
                                 </div>
