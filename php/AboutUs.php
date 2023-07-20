@@ -14,25 +14,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-
-    
-
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&amp;family=Open+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
-
-    <!-- Icon Font Stylesheet -->
-    <link href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="../../cdn.jsdelivr.net/npm/bootstrap-icons%401.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
     <style>
 
@@ -60,7 +43,7 @@
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-        <a href="index-2.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <img src="../images/logo.png" style="width:220px;height:50px;">
             <!-- <h1 class="m-0">Garden<B>GURU</B></h1> -->
         </a>
@@ -69,10 +52,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index-2.html" class="nav-item nav-link active">Home</a>
+                <a href="../index.php" class="nav-item nav-link active">Home</a>
                 <a href="AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="service.html" class="nav-item nav-link">Services</a>
                 <a href="project.html" class="nav-item nav-link">Projects</a>
+                <a href="./blog.php" class="nav-item nav-link">Blog</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu bg-light m-0">
@@ -96,7 +80,7 @@
         <div class="container text-center py-5">
             <h1 class="display-3 text-white mb-4 animated slideInDown">About Us</h1>
                 <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item">Nurture&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Your&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Green&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thumb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; with&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Us!</li>
+                    <li class="breadcrumb-item">Nurture Your Green Thumb with Us!</li>
                 </ol>
         </div>
     </div>
@@ -282,6 +266,8 @@
         </div>
     </div>
     <!-- Footer End -->
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
 
 
