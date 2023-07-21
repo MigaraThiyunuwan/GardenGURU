@@ -218,7 +218,7 @@
            <div class="center-text">
           <h1 >New Arrival Items</h1>
             </div>
-            
+
            <div class="plant-container">
         <div class="plant">
             <img src="../images/Selling/grapes.jpeg" alt="Plant 1">
@@ -315,12 +315,74 @@
         <div class="banner1-img">
             <img src="../images/Selling/plant6.jpeg">
         </div>
-        <div class="banner1-img">
-            <img src="../images/Selling/plant6.jpeg">
-        </div>
+       
         
         
     </section>
+
+<!---top products-->
+            <div class="center-text">
+          <h1 >Top Products</h1>
+            </div>
+            
+           <div class="plant-container">
+        <div class="plant">
+            <img src="../images/Selling/grapes.jpeg" alt="Plant 1">
+            <div class="plant-info">
+                <h3>Plant 1</h3>
+                <p>$20.00</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+        <div class="plant">
+            <img src="../images/Selling/grapes.jpeg" alt="Plant 2">
+            <div class="plant-info">
+                <h3>Plant 2</h3>
+                <p>$25.00</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+        <div class="plant">
+            <img src="../images/Selling/grapes.jpeg" alt="Plant 3">
+            <div class="plant-info">
+                <h3>Plant 3</h3>
+                <p>$18.00</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+       
+        </div>
+    </div>
+
+       <div class="plant-container">
+        <div class="plant">
+            <img src="../images/Selling/grapes.jpeg" alt="Plant 1">
+            <div class="plant-info">
+                <h3>Plant 1</h3>
+                <p>$20.00</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+        <div class="plant">
+            <img src="../images/Selling/grapes.jpeg" alt="Plant 2">
+            <div class="plant-info">
+                <h3>Plant 2</h3>
+                <p>$25.00</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+        <div class="plant">
+            <img src="../images/Selling/grapes.jpeg" alt="Plant 3">
+            <div class="plant-info">
+                <h3>Plant 3</h3>
+                <p>$18.00</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+       
+        </div>
+    </div>
+
 
     <!--new products section-->
     <!----new product section -->
