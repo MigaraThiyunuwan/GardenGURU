@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 
@@ -13,25 +14,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-
-
-
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/readBlog.css" rel="stylesheet">
 
-
-
-    <style>
-        .page-header {
-            background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/ContactUs/contact_header.jpg) center center no-repeat !important;
-            background-size: cover !important;
-        }
-    </style>
 
 </head>
 
 <body>
-
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
@@ -76,79 +66,69 @@
     <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
 
         <div class="container text-center py-5">
-            <h1 class="display-3 text-white mb-4 animated slideInDown">Contact Us</h1>
+            <h1 class="display-3 text-white mb-4 animated slideInDown">Blog</h1>
             <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item">Nurture&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Your&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Green&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thumb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; with&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Us!</li>
+                <li class="breadcrumb-item">Second divided from form fish beast made every of seas all gathered us saying he our</li>
             </ol>
         </div>
     </div>
     <!-- Page Header End -->
 
-    <!-- Contact Start -->
-    <div class="container-xxl py-5">
+    <section class="blog_area single-post-area section-padding">
         <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <div class="position-relative rounded overflow-hidden h-100">
-
-                        <br>
-                        <p class="fs-5 fw-bold text-primary">Contact Us</p>
-                        <p>Welcome to our gardening haven! We're thrilled that you're considering getting in touch with us. Whether you have questions about our gardening services, need expert advice on plant care, or simply want to share your green thumb stories, we're here to listen and assist.</p>
-
-                        <br>
-                        <p class="fs-5 fw-bold text-primary">Get in Touch</p>
-                        <div class="contact-details">
-                            <!-- Add your contact details here -->
-                            <p><img src="../images/ContactUs/mail.png"> Email: gardenguru@gardening.com</p>
-                            <p><img src="../images/ContactUs/facebook.png"> Facebook: <a href="https://www.facebook.com/GardenGURU" target="_blank">facebook.com/GardenGURU</a></p>
-                            <p><img src="../images/ContactUs/instagram.png"> Instagram: <a href="https://www.instagram.com/GardenGURU" target="_blank">instagram.com/GardenGURU</a></p>
-                            <p><img src="../images/ContactUs/contactno.png"> Contact No: 055 1456788</p>
-                        </div><br>
-
-                        <img class="position-relative w-75 h-20" src="../images/logo.png" alt="Company Logo">
-                    </div>
-
-                </div>
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                    <h1 class="display-5 mb-5">Reach out and let's connect!</h1>
-                    <p class="mb-4">We're here to help! If you have any questions or need assistance, feel free to get in touch with us. We'd be delighted to assist you!</p>
-                    <form>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                    <label for="name">Your Name</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                    <label for="email">Your Email</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                    <label for="subject">Subject</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
-                                    <label for="message">Message</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary py-3 px-4" type="submit">Send Message</button>
-                            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="single-post">
+                        <div class="feature-img">
+                            <img class="img-fluid" src="../images/blog/read-blog.jpg" alt="">
                         </div>
-                    </form>
+                        <div class="blog_details">
+                            <h2 style="color: #2d2d2d;">Second divided from form fish beast made every of seas
+                                all gathered us saying he our
+                            </h2>
+                            <ul class="blog-info-link mt-3 mb-4">
+                                <li><a href="#"><i class="fa fa-user"></i> Migara Thiyunuwan</a></li>
+
+                            </ul>
+                            <p class="excert">
+                                MCSE boot camps have its supporters and its detractors. Some people do not understand why you
+                                should have to spend money on boot camp when you can get the MCSE study materials yourself at a
+                                fraction of the camp price. However, who has the willpower
+                            </p>
+                            <p>
+                                MCSE boot camps have its supporters and its detractors. Some people do not understand why you
+                                should have to spend money on boot camp when you can get the MCSE study materials yourself at a
+                                fraction of the camp price. However, who has the willpower to actually sit through a
+                                self-imposed MCSE training. who has the willpower to actually
+                            </p>
+                            <div class="quote-wrapper">
+                                <div class="quotes">
+                                    MCSE boot camps have its supporters and its detractors. Some people do not understand why you
+                                    should have to spend money on boot camp when you can get the MCSE study materials yourself at
+                                    a fraction of the camp price. However, who has the willpower to actually sit through a
+                                    self-imposed MCSE training.
+                                </div>
+                            </div>
+                            <p>
+                                MCSE boot camps have its supporters and its detractors. Some people do not understand why you
+                                should have to spend money on boot camp when you can get the MCSE study materials yourself at a
+                                fraction of the camp price. However, who has the willpower
+                            </p>
+                            <p>
+                                MCSE boot camps have its supporters and its detractors. Some people do not understand why you
+                                should have to spend money on boot camp when you can get the MCSE study materials yourself at a
+                                fraction of the camp price. However, who has the willpower to actually sit through a
+                                self-imposed MCSE training. who has the willpower to actually
+                            </p>
+                        </div>
+                    </div>
                 </div>
+
+
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Contact End -->
 
 
     <!-- Footer Start -->
@@ -190,9 +170,9 @@
         </div>
     </div>
     <!-- Footer End -->
-
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+
 
 
     <!-- Copyright Start -->
@@ -207,6 +187,7 @@
         </div>
     </div>
     <!-- Copyright End -->
+
     <!-- JavaScript Libraries -->
     <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>

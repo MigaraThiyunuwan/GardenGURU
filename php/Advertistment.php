@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 
 <head>
     <meta charset="utf-8">
-    <title>GardenGURU</title>
+    <title>Advertiesment</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -14,23 +15,21 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
 
-
-
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
-
-
+    <link href="../css/Advertistment.css" rel="stylesheet">
 
     <style>
         .page-header {
-            background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/ContactUs/contact_header.jpg) center center no-repeat !important;
+            background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/Adevertistment/advertistment_header.jpg) center center no-repeat !important;
             background-size: cover !important;
         }
     </style>
-
 </head>
 
 <body>
+
+
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
@@ -48,13 +47,13 @@
                 <a href="./Selling.php" class="nav-item nav-link">Shop</a>
                 <!-- <a href="../php/blog.php" class="nav-item nav-link">Blog</a> -->
                 <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
+                    <a  class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
                     <div class="dropdown-menu bg-light m-0">
                         <a href="./blog.php" class="dropdown-item">Blog</a>
                         <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
                         <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
                         <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
-
+                        
                     </div>
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
@@ -72,11 +71,12 @@
     </nav>
     <!-- Navbar End -->
 
+
     <!-- Page Header Start -->
     <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
 
         <div class="container text-center py-5">
-            <h1 class="display-3 text-white mb-4 animated slideInDown">Contact Us</h1>
+            <h1 class="display-3 text-white mb-4 animated slideInDown">Advertisement</h1>
             <ol class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item">Nurture&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Your&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Green&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thumb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; with&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Us!</li>
             </ol>
@@ -84,75 +84,86 @@
     </div>
     <!-- Page Header End -->
 
-    <!-- Contact Start -->
+    <div class="container1">
+            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <p class="fs-5 fw-bold text-primary">Discover a World of Possibilities</p>
+                <h1 class="display-5 mb-5">Explore Our Exclusive Collection</h1>
+            </div>
+
+    <!-- Projects Start -->
     <div class="container-xxl py-5">
         <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <div class="position-relative rounded overflow-hidden h-100">
-
-                        <br>
-                        <p class="fs-5 fw-bold text-primary">Contact Us</p>
-                        <p>Welcome to our gardening haven! We're thrilled that you're considering getting in touch with us. Whether you have questions about our gardening services, need expert advice on plant care, or simply want to share your green thumb stories, we're here to listen and assist.</p>
-
-                        <br>
-                        <p class="fs-5 fw-bold text-primary">Get in Touch</p>
-                        <div class="contact-details">
-                            <!-- Add your contact details here -->
-                            <p><img src="../images/ContactUs/mail.png"> Email: gardenguru@gardening.com</p>
-                            <p><img src="../images/ContactUs/facebook.png"> Facebook: <a href="https://www.facebook.com/GardenGURU" target="_blank">facebook.com/GardenGURU</a></p>
-                            <p><img src="../images/ContactUs/instagram.png"> Instagram: <a href="https://www.instagram.com/GardenGURU" target="_blank">instagram.com/GardenGURU</a></p>
-                            <p><img src="../images/ContactUs/contactno.png"> Contact No: 055 1456788</p>
-                        </div><br>
-
-                        <img class="position-relative w-75 h-20" src="../images/logo.png" alt="Company Logo">
-                    </div>
-
-                </div>
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                    <h1 class="display-5 mb-5">Reach out and let's connect!</h1>
-                    <p class="mb-4">We're here to help! If you have any questions or need assistance, feel free to get in touch with us. We'd be delighted to assist you!</p>
-                    <form>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                    <label for="name">Your Name</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                    <label for="email">Your Email</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                    <label for="subject">Subject</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
-                                    <label for="message">Message</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary py-3 px-4" type="submit">Send Message</button>
+            <div class="row g-4 portfolio-container">
+                <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="../images/Adevertistment/ad1.jpg" alt="">
+                        <div class="portfolio-text">
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des1.jpg"><i class="fa fa-eye"></i></a>
                             </div>
                         </div>
-                    </form>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="../images/Adevertistment/ad5.webp" alt="">
+                        <div class="portfolio-text">
+                            <div class="d-flex">
+                            <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des2.jpg"><i class="fa fa-eye"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="../images/Adevertistment/ad3.webp" alt="">
+                        <div class="portfolio-text">
+                            <div class="d-flex">
+                            <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des3.jpg"><i class="fa fa-eye"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="../images/Adevertistment/ad4.webp" alt="">
+                        <div class="portfolio-text">
+                            <div class="d-flex">
+                            <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des4.jpg"><i class="fa fa-eye"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="../images/Adevertistment/ad2n.jpg" alt="">
+                        <div class="portfolio-text">
+                            <div class="d-flex">
+                            <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des5.jpg"><i class="fa fa-eye"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="../images/Adevertistment/ad1.jpg" alt="">
+                        <div class="portfolio-text">
+                            <div class="d-flex">
+                            <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des6.jpg"><i class="fa fa-eye"></i></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Projects End -->
 
-    <!-- Contact End -->
 
 
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
@@ -184,37 +195,30 @@
                     <a class="btn btn-link" href="#">Support</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <img src="../images/logo.png" style="width:220px;height:50px;">
+                <img src="../images/logo.png" style="width:220px;height:50px;">
                 </div>
             </div>
         </div>
     </div>
     <!-- Footer End -->
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
 
-    <!-- Copyright Start -->
-    <div class="container-fluid copyright py-4">
+ <!-- Copyright Start -->
+ <div class="container-fluid copyright py-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                     &copy; <a class="border-bottom" href="index.php">GardenGURU</a>, All Right Reserved.
                 </div>
-
+             
             </div>
         </div>
     </div>
     <!-- Copyright End -->
-    <!-- JavaScript Libraries -->
-    <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="../js/main.js"></script>
-
 
 </body>
-
-
 
 </html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 
@@ -13,20 +14,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-
-
-
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
-
-
-
-    <style>
-        .page-header {
-            background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/ContactUs/contact_header.jpg) center center no-repeat !important;
-            background-size: cover !important;
-        }
-    </style>
+    <link href="../css/Payement.css" rel="stylesheet">
 
 </head>
 
@@ -72,84 +62,92 @@
     </nav>
     <!-- Navbar End -->
 
-    <!-- Page Header Start -->
-    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container1 mt-5 px-5">
 
-        <div class="container text-center py-5">
-            <h1 class="display-3 text-white mb-4 animated slideInDown">Contact Us</h1>
-            <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item">Nurture&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Your&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Green&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thumb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; with&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Us!</li>
-            </ol>
+        <div class="mb-4">
+
+            <h2>Confirm order and pay</h2>
+            <span>please make the payment, after that you can enjoy all the features and benefits.</span>
         </div>
-    </div>
-    <!-- Page Header End -->
+        <div class="row">
 
-    <!-- Contact Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <div class="position-relative rounded overflow-hidden h-100">
+            <div class="col-md-8">
+                <div class="card p-3">
+                    <h6 class="text-uppercase">Payment details</h6>
+                    <div class="inputbox mt-3"> <input type="text" name="name" class="form-control" required="required"> <span>Name on card</span> </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <i class="fa fa-credit-card"></i> <span>Card Number</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex flex-row">
+                                <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Expiry</span> </div>
 
-                        <br>
-                        <p class="fs-5 fw-bold text-primary">Contact Us</p>
-                        <p>Welcome to our gardening haven! We're thrilled that you're considering getting in touch with us. Whether you have questions about our gardening services, need expert advice on plant care, or simply want to share your green thumb stories, we're here to listen and assist.</p>
+                                <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>CVV</span> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 mb-4">
+                        <h6 class="text-uppercase">Billing Address</h6>
+                        <div class="row mt-3">
 
-                        <br>
-                        <p class="fs-5 fw-bold text-primary">Get in Touch</p>
-                        <div class="contact-details">
-                            <!-- Add your contact details here -->
-                            <p><img src="../images/ContactUs/mail.png"> Email: gardenguru@gardening.com</p>
-                            <p><img src="../images/ContactUs/facebook.png"> Facebook: <a href="https://www.facebook.com/GardenGURU" target="_blank">facebook.com/GardenGURU</a></p>
-                            <p><img src="../images/ContactUs/instagram.png"> Instagram: <a href="https://www.instagram.com/GardenGURU" target="_blank">instagram.com/GardenGURU</a></p>
-                            <p><img src="../images/ContactUs/contactno.png"> Contact No: 055 1456788</p>
-                        </div><br>
+                            <div class="col-md-6">
+                                <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Street Address</span> </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>City</span> </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>State/Province</span> </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Postal code</span> </div>
 
-                        <img class="position-relative w-75 h-20" src="../images/logo.png" alt="Company Logo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 mb-4 d-flex justify-content-between">
+
+                    <span>Previous step</span>
+                    <button class="btn btn-success px-3">Pay $840</button>
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="card card-blue p-3 text-white mb-3">
+
+                    <span>You have to pay</span>
+                    <div class="d-flex flex-row align-items-end mb-3">
+                        <h1 class="mb-0 yellow">$549</h1> <span>.99</span>
+                    </div>
+
+                    <span>Enjoy all the features and perk after you complete the payment</span>
+                    <a href="#" class="yellow decoration">Know all the features</a>
+
+                    <div class="hightlight">
+
+                        <span>100% Guaranteed support and update for the next 5 years.</span>
+
+
                     </div>
 
                 </div>
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                    <h1 class="display-5 mb-5">Reach out and let's connect!</h1>
-                    <p class="mb-4">We're here to help! If you have any questions or need assistance, feel free to get in touch with us. We'd be delighted to assist you!</p>
-                    <form>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                    <label for="name">Your Name</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                    <label for="email">Your Email</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                    <label for="subject">Subject</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
-                                    <label for="message">Message</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary py-3 px-4" type="submit">Send Message</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+
+                <br><br><img src="../images/logo.png" height="75px">
+
             </div>
+
         </div>
+
+
     </div>
-
-    <!-- Contact End -->
-
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
@@ -190,9 +188,9 @@
         </div>
     </div>
     <!-- Footer End -->
-
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+
 
 
     <!-- Copyright Start -->
@@ -207,12 +205,11 @@
         </div>
     </div>
     <!-- Copyright End -->
+
     <!-- JavaScript Libraries -->
     <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/main.js"></script>
-
-
 </body>
 
 

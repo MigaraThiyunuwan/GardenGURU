@@ -1,36 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
-
 <head>
-    <meta charset="utf-8">
-    <title>GardenGURU</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question and Answer Forum</title>
+
+    <link href="../css/main2.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
 
-
-
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
-
-
-
-    <style>
-        .page-header {
-            background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/ContactUs/contact_header.jpg) center center no-repeat !important;
-            background-size: cover !important;
-        }
-    </style>
-
 </head>
 
 <body>
+
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
@@ -72,83 +59,16 @@
     </nav>
     <!-- Navbar End -->
 
-    <!-- Page Header Start -->
-    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
-
-        <div class="container text-center py-5">
-            <h1 class="display-3 text-white mb-4 animated slideInDown">Contact Us</h1>
-            <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item">Nurture&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Your&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Green&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thumb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; with&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Us!</li>
-            </ol>
-        </div>
-    </div>
-    <!-- Page Header End -->
-
-    <!-- Contact Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <div class="position-relative rounded overflow-hidden h-100">
-
-                        <br>
-                        <p class="fs-5 fw-bold text-primary">Contact Us</p>
-                        <p>Welcome to our gardening haven! We're thrilled that you're considering getting in touch with us. Whether you have questions about our gardening services, need expert advice on plant care, or simply want to share your green thumb stories, we're here to listen and assist.</p>
-
-                        <br>
-                        <p class="fs-5 fw-bold text-primary">Get in Touch</p>
-                        <div class="contact-details">
-                            <!-- Add your contact details here -->
-                            <p><img src="../images/ContactUs/mail.png"> Email: gardenguru@gardening.com</p>
-                            <p><img src="../images/ContactUs/facebook.png"> Facebook: <a href="https://www.facebook.com/GardenGURU" target="_blank">facebook.com/GardenGURU</a></p>
-                            <p><img src="../images/ContactUs/instagram.png"> Instagram: <a href="https://www.instagram.com/GardenGURU" target="_blank">instagram.com/GardenGURU</a></p>
-                            <p><img src="../images/ContactUs/contactno.png"> Contact No: 055 1456788</p>
-                        </div><br>
-
-                        <img class="position-relative w-75 h-20" src="../images/logo.png" alt="Company Logo">
-                    </div>
-
-                </div>
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                    <h1 class="display-5 mb-5">Reach out and let's connect!</h1>
-                    <p class="mb-4">We're here to help! If you have any questions or need assistance, feel free to get in touch with us. We'd be delighted to assist you!</p>
-                    <form>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                    <label for="name">Your Name</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                    <label for="email">Your Email</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                    <label for="subject">Subject</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
-                                    <label for="message">Message</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary py-3 px-4" type="submit">Send Message</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+    <h1>Welcome to the Question and Answer Forum</h1>
+    <div class="question-container">
+        <h2>Ask a question:</h2>
+        <textarea id="question-input" rows="4" cols="50" placeholder="Type your question here"></textarea>
+        <button class="button" onclick="submitQuestion()">Submit</button>
     </div>
 
-    <!-- Contact End -->
+    <div class="answer-container" id="answer-container">
+        <!-- The answers will be added here dynamically -->
+    </div>
 
 
     <!-- Footer Start -->
@@ -207,14 +127,15 @@
         </div>
     </div>
     <!-- Copyright End -->
+
     <!-- JavaScript Libraries -->
-    <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/script2.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+
+    <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
 
 
 </body>
-
-
 
 </html>

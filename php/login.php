@@ -25,7 +25,7 @@
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <img src="../images/logo.png" style="width:220px;height:50px;">
-
+            <!-- <h1 class="m-0">Garden<B>GURU</B></h1> -->
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -33,23 +33,30 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="../index.php" class="nav-item nav-link active">Home</a>
-                <a href="AboutUs.php" class="nav-item nav-link">About</a>
-                <a href="service.html" class="nav-item nav-link">Services</a>
-                <a href="project.html" class="nav-item nav-link">Projects</a>
-                <a href="../php/blog.php" class="nav-item nav-link">Blog</a>
+                <a href="./plantSuggestion.php" class="nav-item nav-link">Plant Suggestions</a>
+                <a href="./Selling.php" class="nav-item nav-link">Shop</a>
+                <!-- <a href="../php/blog.php" class="nav-item nav-link">Blog</a> -->
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
                     <div class="dropdown-menu bg-light m-0">
-                        <a href="feature.html" class="dropdown-item">Features</a>
-                        <a href="quote.html" class="dropdown-item">Free Quote</a>
-                        <a href="team.html" class="dropdown-item">Our Team</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
+                        <a href="./blog.php" class="dropdown-item">Blog</a>
+                        <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
+                        <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
+                        <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
+
                     </div>
                 </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
-            </div>
+                <a href="./AboutUs.php" class="nav-item nav-link">About</a>
+                <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
 
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
+                    <div class="dropdown-menu bg-light m-0">
+                        <a href="./login.php" class="dropdown-item">Log Out</a>
+                    </div>
+                </div>
+            </div>
+            <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
         </div>
     </nav>
     <!-- Navbar End -->
@@ -68,7 +75,7 @@
                                 <h3>Sign In</h3>
                                 <p class="mb-4">Sign in to your account by entering username and password.</p>
                             </div>
-                            <form action="#" method="post">
+                            <form action="../index.php" method="post">
                                 <div class="form-group first">
                                     <!-- <label for="username">Username</label> -->
                                     <input type="text" placeholder="Username" class="form-control" id="username">
@@ -84,7 +91,15 @@
                                     </label>
                                     <span class="ml-auto" style="padding-left: 120px;"><a href="#" class="forgot-pass">Forgot Password?</a></span>
                                 </div>
-                                <input type="submit" value="Log In" class="btn btn-block btn-primary">
+
+                                <!-- <input type="submit" value="Login" class="btn btn-primary my-3 w-100"> -->
+
+
+                                <button class="btn btn-primary my-3 w-100">
+                                    login
+                                </button>
+
+
                                 <div class="mb-4" style="margin-top: 15px;">
                                     <p class="mb-4">Don't have an account yet? <a href="./register.php" style="color: #38761d;">Cick Here</a> to create one.</p>
                                 </div>
@@ -97,7 +112,10 @@
         </div>
     </div>
 
-
+    <!-- JavaScript Libraries -->
+    <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
 
 
 </body>
