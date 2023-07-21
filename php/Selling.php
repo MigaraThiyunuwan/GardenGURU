@@ -101,7 +101,117 @@
         </div>
         
     </section>
-     
+
+    <!----new product section -->
+
+    <section class="new product">
+        <div class="center-text">
+          <h1>New Arrival Items</h1>
+            </div>
+
+                <div class="new-content">
+                    <div class="row">
+                        <img src="../images/Selling/veg1.jpeg">
+                        <h4>Tomato Plant</h4>
+                        <h5>Rs.300</h5>
+                        <div class="top">
+                            <p>Hot</p>
+                        </div>
+                        <div class="bbtn">
+                            <a href="#">Add to cart</a>
+                        </div>
+                    </div>
+
+
+                     <div class="row">
+                        <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
+                        <h4>Tomato Plant</h4>
+                        <h5>Rs.300</h5>
+                        <div class="top">
+                            <p>Hot</p>
+                        </div>
+                        <div class="bbtn">
+                            <a href="#">Add to cart</a>
+                        </div>
+                    </div>
+
+
+
+                     <div class="row">
+                        <img src="../images/Selling/grapes.jpeg">
+                        <h4>Tomato Plant</h4>
+                        <h5>Rs.300</h5>
+                        <div class="top">
+                            <p>Hot</p>
+                        </div>
+                        <div class="bbtn">
+                            <a href="#">Add to cart</a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
+                        <h4>Tomato Plant</h4>
+                        <h5>Rs.300</h5>
+                        <div class="top">
+                            <p>Hot</p>
+                        </div>
+                        <div class="bbtn">
+                            <a href="#">Add to cart</a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
+                        <h4>Tomato Plant</h4>
+                        <h5>Rs.300</h5>
+                        <div class="top">
+                            <p>Hot</p>
+                        </div>
+                        <div class="bbtn">
+                            <a href="#">Add to cart</a>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
+                        <h4>Tomato Plant</h4>
+                        <h5>Rs.300</h5>
+                        <div class="top">
+                            <p>Hot</p>
+                        </div>
+                        <div class="bbtn">
+                            <a href="#">Add to cart</a>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
+                        <h4>Tomato Plant</h4>
+                        <h5>Rs.300</h5>
+                        <div class="top">
+                            <p>Hot</p>
+                        </div>
+                        <div class="bbtn">
+                            <a href="#">Add to cart</a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
+                        <h4>Tomato Plant</h4>
+                        <h5>Rs.300</h5>
+                        <div class="top">
+                            <p>Hot</p>
+                        </div>
+                        <div class="bbtn">
+                            <a href="#">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+     </section>
 
 
 </body>

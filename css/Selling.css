@@ -21,3 +21,105 @@
 .banner-img:hover img{
 	transform:scale(1.1);
 }
+
+.row img {
+  width: 8cm;
+  height: 10cm;
+}
+
+.center-text h1{
+	text-align:center;
+	font-size: var(--h1-font);
+	font-wight:800;
+	color:var(--text-color);
+}
+
+.new-content{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,auto));
+	align-items:center;
+	gap:2.5rem;
+	margin-top:4.5rem;
+	text-align:center;
+	margin-left:3rem;
+
+}
+
+.row{
+	position:relative;
+	cursor:pointer;
+
+}
+
+.row img{
+	
+	margins-bottom:15px;
+
+}
+
+.row h4{
+	font-size: 14px;
+	margin-bottom: 5px;
+	text-transform: uppercase;
+	font-weight: 400;
+	transition: all .50s ease;
+}
+
+.row h4:hover{
+	color: pink;
+	cursor:pointer;
+}
+
+.row h5{
+	color:green;
+	font-size: var(--p-font);
+	font-weight: 600;
+
+}
+
+.top{
+	position:absolute;
+	top:20px;
+	left:1;
+	height:30px;
+	width:60px;
+	color:white;
+	background: pink;
+	font-size: 14px;
+	font-weight: 500;
+	text-transform: uppercase;
+	display: inline-flex;
+	/*align-items: center;
+	justify-content: center;
+    */
+}
+
+
+.row .bbtn a{
+	
+     position:center;
+     background-size:cover;
+     bottom: 65px;
+     left: 0;
+     right: 0;
+     padding: 13px;
+     background: rgba(0,0,0,0.8);
+     color:var(--bg-color);
+     
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
