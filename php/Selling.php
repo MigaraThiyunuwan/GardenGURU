@@ -16,6 +16,7 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/Selling.css" rel="stylesheet">
 
     <style>
 
@@ -85,6 +86,21 @@
         </div>
     </div>
     <!-- Page Header End -->
+
+    <!--Banner Section-->
+
+    <section class="banner">
+        <div class="banner-img">
+            <img src="../images/Selling/img1.jpg">
+        </div>
+        <div class="banner-img">
+            <img src="../images/Selling/img1.jpg">
+        </div>
+        <div class="banner-img">
+            <img src="../images/Selling/img1.jpg">
+        </div>
+        
+    </section>
      
 
 
