@@ -8,8 +8,8 @@
     <meta name="description" content>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/main1.css">
-    <link rel="stylesheet" href="../css/style.css">
 
+    <link href="../css/style.css" rel="stylesheet">
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway:wght@300;400;500;700;900&display=swap" rel="stylesheet">
