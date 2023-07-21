@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Question and Answer Forum</title>
   <link rel="stylesheet" href="../css/main2.css">
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../css/bootsrap.min.css">
+        <link rel="stylesheet" href="../css/style.css">
+
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -102,7 +103,7 @@
 
  <!-- Copyright Start -->
  <div class="container-fluid copyright py-4">
- <div class="container">
+        <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                     &copy; <a class="border-bottom" href="index.php">GardenGURU</a>, All Right Reserved.
