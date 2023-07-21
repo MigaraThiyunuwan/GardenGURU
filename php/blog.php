@@ -77,10 +77,10 @@
                 <article class="blog_item">
                     <div class="blog_item_img">
                         <img class="card-img rounded-0" src="../images/s1.jpg" alt="">
-                        <a href="#" class="blog_item_date">
+                        <!-- <a href="#" class="blog_item_date">
                             <h3>15</h3>
                             <p>Jan</p>
-                        </a>
+                        </a> -->
                     </div>
                     <div class="blog_details">
                         <a class="d-inline-block" href="./readBlog.php">
@@ -103,10 +103,10 @@
                 <article class="blog_item">
                     <div class="blog_item_img">
                         <img class="card-img rounded-0" src="../images/s2.jpg" alt="">
-                        <a href="#" class="blog_item_date">
+                        <!-- <a href="#" class="blog_item_date">
                             <h3>15</h3>
                             <p>Jan</p>
-                        </a>
+                        </a> -->
                     </div>
                     <div class="blog_details">
                         <a class="d-inline-block" href="./readBlog.php">
@@ -130,10 +130,10 @@
                 <article class="blog_item">
                     <div class="blog_item_img">
                         <img class="card-img rounded-0" src="../images/s2.jpg" alt="">
-                        <a href="#" class="blog_item_date">
+                        <!-- <a href="#" class="blog_item_date">
                             <h3>15</h3>
                             <p>Jan</p>
-                        </a>
+                        </a> -->
                     </div>
                     <div class="blog_details">
                         <a class="d-inline-block" href="./readBlog.php">
@@ -156,10 +156,10 @@
                 <article class="blog_item">
                     <div class="blog_item_img">
                         <img class="card-img rounded-0" src="../images/s1.jpg" alt="">
-                        <a href="#" class="blog_item_date">
+                        <!-- <a href="#" class="blog_item_date">
                             <h3>15</h3>
                             <p>Jan</p>
-                        </a>
+                        </a> -->
                     </div>
                     <div class="blog_details">
                         <a class="d-inline-block" href="./readBlog.php">
