@@ -151,7 +151,7 @@ hr{
 .current-news-head{
     background: #fff;
     padding: 20px;
-    font-size: 12px;
+    font-size: 10px;
     margin: 20px 0;
 }
 
@@ -525,7 +525,7 @@ footer > p{
 
 
 
-/* ... Your existing CSS rules ... */
+
 
 /* Add a CSS rule to hide the .hidden-content by default */
 
