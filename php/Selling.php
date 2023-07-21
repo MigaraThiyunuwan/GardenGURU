@@ -223,7 +223,7 @@
         <div class="plant">
             <img src="../images/Selling/veg1.jpeg" alt="Plant 1">
             <div class="plant-info">
-                <h3>Plant 1</h3>
+                <h3>Tomato</h3>
                 <p>$20.00</p>
                 <button>Add to Cart</button>
             </div>
@@ -231,7 +231,7 @@
         <div class="plant">
             <img src="../images/Selling/flower12.jpeg" alt="Plant 2">
             <div class="plant-info">
-                <h3>Plant 2</h3>
+                <h3>Impatiens</h3>
                 <p>$25.00</p>
                 <button>Add to Cart</button>
             </div>
@@ -239,7 +239,7 @@
         <div class="plant">
             <img src="../images/Selling/grapes.jpeg" alt="Plant 3">
             <div class="plant-info">
-                <h3>Plant 3</h3>
+                <h3>Grapes</h3>
                 <p>$18.00</p>
                 <button>Add to Cart</button>
             </div>
@@ -253,7 +253,7 @@
         <div class="plant">
             <img src="../images/Selling/cab12.jpeg" alt="Plant 1">
             <div class="plant-info">
-                <h3>Plant 1</h3>
+                <h3>Cabbage</h3>
                 <p>$20.00</p>
                 <button>Add to Cart</button>
             </div>
@@ -261,7 +261,7 @@
         <div class="plant">
             <img src="../images/Selling/flower45.jpeg" alt="Plant 2">
             <div class="plant-info">
-                <h3>Plant 2</h3>
+                <h3>Rose</h3>
                 <p>$25.00</p>
                 <button>Add to Cart</button>
             </div>
@@ -269,7 +269,7 @@
         <div class="plant">
             <img src="../images/Selling/prom.jpeg" alt="Plant 3">
             <div class="plant-info">
-                <h3>Plant 3</h3>
+                <h3>promegranate</h3>
                 <p>$18.00</p>
                 <button>Add to Cart</button>
             </div>
@@ -282,7 +282,7 @@
         <div class="plant">
             <img src="../images/Selling/redp2.jpeg" alt="Plant 1">
             <div class="plant-info">
-                <h3>Plant 1</h3>
+                <h3>Red Chillie</h3>
                 <p>$20.00</p>
                 <button>Add to Cart</button>
             </div>
@@ -290,7 +290,7 @@
         <div class="plant">
             <img src="../images/Selling/lily3.jpeg" alt="Plant 2">
             <div class="plant-info">
-                <h3>Plant 2</h3>
+                <h3>Lilly</h3>
                 <p>$25.00</p>
                 <button>Add to Cart</button>
             </div>
@@ -298,7 +298,7 @@
         <div class="plant">
             <img src="../images/Selling/mango.jpeg" alt="Plant 3">
             <div class="plant-info">
-                <h3>Plant 3</h3>
+                <h3>Mango</h3>
                 <p>$18.00</p>
                 <button>Add to Cart</button>
             </div>
@@ -329,7 +329,7 @@
         <div class="plant">
             <img src="../images/Selling/purple1.jpeg" alt="Plant 1">
             <div class="plant-info">
-                <h3>Plant 1</h3>
+                <h3>Verbina</h3>
                 <p>$20.00</p>
                 <button>Add to Cart</button>
             </div>
@@ -337,7 +337,7 @@
         <div class="plant">
             <img src="../images/Selling/rose.jpeg" alt="Plant 2">
             <div class="plant-info">
-                <h3>Plant 2</h3>
+                <h3>Rose</h3>
                 <p>$25.00</p>
                 <button>Add to Cart</button>
             </div>
@@ -345,7 +345,7 @@
         <div class="plant">
             <img src="../images/Selling/wh2.jpeg" alt="Plant 3">
             <div class="plant-info">
-                <h3>Plant 3</h3>
+                <h3>Sun flower</h3>
                 <p>$18.00</p>
                 <button>Add to Cart</button>
             </div>
@@ -358,7 +358,7 @@
         <div class="plant">
             <img src="../images/Selling/brin1.jpeg" alt="Plant 1">
             <div class="plant-info">
-                <h3>Plant 1</h3>
+                <h3>Brinjole</h3>
                 <p>$20.00</p>
                 <button>Add to Cart</button>
             </div>
@@ -366,7 +366,7 @@
         <div class="plant">
             <img src="../images/Selling/grapes.jpeg" alt="Plant 2">
             <div class="plant-info">
-                <h3>Plant 2</h3>
+                <h3>Grapes</h3>
                 <p>$25.00</p>
                 <button>Add to Cart</button>
             </div>
@@ -374,7 +374,7 @@
         <div class="plant">
             <img src="../images/Selling/corn.jpeg" alt="Plant 3">
             <div class="plant-info">
-                <h3>Plant 3</h3>
+                <h3>Corn</h3>
                 <p>$18.00</p>
                 <button>Add to Cart</button>
             </div>
