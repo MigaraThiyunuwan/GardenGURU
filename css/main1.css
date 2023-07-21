@@ -62,7 +62,7 @@ hr{
     display: none;
 }
 
-.nav-bar{
+/* .nav-bar{
     background: #333;
     height: 0;
     overflow: hidden;
@@ -74,7 +74,7 @@ hr{
 
 /********************/
 
-.nav-bar ul li{
+/* .nav-bar ul li{
     text-align: center;
     display: block;
     padding: 15px 0;
@@ -92,8 +92,8 @@ hr{
 
 .nav-bar ul li a:hover{
     text-decoration: underline;
-}
-
+} */
+ */
 /* social -icons */
 
 .social-icons{
