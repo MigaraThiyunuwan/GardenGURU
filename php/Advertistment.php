@@ -19,22 +19,6 @@
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/Advertistment.css" rel="stylesheet">
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&amp;family=Open+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
-
-    <!-- Icon Font Stylesheet -->
-    <link href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="../../cdn.jsdelivr.net/npm/bootstrap-icons%401.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
-
-
     <style>
         .page-header {
             background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/Adevertistment/advertistment_header.jpg) center center no-repeat !important;
@@ -101,7 +85,7 @@
                         <img class="img-fluid" src="../images/Adevertistment/ad1.jpg" alt="">
                         <div class="portfolio-text">
                             <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/ad1.jpg"><i class="fa fa-eye"></i></a>
                             </div>
                         </div>
                     </div>
