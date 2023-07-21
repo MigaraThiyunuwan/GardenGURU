@@ -76,7 +76,7 @@
     </div>
     <!-- Page Header End -->
 
-    <div class="container">
+    <div class="container1">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                 <p class="fs-5 fw-bold text-primary">Discover a World of Possibilities</p>
                 <h1 class="display-5 mb-5">Explore Our Exclusive Collection</h1>
@@ -153,8 +153,9 @@
 
 
 
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
@@ -186,28 +187,29 @@
                     <a class="btn btn-link" href="#">Support</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <img src="../images/logo.png" style="width:220px;height:50px;">
+                <img src="../images/logo.png" style="width:220px;height:50px;">
                 </div>
             </div>
         </div>
     </div>
     <!-- Footer End -->
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
 
 
-    <!-- Copyright Start -->
-    <div class="container-fluid copyright py-4">
+ <!-- Copyright Start -->
+ <div class="container-fluid copyright py-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                     &copy; <a class="border-bottom" href="index.php">GardenGURU</a>, All Right Reserved.
                 </div>
-
+             
             </div>
         </div>
     </div>
     <!-- Copyright End -->
-
 
 </body>
 
