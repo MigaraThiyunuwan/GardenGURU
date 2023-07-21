@@ -76,6 +76,12 @@
     </div>
     <!-- Page Header End -->
 
+    <div class="container">
+            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <p class="fs-5 fw-bold text-primary">Discover a World of Possibilities</p>
+                <h1 class="display-5 mb-5">Explore Our Exclusive Collection</h1>
+            </div>
+
     <!-- Projects Start -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -85,7 +91,7 @@
                         <img class="img-fluid" src="../images/Adevertistment/ad1.jpg" alt="">
                         <div class="portfolio-text">
                             <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des1.png"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des1.jpg"><i class="fa fa-eye"></i></a>
                             </div>
                         </div>
                     </div>
@@ -95,7 +101,7 @@
                         <img class="img-fluid" src="../images/Adevertistment/ad5.webp" alt="">
                         <div class="portfolio-text">
                             <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des2.jpg"><i class="fa fa-eye"></i></a>
                             </div>
                         </div>
                     </div>
@@ -105,7 +111,7 @@
                         <img class="img-fluid" src="../images/Adevertistment/ad3.webp" alt="">
                         <div class="portfolio-text">
                             <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des3.jpg"><i class="fa fa-eye"></i></a>
                             </div>
                         </div>
                     </div>
@@ -115,7 +121,7 @@
                         <img class="img-fluid" src="../images/Adevertistment/ad4.webp" alt="">
                         <div class="portfolio-text">
                             <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des4.jpg"><i class="fa fa-eye"></i></a>
                             </div>
                         </div>
                     </div>
@@ -125,7 +131,7 @@
                         <img class="img-fluid" src="../images/Adevertistment/ad2n.jpg" alt="">
                         <div class="portfolio-text">
                             <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des5.jpg"><i class="fa fa-eye"></i></a>
                             </div>
                         </div>
                     </div>
@@ -135,7 +141,7 @@
                         <img class="img-fluid" src="../images/Adevertistment/ad1.jpg" alt="">
                         <div class="portfolio-text">
                             <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des6.jpg"><i class="fa fa-eye"></i></a>
                             </div>
                         </div>
                     </div>
