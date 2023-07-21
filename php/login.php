@@ -68,7 +68,7 @@
                                 <h3>Sign In</h3>
                                 <p class="mb-4">Sign in to your account by entering username and password.</p>
                             </div>
-                            <form action="#" method="post">
+                            <form action="../index.php" method="post">
                                 <div class="form-group first">
                                     <!-- <label for="username">Username</label> -->
                                     <input type="text" placeholder="Username" class="form-control" id="username">
