@@ -27,7 +27,7 @@
         <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="index-2.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5" >
-        <img src="images/Selling/logo.png" style="width:220px;height:50px;">
+        <img src="../images/Selling/logo.png" style="width:220px;height:50px;">
             <!-- <h1 class="m-0">Garden<B>GURU</B></h1> -->
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -78,7 +78,7 @@
 
             <div class="banner-sub-content">
                 <div class="hot-topic">
-                    <img src="images/Watersaving_Tips_Image_Overlay_V2-1.webp" alt>
+                    <img src="../images/newsfeed/Watersaving_Tips_Image_Overlay_V2-1.webp" alt>
 
                     <div class="hot-topic-content">
                         <h2>Revolutionary Water-Saving Technique Gains Traction in Agriculture</h2>
@@ -90,7 +90,7 @@
                 </div>
 
                 <div class="hot-topic">
-                    <img src="images/12-urban-ag.png" alt>
+                    <img src="../images/newsfeed/12-urban-ag.png" alt>
 
                     <div class="hot-topic-content">
                         <h2>Urban Gardening Movement Flourishing in Cities</h2>
@@ -102,7 +102,7 @@
                 </div>
 
                 <div class="hot-topic">
-                    <img src="images/imagesss.jpeg" alt>
+                    <img src="../images/newsfeed/imagesss.jpeg" alt>
 
                     <div class="hot-topic-content">
                         <h2>Plant-Based Agriculture Leads to Reduced Carbon Emissions</h2>
@@ -114,7 +114,7 @@
                 </div>
 
                 <div class="hot-topic">
-                    <img src="images/amazon.jpg" alt>
+                    <img src="../images/newsfeed/amazon.jpg" alt>
 
                     <div class="hot-topic-content">
                         <h2>Newly Discovered Plant Species in the Amazon Rainforest</h2>
@@ -134,7 +134,7 @@
                 <h2>Top Stories</h2>
                 <div class="container-top-left">
                     <article>
-                        <img src="images/GettyImages-1318237749.webp">
+                        <img src="../images/newsfeed/GettyImages-1318237749.webp">
 
                         <div>
                             <h3>AI-Powered Farming Tools Enhancing Productivity</h3>
@@ -148,7 +148,7 @@
 
                 <div class="container-bottom-left">
                     <article>
-                        <img src="images/csm_NRP_1551_d35b1af732.webp">
+                        <img src="../images/newsfeed/csm_NRP_1551_d35b1af732.webp">
                         <div>
                             <h3>Global Seed Vault Celebrates Milestone</h3>
                             <p>The Svalbard Global Seed Vault, often referred to as the "Doomsday Vault," recently reached a remarkable milestone by storing its one-millionth seed sample. Located in the Arctic permafrost, the vault serves as a vital resource for preserving plant genetic diversity and safeguarding against potential food crises, climate-related disasters, and other threats to global agriculture.</p>
@@ -158,7 +158,7 @@
                     </article>
 
                     <article>
-                        <img src="images/12-urban-ag.png">
+                        <img src="../images/newsfeed/12-urban-ag.png">
                         <div>
                             <h3>Bioengineered Superplants Show Promising Results</h3>
                             <p>Scientists working on bioengineering projects have made significant strides in developing "superplants" that exhibit enhanced resilience to diseases, pests, and adverse environmental conditions. By incorporating desirable traits from various plant species, these bioengineered crops have demonstrated the potential to increase food security and sustainability, though they also raise ethical and ecological concerns.</p>
@@ -181,7 +181,7 @@
 
                         <a href="#">Read More <span>>></span></a>
                     </div>
-                    <img src="images/vertical-farming-cities-dassault-systemes.jpg">
+                    <img src="../images/newsfeed/vertical-farming-cities-dassault-systemes.jpg">
                 </article>
 
                 <article>
@@ -193,7 +193,7 @@
 
                         <a href="#">Read More <span>>></span></a>
                     </div>
-                    <img src="images/221017-bee-better-pollinator-certifications-farms-sustainability-pesticides-7-Doug-Crabtree-in-sunflower-crop_by-Jennifer-Hopwood-Xerces-Society.jpg">
+                    <img src="../images/newsfeed/221017-bee-better-pollinator-certifications-farms-sustainability-pesticides-7-Doug-Crabtree-in-sunflower-crop_by-Jennifer-Hopwood-Xerces-Society.jpg">
                 </article>
 
                 <article>
@@ -205,7 +205,7 @@
 
                         <a href="#">Read More <span>>></span></a>
                     </div>
-                    <img src="images/PictureThis-identification.webp">
+                    <img src="../images/newsfeed/PictureThis-identification.webp">
                 </article>
 
                 <article>
@@ -217,7 +217,7 @@
 
                         <a href="#">Read More <span>>></span></a>
                     </div>
-                    <img src="images/selecting-best-maize-variety.jpg">
+                    <img src="../images/newsfeed/selecting-best-maize-variety.jpg">
                 </article>
 
                 <article>
@@ -229,7 +229,7 @@
 
                         <a href="#">Read More <span>>></span></a>
                     </div>
-                    <img src="images/rice_plant.webp">
+                    <img src="../images/newsfeed/rice_plant.webp">
                 </article>
             </section>
         </main>
