@@ -111,10 +111,10 @@
 
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Mobile</h6>
+                      <h6 class="mb-0">District</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      (320) 380-4539
+                      Badulla
                     </div>
                   </div>
 
@@ -125,7 +125,7 @@
                       <h6 class="mb-0">Address</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      Badulla,Sri Lanka
+                      Passara Road,Badulla,Sri Lanka
                     </div>
                   </div>
                
