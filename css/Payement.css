@@ -23,7 +23,7 @@ body{
     outline: 0;
     box-shadow: none;
     border-radius: 0px;
-    border-bottom: 2px solid rgb(43, 180, 100) !important;
+    border-bottom: 2px solid #072A19 !important;
 }
 
 .inputbox {
@@ -44,7 +44,7 @@ body{
     top: 13px;
     right: 8px;
     transition: 0.5s;
-    color: rgb(43, 180, 100) 
+    color: #072A19 
 }
 
 input::-webkit-outer-spin-button,
@@ -65,12 +65,12 @@ input::-webkit-inner-spin-button {
 
 .card-blue{
 
-    background-color: rgb(43, 180, 100) ;
+    background-color: rgb(17, 90, 47) ;
 }
 
 .hightlight{
 
-    background-color: rgb(43, 180, 100) ;
+    background-color: rgb(27, 116, 64) ;
     padding: 10px;
     border-radius: 10px;
     margin-top: 15px;
