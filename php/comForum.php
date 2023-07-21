@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Question and Answer Forum</title>
-  <link rel="stylesheet" href="css/main2.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/bootsrap.min.css">
+  <link rel="stylesheet" href="../css/main2.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/bootsrap.min.css">
 </head>
 <body>
 
@@ -14,7 +14,7 @@
 <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <img src="images/logo.png" style="width:220px;height:50px;">
+            <img src="../images/logo.png" style="width:220px;height:50px;">
 
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -113,9 +113,9 @@
     </div>
     <!-- Copyright End -->
 
-  <script src="js/script2.js"></script>
-    <script src="js/main.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="../js/script2.js"></script>
+    <script src="../js/main.js"></script>
+      <script src="../js/bootstrap.bundle.min.js"></script>
 
 
 </body>
