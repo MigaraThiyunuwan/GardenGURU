@@ -53,7 +53,7 @@
                         <a href="404.html" class="dropdown-item">404 Page</a>
                     </div>
                 </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                <a href="../php/ContactUs.php" class="nav-item nav-link">Contact</a>
             </div>
 
         </div>
@@ -88,11 +88,11 @@
                                     <i class="fas fa-map-marker-alt" style="font-size: 25px;"></i>
                                 </span>
                             </div>
-                            <a class="form-control bg-white border-left-0 border-md" style="color: #ccc; font-weight: bold;">Select option 3</a>
+                            <a class="form-control bg-white border-left-0 border-md" style="color: #ccc; font-weight: bold;">Select Location</a>
                             <select id="job" name="jobtitle" class="input-group-text bg-white px-4 border-md border-right-0">
-                                <option value="">Option 1</option>
-                                <option value="">Option 2</option>
-                                <option value="">Option 3</option>
+                                <option value="">Badulla</option>
+                                <option value="">Kahataruppa</option>
+                                <option value="">Rambukpotha</option>
                             </select>
                         </div>
 
@@ -104,11 +104,11 @@
                                     <i class="fas fa-some-icon" style="font-size: 25px;"></i>
                                 </span>
                             </div>
-                            <a class="form-control bg-white border-left-0 border-md" style="color: #ccc; font-weight: bold;">Select Option 1</a>
+                            <a class="form-control bg-white border-left-0 border-md" style="color: #ccc; font-weight: bold;">Sun Exposure</a>
                             <select id="option1" name="option1" class="input-group-text bg-white px-4 border-md border-right-0">
-                                <option value="">Option 1</option>
-                                <option value="">Option 2</option>
-                                <option value="">Option 3</option>
+                                <option value="">High</option>
+                                <option value="">Medium</option>
+                                <option value="">Low</option>
                             </select>
                         </div>
 
@@ -120,7 +120,7 @@
                                     <i class="fas fa-another-icon" style="font-size: 25px;"></i>
                                 </span>
                             </div>
-                            <a class="form-control bg-white border-left-0 border-md" style="color: #ccc; font-weight: bold;">Select Option 2</a>
+                            <a class="form-control bg-white border-left-0 border-md" style="color: #ccc; font-weight: bold;">Soil </a>
                             <select id="option2" name="option2" class="input-group-text bg-white px-4 border-md border-right-0">
                                 <option value="">Option 1</option>
                                 <option value="">Option 2</option>
