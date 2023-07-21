@@ -1,3 +1,5 @@
+
+  
 :root {
     --primary: #348E38;
     --secondary: #525368;
@@ -507,20 +509,3 @@ h6,
     color: var(--primary);
 }
 
-.underline:after {
-    content: "";
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 8px;
-    border-radius: 5px;
-    background: #348E38;
-    z-index: -1;
-  }
-  
-  .underline {
-    position: relative;
-  }
-  
-  
