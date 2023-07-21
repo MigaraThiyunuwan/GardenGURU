@@ -7,7 +7,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>GardenGURU</title>
+    <title>Advertiesment</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -33,7 +33,7 @@
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-        <a href="index-2.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <img src="../images/logo.png" style="width:220px;height:50px;">
             <!-- <h1 class="m-0">Garden<B>GURU</B></h1> -->
         </a>
@@ -42,16 +42,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index-2.html" class="nav-item nav-link active">Home</a>
+                <a href="../index.php" class="nav-item nav-link active">Home</a>
                 <a href="AboutUs.php" class="nav-item nav-link">About</a>
-                <a href="service.html" class="nav-item nav-link">Services</a>
-                <a href="project.html" class="nav-item nav-link">Projects</a>
+                <a href="../php/plantSuggestion.php" class="nav-item nav-link">Plant Suggestions</a>
+                <a href="../php/Selling.php" class="nav-item nav-link">Shop</a>
+                <!-- <a href="../php/blog.php" class="nav-item nav-link">Blog</a> -->
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <a  class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu bg-light m-0">
-                        <a href="feature.html" class="dropdown-item">Features</a>
-                        <a href="quote.html" class="dropdown-item">Free Quote</a>
-                        <a href="team.html" class="dropdown-item">Our Team</a>
+                        <a href="../php/blog.php" class="dropdown-item">Blog</a>
+                        <a href="../php/Advertistment.php" class="dropdown-item">Advertisement</a>
+                        <a href="../php/newsfeed.php" class="dropdown-item">News Feed</a>
                         <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                         <a href="404.html" class="dropdown-item">404 Page</a>
                     </div>
