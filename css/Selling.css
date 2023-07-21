@@ -15,7 +15,7 @@
 }
 
 .banner-img img{
-	width:100%;
+	width:70%;
 	display:block;
 	transition:transform 0.5s;
 	cursor: pointer;
@@ -27,7 +27,7 @@
 .banner-img:hover img{
 	transform:scale(1.1);
 }
-
+/*
 .row img {
   width: 8cm;
   height: 10cm;
@@ -99,7 +99,7 @@
 	display: inline-flex;
 	/*align-items: center;
 	justify-content: center;
-    */
+    
 }
 
 
@@ -117,6 +117,99 @@
      
 
 }
+*/
+.center-text h1{
+	text-align:center;
+	font-size: var(--h1-font);
+	font-wight:800;
+	color:var(--text-color);
+	font-size: 30px;
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.plant-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.plant {
+    flex: 0 0 calc(33.33% - 20px); /* Adjust the width as per your design preference */
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.plant img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.plant:hover img {
+    transform: scale(1.1);
+}
+
+.plant-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 0 0 8px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.plant:hover .plant-info {
+    opacity: 1;
+    pointer-events: initial;
+}
+
+.plant h3, .plant p {
+    color: white;
+    margin: 5px 0;
+}
+
+.plant button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.plant button:hover {
+    background-color: #45a049;
+}
+
+
+
+
+
+
+
 
 .banner1{
 	margin-top: 45px;
