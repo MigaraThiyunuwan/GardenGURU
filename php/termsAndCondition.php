@@ -74,6 +74,7 @@
     </div>
     <!-- Page Header End -->
 
+    <!-- to genarate we used https://www.termsandconditionsgenerator.com/ -->
     <div class="container">
         <h2><strong>Terms and Conditions</strong></h2>
 
