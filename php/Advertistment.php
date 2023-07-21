@@ -44,13 +44,8 @@
 </head>
 
 <body>
-    <script>
-        $(document).ready(function(){
-    document.getElementById("heart").onclick = function(){
-        document.querySelector(".fa-gratipay").style.color = "#E74C3C";
-    };
-});
-    </script>
+
+
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
@@ -97,9 +92,79 @@
     </div>
     <!-- Page Header End -->
 
-  
- <!-- Footer Start -->
- <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <!-- Projects Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-4 portfolio-container">
+                <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="../images/Adevertistment/ad1.jpg" alt="">
+                        <div class="portfolio-text">
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="../images/Adevertistment/ad5.webp" alt="">
+                        <div class="portfolio-text">
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="../images/Adevertistment/ad3.webp" alt="">
+                        <div class="portfolio-text">
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="../images/Adevertistment/ad4.webp" alt="">
+                        <div class="portfolio-text">
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="../images/Adevertistment/ad2n.jpg" alt="">
+                        <div class="portfolio-text">
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="../images/Adevertistment/ad1.jpg" alt="">
+                        <div class="portfolio-text">
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Projects End -->
+
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
@@ -131,7 +196,7 @@
                     <a class="btn btn-link" href="#">Support</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                <img src="../images/logo.png" style="width:220px;height:50px;">
+                    <img src="../images/logo.png" style="width:220px;height:50px;">
                 </div>
             </div>
         </div>
@@ -140,14 +205,14 @@
 
 
 
- <!-- Copyright Start -->
- <div class="container-fluid copyright py-4">
- <div class="container">
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                     &copy; <a class="border-bottom" href="index.php">GardenGURU</a>, All Right Reserved.
                 </div>
-             
+
             </div>
         </div>
     </div>
