@@ -1,8 +1,12 @@
+
+
 .banner{
 	display:grid;
 	grid-template-columns: repeat(auto-fit,minmax(300px,auto));
 	align-items:center;
 	gap:2.5rem;
+
+
 }
 
 .banner-img{
@@ -15,6 +19,7 @@
 	display:block;
 	transition:transform 0.5s;
 	cursor: pointer;
+	margin-left:3rem;
 
 }
 
@@ -104,13 +109,41 @@
      right: 0;
      padding: 13px;
      background: rgba(0,0,0,0.8);
-     color:var(--bg-color);
+     color:white;
+     
      
 
+}
+
+.banner1{
+	margin-top: 45px;
+	display:grid;
+	grid-template-columns: repeat(auto-fit,minmax(300px,auto));
+	align-items:center;
+	gap:1.5rem;
 
 
 }
 
+.banner1-img{
+	overflow:hidden;
+
+}
+
+.banner1-img img{
+	margin:top:10rem;
+	width:70%;
+	display:block;
+	transition:transform 0.5s;
+	cursor: pointer;
+	margin-left:8rem;
+	margin-right: 8rem;
+
+}
+
+.banner1-img:hover img{
+	transform:scale(1.1);
+}
 
 
 

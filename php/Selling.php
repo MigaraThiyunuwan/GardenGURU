@@ -213,6 +213,18 @@
                 </div>
      </section>
 
+    <!--Banner2 Section-->
+
+    <section class="banner1">
+        <div class="banner1-img">
+            <img src="../images/Selling/plant6.jpeg">
+        </div>
+        <div class="banner1-img">
+            <img src="../images/Selling/plant6.jpeg">
+        </div>
+        
+        
+    </section>
 
 </body>
 
