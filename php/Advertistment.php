@@ -68,7 +68,7 @@
     <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
 
         <div class="container text-center py-5">
-            <h1 class="display-3 text-white mb-4 animated slideInDown">Advertistment</h1>
+            <h1 class="display-3 text-white mb-4 animated slideInDown">Advertisement</h1>
             <ol class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item">Nurture&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Your&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Green&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thumb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; with&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Us!</li>
             </ol>
@@ -85,7 +85,7 @@
                         <img class="img-fluid" src="../images/Adevertistment/ad1.jpg" alt="">
                         <div class="portfolio-text">
                             <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/ad1.jpg"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des1.png"><i class="fa fa-eye"></i></a>
                             </div>
                         </div>
                     </div>
