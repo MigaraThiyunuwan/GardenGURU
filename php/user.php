@@ -73,7 +73,7 @@
               <div class="mt-3">
                 <h4>Hello! Lashan Sachintha</h4><br>
                 <button class="btn btn-primary">LogOut</button>
-                <a class="btn btn-outline-primary " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
+                <a class="btn btn-outline-primary " target="" href="./editUser.php">Edit</a>
                 <button class="btn btn-danger">Change Password</button>
               </div>
             </div>
