@@ -21,7 +21,7 @@
     <style>
 
 .page-header { 
-    background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/AboutUs/header_img.jpg) center center no-repeat !important;
+    background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/Selling/wall3.jpeg) center center no-repeat !important;
     background-size: cover !important;
 }
 
@@ -79,9 +79,9 @@
     <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" >
     
         <div class="container text-center py-5">
-            <h1 class="display-3 text-white mb-4 animated slideInDown">About Us</h1>
+            <h1 class="display-3 text-white mb-4 animated slideInDown">Best Selling</h1>
                 <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item">Nurture Your Green Thumb with Us!</li>
+                    <li class="breadcrumb-item">Plants make people happy!</li>
                 </ol>
         </div>
     </div>
@@ -91,13 +91,13 @@
 
     <section class="banner">
         <div class="banner-img">
-            <img src="../images/Selling/img1.jpg">
+            <img src="../images/Selling/dis1.jpeg">
         </div>
         <div class="banner-img">
             <img src="../images/Selling/img1.jpg">
         </div>
         <div class="banner-img">
-            <img src="../images/Selling/img1.jpg">
+            <img src="../images/Selling/sale2.jpeg">
         </div>
         
     </section>
