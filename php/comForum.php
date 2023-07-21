@@ -5,9 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Question and Answer Forum</title>
-  <link rel="stylesheet" href="../css/main2.css">
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../css/bootsrap.min.css">
+  <link href="../css/main2.css" rel="stylesheet" >
+      <!-- Customized Bootstrap Stylesheet -->
+      <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="../css/style.css" rel="stylesheet">
 </head>
 
 <body>
