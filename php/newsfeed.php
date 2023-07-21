@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../css/main1.css">
+        <link rel="stylesheet" href="../css/style.css">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="description" content>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-   
-
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/main1.css" rel="stylesheet">
-    <!-- google fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-
-    <!-- fontawesome -->
-    <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <!-- google fonts -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway:wght@300;400;500;700;900&display=swap"
+            rel="stylesheet">
+            
+        <!-- fontawesome -->
+        <script src="https://kit.fontawesome.com/dbed6b6114.js"
+            crossorigin="anonymous"></script>
 
 
 
@@ -26,8 +27,8 @@
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-        <a href="index-2.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <img src="../images/logo.png" style="width:220px;height:50px;">
+        <a href="index-2.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5" >
+        <img src="../images/logo.png" style="width:220px;height:50px;">
             <!-- <h1 class="m-0">Garden<B>GURU</B></h1> -->
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -78,9 +79,9 @@
             </div>
         </div>
 
-        <div class="banner-sub-content">
-            <div class="hot-topic">
-                <img src="images/Watersaving_Tips_Image_Overlay_V2-1.webp" alt>
+            <div class="banner-sub-content">
+                <div class="hot-topic">
+                    <img src="../images/newsfeed/Watersaving_Tips_Image_Overlay_V2-1.webp" alt>
 
                 <div class="hot-topic-content">
                     <h2>Revolutionary Water-Saving Technique Gains Traction in Agriculture</h2>
@@ -92,8 +93,8 @@
                 </div>
             </div>
 
-            <div class="hot-topic">
-                <img src="images/12-urban-ag.png" alt>
+                <div class="hot-topic">
+                    <img src="../images/newsfeed/12-urban-ag.png" alt>
 
                 <div class="hot-topic-content">
                     <h2>Urban Gardening Movement Flourishing in Cities</h2>
@@ -104,8 +105,8 @@
                 </div>
             </div>
 
-            <div class="hot-topic">
-                <img src="images/imagesss.jpeg" alt>
+                <div class="hot-topic">
+                    <img src="../images/newsfeed/imagesss.jpeg" alt>
 
                 <div class="hot-topic-content">
                     <h2>Plant-Based Agriculture Leads to Reduced Carbon Emissions</h2>
@@ -116,28 +117,29 @@
                 </div>
             </div>
 
-            <div class="hot-topic">
-                <img src="images/amazon.jpg" alt>
+                <div class="hot-topic">
+                    <img src="../images/newsfeed/amazon.jpg" alt>
 
                 <div class="hot-topic-content">
                     <h2>Newly Discovered Plant Species in the Amazon Rainforest</h2>
 
-
-                    <p>A team of biologists exploring the depths of the Amazon rainforest has stumbled upon a previously unknown plant species with unique medicinal properties. Initial studies suggest that extracts from this plant could have potential applications in treating certain ailments. However, conservation efforts are already underway to protect this newfound treasure from potential threats.</p>
-                    <a href="#">Read More</a>
+                        
+                        <p>A team of biologists exploring the depths of the Amazon rainforest has stumbled upon a previously unknown plant species with unique medicinal properties. Initial studies suggest that extracts from this plant could have potential applications in treating certain ailments. 
+                            </p>
+                        <a href="#">Read More</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
     <hr>
 
-    <main>
-        <section class="main-container-left">
-            <h2>Top Stories</h2>
-            <div class="container-top-left">
-                <article>
-                    <img src="images/GettyImages-1318237749.webp">
+        <main>
+            <section class="main-container-left">
+                <h2>Top Stories</h2>
+                <div class="container-top-left">
+                    <article>
+                        <img src="../images/newsfeed/GettyImages-1318237749.webp">
 
                     <div>
                         <h3>AI-Powered Farming Tools Enhancing Productivity</h3>
@@ -149,22 +151,22 @@
                 </article>
             </div>
 
-            <div class="container-bottom-left">
-                <article>
-                    <img src="images/csm_NRP_1551_d35b1af732.webp">
-                    <div>
-                        <h3>Global Seed Vault Celebrates Milestone</h3>
-                        <p>The Svalbard Global Seed Vault, often referred to as the "Doomsday Vault," recently reached a remarkable milestone by storing its one-millionth seed sample. Located in the Arctic permafrost, the vault serves as a vital resource for preserving plant genetic diversity and safeguarding against potential food crises, climate-related disasters, and other threats to global agriculture.</p>
+                <div class="container-bottom-left">
+                    <article>
+                        <img src="../images/newsfeed/csm_NRP_1551_d35b1af732.webp">
+                        <div>
+                            <h3>Global Seed Vault Celebrates Milestone</h3>
+                            <p>The Svalbard Global Seed Vault, often referred to as the "Doomsday Vault," recently reached a remarkable milestone by storing its one-millionth seed sample. Located in the Arctic permafrost, the vault serves as a vital resource for preserving plant genetic diversity and safeguarding against potential food crises, climate-related disasters, and other threats to global agriculture.</p>
 
                         <a href="#">Read More <span>>></span></a>
                     </div>
                 </article>
 
-                <article>
-                    <img src="images/12-urban-ag.png">
-                    <div>
-                        <h3>Bioengineered Superplants Show Promising Results</h3>
-                        <p>Scientists working on bioengineering projects have made significant strides in developing "superplants" that exhibit enhanced resilience to diseases, pests, and adverse environmental conditions. By incorporating desirable traits from various plant species, these bioengineered crops have demonstrated the potential to increase food security and sustainability, though they also raise ethical and ecological concerns.</p>
+                    <article>
+                        <img src="../images/newsfeed/12-urban-ag.png">
+                        <div>
+                            <h3>Bioengineered Superplants Show Promising Results</h3>
+                            <p>Scientists working on bioengineering projects have made significant strides in developing "superplants" that exhibit enhanced resilience to diseases, pests, and adverse environmental conditions. By incorporating desirable traits from various plant species, these bioengineered crops have demonstrated the potential to increase food security and sustainability, though they also raise ethical and ecological concerns.</p>
 
                         <a href="#">Read More <span>>></span></a>
                     </div>
@@ -182,10 +184,10 @@
 
                     <p>Vertical farming, an innovative method of growing crops in stacked layers, is gaining momentum in urban centers worldwide. With limited arable land in cities, vertical farms offer a solution to produce fresh, pesticide-free vegetables and herbs locally.</p>
 
-                    <a href="#">Read More <span>>></span></a>
-                </div>
-                <img src="images/vertical-farming-cities-dassault-systemes.jpg">
-            </article>
+                        <a href="#">Read More <span>>></span></a>
+                    </div>
+                    <img src="../images/newsfeed/vertical-farming-cities-dassault-systemes.jpg">
+                </article>
 
             <article>
                 <h4>just in </h4>
@@ -194,10 +196,10 @@
 
                     <p>In response to the declining populations of bees and other pollinators, several countries have introduced legislation to promote pollinator-friendly farming practices. These measures encourage the use of native wildflowers as cover crops, reduced pesticide application, and the establishment of pollinator-friendly habitats on farmland.</p>
 
-                    <a href="#">Read More <span>>></span></a>
-                </div>
-                <img src="images/221017-bee-better-pollinator-certifications-farms-sustainability-pesticides-7-Doug-Crabtree-in-sunflower-crop_by-Jennifer-Hopwood-Xerces-Society.jpg">
-            </article>
+                        <a href="#">Read More <span>>></span></a>
+                    </div>
+                    <img src="../images/newsfeed/221017-bee-better-pollinator-certifications-farms-sustainability-pesticides-7-Doug-Crabtree-in-sunflower-crop_by-Jennifer-Hopwood-Xerces-Society.jpg">
+                </article>
 
             <article>
                 <h4>just in </h4>
@@ -206,10 +208,10 @@
 
                     <p>Plant identification apps powered by AI are becoming increasingly popular among gardening enthusiasts and nature lovers. These apps utilize machine learning algorithms to identify plant species from images taken with smartphones.</p>
 
-                    <a href="#">Read More <span>>></span></a>
-                </div>
-                <img src="images/PictureThis-identification.webp">
-            </article>
+                        <a href="#">Read More <span>>></span></a>
+                    </div>
+                    <img src="../images/newsfeed/PictureThis-identification.webp">
+                </article>
 
             <article>
                 <h4>just in </h4>
@@ -218,10 +220,10 @@
 
                     <p>Governments worldwide are providing increased support and incentives for organic farming practices. Recognizing the importance of sustainable agriculture, subsidies, grants, and educational programs are being introduced to encourage farmers to transition to organic methods.</p>
 
-                    <a href="#">Read More <span>>></span></a>
-                </div>
-                <img src="images/selecting-best-maize-variety.jpg">
-            </article>
+                        <a href="#">Read More <span>>></span></a>
+                    </div>
+                    <img src="../images/newsfeed/selecting-best-maize-variety.jpg">
+                </article>
 
             <article>
                 <h4>just in </h4>
@@ -230,20 +232,70 @@
 
                     <p>With climate change posing challenges to traditional crop varieties, farmers are turning to hybrid plant breeds that exhibit greater resilience to extreme weather conditions. These climate-resilient hybrids have demonstrated improved tolerance to heat, drought, and flooding, offering hope for ensuring food security amidst changing climatic patterns.</p>
 
-                    <a href="#">Read More <span>>></span></a>
-                </div>
-                <img src="images/rice_plant.webp">
-            </article>
-        </section>
-    </main>
+                        <a href="#">Read More <span>>></span></a>
+                    </div>
+                    <img src="../images/newsfeed/rice_plant.webp">
+                </article>
+            </section>
+        </main>
 
     <!-- <footer>
              -->
+<!-- Footer Start -->
+ <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Our Office</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Services</h4>
+                    <a class="btn btn-link" href="#">Landscaping</a>
+                    <a class="btn btn-link" href="#">Pruning plants</a>
+                    <a class="btn btn-link" href="#">Urban Gardening</a>
+                    <a class="btn btn-link" href="#">Garden Maintenance</a>
+                    <a class="btn btn-link" href="#">Green Technology</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Quick Links</h4>
+                    <a class="btn btn-link" href="#">About Us</a>
+                    <a class="btn btn-link" href="#">Contact Us</a>
+                    <a class="btn btn-link" href="#">Our Services</a>
+                    <a class="btn btn-link" href="#">Terms & Condition</a>
+                    <a class="btn btn-link" href="#">Support</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                <img src="../images/logo.png" style="width:220px;height:50px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+         
+    
+    <!-- Copyright Start -->
+ <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="index.php">GardenGURU</a>, All Right Reserved.
+                </div>
+             
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
 
-
-
-    <script src="script1.js" async defer></script>
-    <script src="main.js" async defer></script>
-</body>
-
+        <script src="script1.js" async defer></script>
+        <script src="main.js" async defer></script>
+    </body>
 </html>
