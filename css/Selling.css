@@ -20,6 +20,7 @@
 	transition:transform 0.5s;
 	cursor: pointer;
 	margin-left:3rem;
+	margin-bottom: 65px;
 
 }
 
@@ -37,6 +38,7 @@
 	font-size: var(--h1-font);
 	font-wight:800;
 	color:var(--text-color);
+	font-size: 30px;
 }
 
 .new-content{
@@ -47,6 +49,7 @@
 	margin-top:4.5rem;
 	text-align:center;
 	margin-left:3rem;
+	margin-bottom: 65px;
 
 }
 
@@ -138,6 +141,7 @@
 	cursor: pointer;
 	margin-left:8rem;
 	margin-right: 8rem;
+	margin-bottom: 65px;
 
 }
 
