@@ -199,7 +199,10 @@
         </div>
     </div>
     <!-- Copyright End -->
-
+<!-- JavaScript Libraries -->
+<script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
 
 
 </body>

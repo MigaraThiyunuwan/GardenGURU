@@ -2,8 +2,7 @@
 <html lang="en">
 
 
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
 
 <head>
     <meta charset="utf-8">
@@ -28,7 +27,7 @@
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <img src="images/logo.png" style="width:220px;height:50px;">
-            <!-- <h1 class="m-0">Garden<B>GURU</B></h1> -->
+           
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -62,7 +61,7 @@
 
             </div>
             
-            <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
+           
         </div>
     </nav>
     <!-- Navbar End -->

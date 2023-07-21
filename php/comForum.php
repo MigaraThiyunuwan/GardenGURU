@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Question and Answer Forum</title>
-  <link rel="stylesheet" href="../css/main2.css">
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../css/bootsrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question and Answer Forum</title>
+
+    <link href="../css/main2.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="../css/style.css" rel="stylesheet">
 </head>
+
 <body>
 
 
-<!-- Navbar Start -->
+    <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <img src="../images/logo.png" style="width:220px;height:50px;">
@@ -44,20 +52,20 @@
     </nav>
     <!-- Navbar End -->
 
-  <h1>Welcome to the Question and Answer Forum</h1>
-  <div class="question-container">
-    <h2>Ask a question:</h2>
-    <textarea id="question-input" rows="4" cols="50" placeholder="Type your question here"></textarea>
-    <button onclick="submitQuestion()">Submit</button>
-  </div>
+    <h1>Welcome to the Question and Answer Forum</h1>
+    <div class="question-container">
+        <h2>Ask a question:</h2>
+        <textarea id="question-input" rows="4" cols="50" placeholder="Type your question here"></textarea>
+        <button class="button" onclick="submitQuestion()">Submit</button>
+    </div>
 
-  <div class="answer-container" id="answer-container">
-    <!-- The answers will be added here dynamically -->
-  </div>
+    <div class="answer-container" id="answer-container">
+        <!-- The answers will be added here dynamically -->
+    </div>
 
 
-<!-- Footer Start -->
- <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
@@ -89,34 +97,38 @@
                     <a class="btn btn-link" href="#">Support</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                <img src="../images/logo.png" style="width:220px;height:50px;">
+                    <img src="../images/logo.png" style="width:220px;height:50px;">
                 </div>
             </div>
         </div>
     </div>
     <!-- Footer End -->
 
-<!-- Back to Top -->
-<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
 
- <!-- Copyright Start -->
- <div class="container-fluid copyright py-4">
- <div class="container">
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                     &copy; <a class="border-bottom" href="index.php">GardenGURU</a>, All Right Reserved.
                 </div>
-             
+
             </div>
         </div>
     </div>
     <!-- Copyright End -->
 
-  <script src="../js/script2.js"></script>
+    <!-- JavaScript Libraries -->
+    <script src="../js/script2.js"></script>
     <script src="../js/main.js"></script>
-      <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+
+    <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
 
 
 </body>
+
 </html>

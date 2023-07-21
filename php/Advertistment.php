@@ -43,21 +43,21 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="../index.php" class="nav-item nav-link active">Home</a>
-                <a href="AboutUs.php" class="nav-item nav-link">About</a>
-                <a href="../php/plantSuggestion.php" class="nav-item nav-link">Plant Suggestions</a>
-                <a href="../php/Selling.php" class="nav-item nav-link">Shop</a>
+                <a href="./plantSuggestion.php" class="nav-item nav-link">Plant Suggestions</a>
+                <a href="./Selling.php" class="nav-item nav-link">Shop</a>
                 <!-- <a href="../php/blog.php" class="nav-item nav-link">Blog</a> -->
                 <div class="nav-item dropdown">
                     <a  class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu bg-light m-0">
-                        <a href="../php/blog.php" class="dropdown-item">Blog</a>
-                        <a href="../php/Advertistment.php" class="dropdown-item">Advertisement</a>
-                        <a href="../php/newsfeed.php" class="dropdown-item">News Feed</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                        <a href="./blog.php" class="dropdown-item">Blog</a>
+                        <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
+                        <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
+                        <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
                         <a href="404.html" class="dropdown-item">404 Page</a>
                     </div>
                 </div>
-                <a href="ContactUs.php" class="nav-item nav-link">Contact</a>
+                <a href="./AboutUs.php" class="nav-item nav-link">About</a>
+                <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
             </div>
             <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
         </div>
