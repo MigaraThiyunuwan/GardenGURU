@@ -34,8 +34,8 @@
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="index-2.html" class="nav-item nav-link active">Home</a>
                 <a href="AboutUs.php" class="nav-item nav-link">About</a>
-                <a href="service.html" class="nav-item nav-link">Blog</a>
-                <a href="project.html" class="nav-item nav-link">Projects</a>
+                <a href="service.html" class="nav-item nav-link">Services</a>
+                <a href="project.html" class="nav-item nav-link">Blog</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu bg-light m-0">
