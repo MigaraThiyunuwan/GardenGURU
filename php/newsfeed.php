@@ -120,7 +120,8 @@
                         <h2>Newly Discovered Plant Species in the Amazon Rainforest</h2>
 
                         
-                        <p>A team of biologists exploring the depths of the Amazon rainforest has stumbled upon a previously unknown plant species with unique medicinal properties. Initial studies suggest that extracts from this plant could have potential applications in treating certain ailments. However, conservation efforts are already underway to protect this newfound treasure from potential threats.</p>
+                        <p>A team of biologists exploring the depths of the Amazon rainforest has stumbled upon a previously unknown plant species with unique medicinal properties. Initial studies suggest that extracts from this plant could have potential applications in treating certain ailments. 
+                            </p>
                         <a href="#">Read More</a>
                     </div>
                 </div>
