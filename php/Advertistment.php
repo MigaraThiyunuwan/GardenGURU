@@ -47,17 +47,24 @@
                 <a href="./Selling.php" class="nav-item nav-link">Shop</a>
                 <!-- <a href="../php/blog.php" class="nav-item nav-link">Blog</a> -->
                 <div class="nav-item dropdown">
-                    <a  class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <a  class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
                     <div class="dropdown-menu bg-light m-0">
                         <a href="./blog.php" class="dropdown-item">Blog</a>
                         <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
                         <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
                         <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
+                        
                     </div>
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
+                    <div class="dropdown-menu bg-light m-0">
+                        <a href="./login.php" class="dropdown-item">Log Out</a>
+                    </div>
+                </div>
             </div>
             <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
         </div>

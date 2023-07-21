@@ -19,28 +19,26 @@
     <link href="../css/Selling.css" rel="stylesheet">
 
     <style>
-
-.page-header { 
-    background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/AboutUs/header_img.jpg) center center no-repeat !important;
-    background-size: cover !important;
-}
+        .page-header {
+            background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/AboutUs/header_img.jpg) center center no-repeat !important;
+            background-size: cover !important;
+        }
 
         .team-members-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 15px; 
+            gap: 15px;
         }
+
         .team-item {
             max-width: 300px;
-            
+
         }
     </style>
 </head>
 
 <body>
-
-
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
@@ -54,21 +52,28 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="../index.php" class="nav-item nav-link active">Home</a>
-                <a href="AboutUs.php" class="nav-item nav-link">About</a>
-                <a href="service.html" class="nav-item nav-link">Services</a>
-                <a href="project.html" class="nav-item nav-link">Projects</a>
-                <a href="./blog.php" class="nav-item nav-link">Blog</a>
+                <a href="./plantSuggestion.php" class="nav-item nav-link">Plant Suggestions</a>
+                <a href="./Selling.php" class="nav-item nav-link">Shop</a>
+                <!-- <a href="../php/blog.php" class="nav-item nav-link">Blog</a> -->
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
                     <div class="dropdown-menu bg-light m-0">
-                        <a href="feature.html" class="dropdown-item">Features</a>
-                        <a href="quote.html" class="dropdown-item">Free Quote</a>
-                        <a href="team.html" class="dropdown-item">Our Team</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
+                        <a href="./blog.php" class="dropdown-item">Blog</a>
+                        <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
+                        <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
+                        <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
+
                     </div>
                 </div>
-                <a href="ContactUs.php" class="nav-item nav-link">Contact</a>
+                <a href="./AboutUs.php" class="nav-item nav-link">About</a>
+                <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
+                    <div class="dropdown-menu bg-light m-0">
+                        <a href="./login.php" class="dropdown-item">Log Out</a>
+                    </div>
+                </div>
             </div>
             <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
         </div>
@@ -76,13 +81,13 @@
     <!-- Navbar End -->
 
     <!-- Page Header Start -->
-    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" >
-    
+    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+
         <div class="container text-center py-5">
             <h1 class="display-3 text-white mb-4 animated slideInDown">About Us</h1>
-                <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item">Nurture Your Green Thumb with Us!</li>
-                </ol>
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item">Nurture Your Green Thumb with Us!</li>
+            </ol>
         </div>
     </div>
     <!-- Page Header End -->
@@ -99,119 +104,119 @@
         <div class="banner-img">
             <img src="../images/Selling/img1.jpg">
         </div>
-        
+
     </section>
 
     <!----new product section -->
 
     <section class="new product">
         <div class="center-text">
-          <h1 ="fadeIn">New Arrival Items</h1>
+            <h1="fadeIn">New Arrival Items</h1>
+        </div>
+
+        <div class="new-content">
+            <div class="row">
+                <img src="../images/Selling/veg1.jpeg">
+                <h4>Tomato Plant</h4>
+                <h5>Rs.300</h5>
+                <div class="top">
+                    <p>Hot</p>
+                </div>
+                <div class="bbtn">
+                    <a href="#">Add to cart</a>
+                </div>
             </div>
 
-                <div class="new-content">
-                    <div class="row">
-                        <img src="../images/Selling/veg1.jpeg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
 
-
-                     <div class="row">
-                        <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-
-
-
-                     <div class="row">
-                        <img src="../images/Selling/grapes.jpeg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
+            <div class="row">
+                <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
+                <h4>Tomato Plant</h4>
+                <h5>Rs.300</h5>
+                <div class="top">
+                    <p>Hot</p>
                 </div>
-     </section>
+                <div class="bbtn">
+                    <a href="#">Add to cart</a>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <img src="../images/Selling/grapes.jpeg">
+                <h4>Tomato Plant</h4>
+                <h5>Rs.300</h5>
+                <div class="top">
+                    <p>Hot</p>
+                </div>
+                <div class="bbtn">
+                    <a href="#">Add to cart</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
+                <h4>Tomato Plant</h4>
+                <h5>Rs.300</h5>
+                <div class="top">
+                    <p>Hot</p>
+                </div>
+                <div class="bbtn">
+                    <a href="#">Add to cart</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
+                <h4>Tomato Plant</h4>
+                <h5>Rs.300</h5>
+                <div class="top">
+                    <p>Hot</p>
+                </div>
+                <div class="bbtn">
+                    <a href="#">Add to cart</a>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
+                <h4>Tomato Plant</h4>
+                <h5>Rs.300</h5>
+                <div class="top">
+                    <p>Hot</p>
+                </div>
+                <div class="bbtn">
+                    <a href="#">Add to cart</a>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
+                <h4>Tomato Plant</h4>
+                <h5>Rs.300</h5>
+                <div class="top">
+                    <p>Hot</p>
+                </div>
+                <div class="bbtn">
+                    <a href="#">Add to cart</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
+                <h4>Tomato Plant</h4>
+                <h5>Rs.300</h5>
+                <div class="top">
+                    <p>Hot</p>
+                </div>
+                <div class="bbtn">
+                    <a href="#">Add to cart</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!--Banner2 Section-->
 
@@ -222,8 +227,8 @@
         <div class="banner1-img">
             <img src="../images/Selling/plant6.jpeg">
         </div>
-        
-        
+
+
     </section>
 
     <!--new products section-->
@@ -231,65 +236,65 @@
 
     <section class="new product">
         <div class="center-text">
-          <h1>Top Products</h1>
+            <h1>Top Products</h1>
+        </div>
+
+        <div class="new-content">
+            <div class="row">
+                <img src="../images/Selling/veg1.jpeg">
+                <h4>Tomato Plant</h4>
+                <h5>Rs.300</h5>
+                <div class="top">
+                    <p>Hot</p>
+                </div>
+                <div class="bbtn">
+                    <a href="#">Add to cart</a>
+                </div>
             </div>
 
-                <div class="new-content">
-                    <div class="row">
-                        <img src="../images/Selling/veg1.jpeg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
 
-
-                     <div class="row">
-                        <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
+            <div class="row">
+                <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
+                <h4>Tomato Plant</h4>
+                <h5>Rs.300</h5>
+                <div class="top">
+                    <p>Hot</p>
+                </div>
+                <div class="bbtn">
+                    <a href="#">Add to cart</a>
+                </div>
+            </div>
 
 
 
-                     <div class="row">
-                        <img src="../images/Selling/grapes.jpeg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
+            <div class="row">
+                <img src="../images/Selling/grapes.jpeg">
+                <h4>Tomato Plant</h4>
+                <h5>Rs.300</h5>
+                <div class="top">
+                    <p>Hot</p>
+                </div>
+                <div class="bbtn">
+                    <a href="#">Add to cart</a>
+                </div>
+            </div>
 
-                    <div class="row">
-                        <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
+            <div class="row">
+                <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
+                <h4>Tomato Plant</h4>
+                <h5>Rs.300</h5>
+                <div class="top">
+                    <p>Hot</p>
+                </div>
+                <div class="bbtn">
+                    <a href="#">Add to cart</a>
+                </div>
+            </div>
 
-                    <!-- JavaScript Libraries -->
- <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="../js/main.js"></script>
+            <!-- JavaScript Libraries -->
+            <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
+            <script src="../js/bootstrap.bundle.min.js"></script>
+            <script src="../js/main.js"></script>
 </body>
 
 

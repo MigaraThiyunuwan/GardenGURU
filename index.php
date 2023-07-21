@@ -35,29 +35,29 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
 
-
-
-          
-
-                <a href="index.php" class="nav-item nav-link active">Home</a>
-                <a href="./php/AboutUs.php" class="nav-item nav-link">About</a>
-                <a href="service.html" class="nav-item nav-link">Services</a>
-                <a href="project.html" class="nav-item nav-link">Projects</a>
-                <a href="./php/blog.php" class="nav-item nav-link">Blog</a>
+            <a href="./index.php" class="nav-item nav-link active">Home</a>
+                <a href="./php/plantSuggestion.php" class="nav-item nav-link">Plant Suggestions</a>
+                <a href="./php/Selling.php" class="nav-item nav-link">Shop</a>
+                <!-- <a href="../php/blog.php" class="nav-item nav-link">Blog</a> -->
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
                     <div class="dropdown-menu bg-light m-0">
-                        <a href="feature.html" class="dropdown-item">Features</a>
-                        <a href="quote.html" class="dropdown-item">Free Quote</a>
-                        <a href="team.html" class="dropdown-item">Our Team</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
+                        <a href="./php/blog.php" class="dropdown-item">Blog</a>
+                        <a href="./php/Advertistment.php" class="dropdown-item">Advertisement</a>
+                        <a href="./php/newsfeed.php" class="dropdown-item">News Feed</a>
+                        <a href="./php/comForum.php" class="dropdown-item">Communication Forum</a>
+
                     </div>
                 </div>
+                <a href="./php/AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./php/ContactUs.php" class="nav-item nav-link">Contact</a>
 
-
-                
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
+                    <div class="dropdown-menu bg-light m-0">
+                        <a href="./php/login.php" class="dropdown-item">Log Out</a>
+                    </div>
+                </div>
 
             </div>
             

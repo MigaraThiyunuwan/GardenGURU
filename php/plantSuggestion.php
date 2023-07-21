@@ -26,13 +26,11 @@
 
 <body>
 
-
-
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <img src="../images/logo.png" style="width:220px;height:50px;">
-
+            <!-- <h1 class="m-0">Garden<B>GURU</B></h1> -->
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -40,23 +38,30 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="../index.php" class="nav-item nav-link active">Home</a>
-                <a href="AboutUs.php" class="nav-item nav-link">About</a>
-                <a href="service.html" class="nav-item nav-link">Services</a>
-                <a href="project.html" class="nav-item nav-link">Projects</a>
-                <a href="../php/blog.php" class="nav-item nav-link">Blog</a>
+                <a href="./plantSuggestion.php" class="nav-item nav-link">Plant Suggestions</a>
+                <a href="./Selling.php" class="nav-item nav-link">Shop</a>
+                <!-- <a href="../php/blog.php" class="nav-item nav-link">Blog</a> -->
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
                     <div class="dropdown-menu bg-light m-0">
-                        <a href="feature.html" class="dropdown-item">Features</a>
-                        <a href="quote.html" class="dropdown-item">Free Quote</a>
-                        <a href="team.html" class="dropdown-item">Our Team</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
+                        <a href="./blog.php" class="dropdown-item">Blog</a>
+                        <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
+                        <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
+                        <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
+
                     </div>
                 </div>
-                <a href="../php/ContactUs.php" class="nav-item nav-link">Contact</a>
-            </div>
+                <a href="./AboutUs.php" class="nav-item nav-link">About</a>
+                <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
 
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
+                    <div class="dropdown-menu bg-light m-0">
+                        <a href="./login.php" class="dropdown-item">Log Out</a>
+                    </div>
+                </div>
+            </div>
+            <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
         </div>
     </nav>
     <!-- Navbar End -->
@@ -200,7 +205,7 @@
         <div class="row">
             <div class="col-md-3 col-sm-6">
                 <div class="card card-block">
-                    
+
                     <img src="../images/suggesstions/carrot.jpg" alt="Photo of sunset">
                     <h5 class="card-title mt-3 mb-3" style="margin-left: 10px;">carrot</h5>
                     <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your situation.</p>
@@ -208,7 +213,7 @@
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="card card-block">
-                    
+
                     <img src="../images/suggesstions/beans.jpg" alt="Photo of sunset">
                     <h5 class="card-title  mt-3 mb-3" style="margin-left: 10px;">Beans</h5>
                     <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your situation.</p>
@@ -216,7 +221,7 @@
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="card card-block">
-                    
+
                     <img src="../images/suggesstions/tomato.jpeg" alt="Photo of sunset">
                     <h5 class="card-title  mt-3 mb-3" style="margin-left: 10px;">Tomato</h5>
                     <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your situation.</p>
@@ -224,7 +229,7 @@
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="card card-block">
-                    
+
                     <img src="../images/suggesstions/mango.jpg" alt="Photo of sunset">
                     <h5 class="card-title  mt-3 mb-3" style="margin-left: 10px;">Mango</h5>
                     <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your situation.</p>
@@ -239,7 +244,7 @@
         <div class="row">
             <div class="col-md-3 col-sm-6">
                 <div class="card card-block">
-                    
+
                     <img src="../images/suggesstions/banana.jpg" alt="Photo of sunset">
                     <h5 class="card-title mt-3 mb-3" style="margin-left: 10px;">Banana</h5>
                     <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your situation.</p>
@@ -247,7 +252,7 @@
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="card card-block">
-                    
+
                     <img src="../images/suggesstions/papaya.jpg" alt="Photo of sunset">
                     <h5 class="card-title  mt-3 mb-3" style="margin-left: 10px;">Papaya</h5>
                     <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your situation.</p>
@@ -255,7 +260,7 @@
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="card card-block">
-                    
+
                     <img src="../images/suggesstions/potato.jpeg" alt="Photo of sunset">
                     <h5 class="card-title  mt-3 mb-3" style="margin-left: 10px;">Potato</h5>
                     <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your situation.</p>
@@ -263,7 +268,7 @@
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="card card-block">
-                    
+
                     <img src="../images/suggesstions/pineapple.jpg" alt="Photo of sunset">
                     <h5 class="card-title  mt-3 mb-3" style="margin-left: 10px;">Pineapple</h5>
                     <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your situation.</p>
@@ -273,8 +278,8 @@
 
     </div>
 
-<!-- Footer Start -->
-<div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
@@ -306,32 +311,32 @@
                     <a class="btn btn-link" href="#">Support</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                <img src="../images/logo.png" style="width:220px;height:50px;">
+                    <img src="../images/logo.png" style="width:220px;height:50px;">
                 </div>
             </div>
         </div>
     </div>
     <!-- Footer End -->
-<!-- Back to Top -->
-<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
 
 
- <!-- Copyright Start -->
- <div class="container-fluid copyright py-4">
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                     &copy; <a class="border-bottom" href="index.php">GardenGURU</a>, All Right Reserved.
                 </div>
-             
+
             </div>
         </div>
     </div>
     <!-- Copyright End -->
 
-<!-- JavaScript Libraries -->
-<script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- JavaScript Libraries -->
+    <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/main.js"></script>
 
