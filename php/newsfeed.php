@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="../css/main1.css">
         <link rel="stylesheet" href="../css/style.css">
 
-        <link href="bootstrap.min.css" rel="stylesheet">
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
         <!-- google fonts -->
         <link
             href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway:wght@300;400;500;700;900&display=swap"
@@ -236,10 +236,48 @@
 
         <!-- <footer>
              -->
-
+<!-- Footer Start -->
+ <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Our Office</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Services</h4>
+                    <a class="btn btn-link" href="#">Landscaping</a>
+                    <a class="btn btn-link" href="#">Pruning plants</a>
+                    <a class="btn btn-link" href="#">Urban Gardening</a>
+                    <a class="btn btn-link" href="#">Garden Maintenance</a>
+                    <a class="btn btn-link" href="#">Green Technology</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Quick Links</h4>
+                    <a class="btn btn-link" href="#">About Us</a>
+                    <a class="btn btn-link" href="#">Contact Us</a>
+                    <a class="btn btn-link" href="#">Our Services</a>
+                    <a class="btn btn-link" href="#">Terms & Condition</a>
+                    <a class="btn btn-link" href="#">Support</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                <img src="../images/logo.png" style="width:220px;height:50px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
              
 
-        <script src="script1.js" async defer></script>
-        <script src="main.js" async defer></script>
+        <script src="../js/script1.js" async defer></script>
+        <script src="../js/main.js" async defer></script>
     </body>
 </html>
