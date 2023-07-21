@@ -120,8 +120,8 @@
 
 .banner1{
 	margin-top: 45px;
-	display:grid;
-	grid-template-columns: repeat(auto-fit,minmax(300px,auto));
+	display:flex;
+	/*grid-template-columns: repeat(auto-fit,minmax(300px,auto));*/
 	align-items:center;
 	gap:1.5rem;
 
@@ -149,10 +149,25 @@
 	transform:scale(1.1);
 }
 
+.blog-content{
+	display:flex;
+    grid-template-columns: repeat(auto-fit,minmax(350px,auto));
+	align-items:center;
+	gap:2.5rem;
+	/*margin-top:4.5rem;*/
+	
+}
 
+.box-img img{
+	width:15cm;
+	height:10cm;
 
+}
 
-
+.center-text h2{
+	text-align:center;
+	
+}
 
 
 

@@ -286,6 +286,61 @@
                         </div>
                     </div>
 
+        <!--blog section-->
+
+        <section class="blog">
+            <div class="center-text">
+                <h2>Latest News</h2>
+                
+            </div>
+
+            <div class="blog-content">
+                <div class="main-box">
+                    <div class="box-img">
+                        <img src="../images/Selling/plant11.jpeg">
+                        
+                    </div>
+                    <div class="in-bxx">
+                        <div class="in-text">
+                            <p>Dec 02,2022</p>
+                        </div>
+                        <div class="in-icon">
+                            <a href="#"><i class='bx bx-message-rounded'></i></a>
+                        </div>
+                        
+                    </div>
+                    <h3>the best way to sell plants by online website</h3>
+                </div>
+
+                
+                <div class="blog-content">
+                <div class="main-box">
+                    <div class="box-img">
+                        <img src="../images/Selling/plant10.jpeg">
+                        
+                    </div>
+                    <div class="in-bxx">
+                        <div class="in-text">
+                            <p>Dec 02,2022</p>
+                        </div>
+                        <div class="in-icon">
+                            <a href="#"><i class='bx bx-message-rounded'></i></a>
+                        </div>
+                        
+                    </div>
+                    <h3>the best way to sell plants by online website</h3>
+                </div>
+
+
+
+             
+                
+            </div>
+
+
+
+        </section>
+
 </body>
 
 
