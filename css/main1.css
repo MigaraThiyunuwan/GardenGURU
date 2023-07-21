@@ -193,19 +193,19 @@ hr{
     right: 20px;
     padding: 10px 20px;
     line-height: 1.3;
-    color:black;
+    color:white;
 }
 
 .hot-topic h2{
     padding: 10px 0;
     font-size: 18px;
-    text-shadow: 0 0 2px #000;
+    text-shadow: 0 0 2px white;
 }
 
 .hot-topic h3{
     padding: 10px 0;
     font-size: 16px;
-    text-shadow: 0 0 2px #000;
+    text-shadow: 0 0 2px white;
 }
 
 .hot-topic p{
