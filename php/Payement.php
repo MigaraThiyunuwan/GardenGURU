@@ -115,7 +115,7 @@
                 <div class="mt-4 mb-4 d-flex justify-content-between">
 
                     <span>Previous step</span>
-                    <button class="btn btn-success px-3">Pay $840</button>
+                    <button class="btn btn-success px-3">Pay Rs.549</button>
                 </div>
 
             </div>
@@ -126,7 +126,7 @@
 
                     <span>You have to pay</span>
                     <div class="d-flex flex-row align-items-end mb-3">
-                        <h1 class="mb-0 yellow">$549</h1> <span>.99</span>
+                        <h1 class="mb-0 yellow">Rs.549</h1> <span>.00</span>
                     </div>
 
                     <span>Enjoy all the features and perk after you complete the payment</span>

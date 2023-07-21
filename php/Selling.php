@@ -230,7 +230,7 @@
             <img src="../images/Selling/veg1.jpeg" alt="Plant 1">
             <div class="plant-info">
                 <h3>Tomato</h3>
-                <p>$20.00</p>
+                <p>Rs.20.00</p>
                 <button>Add to Cart</button>
             </div>
         </div>
