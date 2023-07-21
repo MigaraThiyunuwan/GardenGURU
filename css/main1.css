@@ -117,7 +117,7 @@ hr{
 }
 
 .banner-main-content h2{
-    font-size: 2rem;
+    /* font-size: 2rem; */
     font-family: var(--heading);
 }
 
