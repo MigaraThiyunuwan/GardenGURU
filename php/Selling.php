@@ -251,7 +251,7 @@
 
        <div class="plant-container">
         <div class="plant">
-            <img src="../images/Selling/grapes.jpeg" alt="Plant 1">
+            <img src="../images/Selling/cab12.jpeg" alt="Plant 1">
             <div class="plant-info">
                 <h3>Plant 1</h3>
                 <p>$20.00</p>
@@ -259,7 +259,7 @@
             </div>
         </div>
         <div class="plant">
-            <img src="../images/Selling/grapes.jpeg" alt="Plant 2">
+            <img src="../images/Selling/flower45.jpeg" alt="Plant 2">
             <div class="plant-info">
                 <h3>Plant 2</h3>
                 <p>$25.00</p>
@@ -267,7 +267,7 @@
             </div>
         </div>
         <div class="plant">
-            <img src="../images/Selling/grapes.jpeg" alt="Plant 3">
+            <img src="../images/Selling/prom.jpeg" alt="Plant 3">
             <div class="plant-info">
                 <h3>Plant 3</h3>
                 <p>$18.00</p>
@@ -288,7 +288,7 @@
             </div>
         </div>
         <div class="plant">
-            <img src="../images/Selling/grapes.jpeg" alt="Plant 2">
+            <img src="../images/Selling/lily3.jpeg" alt="Plant 2">
             <div class="plant-info">
                 <h3>Plant 2</h3>
                 <p>$25.00</p>
@@ -296,7 +296,7 @@
             </div>
         </div>
         <div class="plant">
-            <img src="../images/Selling/grapes.jpeg" alt="Plant 3">
+            <img src="../images/Selling/mango.jpeg" alt="Plant 3">
             <div class="plant-info">
                 <h3>Plant 3</h3>
                 <p>$18.00</p>
