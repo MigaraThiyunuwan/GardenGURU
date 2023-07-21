@@ -7,9 +7,9 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
 
+    <script src="https://kit.fontawesome.com/0008de2df6.js" crossorigin="anonymous"></script>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/register.css" rel="stylesheet">
@@ -85,10 +85,10 @@
                         <div class="input-group col">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fas fa-map-marker-alt" style="font-size: 25px;"></i>
+                                    <i class="fa-solid fa-location-dot fa-fade" style="color: #0b8952; font-size: 25px;"></i>
                                 </span>
                             </div>
-                            <a class="form-control bg-white border-left-0 border-md" style="color: #ccc; font-weight: bold;">Select Location</a>
+                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Select Location</a>
                             <select id="job" name="jobtitle" class="input-group-text bg-white px-4 border-md border-right-0">
                                 <option value="">Badulla</option>
                                 <option value="">Kahataruppa</option>
@@ -100,11 +100,10 @@
                         <div class="input-group col">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fas fa-map-marker-alt" style="font-size: 25px;"></i>
-                                    <i class="fas fa-some-icon" style="font-size: 25px;"></i>
+                                    <i class="fa-solid fa-sun fa-beat-fade" style="color: #0b8952; font-size: 25px;"></i>
                                 </span>
                             </div>
-                            <a class="form-control bg-white border-left-0 border-md" style="color: #ccc; font-weight: bold;">Sun Exposure</a>
+                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Sun Exposure</a>
                             <select id="option1" name="option1" class="input-group-text bg-white px-4 border-md border-right-0">
                                 <option value="">High</option>
                                 <option value="">Medium</option>
@@ -116,15 +115,14 @@
                         <div class="input-group col">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fas fa-map-marker-alt" style="font-size: 25px;"></i>
-                                    <i class="fas fa-another-icon" style="font-size: 25px;"></i>
+                                <i class="fa-solid fa-person-digging fa-shake" style="color: #0b8952; font-size: 25px;"></i>
                                 </span>
                             </div>
-                            <a class="form-control bg-white border-left-0 border-md" style="color: #ccc; font-weight: bold;">Soil </a>
+                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Soil </a>
                             <select id="option2" name="option2" class="input-group-text bg-white px-4 border-md border-right-0">
-                                <option value="">Option 1</option>
-                                <option value="">Option 2</option>
-                                <option value="">Option 3</option>
+                                <option value="">Reddish Brown Earths</option>
+                                <option value="">Red Yellow Podzolic</option>
+                                <option value="">Low Humic Gley</option>
                             </select>
                         </div>
 
@@ -136,14 +134,14 @@
                         <div class="input-group col">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fas fa-map-marker-alt" style="font-size: 25px;"></i>
+                                    <i class="fa-solid fa-droplet fa-bounce" style="color: #0b8952;font-size: 25px;"></i>
                                 </span>
                             </div>
-                            <a class="form-control bg-white border-left-0 border-md" style="color: #ccc; font-weight: bold;">Select option 3</a>
+                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Water</a>
                             <select id="job" name="jobtitle" class="input-group-text bg-white px-4 border-md border-right-0">
-                                <option value="">Option 1</option>
-                                <option value="">Option 2</option>
-                                <option value="">Option 3</option>
+                                <option value="">Easy to found</option>
+                                <option value="">Medium</option>
+                                <option value="">Rare</option>
                             </select>
                         </div>
 
@@ -151,15 +149,15 @@
                         <div class="input-group col">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fas fa-map-marker-alt" style="font-size: 25px;"></i>
-                                    <i class="fas fa-some-icon" style="font-size: 25px;"></i>
+                                    <i class="fa-solid fa-landmark fa-fade" style="color: #0b8952;font-size: 25px;"></i>
                                 </span>
                             </div>
-                            <a class="form-control bg-white border-left-0 border-md" style="color: #ccc; font-weight: bold;">Select Option 1</a>
+                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Space</a>
                             <select id="option1" name="option1" class="input-group-text bg-white px-4 border-md border-right-0">
-                                <option value="">Option 1</option>
-                                <option value="">Option 2</option>
-                                <option value="">Option 3</option>
+                                <option value="">Limited</option>
+                                <option value="">Average</option>
+                                <option value="">Large</option>    
+                            
                             </select>
                         </div>
 
@@ -167,15 +165,15 @@
                         <div class="input-group col">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fas fa-map-marker-alt" style="font-size: 25px;"></i>
-                                    <i class="fas fa-another-icon" style="font-size: 25px;"></i>
+                                    <i class="fa-solid fa-clock fa-flip" style="color: #0b8952;font-size: 25px;"></i>
                                 </span>
                             </div>
-                            <a class="form-control bg-white border-left-0 border-md" style="color: #ccc; font-weight: bold;">Select Option 2</a>
+                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Harvest Time</a>
                             <select id="option2" name="option2" class="input-group-text bg-white px-4 border-md border-right-0">
-                                <option value="">Option 1</option>
-                                <option value="">Option 2</option>
-                                <option value="">Option 3</option>
+                                <option value="">< 1 month</option>
+                                <option value="">1 to 6 months</option>
+                                <option value="">6 to 12 months</option>
+                                <option value="">> 12 months</option>
                             </select>
                         </div>
 
