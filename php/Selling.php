@@ -39,7 +39,9 @@
 </head>
 
 <body>
+<?php 
 
+?>
 
 
     <!-- Navbar Start -->

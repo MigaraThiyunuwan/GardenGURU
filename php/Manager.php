@@ -20,7 +20,9 @@
 </head>
 
 <body>
+<?php 
 
+?>
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="index-2.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5" >

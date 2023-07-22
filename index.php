@@ -23,6 +23,9 @@
 
 <body class="body">
 
+<?php 
+
+?>
 
 
     <!-- Navbar Start -->
