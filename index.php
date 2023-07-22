@@ -16,11 +16,16 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+
+
 </head>
 
-<body>
+<body class="body">
 
+<?php 
+
+?>
 
 
     <!-- Navbar Start -->
@@ -53,8 +58,9 @@
                 <a href="./php/ContactUs.php" class="nav-item nav-link">Contact</a>
 
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
+                    <a href="./php/user.php" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                     <div class="dropdown-menu bg-light m-0">
+                    <a href="./php/user.php" class="dropdown-item">Profile</a>
                         <a href="./php/login.php" class="dropdown-item">Log Out</a>
                     </div>
                 </div>
@@ -281,19 +287,19 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Services</h4>
-                    <a class="btn btn-link" href="#">Landscaping</a>
-                    <a class="btn btn-link" href="#">Pruning plants</a>
-                    <a class="btn btn-link" href="#">Urban Gardening</a>
-                    <a class="btn btn-link" href="#">Garden Maintenance</a>
-                    <a class="btn btn-link" href="#">Green Technology</a>
+                    <a class="btn btn-link" href="./php/plantSuggestion.php">Plant Suggestion</a>
+                    <a class="btn btn-link" href="./php/Advertistment.php">Advertiesment</a>
+                    <a class="btn btn-link" href="./php/Selling.php">Shop</a>
+                    <a class="btn btn-link" href="./php/blog.php">Blog</a>
+                  
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="#">About Us</a>
-                    <a class="btn btn-link" href="#">Contact Us</a>
-                    <a class="btn btn-link" href="#">Our Services</a>
-                    <a class="btn btn-link" href="#">Terms & Condition</a>
-                    <a class="btn btn-link" href="#">Support</a>
+                    <a class="btn btn-link" href="./php/AboutUs.php">About Us</a>
+                    <a class="btn btn-link" href="./php/ContactUs.php">Contact Us</a>
+                    <a class="btn btn-link" href="./php/newsfeed.php">News Feed</a>
+                    <a class="btn btn-link" href="./php/login.php">Log Out</a>
+                    <a class="btn btn-link" href="./php/termsAndCondition.php">Terms & Condition</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <img src="images/logo.png" style="width:220px;height:50px;">

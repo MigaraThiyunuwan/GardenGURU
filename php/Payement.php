@@ -17,11 +17,14 @@
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/Payement.css" rel="stylesheet">
+    
 
 </head>
 
 <body>
+<?php 
 
+?>
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
@@ -114,7 +117,7 @@
                 <div class="mt-4 mb-4 d-flex justify-content-between">
 
                     <span>Previous step</span>
-                    <button class="btn btn-success px-3">Pay $840</button>
+                    <button class="btn btn-success px-3">Pay Rs.549</button>
                 </div>
 
             </div>
@@ -125,7 +128,7 @@
 
                     <span>You have to pay</span>
                     <div class="d-flex flex-row align-items-end mb-3">
-                        <h1 class="mb-0 yellow">$549</h1> <span>.99</span>
+                        <h1 class="mb-0 yellow">Rs.549</h1> <span>.00</span>
                     </div>
 
                     <span>Enjoy all the features and perk after you complete the payment</span>
@@ -149,8 +152,9 @@
 
     </div>
 
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+   
+     <!-- Footer Start -->
+     <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
