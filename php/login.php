@@ -77,20 +77,20 @@
                                 <h3>Sign In</h3>
                                 <p class="mb-4">Sign in to your account by entering username and password.</p>
                             </div>
-                            <form action="../index.php" method="post">
+                            <form action="./classes/loginProcess.php" method="post">
                                 <div class="form-group first">
                                     <!-- <label for="username">Username</label> -->
-                                    <input type="text" placeholder="Username" class="form-control" id="username">
+                                    <input type="email" placeholder="Email" class="form-control" name="email" id="email" >
                                 </div>
                                 <div class="form-group last mb-4">
                                     <!-- <label for="password">Password</label> -->
-                                    <input type="password" placeholder="password" class="form-control" id="password">
+                                    <input type="password" placeholder="password" class="form-control" name="password" id="password" >
                                 </div>
                                 <div class="d-flex mb-5 align-items-center">
-                                    <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
+                                    <!-- <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
                                         <input type="checkbox" checked="checked" />
                                         <div class="control__indicator"></div>
-                                    </label>
+                                    </label> -->
                                     <span class="ml-auto" style="padding-left: 120px;"><a href="#" class="forgot-pass">Forgot Password?</a></span>
                                 </div>
 
@@ -106,6 +106,16 @@
                                     <p class="mb-4">Don't have an account yet? <a href="./register.php" style="color: #38761d;">Cick Here</a> to create one.</p>
                                 </div>
 
+                                <?php
+                                if (isset($_GET['error'])) {
+                                    if($_GET['error'] == 1){
+                                        echo "<b><p style='color: red;'> Email address or Password Incorrect !</p></b>";
+                                    }
+                                    if($_GET['error'] == 2){
+                                        echo "<b><p style='color: red;'> You Need to Login to Your Account to Visit Profile.</p></b>";
+                                    }
+                                    
+                                } ?>
                             </form>
                         </div>
                     </div>
@@ -115,9 +125,9 @@
     </div>
 
     <!-- JavaScript Libraries -->
-    <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="../js/main.js"></script>
+    <!-- <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script> -->
+    <!-- <script src="../js/bootstrap.bundle.min.js"></script> -->
+    <!-- <script src="../js/main.js"></script> -->
 
 
 </body>

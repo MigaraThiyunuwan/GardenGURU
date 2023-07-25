@@ -1,7 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
+<?php
+require './php/classes/persons.php';
+session_start();
+if (isset($_SESSION["user"])) {
+    // User is logged in, retrieve the user object
+    $user = $_SESSION["user"];
+} 
+// else {
+   
+//     header("Location: ./php/login.php");
+//     exit();
+// }
+?>
 
 
 <head>
@@ -23,16 +35,16 @@
 
 <body class="body">
 
-<?php 
+    <?php
 
-?>
+    ?>
 
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <img src="images/logo.png" style="width:220px;height:50px;">
-           
+            
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -40,7 +52,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
 
-            <a href="./index.php" class="nav-item nav-link active">Home</a>
+                <a href="./index.php" class="nav-item nav-link active">Home</a>
                 <a href="./php/plantSuggestion.php" class="nav-item nav-link">Plant Suggestions</a>
                 <a href="./php/Selling.php" class="nav-item nav-link">Shop</a>
                 <!-- <a href="../php/blog.php" class="nav-item nav-link">Blog</a> -->
@@ -58,16 +70,16 @@
                 <a href="./php/ContactUs.php" class="nav-item nav-link">Contact</a>
 
                 <div class="nav-item dropdown">
-                    <a href="./php/user.php" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                     <div class="dropdown-menu bg-light m-0">
-                    <a href="./php/user.php" class="dropdown-item">Profile</a>
-                        <a href="./php/login.php" class="dropdown-item">Log Out</a>
+                        <a href="./php/user.php" class="dropdown-item">Profile</a>
+                        <a href="./php/classes/logout.php" class="dropdown-item">Log Out</a>
                     </div>
                 </div>
 
             </div>
-            
-           
+
+
         </div>
     </nav>
     <!-- Navbar End -->
@@ -291,7 +303,7 @@
                     <a class="btn btn-link" href="./php/Advertistment.php">Advertiesment</a>
                     <a class="btn btn-link" href="./php/Selling.php">Shop</a>
                     <a class="btn btn-link" href="./php/blog.php">Blog</a>
-                  
+
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Quick Links</h4>
