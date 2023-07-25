@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+<?php
+require './classes/persons.php';
+session_start();
+if (isset($_SESSION["user"])) {
+    // User is logged in, retrieve the user object
+    $user = $_SESSION["user"];
+} else {
+    // Redirect the user to login.php if not logged in
+    header("Location: ./login.php?error=2");
+    exit();
+}
+?>
+
 <head>
     <meta charset="utf-8">
     <title>Gardener - Gardening Website Template</title>
@@ -16,9 +30,9 @@
 </head>
 
 <body>
-<?php 
+    <?php
 
-?>
+    ?>
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
@@ -48,9 +62,10 @@
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
 
                 <div class="nav-item dropdown">
-                    <a href="./user.php" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                     <div class="dropdown-menu bg-light m-0">
-                        <a href="./login.php" class="dropdown-item">Log Out</a>
+                        <a href="./user.php" class="dropdown-item">Profile</a>
+                        <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
                     </div>
                 </div>
             </div>
@@ -60,7 +75,7 @@
 
     <section>
 
-        <div class="container" >
+        <div class="container">
             <div class="row">
                 <div class="col">
                     <div class="card">
@@ -68,72 +83,80 @@
                             <div class="d-flex flex-column align-items-center text-center">
                                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
                                 <div class="mt-3">
-                                    <h4>Hello! Lashan Sachintha</h4><br>
-                                    <button class="btn btn-primary">LogOut</button>
-                                    <a class="btn btn-outline-primary " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
-                                    <button class="btn btn-danger">Change Password</button>
+                                    <h4>Hello! <?php echo $user->getFirstName() . "" . $user->getLastName() ?> !</h4><br>
+                                    <a class="btn btn-outline-primary " target="" href="./classes/logout.php">Log Out</a>
+
+                                    <a class="btn btn-outline-danger " target="" href="#">Change Password</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-8">
-					<div class="card">
-						<div class="card-body">
-							<div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Full Name</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="John Doe">
-								</div>
-							</div>
-							<div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Email</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="john@example.com">
-								</div>
-							</div>
-							<div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Phone</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="(239) 816-9029">
-								</div>
-							</div>
-							<div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Mobile</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="(320) 380-4539">
-								</div>
-							</div>
-							<div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Address</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="Bay Area, San Francisco, CA">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-3"></div>
-								<div class="col-sm-9 text-secondary">
-									<input type="button" class="btn btn-primary px-4" value="Save Changes">
-								</div>
-							</div>
-						</div>
-					</div>
-            </div>
-            <br><br>
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="./classes/userEditProcess.php" method="post">
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">First Name</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" name="firstname" class="form-control" value="<?php echo $user->getFirstName() ?>">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Last Name</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" name="lastname" class="form-control" value="<?php echo $user->getLastName() ?>">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Email</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" name="email" class="form-control" value="<?php echo $user->getEmail() ?>">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Phone</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" name="phone" class="form-control" value="<?php echo $user->getPhoneNo() ?>">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Address</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" name="address" class="form-control" value="<?php echo $user->getAddress() ?>">
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-sm-6">
+                                        <div class="col-sm-9 text-secondary">
+                                            <button class="btn btn-primary my-3 w-100">
+                                                Save Changes
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                 
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
     </section>
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
@@ -181,7 +204,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="border-bottom" href="index.php">GardenGURU</a>, All Right Reserved.
+                    &copy; <a class="border-bottom" href="../index.php">GardenGURU</a>, All Right Reserved.
                 </div>
 
             </div>

@@ -106,6 +106,16 @@
                                     <p class="mb-4">Don't have an account yet? <a href="./register.php" style="color: #38761d;">Cick Here</a> to create one.</p>
                                 </div>
 
+                                <?php
+                                if (isset($_GET['error'])) {
+                                    if($_GET['error'] == 1){
+                                        echo "<b><p style='color: red;'> Email address or Password Incorrect !</p></b>";
+                                    }
+                                    if($_GET['error'] == 2){
+                                        echo "<b><p style='color: red;'> You Need to Login to Your Account to Visit Profile.</p></b>";
+                                    }
+                                    
+                                } ?>
                             </form>
                         </div>
                     </div>

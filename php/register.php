@@ -106,7 +106,7 @@ $dbcon = new DbConnector();
                         <div class="input-group col-lg-12 mb-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa fa-envelope text-muted" style="font-size: 25px;"></i>
+                                <i class="fa-solid fa-at text-muted" style="font-size: 25px;"></i>
                                 </span>
                             </div>
                             <input id="email" type="email" name="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md">
@@ -121,12 +121,22 @@ $dbcon = new DbConnector();
                             </div>
 
                             <input id="phoneNumber" type="tel" name="phone" placeholder="Phone Number" class="form-control bg-white border-md border-left-0 pl-3">
+                        </div>
+                        <!-- Address -->
+                        <div class="input-group col-lg-12 mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa-solid fa-envelope text-muted" style="font-size: 25px;"></i>
+                                </span>
+                            </div>
+
+                            <input id="address" type="tel" name="address" placeholder="Address" class="form-control bg-white border-md border-left-0 pl-3">
                         </div>.
 
                         <div class="input-group col-lg-12 mb-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa-solid fa-mars-and-venus" style="font-size: 25px;"></i>
+                                    <i class="fa-solid fa-mars-and-venus text-muted" style="font-size: 25px;"></i>
                                 </span>
                             </div>
                             <a class="form-control bg-white border-left-0 border-md" style="color: #ccc; font-weight: bold;">Select Your Gender </a>
@@ -141,7 +151,7 @@ $dbcon = new DbConnector();
                         <div class="input-group col-lg-12 mb-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fas fa-map-marker-alt" style="font-size: 25px;"></i>
+                                    <i class="fas fa-map-marker-alt text-muted" style="font-size: 25px;"></i>
                                 </span>
                             </div>
                             <a class="form-control bg-white border-left-0 border-md" style="color: #ccc; font-weight: bold;">Select Your District </a>
@@ -229,20 +239,22 @@ $dbcon = new DbConnector();
                             $phone = $_POST["phone"];
                             $gender = $_POST["gender"];
                             $district = $_POST["district"];
+                            $address = $_POST["address"];
                             $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
                           //  $password = $_POST["password"];
 
                             try {
                                 $con = $dbcon->getConnection();
-                                $query = "INSERT INTO users(user_FirstName, user_LastName, user_Email, user_PhoneNo, user_Password, user_District, user_Gender) VALUES(?, ?, ?, ?, ?, ?, ?)";
+                                $query = "INSERT INTO users(user_FirstName, user_LastName, user_Email, user_PhoneNo, user_address, user_Password, user_District, user_Gender) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
                                 $pstmt = $con->prepare($query);
                                 $pstmt->bindValue(1, $firstname);
                                 $pstmt->bindValue(2, $lastname);
                                 $pstmt->bindValue(3, $email);
                                 $pstmt->bindValue(4, $phone);
-                                $pstmt->bindValue(5, $password);
-                                $pstmt->bindValue(6, $district);
-                                $pstmt->bindValue(7, $gender);
+                                $pstmt->bindValue(5, $address);
+                                $pstmt->bindValue(6, $password);
+                                $pstmt->bindValue(7, $district);
+                                $pstmt->bindValue(8, $gender);
                                 $pstmt->execute();
                                 if (($pstmt->rowCount()) > 0) {
                 ?>

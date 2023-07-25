@@ -61,9 +61,11 @@
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                     <div class="dropdown-menu bg-light m-0">
-                        <a href="./login.php" class="dropdown-item">Log Out</a>
+                        <a href="./user.php" class="dropdown-item">Profile</a>
+                        <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
                     </div>
                 </div>
+                
             </div>
             <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
         </div>
@@ -88,7 +90,7 @@
         <div class="row py-5 mt-4 align-items-center">
 
             <div class="container">
-                <form action="#">
+                <form action="#" method ="POST">
                     <div class="row">
 
                         <!-- Select Box 1 -->

@@ -1,5 +1,7 @@
 <?php
 require './DbConnector.php';
+require './persons.php';
+
 
 use classes\DbConnector;
 
@@ -14,8 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
 
 
- echo "email is $email ";
- echo "pw is $password ";
+
     try {
         $con = $dbcon->getConnection();
         $query = "SELECT * FROM users WHERE user_Email = ? ";
@@ -28,15 +29,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         foreach($rs as $row){
             $dbpassword = $row->user_Password;
+            $dbFirstName = $row->user_FirstName;
+            $dbLastName = $row->user_LastName;
+            $dbEmail = $row->user_Email;
+            $dbPhoneNo = $row->user_PhoneNo;
+            $dbDistrict = $row->user_District;
+            $dbGender = $row->user_Gender;
+            $dbid = $row->user_id;
+            $dbaddress = $row->user_address;
         }
-        echo "db paw is $dbpassword ";
+       ;
         if (password_verify($password, $dbpassword)) {
-            // Password is correct. Proceed with login logic.
-            echo "inside if ";
+           
+            $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword,$dbaddress, $dbid, $dbDistrict, $dbPhoneNo);
+            session_start();
+            $_SESSION["user"] = $user;
             header("Location: ../../index.php");
         exit;
         }else{
-            echo "inside else ";
+            
             header("Location: ../login.php?error=1");
             exit;
         }

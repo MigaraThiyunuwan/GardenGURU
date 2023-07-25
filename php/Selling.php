@@ -73,9 +73,10 @@
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
 
                 <div class="nav-item dropdown">
-                    <a href="./user.php" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                     <div class="dropdown-menu bg-light m-0">
-                        <a href="./login.php" class="dropdown-item">Log Out</a>
+                        <a href="./user.php" class="dropdown-item">Profile</a>
+                        <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
                     </div>
                 </div>
             </div>
