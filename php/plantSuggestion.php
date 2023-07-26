@@ -1,3 +1,41 @@
+<?php
+require './classes/DbConnector.php';
+
+use classes\DbConnector;
+
+$dbcon = new DbConnector();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $location = $_POST["location"];
+    $soil = $_POST["soil"];
+    $sun = $_POST["sun"];
+    $water = $_POST["water"];
+    $space = $_POST["space"];
+    $time = $_POST["time"];
+
+    try {
+        $con = $dbcon->getConnection();
+        $sql = "SELECT PlantID FROM suggestion WHERE Location = ? AND SunExposure = ? AND Soil = ? AND Water = ? AND Space = ? AND HarvestTime = ?";
+
+        $pstmt = $con->prepare($sql);
+        $pstmt->bindValue(1, $location);
+        $pstmt->bindValue(2, $sun);
+        $pstmt->bindValue(3, $soil);
+        $pstmt->bindValue(4, $water);
+        $pstmt->bindValue(5, $space);
+        $pstmt->bindValue(6, $time);
+
+        $pstmt->execute();
+        $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+    } catch (PDOException $exc) {
+        echo $exc->getMessage();
+    }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,15 +59,13 @@
             background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/AboutUs/header_img.jpg) center center no-repeat !important;
             background-size: cover !important;
         }
-
-       
     </style>
 </head>
 
 <body class="body">
-<?php 
+    <?php
 
-?>
+    ?>
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
@@ -65,7 +101,7 @@
                         <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
                     </div>
                 </div>
-                
+
             </div>
             <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
         </div>
@@ -87,10 +123,16 @@
 
 
     <div class="container">
+
+
+
         <div class="row py-5 mt-4 align-items-center">
-        <span><b> <p style="color:Tomato;"> Note:-</p><p style="color:MediumSeaGreen;"> Here we suggest you plants for home gardening purpose only. (මෙහිදී අපි ඔබට පැල යෝජනා කරන්නේ ගෙවතු වගාව සඳහා පමණි )</p></b></span>
+            <span><b>
+                    <p style="color:Tomato;"> Note:-</p>
+                    <p style="color:MediumSeaGreen;"> Here we suggest you plants for home gardening purpose only. (මෙහිදී අපි ඔබට පැල යෝජනා කරන්නේ ගෙවතු වගාව සඳහා පමණි )</p>
+                </b></span>
             <div class="container">
-                <form action="#" method ="POST">
+                <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST">
                     <div class="row">
 
                         <!-- Select Box 1 -->
@@ -101,10 +143,22 @@
                                 </span>
                             </div>
                             <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Select Location</a>
-                            <select id="job" name="jobtitle" class="input-group-text bg-white px-4 border-md border-right-0">
-                                <option value="">Badulla</option>
-                                <option value="">Kahataruppa</option>
-                                <option value="">Rambukpotha</option>
+                            <select id="location" name="location" class="input-group-text bg-white px-4 border-md border-right-0">
+                                <option value="Badulla">Badulla</option>
+                                <option value="Soranathota">Soranathota</option>
+                                <option value="Meegahakiula">Meegahakiula</option>
+                                <option value="Kandaketiya">Kandaketiya</option>
+                                <option value="Rideemaliyadda">Rideemaliyadda</option>
+                                <option value="Mahiyanganaya">Mahiyanganaya</option>
+                                <option value="Passara">Passara</option>
+                                <option value="Lunugala">Lunugala</option>
+                                <option value="Hali Ela">Hali Ela</option>
+                                <option value="Ella">Ella</option>
+                                <option value="Bandarawela">Bandarawela</option>
+                                <option value="Haputale">Haputale</option>
+                                <option value="Haldummulla">Haldummulla</option>
+                                <option value="Uva Paranagama">Uva Paranagama</option>
+                                <option value="Welimada">Welimada</option>
                             </select>
                         </div>
 
@@ -116,10 +170,10 @@
                                 </span>
                             </div>
                             <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Sun Exposure</a>
-                            <select id="option1" name="option1" class="input-group-text bg-white px-4 border-md border-right-0">
-                                <option value="">High</option>
-                                <option value="">Medium</option>
-                                <option value="">Low</option>
+                            <select id="sun" name="sun" class="input-group-text bg-white px-4 border-md border-right-0">
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
                             </select>
                         </div>
 
@@ -131,11 +185,11 @@
                                 </span>
                             </div>
                             <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Soil </a>
-                            <select id="option2" name="option2" class="input-group-text bg-white px-4 border-md border-right-0">
-                                <option value="">Reddish Brown Earths</option>
-                                <option value="">Red Yellow Podzolic</option>
-                                <!-- <option value="">Low Humic Gley</option> -->
-                                <!-- <option value="">Mountain regosols</option> -->
+                            <select id="soil" name="soil" class="input-group-text bg-white px-4 border-md border-right-0">
+                                <option value="Reddish Brown Earths">Reddish Brown Earths</option>
+                                <option value="Red Yellow Podzolic">Red Yellow Podzolic</option>
+                                <!-- <option value="Low Humic Gley">Low Humic Gley</option> -->
+                                <!-- <option value="Mountain regosols">Mountain regosols</option> -->
                             </select>
                         </div>
 
@@ -151,10 +205,10 @@
                                 </span>
                             </div>
                             <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Water</a>
-                            <select id="job" name="jobtitle" class="input-group-text bg-white px-4 border-md border-right-0">
-                                <option value="">Easy to found</option>
-                                <option value="">Medium</option>
-                                <option value="">Rare</option>
+                            <select id="water" name="water" class="input-group-text bg-white px-4 border-md border-right-0">
+                                <option value="Easy to found">Easy to found</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Rare">Rare</option>
                             </select>
                         </div>
 
@@ -166,10 +220,10 @@
                                 </span>
                             </div>
                             <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Space</a>
-                            <select id="option1" name="option1" class="input-group-text bg-white px-4 border-md border-right-0">
-                                <option value="">Limited</option>
-                                <option value="">Average</option>
-                                <option value="">Large</option>
+                            <select id="space" name="space" class="input-group-text bg-white px-4 border-md border-right-0">
+                                <option value="Limited">Limited</option>
+                                <option value="Average">Average</option>
+                                <option value="Large">Large</option>
 
                             </select>
                         </div>
@@ -182,12 +236,12 @@
                                 </span>
                             </div>
                             <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Harvest Time</a>
-                            <select id="option2" name="option2" class="input-group-text bg-white px-4 border-md border-right-0">
-                                <option value="">
-                                < 2 months</option>
-                                <option value="">2 to 6 months</option>
-                                <option value="">6 to 12 months</option>
-                                <option value="">> 12 months</option>
+                            <select id="time" name="time" class="input-group-text bg-white px-4 border-md border-right-0">
+                                <option value="< 2 months">
+                                    < 2 months</option>
+                                <option value="2 to 6 months">2 to 6 months</option>
+                                <option value="6 to 12 months">6 to 12 months</option>
+                                <option value="> 12 months">> 12 months</option>
                             </select>
                         </div>
 
@@ -198,56 +252,71 @@
                         <input type="submit" value="Find Plants" class="btn btn-primary my-3 w-100">
                     </div>
                 </form>
-                <span><b> <p style="color:MediumSeaGreen;">Reddish Brown Earths - </p>වැලි ලෝම සිට සැහැල්ලු මැටි ලෝම දක්වා මතුපිට පස් ඇති අතර එය මැටි යටි පසකට ඉහළින් පිහිටා ඇත.
-                     මතුපිට පස් සෙන්ටිමීටර 10 ත් 40 ත් අතර ඝනකමකින් යුක්ත වන අතර රතු සිට අළු දුඹුරු දක්වා වෙනස් වේ. යටි පස කහ සිට රතු සිට අළු දක්වා වෙනස් වේ. <br><br>
-                     <p style="color:MediumSeaGreen;">Red Yellow Podzolic -  </p>රතු සහ කහ පැහැති පාට සඳහා ප්රසිද්ධය. පාංශු මතුපිට සමහර ප්‍රදේශවල රතු හෝ තැඹිලි පාටින් ද තවත් ප්‍රදේශවල කහ පැහැයෙන්ද දිස් විය හැක.
-                    </b></span>
+
             </div>
 
 
 
 
         </div>
+
+
+
     </div>
 
 
     <div class="container mt-2">
-
         <div class="row">
-            <div class="col-md-3 col-sm-6">
-                <div class="card card-block">
 
-                    <img src="../images/suggesstions/carrot.jpg" alt="Photo of sunset">
-                    <h5 class="card-title mt-3 mb-3" style="margin-left: 10px;">carrot</h5>
-                    <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your situation.</p>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="card card-block">
+            <?php
+            if (isset($rs) && !empty($rs)) {
+                foreach ($rs as $row) {
+                    try {
+                        $con = $dbcon->getConnection();
+                        $sql = "SELECT * FROM plant WHERE PlantID = ?";
 
-                    <img src="../images/suggesstions/beans.jpg" alt="Photo of sunset">
-                    <h5 class="card-title  mt-3 mb-3" style="margin-left: 10px;">Beans</h5>
-                    <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your situation.</p>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="card card-block">
+                        $pstmt = $con->prepare($sql);
+                        $pstmt->bindValue(1, $row->PlantID);
+                        $pstmt->execute();
+                        $plants = $pstmt->fetchAll(PDO::FETCH_OBJ);
 
-                    <img src="../images/suggesstions/tomato.jpeg" alt="Photo of sunset">
-                    <h5 class="card-title  mt-3 mb-3" style="margin-left: 10px;">Tomato</h5>
-                    <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your situation.</p>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="card card-block">
+                        foreach ($plants as $plant) {
+                            $plantName = $plant->PlantName;
+                            $filePath = $plant->FilePath;
+            ?>
 
-                    <img src="../images/suggesstions/mango.jpg" alt="Photo of sunset">
-                    <h5 class="card-title  mt-3 mb-3" style="margin-left: 10px;">Mango</h5>
-                    <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your situation.</p>
-                </div>
-            </div>
-            
+
+
+                            <div class="col-md-3 col-sm-6">
+                                <div class="card card-block">
+
+                                    <img src="<?php echo $filePath ?>" alt="Photo of sunset">
+                                    <h5 class="card-title mt-3 mb-3" style="margin-left: 10px;"><?php echo $plantName ?></h5>
+                                    <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your situation.</p>
+                                </div>
+                            </div>
+
+
+
+
+            <?php
+                        }
+                    } catch (PDOException $exc) {
+                        echo $exc->getMessage();
+                    }
+                }
+            } else {
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    echo "<p>No plants found for the given criteria.</p>";
+                }
+            }
+            ?>
         </div>
+        <span><b>
+                <p style="color:MediumSeaGreen;">Reddish Brown Earths - </p>වැලි ලෝම සිට සැහැල්ලු මැටි ලෝම දක්වා මතුපිට පස් ඇති අතර එය මැටි යටි පසකට ඉහළින් පිහිටා ඇත.
+                මතුපිට පස් සෙන්ටිමීටර 10 ත් 40 ත් අතර ඝනකමකින් යුක්ත වන අතර රතු සිට අළු දුඹුරු දක්වා වෙනස් වේ. යටි පස කහ සිට රතු සිට අළු දක්වා වෙනස් වේ. <br><br>
+                <p style="color:MediumSeaGreen;">Red Yellow Podzolic - </p>රතු සහ කහ පැහැති පාට සඳහා ප්රසිද්ධය. පාංශු මතුපිට සමහර ප්‍රදේශවල රතු හෝ තැඹිලි පාටින් ද තවත් ප්‍රදේශවල කහ පැහැයෙන්ද දිස් විය හැක.
+            </b></span>
 
     </div>
 
