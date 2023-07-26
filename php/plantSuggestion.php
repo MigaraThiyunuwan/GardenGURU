@@ -88,7 +88,7 @@
 
     <div class="container">
         <div class="row py-5 mt-4 align-items-center">
-
+        <span><b> <p style="color:Tomato;"> Note:-</p><p style="color:MediumSeaGreen;"> Here we suggest you plants for home gardening purpose only. (මෙහිදී අපි ඔබට පැල යෝජනා කරන්නේ ගෙවතු වගාව සඳහා පමණි )</p></b></span>
             <div class="container">
                 <form action="#" method ="POST">
                     <div class="row">
@@ -134,7 +134,8 @@
                             <select id="option2" name="option2" class="input-group-text bg-white px-4 border-md border-right-0">
                                 <option value="">Reddish Brown Earths</option>
                                 <option value="">Red Yellow Podzolic</option>
-                                <option value="">Low Humic Gley</option>
+                                <!-- <option value="">Low Humic Gley</option> -->
+                                <!-- <option value="">Mountain regosols</option> -->
                             </select>
                         </div>
 
@@ -183,8 +184,8 @@
                             <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Harvest Time</a>
                             <select id="option2" name="option2" class="input-group-text bg-white px-4 border-md border-right-0">
                                 <option value="">
-                                    < 1 month</option>
-                                <option value="">1 to 6 months</option>
+                                < 2 months</option>
+                                <option value="">2 to 6 months</option>
                                 <option value="">6 to 12 months</option>
                                 <option value="">> 12 months</option>
                             </select>
@@ -197,6 +198,10 @@
                         <input type="submit" value="Find Plants" class="btn btn-primary my-3 w-100">
                     </div>
                 </form>
+                <span><b> <p style="color:MediumSeaGreen;">Reddish Brown Earths - </p>වැලි ලෝම සිට සැහැල්ලු මැටි ලෝම දක්වා මතුපිට පස් ඇති අතර එය මැටි යටි පසකට ඉහළින් පිහිටා ඇත.
+                     මතුපිට පස් සෙන්ටිමීටර 10 ත් 40 ත් අතර ඝනකමකින් යුක්ත වන අතර රතු සිට අළු දුඹුරු දක්වා වෙනස් වේ. යටි පස කහ සිට රතු සිට අළු දක්වා වෙනස් වේ. <br><br>
+                     <p style="color:MediumSeaGreen;">Red Yellow Podzolic -  </p>රතු සහ කහ පැහැති පාට සඳහා ප්රසිද්ධය. පාංශු මතුපිට සමහර ප්‍රදේශවල රතු හෝ තැඹිලි පාටින් ද තවත් ප්‍රදේශවල කහ පැහැයෙන්ද දිස් විය හැක.
+                    </b></span>
             </div>
 
 
@@ -241,48 +246,12 @@
                     <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your situation.</p>
                 </div>
             </div>
+            
         </div>
 
     </div>
 
-    <div class="container mt-2">
 
-        <div class="row">
-            <div class="col-md-3 col-sm-6">
-                <div class="card card-block">
-
-                    <img src="../images/suggesstions/banana.jpg" alt="Photo of sunset">
-                    <h5 class="card-title mt-3 mb-3" style="margin-left: 10px;">Banana</h5>
-                    <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your situation.</p>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="card card-block">
-
-                    <img src="../images/suggesstions/papaya.jpg" alt="Photo of sunset">
-                    <h5 class="card-title  mt-3 mb-3" style="margin-left: 10px;">Papaya</h5>
-                    <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your situation.</p>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="card card-block">
-
-                    <img src="../images/suggesstions/potato.jpeg" alt="Photo of sunset">
-                    <h5 class="card-title  mt-3 mb-3" style="margin-left: 10px;">Potato</h5>
-                    <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your situation.</p>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="card card-block">
-
-                    <img src="../images/suggesstions/pineapple.jpg" alt="Photo of sunset">
-                    <h5 class="card-title  mt-3 mb-3" style="margin-left: 10px;">Pineapple</h5>
-                    <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your situation.</p>
-                </div>
-            </div>
-        </div>
-
-    </div>
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
