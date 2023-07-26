@@ -1,3 +1,41 @@
+<?php
+
+    if(isset($_POST["but1"])){
+	// Authorisation details.
+	$username = "malkimadhubhashini2001@gmail.com";
+	$hash = "ef03895199d941541de24f74059f37d68b15bcd1e68126ed3b0a7ec6f3d42265";
+
+	// Config variables. Consult http://api.txtlocal.com/docs for more info.
+	$test = "0";
+        $name = $_POST["name"];
+	// Data for text message. This is the text message data.
+	$sender = "API Test"; // This is who the message appears to be from.
+	$numbers = $_POST["cno"]; // A single number or a comma-seperated list of numbers
+    $otp = mt_rand(100000,999999);
+    setcookie("otp" , $otp);
+	$message = "Hey ". $name ." your OTP is ". $otp;
+	// 612 chars or less
+	// A single number or a comma-seperated list of numbers
+	$message = urlencode($message);
+	$data = "username=".$username."&hash=".$hash."&message=".$message."&sender=".$sender."&numbers=".$numbers."&test=".$test;
+	$ch = curl_init('https://api.txtlocal.com/send/?');
+	curl_setopt($ch, CURLOPT_POST, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$result = curl_exec($ch); // This is the result from the API
+    echo "OTP send Successfully.";
+	curl_close($ch);
+    }
+    if(isset($_POST['but2'])){
+        $verotp = $_POST['otp'];
+        if($verotp == $_COOKIE['otp']){
+            echo "vbdfb";
+        }else{
+            echo "vvvvv";
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,13 +58,10 @@
 
 
 </head>
-
 <body>
-    <?php
 
-    ?>
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+ <!-- Navbar Start -->
+ <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <img src="../images/logo.png" style="width:220px;height:50px;">
             <!-- <h1 class="m-0">Garden<B>GURU</B></h1> -->
@@ -66,95 +101,21 @@
     </nav>
     <!-- Navbar End -->
 
-    <div class="container1 mt-5 px-5">
-
-        <div class="mb-4">
-
-            <h2>Confirm order and pay</h2>
-            <span>please make the payment, after that you can enjoy all the features and benefits.</span>
-        </div>
-        <div class="row">
-
-            <div class="col-md-8">
-                <div class="card p-3">
-                    <form action="OTP.php" method="POST">
-                        <h6 class="text-uppercase">Payment details</h6>
-                        <div class="inputbox mt-3"> <input type="text" name="nameOnCard" class="form-control" required="required"> <span>Name on card</span> </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="inputbox mt-3 mr-2"> <input type="text" name="cardNo" class="form-control" required="required"> <i class="fa fa-credit-card"></i> <span>Card Number</span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="d-flex flex-row">
-                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="expiry" class="form-control" required="required"> <span>Expiry</span> </div>
-
-                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="cvv" class="form-control" required="required"> <span>CVV</span> </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-4 mb-4">
-                            <h6 class="text-uppercase">Billing Address</h6>
-                            <div class="row mt-3">
-
-                                <div class="col-md-6">
-                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="streetAddress" class="form-control" required="required"> <span>Street Address</span> </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="city" class="form-control" required="required"> <span>City</span> </div>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-md-6">
-                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="state" class="form-control" required="required"> <span>State/Province</span> </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="postalCode" class="form-control" required="required"> <span>Postal code</span> </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-4 mb-4 d-flex justify-content-between">
-
-                            <!-- <span>Previous step</span> -->
-                            <button class="btn btn-success px-3">Pay Rs.549</button>
-                        </div>
-                    </form>
-                </div>
-
-
-
-            </div>
-
-            <div class="col-md-4">
-
-                <div class="card card-blue p-3 text-white mb-3">
-
-                    <span>You have to pay</span>
-                    <div class="d-flex flex-row align-items-end mb-3">
-                        <h1 class="mb-0 yellow">Rs.549</h1> <span>.00</span>
-                    </div>
-
-                    <span>Enjoy all the features and perk after you complete the payment</span>
-                    <a href="#" class="yellow decoration">Know all the features</a>
-
-                    <div class="hightlight">
-
-                        <span>100% Guaranteed support and update for the next 5 years.</span>
-
-
-                    </div>
-
-                </div>
-
-                <br><br><img src="../images/logo.png" height="75px">
-
-            </div>
-
-        </div>
-
-
-    </div>
+    <br><br>
+    <form action="" method="POST">
+  <div class="mb-3" >
+    <label for="name" class="form-label">Enter your Name: </label>
+    <input type="name" class="form-control" id="name"  name="name"><br>
+    <label for="cno" class="form-label">Enter your Phone Number: </label>
+    <input type="cno" class="form-control" id="cno"  name="cno"><br>
+    <button type="submit" class="btn btn-primary" name="but1">Send OTP</button><br>
+  </div>
+  <div class="mb-3">
+    <label for="otp" class="form-label">Enter Your OTP:</label>
+    <input type="otp" class="form-control" id="otp" name="otp">
+  </div>
+  <button type="submit" class="btn btn-primary" name="but2">Confirm</button>
+</form>
 
 
     <!-- Footer Start -->
@@ -200,7 +161,6 @@
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
 
-
     <!-- Copyright Start -->
     <div class="container-fluid copyright py-4">
         <div class="container">
@@ -214,12 +174,9 @@
     </div>
     <!-- Copyright End -->
 
-    <!-- JavaScript Libraries -->
-    <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
+     <!-- JavaScript Libraries -->
+     <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/main.js"></script>
 </body>
-
-
-
 </html>
