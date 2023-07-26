@@ -13,7 +13,7 @@ if (isset($_SESSION["user"])) {
   exit();
 }
 ?>
-<!-- Added by HTTrack -->
+
 <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 
 <head>
@@ -26,14 +26,13 @@ if (isset($_SESSION["user"])) {
   <!-- Customized Bootstrap Stylesheet -->
   <link href="../css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Template Stylesheet -->
+
   <link href="../css/style.css" rel="stylesheet">
 </head>
 
 <body>
   <?php
-  // $first_Name = $user->getFirstName();
-  // $last_Name = $user->getLastName();
+
   ?>
   <!-- Navbar Start -->
   <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
@@ -71,7 +70,7 @@ if (isset($_SESSION["user"])) {
           </div>
         </div>
       </div>
-      <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
+
     </div>
   </nav>
   <!-- Navbar End -->
@@ -219,7 +218,6 @@ if (isset($_SESSION["user"])) {
                               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                               <path d="M5 12l5 5l10 -10"></path>
                             </svg></span><span>Click the button to get information about the plats you want </span></li>
-
                       </ul>
                     </div><a class="btn btn-primary" role="button" href="#">Click here</a>
                   </div>
@@ -269,7 +267,7 @@ if (isset($_SESSION["user"])) {
   </div>
   </div>
 
-   <!-- Footer Start -->
+  <!-- Footer Start -->
   <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="container py-5">
       <div class="row g-5">
@@ -308,8 +306,8 @@ if (isset($_SESSION["user"])) {
     </div>
   </div>
   <!-- Footer End -->
- <!-- Back to Top -->
- <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+  <!-- Back to Top -->
+  <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
 
   <!-- Copyright Start -->
@@ -325,8 +323,8 @@ if (isset($_SESSION["user"])) {
   </div>
   <!-- Copyright End -->
 
-   <!-- JavaScript Libraries -->
-   <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="../js/main.js"></script>
+  <!-- JavaScript Libraries -->
+  <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script src="../js/main.js"></script>
 </body>
