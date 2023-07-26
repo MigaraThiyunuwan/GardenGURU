@@ -223,35 +223,61 @@
      </section>
 
      ------->
+
          
            <div class="center-text">
           <h1 >New Arrival Items</h1>
             </div>
 
+<div class="top-right-container">
+  <a href="mycart.php" class="btn btn-outline-success">My Cart(0)</a>
+</div>
+
+
+ 
+
+
+
            <div class="plant-container">
         <div class="plant">
+
+            
             <img src="../images/Selling/veg1.jpeg" alt="Plant 1">
+            <form action="manage_cart.php" method="POST">
             <div class="plant-info">
                 <h3>Tomato</h3>
                 <p>Rs.20.00</p>
-                <button>Add to Cart</button>
+                <button type="submit" name="Add_To_Cart">Add to Cart</button>
+                <input type="hidden" name="Item_Name" value="Tomato">
+                <input type="hidden" name="price" value="20.00">
+
             </div>
+           </form>
         </div>
         <div class="plant">
             <img src="../images/Selling/flower12.jpeg" alt="Plant 2">
+            <form action="manage_cart.php" method="POST">
             <div class="plant-info">
                 <h3>Impatiens</h3>
-                <p>$25.00</p>
-                <button>Add to Cart</button>
+                <p>Rs.25.00</p>
+                <button type="submit" name="Add_To_Cart">Add to Cart</button>
+                 <input type="hidden" name="Item_Name" value="Impatiens">
+                <input type="hidden" name="price" value="25.00">
             </div>
+            </form>
         </div>
+
         <div class="plant">
             <img src="../images/Selling/grapes.jpeg" alt="Plant 3">
+            <form action="manage_cart.php" method="POST">
             <div class="plant-info">
                 <h3>Grapes</h3>
                 <p>$18.00</p>
-                <button>Add to Cart</button>
+                <button type="submit" name="Add_To_Cart">Add to Cart</button>
+                 <input type="hidden" name="Item_Name" value="Grapes">
+                <input type="hidden" name="price" value="18.00">
             </div>
+        </form>
         </div>
        
         </div>
@@ -261,27 +287,42 @@
        <div class="plant-container">
         <div class="plant">
             <img src="../images/Selling/cab12.jpeg" alt="Plant 1">
+            <form action="manage_cart.php" method="POST">
             <div class="plant-info">
                 <h3>Cabbage</h3>
                 <p>$20.00</p>
-                <button>Add to Cart</button>
+                <button type="submit" name="Add_To_Cart">Add to Cart</button>
+                 <input type="hidden" name="Item_Name" value="Cabbage">
+                <input type="hidden" name="price" value="20.00">
             </div>
+        </form>
         </div>
+
         <div class="plant">
             <img src="../images/Selling/flower45.jpeg" alt="Plant 2">
+            <form action="manage_cart.php" method="POST">
             <div class="plant-info">
                 <h3>Rose</h3>
                 <p>$25.00</p>
-                <button>Add to Cart</button>
+                <button type="submit" name="Add_To_Cart">Add to Cart</button>
+                 <input type="hidden" name="Item_Name" value="Rose">
+                <input type="hidden" name="price" value="25.00">
             </div>
+        </form>
+
         </div>
+
         <div class="plant">
             <img src="../images/Selling/prom.jpeg" alt="Plant 3">
+            <form action="manage_cart.php" method="POST">
             <div class="plant-info">
                 <h3>promegranate</h3>
                 <p>$18.00</p>
-                <button>Add to Cart</button>
+                <button type="submit" name="Add_To_Cart">Add to Cart</button>
+                 <input type="hidden" name="Item_Name" value="Promogranate">
+                <input type="hidden" name="price" value="18.00">
             </div>
+        </form>
         </div>
        
         </div>
@@ -290,27 +331,40 @@
        <div class="plant-container">
         <div class="plant">
             <img src="../images/Selling/redp2.jpeg" alt="Plant 1">
+            <form action="manage_cart.php" method="POST">
             <div class="plant-info">
                 <h3>Red Chillie</h3>
                 <p>$20.00</p>
-                <button>Add to Cart</button>
+                <button type="submit" name="Add_To_Cart">Add to Cart</button>
+                <input type="hidden" name="Item_Name" value="Red Chillie">
+                <input type="hidden" name="price" value="20.00">
             </div>
+        </form>
         </div>
         <div class="plant">
             <img src="../images/Selling/lily3.jpeg" alt="Plant 2">
+            <form action="manage_cart.php" method="POST">
             <div class="plant-info">
                 <h3>Lilly</h3>
                 <p>$25.00</p>
-                <button>Add to Cart</button>
+                <button type="submit" name="Add_To_Cart">Add to Cart</button>
+                 <input type="hidden" name="Item_Name" value="Lilly">
+                <input type="hidden" name="price" value="25.00">
             </div>
+        </form>
+
         </div>
         <div class="plant">
             <img src="../images/Selling/mango.jpeg" alt="Plant 3">
+            <form action="manage_cart.php" method="POST">
             <div class="plant-info">
                 <h3>Mango</h3>
                 <p>$18.00</p>
-                <button>Add to Cart</button>
+                <button type="submit" name="Add_To_Cart">Add to Cart</button>
+                 <input type="hidden" name="Item_Name" value="Mango">
+                <input type="hidden" name="price" value="18.00">
             </div>
+        </form>
         </div>
        
         </div>
@@ -337,27 +391,39 @@
            <div class="plant-container">
         <div class="plant">
             <img src="../images/Selling/purple1.jpeg" alt="Plant 1">
+            <form action="manage_cart.php" method="POST">
             <div class="plant-info">
                 <h3>Verbina</h3>
                 <p>$20.00</p>
-                <button>Add to Cart</button>
+                <button type="submit" name="Add_To_Cart" >Add to Cart</button>
+                 <input type="hidden" name="Item_Name" value="Verbina">
+                <input type="hidden" name="price" value="20.00">
             </div>
+        </form>
         </div>
         <div class="plant">
             <img src="../images/Selling/rose.jpeg" alt="Plant 2">
+            <form action="manage_cart.php" method="POST">
             <div class="plant-info">
                 <h3>Rose</h3>
                 <p>$25.00</p>
-                <button>Add to Cart</button>
+                <button type="submit" name="Add_To_Cart">Add to Cart</button>
+                <input type="hidden" name="Item_Name" value="Rose">
+                <input type="hidden" name="price" value="25.00">
             </div>
+        </form>
         </div>
         <div class="plant">
             <img src="../images/Selling/wh2.jpeg" alt="Plant 3">
+            <form action="manage_cart.php" method="POST">
             <div class="plant-info">
                 <h3>Sun flower</h3>
                 <p>$18.00</p>
-                <button>Add to Cart</button>
+                <button type="submit" name="Add_To_Cart">Add to Cart</button>
+                 <input type="hidden" name="Item_Name" value="Sun Flower">
+                <input type="hidden" name="price" value="18.00">
             </div>
+        </form>
         </div>
        
         </div>
@@ -366,27 +432,39 @@
        <div class="plant-container">
         <div class="plant">
             <img src="../images/Selling/brin1.jpeg" alt="Plant 1">
+            <form action="manage_cart.php" method="POST">
             <div class="plant-info">
                 <h3>Brinjole</h3>
                 <p>$20.00</p>
-                <button>Add to Cart</button>
+                <button type="submit" name="Add_To_Cart">Add to Cart</button>
+                 <input type="hidden" name="Item_Name" value="Brinjole">
+                <input type="hidden" name="price" value="20.00">
             </div>
+        </form>
         </div>
         <div class="plant">
             <img src="../images/Selling/grapes.jpeg" alt="Plant 2">
+            <form action="manage_cart.php" method="POST">
             <div class="plant-info">
                 <h3>Grapes</h3>
                 <p>$25.00</p>
-                <button>Add to Cart</button>
+                <button type="submit" name="Add_To_Cart">Add to Cart</button>
+                 <input type="hidden" name="Item_Name" value="Grapes">
+                <input type="hidden" name="price" value="25.00">
             </div>
+        </form>
         </div>
         <div class="plant">
             <img src="../images/Selling/corn.jpeg" alt="Plant 3">
+            <form action="manage_cart.php" method="POST">
             <div class="plant-info">
                 <h3>Corn</h3>
                 <p>$18.00</p>
-                <button>Add to Cart</button>
+                <button type="submit" name="Add_To_Cart">Add to Cart</button>
+                 <input type="hidden" name="Item_Name" value="Corn">
+                <input type="hidden" name="price" value="18.00">
             </div>
+        </form>
         </div>
        
         </div>
