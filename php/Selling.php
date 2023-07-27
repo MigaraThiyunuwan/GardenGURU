@@ -1,6 +1,10 @@
+
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
-
+ 
 
 <!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
@@ -223,17 +227,29 @@
      </section>
 
      ------->
+    
 
          
            <div class="center-text">
           <h1 >New Arrival Items</h1>
             </div>
 
+
+            <?php 
+              print_r($_SESSION['cart'])
+            ?>
 <div class="top-right-container">
-  <a href="mycart.php" class="btn btn-outline-success">My Cart(0)</a>
+    <?php
+    $count = 0;
+    if (isset($_SESSION['cart'])) {
+        $count = count($_SESSION['cart']);
+    }
+    ?>
+
+    <a href="mycart.php" class="btn btn-outline-success">My Cart (<?php echo $count; ?>)</a>
 </div>
 
-
+      
  
 
 
