@@ -114,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="container text-center py-5">
             <h1 class="display-3 text-white mb-4 animated slideInDown">Plant Suggestions</h1>
             <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item">Nurture Your Green Thumb with Us!</li>
+                <li class="breadcrumb-item">Here we suggest you plants for home gardening.</li>
             </ol>
         </div>
     </div>
@@ -127,10 +127,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         <div class="row py-5 mt-4 align-items-center">
-            <span><b>
+            <!-- <span><b>
                     <p style="color:Tomato;"> Note:-</p>
                     <p style="color:MediumSeaGreen;"> Here we suggest you plants for home gardening purpose only. (මෙහිදී අපි ඔබට පැල යෝජනා කරන්නේ ගෙවතු වගාව සඳහා පමණි )</p>
-                </b></span>
+                </b></span> -->
             <div class="container">
                 <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST">
                     <div class="row">
@@ -207,8 +207,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Water</a>
                             <select id="water" name="water" class="input-group-text bg-white px-4 border-md border-right-0">
                                 <option value="Easy to found">Easy to found</option>
-                                <option value="Medium">Medium</option>
-                                <option value="Rare">Rare</option>
+                                <option value="Medium">Normally can found</option>
+                                <option value="Rare">Rare to found</option>
                             </select>
                         </div>
 
@@ -268,6 +268,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container mt-2">
         <div class="row">
 
+      <?php  if ($_SERVER["REQUEST_METHOD"] == "POST") { ?>
+        <span ><b><p style="color:MediumSeaGreen;">In <?php echo $location ?> area when you have <?php echo $sun ?> sun exposure, <?php echo $soil ?> soil,
+        and <?php echo $water ?> water, you have <?php echo $space ?> space to gardening and when your harvest time <?php echo $time ?>, it's suitable to grow below plants.</p></b></span>
+      <?php  } ?>
+
             <?php
             if (isset($rs) && !empty($rs)) {
                 foreach ($rs as $row) {
@@ -313,7 +318,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ?>
         </div>
         <span><b>
-                <p style="color:MediumSeaGreen;">Reddish Brown Earths - </p>වැලි ලෝම සිට සැහැල්ලු මැටි ලෝම දක්වා මතුපිට පස් ඇති අතර එය මැටි යටි පසකට ඉහළින් පිහිටා ඇත.
+                <br><p style="color:MediumSeaGreen;">Reddish Brown Earths - </p>වැලි ලෝම සිට සැහැල්ලු මැටි ලෝම දක්වා මතුපිට පස් ඇති අතර එය මැටි යටි පසකට ඉහළින් පිහිටා ඇත.
                 මතුපිට පස් සෙන්ටිමීටර 10 ත් 40 ත් අතර ඝනකමකින් යුක්ත වන අතර රතු සිට අළු දුඹුරු දක්වා වෙනස් වේ. යටි පස කහ සිට රතු සිට අළු දක්වා වෙනස් වේ. <br><br>
                 <p style="color:MediumSeaGreen;">Red Yellow Podzolic - </p>රතු සහ කහ පැහැති පාට සඳහා ප්රසිද්ධය. පාංශු මතුපිට සමහර ප්‍රදේශවල රතු හෝ තැඹිලි පාටින් ද තවත් ප්‍රදේශවල කහ පැහැයෙන්ද දිස් විය හැක.
             </b></span>
@@ -361,7 +366,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
     <!-- Footer End -->
-    <!-- Back to Top -->
+    Back to Top
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
 
