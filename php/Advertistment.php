@@ -24,13 +24,49 @@
             background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/Adevertistment/advertistment_header.jpg) center center no-repeat !important;
             background-size: cover !important;
         }
+
+
+       
+        .portfolio-inner {
+            position: relative;
+        }
+
+        .portfolio-text {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 5px;
+        }
+
+        .portfolio-text a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 5px;
+        }
+
+        .portfolio-text a:hover {
+            color: #ffcc00;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .gallery img {
+            max-width: 400px;
+            max-height: 400px;
+            object-fit: cover;
+        }
+  
+
+
     </style>
 </head>
 
 <body>
-<?php 
-
-?>
 
 
     <!-- Navbar Start -->
@@ -165,6 +201,71 @@
 
 
 
+    <!-- newly added advertiesments -->
+    <!-- Projects Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-4 portfolio-container">
+                <?php
+                // Database connection (replace these credentials with your own)
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "gardenguru";
+
+                // Create connection
+                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+
+                // Retrieve all uploaded photos from the database
+                $sql = "SELECT image1_filename , image2_filename  FROM advertisements ORDER BY id DESC";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    $photoCount = 1;
+                    while ($row = $result->fetch_assoc()) {
+                        $photoName = $row["image1_filename"];
+                        $photoPath = "../images/Adevertistment/$photoName";
+                        $descriptionName = $row["image2_filename"];
+                        $descriptionPath = "../images/Adevertistment/$descriptionName"; // Replace with the correct path to the corresponding description file
+
+                        // Determine the appropriate column class for each photo
+                        $columnClass = ($photoCount % 3 == 0) ? 'third' : (($photoCount % 2 == 0) ? 'second' : 'first');
+
+                        // Generate the HTML code for the photo in the appropriate column
+                        echo '<div class="col-lg-4 col-md-6 portfolio-item ' . $columnClass . ' wow fadeInUp" data-wow-delay="' . ($photoCount * 0.1) . 's">';
+                        echo '<div class="portfolio-inner rounded">';
+                        echo '<img class="img-fluid" src="' . $photoPath . '" alt="">';
+                        echo '<div class="portfolio-text">';
+                        echo '<div class="d-flex">';
+                        echo '<a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="' . $descriptionPath . '"><i class="fa fa-eye"></i></a>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+
+                        $photoCount++;
+                    }
+                } else {
+                    echo "No photos uploaded yet.";
+                }
+
+                $conn->close();
+                ?>
+            </div>
+        </div>
+    </div>
+   
+</div>
+
+  <!-- Projects End -->
+  <!-- newly added advertiesments end -->
+
+
 <!-- Footer Start -->
 <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
@@ -204,6 +305,7 @@
         </div>
     </div>
     <!-- Footer End -->
+    
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
