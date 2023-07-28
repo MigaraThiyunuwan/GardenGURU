@@ -241,15 +241,15 @@ if (isset($_SESSION["user"])) {
 
 <!-- Modal Section -->
 
-<div class="bg-modal">
-	<div class="modal-contents">
+<div class="bg-modal" >
+	<div class="modal-contents " >
 
 		<div class="close">+</div>
 	
 
     <form action="upload.php" method="post" enctype="multipart/form-data">
-        <input type="text" name="name" placeholder="Name" values="$name">
-        <input type="email" name="email" placeholder="E-Mail" values="$email">
+        <!-- <input type="text" name="name" placeholder="Name" values="$name">
+        <input type="email" name="email" placeholder="E-Mail" values="$email"> -->
         <label for="image1">Select Image for Advertisement:</label>
         <input type="file" name="image1" id="image1" values="$filename1">
         <label for="image2">Select Image for Advertisement Description:</label>
