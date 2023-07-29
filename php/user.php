@@ -18,7 +18,7 @@ if (isset($_SESSION["user"])) {
 
 <head>
   <meta charset="utf-8">
-  <title>Gardener - Gardening Website Template</title>
+  <title>GardenGURU | Profile</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -177,77 +177,71 @@ if (isset($_SESSION["user"])) {
         <p class="text-muted">Now you can publish advertiesments , post Questions ,buy plants through our website</p>
       </div>
     </div>
-    
-    
-   
-  
 
-
-
-  <div class="row g-4">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item rounded d-flex h-100">
-                        <div class="service-img rounded">
-                            <img class="img-fluid" src="../images/web.png" alt="">
-                        </div>
-                        <div class="service-text rounded p-5">
-                            <div class="btn-square rounded-circle mx-auto mb-3">
-                                <!-- <i class="fa fa-leaf" aria-hidden="true"></i> -->
-                                <i class="fa fa-newspaper-o fa-2xl" style="color: #256a4f;"></i>
-                                <!-- <img class="img-fluid" src="img/icon/icon-3.png" alt="Icon"> -->
-                            </div>
-                            <h4 class="mb-3">Advertiesments</h4>
-                            <p class="mb-4">Now you can put advertiesments to our website.</p>
-                            <a class="btn btn-sm" id="popbutton" href="#"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item rounded d-flex h-100">
-                        <div class="service-img rounded">
-                            <img class="img-fluid" src="../images/web.png" alt="">
-                        </div>
-                        <div class="service-text rounded p-5">
-                            <div class="btn-square rounded-circle mx-auto mb-3">
-                                <i class="fa-solid fa-question-circle fa-2xl" style="color: #256a4f;"></i>
-                            </div>
-                            <h4 class="mb-3">Ask Question</h4>
-                            <p class="mb-4">Click the button to get answer from our agriculture consultants.</p>
-                            <a class="btn btn-sm" href="comForum.php"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item rounded d-flex h-100">
-                        <div class="service-img rounded">
-                            <img class="img-fluid" src="../images/web.png" alt="">
-                        </div>
-                        <div class="service-text rounded p-5">
-                            <div class="btn-square rounded-circle mx-auto mb-3">
-                                <i class="fa-solid fa-shopping-cart fa-2xl" style="color: #256a4f;"></i>
-                            </div>
-                            <h4 class="mb-3">Buy Plants</h4>
-                            <p class="mb-4">Click the button for buy plants and gardening supplies.</p>
-                            <a class="btn btn-sm" href="Selling.php"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
-                        </div>
-                    </div>
-                </div>
-  </div>
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="service-item rounded d-flex h-100">
+          <div class="service-img rounded">
+            <img class="img-fluid" src="../images/web.png" alt="">
+          </div>
+          <div class="service-text rounded p-5">
+            <div class="btn-square rounded-circle mx-auto mb-3">
+              <!-- <i class="fa fa-leaf" aria-hidden="true"></i> -->
+              <i class="fa fa-newspaper-o fa-2xl" style="color: #256a4f;"></i>
+              <!-- <img class="img-fluid" src="img/icon/icon-3.png" alt="Icon"> -->
+            </div>
+            <h4 class="mb-3">Advertiesments</h4>
+            <p class="mb-4">Now you can put advertiesments to our website.</p>
+            <a class="btn btn-sm" id="popbutton" href="#"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+        <div class="service-item rounded d-flex h-100">
+          <div class="service-img rounded">
+            <img class="img-fluid" src="../images/web.png" alt="">
+          </div>
+          <div class="service-text rounded p-5">
+            <div class="btn-square rounded-circle mx-auto mb-3">
+              <i class="fa-solid fa-question-circle fa-2xl" style="color: #256a4f;"></i>
+            </div>
+            <h4 class="mb-3">Ask Question</h4>
+            <p class="mb-4">Click the button to get answer from our agriculture consultants.</p>
+            <a class="btn btn-sm" href="comForum.php"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+        <div class="service-item rounded d-flex h-100">
+          <div class="service-img rounded">
+            <img class="img-fluid" src="../images/web.png" alt="">
+          </div>
+          <div class="service-text rounded p-5">
+            <div class="btn-square rounded-circle mx-auto mb-3">
+              <i class="fa-solid fa-shopping-cart fa-2xl" style="color: #256a4f;"></i>
+            </div>
+            <h4 class="mb-3">Buy Plants</h4>
+            <p class="mb-4">Click the button for buy plants and gardening supplies.</p>
+            <a class="btn btn-sm" href="Selling.php"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 
-   <!-- popupr Start -->
+  <!-- popupr Start -->
 
 
-<!-- Modal Section -->
+  <!-- Modal Section -->
 
-<div class="bg-modal" >
-	<div class="modal-contents " >
+  <div class="bg-modal">
+    <div class="modal-contents ">
 
-		<div class="close">+</div>
-	
+      <div class="close">+</div>
 
-    <form action="upload.php" method="post" enctype="multipart/form-data">
+
+      <form action="upload.php" method="post" enctype="multipart/form-data">
         <!-- <input type="text" name="name" placeholder="Name" values="$name">
         <input type="email" name="email" placeholder="E-Mail" values="$email"> -->
         <label for="image1">Select Image for Advertisement:</label>
@@ -255,18 +249,18 @@ if (isset($_SESSION["user"])) {
         <label for="image2">Select Image for Advertisement Description:</label>
         <input type="file" name="image2" id="image2">
         <input type="submit" name="submit" value="Submit" values="$filename2">
-    </form>
-
-  
-
-	</div>
-</div>
+      </form>
 
 
 
+    </div>
+  </div>
 
 
- <!-- popupr Stop -->
+
+
+
+  <!-- popupr Stop -->
 
 
 
@@ -327,9 +321,9 @@ if (isset($_SESSION["user"])) {
   </div>
   <!-- Copyright End -->
 
-   <!-- JavaScript Libraries -->
-   <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="../js/main.js"></script>
-    <script src="../js/popup.js"></script>
+  <!-- JavaScript Libraries -->
+  <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/popup.js"></script>
 </body>

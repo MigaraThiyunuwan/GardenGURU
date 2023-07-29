@@ -36,30 +36,11 @@ if (isset($_POST['submit'])) {
         $filename1 = $_FILES['image1']['name'];
         $filename2 = $_FILES['image2']['name'];
 
-        // Move the temporary files to the desired location on the server
-        // For example, you can store them in a folder called "uploads"
         $destination1 = '../images/Adevertistment/' . $filename1;
         $destination2 = '../images/Adevertistment/' . $filename2;
 
         if (move_uploaded_file($tmp_name1, $destination1) && move_uploaded_file($tmp_name2, $destination2)) {
-            // File uploads were successful, now save the form data and image filenames in the database
-
-            // Replace these values with your actual database credentials
-            // $db_host = 'localhost';
-            // $db_user = 'root';
-            // $db_pass = '';
-            // $db_name = 'gardenguru';
-
-            // // Connect to the database
-            // $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
-
-            // // Check connection
-            // if ($conn->connect_error) {
-            //     die("Connection failed: " . $conn->connect_error);
-            // }
-
-
-            // Insert form data and image filenames into the database
+ 
 
             $conn = $dbcon->getConnection();
             $sql = "INSERT INTO advertisements ( user_FirstName, user_LastName, user_Email, image1_filename, image2_filename) VALUES ( ?, ?, ?, ?, ?)";

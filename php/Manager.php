@@ -7,7 +7,7 @@
 
 	  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta charset="utf-8">
-    <title>Gardener - Gardening Website Template</title>
+    <title>GardenGURU | Manager</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -135,14 +135,13 @@
     </div>
   </div>
   </div>
-  <br>
+  
 
 
 <div class="container-fluid"><br>
-<h3 class="text-dark mb-4">User Details</h3><br>
-    <button class="btn btn-dark" type="submit" data-bs-toggle="modal" data-bs-target="#addNewUser" style="float: right;">Add New User</button>
-    </br>
-    </br>
+<h3 class="text-dark mb-4">User Details</h3>
+    
+    
 
 <div class="modal fade" id="addNewUser" tabindex="-1" aria-labelledby="addNewUserLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">

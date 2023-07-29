@@ -202,7 +202,7 @@ $dbcon = new DbConnector();
                                     <i class="fa fa-lock text-muted" style="font-size: 25px;"></i>
                                 </span>
                             </div>
-                            <input id="passwordConfirmation" type="text" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
+                            <input id="passwordConfirmation" type="password" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
                         </div>
 
                         <!-- Submit Button -->
