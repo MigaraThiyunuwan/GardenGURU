@@ -1,28 +1,67 @@
+<?php
+
+    if(isset($_POST["but1"])){
+	// Authorisation details.
+	$username = "malkimadhubhashini2001@gmail.com";
+	$hash = "ef03895199d941541de24f74059f37d68b15bcd1e68126ed3b0a7ec6f3d42265";
+
+	// Config variables. Consult http://api.txtlocal.com/docs for more info.
+	$test = "0";
+        $name = $_POST["name"];
+	// Data for text message. This is the text message data.
+	$sender = "API Test"; // This is who the message appears to be from.
+	$numbers = $_POST["cno"]; // A single number or a comma-seperated list of numbers
+    $otp = mt_rand(100000,999999);
+    setcookie("otp" , $otp);
+	$message = "Hey ". $name ." your OTP is ". $otp;
+	// 612 chars or less
+	// A single number or a comma-seperated list of numbers
+	$message = urlencode($message);
+	$data = "username=".$username."&hash=".$hash."&message=".$message."&sender=".$sender."&numbers=".$numbers."&test=".$test;
+	$ch = curl_init('https://api.txtlocal.com/send/?');
+	curl_setopt($ch, CURLOPT_POST, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$result = curl_exec($ch); // This is the result from the API
+    echo "OTP send Successfully.";
+	curl_close($ch);
+    }
+    if(isset($_POST['but2'])){
+        $verotp = $_POST['otp'];
+        if($verotp == $_COOKIE['otp']){
+            echo "vbdfb";
+        }else{
+            echo "vvvvv";
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
+
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
 <head>
     <meta charset="utf-8">
-    <title>GardenGURU | Blog</title>
+    <title>GardenGURU | OTP</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <!-- Customized Bootstrap Stylesheet -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/blog.css" rel="stylesheet">
+    <link href="../css/Payement.css" rel="stylesheet">
 
 
 </head>
-
 <body>
-<?php 
 
-?>
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+ <!-- Navbar Start -->
+ <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <img src="../images/logo.png" style="width:220px;height:50px;">
             <!-- <h1 class="m-0">Garden<B>GURU</B></h1> -->
@@ -62,128 +101,22 @@
     </nav>
     <!-- Navbar End -->
 
-    <!-- Page Header Start -->
-    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <br><br>
+    <form action="" method="POST">
+  <div class="mb-3" >
+    <label for="name" class="form-label">Enter your Name: </label>
+    <input type="name" class="form-control" id="name"  name="name"><br>
+    <label for="cno" class="form-label">Enter your Phone Number: </label>
+    <input type="cno" class="form-control" id="cno"  name="cno"><br>
+    <button type="submit" class="btn btn-primary" name="but1">Send OTP</button><br>
+  </div>
+  <div class="mb-3">
+    <label for="otp" class="form-label">Enter Your OTP:</label>
+    <input type="otp" class="form-control" id="otp" name="otp">
+  </div>
+  <button type="submit" class="btn btn-primary" name="but2">Confirm</button>
+</form>
 
-        <div class="container text-center py-5">
-            <h1 class="display-3 text-white mb-4 animated slideInDown">Blog</h1>
-            <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item">ghjgm f jfty f ftjk fukj fuy</li>
-            </ol>
-        </div>
-    </div>
-    <!-- Page Header End -->
-
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-
-                <article class="blog_item">
-                    <div class="blog_item_img">
-                        <img class="card-img rounded-0" src="../images/s1.jpg" alt="">
-                        <!-- <a href="#" class="blog_item_date">
-                            <h3>15</h3>
-                            <p>Jan</p>
-                        </a> -->
-                    </div>
-                    <div class="blog_details">
-                        <a class="d-inline-block" href="./readBlog.php">
-                            <h2 class="blog-head" style="color: #2d2d2d;">Google inks pact for new 35-storey
-                                office</h2>
-                        </a>
-                        <p>That dominion stars lights dominion divide years for fourth have don't stars is
-                            that
-                            he earth it first without heaven in place seed it second morning saying.</p>
-                        <ul class="blog-info-link">
-                            <li><a href="#"><i class="fa fa-user"></i> Migara Thiyunuwan</a></li>
-
-                        </ul>
-                    </div>
-                </article>
-
-            </div>
-            <div class="col-lg-6">
-
-                <article class="blog_item">
-                    <div class="blog_item_img">
-                        <img class="card-img rounded-0" src="../images/s2.jpg" alt="">
-                        <!-- <a href="#" class="blog_item_date">
-                            <h3>15</h3>
-                            <p>Jan</p>
-                        </a> -->
-                    </div>
-                    <div class="blog_details">
-                        <a class="d-inline-block" href="./readBlog.php">
-                            <h2 class="blog-head" style="color: #2d2d2d;">Google inks pact for new 35-storey
-                                office</h2>
-                        </a>
-                        <p>That dominion stars lights dominion divide years for fourth have don't stars is
-                            that
-                            he earth it first without heaven in place seed it second morning saying.</p>
-                        <ul class="blog-info-link">
-                            <li><a href="#"><i class="fa fa-user"></i> Migara Thiyunuwan</a></li>
-
-                        </ul>
-                    </div>
-                </article>
-
-            </div>
-
-            <div class="col-lg-6">
-
-                <article class="blog_item">
-                    <div class="blog_item_img">
-                        <img class="card-img rounded-0" src="../images/s2.jpg" alt="">
-                        <!-- <a href="#" class="blog_item_date">
-                            <h3>15</h3>
-                            <p>Jan</p>
-                        </a> -->
-                    </div>
-                    <div class="blog_details">
-                        <a class="d-inline-block" href="./readBlog.php">
-                            <h2 class="blog-head" style="color: #2d2d2d;">Google inks pact for new 35-storey
-                                office</h2>
-                        </a>
-                        <p>That dominion stars lights dominion divide years for fourth have don't stars is
-                            that
-                            he earth it first without heaven in place seed it second morning saying.</p>
-                        <ul class="blog-info-link">
-                            <li><a href="#"><i class="fa fa-user"></i> Migara Thiyunuwan</a></li>
-
-                        </ul>
-                    </div>
-                </article>
-
-            </div>
-            <div class="col-lg-6">
-
-                <article class="blog_item">
-                    <div class="blog_item_img">
-                        <img class="card-img rounded-0" src="../images/s1.jpg" alt="">
-                        <!-- <a href="#" class="blog_item_date">
-                            <h3>15</h3>
-                            <p>Jan</p>
-                        </a> -->
-                    </div>
-                    <div class="blog_details">
-                        <a class="d-inline-block" href="./readBlog.php">
-                            <h2 class="blog-head" style="color: #2d2d2d;">Google inks pact for new 35-storey
-                                office</h2>
-                        </a>
-                        <p>That dominion stars lights dominion divide years for fourth have don't stars is
-                            that
-                            he earth it first without heaven in place seed it second morning saying.</p>
-                        <ul class="blog-info-link">
-                            <li><a href="#"><i class="fa fa-user"></i> Migara Thiyunuwan</a></li>
-
-                        </ul>
-                    </div>
-                </article>
-
-            </div>
-
-        </div>
-    </div>
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
@@ -228,7 +161,6 @@
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
 
-
     <!-- Copyright Start -->
     <div class="container-fluid copyright py-4">
         <div class="container">
@@ -242,13 +174,9 @@
     </div>
     <!-- Copyright End -->
 
-    <!-- JavaScript Libraries -->
-    <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
+     <!-- JavaScript Libraries -->
+     <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/main.js"></script>
-
 </body>
-
-
-
 </html>

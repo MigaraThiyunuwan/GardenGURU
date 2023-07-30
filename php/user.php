@@ -13,27 +13,27 @@ if (isset($_SESSION["user"])) {
   exit();
 }
 ?>
-<!-- Added by HTTrack -->
+
 <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 
 <head>
   <meta charset="utf-8">
-  <title>Gardener - Gardening Website Template</title>
+  <title>GardenGURU | Profile</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="https://kit.fontawesome.com/0008de2df6.js" crossorigin="anonymous"></script>
   <!-- Customized Bootstrap Stylesheet -->
   <link href="../css/bootstrap.min.css" rel="stylesheet">
-
+  <link href="../css/popup.css" rel="stylesheet">
   <!-- Template Stylesheet -->
   <link href="../css/style.css" rel="stylesheet">
 </head>
 
 <body>
   <?php
-  // $first_Name = $user->getFirstName();
-  // $last_Name = $user->getLastName();
+
   ?>
   <!-- Navbar Start -->
   <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
@@ -71,7 +71,7 @@ if (isset($_SESSION["user"])) {
           </div>
         </div>
       </div>
-      <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
+
     </div>
   </nav>
   <!-- Navbar End -->
@@ -178,77 +178,51 @@ if (isset($_SESSION["user"])) {
       </div>
     </div>
 
-
-
-    <div class="container">
-      <div class="row">
-        <div class="col-sm">
-          <div class="row gutters-sm">
-            <div class="col-sm-6 mb-3">
-              <div class="card h-100">
-                <div class="card border-0 h-100">
-                  <div class="card-body d-flex flex-column justify-content-between p-4">
-                    <div>
-                      <h6 class="fw-bold text-muted">Advertiesments</h6>
-
-                      <ul class="list-unstyled">
-                        <li class="d-flex mb-2"><span class="bs-icon-xs bs-icon-rounded bs-icon me-2"><svg class="icon icon-tabler icon-tabler-check fs-5 text-primary-emphasis" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                              <path d="M5 12l5 5l10 -10"></path>
-                            </svg></span><span> You can sell plants and equipments through our website</span></li>
-
-                      </ul>
-                    </div><a class="btn btn-primary" role="button" href="#">Click here</a>
-                  </div>
-                </div>
-              </div>
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="service-item rounded d-flex h-100">
+          <div class="service-img rounded">
+            <img class="img-fluid" src="../images/web.png" alt="">
+          </div>
+          <div class="service-text rounded p-5">
+            <div class="btn-square rounded-circle mx-auto mb-3">
+              <!-- <i class="fa fa-leaf" aria-hidden="true"></i> -->
+              <i class="fa fa-newspaper-o fa-2xl" style="color: #256a4f;"></i>
+              <!-- <img class="img-fluid" src="img/icon/icon-3.png" alt="Icon"> -->
             </div>
+            <h4 class="mb-3">Advertiesments</h4>
+            <p class="mb-4">Now you can put advertiesments to our website.</p>
+            <a class="btn btn-sm" id="popbutton" href="#"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
           </div>
         </div>
-        <div class="col-sm">
-          <div class="row gutters-sm">
-            <div class="col-sm-6 mb-3">
-              <div class="card h-100">
-                <div class="card border-0 h-100">
-                  <div class="card-body d-flex flex-column justify-content-between p-4">
-                    <div>
-                      <h6 class="fw-bold text-muted">Ask Questions</h6>
-
-                      <ul class="list-unstyled">
-                        <li class="d-flex mb-2"><span class="bs-icon-xs bs-icon-rounded bs-icon me-2"><svg class="icon icon-tabler icon-tabler-check fs-5 text-primary-emphasis" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                              <path d="M5 12l5 5l10 -10"></path>
-                            </svg></span><span>Click the button to get information about the plats you want </span></li>
-
-                      </ul>
-                    </div><a class="btn btn-primary" role="button" href="#">Click here</a>
-                  </div>
-                </div>
-              </div>
+      </div>
+      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+        <div class="service-item rounded d-flex h-100">
+          <div class="service-img rounded">
+            <img class="img-fluid" src="../images/web.png" alt="">
+          </div>
+          <div class="service-text rounded p-5">
+            <div class="btn-square rounded-circle mx-auto mb-3">
+              <i class="fa-solid fa-question-circle fa-2xl" style="color: #256a4f;"></i>
             </div>
+            <h4 class="mb-3">Ask Question</h4>
+            <p class="mb-4">Click the button to get answer from our agriculture consultants.</p>
+            <a class="btn btn-sm" href="comForum.php"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
           </div>
         </div>
-        <div class="col-sm">
-          <div class="row gutters-sm">
-            <div class="col-sm-6 mb-3">
-              <div class="card h-100">
-                <div class="card border-0 h-100">
-                  <div class="card-body d-flex flex-column justify-content-between p-4">
-                    <div>
-                      <h6 class="fw-bold text-muted">Buy Plants</h6>
-
-                      <ul class="list-unstyled">
-                        <li class="d-flex mb-2"><span class="bs-icon-xs bs-icon-rounded bs-icon me-2"><svg class="icon icon-tabler icon-tabler-check fs-5 text-primary-emphasis" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                              <path d="M5 12l5 5l10 -10"></path>
-                            </svg></span><span>Click the button for buy plants and gardening supplies</span></li>
-
-                      </ul>
-                    </div><a class="btn btn-primary" role="button" href="#">Click here</a>
-                  </div>
-                </div>
-              </div>
+      </div>
+      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+        <div class="service-item rounded d-flex h-100">
+          <div class="service-img rounded">
+            <img class="img-fluid" src="../images/web.png" alt="">
+          </div>
+          <div class="service-text rounded p-5">
+            <div class="btn-square rounded-circle mx-auto mb-3">
+              <i class="fa-solid fa-shopping-cart fa-2xl" style="color: #256a4f;"></i>
             </div>
+            <h4 class="mb-3">Buy Plants</h4>
+            <p class="mb-4">Click the button for buy plants and gardening supplies.</p>
+            <a class="btn btn-sm" href="Selling.php"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
           </div>
         </div>
       </div>
@@ -256,20 +230,42 @@ if (isset($_SESSION["user"])) {
   </div>
 
 
-  <div class="container">
-    <div class="row">
-      <div class="text-white bg-primary border rounded border-0 border-primary d-flex flex-column justify-content-between flex-lg-row p-4 p-md-5">
-        <div class="pb-2 pb-lg-1">
-          <h2 class="fw-bold text-secondary mb-2">Do you want to get gardening advice?</h2>
-          <p class="mb-0">You can get all the informations.</p>
-        </div>
-        <div class="my-2"><a class="btn btn-light fs-5 py-2 px-4" role="button" href="contacts.html">Click here</a></div>
-      </div>
+  <!-- popupr Start -->
+
+
+  <!-- Modal Section -->
+
+  <div class="bg-modal">
+    <div class="modal-contents ">
+
+      <div class="close">+</div>
+
+
+      <form action="upload.php" method="post" enctype="multipart/form-data">
+        <!-- <input type="text" name="name" placeholder="Name" values="$name">
+        <input type="email" name="email" placeholder="E-Mail" values="$email"> -->
+        <label for="image1">Select Image for Advertisement:</label>
+        <input type="file" name="image1" id="image1" values="$filename1">
+        <label for="image2">Select Image for Advertisement Description:</label>
+        <input type="file" name="image2" id="image2">
+        <input type="submit" name="submit" value="Submit" values="$filename2">
+      </form>
+
+
+
     </div>
   </div>
-  </div>
 
-   <!-- Footer Start -->
+
+
+
+
+  <!-- popupr Stop -->
+
+
+
+
+  <!-- Footer Start -->
   <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="container py-5">
       <div class="row g-5">
@@ -308,8 +304,8 @@ if (isset($_SESSION["user"])) {
     </div>
   </div>
   <!-- Footer End -->
- <!-- Back to Top -->
- <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+  <!-- Back to Top -->
+  <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
 
   <!-- Copyright Start -->
@@ -325,8 +321,9 @@ if (isset($_SESSION["user"])) {
   </div>
   <!-- Copyright End -->
 
-   <!-- JavaScript Libraries -->
-   <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="../js/main.js"></script>
+  <!-- JavaScript Libraries -->
+  <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/popup.js"></script>
 </body>

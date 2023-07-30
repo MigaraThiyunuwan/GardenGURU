@@ -1,3 +1,23 @@
+<?php
+require './classes/DbConnector.php';
+
+//use classes\DbConnector;
+$dbConnector = new classes\DbConnector();
+$dbcon = $dbConnector->getConnection();
+
+?>
+<?php
+require './classes/persons.php';
+session_start();
+if (isset($_SESSION["user"])) {
+    // User is logged in, retrieve the user object
+    $user = $_SESSION["user"];
+} else {
+    // Redirect the user to login.php if not logged in
+    header("Location: ./login.php?error=2");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +27,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Advertiesment</title>
+    <title>GrdenGURU | Advertiesment</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -21,16 +41,49 @@
 
     <style>
         .page-header {
-            background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/Adevertistment/advertistment_header.jpg) center center no-repeat !important;
+            background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/AboutUs/header_img.jpg) center center no-repeat !important;
             background-size: cover !important;
+        }
+
+
+
+        .portfolio-inner {
+            position: relative;
+        }
+
+        .portfolio-text {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 5px;
+        }
+
+        .portfolio-text a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 5px;
+        }
+
+        .portfolio-text a:hover {
+            color: #ffcc00;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .gallery img {
+            max-width: 400px;
+            max-height: 400px;
+            object-fit: cover;
         }
     </style>
 </head>
 
 <body>
-<?php 
-
-?>
 
 
     <!-- Navbar Start -->
@@ -49,13 +102,13 @@
                 <a href="./Selling.php" class="nav-item nav-link">Shop</a>
                 <!-- <a href="../php/blog.php" class="nav-item nav-link">Blog</a> -->
                 <div class="nav-item dropdown">
-                    <a  class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
                     <div class="dropdown-menu bg-light m-0">
                         <a href="./blog.php" class="dropdown-item">Blog</a>
                         <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
                         <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
                         <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
-                        
+
                     </div>
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
@@ -88,85 +141,150 @@
     <!-- Page Header End -->
 
     <div class="container1">
-            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <p class="fs-5 fw-bold text-primary">Discover a World of Possibilities</p>
-                <h1 class="display-5 mb-5">Explore Our Exclusive Collection</h1>
-            </div>
+        <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <p class="fs-5 fw-bold text-primary">Discover a World of Possibilities</p>
+            <h1 class="display-5 mb-5">Explore Our Exclusive Collection</h1>
+        </div>
 
-    <!-- Projects Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-4 portfolio-container">
-                <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="portfolio-inner rounded">
-                        <img class="img-fluid" src="../images/Adevertistment/ad1.jpg" alt="">
-                        <div class="portfolio-text">
-                            <div class="d-flex">
-                                <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des1.jpg"><i class="fa fa-eye"></i></a>
+        <!-- Projects Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="row g-4 portfolio-container">
+                    <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="portfolio-inner rounded">
+                            <img class="img-fluid" src="../images/Adevertistment/ad1.jpg" alt="">
+                            <div class="portfolio-text">
+                                <div class="d-flex">
+                                    <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des1.jpg"><i class="fa fa-eye"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="portfolio-inner rounded">
-                        <img class="img-fluid" src="../images/Adevertistment/ad5.webp" alt="">
-                        <div class="portfolio-text">
-                            <div class="d-flex">
-                            <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des2.jpg"><i class="fa fa-eye"></i></a>
+                    <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="portfolio-inner rounded">
+                            <img class="img-fluid" src="../images/Adevertistment/ad5.webp" alt="">
+                            <div class="portfolio-text">
+                                <div class="d-flex">
+                                    <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des2.jpg"><i class="fa fa-eye"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="portfolio-inner rounded">
-                        <img class="img-fluid" src="../images/Adevertistment/ad3.webp" alt="">
-                        <div class="portfolio-text">
-                            <div class="d-flex">
-                            <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des3.jpg"><i class="fa fa-eye"></i></a>
+                    <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="portfolio-inner rounded">
+                            <img class="img-fluid" src="../images/Adevertistment/ad3.webp" alt="">
+                            <div class="portfolio-text">
+                                <div class="d-flex">
+                                    <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des3.jpg"><i class="fa fa-eye"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="portfolio-inner rounded">
-                        <img class="img-fluid" src="../images/Adevertistment/ad4.webp" alt="">
-                        <div class="portfolio-text">
-                            <div class="d-flex">
-                            <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des4.jpg"><i class="fa fa-eye"></i></a>
+                    <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="portfolio-inner rounded">
+                            <img class="img-fluid" src="../images/Adevertistment/ad4.webp" alt="">
+                            <div class="portfolio-text">
+                                <div class="d-flex">
+                                    <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des4.jpg"><i class="fa fa-eye"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="portfolio-inner rounded">
-                        <img class="img-fluid" src="../images/Adevertistment/ad2n.jpg" alt="">
-                        <div class="portfolio-text">
-                            <div class="d-flex">
-                            <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des5.jpg"><i class="fa fa-eye"></i></a>
+                    <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="portfolio-inner rounded">
+                            <img class="img-fluid" src="../images/Adevertistment/ad2n.jpg" alt="">
+                            <div class="portfolio-text">
+                                <div class="d-flex">
+                                    <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des5.jpg"><i class="fa fa-eye"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="portfolio-inner rounded">
-                        <img class="img-fluid" src="../images/Adevertistment/ad1.jpg" alt="">
-                        <div class="portfolio-text">
-                            <div class="d-flex">
-                            <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des6.jpg"><i class="fa fa-eye"></i></a>
+                    <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="portfolio-inner rounded">
+                            <img class="img-fluid" src="../images/Adevertistment/ad1.jpg" alt="">
+                            <div class="portfolio-text">
+                                <div class="d-flex">
+                                    <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des6.jpg"><i class="fa fa-eye"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Projects End -->
+
+
+
+
+        <!-- newly added advertiesments -->
+        <!-- Projects Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="row g-4 portfolio-container">
+                    <?php
+
+                    // Retrieve all uploaded photos from the database
+                    $sql = "SELECT image1_filename , image2_filename  FROM advertisements ORDER BY id DESC";
+                    try {
+
+                        $stmt = $dbcon->query($sql);
+                        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        if ($stmt->rowCount() > 0) {
+                            $photoCount = 1;
+                            foreach ($result as $row) {
+                                $photoName = $row["image1_filename"];
+                               // $photoPath = "../images/Adevertistment/$photoName";
+                                $descriptionName = $row["image2_filename"];
+                              //  $descriptionPath = "../images/Adevertistment/$descriptionName"; // Replace with the correct path to the corresponding description file
+
+                                // Determine the appropriate column class for each photo
+                                $columnClass = ($photoCount % 3 == 0) ? 'third' : (($photoCount % 2 == 0) ? 'second' : 'first');
+
+                                // Generate the HTML code for the photo in the appropriate column
+                                echo '<div class="col-lg-4 col-md-6 portfolio-item ' . $columnClass . ' wow fadeInUp" data-wow-delay="' . ($photoCount * 0.1) . 's">';
+                                echo '<div class="portfolio-inner rounded">';
+                                echo '<img class="img-fluid" src="' . $photoName. '" alt="">';
+                                echo '<div class="portfolio-text">';
+                                echo '<div class="d-flex">';
+                                echo '<a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="' . $descriptionName. '"><i class="fa fa-eye"></i></a>';
+                                echo '</div>';
+                                echo '</div>';
+                                echo '</div>';
+                                echo '</div>';
+
+                                $photoCount++;
+                            }
+                        } else {
+                            echo "No photos uploaded yet.";
+                        }
+                    } catch (PDOException $exc) {
+                        die("Error executing the query: " . $exc->getMessage());
+                    }
+
+
+
+
+
+                    //  $result = $conn->query($sql);
+
+
+
+
+                    ?>
+                </div>
+            </div>
+        </div>
+
     </div>
+
     <!-- Projects End -->
+    <!-- newly added advertiesments end -->
 
 
-
-
-<!-- Footer Start -->
-<div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
@@ -198,25 +316,26 @@
                     <a class="btn btn-link" href="#">Support</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                <img src="../images/logo.png" style="width:220px;height:50px;">
+                    <img src="../images/logo.png" style="width:220px;height:50px;">
                 </div>
             </div>
         </div>
     </div>
     <!-- Footer End -->
-<!-- Back to Top -->
-<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
 
 
- <!-- Copyright Start -->
- <div class="container-fluid copyright py-4">
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                     &copy; <a class="border-bottom" href="index.php">GardenGURU</a>, All Right Reserved.
                 </div>
-             
+
             </div>
         </div>
     </div>

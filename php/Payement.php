@@ -7,7 +7,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>GardenGURU</title>
+    <title>GardenGURU | Payment</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -17,14 +17,14 @@
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/Payement.css" rel="stylesheet">
-    
+
 
 </head>
 
 <body>
-<?php 
+    <?php
 
-?>
+    ?>
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
@@ -77,49 +77,52 @@
 
             <div class="col-md-8">
                 <div class="card p-3">
-                    <h6 class="text-uppercase">Payment details</h6>
-                    <div class="inputbox mt-3"> <input type="text" name="name" class="form-control" required="required"> <span>Name on card</span> </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <i class="fa fa-credit-card"></i> <span>Card Number</span>
+                    <form action="OTP.php" method="POST">
+                        <h6 class="text-uppercase">Payment details</h6>
+                        <div class="inputbox mt-3"> <input type="text" name="nameOnCard" class="form-control" required="required"> <span>Name on card</span> </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="inputbox mt-3 mr-2"> <input type="text" name="cardNo" class="form-control" required="required"> <i class="fa fa-credit-card"></i> <span>Card Number</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="d-flex flex-row">
-                                <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Expiry</span> </div>
+                            <div class="col-md-6">
+                                <div class="d-flex flex-row">
+                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="expiry" class="form-control" required="required"> <span>Expiry</span> </div>
 
-                                <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>CVV</span> </div>
+                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="cvv" class="form-control" required="required"> <span>CVV</span> </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="mt-4 mb-4">
-                        <h6 class="text-uppercase">Billing Address</h6>
-                        <div class="row mt-3">
+                        <div class="mt-4 mb-4">
+                            <h6 class="text-uppercase">Billing Address</h6>
+                            <div class="row mt-3">
 
-                            <div class="col-md-6">
-                                <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Street Address</span> </div>
+                                <div class="col-md-6">
+                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="streetAddress" class="form-control" required="required"> <span>Street Address</span> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="city" class="form-control" required="required"> <span>City</span> </div>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>City</span> </div>
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-md-6">
-                                <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>State/Province</span> </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" required="required"> <span>Postal code</span> </div>
+                            <div class="row mt-2">
+                                <div class="col-md-6">
+                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="state" class="form-control" required="required"> <span>State/Province</span> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="postalCode" class="form-control" required="required"> <span>Postal code</span> </div>
 
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="mt-4 mb-4 d-flex justify-content-between">
+
+                            <!-- <span>Previous step</span> -->
+                            <button class="btn btn-success px-3">Pay Rs.549</button>
+                        </div>
+                    </form>
                 </div>
 
-                <div class="mt-4 mb-4 d-flex justify-content-between">
 
-                    <span>Previous step</span>
-                    <button class="btn btn-success px-3">Pay Rs.549</button>
-                </div>
 
             </div>
 
@@ -153,9 +156,9 @@
 
     </div>
 
-   
-     <!-- Footer Start -->
-     <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
