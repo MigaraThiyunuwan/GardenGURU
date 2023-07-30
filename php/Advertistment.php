@@ -7,16 +7,16 @@ $dbcon = $dbConnector->getConnection();
 
 ?>
 <?php
-require './classes/persons.php';
-session_start();
-if (isset($_SESSION["user"])) {
-    // User is logged in, retrieve the user object
-    $user = $_SESSION["user"];
-} else {
-    // Redirect the user to login.php if not logged in
-    header("Location: ./login.php?error=2");
-    exit();
-}
+// require './classes/persons.php';
+// session_start();
+// if (isset($_SESSION["user"])) {
+//     // User is logged in, retrieve the user object
+//     $user = $_SESSION["user"];
+// } else {
+//     // Redirect the user to login.php if not logged in
+//     header("Location: ./login.php?error=3");
+//     exit();
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">

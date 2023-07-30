@@ -87,11 +87,16 @@ if (isset($_SESSION["user"])) {
               <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
               <div class="mt-3">
                 <h4>Hello! <?php echo $user->getFirstName() ?></h4><br>
+                <?php if (isset($_SESSION["user"])) {
+                 
+                  $user = $_SESSION["user"];
+                ?>
+                  <a class="btn btn-outline-primary " target="" href="./classes/logout.php">Log Out</a>
+                  <a class="btn btn-outline-primary " target="" href="./editUser.php">Edit</a>
+                  <a class="btn btn-outline-danger " target="" href="#">Change Password</a>
+                  
 
-                <a class="btn btn-outline-primary " target="" href="./classes/logout.php">Log Out</a>
-                <a class="btn btn-outline-primary " target="" href="./editUser.php">Edit</a>
-                <a class="btn btn-outline-danger " target="" href="#">Change Password</a>
-                <!-- <button class="btn btn-danger">Change Password</button> -->
+                <?php } ?>
               </div>
             </div>
           </div>
