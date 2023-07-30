@@ -213,7 +213,9 @@ $dbcon = new DbConnector();
                                     <?php
                                     try {
                                         $con = $dbcon->getConnection();
-                                        $query = "SELECT * FROM users";
+                                        $start = 0;
+                                        $rows_per_page = 5;
+                                        $query = "SELECT * FROM users LIMIT $start,$rows_per_page";
                                         $pstmt = $con->prepare($query);
                                         $pstmt->execute();
                                         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
@@ -241,20 +243,68 @@ $dbcon = new DbConnector();
                             </table>
                         </div>
                     </form>
+
+                    <?php
+
+                    try {
+                        $con = $dbcon->getConnection();
+
+                        $start = isset($_GET['start']) ? intval($_GET['start']) : 0;
+                        $rows_per_page = 5;
+
+                        $query = "SELECT * FROM users LIMIT $start, $rows_per_page";
+                        $pstmt = $con->prepare($query);
+                        $pstmt->execute();
+                        $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+                        foreach ($rs as $users) {
+                            // Display user details as before
+                        }
+
+                        // Calculate the total number of rows in the 'users' table (if not already calculated)
+                        if (!isset($total_rows)) {
+                            $total_rows_query = "SELECT COUNT(*) as total FROM users";
+                            $total_rows_stmt = $con->prepare($total_rows_query);
+                            $total_rows_stmt->execute();
+                            $total_rows_result = $total_rows_stmt->fetch(PDO::FETCH_ASSOC);
+                            $total_rows = $total_rows_result['total'];
+                        }
+
+                        // Calculate the total number of pages
+                        $pages = ceil($total_rows / $rows_per_page);
+                        ?>
+
+                        
                     <div class="row">
                         <div class="col-md-6 align-self-center">
-                            <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 05 of 20</p>
+                            <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 5 of  <?php echo $total_rows ?></p>
                         </div>
-                        <div class="col-md-6">
-                            <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                <ul class="pagination">
-                                    <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
-                                </ul>
-                            </nav>
+
+                        <?php
+
+                        // Generate the pagination buttons
+                        echo' <div class="col-md-6">';
+                        echo '<nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">';
+                        echo '<ul class="pagination">';
+
+                        if ($start > 0) {
+                            echo '<li class="page-item"><a class="page-link" href="?start=' . ($start - $rows_per_page) . '">Previous</a></li>';
+                        }
+
+                        for ($i = 1; $i <= $pages; $i++) {
+                            echo '<li class="page-item' . (($start / $rows_per_page + 1) == $i ? ' active' : '') . '"><a class="page-link" href="?start=' . (($i - 1) * $rows_per_page) . '">' . $i . '</a></li>';
+                        }
+
+                        if ($start < ($pages - 1) * $rows_per_page) {
+                            echo '<li class="page-item"><a class="page-link" href="?start=' . ($start + $rows_per_page) . '">Next</a></li>';
+                        }
+
+                        echo '</ul>';
+                        echo '</nav>';
+                    } catch (PDOException $exc) {
+                        echo $exc->getMessage();
+                    }
+                    ?>
+
                         </div>
                     </div>
                 </div>
@@ -582,61 +632,62 @@ $dbcon = new DbConnector();
     </div>
     </div>
 
-</body>
-
-
-<!-- <footer>
+    <!-- <footer>
              -->
-<!-- Footer Start -->
-<div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
-    <div class="container py-5">
-        <div class="row g-5">
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-white mb-4">Our Office</h4>
-                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
-                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
-                <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
-                <div class="d-flex pt-2">
-                    <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-youtube"></i></a>
-                    <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Our Office</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Services</h4>
+                    <a class="btn btn-link" href="#">Landscaping</a>
+                    <a class="btn btn-link" href="#">Pruning plants</a>
+                    <a class="btn btn-link" href="#">Urban Gardening</a>
+                    <a class="btn btn-link" href="#">Garden Maintenance</a>
+                    <a class="btn btn-link" href="#">Green Technology</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Quick Links</h4>
+                    <a class="btn btn-link" href="#">About Us</a>
+                    <a class="btn btn-link" href="#">Contact Us</a>
+                    <a class="btn btn-link" href="#">Our Services</a>
+                    <a class="btn btn-link" href="#">Terms & Condition</a>
+                    <a class="btn btn-link" href="#">Support</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <img src="../images/logo.png" style="width:220px;height:50px;">
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-white mb-4">Services</h4>
-                <a class="btn btn-link" href="#">Landscaping</a>
-                <a class="btn btn-link" href="#">Pruning plants</a>
-                <a class="btn btn-link" href="#">Urban Gardening</a>
-                <a class="btn btn-link" href="#">Garden Maintenance</a>
-                <a class="btn btn-link" href="#">Green Technology</a>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-white mb-4">Quick Links</h4>
-                <a class="btn btn-link" href="#">About Us</a>
-                <a class="btn btn-link" href="#">Contact Us</a>
-                <a class="btn btn-link" href="#">Our Services</a>
-                <a class="btn btn-link" href="#">Terms & Condition</a>
-                <a class="btn btn-link" href="#">Support</a>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <img src="../images/logo.png" style="width:220px;height:50px;">
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="index.php">GardenGURU</a>, All Right Reserved.
+                </div>
+
             </div>
         </div>
     </div>
-</div>
-<!-- Footer End -->
+    <!-- Copyright End -->
 
+</body>
 
-<!-- Copyright Start -->
-<div class="container-fluid copyright py-4">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                &copy; <a class="border-bottom" href="index.php">GardenGURU</a>, All Right Reserved.
-            </div>
-
-        </div>
-    </div>
-</div>
-<!-- Copyright End -->
+</html>
