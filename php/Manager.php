@@ -276,7 +276,7 @@ $dbcon = new DbConnector();
                         
                     <div class="row">
                         <div class="col-md-6 align-self-center">
-                            <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 5 of  <?php echo $total_rows ?></p>
+                            <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to <?php echo $start+5 ?> of  <?php echo $total_rows ?></p>
                         </div>
 
                         <?php
