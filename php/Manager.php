@@ -209,7 +209,7 @@ if (isset($_SESSION["manager"])) {
                                                    
                                                     <input type="hidden" name="userID" value="<?php echo "$ID" ?>"> 
                                                     <button class="btn btn-danger" type="submit" name="action" value="processForm">Delete</button>
-                                                    <a class="btn btn-success" href="user.php?user_id=<?php echo $users->user_id; ?>">View</a>
+                                                    <button class="btn btn-success" type="submit" name="action" value="view">View</button>
                                                 </form>
 
 
