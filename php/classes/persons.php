@@ -1,6 +1,6 @@
 <?php
 
-require_once './DbConnector.php';
+
 
 use classes\DbConnector;
 
@@ -80,7 +80,6 @@ class user extends person
 
 class Manager extends person
 {
-
     private $managerId;
     private $NIC;
 
@@ -93,11 +92,11 @@ class Manager extends person
         $this->PhoneNo = $PhoneNo;
         $this->managerId = $managerId;
     }
-        
-    
 
     public function deleteUser()
     {
+    require_once './DbConnector.php';
+
         $user_id = $_POST['userID'];
         try {
             $dbcon = new DbConnector();
@@ -121,4 +120,47 @@ if (isset($_POST['action']) && $_POST['action'] == 'processForm') {
     // Call the PHP function when the form is submitted with the action 'processForm'
     $manager = new Manager(null,null,null,null,null,null,null,);
     $manager->deleteUser();
+}
+
+class Admin extends person{
+
+    private $adminId;
+    private $NIC;
+    private $PhoneNo;
+
+    public function __construct($FirstName, $LastName, $Email, $Password, $NIC, $adminId, $PhoneNo)
+    {
+        parent::__construct($FirstName, $LastName, $Email,  $Password);
+        $this->NIC = $NIC;
+        $this->PhoneNo = $PhoneNo;
+        $this->adminId = $adminId;
+
+    }
+
+    public function deleteManager()
+    {
+    require_once './DbConnector.php';
+
+        $managerID = $_POST['managerID'];
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+
+            // Prepare and execute the DELETE query
+            $query = "DELETE FROM manager WHERE managerID = :managerID";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindParam(':managerID', $managerID, PDO::PARAM_INT);
+            $pstmt->execute();
+            header("Location: ../Admin.php" );
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+            // You can handle the error here or display an error message on the same page
+        }
+    }
+}
+
+if (isset($_POST['Action']) && $_POST['Action'] == 'ProcessForm') {
+    // Call the PHP function when the form is submitted with the action 'processForm'
+    $admin = new Admin(null,null,null,null,null,null,null,);
+    $admin->deleteManager();
 }
