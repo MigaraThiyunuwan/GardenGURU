@@ -1,9 +1,6 @@
 <?php
 
-require_once './DbConnector.php';
-
 use classes\DbConnector;
-
 ?>
 
 <?php
@@ -98,12 +95,13 @@ class Manager extends person
 
     public function deleteUser()
     {
+        require_once './DbConnector.php';
+
         $user_id = $_POST['userID'];
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
 
-            // Prepare and execute the DELETE query
             $query = "DELETE FROM users WHERE user_id = :user_id";
             $pstmt = $con->prepare($query);
             $pstmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
@@ -111,14 +109,14 @@ class Manager extends person
             header("Location: ../Manager.php" );
         } catch (PDOException $exc) {
             echo $exc->getMessage();
-            // You can handle the error here or display an error message on the same page
+
         }
     }
 
     
 }
 if (isset($_POST['action']) && $_POST['action'] == 'processForm') {
-    // Call the PHP function when the form is submitted with the action 'processForm'
+
     $manager = new Manager(null,null,null,null,null,null,null,);
     $manager->deleteUser();
 }

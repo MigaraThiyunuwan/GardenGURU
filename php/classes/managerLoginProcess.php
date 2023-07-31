@@ -1,6 +1,6 @@
 <?php
 require_once './DbConnector.php';
-require './persons.php';
+require_once './persons.php';
 
 
 use classes\DbConnector;

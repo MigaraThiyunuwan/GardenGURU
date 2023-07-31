@@ -1,5 +1,5 @@
 <?php
-require './classes/DbConnector.php';
+require_once './classes/DbConnector.php';
 
 
 use classes\DbConnector;
