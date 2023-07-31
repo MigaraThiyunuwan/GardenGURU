@@ -2,6 +2,7 @@
 require_once './DbConnector.php';
 require './persons.php';
 
+
 use classes\DbConnector;
 
 $dbcon = new DbConnector();
@@ -18,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         $con = $dbcon->getConnection();
-        $query = "SELECT * FROM users WHERE user_Email = ? ";
+        $query = "SELECT * FROM manager WHERE mEmail = ? ";
         $pstmt = $con->prepare($query);
         $pstmt->bindValue(1, $email);
        
@@ -27,27 +28,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
 
         foreach($rs as $row){
-            $dbpassword = $row->user_Password;
-            $dbFirstName = $row->user_FirstName;
-            $dbLastName = $row->user_LastName;
-            $dbEmail = $row->user_Email;
-            $dbPhoneNo = $row->user_PhoneNo;
-            $dbDistrict = $row->user_District;
-            $dbGender = $row->user_Gender;
-            $dbid = $row->user_id;
-            $dbaddress = $row->user_address;
+            $dbpassword = $row->mPassword;
+            $dbFirstName = $row->mFirstName;
+            $dbLastName = $row->mLastName;
+            $dbEmail = $row->mEmail;
+            $dbPhoneNo = $row->mPhone;
+            $dbNIC = $row->mNIC;
+            $dbmID = $row->managerID;
         }
        ;
         if (password_verify($password, $dbpassword)) {
            
-            $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword,$dbaddress, $dbid, $dbDistrict, $dbPhoneNo);
+            $manager = new Manager($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbNIC, $dbmID, $dbPhoneNo);
             session_start();
-            $_SESSION["user"] = $user;
-            header("Location: ../../index.php");
+            $_SESSION["manager"] = $manager;
+            header("Location: ../Manager.php");
         exit;
         }else{
             
-            header("Location: ../login.php?error=1");
+            header("Location: ../managerlogin.php?error=1");
             exit;
         }
 

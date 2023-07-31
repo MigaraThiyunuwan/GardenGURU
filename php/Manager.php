@@ -1,14 +1,22 @@
 <?php
 require './classes/DbConnector.php';
 
-require './classes/persons.php';
 
 use classes\DbConnector;
-use classes\Manager;
 
 $dbcon = new DbConnector();
 ?>
+<?php
+session_start();
+if (isset($_SESSION["manager"])) {
+    // User is logged in, retrieve the user object
+    $user = $_SESSION["manager"];
+} else {
 
+    header("Location: ./managerlogin.php?error=2");
+    exit();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -192,19 +200,25 @@ $dbcon = new DbConnector();
                                             <td><?php echo $users->user_Email; ?></td>
                                             <td><?php echo $users->user_PhoneNo; ?></td>
                                             <td>
-                                                <form action="" method="post">
-                                                    <input type="hidden" name="user_id" value="<?php echo $users->user_id; ?>">
-                                                    <?php
-                                                    
-                                                    $user_id = $_POST["user_id"];
-                                                    $oobj = new Manager();
-                                                    $oobj->deleteUser($user_id);
-                                                    
-                                                    ?>
-                                                    <button class="btn btn-danger" type="submit" name="delete">Delete</button>
+                                                <!-- <form action="" method="post"> -->
+                                                <?php
+                                                $ID = $users->user_id;
+                                                ?>
+
+                                                <form action="./classes/persons.php" method="post">
+                                                   
+                                                    <input type="hidden" name="userID" value="<?php echo "$ID" ?>"> 
+                                                    <button class="btn btn-danger" type="submit" name="action" value="processForm">Delete</button>
                                                     <a class="btn btn-success" href="user.php?user_id=<?php echo $users->user_id; ?>">View</a>
                                                 </form>
-                                                
+
+
+
+
+                                                <!-- <button class="btn btn-danger" type="button" name="delete">Delete</button> -->
+                                               
+                                                <!-- </form> -->
+
                                             </td>
                                         </tr>
                                 <?php
