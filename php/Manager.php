@@ -1,33 +1,12 @@
 <?php
 require './classes/DbConnector.php';
 
+require './classes/persons.php';
+
 use classes\DbConnector;
+use classes\Manager;
 
 $dbcon = new DbConnector();
-?>
-
-<?php
-// Check if the "delete" button was clicked and the "user_id" parameter is present in the POST data
-if (isset($_POST['delete']) && isset($_POST['user_id'])) {
-    $user_id = $_POST['user_id'];
-
-    try {
-        $con = $dbcon->getConnection();
-
-        // Prepare and execute the DELETE query
-        $query = "DELETE FROM users WHERE user_id = :user_id";
-        $pstmt = $con->prepare($query);
-        $pstmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-        $pstmt->execute();
-
-        // Redirect back to the same page after deletion
-        header("Location: manager.php"); // Change 'manager.php' to the actual file name
-        exit;
-    } catch (PDOException $exc) {
-        echo $exc->getMessage();
-        // You can handle the error here or display an error message on the same page
-    }
-}
 ?>
 
 
@@ -215,8 +194,15 @@ if (isset($_POST['delete']) && isset($_POST['user_id'])) {
                                             <td>
                                                 <form action="" method="post">
                                                     <input type="hidden" name="user_id" value="<?php echo $users->user_id; ?>">
+                                                    <?php
+                                                    
+                                                    $user_id = $_POST["user_id"];
+                                                    $oobj = new Manager();
+                                                    $oobj->deleteUser($user_id);
+                                                    
+                                                    ?>
                                                     <button class="btn btn-danger" type="submit" name="delete">Delete</button>
-                                                    <?php echo '<button class="btn btn-success" type="submit" name="view">View</button>'; ?>
+                                                    <a class="btn btn-success" href="user.php?user_id=<?php echo $users->user_id; ?>">View</a>
                                                 </form>
                                                 
                                             </td>
