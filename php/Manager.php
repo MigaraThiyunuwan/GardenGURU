@@ -71,7 +71,7 @@ if (isset($_SESSION["manager"])) {
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
-                <a href="./managerlogin.php" class="nav-item nav-link">Log Out</a>
+                <a href="./classes/logout.php" class="nav-item nav-link">Log Out</a>
                 <!-- <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                     <div class="dropdown-menu bg-light m-0">
