@@ -15,6 +15,9 @@
 	}
 }
 
+
+
+
 ul {
 	list-style: none;
 }
@@ -45,7 +48,7 @@ li {
 }
 
 .modal-contents {
-	height: 300px;
+	height: 500px;
 	width: 500px;
 	background-color: rgb(255, 255, 255);
 	text-align: center;
@@ -59,7 +62,7 @@ input {
 	display: block;
 	width: 50%;
 	padding: 8px;
-	border: 1px solid gray;
+	border: 1px solid rgb(9, 84, 26, 0.8);
 }
 
 .close {
@@ -71,7 +74,7 @@ input {
 	transform: rotate(45deg);
 	cursor: pointer;
 	&:hover {
-		color: #666;
+		color: #0f692f;
 	}
 }
 

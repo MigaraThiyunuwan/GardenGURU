@@ -26,9 +26,10 @@ if (isset($_SESSION["user"])) {
   <script src="https://kit.fontawesome.com/0008de2df6.js" crossorigin="anonymous"></script>
   <!-- Customized Bootstrap Stylesheet -->
   <link href="../css/bootstrap.min.css" rel="stylesheet">
-  <link href="../css/popup.css" rel="stylesheet">
+ 
   <!-- Template Stylesheet -->
   <link href="../css/style.css" rel="stylesheet">
+  <link href="../css/popup.css" rel="stylesheet">
 </head>
 
 <body>
@@ -77,6 +78,7 @@ if (isset($_SESSION["user"])) {
   <!-- Navbar End -->
 
 
+  
 
   <div class="container">
     <div class="row">
@@ -252,8 +254,12 @@ if (isset($_SESSION["user"])) {
         <input type="email" name="email" placeholder="E-Mail" values="$email"> -->
         <label for="image1">Select Image for Advertisement:</label>
         <input type="file" name="image1" id="image1" values="$filename1">
-        <label for="image2">Select Image for Advertisement Description:</label>
-        <input type="file" name="image2" id="image2">
+        <label for="text_title">Add title for the Advertisement:</label>
+        <input type="text" name="text_title" id="text_title" >
+          <!-- <label for="image2">Select Image for Advertisement Description:</label>
+        <input type="file" name="image2" id="image2">-->
+        <label for="text_description">Enter Your Description:</label>
+        <textarea name="text_description" id="text_description" rows="5" cols="40"></textarea>
         <input type="submit" name="submit" value="Submit" values="$filename2">
     </form>
 
