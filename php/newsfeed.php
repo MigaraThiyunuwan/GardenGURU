@@ -67,14 +67,31 @@
     </nav>
     <!-- Navbar End -->
 
-    <section class="banner">
+<!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+
+        <div class="container text-center py-5">
+            
+            <h1 class="display-3 text-white mb-4 animated slideInDown">Newsfeed</h1>
+            
+
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"> Get the latest news for plant enthusiasts!</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+
+    <!-- <section class="banner">
         <div class="banner-main-content">
-            <h2>GET THE LATEST NEWS FOR PLANT ENTHUSIASTS!</h2>
+            <h2>GET THE LATEST NEWS FOR PLANT ENTHUSIASTS!</h2> -->
             <!-- <h3</h3> -->
 
 
 
-            <div class="current-news-head">
+           <!--  <div class="current-news-head">
                 <h3>Indoor Plant Trends Inspire Home Decor
                     <span>by Kamal Edirisinghe</span>
                 </h3>
@@ -96,8 +113,7 @@
                 <div class="hot-topic-content">
                     <h2>Revolutionary Water-Saving Technique Gains Traction in Agriculture</h2>
 
-                    <!--                         <h3>New Topic 1</h3>
- -->
+                   
                     <p>A breakthrough water-saving technique developed by researchers at a leading agricultural institute has caught the attention of farmers worldwide. Using soil moisture sensors and precision irrigation, this innovative approach has shown a significant reduction in water usage while increasing crop yields. </p>
                     <a href="#">Read More</a>
                 </div>
@@ -141,8 +157,8 @@
             </div>
         </div>
     </section>
-
-    <hr>
+-->
+    <hr> 
 
     <main>
         <section class="main-container-left">
@@ -156,7 +172,7 @@
 
                         <p>Artificial Intelligence (AI) continues to revolutionize the agricultural landscape with the introduction of AI-powered farming tools. From automated crop monitoring systems to drones equipped with AI algorithms for precision agriculture, these technologies are streamlining farming processes, optimizing resource usage, and maximizing yields.</p>
 
-                        <a href="#">Read More <span>>></span></a>
+                        <!-- <a href="#">Read More <span>>></span></a> -->
                     </div>
                 </article>
             </div>
@@ -168,7 +184,7 @@
                         <h3>Global Seed Vault Celebrates Milestone</h3>
                         <p>The Svalbard Global Seed Vault, often referred to as the "Doomsday Vault," recently reached a remarkable milestone by storing its one-millionth seed sample. Located in the Arctic permafrost, the vault serves as a vital resource for preserving plant genetic diversity and safeguarding against potential food crises, climate-related disasters, and other threats to global agriculture.</p>
 
-                        <a href="#">Read More <span>>></span></a>
+                        <!-- <a href="#">Read More <span>>></span></a> -->
                     </div>
                 </article>
 
@@ -178,7 +194,7 @@
                         <h3>Bioengineered Superplants Show Promising Results</h3>
                         <p>Scientists working on bioengineering projects have made significant strides in developing "superplants" that exhibit enhanced resilience to diseases, pests, and adverse environmental conditions. By incorporating desirable traits from various plant species, these bioengineered crops have demonstrated the potential to increase food security and sustainability, though they also raise ethical and ecological concerns.</p>
 
-                        <a href="#">Read More <span>>></span></a>
+                        <!-- <a href="#">Read More <span>>></span></a> -->
                     </div>
                 </article>
             </div>
@@ -194,7 +210,7 @@
 
                     <p>Vertical farming, an innovative method of growing crops in stacked layers, is gaining momentum in urban centers worldwide. With limited arable land in cities, vertical farms offer a solution to produce fresh, pesticide-free vegetables and herbs locally.</p>
 
-                    <a href="#">Read More <span>>></span></a>
+                    <!-- <a href="#">Read More <span>>></span></a> -->
                 </div>
                 <img src="../images/newsfeed/vertical-farming-cities-dassault-systemes.jpg">
             </article>
@@ -206,7 +222,7 @@
 
                     <p>In response to the declining populations of bees and other pollinators, several countries have introduced legislation to promote pollinator-friendly farming practices. These measures encourage the use of native wildflowers as cover crops, reduced pesticide application, and the establishment of pollinator-friendly habitats on farmland.</p>
 
-                    <a href="#">Read More <span>>></span></a>
+                    <!-- <a href="#">Read More <span>>></span></a> -->
                 </div>
                 <img src="../images/newsfeed/221017-bee-better-pollinator-certifications-farms-sustainability-pesticides-7-Doug-Crabtree-in-sunflower-crop_by-Jennifer-Hopwood-Xerces-Society.jpg">
             </article>
@@ -218,7 +234,7 @@
 
                     <p>Plant identification apps powered by AI are becoming increasingly popular among gardening enthusiasts and nature lovers. These apps utilize machine learning algorithms to identify plant species from images taken with smartphones.</p>
 
-                    <a href="#">Read More <span>>></span></a>
+                    <!-- <a href="#">Read More <span>>></span></a> -->
                 </div>
                 <img src="../images/newsfeed/PictureThis-identification.webp">
             </article>
@@ -230,7 +246,7 @@
 
                     <p>Governments worldwide are providing increased support and incentives for organic farming practices. Recognizing the importance of sustainable agriculture, subsidies, grants, and educational programs are being introduced to encourage farmers to transition to organic methods.</p>
 
-                    <a href="#">Read More <span>>></span></a>
+                    <!-- <a href="#">Read More <span>>></span></a> -->
                 </div>
                 <img src="../images/newsfeed/selecting-best-maize-variety.jpg">
             </article>
@@ -242,7 +258,7 @@
 
                     <p>With climate change posing challenges to traditional crop varieties, farmers are turning to hybrid plant breeds that exhibit greater resilience to extreme weather conditions. These climate-resilient hybrids have demonstrated improved tolerance to heat, drought, and flooding, offering hope for ensuring food security amidst changing climatic patterns.</p>
 
-                    <a href="#">Read More <span>>></span></a>
+                    <!-- <a href="#">Read More <span>>></span></a> -->
                 </div>
                 <img src="../images/newsfeed/rice_plant.webp">
             </article>
