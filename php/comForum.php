@@ -11,9 +11,14 @@
 			<title>FAQ &#8211; Gardening</title>
 <meta name='robots' content='max-image-preview:large' />
 
+     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/main2.css" rel="stylesheet">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
+>
 
 <link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
 <link rel="alternate" type="application/rss+xml" title="Gardening &raquo; Feed" href="../feed/index.html" />
@@ -243,9 +248,52 @@ var wc_add_to_cart_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_ur
 				}					   
 			//});
 		  };</script>
-<style type="text/css" data-type="vc_shortcodes-custom-css">.vc_custom_1482928181508{padding-bottom: 100px !important;}.vc_custom_1504339948990{padding-top: 100px !important;padding-bottom: 80px !important;}.vc_custom_1504340027633{padding-top: 90px !important;padding-bottom: 20px !important;}.vc_custom_1482928315546{padding-top: 20px !important;padding-bottom: 80px !important;}.vc_custom_1482928690573{margin-bottom: 20px !important;}.vc_custom_1482929812565{margin-bottom: 0px !important;}.vc_custom_1482929587849{margin-bottom: 0px !important;}.vc_custom_1482929596235{margin-bottom: 0px !important;}.vc_custom_1482929605361{margin-bottom: 0px !important;}.vc_custom_1482929614111{margin-bottom: 0px !important;}.vc_custom_1482929614111{margin-bottom: 0px !important;}.vc_custom_1482928653643{margin-bottom: 20px !important;}.vc_custom_1482301789661{padding-right: 50px !important;padding-left: 50px !important;}.vc_custom_1481366530734{margin-bottom: 20px !important;}.vc_custom_1481366530734{margin-bottom: 20px !important;}.vc_custom_1481366530734{margin-bottom: 20px !important;}.vc_custom_1481366530734{margin-bottom: 20px !important;}.vc_custom_1481366530734{margin-bottom: 20px !important;}</style><noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript></head>
+<style type="text/css" data-type="vc_shortcodes-custom-css">.vc_custom_1482928181508{padding-bottom: 100px !important;}.vc_custom_1504339948990{padding-top: 100px !important;padding-bottom: 80px !important;}.vc_custom_1504340027633{padding-top: 90px !important;padding-bottom: 20px !important;}.vc_custom_1482928315546{padding-top: 20px !important;padding-bottom: 80px !important;}.vc_custom_1482928690573{margin-bottom: 20px !important;}.vc_custom_1482929812565{margin-bottom: 0px !important;}.vc_custom_1482929587849{margin-bottom: 0px !important;}.vc_custom_1482929596235{margin-bottom: 0px !important;}.vc_custom_1482929605361{margin-bottom: 0px !important;}.vc_custom_1482929614111{margin-bottom: 0px !important;}.vc_custom_1482929614111{margin-bottom: 0px !important;}.vc_custom_1482928653643{margin-bottom: 20px !important;}.vc_custom_1482301789661{padding-right: 50px !important;padding-left: 50px !important;}.vc_custom_1481366530734{margin-bottom: 20px !important;}.vc_custom_1481366530734{margin-bottom: 20px !important;}.vc_custom_1481366530734{margin-bottom: 20px !important;}.vc_custom_1481366530734{margin-bottom: 20px !important;}.vc_custom_1481366530734{margin-bottom: 20px !important;}</style><noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>
 
-<body class="page-template-default page page-id-7904 wp-embed-responsive theme-gardening woocommerce-no-js tribe-no-js layout-wide fullwidth-header sticky-header standard-header header-with-topbar woo-type9 wpb-js-composer js-comp-ver-6.4.2 vc_responsive">
+<!-- <style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h2 {
+    color: #007BFF;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+</style> -->
+
+</head>
+
+
+
+<body class="page-template-default page page-id-7904 wp-embed-responsive theme-gardening woocommerce-no-js tribe-no-js layout-wide fullwidth-header sticky-header standard-header header-with-topbar woo-type9 wpb-js-composer js-comp-ver-6.4.2 vc_responsive" style="background-color:var(--wp--preset--color--white)">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-dark-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0.498039215686" /><feFuncG type="table" tableValues="0 0.498039215686" /><feFuncB type="table" tableValues="0 0.498039215686" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.549019607843 0.988235294118" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.717647058824 0.254901960784" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-red"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 0.278431372549" /><feFuncB type="table" tableValues="0.592156862745 0.278431372549" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-midnight"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0" /><feFuncG type="table" tableValues="0 0.647058823529" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-magenta-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.780392156863 1" /><feFuncG type="table" tableValues="0 0.949019607843" /><feFuncB type="table" tableValues="0.352941176471 0.470588235294" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-green"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.650980392157 0.403921568627" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.447058823529 0.4" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-orange"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.0980392156863 1" /><feFuncG type="table" tableValues="0 0.662745098039" /><feFuncB type="table" tableValues="0.847058823529 0.419607843137" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><div class="loader"><div class="loader-inner ball-scale-multiple"><div></div><div></div><div></div></div></div>
 <!-- **Wrapper** -->
 <div class="wrapper">
@@ -312,17 +360,21 @@ var wc_add_to_cart_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_ur
     <!-- Page Header End -->
 
 		
-
-    <h2>Q&A Form</h2>
+<div style ="text-align:center; color:var(--wp--preset--color--white); ">
+    <h3 style="text-align:center; color:var(--wp--preset--color--white); "
+        
+        
+    
+     >Q&A Form</h3>
     <form action="process_form.php" method="post">
-        <label for="question">Your Question:</label>
-        <input type="text" name="question" required>
+        
+        <label style="color:var(--wp--preset--color--white); " for="question">Your Question:</p></label>
+        <input style="margin:auto" type="text" name="question" required>
         <br>
-        <!-- <label for="answer">Your Answer:</label>
-        <input type="text" name="answer" required>
-        <br> -->
+        
+        
         <input type="submit" value="Submit">
-    </form>
+    </form></div>
 </body>
 </html>
 
@@ -457,6 +509,8 @@ var paceOptions = {"restartOnRequestAfter":"false","restartOnPushState":"false"}
 <script type='text/javascript' src='../faq/wp-content/plugins/js_composer/assets/lib/bower/skrollr/dist/skrollr.min1e39.js?ver=6.4.2' id='vc_jquery_skrollr_js-js'></script>
 
 
+   <!-- <footer>
+             -->
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
@@ -496,9 +550,6 @@ var paceOptions = {"restartOnRequestAfter":"false","restartOnPushState":"false"}
         </div>
     </div>
     <!-- Footer End -->
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
-
 
 
     <!-- Copyright Start -->
@@ -514,12 +565,12 @@ var paceOptions = {"restartOnRequestAfter":"false","restartOnPushState":"false"}
     </div>
     <!-- Copyright End -->
 
+
     <!-- JavaScript Libraries -->
     <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
-    <!-- <script src="../js/main.js"></script> -->
-
-
+    <script src="../js/main.js"></script>
+    
 </body>
 
 <!-- Mirrored from dtgardening.wpengine.com/faq/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Jul 2023 12:36:04 GMT -->
