@@ -188,17 +188,20 @@
                 <tbody class="text-center">
 
                     <?php
-                        $total=0;
+                       //$total=0;
                     if (isset($_SESSION['cart'])) {
                         $serialNo = 1;
                         foreach ($_SESSION['cart'] as $key => $value) {
-                            $total=$total+$value['Price'];
+                        $total=$total+$value['Price'];
                             echo "<tr>
                                     <td>{$serialNo}</td>
                                     <td>{$value['Item_Name']}</td>
                                     <td>{$value['Price']}<input type='hidden' class='iprice' value='{$value['Price']}'></td>
 
-                                    <td><input class='text-center iquantity' type='number' value='$value[Quantity]' min='1' max='10'></td>
+                                    <td><input class='text-center iquantity' name ='Mod_Quantity' onchange='this.form.submit()' type='number' value='$value[Quantity]' min='1' max='10'>
+                                    </td>
+                                     <input type='hidden' name='Item_Name' value='$value[Item_Name]'>
+                                    </form>
                                     <td class='itotal'></td>
 
                                     <td>
@@ -219,14 +222,38 @@
 
         <div class="col-lg-3">
             <div class="border bg-light rounded p-4">
-            <h4>Total:</h4>
-            <h5 class="text-right"><?php echo $total ?></h5>
+            <h4>Grand Total:</h4>
+            <h5 class="text-right" id="gtotal"><?php echo $total ?></h5>
             <br>
+            <?php 
+             
+             if(isset($_SESSION['cart']) && count($_SESSION['cart'])>0){
+
+            
+
+
+
+            ?>
+
+
+
+
             <form>
 
- 
+  <div class="form-group">
+    <label>Full Name</label>
+    <input type="fullname" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Phone Number</label>
+    <input type="number"  name="phone_no" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Address</label>
+    <input type="number" name="address" class="form-control" >
+  </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+  <input class="form-check-input" type="radio" name="pay_mode" value="COD" id="flexRadioDefault2" checked>
   <label class="form-check-label" for="flexRadioDefault2">
     Cash On Delivery
   </label>
@@ -234,6 +261,11 @@
 <br>
                 <button class="btn btn-primary btn-block">Make Purchase</button>
             </form>
+
+            <?php
+            
+             }
+            ?>
 
         </div>
 
@@ -246,19 +278,31 @@
 
 
 
-
-
-
-
-
-
-
 <script>
-    
+    var gt = 0;
+    var iprice = document.getElementsByClassName('iprice');
+    var iquantity = document.getElementsByClassName('iquantity');
+    var itotal = document.getElementsByClassName('itotal');
+    var gtotal = document.getElementById('gtotal'); // Use getElementById to select the grand total element
+
+    function subTotal() {
+        gt = 0;
+        for (i = 0; i < iprice.length; i++) {
+            itotal[i].innerText = (iprice[i].value) * (iquantity[i].value);
+            gt = gt + (iprice[i].value) * (iquantity[i].value);
+        }
+        gtotal.innerText = gt; // Update the grand total element
+    }
+
+    for (i = 0; i < iquantity.length; i++) {
+        iquantity[i].addEventListener('change', subTotal); // Add an event listener to update the total when the quantity changes
+    }
+
+    subTotal(); // Call the function once initially
 </script>
 
 
-var iprice =
+
 
 
 
