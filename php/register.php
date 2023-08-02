@@ -1,5 +1,6 @@
 <?php
 require './classes/DbConnector.php';
+require_once './classes/persons.php';
 
 use classes\DbConnector;
 
@@ -106,7 +107,7 @@ $dbcon = new DbConnector();
                         <div class="input-group col-lg-12 mb-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa-solid fa-at text-muted" style="font-size: 25px;"></i>
+                                    <i class="fa-solid fa-at text-muted" style="font-size: 25px;"></i>
                                 </span>
                             </div>
                             <input id="email" type="email" name="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md">
@@ -126,11 +127,11 @@ $dbcon = new DbConnector();
                         <div class="input-group col-lg-12 mb-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa-solid fa-envelope text-muted" style="font-size: 25px;"></i>
+                                    <i class="fa-solid fa-envelope text-muted" style="font-size: 25px;"></i>
                                 </span>
                             </div>
 
-                            <input id="address" type="tel" name="address" placeholder="Address" class="form-control bg-white border-md border-left-0 pl-3">
+                            <input id="address" type="text" name="address" placeholder="Address" class="form-control bg-white border-md border-left-0 pl-3">
                         </div>.
 
                         <div class="input-group col-lg-12 mb-4">
@@ -241,7 +242,7 @@ $dbcon = new DbConnector();
                             $district = $_POST["district"];
                             $address = $_POST["address"];
                             $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-                          //  $password = $_POST["password"];
+                            //  $password = $_POST["password"];
 
                             try {
                                 $con = $dbcon->getConnection();
@@ -257,11 +258,8 @@ $dbcon = new DbConnector();
                                 $pstmt->bindValue(8, $gender);
                                 $pstmt->execute();
                                 if (($pstmt->rowCount()) > 0) {
-                ?>
-                                    <!-- <button onclick="window.location.href='./Login.php';" class="btn btn-primary my-3 w-100">
-                                        You have Successfully registered. Click Here to Login Your Account.
-                                    </button> -->
-                <?php
+
+                                    
                                     echo "<b>You Have Successfully registered. <a href='./login.php'>Click Here</a> to Login Your Account. </b>";
                                 } else {
                                     echo "Error, try again.";
@@ -271,9 +269,8 @@ $dbcon = new DbConnector();
                             }
                         } else {
                             echo '<p style="color:red;" > <b>Password Missmatch.</b> </p>';
-                           
                         }
-                    }else{
+                    } else {
                         echo '<p style="color:red;" > <b>Please Fill all Fields.</b> </p>';
                     }
                 }
