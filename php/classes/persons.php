@@ -92,9 +92,24 @@ class Manager extends person
         $this->managerId = $managerId;
     }
 
+    public function getManagerNIC()
+    {
+        return $this->NIC;
+    }
+
+    public function getManagerPhoneNo()
+    {
+        return $this->PhoneNo;
+    }
+
+    public function getManagerid()
+    {
+        return $this->managerId;
+    }
+
     public function deleteUser()
     {
-    require_once './DbConnector.php';
+        require_once './DbConnector.php';
 
         $user_id = $_POST['userID'];
         try {
@@ -105,22 +120,20 @@ class Manager extends person
             $pstmt = $con->prepare($query);
             $pstmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
             $pstmt->execute();
-            header("Location: ../Manager.php" );
+            header("Location: ../Manager.php");
         } catch (PDOException $exc) {
             echo $exc->getMessage();
-
         }
     }
-
-    
 }
 if (isset($_POST['action']) && $_POST['action'] == 'processForm') {
 
-    $manager = new Manager(null,null,null,null,null,null,null,);
+    $manager = new Manager(null, null, null, null, null, null, null,);
     $manager->deleteUser();
 }
 
-class Admin extends person{
+class Admin extends person
+{
 
     private $adminId;
     private $NIC;
@@ -132,12 +145,26 @@ class Admin extends person{
         $this->NIC = $NIC;
         $this->PhoneNo = $PhoneNo;
         $this->adminId = $adminId;
+    }
 
+    public function getAdminNIC()
+    {
+        return $this->NIC;
+    }
+
+    public function getAdminPhoneNo()
+    {
+        return $this->PhoneNo;
+    }
+
+    public function getAdminid()
+    {
+        return $this->adminId;
     }
 
     public function deleteManager()
     {
-    require_once './DbConnector.php';
+        require_once './DbConnector.php';
 
         $managerID = $_POST['managerID'];
         try {
@@ -149,7 +176,7 @@ class Admin extends person{
             $pstmt = $con->prepare($query);
             $pstmt->bindParam(':managerID', $managerID, PDO::PARAM_INT);
             $pstmt->execute();
-            header("Location: ../Admin.php" );
+            header("Location: ../Admin.php");
         } catch (PDOException $exc) {
             echo $exc->getMessage();
             // You can handle the error here or display an error message on the same page
@@ -157,8 +184,8 @@ class Admin extends person{
     }
 }
 
-if (isset($_POST['Action']) && $_POST['Action'] == 'ProcessForm') {
+if (isset($_POST['action']) && $_POST['action'] == 'processForm') {
     // Call the PHP function when the form is submitted with the action 'processForm'
-    $admin = new Admin(null,null,null,null,null,null,null,);
+    $admin = new Admin(null, null, null, null, null, null, null,);
     $admin->deleteManager();
 }

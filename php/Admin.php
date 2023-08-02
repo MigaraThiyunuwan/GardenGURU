@@ -1,6 +1,6 @@
 <?php
 require './classes/DbConnector.php';
-
+require './classes/persons.php';
 
 use classes\DbConnector;
 
@@ -11,7 +11,7 @@ $dbcon = new DbConnector();
 session_start();
 if (isset($_SESSION["admin"])) {
     // User is logged in, retrieve the user object
-    $user = $_SESSION["admin"];
+    $admin = $_SESSION["admin"];
 } else {
 
     header("Location: ./adminlogin.php?error=2");
@@ -98,9 +98,9 @@ if (isset($_SESSION["admin"])) {
                         <div class="d-flex flex-column align-items-center text-center">
                             <img src="../images/admin.png" alt="Admin" class="rounded-circle" width="150">
                             <div class="mt-3">
-                                <h4>Hello! Admin</h4><br>
-                                <button class="btn btn-primary">LogOut</button>
-                                <a class="btn btn-outline-primary " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
+                                <h4>Hello <?php echo $admin->getFirstName() . " " . $admin->getLastName() ?> !</h4><br>
+                                <a class="btn btn-outline-primary " target="__blank" href="./classes/logout.php">Log Out</a>
+                                <a class="btn btn-outline-primary " target="__blank" href="./Adminedit.php">Edit</a>
                                 <button class="btn btn-danger">Change Password</button>
                             </div>
                         </div>
@@ -108,17 +108,16 @@ if (isset($_SESSION["admin"])) {
                 </div>
             </div>
             <div class="col">
-                <div class="col-md-8">
+                <div class="col-md-10">
                     <div class="card mb-3">
                         <div class="card-body">
-
 
                             <div class="row">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Admin Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    Admin_01
+                                    <?php echo $admin->getFirstName() . " " . $admin->getLastName(); ?>
                                 </div>
                             </div>
 
@@ -129,7 +128,7 @@ if (isset($_SESSION["admin"])) {
                                     <h6 class="mb-0">Email</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    admin01@gmail.com
+                                    <?php echo $admin->getEmail(); ?>
                                 </div>
                             </div>
 
@@ -140,7 +139,18 @@ if (isset($_SESSION["admin"])) {
                                     <h6 class="mb-0">Phone</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    0716535687
+                                    <?php echo $admin->getAdminPhoneNo(); ?>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">NIC</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <?php echo $admin->getAdminNIC(); ?>
                                 </div>
                             </div>
                         </div>
@@ -150,161 +160,123 @@ if (isset($_SESSION["admin"])) {
         </div>
         <br>
 
+        
+            <div class="container-fluid"><br>
+                <h3 class="text-dark mb-4">Manager Details</h3><br>
+                <a href="./managerRegister.php"><button class="btn btn-dark"  data-bs-toggle="modal" data-bs-target="#addNewManager" style="float: right;">Add New Manager</button></a>
+                </br>
+                </br>
+        
 
-        <div class="container-fluid"><br>
-            <h3 class="text-dark mb-4">Manager Details</h3><br>
-            <button class="btn btn-dark" type="submit" data-bs-toggle="modal" data-bs-target="#addNewManager" style="float: right;">Add New Manager</button>
-            </br>
-            </br>
+        <div class="card shadow">
+            <div class="card-body">
+                <form action="" method="POST">
+                    <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                        <table class="table my-0" id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th>Manager ID</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>E-mail</th>
+                                    <th>Phone Number</th>
 
-            <div class="modal fade" id="addNewManager" tabindex="-1" aria-labelledby="addNewManagerLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title h3" id="addNewLManagerLabel">Add Manager</h5><br>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div id="modal-body" class="modal-body">
-                            <form action="">
-                                <div class="form-outline form-white h5">
-                                    <label class="form-label h5" for="fname">First Name</label><br />
-                                    <input type="text" class="form-control" name="fname" required />
-                                    <br />
-                                    <label class="form-label h5" for="lname">Last Name</label><br />
-                                    <input type="text" class="form-control" name="lname" required />
-                                    <br />
-                                    <label class="form-label h5" for="username">Username</label><br />
-                                    <input type="text" class="form-control" name="username" required />
-                                    <br />
-                                    <label class="form-label h5" for="pass">Password</label><br />
-                                    <input type="password" class="form-control" name="pass" required />
-                                    <br />
-                                    <label class="form-label h5" for="passRepeat">Repeat Password</label><br />
-                                    <input type="password" class="form-control" name="passRepeat" required />
-                                    <br />
-                                    <label class="form-label h5" for="email">Email</label><br />
-                                    <input type="email" class="form-control" name="email" required />
-                                    <br />
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Add</button>
-                        </div>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                try {
+                                    $con = $dbcon->getConnection();
+
+                                    // Pagination logic
+                                    $start = isset($_GET['start']) ? intval($_GET['start']) : 0;
+                                    $rows_per_page = 5;
+
+                                    $query = "SELECT * FROM manager LIMIT $start, $rows_per_page";
+                                    $pstmt = $con->prepare($query);
+                                    $pstmt->execute();
+                                    $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                                    foreach ($rs as $manager) {
+                                        // Display user details as before
+                                ?>
+
+                                        <tr>
+                                            <td><?php echo "M-" . $manager->managerID; ?></td>
+                                            <td><?php echo $manager->mFirstName; ?></td>
+                                            <td><?php echo $manager->mLastName; ?></td>
+                                            <td><?php echo $manager->mEmail; ?></td>
+                                            <td><?php echo $manager->mPhone; ?></td>
+                                            <td>
+                                                <?php
+                                                $mid = $manager->managerID;
+                                                ?>
+
+                                                <form action="./classes/persons.php" method="post">
+
+                                                    <input type="hidden" name="managerID" value="<?php echo "$mid" ?>">
+                                                    <button class="btn btn-danger" type="submit" name="action" value="processForm">Delete</button>
+                                                    <button class="btn btn-success" type="submit" name="action" value="view">View</button>
+                                                </form>
+
+                                            </td>
+                                        </tr>
+                                <?php
+                                    }
+                                    // Calculate the total number of rows in the 'users' table (if not already calculated)
+                                    if (!isset($total_rows)) {
+                                        $total_rows_query = "SELECT COUNT(*) as total FROM manager";
+                                        $total_rows_stmt = $con->prepare($total_rows_query);
+                                        $total_rows_stmt->execute();
+                                        $total_rows_result = $total_rows_stmt->fetch(PDO::FETCH_ASSOC);
+                                        $total_rows = $total_rows_result['total'];
+                                    }
+
+                                    // Calculate the total number of pages
+                                    $pages = ceil($total_rows / $rows_per_page);
+                                } catch (PDOException $exc) {
+                                    echo $exc->getMessage();
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-md-6 align-self-center">
+                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">
+                            Showing <?php echo min($total_rows, $start + 1) . ' to ' . min($total_rows, $start + $rows_per_page); ?> of <?php echo $total_rows; ?>
+                        </p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                            <ul class="pagination">
+                                <?php
+                                if ($start > 0) {
+                                    echo '<li class="page-item"><a class="page-link" href="?start=' . ($start - $rows_per_page) . '">Previous</a></li>';
+                                } else {
+                                    echo '<li class="page-item disabled"><span class="page-link">Previous</span></li>';
+                                }
+
+                                for ($i = 1; $i <= $pages; $i++) {
+                                    echo '<li class="page-item' . (($start / $rows_per_page + 1) == $i ? ' active' : '') . '"><a class="page-link" href="?start=' . (($i - 1) * $rows_per_page) . '">' . $i . '</a></li>';
+                                }
+
+                                if ($start < ($pages - 1) * $rows_per_page) {
+                                    echo '<li class="page-item"><a class="page-link" href="?start=' . ($start + $rows_per_page) . '">Next</a></li>';
+                                } else {
+                                    echo '<li class="page-item disabled"><span class="page-link">Next</span></li>';
+                                }
+                                ?>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
-
-            <div class="card shadow">
-                <div class="card-body">
-                    <form action="" method="POST">
-                        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                            <table class="table my-0" id="dataTable">
-                                <thead>
-                                    <tr>
-                                        <th>Manager ID</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>E-mail</th>
-                                        <th>Phone Number</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    try {
-                                        $con = $dbcon->getConnection();
-
-                                        // Pagination logic
-                                        $start = isset($_GET['start']) ? intval($_GET['start']) : 0;
-                                        $rows_per_page = 5;
-
-                                        $query = "SELECT * FROM manager LIMIT $start, $rows_per_page";
-                                        $pstmt = $con->prepare($query);
-                                        $pstmt->execute();
-                                        $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
-
-                                        foreach ($rs as $manager) {
-                                            // Display user details as before
-                                    ?>
-
-                                            <tr>
-                                                <td><?php echo "M-" . $manager->managerID; ?></td>
-                                                <td><?php echo $manager->mFirstName; ?></td>
-                                                <td><?php echo $manager->mLastName; ?></td>
-                                                <td><?php echo $manager->mEmail; ?></td>
-                                                <td><?php echo $manager->mPhone; ?></td>
-                                                <td>
-                                                    <?php
-                                                    $mid = $manager->managerID;
-                                                    ?>
-
-                                                    <form action="./classes/persons.php" method="post">
-
-                                                        <input type="hidden" name="userID" value="<?php echo "$mid" ?>">
-                                                        <button class="btn btn-danger" type="submit" name="Action" value="ProcessForm">Delete</button>
-                                                        <button class="btn btn-success" type="submit" name="action" value="view">View</button>
-                                                    </form>
-
-                                                </td>
-                                            </tr>
-                                    <?php
-                                        }
-                                        // Calculate the total number of rows in the 'users' table (if not already calculated)
-                                        if (!isset($total_rows)) {
-                                            $total_rows_query = "SELECT COUNT(*) as total FROM manager";
-                                            $total_rows_stmt = $con->prepare($total_rows_query);
-                                            $total_rows_stmt->execute();
-                                            $total_rows_result = $total_rows_stmt->fetch(PDO::FETCH_ASSOC);
-                                            $total_rows = $total_rows_result['total'];
-                                        }
-
-                                        // Calculate the total number of pages
-                                        $pages = ceil($total_rows / $rows_per_page);
-                                    } catch (PDOException $exc) {
-                                        echo $exc->getMessage();
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </form>
-                    <div class="row">
-                        <div class="col-md-6 align-self-center">
-                            <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">
-                                Showing <?php echo min($total_rows, $start + 1) . ' to ' . min($total_rows, $start + $rows_per_page); ?> of <?php echo $total_rows; ?>
-                            </p>
-                        </div>
-
-                        <div class="col-md-6">
-                            <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                <ul class="pagination">
-                                    <?php
-                                    if ($start > 0) {
-                                        echo '<li class="page-item"><a class="page-link" href="?start=' . ($start - $rows_per_page) . '">Previous</a></li>';
-                                    } else {
-                                        echo '<li class="page-item disabled"><span class="page-link">Previous</span></li>';
-                                    }
-
-                                    for ($i = 1; $i <= $pages; $i++) {
-                                        echo '<li class="page-item' . (($start / $rows_per_page + 1) == $i ? ' active' : '') . '"><a class="page-link" href="?start=' . (($i - 1) * $rows_per_page) . '">' . $i . '</a></li>';
-                                    }
-
-                                    if ($start < ($pages - 1) * $rows_per_page) {
-                                        echo '<li class="page-item"><a class="page-link" href="?start=' . ($start + $rows_per_page) . '">Next</a></li>';
-                                    } else {
-                                        echo '<li class="page-item disabled"><span class="page-link">Next</span></li>';
-                                    }
-                                    ?>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
+
+    </div>
     </div>
     </div>
 

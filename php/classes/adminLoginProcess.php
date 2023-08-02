@@ -34,12 +34,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $dbEmail = $row->aEmail;
             $dbPhoneNo = $row->aPhone;
             $dbNIC = $row->aNIC;
-            $dbmID = $row->adminID;
+            $dbaID = $row->adminID;
         }
        ;
         if (password_verify($password, $dbpassword)) {
            
-            $admin = new Admin($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbNIC, $dbmID, $dbPhoneNo);
+            $admin = new Admin($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbNIC, $dbaID, $dbPhoneNo);
             session_start();
             $_SESSION["admin"] = $admin;
             header("Location: ../Admin.php");
