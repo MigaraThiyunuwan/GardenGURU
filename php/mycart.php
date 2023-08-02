@@ -255,7 +255,7 @@ session_start();
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="pay_mode" value="COD" id="flexRadioDefault2" checked>
                                 <label class="form-check-label" for="flexRadioDefault2">
-                                    Cash On Delivery
+                                    Card Payement
                                 </label>
                             </div>
                             <br>

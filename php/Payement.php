@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+session_start();
+if (isset($_SESSION["user"])) {
+    // User is logged in, retrieve the user object
+    $manager = $_SESSION["user"];
+} else {
 
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+    header("Location: ./login.php?error=4");
+    exit();
+}
+?>
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
 <head>
     <meta charset="utf-8">
@@ -68,8 +78,8 @@
 
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $total = $_POST["total"];
 
-        
     }
 
     ?>
@@ -124,7 +134,7 @@
                         <div class="mt-4 mb-4 d-flex justify-content-between">
 
                             <!-- <span>Previous step</span> -->
-                            <button class="btn btn-success px-3">Pay Rs.549</button>
+                            <button class="btn btn-success px-3">Pay Rs.<?php echo $total ?></button>
                         </div>
                     </form>
                 </div>
@@ -139,7 +149,7 @@
 
                     <span>You have to pay</span>
                     <div class="d-flex flex-row align-items-end mb-3">
-                        <h1 class="mb-0 yellow">Rs.549</h1> <span>.00</span>
+                        <h1 class="mb-0 yellow">Rs.<?php echo $total ?></h1> <span>.00</span>
                     </div>
 
                     <span>Enjoy all the features and perk after you complete the payment</span>

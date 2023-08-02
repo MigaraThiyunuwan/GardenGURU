@@ -120,7 +120,9 @@
                                     if($_GET['error'] == 3){
                                         echo "<b><p style='color: red;'> You Need to Login to Your Account to Visit Profile.</p></b>";
                                     }
-                                    
+                                    if($_GET['error'] == 4){
+                                        echo "<b><p style='color: red;'> You Need to Login to Your Account to make purchase.</p></b>";
+                                    }
                                 } ?>
                             </form>
                         </div>

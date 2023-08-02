@@ -99,8 +99,8 @@ if (isset($_SESSION["admin"])) {
                             <img src="../images/admin.png" alt="Admin" class="rounded-circle" width="150">
                             <div class="mt-3">
                                 <h4>Hello <?php echo $admin->getFirstName() . " " . $admin->getLastName() ?> !</h4><br>
-                                <a class="btn btn-outline-primary " target="__blank" href="./classes/logout.php">Log Out</a>
-                                <a class="btn btn-outline-primary " target="__blank" href="./Adminedit.php">Edit</a>
+                                <a class="btn btn-outline-primary " target="" href="./classes/logout.php">Log Out</a>
+                                <a class="btn btn-outline-primary " target="" href="./Adminedit.php">Edit</a>
                                 <button class="btn btn-danger">Change Password</button>
                             </div>
                         </div>
