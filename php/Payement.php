@@ -66,6 +66,13 @@
     </nav>
     <!-- Navbar End -->
 
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        
+    }
+
+    ?>
     <div class="container1 mt-5 px-5">
 
         <div class="mb-4">
