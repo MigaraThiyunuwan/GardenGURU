@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php 
-     session_start();
-    
-      ?>
+<?php
+session_start();
+
+?>
 
 <!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
@@ -22,29 +22,29 @@
     <link href="../css/Selling.css" rel="stylesheet">
 
     <style>
-
-.page-header { 
-    background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/Selling/wall3.jpeg) center center no-repeat !important;
-    background-size: cover !important;
-}
+        .page-header {
+            background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/Selling/wall3.jpeg) center center no-repeat !important;
+            background-size: cover !important;
+        }
 
         .team-members-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 15px; 
+            gap: 15px;
         }
+
         .team-item {
             max-width: 300px;
-            
+
         }
     </style>
 </head>
 
 <body>
-<?php 
+    <?php
 
-?>
+    ?>
 
 
     <!-- Navbar Start -->
@@ -88,17 +88,17 @@
     </nav>
     <!-- Navbar End -->
     <!-- Page Header Start -->
-    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" >
-    
+    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+
         <div class="container text-center py-5">
             <h1 class="display-3 text-white mb-4 animated slideInDown">Best Selling</h1>
-                <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item">Plants make people happy!</li>
-                </ol>
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item">Plants make people happy!</li>
+            </ol>
         </div>
     </div>
     <!-- Page Header End -->
-<!---
+    <!---
     <div class="container">
         <div class="row2">
 
@@ -123,10 +123,10 @@
   <tbody class="text-center">
 
     <?php
-        if(isset($_SESSION['cart'])){
-     foreach($_SESSION['cart'] as $key => $value){
-        print_r($value);
-        echo "<tr>
+    if (isset($_SESSION['cart'])) {
+        foreach ($_SESSION['cart'] as $key => $value) {
+            print_r($value);
+            echo "<tr>
             <td></td>
             <td></td>
             <td></td>
@@ -135,9 +135,8 @@
         </tr>
 
             ";
-     }
-
-    } 
+        }
+    }
     ?>
     <tr>
       <th scope="row">1</th>
@@ -166,39 +165,42 @@
     </div>
 ---->
 
-<div class="container">
-    <div class="row2">
-        <div class="col-lg-12 text-center border rounded bg-light my-5">
-            <h1>MY CART</h1>
-        </div>
+    <div class="container">
+        <div class="row2">
+            <div class="col-lg-12 text-center border rounded bg-light my-5">
+                <h1>MY CART</h1>
+            </div>
 
-        <div class="col-lg-9">
-            <table class="table">
-                <thead class="text-center">
-                    <tr>
-                        <th scope="col">Serial No.</th>
-                        <th scope="col">Item Name</th>
-                        <th scope="col">Item Price</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Total</th>
+            <div class="col-lg-9">
+                <table class="table">
+                    <thead class="text-center">
+                        <tr>
+                            <th scope="col">Serial No.</th>
+                            <th scope="col">Item Name</th>
+                            <th scope="col">Item Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total(Rs.)</th>
 
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody class="text-center">
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
 
-                    <?php
-                        $total=0;
-                    if (isset($_SESSION['cart'])) {
-                        $serialNo = 1;
-                        foreach ($_SESSION['cart'] as $key => $value) {
-                            $total=$total+$value['Price'];
-                            echo "<tr>
+                        <?php
+                        $total = 0;
+                        if (isset($_SESSION['cart'])) {
+                            $serialNo = 1;
+                            foreach ($_SESSION['cart'] as $key => $value) {
+                                $total = $total + $value['Price'];
+                                echo "<tr>
                                     <td>{$serialNo}</td>
                                     <td>{$value['Item_Name']}</td>
                                     <td>{$value['Price']}<input type='hidden' class='iprice' value='{$value['Price']}'></td>
 
-                                    <td><input class='text-center iquantity' type='number' value='$value[Quantity]' min='1' max='10'></td>
+                                    <td><input class='text-center iquantity' name ='Mod_Quantity' onchange='this.form.submit()' type='number' value='$value[Quantity]' min='1' max='10'>
+                                    </td>
+                                     <input type='hidden' name='Item_Name' value='$value[Item_Name]'>
+                                    </form>
                                     <td class='itotal'></td>
 
                                     <td>
@@ -208,57 +210,99 @@
                                     </form>
                                     </td>
                                 </tr>";
-                            $serialNo++;
+                                $serialNo++;
+                            }
                         }
+                        ?>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="border bg-light rounded p-4">
+                    <h4>Grand Total: Rs.</h4>
+                    <h5 class="text-right" id="gtotal"> <?php echo  $total ?></h5>
+                    <br>
+                    <?php
+
+                    if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
+
+
+
+
+
+                    ?>
+
+
+
+
+                        <form action="payement.php" method="POST">
+                            <input type="hidden" name="total" value="<?php echo $total ?>" class="form-control">
+
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" name="fullName" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="text" name="phone_no" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input type="address" name="address" class="form-control">
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="pay_mode" value="COD" id="flexRadioDefault2" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Cash On Delivery
+                                </label>
+                            </div>
+                            <br>
+                            <button type="submit" class="btn btn-primary btn-block">Make Purchase</button>
+                        </form>
+
+                    <?php
+
                     }
                     ?>
 
-                </tbody>
-            </table>
-        </div>
+                </div>
 
-        <div class="col-lg-3">
-            <div class="border bg-light rounded p-4">
-            <h4>Total:</h4>
-            <h5 class="text-right"><?php echo $total ?></h5>
-            <br>
-            <form>
-
- 
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-  <label class="form-check-label" for="flexRadioDefault2">
-    Cash On Delivery
-  </label>
-</div>
-<br>
-                <button class="btn btn-primary btn-block">Make Purchase</button>
-            </form>
-
-        </div>
-
+            </div>
         </div>
     </div>
-</div>
 
 
 
 
 
 
+    <script>
+        var gt = 0;
+        var iprice = document.getElementsByClassName('iprice');
+        var iquantity = document.getElementsByClassName('iquantity');
+        var itotal = document.getElementsByClassName('itotal');
+        var gtotal = document.getElementById('gtotal'); // Use getElementById to select the grand total element
+
+        function subTotal() {
+            gt = 0;
+            for (i = 0; i < iprice.length; i++) {
+                itotal[i].innerText = (iprice[i].value) * (iquantity[i].value);
+                gt = gt + (iprice[i].value) * (iquantity[i].value);
+            }
+            gtotal.innerText = gt; // Update the grand total element
+        }
+
+        for (i = 0; i < iquantity.length; i++) {
+            iquantity[i].addEventListener('change', subTotal); // Add an event listener to update the total when the quantity changes
+        }
+
+        subTotal(); // Call the function once initially
+    </script>
 
 
 
-
-
-
-
-<script>
-    
-</script>
-
-
-var iprice =
 
 
 
