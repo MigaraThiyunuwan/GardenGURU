@@ -218,7 +218,7 @@ session_start();
                     </tbody>
                 </table>
             </div>
-
+            <form action="payement.php" method="POST">
             <div class="col-lg-3">
                 <div class="border bg-light rounded p-4">
                     <h4>Grand Total: Rs.</h4>
@@ -237,7 +237,7 @@ session_start();
 
 
 
-                        <form action="payement.php" method="POST">
+                        
                             <input type="hidden" name="total" value="<?php echo $total ?>" class="form-control">
 
                             <div class="form-group">
