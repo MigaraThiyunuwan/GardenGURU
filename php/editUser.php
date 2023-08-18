@@ -27,6 +27,8 @@ if (isset($_SESSION["user"])) {
 
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/popup.css" rel="stylesheet">
+    
 </head>
 
 <body>
@@ -84,9 +86,10 @@ if (isset($_SESSION["user"])) {
                                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
                                 <div class="mt-3">
                                     <h4>Hello! <?php echo $user->getFirstName() . "" . $user->getLastName() ?> !</h4><br>
-                                    <a class="btn btn-outline-primary " target="" href="./classes/logout.php">Log Out</a>
+                                   <!--  <a class="btn btn-outline-primary " target="" href="./classes/logout.php">Log Out</a>-->
+                                    <a class="btn btn-outline-info" id="popbutton" target="#" >Change Profile Picture</a>
 
-                                    <a class="btn btn-outline-danger " target="" href="#">Change Password</a>
+                                    <a class="btn btn-outline-danger " target="#" >Change Password</a>
                                 </div>
                             </div>
                         </div>
@@ -155,6 +158,46 @@ if (isset($_SESSION["user"])) {
                 <br><br>
     </section>
 
+
+
+
+   <!-- popupr Start -->
+
+
+<!-- Modal Section -->
+
+<div class="bg-modal" >
+	<div class="modal-contents " >
+
+		<div class="close">+</div>
+	
+
+    <form action="changeprofilepicture.php" method="post" enctype="multipart/form-data">
+        <!-- <input type="text" name="name" placeholder="Name" values="$name">
+        <input type="email" name="email" placeholder="E-Mail" values="$email"> -->
+        <label for="profile_picture">Select Image for Profile Picture</label>
+        <input type="file" name="profile_picture" id="profile_picture" values="">
+      
+        <input type="submit" name="submit" value="Submit" values="">
+    </form>
+
+  
+
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+    
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn">
         <div class="container py-5">
@@ -211,10 +254,13 @@ if (isset($_SESSION["user"])) {
         </div>
     </div>
     <!-- Copyright End -->
-    <!-- JavaScript Libraries -->
-    <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
+   <!-- JavaScript Libraries -->
+   <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/main.js"></script>
-
+    <script src="../js/popup.js"></script>
+ 
 
 </body>
+
+

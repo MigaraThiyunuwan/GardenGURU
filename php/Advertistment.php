@@ -80,6 +80,166 @@ $dbcon = $dbConnector->getConnection();
             max-height: 400px;
             object-fit: cover;
         }
+
+        
+        
+
+        body {
+    font-family: "Oxygen", sans-serif;
+    color: #050505;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
+  .main {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .cards_item {
+    display: flex;
+    padding: 1rem;
+  }
+  
+  .card_image {
+    position: relative;
+    max-height: 250px;
+  }
+  
+  .card_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .card_price {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 0.25rem;
+    background-color: #008000;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  
+  .card_price span {
+    font-size: 12px;
+    margin-top: -2px;
+  }
+  
+  .note {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    padding: 4px 8px;
+    border-radius: 0.25rem;
+    background-color: #008000;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  
+  @media (min-width: 40rem) {
+    .cards_item {
+      width: 50%;
+    }
+  }
+  
+  @media (min-width: 56rem) {
+    .cards_item {
+      width: 33.3333%;
+    }
+  }
+  
+  .card {
+    background-color: white;
+    border-radius: 0.25rem;
+    box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  .card_content {
+    position: relative;
+    padding: 16px 12px 32px 24px;
+    margin: 16px 8px 8px 0;
+    max-height: 290px;
+    overflow-y: scroll;
+  }
+  
+  .card_content::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .card_content::-webkit-scrollbar-track {
+    box-shadow: 0;
+    border-radius: 0;
+  }
+  
+  .card_content::-webkit-scrollbar-thumb {
+    background: #008000;
+    border-radius: 15px;
+  }
+  
+  .card_title {
+    position: relative;
+    margin: 0 0 24px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  
+  .card_title::after {
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #008000;
+    content: "";
+  }
+  
+  hr {
+    margin: 24px auto;
+    width: 50px;
+    border-top: 2px solid #008000;
+  }
+  
+  .card_text p {
+    margin: 0 0 24px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .card_text p:last-child {
+    margin: 0;
+  }
+  
+
+
+
+
+
     </style>
 </head>
 
@@ -146,78 +306,7 @@ $dbcon = $dbConnector->getConnection();
             <h1 class="display-5 mb-5">Explore Our Exclusive Collection</h1>
         </div>
 
-        <!-- Projects Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="row g-4 portfolio-container">
-                    <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="portfolio-inner rounded">
-                            <img class="img-fluid" src="../images/Adevertistment/ad1.jpg" alt="">
-                            <div class="portfolio-text">
-                                <div class="d-flex">
-                                    <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des1.jpg"><i class="fa fa-eye"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="portfolio-inner rounded">
-                            <img class="img-fluid" src="../images/Adevertistment/ad5.webp" alt="">
-                            <div class="portfolio-text">
-                                <div class="d-flex">
-                                    <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des2.jpg"><i class="fa fa-eye"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="portfolio-inner rounded">
-                            <img class="img-fluid" src="../images/Adevertistment/ad3.webp" alt="">
-                            <div class="portfolio-text">
-                                <div class="d-flex">
-                                    <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des3.jpg"><i class="fa fa-eye"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="portfolio-inner rounded">
-                            <img class="img-fluid" src="../images/Adevertistment/ad4.webp" alt="">
-                            <div class="portfolio-text">
-                                <div class="d-flex">
-                                    <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des4.jpg"><i class="fa fa-eye"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="portfolio-inner rounded">
-                            <img class="img-fluid" src="../images/Adevertistment/ad2n.jpg" alt="">
-                            <div class="portfolio-text">
-                                <div class="d-flex">
-                                    <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des5.jpg"><i class="fa fa-eye"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="portfolio-inner rounded">
-                            <img class="img-fluid" src="../images/Adevertistment/ad1.jpg" alt="">
-                            <div class="portfolio-text">
-                                <div class="d-flex">
-                                    <a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="../images/Adevertistment/des6.jpg"><i class="fa fa-eye"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Projects End -->
-
-
-
-
+    
         <!-- newly added advertiesments -->
         <!-- Projects Start -->
         <div class="container-xxl py-5">
@@ -226,7 +315,7 @@ $dbcon = $dbConnector->getConnection();
                     <?php
 
                     // Retrieve all uploaded photos from the database
-                    $sql = "SELECT image1_filename , image2_filename  FROM advertisements ORDER BY id DESC";
+                    $sql = "SELECT image1_filename ,title,  description FROM advertisements ORDER BY id DESC";
                     try {
 
                         $stmt = $dbcon->query($sql);
@@ -236,23 +325,30 @@ $dbcon = $dbConnector->getConnection();
                             foreach ($result as $row) {
                                 $photoName = $row["image1_filename"];
                                // $photoPath = "../images/Adevertistment/$photoName";
-                                $descriptionName = $row["image2_filename"];
+                                //$descriptionName = $row["image2_filename"];
                               //  $descriptionPath = "../images/Adevertistment/$descriptionName"; // Replace with the correct path to the corresponding description file
+                               
+                               $description = $row["description"];
+                               $title = $row["title"];
 
                                 // Determine the appropriate column class for each photo
                                 $columnClass = ($photoCount % 3 == 0) ? 'third' : (($photoCount % 2 == 0) ? 'second' : 'first');
 
                                 // Generate the HTML code for the photo in the appropriate column
-                                echo '<div class="col-lg-4 col-md-6 portfolio-item ' . $columnClass . ' wow fadeInUp" data-wow-delay="' . ($photoCount * 0.1) . 's">';
-                                echo '<div class="portfolio-inner rounded">';
-                                echo '<img class="img-fluid" src="' . $photoName. '" alt="">';
-                                echo '<div class="portfolio-text">';
-                                echo '<div class="d-flex">';
-                                echo '<a class="btn btn-lg-square rounded-circle mx-2" data-lightbox="portfolio" href="' . $descriptionName. '"><i class="fa fa-eye"></i></a>';
+                                echo '<li class="cards_item">';
+                                echo '<div class="card">';
+                                echo '<div class="card_image">';
+                                echo '<img src="' . $photoName . '" alt="t" />';
+                                //echo '<span class="card_price"><span>$</span>9</span>'; // Assuming you have a price for the advertisement
+                                echo '</div>';
+                                echo '<div class="card_content">';
+                                echo '<h2 class="card_title">' . $title . '</h2>'; // Replace "Advertisement Title" with the actual title for the advertisement
+                                echo '<div class="card_text">';
+                                echo '<p>' . $description . '</p>'; // Replace with the actual description for the advertisement
                                 echo '</div>';
                                 echo '</div>';
                                 echo '</div>';
-                                echo '</div>';
+                                echo '</li>';
 
                                 $photoCount++;
                             }
@@ -278,6 +374,28 @@ $dbcon = $dbConnector->getConnection();
         </div>
 
     </div>
+
+
+    <style>
+.text-card {
+  display: none;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Style for the button */
+.btn {
+  /* Your button styles here */
+}
+<style>
+
+
+
+
+
+
 
     <!-- Projects End -->
     <!-- newly added advertiesments end -->
