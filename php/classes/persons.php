@@ -51,13 +51,25 @@ class user extends person
     private $PhoneNo;
 
     private $Address;
-    function __construct($FirstName, $LastName, $Email, $Password, $Address, $userId, $District, $PhoneNo)
+
+    private $ProPic;
+    function __construct($FirstName, $LastName, $Email, $Password, $Address, $userId, $District, $PhoneNo, $ProPic)
     {
         parent::__construct($FirstName, $LastName, $Email,  $Password);
         $this->userId = $userId;
         $this->District = $District;
         $this->PhoneNo = $PhoneNo;
         $this->Address = $Address;
+        $this->ProPic = $ProPic;
+    }
+    public function getPropic()
+    {
+        return $this->ProPic;
+    }
+
+    public function setPropic($picture)
+    {
+        $this->ProPic = $picture;
     }
     public function getUserId()
     {

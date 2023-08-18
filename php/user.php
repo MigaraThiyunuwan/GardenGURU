@@ -77,16 +77,13 @@ if (isset($_SESSION["user"])) {
   </nav>
   <!-- Navbar End -->
 
-
-  
-
   <div class="container">
     <div class="row">
       <div class="col">
         <div class="card">
           <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center">
-              <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+              <img src="<?php echo $user->getPropic() ?>" alt="Admin" class="rounded-circle" width="150">
               <div class="mt-3">
                 <h4>Hello! <?php echo $user->getFirstName() ?></h4><br>
                 
@@ -198,6 +195,7 @@ if (isset($_SESSION["user"])) {
           </div>
         </div>
       </div>
+
       <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
         <div class="service-item rounded d-flex h-100">
           <div class="service-img rounded">

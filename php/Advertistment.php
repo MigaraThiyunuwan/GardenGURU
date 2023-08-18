@@ -26,14 +26,14 @@ if (isset($_SESSION["user"])) {
 <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 
 <head>
-    <meta charset="utf-8">
-    <title>GrdenGURU | Advertiesment</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <title>GrdenGURU | Advertiesment</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <!-- Customized Bootstrap Stylesheet -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Template Stylesheet -->
   <link href="../css/style.css" rel="stylesheet">
@@ -323,7 +323,7 @@ if (isset($_SESSION["user"])) {
                 // $photoPath = "../images/Adevertistment/$photoName";
                 //$descriptionName = $row["image2_filename"];
                 //  $descriptionPath = "../images/Adevertistment/$descriptionName"; // Replace with the correct path to the corresponding description file
-          
+
                 $description = $row["description"];
                 $title = $row["title"];
 
@@ -375,9 +375,67 @@ if (isset($_SESSION["user"])) {
     .btn {
       /* Your button styles here */
     }
+  </style>
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Our Office</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Services</h4>
+                    <a class="btn btn-link" href="#">Landscaping</a>
+                    <a class="btn btn-link" href="#">Pruning plants</a>
+                    <a class="btn btn-link" href="#">Urban Gardening</a>
+                    <a class="btn btn-link" href="#">Garden Maintenance</a>
+                    <a class="btn btn-link" href="#">Green Technology</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Quick Links</h4>
+                    <a class="btn btn-link" href="#">About Us</a>
+                    <a class="btn btn-link" href="#">Contact Us</a>
+                    <a class="btn btn-link" href="#">Our Services</a>
+                    <a class="btn btn-link" href="#">Terms & Condition</a>
+                    <a class="btn btn-link" href="#">Support</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <img src="../images/logo.png" style="width:220px;height:50px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
 
-    <style>< !-- Projects End -->< !-- newly added advertiesments end -->< !-- Footer Start --><div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s"><div class="container py-5"><div class="row g-5"><div class="col-lg-3 col-md-6"><h4 class="text-white mb-4">Our Office</h4><p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58,
-    Passara Road,
-    Badulla</p><p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p><p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p><div class="d-flex pt-2"><a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a><a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a><a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-youtube"></i></a><a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a></div></div><div class="col-lg-3 col-md-6"><h4 class="text-white mb-4">Services</h4><a class="btn btn-link" href="#">Landscaping</a><a class="btn btn-link" href="#">Pruning plants</a><a class="btn btn-link" href="#">Urban Gardening</a><a class="btn btn-link" href="#">Garden Maintenance</a><a class="btn btn-link" href="#">Green Technology</a></div><div class="col-lg-3 col-md-6"><h4 class="text-white mb-4">Quick Links</h4><a class="btn btn-link" href="#">About Us</a><a class="btn btn-link" href="#">Contact Us</a><a class="btn btn-link" href="#">Our Services</a><a class="btn btn-link" href="#">Terms & Condition</a><a class="btn btn-link" href="#">Support</a></div><div class="col-lg-3 col-md-6"><img src="../images/logo.png" style="width:220px;height:50px;"></div></div></div></div>< !-- Footer End -->< !-- Back to Top --><a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>< !-- Copyright Start --><div class="container-fluid copyright py-4"><div class="container"><div class="row"><div class="col-md-6 text-center text-md-start mb-3 mb-md-0">&copy;
-    <a class="border-bottom" href="index.php">GardenGURU</a>,
-    All Right Reserved. </div></div></div></div>< !-- Copyright End --></body></html>
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+
+
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="index.php">GardenGURU</a>, All Right Reserved.
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- JavaScript Libraries -->
+    <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+
+</html>

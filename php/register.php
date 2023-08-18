@@ -242,11 +242,12 @@ $dbcon = new DbConnector();
                             $district = $_POST["district"];
                             $address = $_POST["address"];
                             $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+                            $picture = "../images/profile_pictures/Default.png";
                             //  $password = $_POST["password"];
 
                             try {
                                 $con = $dbcon->getConnection();
-                                $query = "INSERT INTO users(user_FirstName, user_LastName, user_Email, user_PhoneNo, user_address, user_Password, user_District, user_Gender) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+                                $query = "INSERT INTO users(user_FirstName, user_LastName, user_Email, user_PhoneNo, user_address, user_Password, user_District, user_Gender, profile_picture) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
                                 $pstmt = $con->prepare($query);
                                 $pstmt->bindValue(1, $firstname);
                                 $pstmt->bindValue(2, $lastname);
@@ -256,6 +257,7 @@ $dbcon = new DbConnector();
                                 $pstmt->bindValue(6, $password);
                                 $pstmt->bindValue(7, $district);
                                 $pstmt->bindValue(8, $gender);
+                                $pstmt->bindValue(9, $picture);
                                 $pstmt->execute();
                                 if (($pstmt->rowCount()) > 0) {
 

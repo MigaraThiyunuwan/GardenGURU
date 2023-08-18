@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
         $tmp_name1 = $_FILES['profile_picture']['tmp_name'];
         //$tmp_name2 = $_FILES['image2']['tmp_name'];
       
-
+ 
         // Get the original names of the uploaded image files
         $filename1 = $_FILES['profile_picture']['name'];
         //$filename2 = $_FILES['image2']['name'];
@@ -72,29 +72,22 @@ if (isset($_POST['submit'])) {
             // Insert form data and image filenames into the database
 
             $conn = $dbcon->getConnection();
-            $sql = "INSERT INTO users ( user_FirstName, user_LastName, user_Email, user_PhoneNo, user_address, user_Password,user_District,profile_picture) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "UPDATE users SET profile_picture = ? WHERE user_id = ?;";
 
             $pstmt = $conn->prepare($sql);
-            $pstmt->bindValue(1, $user->getFirstName());
-            $pstmt->bindValue(2, $user->getLastName());
-            $pstmt->bindValue(3, $user->getEmail());
-            $pstmt->bindValue(4, $user->getPhoneNo());
-            $pstmt->bindValue(5, $user->getAddress());
-            $pstmt->bindValue(6, $user->getpassword());
-            $pstmt->bindValue(7, $user->getDistrict());
-            //$pstmt->bindValue(8, $user->getgender());
-
-            $pstmt->bindValue(8, $destination1);
+            $pstmt->bindValue(1, $destination1);
+            $pstmt->bindValue(2, $user->getUserId());
            
-        
+            
 
             if ($pstmt->execute()) {
                 $success_message = "Form data and images uploaded and saved in the database successfully.";
+                $user->setPropic($destination1);
+                $_SESSION["user"] = $user;
             } else {
                 echo "Error executing the query: " . $pstmt->errorInfo()[2];
             }
 
-            // Close the database connection
 
         } else {
             $error_message = "Error moving the uploaded files to the destination.";
@@ -114,17 +107,16 @@ if (isset($_POST['submit'])) {
 
 <body>
     <!-- Display success message in a pop-up box -->
-    <script>
-        <?php if (isset($success_message)): ?>
-            alert("<?php echo $success_message; ?>");
-            window.location.href = "edituser.php"; // Redirect to the form page after showing the pop-up
-        <?php endif; ?>
+   
+        <?php if (isset($success_message)): 
+            header("Location: ../user.php?success=1");
+         endif; ?>
 
-        <?php if (isset($error_message)): ?>
-            alert("<?php echo $error_message; ?>");
-            window.history.back(); // Go back to the previous page (the form page) after showing the pop-up
-        <?php endif; ?>
-    </script>
+        <?php if (isset($error_message)): 
+            header("Location: ../user.php?error=1");
+           
+        endif; ?>
+    
 </body>
 
 </html>

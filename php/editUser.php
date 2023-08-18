@@ -83,7 +83,7 @@ if (isset($_SESSION["user"])) {
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                                <img src="<?php echo $user->getPropic() ?> " alt="Admin" class="rounded-circle" width="150">
                                 <div class="mt-3">
                                     <h4>Hello! <?php echo $user->getFirstName() . "" . $user->getLastName() ?> !</h4><br>
                                    <!--  <a class="btn btn-outline-primary " target="" href="./classes/logout.php">Log Out</a>-->
@@ -177,7 +177,6 @@ if (isset($_SESSION["user"])) {
         <input type="email" name="email" placeholder="E-Mail" values="$email"> -->
         <label for="profile_picture">Select Image for Profile Picture</label>
         <input type="file" name="profile_picture" id="profile_picture" values="">
-      
         <input type="submit" name="submit" value="Submit" values="">
     </form>
 
