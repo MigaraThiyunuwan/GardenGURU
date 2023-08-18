@@ -96,7 +96,7 @@ if (isset($_SESSION["manager"])) {
                         <div class="d-flex flex-column align-items-center text-center">
                             <img src="../images/manager.png" alt="Admin" class="rounded-circle" width="150">
                             <div class="mt-3">
-                                <h4>Hello <?php echo $manager->getFirstName(). " ".$manager->getLastName() ; ?> !</h4><br>
+                                <h4>Hello <?php echo $manager->getFirstName() . " " . $manager->getLastName(); ?> !</h4><br>
                                 <a class="btn btn-outline-primary " target="" href="./classes/logout.php">Log Out</a>
                                 <a class="btn btn-outline-primary " target="" href="./editManager.php">Edit</a>
                                 <button class="btn btn-danger">Change Password</button>
@@ -210,10 +210,10 @@ if (isset($_SESSION["manager"])) {
 
                                                         <input type="hidden" name="userID" value="<?php echo "$ID" ?>">
                                                         <button class="btn btn-danger" type="submit" name="action" value="processForm">Delete</button>
-                                                        <button class="btn btn-success" type="submit" name="action" value="view">View</button>
+                                                        
                                                     </form>
 
-
+                                                   
 
 
                                                     <!-- <button class="btn btn-danger" type="button" name="delete">Delete</button> -->

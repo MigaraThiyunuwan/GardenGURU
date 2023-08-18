@@ -1,5 +1,17 @@
 <?php
 
+
+session_start();
+if (isset($_SESSION["user"])) {
+    // User is logged in, retrieve the user object
+    $manager = $_SESSION["user"];
+} else {
+
+    header("Location: ./login.php?error=4");
+    exit();
+}
+
+
 require './DbConnector.php';
 use classes\DbConnector;
 
@@ -23,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             try{
 
                 $con = $dbcon->getConnection();
-                $query = "INSERT INTO payment (OwnerName,OwnerCardNo,OwnerAddress,OwnerCity,OwnerProvince,OwnerPostalCode) VALUES (?,?,?,?,?,?)";
+                $query = "INSERT INTO payment (UserFirstName,UserLastName,UserAddress,OwnerCity,OwnerProvince,OwnerPostalCode) VALUES (?,?,?,?,?,?)";
                 $pstmt = $con->prepare($query);
                 $pstmt->bindValue(1, $name);
                 $pstmt->bindValue(2, $cardno);
