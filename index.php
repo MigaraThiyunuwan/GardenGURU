@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php
-require './php/classes/persons.php';
+require_once './php/classes/persons.php';
 session_start();
 if (isset($_SESSION["user"])) {
     // User is logged in, retrieve the user object

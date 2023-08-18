@@ -268,10 +268,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container mt-2">
         <div class="row">
 
-      <?php  if ($_SERVER["REQUEST_METHOD"] == "POST") { ?>
-        <span ><b><p style="color:MediumSeaGreen;">In <?php echo $location ?> area when you have <?php echo $sun ?> sun exposure, <?php echo $soil ?> soil,
-        and <?php echo $water ?> water, you have <?php echo $space ?> space to gardening and when your harvest time <?php echo $time ?>, it's suitable to grow below plants.</p></b></span>
-      <?php  } ?>
+            <?php if ($_SERVER["REQUEST_METHOD"] == "POST") { ?>
+                <span><b>
+                        <p style="color:MediumSeaGreen;">In <?php echo $location ?> area when you have <?php echo $sun ?> sun exposure, <?php echo $soil ?> soil,
+                            and <?php echo $water ?> water, you have <?php echo $space ?> space to gardening and when your harvest time <?php echo $time ?>, it's suitable to grow below plants.</p>
+                    </b></span>
+            <?php  } ?>
 
             <?php
             if (isset($rs) && !empty($rs)) {
@@ -290,8 +292,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $filePath = $plant->FilePath;
             ?>
 
-
-
                             <div class="col-md-3 col-sm-6">
                                 <div class="card card-block">
 
@@ -300,9 +300,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your situation.</p>
                                 </div>
                             </div>
-
-
-
 
             <?php
                         }
@@ -318,7 +315,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ?>
         </div>
         <span><b>
-                <br><p style="color:MediumSeaGreen;">Reddish Brown Earths - </p>වැලි ලෝම සිට සැහැල්ලු මැටි ලෝම දක්වා මතුපිට පස් ඇති අතර එය මැටි යටි පසකට ඉහළින් පිහිටා ඇත.
+                <br>
+                <p style="color:MediumSeaGreen;">Reddish Brown Earths - </p>වැලි ලෝම සිට සැහැල්ලු මැටි ලෝම දක්වා මතුපිට පස් ඇති අතර එය මැටි යටි පසකට ඉහළින් පිහිටා ඇත.
                 මතුපිට පස් සෙන්ටිමීටර 10 ත් 40 ත් අතර ඝනකමකින් යුක්ත වන අතර රතු සිට අළු දුඹුරු දක්වා වෙනස් වේ. යටි පස කහ සිට රතු සිට අළු දක්වා වෙනස් වේ. <br><br>
                 <p style="color:MediumSeaGreen;">Red Yellow Podzolic - </p>රතු සහ කහ පැහැති පාට සඳහා ප්රසිද්ධය. පාංශු මතුපිට සමහර ප්‍රදේශවල රතු හෝ තැඹිලි පාටින් ද තවත් ප්‍රදේශවල කහ පැහැයෙන්ද දිස් විය හැක.
             </b></span>
@@ -366,7 +364,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
     <!-- Footer End -->
-    Back to Top
+
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
 

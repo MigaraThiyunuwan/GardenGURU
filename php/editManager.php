@@ -1,39 +1,38 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
-<?php
-session_start();
-if (isset($_SESSION["user"])) {
-    // User is logged in, retrieve the user object
-    $manager = $_SESSION["user"];
-} else {
 
-    header("Location: ./login.php?error=4");
+<?php
+require './classes/persons.php';
+session_start();
+if (isset($_SESSION["manager"])) {
+    // User is logged in, retrieve the user object
+    $manager = $_SESSION["manager"];
+} else {
+    // Redirect the user to login.php if not logged in
+    header("Location: ./managerlogin.php?error=2");
     exit();
 }
 ?>
 
-<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-
 <head>
     <meta charset="utf-8">
-    <title>GardenGURU | Payment</title>
+    <title>GardenGURU | Edit Profile</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/Payement.css" rel="stylesheet">
-
-
 </head>
 
 <body>
-    
+    <?php
+
+    ?>
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
@@ -70,107 +69,94 @@ if (isset($_SESSION["user"])) {
                     </div>
                 </div>
             </div>
-            <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
-        </div>
+
     </nav>
     <!-- Navbar End -->
 
-    <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    <section>
 
-        $price = $_POST['total'];
-    }
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                            <img src="../images/manager.png" alt="Admin" class="rounded-circle" width="150">
+                                <div class="mt-3">
+                                    <h4>Hello! <?php echo $manager->getFirstName() . "" . $manager->getLastName() ?> !</h4><br>
+                                    <a class="btn btn-outline-primary " target="" href="./classes/logout.php">Log Out</a>
 
-    ?>
-    <div class="container1 mt-5 px-5">
-
-        <div class="mb-4">
-
-            <h2>Confirm order and pay</h2>
-            <span>please make the payment, after that you can enjoy all the features and benefits.</span>
-        </div>
-        <div class="row">
-            <div class="col-md-8">
-                <div class="card p-3">
-                    <form action="./classes/paymentprocess.php" method="POST">
-                        <h6 class="text-uppercase">Payment details</h6>
-                        <div class="inputbox mt-3"> <input type="text" name="nameOnCard" class="form-control" required="required"> <span>Name on card</span> </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="inputbox mt-3 mr-2"> <input type="text" name="cardNo" class="form-control" required="required"> <i class="fa fa-credit-card"></i> <span>Card Number</span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="d-flex flex-row">
-                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="expiry" class="form-control" required="required"> <span>Expiry</span> </div>
-
-                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="cvv" class="form-control" required="required"> <span>CVV</span> </div>
+                                    <a class="btn btn-outline-danger " target="" href="#">Change Password</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-4 mb-4">
-                            <h6 class="text-uppercase">Billing Address</h6>
-                            <div class="row mt-3">
-
-                                <div class="col-md-6">
-                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="streetAddress" class="form-control" required="required"> <span>Street Address</span> </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="city" class="form-control" required="required"> <span>City</span> </div>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-md-6">
-                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="state" class="form-control" required="required"> <span>State/Province</span> </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="postalCode" class="form-control" required="required"> <span>Postal code</span> </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-4 mb-4 d-flex justify-content-between">
-
-                            <!-- <span>Previous step</span> -->
-                            <button class="btn btn-success px-3" type="submit" name="pay">Pay Rs.<?php echo $price ?></button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-
-                <div class="card card-blue p-3 text-white mb-3">
-
-                    <span>You have to pay</span>
-                    <div class="d-flex flex-row align-items-end mb-3">
-                        <h1 class="mb-0 yellow">Rs. <?php echo $price ?></h1> <span>.00</span>
                     </div>
-
-                    <span>Enjoy all the features and perk after you complete the payment</span>
-                    <a href="#" class="yellow decoration">Know all the features</a>
-
-                    <div class="hightlight">
-
-                        <span>100% Guaranteed support and update for the next 5 years.</span>
-
-
-                    </div>
-
                 </div>
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="./classes/managerEditProcess.php" method="post">
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">First Name</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" name="firstname" class="form-control" value="<?php echo $manager->getFirstName() ?>">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Last Name</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" name="lastname" class="form-control" value="<?php echo $manager->getLastName() ?>">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Email</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" name="email" class="form-control" value="<?php echo $manager->getEmail() ?>">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Phone</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" name="phone" class="form-control" value="<?php echo $manager->getManagerPhoneNo() ?>">
+                                    </div>
+                                </div>
 
-                <br><br><img src="../images/logo.png" height="75px">
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">NIC</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" name="NIC" class="form-control" value="<?php echo $manager->getManagerNIC() ?>">
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-sm-6">
+                                        <div class="col-sm-9 text-secondary">
+                                            <button class="btn btn-primary my-3 w-100">
+                                                Save Changes
+                                            </button>
 
-            </div>
-
-        </div>
-
-
-    </div>
-
+                                        </div>
+                                    </div>
+                                 
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+    </section>
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
@@ -218,20 +204,17 @@ if (isset($_SESSION["user"])) {
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="border-bottom" href="index.php">GardenGURU</a>, All Right Reserved.
+                    &copy; <a class="border-bottom" href="../index.php">GardenGURU</a>, All Right Reserved.
                 </div>
 
             </div>
         </div>
     </div>
     <!-- Copyright End -->
-
     <!-- JavaScript Libraries -->
     <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/main.js"></script>
+
+
 </body>
-
-
-
-</html>

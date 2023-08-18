@@ -74,10 +74,10 @@
                     <div class="row justify-content-center">
                         <div class="col-md-8">
                             <div class="mb-4">
-                                <h3>Sign In</h3>
+                                <h3> Sign In as Manager</h3>
                                 <p class="mb-4">Sign in to your account by entering email and password.</p>
                             </div>
-                            <form action="./classes/loginProcess.php" method="post">
+                            <form action="./classes/managerLoginProcess.php" method="post">
                                 <div class="form-group first">
                                     <!-- <label for="username">Username</label> -->
                                     <input type="email" placeholder="Email" class="form-control" name="email" id="email" >
@@ -102,12 +102,7 @@
                                 </button>
 
 
-                                <div class="mb-4" style="margin-top: 15px;">
-                                    <p class="mb-4">Don't have an account yet? <a href="./register.php" style="color: #38761d;">Cick Here</a> to create one.</p>
-                                </div>
-                                <div class="mb-4" style="margin-top: 15px;">
-                                    <p class="mb-4">Login as <a href="./adminlogin.php" style="color: #38761d;">System Admin</a> or Login as <a href="./managerlogin.php" style="color: #38761d;">Manager</a>.</p>
-                                </div>
+                               
 
                                 <?php
                                 if (isset($_GET['error'])) {
@@ -117,12 +112,7 @@
                                     if($_GET['error'] == 2){
                                         echo "<b><p style='color: red;'> You Need to Login to Your Account to Visit Profile.</p></b>";
                                     }
-                                    if($_GET['error'] == 3){
-                                        echo "<b><p style='color: red;'> You Need to Login to Your Account to Visit Profile.</p></b>";
-                                    }
-                                    if($_GET['error'] == 4){
-                                        echo "<b><p style='color: red;'> You Need to Login to Your Account to make purchase.</p></b>";
-                                    }
+                                    
                                 } ?>
                             </form>
                         </div>
