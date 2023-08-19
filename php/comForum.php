@@ -18,7 +18,7 @@
 
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
->
+
 
 <link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
 <link rel="alternate" type="application/rss+xml" title="Gardening &raquo; Feed" href="../feed/index.html" />
@@ -250,7 +250,7 @@ var wc_add_to_cart_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_ur
 		  };</script>
 <style type="text/css" data-type="vc_shortcodes-custom-css">.vc_custom_1482928181508{padding-bottom: 100px !important;}.vc_custom_1504339948990{padding-top: 100px !important;padding-bottom: 80px !important;}.vc_custom_1504340027633{padding-top: 90px !important;padding-bottom: 20px !important;}.vc_custom_1482928315546{padding-top: 20px !important;padding-bottom: 80px !important;}.vc_custom_1482928690573{margin-bottom: 20px !important;}.vc_custom_1482929812565{margin-bottom: 0px !important;}.vc_custom_1482929587849{margin-bottom: 0px !important;}.vc_custom_1482929596235{margin-bottom: 0px !important;}.vc_custom_1482929605361{margin-bottom: 0px !important;}.vc_custom_1482929614111{margin-bottom: 0px !important;}.vc_custom_1482929614111{margin-bottom: 0px !important;}.vc_custom_1482928653643{margin-bottom: 20px !important;}.vc_custom_1482301789661{padding-right: 50px !important;padding-left: 50px !important;}.vc_custom_1481366530734{margin-bottom: 20px !important;}.vc_custom_1481366530734{margin-bottom: 20px !important;}.vc_custom_1481366530734{margin-bottom: 20px !important;}.vc_custom_1481366530734{margin-bottom: 20px !important;}.vc_custom_1481366530734{margin-bottom: 20px !important;}</style><noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>
 
-<!-- <style>
+<style>
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
@@ -276,7 +276,7 @@ input[type="text"] {
 
 input[type="submit"] {
     padding: 10px 20px;
-    background-color: #007BFF;
+    background-color: green;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -284,10 +284,10 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: greenyellow;
 }
 
-</style> -->
+</style> 
 
 </head>
 
@@ -366,15 +366,18 @@ input[type="submit"]:hover {
         
     
      >Q&A Form</h3>
-    <form action="process_form.php" method="post">
+    <form action="process_form.php" method="post" style="display:inline-block; text-align: center;">
         
         <label style="color:var(--wp--preset--color--white); " for="question">Your Question:</p></label>
-        <input style="margin:auto" type="text" name="question" required>
-        <br>
+        <input style="margin:auto; width:900px;"  type="text" name="question" required>
+       
         
         
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" style="text-align:center; color:var(--wp--preset--color--white);display: flex; justify-content: center; align-items: center;">
+
     </form></div>
+    <br>     <br>
+
 </body>
 </html>
 

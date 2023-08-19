@@ -1,3 +1,6 @@
+<?php include_once "news.php";
+
+?>
 <!DOCTYPE html>
 <html class="no-js">
 
@@ -164,6 +167,94 @@
         <section class="main-container-left">
             <h2>Top Stories</h2>
             <div class="container-top-left">
+
+<?php
+    // Fetch top stories from the backend (replace this with actual function names)
+    /* $topStories = getTopStories(); */
+
+    // Display top stories
+    /* foreach ($topStories as $story) {
+        echo '
+        <article>
+            <img src="' . $story['image'] . '">
+            <div>
+                <h3>' . $story['title'] . '</h3>
+                <p>' . $story['description'] . '</p>
+            </div>
+        </article>';
+    } */
+    ?>
+
+                <!-- <?php
+                // Include the backend.php file
+              /*   require_once('news.php'); */
+
+                // Get all news articles
+/*                 $allNewsArticles = getAllNewsArticles();
+ */
+                // Display all news articles
+                /* displayNewsArticles($allNewsArticles); */
+                ?> -->
+
+
+
+
+
+
+<?php
+// Include database connection and other necessary files
+// require_once 'your_database_connection.php';
+
+// Function to fetch news articles from the database
+/* function getLatestStories() {
+ */    // Replace with your database query to retrieve news articles
+    // Example: $query = "SELECT * FROM news_articles ORDER BY date DESC LIMIT 5";
+    // $result = mysqli_query($connection, $query);
+
+    // Example data (replace this with actual fetched data)
+    /* $result = [
+        [
+            'title' => 'AI-Powered Farming Tools Enhancing Productivity',
+            'description' => 'Artificial Intelligence (AI) continues to revolutionize...',
+            'image' => '../images/newsfeed/GettyImages-1318237749.webp'
+        ], */
+      /*   // Add more articles here
+    ]; */
+
+  /*   return $result;
+} */
+
+// Fetch latest stories from the backend
+/* $latestStories = getLatestStories();
+ */
+// Display latest stories
+/* foreach ($latestStories as $story) {
+    echo '
+    <article>
+        <img src="' . $story['image'] . '">
+        <div>
+            <h3>' . $story['title'] . '</h3>
+            <p>' . $story['description'] . '</p>
+        </div>
+    </article>';
+} */
+?>
+
+         <?php
+$sql = "SELECT * FROM news_articles;";
+$result = mysqli_query($connect,$sql);
+$checkResult = mysqli_num_rows($result);
+if($checkResult>0){
+    while($row=mysqli_fetch_assoc($result)){
+        echo $row[''];
+    }
+}
+         ?>
+
+
+
+
+
                 <article>
                     <img src="../images/newsfeed/GettyImages-1318237749.webp">
 
@@ -202,6 +293,29 @@
 
         <section class="main-container-right">
             <h2>Latest Stories</h2>
+
+
+
+<?php
+    // Fetch latest stories from the backend (replace this with actual function names)
+   /*  $latestStories = getLatestStories(); */
+
+    // Display latest stories
+    /* foreach ($latestStories as $story) {
+        echo '
+        <article>
+            <img src="' . $story['image'] . '">
+            <div>
+                <h3>' . $story['title'] . '</h3>
+                <p>' . $story['description'] . '</p>
+            </div>
+        </article>';
+    } */
+    ?>
+
+
+
+
 
             <article>
                 <h4>just in </h4>
