@@ -1,6 +1,52 @@
-<?php include_once "news.php";
+<?php 
+require './classes/DbConnector.php';
 
-?>
+use classes\DbConnector;
+
+$dbcon = new DbConnector(); // Create a new instance of DbConnector class
+$conn = $dbcon->getConnection(); // Get the database connection object
+
+
+
+// query the database for the top stories
+$sql = "SELECT * FROM news WHERE category = 'top'";
+/* $result = mysqli_query($conn, $sql); */
+$result = $conn->query($sql);
+
+// create an array to store the top stories
+$top_stories = array();
+
+// loop through the result and fetch each row as an associative array
+/* while ($row = mysqli_fetch_assoc($result)) {*/
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+
+    // add the row to the top stories array
+    $top_stories[] = $row;
+}
+
+// query the database for the latest stories
+$sql = "SELECT * FROM news WHERE category = 'latest'";
+/* $result = mysqli_query($conn, $sql);
+ */
+$result = $conn->query($sql); // Use the connection object to execute the query
+
+// create an array to store the latest stories
+$latest_stories = array();
+
+// loop through the result and fetch each row as an associative array
+/* while ($row = mysqli_fetch_assoc($result)) {
+ */    
+while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+
+ // add the row to the latest stories array
+    $latest_stories[] = $row;
+}
+
+// close the database connection
+/* mysqli_close($conn);
+ */?>
+
+
 <!DOCTYPE html>
 <html class="no-js">
 
@@ -87,170 +133,13 @@
 
 
 
-    <!-- <section class="banner">
-        <div class="banner-main-content">
-            <h2>GET THE LATEST NEWS FOR PLANT ENTHUSIASTS!</h2> -->
-            <!-- <h3</h3> -->
-
-
-
-           <!--  <div class="current-news-head">
-                <h3>Indoor Plant Trends Inspire Home Decor
-                    <span>by Kamal Edirisinghe</span>
-                </h3>
-
-                <h3>Innovative Soil Regeneration Techniques Restore Degraded Lands
-                    <span>by D.B.Seneviratne</span>
-                </h3>
-
-                <h3>Record-Breaking Plant Exhibition Draws Gardeners Globally<span>by Victor Malinda</span></h3>
-
-                <h3>Biosecurity Measures Implemented to Protect Plant Health<span>by Gamini Perera</span></h3>
-            </div>
-        </div>
-
-        <div class="banner-sub-content">
-            <div class="hot-topic">
-                <img src="../images/newsfeed/Watersaving_Tips_Image_Overlay_V2-1.webp" alt>
-
-                <div class="hot-topic-content">
-                    <h2>Revolutionary Water-Saving Technique Gains Traction in Agriculture</h2>
-
-                   
-                    <p>A breakthrough water-saving technique developed by researchers at a leading agricultural institute has caught the attention of farmers worldwide. Using soil moisture sensors and precision irrigation, this innovative approach has shown a significant reduction in water usage while increasing crop yields. </p>
-                    <a href="#">Read More</a>
-                </div>
-            </div>
-
-            <div class="hot-topic">
-                <img src="../images/newsfeed/12-urban-ag.png" alt>
-
-                <div class="hot-topic-content">
-                    <h2>Urban Gardening Movement Flourishing in Cities</h2>
-
-
-                    <p>In response to the growing interest in sustainable living and green spaces, urban gardening is witnessing a surge in popularity. More and more city dwellers are embracing container gardening, rooftop gardens, and community plots to grow fresh produce and beautify their surroundings. </p>
-                    <a href="#">Read More</a>
-                </div>
-            </div>
-
-            <div class="hot-topic">
-                <img src="../images/newsfeed/imagesss.jpeg" alt>
-
-                <div class="hot-topic-content">
-                    <h2>Plant-Based Agriculture Leads to Reduced Carbon Emissions</h2>
-
-
-                    <p>A recent study conducted by an environmental research organization revealed that transitioning from animal-based agriculture to plant-based agriculture can significantly reduce carbon emissions. The study highlights the positive impact of adopting a plant-based diet, not only for personal health but also for the environment.</p>
-                    <a href="#">Read More</a>
-                </div>
-            </div>
-
-            <div class="hot-topic">
-                <img src="../images/newsfeed/amazon.jpg" alt>
-
-                <div class="hot-topic-content">
-                    <h2>Newly Discovered Plant Species in the Amazon Rainforest</h2>
-
-
-                    <p>A team of biologists exploring the depths of the Amazon rainforest has stumbled upon a previously unknown plant species with unique medicinal properties. Initial studies suggest that extracts from this plant could have potential applications in treating certain ailments.
-                    </p>
-                    <a href="#">Read More</a>
-                </div>
-            </div>
-        </div>
-    </section>
--->
+    
     <hr> 
 
     <main>
         <section class="main-container-left">
             <h2>Top Stories</h2>
             <div class="container-top-left">
-
-<?php
-    // Fetch top stories from the backend (replace this with actual function names)
-    /* $topStories = getTopStories(); */
-
-    // Display top stories
-    /* foreach ($topStories as $story) {
-        echo '
-        <article>
-            <img src="' . $story['image'] . '">
-            <div>
-                <h3>' . $story['title'] . '</h3>
-                <p>' . $story['description'] . '</p>
-            </div>
-        </article>';
-    } */
-    ?>
-
-                <!-- <?php
-                // Include the backend.php file
-              /*   require_once('news.php'); */
-
-                // Get all news articles
-/*                 $allNewsArticles = getAllNewsArticles();
- */
-                // Display all news articles
-                /* displayNewsArticles($allNewsArticles); */
-                ?> -->
-
-
-
-
-
-
-<?php
-// Include database connection and other necessary files
-// require_once 'your_database_connection.php';
-
-// Function to fetch news articles from the database
-/* function getLatestStories() {
- */    // Replace with your database query to retrieve news articles
-    // Example: $query = "SELECT * FROM news_articles ORDER BY date DESC LIMIT 5";
-    // $result = mysqli_query($connection, $query);
-
-    // Example data (replace this with actual fetched data)
-    /* $result = [
-        [
-            'title' => 'AI-Powered Farming Tools Enhancing Productivity',
-            'description' => 'Artificial Intelligence (AI) continues to revolutionize...',
-            'image' => '../images/newsfeed/GettyImages-1318237749.webp'
-        ], */
-      /*   // Add more articles here
-    ]; */
-
-  /*   return $result;
-} */
-
-// Fetch latest stories from the backend
-/* $latestStories = getLatestStories();
- */
-// Display latest stories
-/* foreach ($latestStories as $story) {
-    echo '
-    <article>
-        <img src="' . $story['image'] . '">
-        <div>
-            <h3>' . $story['title'] . '</h3>
-            <p>' . $story['description'] . '</p>
-        </div>
-    </article>';
-} */
-?>
-
-         <?php
-$sql = "SELECT * FROM news_articles;";
-$result = mysqli_query($connect,$sql);
-$checkResult = mysqli_num_rows($result);
-if($checkResult>0){
-    while($row=mysqli_fetch_assoc($result)){
-        echo $row[''];
-    }
-}
-         ?>
-
 
 
 
