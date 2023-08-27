@@ -30,6 +30,46 @@ if (isset($_SESSION["user"])) {
   <!-- Template Stylesheet -->
   <link href="../css/style.css" rel="stylesheet">
   <link href="../css/popup.css" rel="stylesheet">
+
+
+  <style>
+  /* Style for the blog popup modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+}
+
+/* Style for the close button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+  </style>
 </head>
 
 <body>
@@ -234,12 +274,79 @@ if (isset($_SESSION["user"])) {
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item rounded d-flex h-100">
+                        <div class="service-img rounded">
+                            <img class="img-fluid" src="../images/web.png" alt="">
+                        </div>
+                        <div class="service-text rounded p-5">
+                            <div class="btn-square rounded-circle mx-auto mb-3">
+                                <i class="fa-solid fa-shopping-cart fa-2xl" style="color: #256a4f;"></i>
+                            </div>
+                            <h4 class="mb-3">Add Blog</h4>
+                            <p class="mb-4">Click the button for Add your post to blog page.</p>
+                            <a class="btn btn-sm" id="addBlogButton" href="#" ><i class="fa fa-plus text-primary me-2"></i>Click here</a>
+                        </div>
+                    </div>
+                </div>
   </div>
   </div>
 
 
+
+  <!-- The modal -->
+<div id="addBlogModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <form action="add_blog.php" method="post" enctype="multipart/form-data">
+            <label for="blog_title">Blog Title:</label>
+            <input type="text" id="blog_title" name="blog_title" required>
+            <br>
+            <label for="blog_details">Blog Details:</label>
+            <textarea id="blog_details" name="blog_details" required></textarea>
+            <br>
+            <label for="blog_image">Blog Image:</label>
+            <input type="file" id="blog_image" name="blog_image" accept="image/*" required>
+            <br>
+            <button type="submit">Add Blog</button>
+        </form>
+    </div>
+</div>
+
+<!-- Include your JavaScript to handle the modal -->
+<script src="your_js_script.js"></script>
    <!-- popupr Start -->
 
+
+<script>
+
+  // Get the modal
+var modal = document.getElementById("addBlogModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("addBlogButton");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function () {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+</script>
 
 <!-- Modal Section -->
 
