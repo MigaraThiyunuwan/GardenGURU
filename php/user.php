@@ -26,49 +26,47 @@ if (isset($_SESSION["user"])) {
   <script src="https://kit.fontawesome.com/0008de2df6.js" crossorigin="anonymous"></script>
   <!-- Customized Bootstrap Stylesheet -->
   <link href="../css/bootstrap.min.css" rel="stylesheet">
- 
+
   <!-- Template Stylesheet -->
   <link href="../css/style.css" rel="stylesheet">
   <link href="../css/popup.css" rel="stylesheet">
 
 
   <style>
-  /* Style for the blog popup modal */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-}
+    /* Style for the blog popup modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
 
-.modal-content {
-    background-color: white;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 60%;
-}
+    .modal-content {
+      background-color: white;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 60%;
+    }
 
-/* Style for the close button */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
+    /* Style for the close button */
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
   </style>
 </head>
 
@@ -103,14 +101,14 @@ if (isset($_SESSION["user"])) {
         </div>
         <a href="./AboutUs.php" class="nav-item nav-link">About</a>
         <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
-
-        <div class="nav-item dropdown">
+        <a href="./classes/logout.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Log Out</a>
+        <!-- <div class="nav-item dropdown">
           <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
           <div class="dropdown-menu bg-light m-0">
             <a href="./user.php" class="dropdown-item">Profile</a>
             <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
           </div>
-        </div>
+        </div> -->
       </div>
 
     </div>
@@ -126,11 +124,39 @@ if (isset($_SESSION["user"])) {
               <img src="<?php echo $user->getPropic() ?>" alt="Admin" class="rounded-circle" width="150">
               <div class="mt-3">
                 <h4>Hello! <?php echo $user->getFirstName() ?></h4><br>
-                
-                  <a class="btn btn-outline-primary " target="" href="./classes/logout.php">Log Out</a>
-                  <a class="btn btn-outline-primary " target="" href="./editUser.php">Edit</a>
-                  <a class="btn btn-outline-danger " target="" href="#">Change Password</a>
-              
+
+                <a class="btn btn-outline-primary " target="" href="./classes/logout.php">Log Out</a>
+                <a class="btn btn-outline-primary " target="" href="./editUser.php">Edit</a>
+                <a class="btn btn-outline-danger " target="" href="#">Change Password </a>
+                <?php
+                if (isset($_GET['success'])) {
+                  if ($_GET['success'] == 1) {
+
+                    echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                    Blog Uploaded Successfully!
+                    </div></b>";
+                  }
+                  if ($_GET['success'] == 0) {
+
+                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Blog Posting Failed!
+                    </div></b>";
+                  }
+                  if ($_GET['success'] == 3) {
+
+                    echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                    Advertiesement Posted Successfully!
+                    </div></b>";
+                  }
+                  if ($_GET['success'] == 4) {
+
+                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Advertiesement Posting Failed!
+                    </div></b>";
+                  }
+                }
+                ?>
+
               </div>
             </div>
           </div>
@@ -144,7 +170,7 @@ if (isset($_SESSION["user"])) {
 
               <div class="row">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Full Name</h6>
+                  <h6 class="mb-0"><b>Full Name</b></h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
                   <?php echo $user->getFirstName() . " " . $user->getLastName(); ?>
@@ -155,7 +181,7 @@ if (isset($_SESSION["user"])) {
 
               <div class="row">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Email</h6>
+                  <h6 class="mb-0"><b>Email</b></h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
                   <?php echo $user->getEmail() ?>
@@ -166,7 +192,7 @@ if (isset($_SESSION["user"])) {
 
               <div class="row">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Phone</h6>
+                  <h6 class="mb-0"><b>Phone</b></h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
                   <?php echo $user->getPhoneNo() ?>
@@ -177,7 +203,7 @@ if (isset($_SESSION["user"])) {
 
               <div class="row">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">District</h6>
+                  <h6 class="mb-0"><b>District</b></h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
                   <?php echo $user->getDistrict() ?>
@@ -188,7 +214,7 @@ if (isset($_SESSION["user"])) {
 
               <div class="row">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Address</h6>
+                  <h6 class="mb-0"><b>Address</b></h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
                   <?php echo $user->getAddress() ?>
@@ -217,154 +243,176 @@ if (isset($_SESSION["user"])) {
       </div>
     </div>
 
-  <div class="row g-4">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item rounded d-flex h-100">
-                        <div class="service-img rounded">
-                            <img class="img-fluid" src="../images/web.png" alt="">
-                        </div>
-                        <div class="service-text rounded p-5">
-                            <div class="btn-square rounded-circle mx-auto mb-3">
-                                <!-- <i class="fa fa-leaf" aria-hidden="true"></i> -->
-                                <i class="fa fa-newspaper-o fa-2xl" style="color: #256a4f;"></i>
-                                <!-- <img class="img-fluid" src="img/icon/icon-3.png" alt="Icon"> -->
-                            </div>
-                            <h4 class="mb-3">Advertiesments</h4>
-                            <p class="mb-4">Now you can put advertiesments to our website.</p>
-                            <a class="btn btn-sm" id="popbutton" href="#"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item rounded d-flex h-100">
-                        <div class="service-img rounded">
-                            <img class="img-fluid" src="../images/web.png" alt="">
-                        </div>
-                        <div class="service-text rounded p-5">
-                            <div class="btn-square rounded-circle mx-auto mb-3">
-                                <i class="fa-solid fa-question-circle fa-2xl" style="color: #256a4f;"></i>
-                            </div>
-                            <h4 class="mb-3">Ask Question</h4>
-                            <p class="mb-4">Click the button to get answer from our agriculture consultants.</p>
-                            <a class="btn btn-sm" href="comForum.php"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item rounded d-flex h-100">
-                        <div class="service-img rounded">
-                            <img class="img-fluid" src="../images/web.png" alt="">
-                        </div>
-                        <div class="service-text rounded p-5">
-                            <div class="btn-square rounded-circle mx-auto mb-3">
-                                <i class="fa-solid fa-shopping-cart fa-2xl" style="color: #256a4f;"></i>
-                            </div>
-                            <h4 class="mb-3">Buy Plants</h4>
-                            <p class="mb-4">Click the button for buy plants and gardening supplies.</p>
-                            <a class="btn btn-sm" href="Selling.php"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item rounded d-flex h-100">
-                        <div class="service-img rounded">
-                            <img class="img-fluid" src="../images/web.png" alt="">
-                        </div>
-                        <div class="service-text rounded p-5">
-                            <div class="btn-square rounded-circle mx-auto mb-3">
-                                <i class="fa-solid fa-shopping-cart fa-2xl" style="color: #256a4f;"></i>
-                            </div>
-                            <h4 class="mb-3">Add Blog</h4>
-                            <p class="mb-4">Click the button for Add your post to blog page.</p>
-                            <a class="btn btn-sm" id="addBlogButton" href="#" ><i class="fa fa-plus text-primary me-2"></i>Click here</a>
-                        </div>
-                    </div>
-                </div>
-  </div>
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="service-item rounded d-flex h-100">
+          <div class="service-img rounded">
+            <img class="img-fluid" src="../images/web.png" alt="">
+          </div>
+          <div class="service-text rounded p-5">
+            <div class="btn-square rounded-circle mx-auto mb-3">
+              <!-- <i class="fa fa-leaf" aria-hidden="true"></i> -->
+              <i class="fa fa-newspaper-o fa-2xl" style="color: #256a4f;"></i>
+              <!-- <img class="img-fluid" src="img/icon/icon-3.png" alt="Icon"> -->
+            </div>
+            <h4 class="mb-3">Advertiesments</h4>
+            <p class="mb-4">Now you can put advertiesments to our website.</p>
+            <a class="btn btn-sm" id="popbutton" href="#"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+        <div class="service-item rounded d-flex h-100">
+          <div class="service-img rounded">
+            <img class="img-fluid" src="../images/web.png" alt="">
+          </div>
+          <div class="service-text rounded p-5">
+            <div class="btn-square rounded-circle mx-auto mb-3">
+              <i class="fa-solid fa-question-circle fa-2xl" style="color: #256a4f;"></i>
+            </div>
+            <h4 class="mb-3">Ask Question</h4>
+            <p class="mb-4">Click the button to get answer from our agriculture consultants.</p>
+            <a class="btn btn-sm" href="comForum.php"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+        <div class="service-item rounded d-flex h-100">
+          <div class="service-img rounded">
+            <img class="img-fluid" src="../images/web.png" alt="">
+          </div>
+          <div class="service-text rounded p-5">
+            <div class="btn-square rounded-circle mx-auto mb-3">
+              <i class="fa-solid fa-shopping-cart fa-2xl" style="color: #256a4f;"></i>
+            </div>
+            <h4 class="mb-3">Buy Plants</h4>
+            <p class="mb-4">Click the button for buy plants and gardening supplies.</p>
+            <a class="btn btn-sm" href="Selling.php"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+        <div class="service-item rounded d-flex h-100">
+          <div class="service-img rounded">
+            <img class="img-fluid" src="../images/web.png" alt="">
+          </div>
+          <div class="service-text rounded p-5">
+            <div class="btn-square rounded-circle mx-auto mb-3">
+              <i class="fa-solid fa-shopping-cart fa-2xl" style="color: #256a4f;"></i>
+            </div>
+            <h4 class="mb-3">Add Blog</h4>
+            <p class="mb-4">Click the button for Add your post to blog page.</p>
+            <a class="btn btn-sm" id="addBlogButton" href="#"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 
 
   <!-- The modal -->
-<div id="addBlogModal" class="modal">
+  <div id="addBlogModal" class="modal">
     <div class="modal-content">
-        <span class="close">&times;</span>
-        <form action="add_blog.php" method="post" enctype="multipart/form-data">
-            <label for="blog_title">Blog Title:</label>
-            <input type="text" id="blog_title" name="blog_title" required>
-            <br>
-            <label for="blog_details">Blog Details:</label>
-            <textarea id="blog_details" name="blog_details" required></textarea>
-            <br>
-            <label for="blog_image">Blog Image:</label>
-            <input type="file" id="blog_image" name="blog_image" accept="image/*" required>
-            <br>
-            <button type="submit">Add Blog</button>
-        </form>
+      <span class="close">&times;</span>
+      <form action="./add_blog.php" method="post" enctype="multipart/form-data">
+        <label for="blog_title"><b>Blog Title:</b></label>
+        <input type="text" class="form-control" id="blog_title" name="blog_title" required>
+        <br>
+        <!-- <label for="blog_details">Blog Details:</label>
+            <textarea id="blog_details" name="blog_details" required></textarea> -->
+       
+          <!-- <span class="input-group-text"><b>Blog Details:</b></span> -->
+          <label for="blog_title"><b>Blog Details:</b></label>
+          <textarea class="form-control" name="blog_details" aria-label="With textarea" required></textarea>
+       
+        <br>
+        <label for="blog_image"><b>Blog Image:</b></label>
+        <input type="file" class="form-control" id="blog_image" name="blog_image" accept="image/*" required>
+        <input type="hidden" id="ufname" name="ufname" value="<?php echo $user->getFirstName() ?>">
+        <input type="hidden" id="ulname" name="ulname" value="<?php echo $user->getLastName() ?>">
+        <br>
+        <div style="display: flex; flex-direction: column; align-items: center;">
+        <button class="btn btn-success" type="submit">Add Blog</button>
+
+        </div>
+        
+      </form>
     </div>
-</div>
-
-<!-- Include your JavaScript to handle the modal -->
-<script src="your_js_script.js"></script>
-   <!-- popupr Start -->
+  </div>
 
 
-<script>
+  <script src="your_js_script.js"></script>
+  <!-- popupr Start -->
 
-  // Get the modal
-var modal = document.getElementById("addBlogModal");
 
-// Get the button that opens the modal
-var btn = document.getElementById("addBlogButton");
+  <script>
+    // Get the modal
+    var modal = document.getElementById("addBlogModal");
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+    // Get the button that opens the modal
+    var btn = document.getElementById("addBlogButton");
 
-// When the user clicks the button, open the modal
-btn.onclick = function () {
-    modal.style.display = "block";
-}
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+      modal.style.display = "block";
     }
-}
 
-</script>
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
 
   <!-- Modal Section -->
 
   <div class="bg-modal">
     <div class="modal-contents ">
 
-      <div class="close">+</div>
+    <div class="close" id="close-button">+</div>
 
 
       <form action="upload.php" method="post" enctype="multipart/form-data">
         <!-- <input type="text" name="name" placeholder="Name" values="$name">
         <input type="email" name="email" placeholder="E-Mail" values="$email"> -->
-        <label for="image1">Select Image for Advertisement:</label>
-        <input type="file" name="image1" id="image1" values="$filename1">
-        <label for="text_title">Add title for the Advertisement:</label>
-        <input type="text" name="text_title" id="text_title" >
-          <!-- <label for="image2">Select Image for Advertisement Description:</label>
+        <label for="image1"><b>Select Image for Advertisement:</b></label>
+        <input type="file" class="form-control" name="image1" id="image1" values="$filename1">
+        <label for="text_title"><br><b>Add title for the Advertisement:</b></label>
+        <input type="text" class="form-control"  name="text_title" id="text_title">
+        <!-- <label for="image2">Select Image for Advertisement Description:</label>
         <input type="file" name="image2" id="image2">-->
-        <label for="text_description">Enter Your Description:</label>
-        <textarea name="text_description" id="text_description" rows="5" cols="40"></textarea>
-        <input type="submit" name="submit" value="Submit" values="$filename2">
+        <label for="text_description"><br><b>Enter Your Description:</b></label>
+        <textarea name="text_description" class="form-control" id="text_description" rows="5" cols="40"></textarea>
+        <input type="hidden" name="submit" value="Put Advertisement" values="$filename2">
+        <button type="submit" style="margin-top: 15px;" class="btn btn-success">Put Advertisement</button>
       </form>
 
 
 
     </div>
   </div>
+
+  <script>
+  // JavaScript to handle the close button functionality
+  const closeButton = document.getElementById('close-button');
+  const modalContents = document.querySelector('.modal-contents');
+  const bgModal = document.querySelector('.bg-modal');
+
+  closeButton.addEventListener('click', () => {
+    modalContents.style.display = 'none';
+    bgModal.style.display = 'none';
+  });
+</script>
 
 
 

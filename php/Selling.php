@@ -1,5 +1,11 @@
 <?php
+require_once './classes/persons.php';
 session_start();
+$user = null;
+if (isset($_SESSION["user"])) {
+    // User is logged in, retrieve the user object
+    $user = $_SESSION["user"];
+} 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,14 +80,25 @@ session_start();
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
+                <?php 
+                    if ($user != null){
+                        ?>
+                            <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                        <?php
+                    }else {
+                        ?>
+                            <a href="./login.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Sign In</a>
+                        <?php
+                    }
+                ?>
 
-                <div class="nav-item dropdown">
+                <!-- <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                     <div class="dropdown-menu bg-light m-0">
                         <a href="./user.php" class="dropdown-item">Profile</a>
                         <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
                     </div>
-                </div>
+                </div> -->
             </div>
             <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
         </div>
@@ -113,126 +130,6 @@ session_start();
         </div>
 
     </section>
-
-    <!----new product section -->
-    <!------
-    <section class="new product">
-        <div class="center-text">
-          <h1 ="fadeIn">New Arrival Items</h1>
-            </div>
-
-                <div class="new-content">
-                    <div class="row">
-                        <img src="../images/Selling/veg1.jpeg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-
-
-                     <div class="row">
-                        <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-
-
-
-                     <div class="row">
-                        <img src="../images/Selling/grapes.jpeg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-     </section>
-
-     ------->
-
-
-
-    <div class="center-text">
-        <h1>New Arrival Items</h1>
-    </div>
-
 
     
     <div class="top-right-container">

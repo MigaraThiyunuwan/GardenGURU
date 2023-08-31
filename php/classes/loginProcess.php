@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $dbaddress = $row->user_address;
             $dbpicture = $row->profile_picture;
         }
-       ;
+       
         if (password_verify($password, $dbpassword)) {
            
             $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword,$dbaddress, $dbid, $dbDistrict, $dbPhoneNo,$dbpicture);

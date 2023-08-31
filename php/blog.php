@@ -1,6 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="en">
+<?php
+require_once './classes/persons.php';
+session_start();
+$user = null;
+if (isset($_SESSION["user"])) {
+    // User is logged in, retrieve the user object
+    $user = $_SESSION["user"];
+}
+?>
 
 <head>
     <meta charset="utf-8">
@@ -19,9 +27,9 @@
 </head>
 
 <body>
-<?php 
+    <?php
 
-?>
+    ?>
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
@@ -49,14 +57,25 @@
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
+                <?php
+                if ($user != null) {
+                ?>
+                    <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else {
+                ?>
+                    <a href="./login.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Sign In</a>
+                <?php
+                }
+                ?>
 
-                <div class="nav-item dropdown">
+                <!-- <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                     <div class="dropdown-menu bg-light m-0">
                         <a href="./user.php" class="dropdown-item">Profile</a>
                         <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
                     </div>
-                </div>
+                </div> -->
             </div>
             <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
         </div>
@@ -76,59 +95,61 @@
     <!-- Page Header End -->
 
     <?php
-// Replace with your database connection details
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "gardenguru";
+    // Replace with your database connection details
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "gardenguru";
 
-// Create a connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+    // Create a connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-// Fetch blog data from the database
-$sql = "SELECT blog_id, blog_title, blog_details, blog_image FROM blog";
-$result = $conn->query($sql);
+    // Fetch blog data from the database
+    $sql = "SELECT * FROM blog";
+    $result = $conn->query($sql);
 
-?>
+    ?>
+
+    <div class="container">
+        <div class="row">
+            <?php
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+            ?>
+
+                    <div class="col-lg-6">
+                        <article class="blog_item">
+                            <div class="blog_item_img">
+                                <img class="card-img rounded-0" src="<?php echo $row['blog_image']; ?>" alt="">
+                            </div>
+                            <div class="blog_details">
+                                <a class="d-inline-block" href="./readBlog.php?blog_id=<?php echo $row['blog_id']; ?>">
+                                    <h2 class="blog-head" style="color: #2d2d2d;"><?php echo $row['blog_title']; ?></h2>
+                                </a>
+                                <p><?php echo substr($row['blog_details'], 0, 250) . '...'; ?></p>
+                                <ul class="blog-info-link">
+                                    <li><a href="#"><i class="fa fa-user"></i><?php echo $row['user_fname'] ." " . $row['user_lname']; ?></a></li>
+                                </ul>
+                            </div>
+                        </article>
+                    </div>
 
 
-
-
-<div class="container">
-    <div class="row">
-        <?php
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo '<div class="col-lg-6">';
-                echo '<article class="blog_item">';
-                echo '<div class="blog_item_img">';
-                echo '<img class="card-img rounded-0" src=' . $row["blog_image"] . ' alt="">';
-                echo '</div>';
-                echo '<div class="blog_details">';
-                echo '<a class="d-inline-block" href="./readBlog.php?blog_id=' . $row["blog_id"] . '">';
-                echo '<h2 class="blog-head" style="color: #2d2d2d;">' . $row["blog_title"] . '</h2>';
-                echo '</a>';
-                echo '<p>' . $row["blog_details"] . '</p>';
-                echo '<ul class="blog-info-link">';
-                echo '<li><a href="#"><i class="fa fa-user"></i> Migara Thiyunuwan</a></li>';
-                echo '</ul>';
-                echo '</div>';
-                echo '</article>';
-                echo '</div>';
+            <?php
+                }
+            } else {
+                echo '<p>No blog posts available.</p>';
             }
-        } else {
-            echo '<p>No blog posts available.</p>';
-        }
 
-        $conn->close();
-        ?>
+            $conn->close();
+            ?>
+        </div>
     </div>
-</div>
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">

@@ -52,24 +52,7 @@ if (isset($_POST['submit'])) {
        
 
         if (move_uploaded_file($tmp_name1, $destination1)) { //&& move_uploaded_file($tmp_name2, $destination2) ) {
-            // File uploads were successful, now save the form data and image filenames in the database
 
-            // Replace these values with your actual database credentials
-            // $db_host = 'localhost';
-            // $db_user = 'root';
-            // $db_pass = '';
-            // $db_name = 'gardenguru';
-
-            // // Connect to the database
-            // $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
-
-            // // Check connection
-            // if ($conn->connect_error) {
-            //     die("Connection failed: " . $conn->connect_error);
-            // }
-
-
-            // Insert form data and image filenames into the database
 
             $conn = $dbcon->getConnection();
             $sql = "INSERT INTO advertisements ( user_FirstName, user_LastName, user_Email, image1_filename, title, description) VALUES ( ? ,?, ?, ?, ?, ?)";
@@ -84,7 +67,7 @@ if (isset($_POST['submit'])) {
             $pstmt->bindValue(6, $text_description);
 
             if ($pstmt->execute()) {
-                $success_message = "Form data and images uploaded and saved in the database successfully.";
+                header("Location: ./user.php?success=3"); 
             } else {
                 echo "Error executing the query: " . $pstmt->errorInfo()[2];
             }
@@ -92,37 +75,13 @@ if (isset($_POST['submit'])) {
             // Close the database connection
 
         } else {
-            $error_message = "Error moving the uploaded files to the destination.";
+            header("Location: ./user.php?success=4"); 
         }
     } else {
-        $error_message = "Error uploading the image files.";
+        header("Location: ./user.php?success=4"); 
     }
 }
 ?>
 
 
 
-
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Upload Status</title>
-</head>
-
-<body>
-    <!-- Display success message in a pop-up box -->
-    <script>
-        <?php if (isset($success_message)): ?>
-            alert("<?php echo $success_message; ?>");
-            window.location.href = "user.php"; // Redirect to the form page after showing the pop-up
-        <?php endif; ?>
-
-        <?php if (isset($error_message)): ?>
-            alert("<?php echo $error_message; ?>");
-            window.history.back(); // Go back to the previous page (the form page) after showing the pop-up
-        <?php endif; ?>
-    </script>
-</body>
-
-</html>

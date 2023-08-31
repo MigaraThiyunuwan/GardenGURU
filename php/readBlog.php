@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+require_once './classes/persons.php';
 
+require_once './classes/DbConnector.php';
 
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+use classes\DbConnector;
+
+$dbcon = new DbConnector();
+
+session_start();
+$user = null;
+if (isset($_SESSION["user"])) {
+    // User is logged in, retrieve the user object
+    $user = $_SESSION["user"];
+}
+?>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
 <head>
     <meta charset="utf-8">
@@ -22,9 +35,9 @@
 </head>
 
 <body>
-<?php 
+    <?php
 
-?>
+    ?>
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
@@ -52,14 +65,24 @@
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
-
-                <div class="nav-item dropdown">
+                <?php
+                if ($user != null) {
+                ?>
+                    <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else {
+                ?>
+                    <a href="./login.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Sign In</a>
+                <?php
+                }
+                ?>
+                <!-- <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                     <div class="dropdown-menu bg-light m-0">
                         <a href="./user.php" class="dropdown-item">Profile</a>
                         <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
                     </div>
-                </div>
+                </div> -->
             </div>
             <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
         </div>
@@ -77,53 +100,52 @@
         </div>
     </div>
     <!-- Page Header End -->
+    <?php
+    $id = null;
+    if (isset($_GET['blog_id'])) {
+        $id = $_GET['blog_id'];
+    }
+    ?>
 
-    <section class="blog_area single-post-area section-padding">
+
+<?Php
+try {
+        $con = $dbcon->getConnection();
+        $query = "SELECT * FROM blog WHERE blog_id = ? ";
+        $pstmt = $con->prepare($query);
+        $pstmt->bindValue(1, $id);
+       
+        $pstmt->execute();
+
+        $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+        foreach($rs as $row){
+            $title = $row->blog_title;
+            $fname = $row->user_fname;
+            $lname = $row->user_lname;
+            $details = $row->blog_details;
+            $image = $row->blog_image;
+        }
+       ?>
+        <section class="blog_area single-post-area section-padding">
         <div class="container">
             <div class="row">
                 <div class="col">
                     <div class="single-post">
                         <div class="feature-img">
-                            <img class="img-fluid" src="../images/blog/read-blog.jpg" alt="">
+                            <img class="img-fluid" src="<?php echo $image ?>" alt="">
                         </div>
                         <div class="blog_details">
-                            <h2 style="color: #2d2d2d;">Second divided from form fish beast made every of seas
-                                all gathered us saying he our
+                            <h2 style="color: #2d2d2d;"> <?php echo $title ?>
                             </h2>
                             <ul class="blog-info-link mt-3 mb-4">
-                                <li><a href="#"><i class="fa fa-user"></i> Migara Thiyunuwan</a></li>
+                                <li><a href="#"><i class="fa fa-user"></i> <?php echo $fname . " " . $lname ?> </a></li>
 
                             </ul>
-                            <p class="excert">
-                                MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                                should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                                fraction of the camp price. However, who has the willpower
-                            </p>
                             <p>
-                                MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                                should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                                fraction of the camp price. However, who has the willpower to actually sit through a
-                                self-imposed MCSE training. who has the willpower to actually
+                                <?php echo $details?>
                             </p>
-                            <div class="quote-wrapper">
-                                <div class="quotes">
-                                    MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                                    should have to spend money on boot camp when you can get the MCSE study materials yourself at
-                                    a fraction of the camp price. However, who has the willpower to actually sit through a
-                                    self-imposed MCSE training.
-                                </div>
-                            </div>
-                            <p>
-                                MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                                should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                                fraction of the camp price. However, who has the willpower
-                            </p>
-                            <p>
-                                MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                                should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                                fraction of the camp price. However, who has the willpower to actually sit through a
-                                self-imposed MCSE training. who has the willpower to actually
-                            </p>
+                           
                         </div>
                     </div>
                 </div>
@@ -132,6 +154,29 @@
             </div>
         </div>
     </section>
+    
+<?php
+    } catch (PDOException $exc) {
+        echo $exc->getMessage();
+    }
+
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
 
 

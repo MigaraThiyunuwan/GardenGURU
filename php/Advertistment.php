@@ -14,7 +14,7 @@ if (isset($_SESSION["user"])) {
   $user = $_SESSION["user"];
 } else {
   // Redirect the user to login.php if not logged in
-  header("Location: ./login.php?error=2");
+  header("Location: ./login.php?error=5");
   exit();
 }
 ?>
@@ -267,13 +267,13 @@ if (isset($_SESSION["user"])) {
         </div>
         <a href="./AboutUs.php" class="nav-item nav-link">About</a>
         <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
-
-        <div class="nav-item dropdown">
+        <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+        <!-- <div class="nav-item dropdown">
           <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
           <div class="dropdown-menu bg-light m-0">
             <a href="./user.php" class="dropdown-item">Profile</a>
             <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
-          </div>
+          </div> -->
         </div>
       </div>
       <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->

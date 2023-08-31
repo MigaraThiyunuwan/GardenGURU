@@ -1,40 +1,33 @@
 <?php
+require_once './classes/DbConnector.php';
+use classes\DbConnector;
+$dbcon = new DbConnector();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "gardenguru";
-    
-    // Create a connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    
+    $con = $dbcon->getConnection();
+
     $blogTitle = $_POST["blog_title"];
     $blogDetails = $_POST["blog_details"];
+    $ufname = $_POST["ufname"];
+    $ulname = $_POST["ulname"];
     
     // Handle file upload
-    $targetDir = "../images/blog/"; // Change this to your desired directory path
-    $targetFile = $targetDir . basename($_FILES["blog_image"]["name"]);
+    $targetDir = "../images/blog/"; 
+    $targetFile = "../images/blog/". basename($_FILES["blog_image"]["name"]);
     
     if (move_uploaded_file($_FILES["blog_image"]["tmp_name"], $targetFile)) {
-        echo "File uploaded successfully.";
+        $query = "INSERT INTO blog (blog_title, user_fname, user_lname, blog_details, blog_image) VALUES ('$blogTitle', '$ufname', '$ulname', '$blogDetails', '$targetFile')";
+        $pstmt = $con->prepare($query);
+        
+        $pstmt->execute();
+        if (($pstmt->rowCount()) > 0) {
+
+            header("Location: ./user.php?success=1");                     
+            
+        }else{
+            header("Location: ./user.php?success=0");   
+        }
     } else {
-        echo "File upload failed.";
+        header("Location: ./user.php?success=0");   
     }
-    
-    // Insert data into the database
-    $sql = "INSERT INTO blog (blog_title, blog_details, blog_image) VALUES ('$blogTitle', '$blogDetails', '$targetFile')";
-    
-    if ($conn->query($sql) === TRUE) {
-        echo "Blog added successfully!";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-    
-    $conn->close();
+       
 }
-?>

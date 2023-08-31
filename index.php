@@ -4,6 +4,7 @@
 <?php
 require_once './php/classes/persons.php';
 session_start();
+$user = null;
 if (isset($_SESSION["user"])) {
     // User is logged in, retrieve the user object
     $user = $_SESSION["user"];
@@ -68,14 +69,26 @@ if (isset($_SESSION["user"])) {
                 </div>
                 <a href="./php/AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./php/ContactUs.php" class="nav-item nav-link">Contact</a>
+                <?php 
+                    if ($user != null){
+                        ?>
+                            <a href="./php/user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                        <?php
+                    }else {
+                        ?>
+                            <a href="./php/login.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Sign In</a>
+                        <?php
+                    }
+                ?>
 
-                <div class="nav-item dropdown">
+                
+                <!-- <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                     <div class="dropdown-menu bg-light m-0">
                         <a href="./php/user.php" class="dropdown-item">Profile</a>
                         <a href="./php/classes/logout.php" class="dropdown-item">Log Out</a>
                     </div>
-                </div>
+                </div> -->
 
             </div>
 
@@ -95,7 +108,7 @@ if (isset($_SESSION["user"])) {
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
                                     <h1 class="display-1 text-white mb-5 animated slideInDown">Make Your Home Like Garden</h1>
-                                    <a href="#" class="btn btn-primary py-sm-3 px-sm-4">Explore More</a>
+                                    <a href="./php/register.php" class="btn btn-primary py-sm-3 px-sm-4">Sign Up Now</a>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +121,7 @@ if (isset($_SESSION["user"])) {
                             <div class="row justify-content-center">
                                 <div class="col-lg-7">
                                     <h1 class="display-1 text-white mb-5 animated slideInDown">Create Your Own Small Garden At Home</h1>
-                                    <a href="#" class="btn btn-primary py-sm-3 px-sm-4">Explore More</a>
+                                    <a href="./php/register.php" class="btn btn-primary py-sm-3 px-sm-4">Sign Up Now</a>
                                 </div>
                             </div>
                         </div>
@@ -135,12 +148,12 @@ if (isset($_SESSION["user"])) {
                     <div class="bg-white shadow d-flex align-items-center h-100 px-5" style="min-height: 160px;">
                         <div class="d-flex">
                             <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                                <i class="fa fa-times text-primary"></i>
-
+                                <!-- <i class="fa fa-times text-primary"></i> -->
+                                <i class="fa fa-solid fa-lightbulb text-primary"></i>
                             </div>
                             <div class="ps-3">
-                                <h4>No Hidden Cost</h4>
-                                <span>Clita erat ipsum lorem sit sed stet duo justo</span>
+                                <h4>Plant Suggestion</h4>
+                                <span>Your Personalized Garden Guide: Where Green Dreams Blossom!</span>
                             </div>
                         </div>
                     </div>
@@ -152,8 +165,8 @@ if (isset($_SESSION["user"])) {
                                 <i class="fa fa-users text-primary"></i>
                             </div>
                             <div class="ps-3">
-                                <h4>Dedicated Team</h4>
-                                <span>Clita erat ipsum lorem sit sed stet duo justo</span>
+                                <h4>Plant Selling</h4>
+                                <span>Planting Beauty Made Easy: Shop Plants Online at GardenGURU's Green Haven.</span>
                             </div>
                         </div>
                     </div>
@@ -162,11 +175,11 @@ if (isset($_SESSION["user"])) {
                     <div class="bg-white shadow d-flex align-items-center h-100 px-5" style="min-height: 160px;">
                         <div class="d-flex">
                             <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                                <i class="fa fa-phone text-primary"></i>
+                            <i class="fa fa-solid fa-rectangle-ad text-primary"></i>
                             </div>
                             <div class="ps-3">
-                                <h4>24/7 Available</h4>
-                                <span>Clita erat ipsum lorem sit sed stet duo justo</span>
+                                <h4>Advertiesment</h4>
+                                <span>Plant the Seeds of Success: Advertise Your Products with GardenGURU Today!</span>
                             </div>
                         </div>
                     </div>
@@ -192,7 +205,7 @@ if (isset($_SESSION["user"])) {
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
                                 <!-- <i class="fa fa-leaf" aria-hidden="true"></i> -->
-                                <i class="fa-sharp fa-solid fa-seedling fa-2xl" style="color: #256a4f;"></i>
+                                <i class="fa-sharp fa-solid fa-seedling fa-2xl text-primary" ></i>
                                 <!-- <img class="img-fluid" src="img/icon/icon-3.png" alt="Icon"> -->
                             </div>
                             <h4 class="mb-3">Plant Suggestion</h4>
@@ -208,7 +221,7 @@ if (isset($_SESSION["user"])) {
                         </div>
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
-                                <i class="fa-solid fa-newspaper fa-2xl" style="color: #256a4f;"></i>
+                                <i class="fa-solid fa-newspaper fa-2xl text-primary" ></i>
                             </div>
                             <h4 class="mb-3">News Feed</h4>
                             <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
@@ -223,7 +236,7 @@ if (isset($_SESSION["user"])) {
                         </div>
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
-                                <i class="fa-solid fa-handshake fa-2xl" style="color: #256a4f;"></i>
+                                <i class="fa-solid fa-handshake fa-2xl text-primary" ></i>
                             </div>
                             <h4 class="mb-3">Communication Forum</h4>
                             <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
@@ -238,7 +251,7 @@ if (isset($_SESSION["user"])) {
                         </div>
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
-                                <i class="fa-solid fa-rectangle-ad fa-2xl" style="color: #256a4f;"></i>
+                                <i class="fa-solid fa-rectangle-ad fa-2xl text-primary" ></i>
                             </div>
                             <h4 class="mb-3">Advertiesment</h4>
                             <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
@@ -253,7 +266,7 @@ if (isset($_SESSION["user"])) {
                         </div>
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
-                                <i class="fa-solid fa-shop fa-2xl " style="color: #256a4f;"></i>
+                                <i class="fa-solid fa-shop fa-2xl text-primary" ></i>
                             </div>
                             <h4 class="mb-3">Plant Selling</h4>
                             <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
@@ -268,7 +281,7 @@ if (isset($_SESSION["user"])) {
                         </div>
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
-                                <i class="fa-solid fa-blog fa-2xl" style="color: #256a4f;"></i>
+                                <i class="fa-solid fa-blog fa-2xl text-primary"></i>
                             </div>
                             <h4 class="mb-3">Blog</h4>
                             <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>

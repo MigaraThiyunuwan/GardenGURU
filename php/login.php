@@ -50,7 +50,9 @@
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
-                <a href="./user.php" class="nav-item nav-link">Profile</a>
+                <!-- <a href="./user.php" class="nav-item nav-link">Profile</a> -->
+                <a href="./register.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Sign Up</a>
+                <!-- <button type="button" class="btn btn-success" style="height: 40px; margin-top: 20px;" >Success</button> -->
                 <!-- <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                      <div class="dropdown-menu bg-light m-0">
@@ -112,16 +114,35 @@
                                 <?php
                                 if (isset($_GET['error'])) {
                                     if($_GET['error'] == 1){
-                                        echo "<b><p style='color: red;'> Email address or Password Incorrect !</p></b>";
+                                        
+                                        echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        Your Email or Password Incorrect!
+                                        </div></b>"; 
+                                        
                                     }
                                     if($_GET['error'] == 2){
-                                        echo "<b><p style='color: red;'> You Need to Login to Your Account to Visit Profile.</p></b>";
+                                        
+                                        echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        You Need to Login to Your Account to Visit Profile.
+                                        </div></b>"; 
                                     }
                                     if($_GET['error'] == 3){
-                                        echo "<b><p style='color: red;'> You Need to Login to Your Account to Visit Profile.</p></b>";
+                                        
+                                        echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        You Need to Login to Your Account to Visit Profile.
+                                        </div></b>"; 
                                     }
                                     if($_GET['error'] == 4){
-                                        echo "<b><p style='color: red;'> You Need to Login to Your Account to make purchase.</p></b>";
+                                        
+                                        echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        You Need to Login to Your Account to make purchase.
+                                        </div></b>"; 
+                                    }
+                                    if($_GET['error'] == 5){
+                                        
+                                        echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        You Need to Login to Your Account to View Advertisements.
+                                        </div></b>"; 
                                     }
                                 } ?>
                             </form>
