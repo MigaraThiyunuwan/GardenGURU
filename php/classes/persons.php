@@ -125,11 +125,53 @@ class Manager extends person
             echo $exc->getMessage();
         }
     }
+
+    public function viewUser()
+    {
+        require_once './DbConnector.php';
+        $user_id = $_POST['userID'];
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+
+            $query = "SELECT * FROM users WHERE user_id = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $user_id);
+
+            $pstmt->execute();
+
+            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+            foreach($rs as $row){
+                $dbpassword = $row->user_Password;
+                $dbFirstName = $row->user_FirstName;
+                $dbLastName = $row->user_LastName;
+                $dbEmail = $row->user_Email;
+                $dbPhoneNo = $row->user_PhoneNo;
+                $dbDistrict = $row->user_District;
+                $dbGender = $row->user_Gender;
+                $dbid = $row->user_id;
+                $dbaddress = $row->user_address;
+            }
+           ;
+           $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword,$dbaddress, $dbid, $dbDistrict, $dbPhoneNo);
+            session_start();
+            $_SESSION["user"] = $user;
+            header("Location: ../userView.php");
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
 }
 if (isset($_POST['action']) && $_POST['action'] == 'processForm') {
 
     $manager = new Manager(null, null, null, null, null, null, null,);
     $manager->deleteUser();
+    
+}
+if (isset($_POST['action']) && $_POST['action'] == 'view') {
+
+    $manager = new Manager(null, null, null, null, null, null, null,);
+    $manager->viewUser();
 }
 
 class Admin extends person
