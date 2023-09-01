@@ -11,7 +11,7 @@ class person
     private $FirstName;
     private $LastName;
     private $Email;
-    // private $Address;
+    
     private $Password;
 
     function __construct($FirstName, $LastName, $Email, $Password)
@@ -19,7 +19,6 @@ class person
         $this->FirstName = $FirstName;
         $this->LastName = $LastName;
         $this->Email = $Email;
-        //  $this->Address = $Address;
         $this->Password = $Password;
     }
     public function getFirstName()
@@ -34,9 +33,6 @@ class person
     {
         return $this->Email;
     }
-    // public function getAddress(){
-    //     return $this->Address;
-    // }
     public function getPassword()
     {
         return $this->Password;
@@ -138,7 +134,7 @@ class Manager extends person
         }
     }
 }
-if (isset($_POST['action']) && $_POST['action'] == 'processForm') {
+if (isset($_POST['action']) && $_POST['action'] == 'processForm1') {
 
     $manager = new Manager(null, null, null, null, null, null, null,);
     $manager->deleteUser();
