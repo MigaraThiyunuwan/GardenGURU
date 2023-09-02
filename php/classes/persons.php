@@ -11,7 +11,7 @@ class person
     private $FirstName;
     private $LastName;
     private $Email;
-    // private $Address;
+    
     private $Password;
 
     function __construct($FirstName, $LastName, $Email, $Password)
@@ -19,7 +19,6 @@ class person
         $this->FirstName = $FirstName;
         $this->LastName = $LastName;
         $this->Email = $Email;
-        //  $this->Address = $Address;
         $this->Password = $Password;
     }
     public function getFirstName()
@@ -34,9 +33,6 @@ class person
     {
         return $this->Email;
     }
-    // public function getAddress(){
-    //     return $this->Address;
-    // }
     public function getPassword()
     {
         return $this->Password;
@@ -51,13 +47,25 @@ class user extends person
     private $PhoneNo;
 
     private $Address;
-    function __construct($FirstName, $LastName, $Email, $Password, $Address, $userId, $District, $PhoneNo)
+
+    private $ProPic;
+    function __construct($FirstName, $LastName, $Email, $Password, $Address, $userId, $District, $PhoneNo, $ProPic)
     {
         parent::__construct($FirstName, $LastName, $Email,  $Password);
         $this->userId = $userId;
         $this->District = $District;
         $this->PhoneNo = $PhoneNo;
         $this->Address = $Address;
+        $this->ProPic = $ProPic;
+    }
+    public function getPropic()
+    {
+        return $this->ProPic;
+    }
+
+    public function setPropic($picture)
+    {
+        $this->ProPic = $picture;
     }
     public function getUserId()
     {
@@ -125,11 +133,53 @@ class Manager extends person
             echo $exc->getMessage();
         }
     }
+
+    public function viewUser()
+    {
+        require_once 'DbConnector.php';
+        $user_id = $_POST['userID'];
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+
+            $query = "SELECT * FROM users WHERE user_id = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $user_id);
+
+            $pstmt->execute();
+
+            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+            foreach($rs as $row){
+                $dbpassword = $row->user_Password;
+                $dbFirstName = $row->user_FirstName;
+                $dbLastName = $row->user_LastName;
+                $dbEmail = $row->user_Email;
+                $dbPhoneNo = $row->user_PhoneNo;
+                $dbDistrict = $row->user_District;
+                $dbprofile_picture = $row->profile_picture;
+                $dbid = $row->user_id;
+                $dbaddress = $row->user_address;
+            }
+           ;
+           $user = new user ($dbFirstName, $dbLastName, $dbEmail, $dbpassword,$dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbprofile_picture);
+            session_start();
+            $_SESSION["user1"] = $user;
+            header("Location: ../userView.php");
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
 }
-if (isset($_POST['action']) && $_POST['action'] == 'processForm') {
+if (isset($_POST['action']) && $_POST['action'] == 'processForm1') {
 
     $manager = new Manager(null, null, null, null, null, null, null,);
     $manager->deleteUser();
+    
+}
+if (isset($_POST['action']) && $_POST['action'] == 'view') {
+
+    $manager = new Manager(null, null, null, null, null, null, null,);
+    $manager->viewUser();
 }
 
 class Admin extends person

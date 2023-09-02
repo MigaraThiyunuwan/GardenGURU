@@ -72,14 +72,8 @@ if (isset($_SESSION["manager"])) {
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
-                <a href="./classes/logout.php" class="nav-item nav-link">Log Out</a>
-                <!-- <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-                    <div class="dropdown-menu bg-light m-0">
-                        <a href="./user.php" class="dropdown-item">Profile</a>
-                        <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
-                    </div>
-                </div> -->
+                <a href="./classes/logout.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Log Out</a>
+
             </div>
             <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
         </div>
@@ -209,7 +203,8 @@ if (isset($_SESSION["manager"])) {
                                                     <form action="./classes/persons.php" method="post">
 
                                                         <input type="hidden" name="userID" value="<?php echo "$ID" ?>">
-                                                        <button class="btn btn-danger" type="submit" name="action" value="processForm">Delete</button>
+                                                        <button class="btn btn-danger" type="submit" name="action" value="processForm1">Delete</button>
+                                                        <button class="btn btn-success" type="submit" name="action" value="view">View</button>
                                                         
                                                     </form>
 

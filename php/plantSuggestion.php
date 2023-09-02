@@ -5,6 +5,20 @@ use classes\DbConnector;
 
 $dbcon = new DbConnector();
 
+
+require_once './classes/persons.php';
+session_start();
+$user = null;
+$manager = null;
+if (isset($_SESSION["user"])) {
+    // User is logged in, retrieve the user object
+    $user = $_SESSION["user"];
+}
+if (isset($_SESSION["manager"])) {
+    $manager = $_SESSION["manager"];
+}
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $location = $_POST["location"];
@@ -94,13 +108,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
 
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-                    <div class="dropdown-menu bg-light m-0">
-                        <a href="./user.php" class="dropdown-item">Profile</a>
-                        <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
-                    </div>
-                </div>
+
+                <?php
+                if ($user != null) {
+                ?>
+                    <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else if ($manager != null) {
+                ?>
+                    <a href="./Manager.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else {
+                ?>
+                    <a href="./login.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Sign In</a>
+                <?php
+                }
+                ?>
+
 
             </div>
             <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
@@ -206,7 +230,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                             <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Water</a>
                             <select id="water" name="water" class="input-group-text bg-white px-4 border-md border-right-0">
-                                <option value="Easy to found">Easy to found</option>
+                                <option value="Easy to Find">Easy to found</option>
                                 <option value="Medium">Normally can found</option>
                                 <option value="Rare">Rare to found</option>
                             </select>
@@ -224,7 +248,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <option value="Limited">Limited</option>
                                 <option value="Average">Average</option>
                                 <option value="Large">Large</option>
-
                             </select>
                         </div>
 
@@ -237,8 +260,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                             <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Harvest Time</a>
                             <select id="time" name="time" class="input-group-text bg-white px-4 border-md border-right-0">
-                                <option value="< 2 months">
-                                    < 2 months</option>
+                                <option value="< 2 months">< 2 months</option>
                                 <option value="2 to 6 months">2 to 6 months</option>
                                 <option value="6 to 12 months">6 to 12 months</option>
                                 <option value="> 12 months">> 12 months</option>
@@ -343,19 +365,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Services</h4>
-                    <a class="btn btn-link" href="#">Landscaping</a>
-                    <a class="btn btn-link" href="#">Pruning plants</a>
-                    <a class="btn btn-link" href="#">Urban Gardening</a>
-                    <a class="btn btn-link" href="#">Garden Maintenance</a>
-                    <a class="btn btn-link" href="#">Green Technology</a>
+                    <a class="btn btn-link" href="./plantSuggestion.php">Plant Suggestion</a>
+                    <a class="btn btn-link" href="./Advertistment.php">Advertiesment</a>
+                    <a class="btn btn-link" href="./Selling.php">Shop</a>
+                    <a class="btn btn-link" href="./blog.php">Blog</a>
+
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="#">About Us</a>
-                    <a class="btn btn-link" href="#">Contact Us</a>
-                    <a class="btn btn-link" href="#">Our Services</a>
-                    <a class="btn btn-link" href="#">Terms & Condition</a>
-                    <a class="btn btn-link" href="#">Support</a>
+                    <a class="btn btn-link" href="./AboutUs.php">About Us</a>
+                    <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
+                    <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
+                    <a class="btn btn-link" href="./login.php">Log Out</a>
+                    <a class="btn btn-link" href="./termsAndCondition.php">Terms & Condition</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <img src="../images/logo.png" style="width:220px;height:50px;">
@@ -374,7 +396,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="border-bottom" href="index.php">GardenGURU</a>, All Right Reserved.
+                    &copy; <a class="border-bottom" href="../index.php">GardenGURU</a>, All Right Reserved.
                 </div>
 
             </div>

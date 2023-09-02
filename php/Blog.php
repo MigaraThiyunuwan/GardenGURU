@@ -1,5 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+require_once './classes/persons.php';
+session_start();
+$user = null;
+$manager = null;
+if (isset($_SESSION["user"])) {
+    // User is logged in, retrieve the user object
+    $user = $_SESSION["user"];
+}
+if (isset($_SESSION["manager"])) {
+    // User is logged in, retrieve the user object
+    $manager = $_SESSION["manager"];
+}
+?>
 
 <head>
     <meta charset="utf-8">
@@ -18,9 +32,9 @@
 </head>
 
 <body>
-<?php 
+    <?php
 
-?>
+    ?>
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
@@ -48,14 +62,22 @@
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
+                <?php
+                if ($user != null) {
+                ?>
+                    <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else if ($manager != null) {
+                ?>
+                    <a href="./Manager.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else {
+                ?>
+                    <a href="./login.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Sign In</a>
+                <?php
+                }
+                ?>
 
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-                    <div class="dropdown-menu bg-light m-0">
-                        <a href="./user.php" class="dropdown-item">Profile</a>
-                        <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
-                    </div>
-                </div>
             </div>
             <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
         </div>
@@ -74,119 +96,65 @@
     </div>
     <!-- Page Header End -->
 
+    <?php
+    // Replace with your database connection details
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "gardenguru";
+
+    // Create a connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Fetch blog data from the database
+    $sql = "SELECT * FROM blog";
+    $result = $conn->query($sql);
+
+    ?>
+
     <div class="container">
         <div class="row">
-            <div class="col-lg-6">
+            <?php
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+            ?>
 
-                <article class="blog_item">
-                    <div class="blog_item_img">
-                        <img class="card-img rounded-0" src="../images/s1.jpg" alt="">
-                        <!-- <a href="#" class="blog_item_date">
-                            <h3>15</h3>
-                            <p>Jan</p>
-                        </a> -->
+                    <div class="col-lg-6">
+                        <article class="blog_item">
+                            <div class="blog_item_img">
+                                <img class="card-img rounded-0" src="<?php echo $row['blog_image']; ?>" alt="">
+                            </div>
+                            <div class="blog_details">
+                                <a class="d-inline-block" href="./readBlog.php?blog_id=<?php echo $row['blog_id']; ?>">
+                                    <h2 class="blog-head" style="color: #2d2d2d;"><?php echo $row['blog_title']; ?></h2>
+                                </a>
+                                <p><?php echo substr($row['blog_details'], 0, 250) . '...'; ?></p>
+                                <ul class="blog-info-link">
+                                    <li><a href="#"><i class="fa fa-user"></i><?php echo $row['user_fname'] ." " . $row['user_lname']; ?></a></li>
+                                </ul>
+                            </div>
+                        </article>
                     </div>
-                    <div class="blog_details">
-                        <a class="d-inline-block" href="./readBlog.php">
-                            <h2 class="blog-head" style="color: #2d2d2d;">Google inks pact for new 35-storey
-                                office</h2>
-                        </a>
-                        <p>That dominion stars lights dominion divide years for fourth have don't stars is
-                            that
-                            he earth it first without heaven in place seed it second morning saying.</p>
-                        <ul class="blog-info-link">
-                            <li><a href="#"><i class="fa fa-user"></i> Migara Thiyunuwan</a></li>
 
-                        </ul>
-                    </div>
-                </article>
 
-            </div>
-            <div class="col-lg-6">
+            <?php
+                }
+            } else {
+                echo '<p>No blog posts available.</p>';
+            }
 
-                <article class="blog_item">
-                    <div class="blog_item_img">
-                        <img class="card-img rounded-0" src="../images/s2.jpg" alt="">
-                        <!-- <a href="#" class="blog_item_date">
-                            <h3>15</h3>
-                            <p>Jan</p>
-                        </a> -->
-                    </div>
-                    <div class="blog_details">
-                        <a class="d-inline-block" href="./readBlog.php">
-                            <h2 class="blog-head" style="color: #2d2d2d;">Google inks pact for new 35-storey
-                                office</h2>
-                        </a>
-                        <p>That dominion stars lights dominion divide years for fourth have don't stars is
-                            that
-                            he earth it first without heaven in place seed it second morning saying.</p>
-                        <ul class="blog-info-link">
-                            <li><a href="#"><i class="fa fa-user"></i> Migara Thiyunuwan</a></li>
-
-                        </ul>
-                    </div>
-                </article>
-
-            </div>
-
-            <div class="col-lg-6">
-
-                <article class="blog_item">
-                    <div class="blog_item_img">
-                        <img class="card-img rounded-0" src="../images/s2.jpg" alt="">
-                        <!-- <a href="#" class="blog_item_date">
-                            <h3>15</h3>
-                            <p>Jan</p>
-                        </a> -->
-                    </div>
-                    <div class="blog_details">
-                        <a class="d-inline-block" href="./readBlog.php">
-                            <h2 class="blog-head" style="color: #2d2d2d;">Google inks pact for new 35-storey
-                                office</h2>
-                        </a>
-                        <p>That dominion stars lights dominion divide years for fourth have don't stars is
-                            that
-                            he earth it first without heaven in place seed it second morning saying.</p>
-                        <ul class="blog-info-link">
-                            <li><a href="#"><i class="fa fa-user"></i> Migara Thiyunuwan</a></li>
-
-                        </ul>
-                    </div>
-                </article>
-
-            </div>
-            <div class="col-lg-6">
-
-                <article class="blog_item">
-                    <div class="blog_item_img">
-                        <img class="card-img rounded-0" src="../images/s1.jpg" alt="">
-                        <!-- <a href="#" class="blog_item_date">
-                            <h3>15</h3>
-                            <p>Jan</p>
-                        </a> -->
-                    </div>
-                    <div class="blog_details">
-                        <a class="d-inline-block" href="./readBlog.php">
-                            <h2 class="blog-head" style="color: #2d2d2d;">Google inks pact for new 35-storey
-                                office</h2>
-                        </a>
-                        <p>That dominion stars lights dominion divide years for fourth have don't stars is
-                            that
-                            he earth it first without heaven in place seed it second morning saying.</p>
-                        <ul class="blog-info-link">
-                            <li><a href="#"><i class="fa fa-user"></i> Migara Thiyunuwan</a></li>
-
-                        </ul>
-                    </div>
-                </article>
-
-            </div>
-
+            $conn->close();
+            ?>
         </div>
     </div>
 
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+   <!-- Footer Start -->
+   <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
@@ -203,19 +171,19 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Services</h4>
-                    <a class="btn btn-link" href="#">Landscaping</a>
-                    <a class="btn btn-link" href="#">Pruning plants</a>
-                    <a class="btn btn-link" href="#">Urban Gardening</a>
-                    <a class="btn btn-link" href="#">Garden Maintenance</a>
-                    <a class="btn btn-link" href="#">Green Technology</a>
+                    <a class="btn btn-link" href="./plantSuggestion.php">Plant Suggestion</a>
+                    <a class="btn btn-link" href="./Advertistment.php">Advertiesment</a>
+                    <a class="btn btn-link" href="./Selling.php">Shop</a>
+                    <a class="btn btn-link" href="./blog.php">Blog</a>
+
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="#">About Us</a>
-                    <a class="btn btn-link" href="#">Contact Us</a>
-                    <a class="btn btn-link" href="#">Our Services</a>
-                    <a class="btn btn-link" href="#">Terms & Condition</a>
-                    <a class="btn btn-link" href="#">Support</a>
+                    <a class="btn btn-link" href="./AboutUs.php">About Us</a>
+                    <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
+                    <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
+                    <a class="btn btn-link" href="./login.php">Log Out</a>
+                    <a class="btn btn-link" href="./termsAndCondition.php">Terms & Condition</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <img src="../images/logo.png" style="width:220px;height:50px;">

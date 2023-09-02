@@ -237,35 +237,34 @@ session_start();
 
 
 
-                        
-                            <input type="hidden" name="total" value="<?php echo $total ?>" class="form-control">
+            <form action="purchase.php" method="POST">
 
-                            <div class="form-group">
-                                <label>Full Name</label>
-                                <input type="text" name="fullName" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Phone Number</label>
-                                <input type="text" name="phone_no" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Address</label>
-                                <input type="address" name="address" class="form-control">
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="pay_mode" value="COD" id="flexRadioDefault2" checked>
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    Card Payement
-                                </label>
-                            </div>
-                            <br>
-                            <button type="submit" class="btn btn-primary btn-block">Make Purchase</button>
-                        </form>
+  <div class="form-group">
+    <label>Full Name</label>
+    <input type="full_name" name ="full_name" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label>Phone Number</label>
+    <input type="number"  name="phone_no" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label>Address</label>
+    <input type="number" name="address" class="form-control" required >
+  </div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="pay_mode" value="COD" id="flexRadioDefault2" checked>
+  <label class="form-check-label" for="flexRadioDefault2">
+    Cash On Delivery
+  </label>
+</div>
+<br>
+                <button class="btn btn-primary btn-block" name="purchase">Make Purchase</button>
+            </form>
 
-                    <?php
+            <?php
 
-                    }
-                    ?>
+             }
+            ?>
 
                 </div>
 
