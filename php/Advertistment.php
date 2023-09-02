@@ -268,15 +268,10 @@ if (isset($_SESSION["user"])) {
         <a href="./AboutUs.php" class="nav-item nav-link">About</a>
         <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
         <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
-        <!-- <div class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-          <div class="dropdown-menu bg-light m-0">
-            <a href="./user.php" class="dropdown-item">Profile</a>
-            <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
-          </div> -->
-        </div>
+
       </div>
-      <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
+    </div>
+    <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
     </div>
   </nav>
   <!-- Navbar End -->
@@ -331,20 +326,21 @@ if (isset($_SESSION["user"])) {
                 $columnClass = ($photoCount % 3 == 0) ? 'third' : (($photoCount % 2 == 0) ? 'second' : 'first');
 
                 // Generate the HTML code for the photo in the appropriate column
-                echo '<li class="cards_item">';
-                echo '<div class="card">';
-                echo '<div class="card_image">';
-                echo '<img src="' . $photoName . '" alt="t" />';
-                //echo '<span class="card_price"><span>$</span>9</span>'; // Assuming you have a price for the advertisement
-                echo '</div>';
-                echo '<div class="card_content">';
-                echo '<h2 class="card_title">' . $title . '</h2>'; // Replace "Advertisement Title" with the actual title for the advertisement
-                echo '<div class="card_text">';
-                echo '<p>' . $description . '</p>'; // Replace with the actual description for the advertisement
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
-                echo '</li>';
+          ?>
+                <li class="cards_item">
+                  <div class="card">
+                    <div class="card_image">
+                      <img src="<?php echo $photoName; ?>" alt="t" />
+                    </div>
+                    <div class="card_content">
+                      <h2 class="card_title"><?php echo $title; ?></h2>
+                      <div class="card_text">
+                        <p><?php echo nl2br($description); ?></p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+          <?php
 
                 $photoCount++;
               }
@@ -376,66 +372,66 @@ if (isset($_SESSION["user"])) {
       /* Your button styles here */
     }
   </style>
-<!-- Footer Start -->
-<div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Our Office</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Services</h4>
-                    <a class="btn btn-link" href="#">Landscaping</a>
-                    <a class="btn btn-link" href="#">Pruning plants</a>
-                    <a class="btn btn-link" href="#">Urban Gardening</a>
-                    <a class="btn btn-link" href="#">Garden Maintenance</a>
-                    <a class="btn btn-link" href="#">Green Technology</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="#">About Us</a>
-                    <a class="btn btn-link" href="#">Contact Us</a>
-                    <a class="btn btn-link" href="#">Our Services</a>
-                    <a class="btn btn-link" href="#">Terms & Condition</a>
-                    <a class="btn btn-link" href="#">Support</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <img src="../images/logo.png" style="width:220px;height:50px;">
-                </div>
-            </div>
+  <!-- Footer Start -->
+  <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+      <div class="row g-5">
+        <div class="col-lg-3 col-md-6">
+          <h4 class="text-white mb-4">Our Office</h4>
+          <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
+          <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
+          <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
+          <div class="d-flex pt-2">
+            <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
+            <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+            <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-youtube"></i></a>
+            <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
         </div>
-    </div>
-    <!-- Footer End -->
+        <div class="col-lg-3 col-md-6">
+          <h4 class="text-white mb-4">Services</h4>
+          <a class="btn btn-link" href="./plantSuggestion.php">Plant Suggestion</a>
+          <a class="btn btn-link" href="./Advertistment.php">Advertiesment</a>
+          <a class="btn btn-link" href="./Selling.php">Shop</a>
+          <a class="btn btn-link" href="./blog.php">Blog</a>
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
-
-
-    <!-- Copyright Start -->
-    <div class="container-fluid copyright py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="border-bottom" href="index.php">GardenGURU</a>, All Right Reserved.
-                </div>
-
-            </div>
         </div>
+        <div class="col-lg-3 col-md-6">
+          <h4 class="text-white mb-4">Quick Links</h4>
+          <a class="btn btn-link" href="./AboutUs.php">About Us</a>
+          <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
+          <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
+          <a class="btn btn-link" href="./login.php">Log Out</a>
+          <a class="btn btn-link" href="./termsAndCondition.php">Terms & Condition</a>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <img src="../images/logo.png" style="width:220px;height:50px;">
+        </div>
+      </div>
     </div>
-    <!-- Copyright End -->
-    <!-- JavaScript Libraries -->
-    <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="../js/main.js"></script>
+  </div>
+  <!-- Footer End -->
+
+  <!-- Back to Top -->
+  <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+
+
+  <!-- Copyright Start -->
+  <div class="container-fluid copyright py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+          &copy; <a class="border-bottom" href="index.php">GardenGURU</a>, All Right Reserved.
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Copyright End -->
+  <!-- JavaScript Libraries -->
+  <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script src="../js/main.js"></script>
 </body>
 
 </html>

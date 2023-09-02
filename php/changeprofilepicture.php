@@ -109,11 +109,11 @@ if (isset($_POST['submit'])) {
     <!-- Display success message in a pop-up box -->
    
         <?php if (isset($success_message)): 
-            header("Location: ../user.php?success=1");
+            header("Location: ./user.php?success=6");
          endif; ?>
 
         <?php if (isset($error_message)): 
-            header("Location: ../user.php?error=1");
+            header("Location: ./user.php?error=1");
            
         endif; ?>
     

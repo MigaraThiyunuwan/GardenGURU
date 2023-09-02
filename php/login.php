@@ -77,7 +77,18 @@
                         <div class="col-md-8">
                             <div class="mb-4">
                                 <h3>Sign In</h3>
-                                <p class="mb-4">Sign in to your account by entering email and password.</p>
+                                <?php 
+                                    if (isset($_GET['success'])) {
+                                        if($_GET['success'] == 1){
+                                        
+                                            echo "<b><div class='alert alert-success py-2' role='alert'>
+                                            You Have Successfully Registered!
+                                            </div></b>"; 
+                                            
+                                        }
+                                    }
+                                ?>
+                                <p class="mb-4"><b>Sign in to your account by entering email and password.</b></p>
                             </div>
                             <form action="./classes/loginProcess.php" method="post">
                                 <div class="form-group first">
@@ -88,13 +99,13 @@
                                     <!-- <label for="password">Password</label> -->
                                     <input type="password" placeholder="password" class="form-control" name="password" id="password" >
                                 </div>
-                                <div class="d-flex mb-5 align-items-center">
-                                    <!-- <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
+                                <!-- <div class="d-flex mb-5 align-items-center">
+                                     <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
                                         <input type="checkbox" checked="checked" />
                                         <div class="control__indicator"></div>
-                                    </label> -->
+                                    </label> 
                                     <span class="ml-auto" style=""><a href="#" class="forgot-pass">Forgot Password?</a></span>
-                                </div>
+                                </div> -->
 
                                 <!-- <input type="submit" value="Login" class="btn btn-primary my-3 w-100"> -->
 
@@ -141,7 +152,7 @@
                                     if($_GET['error'] == 5){
                                         
                                         echo "<b><div class='alert alert-danger py-2' role='alert'>
-                                        You Need to Login to Your Account to View Advertisements.
+                                        You Need to Login to Your User Account to View Advertisements.
                                         </div></b>"; 
                                     }
                                 } ?>

@@ -5,15 +5,15 @@
 require_once './php/classes/persons.php';
 session_start();
 $user = null;
+$manager = null;
 if (isset($_SESSION["user"])) {
     // User is logged in, retrieve the user object
     $user = $_SESSION["user"];
 } 
-// else {
-   
-//     header("Location: ./php/login.php");
-//     exit();
-// }
+if (isset($_SESSION["manager"])) {
+    $manager = $_SESSION["manager"];
+}
+
 ?>
 
 
@@ -74,21 +74,17 @@ if (isset($_SESSION["user"])) {
                         ?>
                             <a href="./php/user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
                         <?php
-                    }else {
+                    } else if($manager != null){
+                        ?>
+                            <a href="./php/Manager.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                        <?php
+                    } 
+                    else {
                         ?>
                             <a href="./php/login.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Sign In</a>
                         <?php
                     }
                 ?>
-
-                
-                <!-- <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-                    <div class="dropdown-menu bg-light m-0">
-                        <a href="./php/user.php" class="dropdown-item">Profile</a>
-                        <a href="./php/classes/logout.php" class="dropdown-item">Log Out</a>
-                    </div>
-                </div> -->
 
             </div>
 

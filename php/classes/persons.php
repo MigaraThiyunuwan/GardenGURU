@@ -136,7 +136,7 @@ class Manager extends person
 
     public function viewUser()
     {
-        require_once './DbConnector.php';
+        require_once 'DbConnector.php';
         $user_id = $_POST['userID'];
         try {
             $dbcon = new DbConnector();
@@ -156,14 +156,14 @@ class Manager extends person
                 $dbEmail = $row->user_Email;
                 $dbPhoneNo = $row->user_PhoneNo;
                 $dbDistrict = $row->user_District;
-                $dbGender = $row->user_Gender;
+                $dbprofile_picture = $row->profile_picture;
                 $dbid = $row->user_id;
                 $dbaddress = $row->user_address;
             }
            ;
-           $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword,$dbaddress, $dbid, $dbDistrict, $dbPhoneNo);
+           $user = new user ($dbFirstName, $dbLastName, $dbEmail, $dbpassword,$dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbprofile_picture);
             session_start();
-            $_SESSION["user"] = $user;
+            $_SESSION["user1"] = $user;
             header("Location: ../userView.php");
         } catch (PDOException $exc) {
             echo $exc->getMessage();

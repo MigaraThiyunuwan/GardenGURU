@@ -3,16 +3,16 @@
 <?php
 require_once './classes/persons.php';
 session_start();
-if (isset($_SESSION["user"])) {
+if (isset($_SESSION["user1"])) {
   // User is logged in, retrieve the user object
-  $user = $_SESSION["user"];
+  $user = $_SESSION["user1"];
 } else {
   // Redirect the user to login.php if not logged in
   exit();
 }
 ?>
 
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
 <head>
   <meta charset="utf-8">
@@ -47,7 +47,6 @@ if (isset($_SESSION["user"])) {
         <a href="../index.php" class="nav-item nav-link active">Home</a>
         <a href="./plantSuggestion.php" class="nav-item nav-link">Plant Suggestions</a>
         <a href="./Selling.php" class="nav-item nav-link">Shop</a>
-        <!-- <a href="../php/blog.php" class="nav-item nav-link">Blog</a> -->
         <div class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
           <div class="dropdown-menu bg-light m-0">
@@ -68,17 +67,16 @@ if (isset($_SESSION["user"])) {
   <!-- Navbar End -->
 
 
-
   <div class="container">
     <div class="row">
       <div class="col">
         <div class="card">
           <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center">
-              <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+              <img src="<?php echo $user->getPropic() ?>" alt="Admin" class="rounded-circle" width="150">
               <div class="mt-3">
-                <h4><?php echo $user->getFirstName()." ".$user->getLastName() ?></h4><br>
-                
+                <h4><?php echo $user->getFirstName() . " " . $user->getLastName() ?></h4><br>
+
               </div>
             </div>
           </div>
@@ -88,7 +86,6 @@ if (isset($_SESSION["user"])) {
         <div class="col-md-8">
           <div class="card mb-3">
             <div class="card-body">
-
 
               <div class="row">
                 <div class="col-sm-3">
@@ -151,7 +148,7 @@ if (isset($_SESSION["user"])) {
     </div>
     <br><br>
 
-   
+
 
     <div class="row mb-5">
       <div class="col-md-8 col-xl-6 text-center mx-auto">
@@ -168,9 +165,7 @@ if (isset($_SESSION["user"])) {
           </div>
           <div class="service-text rounded p-5">
             <div class="btn-square rounded-circle mx-auto mb-3">
-              <!-- <i class="fa fa-leaf" aria-hidden="true"></i> -->
               <i class="fa fa-newspaper-o fa-2xl" style="color: #256a4f;"></i>
-              <!-- <img class="img-fluid" src="img/icon/icon-3.png" alt="Icon"> -->
             </div>
             <h4 class="mb-3">Advertiesments</h4>
             <p class="mb-4">Now you can put advertiesments to our website.</p>
@@ -211,10 +206,6 @@ if (isset($_SESSION["user"])) {
     </div>
   </div>
 
-
-  <!-- popupr Start -->
-
-
   <!-- Modal Section -->
 
   <div class="bg-modal">
@@ -238,54 +229,45 @@ if (isset($_SESSION["user"])) {
     </div>
   </div>
 
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Our Office</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Services</h4>
+                    <a class="btn btn-link" href="./plantSuggestion.php">Plant Suggestion</a>
+                    <a class="btn btn-link" href="./Advertistment.php">Advertiesment</a>
+                    <a class="btn btn-link" href="./Selling.php">Shop</a>
+                    <a class="btn btn-link" href="./blog.php">Blog</a>
 
-
-
-
-  <!-- popupr Stop -->
-
-
-
-
-  <!-- Footer Start -->
-  <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
-    <div class="container py-5">
-      <div class="row g-5">
-        <div class="col-lg-3 col-md-6">
-          <h4 class="text-white mb-4">Our Office</h4>
-          <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
-          <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
-          <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
-          <div class="d-flex pt-2">
-            <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
-            <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
-            <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-youtube"></i></a>
-            <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-          </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Quick Links</h4>
+                    <a class="btn btn-link" href="./AboutUs.php">About Us</a>
+                    <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
+                    <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
+                    <a class="btn btn-link" href="./login.php">Log Out</a>
+                    <a class="btn btn-link" href="./termsAndCondition.php">Terms & Condition</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <img src="../images/logo.png" style="width:220px;height:50px;">
+                </div>
+            </div>
         </div>
-        <div class="col-lg-3 col-md-6">
-          <h4 class="text-white mb-4">Services</h4>
-          <a class="btn btn-link" href="#">Landscaping</a>
-          <a class="btn btn-link" href="#">Pruning plants</a>
-          <a class="btn btn-link" href="#">Urban Gardening</a>
-          <a class="btn btn-link" href="#">Garden Maintenance</a>
-          <a class="btn btn-link" href="#">Green Technology</a>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <h4 class="text-white mb-4">Quick Links</h4>
-          <a class="btn btn-link" href="#">About Us</a>
-          <a class="btn btn-link" href="#">Contact Us</a>
-          <a class="btn btn-link" href="#">Our Services</a>
-          <a class="btn btn-link" href="#">Terms & Condition</a>
-          <a class="btn btn-link" href="#">Support</a>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <img src="../images/logo.png" style="width:220px;height:50px;">
-        </div>
-      </div>
     </div>
-  </div>
-  <!-- Footer End -->
+    <!-- Footer End -->
   <!-- Back to Top -->
   <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 

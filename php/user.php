@@ -102,13 +102,7 @@ if (isset($_SESSION["user"])) {
         <a href="./AboutUs.php" class="nav-item nav-link">About</a>
         <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
         <a href="./classes/logout.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Log Out</a>
-        <!-- <div class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-          <div class="dropdown-menu bg-light m-0">
-            <a href="./user.php" class="dropdown-item">Profile</a>
-            <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
-          </div>
-        </div> -->
+
       </div>
 
     </div>
@@ -152,6 +146,12 @@ if (isset($_SESSION["user"])) {
 
                     echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
                     Advertiesement Posting Failed!
+                    </div></b>";
+                  }
+                  if ($_GET['success'] == 6) {
+
+                    echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                    Picture Upoload Successfully!
                     </div></b>";
                   }
                 }
@@ -425,43 +425,43 @@ if (isset($_SESSION["user"])) {
 
   <!-- Footer Start -->
   <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
-    <div class="container py-5">
-      <div class="row g-5">
-        <div class="col-lg-3 col-md-6">
-          <h4 class="text-white mb-4">Our Office</h4>
-          <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
-          <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
-          <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
-          <div class="d-flex pt-2">
-            <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
-            <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
-            <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-youtube"></i></a>
-            <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-          </div>
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Our Office</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Services</h4>
+                    <a class="btn btn-link" href="./plantSuggestion.php">Plant Suggestion</a>
+                    <a class="btn btn-link" href="./Advertistment.php">Advertiesment</a>
+                    <a class="btn btn-link" href="./Selling.php">Shop</a>
+                    <a class="btn btn-link" href="./blog.php">Blog</a>
+
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Quick Links</h4>
+                    <a class="btn btn-link" href="./AboutUs.php">About Us</a>
+                    <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
+                    <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
+                    <a class="btn btn-link" href="./login.php">Log Out</a>
+                    <a class="btn btn-link" href="./termsAndCondition.php">Terms & Condition</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <img src="../images/logo.png" style="width:220px;height:50px;">
+                </div>
+            </div>
         </div>
-        <div class="col-lg-3 col-md-6">
-          <h4 class="text-white mb-4">Services</h4>
-          <a class="btn btn-link" href="#">Landscaping</a>
-          <a class="btn btn-link" href="#">Pruning plants</a>
-          <a class="btn btn-link" href="#">Urban Gardening</a>
-          <a class="btn btn-link" href="#">Garden Maintenance</a>
-          <a class="btn btn-link" href="#">Green Technology</a>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <h4 class="text-white mb-4">Quick Links</h4>
-          <a class="btn btn-link" href="#">About Us</a>
-          <a class="btn btn-link" href="#">Contact Us</a>
-          <a class="btn btn-link" href="#">Our Services</a>
-          <a class="btn btn-link" href="#">Terms & Condition</a>
-          <a class="btn btn-link" href="#">Support</a>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <img src="../images/logo.png" style="width:220px;height:50px;">
-        </div>
-      </div>
     </div>
-  </div>
-  <!-- Footer End -->
+    <!-- Footer End -->
   <!-- Back to Top -->
   <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
