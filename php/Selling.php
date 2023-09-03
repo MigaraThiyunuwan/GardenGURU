@@ -38,7 +38,7 @@ if (isset($_SESSION["manager"])) {
 
     <style>
         .page-header {
-            background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/Selling1/wall3.jpeg) center center no-repeat !important;
+            background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/Selling1/download.jpeg) center center no-repeat !important;
             background-size: cover !important;
         }
 
@@ -114,7 +114,7 @@ if (isset($_SESSION["manager"])) {
         <div class="container text-center py-5">
             <h1 class="display-3 text-white mb-4 animated slideInDown">Best Selling</h1>
             <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item">Plants make people happy!</li>
+                <li class="breadcrumb-item">Welcome to our Plant Shop, where you'll find a world of green wonders waiting to transform your space.</li>
             </ol>
         </div>
     </div>

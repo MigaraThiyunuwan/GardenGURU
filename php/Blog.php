@@ -90,7 +90,7 @@ if (isset($_SESSION["manager"])) {
         <div class="container text-center py-5">
             <h1 class="display-3 text-white mb-4 animated slideInDown">Blog</h1>
             <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item">ghjgm f jfty f ftjk fukj fuy</li>
+                <li class="breadcrumb-item">Welcome to our Gardener's Blog, your passport to a world of horticultural wisdom and green inspiration</li>
             </ol>
         </div>
     </div>

@@ -283,9 +283,7 @@ if (isset($_SESSION["user"])) {
     <div class="container text-center py-5">
       <h1 class="display-3 text-white mb-4 animated slideInDown">Advertisement</h1>
       <ol class="breadcrumb justify-content-center mb-0">
-        <li class="breadcrumb-item">Nurture&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Your&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Green&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thumb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          with&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Us!</li>
+        <li class="breadcrumb-item">Introducing our Gardening Business Ads platform, where your green dreams take center stage</li>
       </ol>
     </div>
   </div>
