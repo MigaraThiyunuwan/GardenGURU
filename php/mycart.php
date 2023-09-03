@@ -23,7 +23,7 @@ session_start();
 
     <style>
         .page-header {
-            background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/Selling/wall3.jpeg) center center no-repeat !important;
+            background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/Selling1/wall3.jpeg) center center no-repeat !important;
             background-size: cover !important;
         }
 
@@ -219,56 +219,57 @@ session_start();
                 </table>
             </div>
             <form action="payement.php" method="POST">
-            <div class="col-lg-3">
-                <div class="border bg-light rounded p-4">
-                    <h4>Grand Total: Rs.</h4>
-                    <h5 class="text-right" id="gtotal"> <?php echo  $total ?></h5>
-                    <br>
-                    <?php
+                <div class="col-lg-3">
+                    <div class="border bg-light rounded p-4">
+                        <h4>Grand Total: Rs.</h4>
+                        <h5 class="text-right" id="gtotal"> <?php echo  $total ?></h5>
+                        <br>
+                        <?php
 
-                    if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
-
-
-
-
-
-                    ?>
+                        if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
 
 
 
 
-            <form action="purchase.php" method="POST">
 
-  <div class="form-group">
-    <label>Full Name</label>
-    <input type="full_name" name ="full_name" class="form-control" required>
-  </div>
-  <div class="form-group">
-    <label>Phone Number</label>
-    <input type="number"  name="phone_no" class="form-control" required>
-  </div>
-  <div class="form-group">
-    <label>Address</label>
-    <input type="number" name="address" class="form-control" required >
-  </div>
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="pay_mode" value="COD" id="flexRadioDefault2" checked>
-  <label class="form-check-label" for="flexRadioDefault2">
-    Cash On Delivery
-  </label>
-</div>
-<br>
-                <button class="btn btn-primary btn-block" name="purchase">Make Purchase</button>
-            </form>
+                        ?>
 
-            <?php
 
-             }
-            ?>
+
+
+                            <!-- <form action="purchase.php" method="POST"> -->
+
+                                <div class="form-group">
+                                    <label>Full Name</label>
+                                    <input type="full_name" name="full_name" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone Number</label>
+                                    <input type="number" name="phone_no" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <input type="address" name="address" class="form-control" required>
+                                </div>
+                                <div class="form-check">
+                                    <!-- <input class="form-check-input" type="radio" name="pay_mode" value="COD" id="flexRadioDefault2" checked> -->
+                                    <!-- <label class="form-check-label" for="flexRadioDefault2">
+                                        Cash On Delivery
+                                    </label> -->
+                                </div>
+                                <br>
+                                <input type="hidden" name="total"  value="<?php  echo $total ?>">
+                                <button class="btn btn-primary btn-block" name="purchase">Make Purchase</button>
+                            <!-- </form> -->
+
+                        <?php
+
+                        }
+                        ?>
+
+                    </div>
 
                 </div>
-
-            </div>
         </div>
     </div>
 

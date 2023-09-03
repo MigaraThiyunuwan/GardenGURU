@@ -1,4 +1,11 @@
 <?php
+
+require_once './classes/DbConnector.php';
+
+use classes\DbConnector;
+
+$dbcon = new DbConnector();
+
 require_once './classes/persons.php';
 session_start();
 $user = null;
@@ -6,7 +13,7 @@ $manager = null;
 if (isset($_SESSION["user"])) {
     // User is logged in, retrieve the user object
     $user = $_SESSION["user"];
-} 
+}
 if (isset($_SESSION["manager"])) {
     $manager = $_SESSION["manager"];
 }
@@ -24,13 +31,14 @@ if (isset($_SESSION["manager"])) {
     <meta content="" name="keywords">
     <meta content="" name="description">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/Selling.css" rel="stylesheet">
 
     <style>
         .page-header {
-            background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/Selling/wall3.jpeg) center center no-repeat !important;
+            background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/Selling1/wall3.jpeg) center center no-repeat !important;
             background-size: cover !important;
         }
 
@@ -53,9 +61,8 @@ if (isset($_SESSION["manager"])) {
 
     ?>
 
-
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <img src="../images/logo.png" style="width:220px;height:50px;">
             <!-- <h1 class="m-0">Garden<B>GURU</B></h1> -->
@@ -113,22 +120,9 @@ if (isset($_SESSION["manager"])) {
     </div>
     <!-- Page Header End -->
 
-    <!--Banner Section-->
 
-    <section class="banner">
-        <div class="banner-img">
-            <img src="../images/Selling/dis1.jpeg">
-        </div>
-        <div class="banner-img">
-            <img src="../images/Selling/img1.jpg">
-        </div>
-        <div class="banner-img">
-            <img src="../images/Selling/sale2.jpeg">
-        </div>
 
-    </section>
 
-    
     <div class="top-right-container">
         <?php
         $count = 0;
@@ -140,11 +134,13 @@ if (isset($_SESSION["manager"])) {
         <a href="mycart.php" class="btn btn-success">My Cart (<?php echo $count; ?>)</a>
     </div>
 
-    <div class="plant-container">
+    <!-- <div class="plant-container">
+
+
         <div class="plant">
 
 
-            <img src="../images/Selling/veg1.jpeg" alt="Plant 1">
+            <img src="../images/Selling1/veg1.jpeg" alt="Plant 1">
             <form action="manage_cart.php" method="POST">
                 <div class="plant-info">
                     <h3>Tomato</h3>
@@ -157,7 +153,7 @@ if (isset($_SESSION["manager"])) {
             </form>
         </div>
         <div class="plant">
-            <img src="../images/Selling/flower12.jpeg" alt="Plant 2">
+            <img src="../images/Selling1/flower12.jpeg" alt="Plant 2">
             <form action="manage_cart.php" method="POST">
                 <div class="plant-info">
                     <h3>Impatiens</h3>
@@ -170,7 +166,7 @@ if (isset($_SESSION["manager"])) {
         </div>
 
         <div class="plant">
-            <img src="../images/Selling/grapes.jpeg" alt="Plant 3">
+            <img src="../images/Selling1/grapes.jpeg" alt="Plant 3">
             <form action="manage_cart.php" method="POST">
                 <div class="plant-info">
                     <h3>Grapes</h3>
@@ -182,195 +178,265 @@ if (isset($_SESSION["manager"])) {
             </form>
         </div>
 
+    </div> -->
+
+
+
+    <div class="container">
+        <div class="row">
+
+
+
+
+            <?php
+            try {
+                $con = $dbcon->getConnection();
+
+                // Pagination logic
+                $start = isset($_GET['start']) ? intval($_GET['start']) : 0;
+                $rows_per_page = 10;
+
+                $query = "SELECT * FROM shop LIMIT $start, $rows_per_page";
+                $pstmt = $con->prepare($query);
+                $pstmt->execute();
+                $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                foreach ($rs as $item) {
+                    // Display user details as before
+            ?>
+
+
+
+
+                    <div class="col-xs-12 col-md-6 bootstrap snippets bootdeys">
+                        <!-- product -->
+                        <div class="product-content product-wrap clearfix">
+                            <div class="row">
+                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                    <div class="product-image">
+                                        <img src="<?php echo $item->ItemImage;  ?>" alt="194x228" class="img-responsive" style="max-height: 228px;">
+                                        <!-- <span class="tag2 hot">
+                                    HOT
+                                </span> -->
+                                    </div>
+                                </div>
+                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                    <div class="product-deatil">
+                                        <h5 class="name">
+                                            <a>
+                                                <h4><?php echo $item->ItemName;  ?></h4>
+                                            </a>
+                                        </h5>
+                                        <p class="price-container">
+                                            <span> <?php echo "Rs." . $item->ItemPrice . ".00" ?> </span>
+                                        </p>
+                                        <span class="tag1"></span>
+                                    </div>
+                                    <div class="description">
+                                        <p>Proin in ullamcorper lorem. Maecenas eu ipsum </p>
+                                    </div>
+                                    <div class="product-info smart-form">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <form action="manage_cart.php" method="POST">
+                                                    <!-- <a href="javascript:void(0);" class="btn btn-success">Add to cart</a> -->
+                                                    <input type="hidden" name="Item_Name" value="<?php echo $item->ItemName; ?>">
+                                                    <input type="hidden" name="price" value="<?php echo $item->ItemPrice; ?>">
+
+                                                    <?php  
+                                                        if($item->ItemQuantity <1){
+                                                            ?>
+                                                    <button type="submit" class="btn btn-success" name="Add_To_Cart" disabled>Add to Cart</button>
+                                                            <?php
+                                                        }else{
+                                                            ?>
+                                                    <button type="submit" class="btn btn-success" name="Add_To_Cart">Add to Cart</button>
+                                                            <?php
+                                                        }
+                                                    ?>
+
+
+
+                                                    
+                                                </form>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+
+                                                <?php if ($item->ItemQuantity < 1) {
+                                                ?>
+
+                                                    <b>
+                                                        <div style="color: red;" role='alert'>
+                                                            Out of Stock!
+                                                        </div>
+                                                    </b>
+
+                                                <?php
+                                                }
+                                                ?>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end product -->
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <?php
+                }
+                // Calculate the total number of rows in the 'users' table (if not already calculated)
+                if (!isset($total_rows)) {
+                    $total_rows_query = "SELECT COUNT(*) as total FROM shop";
+                    $total_rows_stmt = $con->prepare($total_rows_query);
+                    $total_rows_stmt->execute();
+                    $total_rows_result = $total_rows_stmt->fetch(PDO::FETCH_ASSOC);
+                    $total_rows = $total_rows_result['total'];
+                }
+
+                // Calculate the total number of pages
+                $pages = ceil($total_rows / $rows_per_page);
+            } catch (PDOException $exc) {
+                echo $exc->getMessage();
+            }
+            ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="row">
+                <div class="col-md-6 align-self-center">
+                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">
+                        Showing <?php echo min($total_rows, $start + 1) . ' to ' . min($total_rows, $start + $rows_per_page); ?> of <?php echo $total_rows; ?>
+                    </p>
+                </div>
+
+                <div class="col-md-6">
+                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                        <ul class="pagination">
+                            <?php
+                            if ($start > 0) {
+                                echo '<li class="page-item"><a class="page-link" href="?start=' . ($start - $rows_per_page) . '">Previous</a></li>';
+                            } else {
+                                echo '<li class="page-item disabled"><span class="page-link">Previous</span></li>';
+                            }
+
+                            for ($i = 1; $i <= $pages; $i++) {
+                                echo '<li class="page-item' . (($start / $rows_per_page + 1) == $i ? ' active' : '') . '"><a class="page-link" href="?start=' . (($i - 1) * $rows_per_page) . '">' . $i . '</a></li>';
+                            }
+
+                            if ($start < ($pages - 1) * $rows_per_page) {
+                                echo '<li class="page-item"><a class="page-link" href="?start=' . ($start + $rows_per_page) . '">Next</a></li>';
+                            } else {
+                                echo '<li class="page-item disabled"><span class="page-link">Next</span></li>';
+                            }
+                            ?>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
     </div>
-    </div>
-
-
-    <div class="plant-container">
-        <div class="plant">
-            <img src="../images/Selling/cab12.jpeg" alt="Plant 1">
-            <form action="manage_cart.php" method="POST">
-                <div class="plant-info">
-                    <h3>Cabbage</h3>
-                    <p>$20.00</p>
-                    <button type="submit" name="Add_To_Cart">Add to Cart</button>
-                    <input type="hidden" name="Item_Name" value="Cabbage">
-                    <input type="hidden" name="price" value="20.00">
-                </div>
-            </form>
-        </div>
-
-        <div class="plant">
-            <img src="../images/Selling/flower45.jpeg" alt="Plant 2">
-            <form action="manage_cart.php" method="POST">
-                <div class="plant-info">
-                    <h3>Rose</h3>
-                    <p>$25.00</p>
-                    <button type="submit" name="Add_To_Cart">Add to Cart</button>
-                    <input type="hidden" name="Item_Name" value="Rose">
-                    <input type="hidden" name="price" value="25.00">
-                </div>
-            </form>
-
-        </div>
-
-        <div class="plant">
-            <img src="../images/Selling/prom.jpeg" alt="Plant 3">
-            <form action="manage_cart.php" method="POST">
-                <div class="plant-info">
-                    <h3>promegranate</h3>
-                    <p>$18.00</p>
-                    <button type="submit" name="Add_To_Cart">Add to Cart</button>
-                    <input type="hidden" name="Item_Name" value="Promogranate">
-                    <input type="hidden" name="price" value="18.00">
-                </div>
-            </form>
-        </div>
-
-    </div>
-    </div>
-
-    <div class="plant-container">
-        <div class="plant">
-            <img src="../images/Selling/redp2.jpeg" alt="Plant 1">
-            <form action="manage_cart.php" method="POST">
-                <div class="plant-info">
-                    <h3>Red Chillie</h3>
-                    <p>$20.00</p>
-                    <button type="submit" name="Add_To_Cart">Add to Cart</button>
-                    <input type="hidden" name="Item_Name" value="Red Chillie">
-                    <input type="hidden" name="price" value="20.00">
-                </div>
-            </form>
-        </div>
-        <div class="plant">
-            <img src="../images/Selling/lily3.jpeg" alt="Plant 2">
-            <form action="manage_cart.php" method="POST">
-                <div class="plant-info">
-                    <h3>Lilly</h3>
-                    <p>$25.00</p>
-                    <button type="submit" name="Add_To_Cart">Add to Cart</button>
-                    <input type="hidden" name="Item_Name" value="Lilly">
-                    <input type="hidden" name="price" value="25.00">
-                </div>
-            </form>
-
-        </div>
-        <div class="plant">
-            <img src="../images/Selling/mango.jpeg" alt="Plant 3">
-            <form action="manage_cart.php" method="POST">
-                <div class="plant-info">
-                    <h3>Mango</h3>
-                    <p>$18.00</p>
-                    <button type="submit" name="Add_To_Cart">Add to Cart</button>
-                    <input type="hidden" name="Item_Name" value="Mango">
-                    <input type="hidden" name="price" value="18.00">
-                </div>
-            </form>
-        </div>
-
-    </div>
-    </div>
 
 
 
-    <!--Banner2 Section-->
-
-    <section class="banner1">
-        <div class="banner1-img">
-            <img src="../images/Selling/plant6.jpeg">
-        </div>
 
 
 
-    </section>
 
-    <!---top products-->
-    <div class="center-text">
-        <h1>Top Products</h1>
-    </div>
 
-    <div class="plant-container">
-        <div class="plant">
-            <img src="../images/Selling/purple1.jpeg" alt="Plant 1">
-            <form action="manage_cart.php" method="POST">
-                <div class="plant-info">
-                    <h3>Verbina</h3>
-                    <p>$20.00</p>
-                    <button type="submit" name="Add_To_Cart">Add to Cart</button>
-                    <input type="hidden" name="Item_Name" value="Verbina">
-                    <input type="hidden" name="price" value="20.00">
-                </div>
-            </form>
-        </div>
-        <div class="plant">
-            <img src="../images/Selling/rose.jpeg" alt="Plant 2">
-            <form action="manage_cart.php" method="POST">
-                <div class="plant-info">
-                    <h3>Rose</h3>
-                    <p>$25.00</p>
-                    <button type="submit" name="Add_To_Cart">Add to Cart</button>
-                    <input type="hidden" name="Item_Name" value="Rose">
-                    <input type="hidden" name="price" value="25.00">
-                </div>
-            </form>
-        </div>
-        <div class="plant">
-            <img src="../images/Selling/wh2.jpeg" alt="Plant 3">
-            <form action="manage_cart.php" method="POST">
-                <div class="plant-info">
-                    <h3>Sun flower</h3>
-                    <p>$18.00</p>
-                    <button type="submit" name="Add_To_Cart">Add to Cart</button>
-                    <input type="hidden" name="Item_Name" value="Sun Flower">
-                    <input type="hidden" name="price" value="18.00">
-                </div>
-            </form>
-        </div>
 
-    </div>
-    </div>
 
-    <div class="plant-container">
-        <div class="plant">
-            <img src="../images/Selling/brin1.jpeg" alt="Plant 1">
-            <form action="manage_cart.php" method="POST">
-                <div class="plant-info">
-                    <h3>Brinjole</h3>
-                    <p>$20.00</p>
-                    <button type="submit" name="Add_To_Cart">Add to Cart</button>
-                    <input type="hidden" name="Item_Name" value="Brinjole">
-                    <input type="hidden" name="price" value="20.00">
-                </div>
-            </form>
-        </div>
-        <div class="plant">
-            <img src="../images/Selling/grapes.jpeg" alt="Plant 2">
-            <form action="manage_cart.php" method="POST">
-                <div class="plant-info">
-                    <h3>Grapes</h3>
-                    <p>$25.00</p>
-                    <button type="submit" name="Add_To_Cart">Add to Cart</button>
-                    <input type="hidden" name="Item_Name" value="Grapes">
-                    <input type="hidden" name="price" value="25.00">
-                </div>
-            </form>
-        </div>
-        <div class="plant">
-            <img src="../images/Selling/corn.jpeg" alt="Plant 3">
-            <form action="manage_cart.php" method="POST">
-                <div class="plant-info">
-                    <h3>Corn</h3>
-                    <p>$18.00</p>
-                    <button type="submit" name="Add_To_Cart">Add to Cart</button>
-                    <input type="hidden" name="Item_Name" value="Corn">
-                    <input type="hidden" name="price" value="18.00">
-                </div>
-            </form>
-        </div>
 
-    </div>
-    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <!--new products section-->
@@ -491,7 +557,7 @@ if (isset($_SESSION["manager"])) {
     </section>
 
     <!-- Footer Start -->
-   <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
