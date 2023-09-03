@@ -106,7 +106,7 @@ if (isset($_SESSION["manager"])) {
         <div class="container text-center py-5">
             <h1 class="display-3 text-white mb-4 animated slideInDown">Contact Us</h1>
             <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item">Nurture&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Your&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Green&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thumb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; with&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Us!</li>
+                <li class="breadcrumb-item">Nurture Your Green Thumb with Us!</li>
             </ol>
         </div>
     </div>
