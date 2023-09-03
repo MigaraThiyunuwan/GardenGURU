@@ -206,7 +206,7 @@ if (isset($_SESSION["manager"])) {
                             </div>
                             <h4 class="mb-3">Plant Suggestion</h4>
                             <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                            <a class="btn btn-sm" href="#"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
+                            <a class="btn btn-sm" href="./php/plantSuggestion.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>
                 </div>
@@ -221,7 +221,7 @@ if (isset($_SESSION["manager"])) {
                             </div>
                             <h4 class="mb-3">News Feed</h4>
                             <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                            <a class="btn btn-sm" href="#"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
+                            <a class="btn btn-sm" href="./php/newsfeed.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>
                 </div>
@@ -236,7 +236,7 @@ if (isset($_SESSION["manager"])) {
                             </div>
                             <h4 class="mb-3">Communication Forum</h4>
                             <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                            <a class="btn btn-sm" href="#"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
+                            <a class="btn btn-sm" href="./php/comForum.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>
                 </div>
@@ -251,7 +251,7 @@ if (isset($_SESSION["manager"])) {
                             </div>
                             <h4 class="mb-3">Advertiesment</h4>
                             <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                            <a class="btn btn-sm" href="../GardenGURU/php/Advertistment.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
+                            <a class="btn btn-sm" href="./php/Advertistment.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>
                 </div>
@@ -266,7 +266,7 @@ if (isset($_SESSION["manager"])) {
                             </div>
                             <h4 class="mb-3">Plant Selling</h4>
                             <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                            <a class="btn btn-sm" href="#"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
+                            <a class="btn btn-sm" href="./php/Selling.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>
                 </div>

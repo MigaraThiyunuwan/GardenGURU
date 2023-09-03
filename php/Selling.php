@@ -17,6 +17,7 @@ if (isset($_SESSION["user"])) {
 if (isset($_SESSION["manager"])) {
     $manager = $_SESSION["manager"];
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,12 +58,19 @@ if (isset($_SESSION["manager"])) {
 </head>
 
 <body>
+
+
     <?php
-
+    $count = 0;
+    if (isset($_SESSION['cart'])) {
+        $count = count($_SESSION['cart']);
+    }
+    if (isset($_SESSION['cartTemp'])) {
+        $count = count($_SESSION['cartTemp']);
+    }
     ?>
-
-<!-- Navbar Start -->
-<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <img src="../images/logo.png" style="width:220px;height:50px;">
             <!-- <h1 class="m-0">Garden<B>GURU</B></h1> -->
@@ -88,6 +96,20 @@ if (isset($_SESSION["manager"])) {
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
+                <?php
+                if (isset($_SESSION['cart'])) {
+                ?>
+                    <a href="mycart.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Cart (<?php echo $count - 1; ?>)</a>
+                <?php
+                } else {
+                ?>
+                    <a href="mycart.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Cart (<?php echo $count; ?>)</a>
+                <?php
+                }
+                ?>
+
+
+
                 <?php
                 if ($user != null) {
                 ?>
@@ -119,70 +141,34 @@ if (isset($_SESSION["manager"])) {
         </div>
     </div>
     <!-- Page Header End -->
+    <!-- <div class="top-right-container"> -->
 
 
 
-
-    <div class="top-right-container">
-        <?php
-        $count = 0;
-        if (isset($_SESSION['cart'])) {
-            $count = count($_SESSION['cart']);
-        }
-        ?>
-
-        <a href="mycart.php" class="btn btn-success">My Cart (<?php echo $count; ?>)</a>
-    </div>
-
-    <!-- <div class="plant-container">
-
-
-        <div class="plant">
-
-
-            <img src="../images/Selling1/veg1.jpeg" alt="Plant 1">
-            <form action="manage_cart.php" method="POST">
-                <div class="plant-info">
-                    <h3>Tomato</h3>
-                    <p>Rs.20.00</p>
-                    <button type="submit" name="Add_To_Cart">Add to Cart</button>
-                    <input type="hidden" name="Item_Name" value="Tomato">
-                    <input type="hidden" name="price" value="20.00">
-
-                </div>
-            </form>
-        </div>
-        <div class="plant">
-            <img src="../images/Selling1/flower12.jpeg" alt="Plant 2">
-            <form action="manage_cart.php" method="POST">
-                <div class="plant-info">
-                    <h3>Impatiens</h3>
-                    <p>Rs.25.00</p>
-                    <button type="submit" name="Add_To_Cart">Add to Cart</button>
-                    <input type="hidden" name="Item_Name" value="Impatiens">
-                    <input type="hidden" name="price" value="25.00">
-                </div>
-            </form>
-        </div>
-
-        <div class="plant">
-            <img src="../images/Selling1/grapes.jpeg" alt="Plant 3">
-            <form action="manage_cart.php" method="POST">
-                <div class="plant-info">
-                    <h3>Grapes</h3>
-                    <p>$18.00</p>
-                    <button type="submit" name="Add_To_Cart">Add to Cart</button>
-                    <input type="hidden" name="Item_Name" value="Grapes">
-                    <input type="hidden" name="price" value="18.00">
-                </div>
-            </form>
-        </div>
-
-    </div> -->
-
-
+    <!-- </div> -->
 
     <div class="container">
+        <?php
+        if (isset($_GET['success'])) {
+            if ($_GET['success'] == 1) {
+
+                echo "<b><div class='alert alert-success py-2' role='alert'>
+                                        Item Added!
+                                        </div></b>";
+            }
+        }
+
+        if (isset($_GET['error'])) {
+            if ($_GET['error'] == 1) {
+
+                echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        Item Already Added!
+                                        </div></b>";
+            }
+        }
+
+
+        ?>
         <div class="row">
 
 
@@ -202,13 +188,11 @@ if (isset($_SESSION["manager"])) {
                 $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
 
                 foreach ($rs as $item) {
-                    // Display user details as before
+
             ?>
 
-
-
-
                     <div class="col-xs-12 col-md-6 bootstrap snippets bootdeys">
+
                         <!-- product -->
                         <div class="product-content product-wrap clearfix">
                             <div class="row">
@@ -238,26 +222,38 @@ if (isset($_SESSION["manager"])) {
                                     <div class="product-info smart-form">
                                         <div class="row">
                                             <div class="col-md-6 col-sm-6 col-xs-6">
+                                                
+                                                <a href="./mycart.php">
+                                                    <div class="icon-container">
+                                                        
+                                                        <i class="fa fa-shopping-cart cart-icon" style="position: absolute; top: 10px; right: 10px; font-size: 24px; margin: 10px;"></i> <!-- Font Awesome icon -->
+                                                    </div>
+                                                </a>
+
+
                                                 <form action="manage_cart.php" method="POST">
+
+
+
                                                     <!-- <a href="javascript:void(0);" class="btn btn-success">Add to cart</a> -->
                                                     <input type="hidden" name="Item_Name" value="<?php echo $item->ItemName; ?>">
                                                     <input type="hidden" name="price" value="<?php echo $item->ItemPrice; ?>">
 
-                                                    <?php  
-                                                        if($item->ItemQuantity <1){
-                                                            ?>
-                                                    <button type="submit" class="btn btn-success" name="Add_To_Cart" disabled>Add to Cart</button>
-                                                            <?php
-                                                        }else{
-                                                            ?>
-                                                    <button type="submit" class="btn btn-success" name="Add_To_Cart">Add to Cart</button>
-                                                            <?php
-                                                        }
+                                                    <?php
+                                                    if ($item->ItemQuantity < 1) {
+                                                    ?>
+                                                        <button type="submit" class="btn btn-success" name="Add_To_Cart" disabled>Add to Cart</button>
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <button type="submit" class="btn btn-success" name="Add_To_Cart">Add to Cart</button>
+                                                    <?php
+                                                    }
                                                     ?>
 
 
 
-                                                    
+
                                                 </form>
                                             </div>
                                             <div class="col-md-6 col-sm-6 col-xs-6">
@@ -286,31 +282,6 @@ if (isset($_SESSION["manager"])) {
                         <!-- end product -->
                     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <?php
                 }
                 // Calculate the total number of rows in the 'users' table (if not already calculated)
@@ -329,32 +300,12 @@ if (isset($_SESSION["manager"])) {
             }
             ?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <div class="row">
                 <div class="col-md-6 align-self-center">
                     <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">
                         Showing <?php echo min($total_rows, $start + 1) . ' to ' . min($total_rows, $start + $rows_per_page); ?> of <?php echo $total_rows; ?>
                     </p>
+
                 </div>
 
                 <div class="col-md-6">
@@ -381,174 +332,8 @@ if (isset($_SESSION["manager"])) {
                     </nav>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!--new products section-->
-    <!----new product section -->
-    <!-----
-    <section class="new product">
-        <div class="center-text">
-          <h1>Top Products</h1>
-            </div>
-
-                <div class="new-content">
-                    <div class="row">
-                        <img src="../images/Selling/veg1.jpeg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-
-
-                     <div class="row">
-                        <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-
-
-
-                     <div class="row">
-                        <img src="../images/Selling/grapes.jpeg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?cs=srgb&dl=pexels-secret-garden-931162.jpg&fm=jpg">
-                        <h4>Tomato Plant</h4>
-                        <h5>Rs.300</h5>
-                        <div class="top">
-                            <p>Hot</p>
-                        </div>
-                        <div class="bbtn">
-                            <a href="#">Add to cart</a>
-                        </div>
-                    </div>
-
-                    ------->
-
-    <!--blog section
-
-        <section class="blog">
-            <div class="center-text">
-                <h2>Latest News</h2>
-                
-            </div>
-
-            <div class="blog-content">
-                <div class="main-box">
-                    <div class="box-img">
-                        <img src="../images/Selling/plant11.jpeg">
-                        
-                    </div>
-                    <div class="in-bxx">
-                        <div class="in-text">
-                            <p>Dec 02,2022</p>
-                        </div>
-                        <div class="in-icon">
-                            <a href="#"><i class='bx bx-message-rounded'></i></a>
-                        </div>
-                        
-                    </div>
-                    <h3>the best way to sell plants by online website</h3>
-                </div>
-
-                
-                <div class="blog-content">
-                <div class="main-box">
-                    <div class="box-img">
-                        <img src="../images/Selling/plant10.jpeg">
-                        
-                    </div>
-                    <div class="in-bxx">
-                        <div class="in-text">
-                            <p>Dec 02,2022</p>
-                        </div>
-                        <div class="in-icon">
-                            <a href="#"><i class='bx bx-message-rounded'></i></a>
-                        </div>
-                        
-                    </div>
-                    <h3>the best way to sell plants by online website</h3>
-                </div>
-
-
----------->
-
 
     </div>
 
@@ -614,7 +399,9 @@ if (isset($_SESSION["manager"])) {
     <!-- Copyright End -->
 
 
-
+    <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
 
 </body>
 
