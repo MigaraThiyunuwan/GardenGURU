@@ -37,7 +37,8 @@ if (isset($_SESSION["user"])) {
 
   <!-- Template Stylesheet -->
   <link href="../css/style.css" rel="stylesheet">
-  <link href="../css/Advertistment.css" rel="stylesheet">
+ 
+  <link href="../css/Advertistment1.css" rel="stylesheet">
 
   <style>
     .page-header {
@@ -46,194 +47,6 @@ if (isset($_SESSION["user"])) {
     }
 
 
-
-    .portfolio-inner {
-      position: relative;
-    }
-
-    .portfolio-text {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 5px;
-    }
-
-    .portfolio-text a {
-      color: #fff;
-      text-decoration: none;
-      margin-right: 5px;
-    }
-
-    .portfolio-text a:hover {
-      color: #ffcc00;
-    }
-
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .gallery img {
-      max-width: 400px;
-      max-height: 400px;
-      object-fit: cover;
-    }
-
-
-
-
-    body {
-      font-family: "Oxygen", sans-serif;
-      color: #050505;
-    }
-
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-    }
-
-    .main {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .cards {
-      display: flex;
-      flex-wrap: wrap;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .cards_item {
-      display: flex;
-      padding: 1rem;
-    }
-
-    .card_image {
-      position: relative;
-      max-height: 250px;
-    }
-
-    .card_image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .card_price {
-      position: absolute;
-      bottom: 8px;
-      right: 8px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 45px;
-      height: 45px;
-      border-radius: 0.25rem;
-      background-color: #008000;
-      font-size: 18px;
-      font-weight: 700;
-    }
-
-    .card_price span {
-      font-size: 12px;
-      margin-top: -2px;
-    }
-
-    .note {
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      padding: 4px 8px;
-      border-radius: 0.25rem;
-      background-color: #008000;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    @media (min-width: 40rem) {
-      .cards_item {
-        width: 50%;
-      }
-    }
-
-    @media (min-width: 56rem) {
-      .cards_item {
-        width: 33.3333%;
-      }
-    }
-
-    .card {
-      background-color: white;
-      border-radius: 0.25rem;
-      box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    .card_content {
-      position: relative;
-      padding: 16px 12px 32px 24px;
-      margin: 16px 8px 8px 0;
-      max-height: 290px;
-      overflow-y: scroll;
-    }
-
-    .card_content::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    .card_content::-webkit-scrollbar-track {
-      box-shadow: 0;
-      border-radius: 0;
-    }
-
-    .card_content::-webkit-scrollbar-thumb {
-      background: #008000;
-      border-radius: 15px;
-    }
-
-    .card_title {
-      position: relative;
-      margin: 0 0 24px;
-      padding-bottom: 10px;
-      text-align: center;
-      font-size: 20px;
-      font-weight: 700;
-    }
-
-    .card_title::after {
-      position: absolute;
-      display: block;
-      width: 50px;
-      height: 2px;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #008000;
-      content: "";
-    }
-
-    hr {
-      margin: 24px auto;
-      width: 50px;
-      border-top: 2px solid #008000;
-    }
-
-    .card_text p {
-      margin: 0 0 24px;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .card_text p:last-child {
-      margin: 0;
-    }
   </style>
 </head>
 
@@ -296,6 +109,12 @@ if (isset($_SESSION["user"])) {
     </div>
 
 
+
+
+
+
+
+
     <!-- newly added advertiesments -->
     <!-- Projects Start -->
     <div class="container-xxl py-5">
@@ -304,44 +123,75 @@ if (isset($_SESSION["user"])) {
           <?php
 
           // Retrieve all uploaded photos from the database
-          $sql = "SELECT image1_filename ,title,  description FROM advertisements ORDER BY id DESC";
+          $sql = "SELECT image1_filename ,title,  description, user_FirstName, user_LastName FROM advertisements ORDER BY id DESC";
           try {
 
             $stmt = $dbcon->query($sql);
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if ($stmt->rowCount() > 0) {
               $photoCount = 1;
-              foreach ($result as $row) {
-                $photoName = $row["image1_filename"];
-                // $photoPath = "../images/Adevertistment/$photoName";
-                //$descriptionName = $row["image2_filename"];
-                //  $descriptionPath = "../images/Adevertistment/$descriptionName"; // Replace with the correct path to the corresponding description file
-
-                $description = $row["description"];
-                $title = $row["title"];
-
-                // Determine the appropriate column class for each photo
-                $columnClass = ($photoCount % 3 == 0) ? 'third' : (($photoCount % 2 == 0) ? 'second' : 'first');
-
-                // Generate the HTML code for the photo in the appropriate column
           ?>
-                <li class="cards_item">
-                  <div class="card">
-                    <div class="card_image">
-                      <img src="<?php echo $photoName; ?>" alt="t" />
-                    </div>
-                    <div class="card_content">
-                      <h2 class="card_title"><?php echo $title; ?></h2>
-                      <div class="card_text">
-                        <p><?php echo nl2br($description); ?></p>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-          <?php
+              <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+              <div class="container">
+                <div class="shop-default shop-cards shop-tech" >
+                  <div class="row">
 
-                $photoCount++;
-              }
+                    <?php
+                    foreach ($result as $row) {
+                      $photoName = $row["image1_filename"];
+                      $title = $row["title"];
+                      $description = $row["description"];
+                      $fname = $row["user_FirstName"];
+                      $lname = $row["user_LastName"];
+
+                      
+                    ?>
+                      <div class="col-md-6" style="margin-bottom: 25px;">
+                        <div class="block product no-border z-depth-2-top z-depth-2--hover">
+                          <div class="block-image">
+                            <a>
+                              <img src="<?php echo $photoName  ?> " class="img-center" style="height: 400px; width: 625px;">
+                            </a>
+                           
+                          </div>
+                          <div class="block-body text-center">
+                            <h3 class="heading heading-5 strong-600 text-capitalize">
+                              <a >
+                              <?php echo $title  ?> 
+                              </a>
+                            </h3>
+                            <p class="product-description">
+                              <?php echo nl2br($description); ?>
+                            </p>
+                            
+                            <div class="product-buttons mt-4">
+                              <div class="row ">
+                                <div class="col-6">
+                                  
+                                  <i class="fa fa-user"> </i> Posted by: <?php echo $fname ." ". $lname ?>
+                                  
+                                </div>
+                                
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+
+
+
+                    <?php
+                    }
+                    ?>
+                  </div>
+                </div>
+              </div>
+
+
+
+          <?php
             } else {
               echo "No photos uploaded yet.";
             }

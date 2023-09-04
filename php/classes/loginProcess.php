@@ -5,14 +5,32 @@ require_once './persons.php';
 use classes\DbConnector;
 
 $dbcon = new DbConnector();
+
+function validateAndSanitizeInput($input)
+{
+    // Remove leading and trailing whitespace
+    $input = trim($input);
+
+    // Remove backslashes
+    $input = stripslashes($input);
+
+    // Remove HTML tags
+    $input = strip_tags($input);
+
+    // Convert special characters to HTML entities (prevent XSS)
+    $input = htmlspecialchars($input);
+
+    return $input;
+}
 ?>
+
 
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $email = $_POST["email"];
+    $email = validateAndSanitizeInput($_POST["email"]);
 
-    $password = $_POST["password"];
+    $password = validateAndSanitizeInput($_POST["password"]);
 
 
 

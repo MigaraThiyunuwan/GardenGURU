@@ -217,7 +217,7 @@ if (isset($_SESSION["manager"])) {
                                         <span class="tag1"></span>
                                     </div>
                                     <div class="description">
-                                        <p>Proin in ullamcorper lorem. Maecenas eu ipsum </p>
+                                        <p>Sunlight fuels life, beauty, oxygen, and nourishment</p>
                                     </div>
                                     <div class="product-info smart-form">
                                         <div class="row">
@@ -340,9 +340,8 @@ if (isset($_SESSION["manager"])) {
 
 
     </section>
-
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+  <!-- Footer Start -->
+  <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">

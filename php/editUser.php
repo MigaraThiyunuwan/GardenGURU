@@ -175,9 +175,9 @@ if (isset($_SESSION["user"])) {
     <form action="changeprofilepicture.php" method="post" enctype="multipart/form-data">
         <!-- <input type="text" name="name" placeholder="Name" values="$name">
         <input type="email" name="email" placeholder="E-Mail" values="$email"> -->
-        <label for="profile_picture">Select Image for Profile Picture</label>
-        <input type="file" name="profile_picture" id="profile_picture" values="">
-        <input type="submit" name="submit" value="Submit" values="">
+        <label for="profile_picture"><b>Select Image for Profile Picture</b></label>
+        <input type="file" class="form-control" name="profile_picture" id="profile_picture" values="">
+        <input type="submit" class="btn btn-success" name="submit" value="Submit" values="">
     </form>
 
   

@@ -9,7 +9,7 @@ $manager = null;
 if (isset($_SESSION["user"])) {
     // User is logged in, retrieve the user object
     $user = $_SESSION["user"];
-} 
+}
 if (isset($_SESSION["manager"])) {
     $manager = $_SESSION["manager"];
 }
@@ -45,7 +45,7 @@ if (isset($_SESSION["manager"])) {
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <img src="images/logo.png" style="width:220px;height:50px;">
-            
+
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -69,21 +69,20 @@ if (isset($_SESSION["manager"])) {
                 </div>
                 <a href="./php/AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./php/ContactUs.php" class="nav-item nav-link">Contact</a>
-                <?php 
-                    if ($user != null){
-                        ?>
-                            <a href="./php/user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
-                        <?php
-                    } else if($manager != null){
-                        ?>
-                            <a href="./php/Manager.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
-                        <?php
-                    } 
-                    else {
-                        ?>
-                            <a href="./php/login.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Sign In</a>
-                        <?php
-                    }
+                <?php
+                if ($user != null) {
+                ?>
+                    <a href="./php/user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else if ($manager != null) {
+                ?>
+                    <a href="./php/Manager.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else {
+                ?>
+                    <a href="./php/login.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Sign In</a>
+                <?php
+                }
                 ?>
 
             </div>
@@ -171,7 +170,7 @@ if (isset($_SESSION["manager"])) {
                     <div class="bg-white shadow d-flex align-items-center h-100 px-5" style="min-height: 160px;">
                         <div class="d-flex">
                             <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                            <i class="fa fa-solid fa-rectangle-ad text-primary"></i>
+                                <i class="fa fa-solid fa-rectangle-ad text-primary"></i>
                             </div>
                             <div class="ps-3">
                                 <h4>Advertiesment</h4>
@@ -201,12 +200,12 @@ if (isset($_SESSION["manager"])) {
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
                                 <!-- <i class="fa fa-leaf" aria-hidden="true"></i> -->
-                                <i class="fa-sharp fa-solid fa-seedling fa-2xl text-primary" ></i>
+                                <i class="fa-sharp fa-solid fa-seedling fa-2xl text-primary"></i>
                                 <!-- <img class="img-fluid" src="img/icon/icon-3.png" alt="Icon"> -->
                             </div>
                             <h4 class="mb-3">Plant Suggestion</h4>
                             <p class="mb-4">Get ready to transform your garden into a captivating symphony of colors, fragrances, and textures. Let's cultivate beauty together, one plant at a time. 🌼🌳</p>
-                            <a class="btn btn-sm" href="#"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
+                            <a class="btn btn-sm" href="./php/plantSuggestion.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>
                 </div>
@@ -217,11 +216,11 @@ if (isset($_SESSION["manager"])) {
                         </div>
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
-                                <i class="fa-solid fa-newspaper fa-2xl text-primary" ></i>
+                                <i class="fa-solid fa-newspaper fa-2xl text-primary"></i>
                             </div>
                             <h4 class="mb-3">News Feed</h4>
                             <p class="mb-4">Join us as we unearth the secrets to flourishing gardens and explore the stories behind your favorite flora. Let's cultivate knowledge, one headline at a time. 🌼🌍</p>
-                            <a class="btn btn-sm" href="#"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
+                            <a class="btn btn-sm" href="./php/newsfeed.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>
                 </div>
@@ -232,11 +231,11 @@ if (isset($_SESSION["manager"])) {
                         </div>
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
-                                <i class="fa-solid fa-handshake fa-2xl text-primary" ></i>
+                                <i class="fa-solid fa-handshake fa-2xl text-primary"></i>
                             </div>
                             <h4 class="mb-3">Communication Forum</h4>
                             <p class="mb-4">Join us in sowing the seeds of inspiration and cultivating a garden of knowledge like no other. Let's chat, share, and watch our gardening dreams grow wild! 🌍🌸</p>
-                            <a class="btn btn-sm" href="#"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
+                            <a class="btn btn-sm" href="./php/comForum.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>
                 </div>
@@ -247,10 +246,10 @@ if (isset($_SESSION["manager"])) {
                         </div>
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
-                                <i class="fa-solid fa-rectangle-ad fa-2xl text-primary" ></i>
+                                <i class="fa-solid fa-rectangle-ad fa-2xl text-primary"></i>
                             </div>
                             <h4 class="mb-3">Advertiesment</h4>
-                            <p class="mb-4">🌱 Grow Your Green Business with Us! 🏡🌻With our platform, your gardening business can flourish like never before. 🌞🌳</p>
+                            <p class="mb-4">Grow Your Green Business with Us! With our platform, your gardening business can flourish like never before. 🌞🌳</p>
                             <a class="btn btn-sm" href="../GardenGURU/php/Advertistment.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>
@@ -262,11 +261,11 @@ if (isset($_SESSION["manager"])) {
                         </div>
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
-                                <i class="fa-solid fa-shop fa-2xl text-primary" ></i>
+                                <i class="fa-solid fa-shop fa-2xl text-primary"></i>
                             </div>
                             <h4 class="mb-3">Plant Selling</h4>
-                            <p class="mb-4">🌿 Bring the Beauty of Nature Home! Browse our garden of possibilities where you'll find a world of green wonders waiting to transform your space. 🌷🏡</p>
-                            <a class="btn btn-sm" href="#"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
+                            <p class="mb-4"> Bring the Beauty of Nature Home! Browse our garden of possibilities where you'll find a world of green wonders waiting to transform your space. 🌷🏡</p>
+                            <a class="btn btn-sm" href="./php/Selling.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>
                 </div>
@@ -280,9 +279,9 @@ if (isset($_SESSION["manager"])) {
                                 <i class="fa-solid fa-blog fa-2xl text-primary"></i>
                             </div>
                             <h4 class="mb-3">Blog</h4>
-                            <p class="mb-4">📚 Cultivate Your Knowledge with Us! 🌿📝
+                            <p class="mb-4"> Cultivate Your Knowledge with Us! 
 
-Welcome to our Gardener's Blog, your passport to a world of horticultural wisdom and green inspiration.</p>
+                                Welcome to our Gardener's Blog, your passport to a world of horticultural wisdom and green inspiration. 🌿📝</p>
                             <a class="btn btn-sm" href="./php/blog.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>
