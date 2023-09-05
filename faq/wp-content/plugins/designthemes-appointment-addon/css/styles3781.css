@@ -1,0 +1,66 @@
+.dt-sc-reservation-form.dt-sc-scheduler { top:0; }
+#dt-sc-ajax-load-image { text-align: center; width: 100%; position:absolute; }
+
+.details-container li { list-style-type: square; }
+
+.dt-sc-available-times { display: block; margin-bottom: 80px; float: left; width: 100%; }
+.dt-sc-available-times .time-slots li { display:inline-block; padding:0; margin:0 10px 10px 0; }
+.dt-sc-available-times .time-slots li a { display:inline-block; color: #ffffff; font-size: 14px; padding: 12px 16px 13px; line-height:normal; background-color:#222222; }
+
+.dt-sc-personal-info { float:left; width:100%; }
+
+.dt-sc-goback-box { float:left; width:100%; clear:both; margin-bottom:30px; text-align: center; }
+.dt-sc-appointment-scheduler-form label span { margin-right:10px; color:#333; }
+.dt-sc-appointment-scheduler-form .generate-schedule { float:right; }
+.dt-sc-notification-box .dt-sc-notification-contactbox { background-color:#f5e2d6; }
+.dt-sc-notification-box .dt-sc-notification-aboutprojectbox { background-color:#fff7e1; }
+.dt-sc-notification-details .dt-sc-contact-info { text-align:left; }
+.dt-sc-schedule-details { display:block; clear:both; }
+.dt-sc-notification-details ul { margin-bottom: 0; }
+
+/*.dt-sc-instant-notification-details, .dt-sc-notification-details { background-color: #f0f0f0; padding: 35px; color:rgba(255, 255, 255, 0.6); }
+.dt-sc-instant-notification-details h4, .dt-sc-instant-notification-details label, .dt-sc-notification-details h4, .dt-sc-notification-details label { color:rgba(255, 255, 255, 0.6); }*/
+.dt-sc-instant-notification-details h4, .dt-sc-notification-details h4 { font-size:24px; margin-bottom:30px; }
+.dt-sc-instant-notification-details ul, .dt-sc-notification-details ul { margin:0; }
+input[type="submit"].generate-paymentbox { padding:16px 20px; }
+.dt-sc-appointment-contactdetails-form label { margin-bottom:10px; }
+
+.dt-sc-appointment-scheduler-form .hasDatepicker { margin-bottom: 0; min-height:50px; }
+
+.dt-sc-schedule-progress-wrapper { float:left; width:100%; margin-bottom:30px; }
+.dt-sc-schedule-progress { float:left; width:100%; position:relative; margin-bottom:20px; width:25%; padding:15px 20px 20px; color:#fff; text-align:center; -webkit-transition:all 300ms linear 0s; -moz-transition:all 300ms linear 0s; -o-transition:all 300ms linear 0s; -ms-transition:all 300ms linear 0s; transition:all 300ms linear 0s; min-height:156px; -webkit-box-shadow: inset 20px 0px 30px -20px rgba(0,0,0,0.3); -moz-box-shadow: inset 20px 0px 30px -20px rgba(0,0,0,0.3); box-shadow: inset 20px 0px 30px -20px rgba(0,0,0,0.3); }
+.dt-sc-schedule-progress .dt-sc-progress-step { border-radius: 50%; display:inline-block; height: 40px; margin:0 7px 10px 0; text-align: center; border:2px solid; top:40px; width: 40px; position:relative; -webkit-transition:all 300ms linear 0s; -moz-transition:all 300ms linear 0s; -o-transition:all 300ms linear 0s; -ms-transition:all 300ms linear 0s; transition:all 300ms linear 0s; }
+.dt-sc-schedule-progress .dt-sc-progress-step span { line-height:35px; font-size:20px; }
+.dt-sc-schedule-progress.dt-sc-current-step .dt-sc-progress-step span, .dt-sc-schedule-progress:hover .dt-sc-progress-step span { position: absolute; left: 0px; right:0; font-size: 170px; color: rgba(255, 255, 255, 0.15); -webkit-transition:all 300ms linear 0s; -moz-transition:all 300ms linear 0s; -o-transition:all 300ms linear 0s; -ms-transition:all 300ms linear 0s; transition:all 300ms linear 0s; }
+.dt-sc-schedule-progress h4 { font-size: 18px; margin-bottom: 5px; margin-top: 10px; text-transform: capitalize; color:#fff; display:inline-block; position:relative; top:40px; -webkit-transition:all 300ms linear 0s; -moz-transition:all 300ms linear 0s; -o-transition:all 300ms linear 0s; -ms-transition:all 300ms linear 0s; transition:all 300ms linear 0s; }
+.dt-sc-schedule-progress p { width: 100%; float: left; opacity:0; color: rgba(255, 255, 255, 0.45); -webkit-transition:all 300ms linear 0s; -moz-transition:all 300ms linear 0s; -o-transition:all 300ms linear 0s; -ms-transition:all 300ms linear 0s; transition:all 300ms linear 0s; }
+.dt-sc-schedule-progress.dt-sc-completed-step .dt-sc-progress-step { color:#fff; }
+.fullwidth.generate-servicebox { float: right; width: auto; }
+input[type="submit"].schedule-it { float: right; }
+.dt-sc-schedule-progress.dt-sc-current-step .dt-sc-progress-step, .dt-sc-schedule-progress:hover .dt-sc-progress-step, .dt-sc-schedule-progress.dt-sc-current-step h4, .dt-sc-schedule-progress:hover h4 { top:0; }
+.dt-sc-schedule-progress.dt-sc-current-step .dt-sc-progress-step, .dt-sc-schedule-progress:hover .dt-sc-progress-step { width:auto; height:auto; border:none; margin:0; position:initial; }
+.dt-sc-schedule-progress.dt-sc-current-step p, .dt-sc-schedule-progress:hover p { opacity:1; }
+.dt-sc-schedule-progress.dt-sc-current-step h4, .dt-sc-schedule-progress:hover h4 { margin-bottom: 15px; margin-top: 13px; color: rgba(255, 255, 255, 0.9); -webkit-transition:all 300ms linear 0s; -moz-transition:all 300ms linear 0s; -o-transition:all 300ms linear 0s; -ms-transition:all 300ms linear 0s; transition:all 300ms linear 0s; }
+
+.dt-sc-service-box, .dt-sc-appointment-scheduler-form, .dt-sc-instant-notification-box, .dt-sc-instant-schedule-details, .dt-sc-instant-contact-info, .dt-sc-schedule-details { float:left; width:100%; }
+.dt-sc-instant-notification-details ul li, .dt-sc-notification-details ul li { list-style-type:none; }
+input[type="button"].generate-timeslot { width:100%; padding: 16px 20px; }
+.dt-sc-goback-box .appointment-goback { float: none; font-size:16px; -webkit-transition:all 300ms linear 0s; -moz-transition:all 300ms linear 0s; -o-transition:all 300ms linear 0s; -ms-transition:all 300ms linear 0s; transition:all 300ms linear 0s; font-size:13px; padding: 15px; line-height:normal; display:inline-block; margin:0; cursor:pointer; outline:none; position:relative; z-index:1; }
+.fullwidth { width:100%; }
+/*.dt-sc-goback-box .appointment-goback { float: none; display: inline-block; }*/
+.dt-sc-appointment-payment-form > label input { display: inline-block; margin-right: 6px; position: relative; top: -2px; }
+.dt-sc-appointment-payment-form > label { display: inline-block; margin:0 10px; }
+.dt-sc-appointment-payment-form { float: left; text-align: center; width: 100%; }
+.dt-sc-appointment-payment-form .make-payment { float:left; width:100%; margin-top:50px; padding: 16px 20px; }
+.dt-sc-available-times .dt-sc-notification-box:before, .dt-sc-appointment-notification-box .dt-sc-notification-box:before { font-size:27px; line-height:30px; }
+.dt-sc-available-times .dt-sc-notification-box, .dt-sc-appointment-notification-box .dt-sc-notification-box { padding: 15px 15px 15px 65px; }
+.steps, .dt-sc-instant-notification-box, .dt-sc-goback-box { padding:0 10%; }
+.steps h2 { font-size:32px; }
+.dt-sc-service-box label { color: #666; margin-bottom: 10px; }
+.dt-sc-appointment-under-process:after { float:left; width:80%; background-color:rgba(0, 0, 0, 0.1); position:absolute; height:100%; content:""; left:0; top:0; right:0; margin:auto; }
+.dt-sc-appointment-under-process { position:relative; float:left; width:100%; }
+#dt-sc-ajax-load-image { height: 21px; left: 0; margin: auto; position: absolute; right: 0; text-align: center; top: 60px; width: 100%; }
+.dt-sc-instant-notification-details label, .dt-sc-notification-details label { float: left; font-weight: bold; margin-right: 20px; min-width: 135px; }
+
+.dt-sc-appointment-contactdetails-form input[type="text"], .dt-sc-appointment-contactdetails-form input[type="password"], .dt-sc-appointment-contactdetails-form input[type="email"], .dt-sc-appointment-contactdetails-form input[type="url"], .dt-sc-appointment-contactdetails-form input[type="tel"], .dt-sc-appointment-contactdetails-form input[type="number"], .dt-sc-appointment-contactdetails-form input[type="range"], .dt-sc-appointment-contactdetails-form input[type="date"], .dt-sc-appointment-contactdetails-form textarea, .dt-sc-appointment-contactdetails-form input.text, .dt-sc-appointment-contactdetails-form input[type="search"] { padding: 16px 12px 15px 0; border-width:0 0 1px 0; margin-bottom:20px; }
+.dt-sc-appointment-contactdetails-form textarea { margin-bottom:0; }
