@@ -33,6 +33,7 @@ if (isset($_SESSION["manager"])) {
     <meta content="" name="description">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/Selling.css" rel="stylesheet">
@@ -198,10 +199,7 @@ if (isset($_SESSION["manager"])) {
                             <div class="row">
                                 <div class="col-md-5 col-sm-12 col-xs-12">
                                     <div class="product-image">
-                                        <img src="<?php echo $item->ItemImage;  ?>" alt="194x228" class="img-responsive" style="max-height: 228px;">
-                                        <!-- <span class="tag2 hot">
-                                    HOT
-                                </span> -->
+                                        <img src="<?php echo $item->ItemImage;  ?>"  class="img-responsive" style="height: 250px; width: 255px; ">
                                     </div>
                                 </div>
                                 <div class="col-md-7 col-sm-12 col-xs-12">
@@ -217,15 +215,24 @@ if (isset($_SESSION["manager"])) {
                                         <span class="tag1"></span>
                                     </div>
                                     <div class="description">
-                                        <p>Sunlight fuels life, beauty, oxygen, and nourishment</p>
+                                        <?php if ($item->ItemQuantity > 0) {
+                                        ?>
+                                            <p><b><?php echo $item->ItemQuantity; ?> Items Availabe.</b></p>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <p style="color: red;"><b>No Items Availabe.</b></p>
+                                        <?php
+                                        }
+                                        ?>
                                     </div>
                                     <div class="product-info smart-form">
                                         <div class="row">
                                             <div class="col-md-6 col-sm-6 col-xs-6">
-                                                
+
                                                 <a href="./mycart.php">
                                                     <div class="icon-container">
-                                                        
+
                                                         <i class="fa fa-shopping-cart cart-icon" style="position: absolute; top: 10px; right: 10px; font-size: 24px; margin: 10px;"></i> <!-- Font Awesome icon -->
                                                     </div>
                                                 </a>
@@ -340,8 +347,8 @@ if (isset($_SESSION["manager"])) {
 
 
     </section>
-  <!-- Footer Start -->
-  <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">

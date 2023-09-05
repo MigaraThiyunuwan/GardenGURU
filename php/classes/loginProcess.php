@@ -63,7 +63,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             session_start();
             $_SESSION["user"] = $user;
             $_SESSION['cart'][0] = array('Item_Name' => null, 'Price' => null, 'Quantity' => null);
-
+            if(isset($_SESSION['cartTemp'])){
+                $_SESSION['cartTemp'] = null;
+            }
 
 
 
