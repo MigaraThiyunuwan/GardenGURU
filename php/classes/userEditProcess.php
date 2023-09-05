@@ -76,11 +76,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $dbGender = $row->user_Gender;
                     $dbid = $row->user_id;
                     $dbaddress = $row->user_address;
+                    $dbpicture = $row->profile_picture;
                 }
                
                 
         
-                    $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword,$dbaddress, $dbid, $dbDistrict, $dbPhoneNo);
+                    $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword,$dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbpicture);
                     session_start();
                     $_SESSION["user"] = $user;
                     header("Location: ../user.php");

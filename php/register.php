@@ -1,9 +1,150 @@
 <?php
 require './classes/DbConnector.php';
+require_once './classes/persons.php';
 
 use classes\DbConnector;
 
 $dbcon = new DbConnector();
+
+$emailerror = null;
+$phoneerror = null;
+$missMatchError = null;
+$validPasswordError = null;
+function validateAndSanitizeInput($input)
+{
+    // Remove leading and trailing whitespace
+    $input = trim($input);
+
+    // Remove backslashes
+    $input = stripslashes($input);
+
+    // Remove HTML tags
+    $input = strip_tags($input);
+
+    // Convert special characters to HTML entities (prevent XSS)
+    $input = htmlspecialchars($input);
+
+    return $input;
+}
+
+function validate_password($password) {
+    // Check if the password length is at least 6 characters
+    if (strlen($password) < 6) {
+        return false;
+    }
+
+    // Check if the password contains at least one number
+    if (!preg_match('/\d/', $password)) {
+        return false;
+    }
+
+    // Check if the password contains at least one uppercase letter
+    if (!preg_match('/[A-Z]/', $password)) {
+        return false;
+    }
+
+    // Check if the password contains at least one special character
+    if (!preg_match('/[!@#$%^&*()_+{}\[\]:;<>,.?~\\\-]/', $password)) {
+        return false;
+    }
+
+    // If all conditions are met, the password is valid
+    return true;
+}
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    if (isset($_POST['firstname']) && !empty($_POST['firstname']) && isset($_POST['lastname']) && !empty($_POST['lastname']) && isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['phone']) && !empty($_POST['phone']) && isset($_POST['gender']) && !empty($_POST['gender']) && isset($_POST['district']) && !empty($_POST['district']) && isset($_POST['password']) && !empty($_POST['password']) && isset($_POST['passwordConfirmation']) && !empty($_POST['passwordConfirmation'])) {
+        $tempPass1 = $_POST["password"];
+        $tempPass2 = $_POST["passwordConfirmation"];
+
+        if (validate_password($tempPass1)){
+
+            if ($tempPass1 == $tempPass2) {
+                $firstname = $_POST["firstname"];
+                $lastname = $_POST["lastname"];
+                $email = $_POST["email"];
+                $phone = $_POST["phone"];
+                $gender = $_POST["gender"];
+                $district = $_POST["district"];
+                $address = $_POST["address"];
+                $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+                $picture = "../images/profile_pictures/Default.png";
+    
+                $firstname = validateAndSanitizeInput($firstname);
+                $lastname = validateAndSanitizeInput($lastname);
+                $email = validateAndSanitizeInput($email);
+                $phone = validateAndSanitizeInput($phone);
+                $gender = validateAndSanitizeInput($gender);
+                $district = validateAndSanitizeInput($district);
+                $address = validateAndSanitizeInput($address);
+    
+                $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+                if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    
+                        if(is_numeric($phone)){
+    
+                            try {
+                                $con = $dbcon->getConnection();
+                                $query = "INSERT INTO users(user_FirstName, user_LastName, user_Email, user_PhoneNo, user_address, user_Password, user_District, user_Gender, profile_picture) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                                $pstmt = $con->prepare($query);
+                                $pstmt->bindValue(1, $firstname);
+                                $pstmt->bindValue(2, $lastname);
+                                $pstmt->bindValue(3, $email);
+                                $pstmt->bindValue(4, $phone);
+                                $pstmt->bindValue(5, $address);
+                                $pstmt->bindValue(6, $password);
+                                $pstmt->bindValue(7, $district);
+                                $pstmt->bindValue(8, $gender);
+                                $pstmt->bindValue(9, $picture);
+                                $pstmt->execute();
+                                if (($pstmt->rowCount()) > 0) {
+            
+                                    header("Location: ./login.php?success=1");
+                                } else {
+                                    echo "Error, try again.";
+                                }
+                            } catch (PDOException $exc) {
+                                echo $exc->getMessage();
+                            }
+    
+                        }else{
+                            $phoneerror = "<b><div class='alert alert-danger py-2' role='alert'>
+                            Please Enter Valied Phone Number!
+                            </div></b>";
+                        }   
+                } else {
+                    $emailerror = "<b><div class='alert alert-danger py-2' role='alert'>
+                    Please Enter Valied Email!
+                    </div></b>";
+                }
+            } else {
+                $missMatchError = "<b><div class='alert alert-danger py-2' role='alert'>
+                Password Missmatch!
+                </div></b>";
+                
+            }
+        } else{
+            $validPasswordError = "<b><div class='alert alert-danger py-2' role='alert'>
+            Password Must Contain, <br></b>
+            <ul>
+                <li>More than 6 characters</li>
+                <li>At least one number</li>
+                <li>At least one Upper Case character</li>
+                <li>At least one Special Character</li>
+            </ul>
+            <b></div></b>";
+        }
+
+        
+
+
+    } else {
+        echo '<p style="color:red;" > <b>Please Fill all Fields.</b> </p>';
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +152,7 @@ $dbcon = new DbConnector();
 
 <head>
     <meta charset="utf-8">
-    <title>Gardener - Gardening Website Template</title>
+    <title>GardenGURU | Register</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -65,7 +206,7 @@ $dbcon = new DbConnector();
                     </div>
                 </div>
             </div>
-            <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
+
         </div>
     </nav>
     <!-- Navbar End -->
@@ -106,7 +247,7 @@ $dbcon = new DbConnector();
                         <div class="input-group col-lg-12 mb-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa-solid fa-at text-muted" style="font-size: 25px;"></i>
+                                    <i class="fa-solid fa-at text-muted" style="font-size: 25px;"></i>
                                 </span>
                             </div>
                             <input id="email" type="email" name="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md">
@@ -126,11 +267,11 @@ $dbcon = new DbConnector();
                         <div class="input-group col-lg-12 mb-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa-solid fa-envelope text-muted" style="font-size: 25px;"></i>
+                                    <i class="fa-solid fa-envelope text-muted" style="font-size: 25px;"></i>
                                 </span>
                             </div>
 
-                            <input id="address" type="tel" name="address" placeholder="Address" class="form-control bg-white border-md border-left-0 pl-3">
+                            <input id="address" type="text" name="address" placeholder="Address" class="form-control bg-white border-md border-left-0 pl-3">
                         </div>.
 
                         <div class="input-group col-lg-12 mb-4">
@@ -202,83 +343,37 @@ $dbcon = new DbConnector();
                                     <i class="fa fa-lock text-muted" style="font-size: 25px;"></i>
                                 </span>
                             </div>
-                            <input id="passwordConfirmation" type="text" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
+                            <input id="passwordConfirmation" type="password" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
                         </div>
+
+                        <?php
+                        if($emailerror !==  null){
+                            echo $emailerror;
+                        }
+                        if($phoneerror !==  null){
+                            echo $phoneerror;
+                        }
+                        if($missMatchError !==  null){
+                            echo $missMatchError;
+                        }
+                        if($validPasswordError !== null){
+                            echo $validPasswordError;
+                        }
+                        ?>
 
                         <!-- Submit Button -->
                         <input type="submit" value="Create New Account" class="btn btn-primary my-3 w-100">
-                        <!-- <div class="form-group col-lg-12 mx-auto mb-0">
-                            <a href="#" class="btn btn-primary btn-block py-2">
-                                <span class="font-weight-bold">Create your account</span>
-                            </a>
-                        </div> -->
-
-
 
                         <!-- Already Registered -->
                         <div class="text-center w-100" style="margin-top: 20px;">
-                            <p class="text-muted font-weight-bold">Already Registered? <a href="./login.php" class="text-primary ml-2" style="color: chartreuse;">Login</a></p>
+                            <p class="text-muted font-weight-bold">Already Registered? <a href="./login.php" class="text-primary ml-2" style="color: chartreuse;"><b>Login</b></a></p>
                         </div>
 
                     </div>
                 </form>
 
 
-                <?php
 
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-                    if (isset($_POST['firstname']) && !empty($_POST['firstname']) && isset($_POST['lastname']) && !empty($_POST['lastname']) && isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['phone']) && !empty($_POST['phone']) && isset($_POST['gender']) && !empty($_POST['gender']) && isset($_POST['district']) && !empty($_POST['district']) && isset($_POST['password']) && !empty($_POST['password']) && isset($_POST['passwordConfirmation']) && !empty($_POST['passwordConfirmation'])) {
-                        $tempPass1 = $_POST["password"];
-                        $tempPass2 = $_POST["passwordConfirmation"];
-
-                        if ($tempPass1 == $tempPass2) {
-                            $firstname = $_POST["firstname"];
-                            $lastname = $_POST["lastname"];
-                            $email = $_POST["email"];
-                            $phone = $_POST["phone"];
-                            $gender = $_POST["gender"];
-                            $district = $_POST["district"];
-                            $address = $_POST["address"];
-                            $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-                          //  $password = $_POST["password"];
-
-                            try {
-                                $con = $dbcon->getConnection();
-                                $query = "INSERT INTO users(user_FirstName, user_LastName, user_Email, user_PhoneNo, user_address, user_Password, user_District, user_Gender) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-                                $pstmt = $con->prepare($query);
-                                $pstmt->bindValue(1, $firstname);
-                                $pstmt->bindValue(2, $lastname);
-                                $pstmt->bindValue(3, $email);
-                                $pstmt->bindValue(4, $phone);
-                                $pstmt->bindValue(5, $address);
-                                $pstmt->bindValue(6, $password);
-                                $pstmt->bindValue(7, $district);
-                                $pstmt->bindValue(8, $gender);
-                                $pstmt->execute();
-                                if (($pstmt->rowCount()) > 0) {
-                ?>
-                                    <!-- <button onclick="window.location.href='./Login.php';" class="btn btn-primary my-3 w-100">
-                                        You have Successfully registered. Click Here to Login Your Account.
-                                    </button> -->
-                <?php
-                                    echo "<b>You Have Successfully registered. <a href='./login.php'>Click Here</a> to Login Your Account. </b>";
-                                } else {
-                                    echo "Error, try again.";
-                                }
-                            } catch (PDOException $exc) {
-                                echo $exc->getMessage();
-                            }
-                        } else {
-                            echo '<p style="color:red;" > <b>Password Missmatch.</b> </p>';
-                           
-                        }
-                    }else{
-                        echo '<p style="color:red;" > <b>Please Fill all Fields.</b> </p>';
-                    }
-                }
-
-                ?>
 
 
             </div>

@@ -17,7 +17,7 @@ if (isset($_SESSION["user"])) {
 
 <head>
     <meta charset="utf-8">
-    <title>Gardener - Gardening Website Template</title>
+    <title>GardenGURU | Edit Profile</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -27,6 +27,8 @@ if (isset($_SESSION["user"])) {
 
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/popup.css" rel="stylesheet">
+    
 </head>
 
 <body>
@@ -60,14 +62,14 @@ if (isset($_SESSION["user"])) {
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
-
-                <div class="nav-item dropdown">
+                <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Profile</a>
+                <!-- <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                     <div class="dropdown-menu bg-light m-0">
                         <a href="./user.php" class="dropdown-item">Profile</a>
                         <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
                     </div>
-                </div>
+                </div> -->
             </div>
 
     </nav>
@@ -81,12 +83,13 @@ if (isset($_SESSION["user"])) {
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                                <img src="<?php echo $user->getPropic() ?> " alt="Admin" class="rounded-circle" width="150">
                                 <div class="mt-3">
                                     <h4>Hello! <?php echo $user->getFirstName() . "" . $user->getLastName() ?> !</h4><br>
-                                    <a class="btn btn-outline-primary " target="" href="./classes/logout.php">Log Out</a>
+                                   <!--  <a class="btn btn-outline-primary " target="" href="./classes/logout.php">Log Out</a>-->
+                                    <a class="btn btn-outline-info" id="popbutton" target="#" >Change Profile Picture</a>
 
-                                    <a class="btn btn-outline-danger " target="" href="#">Change Password</a>
+                                    <a class="btn btn-outline-danger " target="#" >Change Password</a>
                                 </div>
                             </div>
                         </div>
@@ -155,8 +158,47 @@ if (isset($_SESSION["user"])) {
                 <br><br>
     </section>
 
+
+
+
+   <!-- popupr Start -->
+
+
+<!-- Modal Section -->
+
+<div class="bg-modal" >
+	<div class="modal-contents " >
+
+		<div class="close">+</div>
+	
+
+    <form action="changeprofilepicture.php" method="post" enctype="multipart/form-data">
+        <!-- <input type="text" name="name" placeholder="Name" values="$name">
+        <input type="email" name="email" placeholder="E-Mail" values="$email"> -->
+        <label for="profile_picture"><b>Select Image for Profile Picture</b></label>
+        <input type="file" class="form-control" name="profile_picture" id="profile_picture" values="">
+        <input type="submit" class="btn btn-success" name="submit" value="Submit" values="">
+    </form>
+
+  
+
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+    
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn">
+   <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
@@ -173,19 +215,19 @@ if (isset($_SESSION["user"])) {
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Services</h4>
-                    <a class="btn btn-link" href="#">Landscaping</a>
-                    <a class="btn btn-link" href="#">Pruning plants</a>
-                    <a class="btn btn-link" href="#">Urban Gardening</a>
-                    <a class="btn btn-link" href="#">Garden Maintenance</a>
-                    <a class="btn btn-link" href="#">Green Technology</a>
+                    <a class="btn btn-link" href="./plantSuggestion.php">Plant Suggestion</a>
+                    <a class="btn btn-link" href="./Advertistment.php">Advertiesment</a>
+                    <a class="btn btn-link" href="./Selling.php">Shop</a>
+                    <a class="btn btn-link" href="./blog.php">Blog</a>
+
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="#">About Us</a>
-                    <a class="btn btn-link" href="#">Contact Us</a>
-                    <a class="btn btn-link" href="#">Our Services</a>
-                    <a class="btn btn-link" href="#">Terms & Condition</a>
-                    <a class="btn btn-link" href="#">Support</a>
+                    <a class="btn btn-link" href="./AboutUs.php">About Us</a>
+                    <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
+                    <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
+                    <a class="btn btn-link" href="./login.php">Log Out</a>
+                    <a class="btn btn-link" href="./termsAndCondition.php">Terms & Condition</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <img src="../images/logo.png" style="width:220px;height:50px;">
@@ -211,10 +253,13 @@ if (isset($_SESSION["user"])) {
         </div>
     </div>
     <!-- Copyright End -->
-    <!-- JavaScript Libraries -->
-    <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
+   <!-- JavaScript Libraries -->
+   <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/main.js"></script>
-
+    <script src="../js/popup.js"></script>
+ 
 
 </body>
+
+

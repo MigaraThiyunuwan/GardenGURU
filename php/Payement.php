@@ -1,13 +1,24 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+session_start();
+if (isset($_SESSION["user"])) {
+    // User is logged in, retrieve the user object
+    $manager = $_SESSION["user"];
+} else {
 
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+    header("Location: ./login.php?error=4");
+    exit();
+}
+?>
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
 <head>
     <meta charset="utf-8">
-    <title>GardenGURU</title>
+    <title>GardenGURU | Payment</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -22,9 +33,7 @@
 </head>
 
 <body>
-    <?php
-
-    ?>
+    
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
@@ -66,6 +75,13 @@
     </nav>
     <!-- Navbar End -->
 
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        $price = $_POST['total'];
+    }
+
+    ?>
     <div class="container1 mt-5 px-5">
 
         <div class="mb-4">
@@ -74,10 +90,9 @@
             <span>please make the payment, after that you can enjoy all the features and benefits.</span>
         </div>
         <div class="row">
-
             <div class="col-md-8">
                 <div class="card p-3">
-                    <form action="OTP.php" method="POST">
+                    <form action="./classes/paymentprocess.php" method="POST">
                         <h6 class="text-uppercase">Payment details</h6>
                         <div class="inputbox mt-3"> <input type="text" name="nameOnCard" class="form-control" required="required"> <span>Name on card</span> </div>
                         <div class="row">
@@ -117,13 +132,10 @@
                         <div class="mt-4 mb-4 d-flex justify-content-between">
 
                             <!-- <span>Previous step</span> -->
-                            <button class="btn btn-success px-3">Pay Rs.549</button>
+                            <button class="btn btn-success px-3" type="submit" name="pay">Pay Rs.<?php echo $price ?></button>
                         </div>
                     </form>
                 </div>
-
-
-
             </div>
 
             <div class="col-md-4">
@@ -132,7 +144,7 @@
 
                     <span>You have to pay</span>
                     <div class="d-flex flex-row align-items-end mb-3">
-                        <h1 class="mb-0 yellow">Rs.549</h1> <span>.00</span>
+                        <h1 class="mb-0 yellow">Rs. <?php echo $price ?></h1> <span>.00</span>
                     </div>
 
                     <span>Enjoy all the features and perk after you complete the payment</span>
@@ -158,7 +170,7 @@
 
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+   <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
@@ -175,19 +187,19 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Services</h4>
-                    <a class="btn btn-link" href="#">Landscaping</a>
-                    <a class="btn btn-link" href="#">Pruning plants</a>
-                    <a class="btn btn-link" href="#">Urban Gardening</a>
-                    <a class="btn btn-link" href="#">Garden Maintenance</a>
-                    <a class="btn btn-link" href="#">Green Technology</a>
+                    <a class="btn btn-link" href="./plantSuggestion.php">Plant Suggestion</a>
+                    <a class="btn btn-link" href="./Advertistment.php">Advertiesment</a>
+                    <a class="btn btn-link" href="./Selling.php">Shop</a>
+                    <a class="btn btn-link" href="./blog.php">Blog</a>
+
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="#">About Us</a>
-                    <a class="btn btn-link" href="#">Contact Us</a>
-                    <a class="btn btn-link" href="#">Our Services</a>
-                    <a class="btn btn-link" href="#">Terms & Condition</a>
-                    <a class="btn btn-link" href="#">Support</a>
+                    <a class="btn btn-link" href="./AboutUs.php">About Us</a>
+                    <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
+                    <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
+                    <a class="btn btn-link" href="./login.php">Log Out</a>
+                    <a class="btn btn-link" href="./termsAndCondition.php">Terms & Condition</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <img src="../images/logo.png" style="width:220px;height:50px;">

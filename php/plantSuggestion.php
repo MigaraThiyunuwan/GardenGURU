@@ -5,6 +5,20 @@ use classes\DbConnector;
 
 $dbcon = new DbConnector();
 
+
+require_once './classes/persons.php';
+session_start();
+$user = null;
+$manager = null;
+if (isset($_SESSION["user"])) {
+    // User is logged in, retrieve the user object
+    $user = $_SESSION["user"];
+}
+if (isset($_SESSION["manager"])) {
+    $manager = $_SESSION["manager"];
+}
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $location = $_POST["location"];
@@ -41,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="utf-8">
-    <title>Gardener - Gardening Website Template</title>
+    <title>GardenGURU | Plant Suggestion</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -94,13 +108,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
 
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-                    <div class="dropdown-menu bg-light m-0">
-                        <a href="./user.php" class="dropdown-item">Profile</a>
-                        <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
-                    </div>
-                </div>
+
+                <?php
+                if ($user != null) {
+                ?>
+                    <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else if ($manager != null) {
+                ?>
+                    <a href="./Manager.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else {
+                ?>
+                    <a href="./login.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Sign In</a>
+                <?php
+                }
+                ?>
+
 
             </div>
             <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
@@ -114,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="container text-center py-5">
             <h1 class="display-3 text-white mb-4 animated slideInDown">Plant Suggestions</h1>
             <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item">Here we suggest you plants for home gardening.</li>
+                <li class="breadcrumb-item">Welcome to our Plant Suggestion, your personal botanical matchmaker!</li>
             </ol>
         </div>
     </div>
@@ -206,7 +230,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                             <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Water</a>
                             <select id="water" name="water" class="input-group-text bg-white px-4 border-md border-right-0">
-                                <option value="Easy to found">Easy to found</option>
+                                <option value="Easy to Find">Easy to found</option>
                                 <option value="Medium">Normally can found</option>
                                 <option value="Rare">Rare to found</option>
                             </select>
@@ -224,7 +248,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <option value="Limited">Limited</option>
                                 <option value="Average">Average</option>
                                 <option value="Large">Large</option>
-
                             </select>
                         </div>
 
@@ -237,8 +260,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                             <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Harvest Time</a>
                             <select id="time" name="time" class="input-group-text bg-white px-4 border-md border-right-0">
-                                <option value="< 2 months">
-                                    < 2 months</option>
+                                <option value="< 2 months">< 2 months</option>
                                 <option value="2 to 6 months">2 to 6 months</option>
                                 <option value="6 to 12 months">6 to 12 months</option>
                                 <option value="> 12 months">> 12 months</option>
@@ -268,10 +290,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container mt-2">
         <div class="row">
 
-      <?php  if ($_SERVER["REQUEST_METHOD"] == "POST") { ?>
-        <span ><b><p style="color:MediumSeaGreen;">In <?php echo $location ?> area when you have <?php echo $sun ?> sun exposure, <?php echo $soil ?> soil,
-        and <?php echo $water ?> water, you have <?php echo $space ?> space to gardening and when your harvest time <?php echo $time ?>, it's suitable to grow below plants.</p></b></span>
-      <?php  } ?>
+            <?php if ($_SERVER["REQUEST_METHOD"] == "POST") { ?>
+                <span><b>
+                        <p style="color:MediumSeaGreen;">In <?php echo $location ?> area when you have <?php echo $sun ?> sun exposure, <?php echo $soil ?> soil,
+                            and <?php echo $water ?> water, you have <?php echo $space ?> space to gardening and when your harvest time <?php echo $time ?>, it's suitable to grow below plants.</p>
+                    </b></span>
+            <?php  } ?>
 
             <?php
             if (isset($rs) && !empty($rs)) {
@@ -290,8 +314,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $filePath = $plant->FilePath;
             ?>
 
-
-
                             <div class="col-md-3 col-sm-6">
                                 <div class="card card-block">
 
@@ -300,9 +322,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your situation.</p>
                                 </div>
                             </div>
-
-
-
 
             <?php
                         }
@@ -318,7 +337,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ?>
         </div>
         <span><b>
-                <br><p style="color:MediumSeaGreen;">Reddish Brown Earths - </p>වැලි ලෝම සිට සැහැල්ලු මැටි ලෝම දක්වා මතුපිට පස් ඇති අතර එය මැටි යටි පසකට ඉහළින් පිහිටා ඇත.
+                <br>
+                <p style="color:MediumSeaGreen;">Reddish Brown Earths - </p>වැලි ලෝම සිට සැහැල්ලු මැටි ලෝම දක්වා මතුපිට පස් ඇති අතර එය මැටි යටි පසකට ඉහළින් පිහිටා ඇත.
                 මතුපිට පස් සෙන්ටිමීටර 10 ත් 40 ත් අතර ඝනකමකින් යුක්ත වන අතර රතු සිට අළු දුඹුරු දක්වා වෙනස් වේ. යටි පස කහ සිට රතු සිට අළු දක්වා වෙනස් වේ. <br><br>
                 <p style="color:MediumSeaGreen;">Red Yellow Podzolic - </p>රතු සහ කහ පැහැති පාට සඳහා ප්රසිද්ධය. පාංශු මතුපිට සමහර ප්‍රදේශවල රතු හෝ තැඹිලි පාටින් ද තවත් ප්‍රදේශවල කහ පැහැයෙන්ද දිස් විය හැක.
             </b></span>
@@ -345,19 +365,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Services</h4>
-                    <a class="btn btn-link" href="#">Landscaping</a>
-                    <a class="btn btn-link" href="#">Pruning plants</a>
-                    <a class="btn btn-link" href="#">Urban Gardening</a>
-                    <a class="btn btn-link" href="#">Garden Maintenance</a>
-                    <a class="btn btn-link" href="#">Green Technology</a>
+                    <a class="btn btn-link" href="./plantSuggestion.php">Plant Suggestion</a>
+                    <a class="btn btn-link" href="./Advertistment.php">Advertiesment</a>
+                    <a class="btn btn-link" href="./Selling.php">Shop</a>
+                    <a class="btn btn-link" href="./blog.php">Blog</a>
+
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="#">About Us</a>
-                    <a class="btn btn-link" href="#">Contact Us</a>
-                    <a class="btn btn-link" href="#">Our Services</a>
-                    <a class="btn btn-link" href="#">Terms & Condition</a>
-                    <a class="btn btn-link" href="#">Support</a>
+                    <a class="btn btn-link" href="./AboutUs.php">About Us</a>
+                    <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
+                    <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
+                    <a class="btn btn-link" href="./login.php">Log Out</a>
+                    <a class="btn btn-link" href="./termsAndCondition.php">Terms & Condition</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <img src="../images/logo.png" style="width:220px;height:50px;">
@@ -366,7 +386,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
     <!-- Footer End -->
-    Back to Top
+
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
 
@@ -376,7 +396,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="border-bottom" href="index.php">GardenGURU</a>, All Right Reserved.
+                    &copy; <a class="border-bottom" href="../index.php">GardenGURU</a>, All Right Reserved.
                 </div>
 
             </div>
