@@ -93,7 +93,7 @@ if (isset($_SESSION["manager"])) {
                                 <h4>Hello <?php echo $manager->getFirstName() . " " . $manager->getLastName(); ?> !</h4><br>
                                 <a class="btn btn-outline-primary " target="" href="./classes/logout.php">Log Out</a>
                                 <a class="btn btn-outline-primary " target="" href="./editManager.php">Edit</a>
-                                <button class="btn btn-danger">Change Password</button>
+                                <button class="btn btn-outline-danger">Change Password</button>
                             </div>
                         </div>
                     </div>
@@ -155,7 +155,7 @@ if (isset($_SESSION["manager"])) {
 
 
             <div class="container-fluid"><br>
-                <h3 class="text-dark mb-4">User Details</h3><br>
+            <br><h3 class="text-dark mb-4">User Details</h3>
                 <div class="card shadow">
                     <div class="card-body">
                         <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
@@ -278,7 +278,7 @@ if (isset($_SESSION["manager"])) {
     <br>
 
     <div class="container"><br>
-        <h3 class="text-dark mb-4">News Feed</h3><br>
+    <br><h3 class="text-dark mb-4">News Feed</h3>
         <div class="card shadow">
             <div class="card-body">
                 <form action="" method="POST">
@@ -380,10 +380,7 @@ if (isset($_SESSION["manager"])) {
 
 
     <div class="container"><br>
-        <h3 class="text-dark mb-4">Advertiesments</h3><br><br>
-
-        </br>
-        </br>
+    <br><h3 class="text-dark mb-4">Advertiesments</h3>
 
 
         <div class="card shadow">
@@ -489,10 +486,8 @@ if (isset($_SESSION["manager"])) {
 
 
     <div class="container"><br>
-        <h3 class="text-dark mb-4">Manage Blog</h3><br><br>
+    <br> <h3 class="text-dark mb-4">Manage Blog</h3>
 
-        </br>
-        </br>
 
 
         <div class="card shadow">
