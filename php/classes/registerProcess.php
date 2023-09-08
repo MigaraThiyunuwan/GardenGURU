@@ -3,7 +3,7 @@ require_once './DbConnector.php';
 require_once './persons.php';
 use classes\DbConnector;
 $dbcon = new DbConnector();
-function validateAndSanitizeInput($input)
+function SanitizeInput($input)
 {
     // Remove leading and trailing whitespace
     $input = trim($input);
@@ -66,13 +66,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
                 $picture = "../images/profile_pictures/Default.png";
 
-                $firstname = validateAndSanitizeInput($firstname);
-                $lastname = validateAndSanitizeInput($lastname);
-                $email = validateAndSanitizeInput($email);
-                $phone = validateAndSanitizeInput($phone);
-                $gender = validateAndSanitizeInput($gender);
-                $district = validateAndSanitizeInput($district);
-                $address = validateAndSanitizeInput($address);
+                $firstname = SanitizeInput($firstname);
+                $lastname = SanitizeInput($lastname);
+                $email = SanitizeInput($email);
+                $phone = SanitizeInput($phone);
+                $gender = SanitizeInput($gender);
+                $district = SanitizeInput($district);
+                $address = SanitizeInput($address);
 
                 $email = filter_var($email, FILTER_SANITIZE_EMAIL);
                 if (filter_var($email, FILTER_VALIDATE_EMAIL)) {

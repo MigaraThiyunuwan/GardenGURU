@@ -6,7 +6,7 @@ use classes\DbConnector;
 
 $dbcon = new DbConnector();
 
-function validateAndSanitizeInput($input)
+function SanitizeInput($input)
 {
     // Remove leading and trailing whitespace
     $input = trim($input);
@@ -27,9 +27,9 @@ function validateAndSanitizeInput($input)
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $email = validateAndSanitizeInput($_POST["email"]);
+    $email = SanitizeInput($_POST["email"]);
 
-    $password = validateAndSanitizeInput($_POST["password"]);
+    $password = SanitizeInput($_POST["password"]);
 
     if(user::UserLogin($email,$password)){
         header("Location: ../../index.php");

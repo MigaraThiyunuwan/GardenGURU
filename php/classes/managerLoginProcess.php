@@ -2,58 +2,40 @@
 require_once './DbConnector.php';
 require_once './persons.php';
 
-
 use classes\DbConnector;
 
 $dbcon = new DbConnector();
-?>
+function SanitizeInput($input)
+{
+    // Remove leading and trailing whitespace
+    $input = trim($input);
 
-<?php
+    // Remove backslashes
+    $input = stripslashes($input);
+
+    // Remove HTML tags
+    $input = strip_tags($input);
+
+    // Convert special characters to HTML entities (prevent XSS)
+    $input = htmlspecialchars($input);
+
+    return $input;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $email = $_POST["email"];
+    $email = SanitizeInput($_POST["email"]);
  
-    $password = $_POST["password"];
+    $password = SanitizeInput($_POST["password"]);
 
-
-
-    try {
-        $con = $dbcon->getConnection();
-        $query = "SELECT * FROM manager WHERE mEmail = ? ";
-        $pstmt = $con->prepare($query);
-        $pstmt->bindValue(1, $email);
-       
-        $pstmt->execute();
-
-        $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
-
-        foreach($rs as $row){
-            $dbpassword = $row->mPassword;
-            $dbFirstName = $row->mFirstName;
-            $dbLastName = $row->mLastName;
-            $dbEmail = $row->mEmail;
-            $dbPhoneNo = $row->mPhone;
-            $dbNIC = $row->mNIC;
-            $dbmID = $row->managerID;
-        }
-       ;
-        if (password_verify($password, $dbpassword)) {
-           
-            $manager = new Manager($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbNIC, $dbmID, $dbPhoneNo);
-            session_start();
-            $_SESSION["manager"] = $manager;
-            header("Location: ../Manager.php");
+    if(Manager::LoginManager($email,$password)){
+        header("Location: ../Manager.php");
         exit;
-        }else{
-            
-            header("Location: ../managerlogin.php?error=1");
-            exit;
-        }
-
-    } catch (PDOException $exc) {
-        echo $exc->getMessage();
+    } else {
+        header("Location: ../managerlogin.php?error=1");
+        exit;
     }
-
+    
 }
 
 ?>

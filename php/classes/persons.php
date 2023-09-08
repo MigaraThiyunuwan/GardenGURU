@@ -5,6 +5,7 @@ use classes\DbConnector;
 ?>
 
 <?php
+/* =========================================================|| person class (Parent Class) ||====================================================================================== */
 class person
 {
     private $FirstName;
@@ -38,17 +39,16 @@ class person
     }
 }
 
+/* =========================================================|| user class (Child Class) ||====================================================================================== */
 class user extends person
 {
     private $userId;
     private $District;
-
     private $PhoneNo;
-
     private $Address;
-
     private $ProPic;
-    function __construct($FirstName, $LastName, $Email, $Password, $Address, $userId, $District, $PhoneNo, $ProPic)
+    private $Gender;
+    function __construct($FirstName, $LastName, $Email, $Password, $Address, $userId, $District, $PhoneNo, $ProPic, $Gender)
     {
         parent::__construct($FirstName, $LastName, $Email,  $Password);
         $this->userId = $userId;
@@ -56,6 +56,7 @@ class user extends person
         $this->PhoneNo = $PhoneNo;
         $this->Address = $Address;
         $this->ProPic = $ProPic;
+        $this->Gender = $Gender;
     }
     public function getPropic()
     {
@@ -86,6 +87,7 @@ class user extends person
     public static function RegisterUser($firstname, $lastname, $email, $phone, $address, $password, $district, $gender, $picture)
     {
         try {
+
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
             $query = "INSERT INTO users(user_FirstName, user_LastName, user_Email, user_PhoneNo, user_address, user_Password, user_District, user_Gender, profile_picture) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -138,7 +140,7 @@ class user extends person
 
             if (password_verify($password, $dbpassword)) {
 
-                $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbpicture);
+                $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbpicture, $dbGender);
                 session_start();
                 $_SESSION["user"] = $user;
                 $_SESSION['cart'][0] = array('Item_Name' => null, 'Price' => null, 'Quantity' => null);
@@ -179,8 +181,68 @@ class user extends person
             echo $exc->getMessage();
         }
     }
+
+    public function EditUserDetails($firstName, $lastName, $email, $phone, $address, $userID)
+    {
+
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "UPDATE users SET user_FirstName = ?, user_LastName = ?, user_Email = ?, user_PhoneNo = ?, user_address = ? WHERE user_id = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $firstName);
+            $pstmt->bindValue(2, $lastName);
+            $pstmt->bindValue(3, $email);
+            $pstmt->bindValue(4, $phone);
+            $pstmt->bindValue(5, $address);
+            $pstmt->bindValue(6, $userID);
+
+            $pstmt->execute();
+
+
+            if ($pstmt->execute()) {
+
+                $_SESSION["user"] = null;
+
+                try {
+                    $con = $dbcon->getConnection();
+                    $query = "SELECT * FROM users WHERE user_id = ? ";
+                    $pstmt = $con->prepare($query);
+                    $pstmt->bindValue(1, $userID);
+
+                    $pstmt->execute();
+
+                    $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                    foreach ($rs as $row) {
+                        $dbpassword = $row->user_Password;
+                        $dbFirstName = $row->user_FirstName;
+                        $dbLastName = $row->user_LastName;
+                        $dbEmail = $row->user_Email;
+                        $dbPhoneNo = $row->user_PhoneNo;
+                        $dbDistrict = $row->user_District;
+                        $dbGender = $row->user_Gender;
+                        $dbid = $row->user_id;
+                        $dbaddress = $row->user_address;
+                        $dbpicture = $row->profile_picture;
+                    }
+
+                    $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbpicture, $dbGender);
+                    $_SESSION["user"] = $user;
+                    return true;
+                } catch (PDOException $exc) {
+                    echo $exc->getMessage();
+                }
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
 }
 
+/* =========================================================|| Manager class (Child Class) ||====================================================================================== */
 class Manager extends person
 {
     private $managerId;
@@ -254,12 +316,104 @@ class Manager extends person
                 $dbDistrict = $row->user_District;
                 $dbprofile_picture = $row->profile_picture;
                 $dbid = $row->user_id;
+                $dbGender = $row->user_Gender;
                 $dbaddress = $row->user_address;
             };
-            $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbprofile_picture);
+            $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbprofile_picture, $dbGender);
             session_start();
             $_SESSION["user1"] = $user;
             header("Location: ../userView.php");
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public static function LoginManager($email, $password)
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT * FROM manager WHERE mEmail = ? ";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $email);
+
+            $pstmt->execute();
+
+            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+            foreach ($rs as $row) {
+                $dbpassword = $row->mPassword;
+                $dbFirstName = $row->mFirstName;
+                $dbLastName = $row->mLastName;
+                $dbEmail = $row->mEmail;
+                $dbPhoneNo = $row->mPhone;
+                $dbNIC = $row->mNIC;
+                $dbmID = $row->managerID;
+            };
+            if (password_verify($password, $dbpassword)) {
+
+                $manager = new Manager($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbNIC, $dbmID, $dbPhoneNo);
+                session_start();
+                $_SESSION["manager"] = $manager;
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public function EditManagerDetails($firstName, $lastName, $email, $NIC, $phone, $managerID)
+    {
+
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "UPDATE manager SET mFirstName = ?, mLastName = ?, mEmail = ?, mNIC = ?, mPhone = ? WHERE managerID = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $firstName);
+            $pstmt->bindValue(2, $lastName);
+            $pstmt->bindValue(3, $email);
+            $pstmt->bindValue(4, $NIC);
+            $pstmt->bindValue(5, $phone);
+            $pstmt->bindValue(6, $managerID);
+
+            $pstmt->execute();
+
+            if ($pstmt->execute()) {
+
+                $_SESSION["manager"] = null;
+
+                try {
+                    $con = $dbcon->getConnection();
+                    $query = "SELECT * FROM manager WHERE managerID = ? ";
+                    $pstmt = $con->prepare($query);
+                    $pstmt->bindValue(1, $managerID);
+
+                    $pstmt->execute();
+
+                    $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                    foreach ($rs as $row) {
+                        $dbFirstName = $row->mFirstName;
+                        $dbLastName = $row->mLastName;
+                        $dbEmail = $row->mEmail;
+                        $dbPhoneNo = $row->mPhone;
+                        $dbpassword = $row->mPassword;
+                        $dbNIC = $row->mNIC;
+                    }
+
+                    $manager = new Manager($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbNIC, $managerID, $dbPhoneNo);
+
+                    $_SESSION["manager"] = $manager;
+                    return true;
+                } catch (PDOException $exc) {
+                    echo $exc->getMessage();
+                }
+            } else {
+                return false;
+            }
         } catch (PDOException $exc) {
             echo $exc->getMessage();
         }
@@ -276,6 +430,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'view') {
     $manager->viewUser();
 }
 
+/* =========================================================|| Admin class (Child Class) ||====================================================================================== */
 class Admin extends person
 {
 

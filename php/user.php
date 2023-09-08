@@ -136,6 +136,12 @@ if (isset($_SESSION["user"])) {
                     Blog Posting Failed!
                     </div></b>";
                   }
+                  if ($_GET['success'] == 2) {
+
+                    echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                    User details updated suceessfully!
+                    </div></b>";
+                  }
                   if ($_GET['success'] == 3) {
 
                     echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
@@ -152,6 +158,18 @@ if (isset($_SESSION["user"])) {
 
                     echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
                     Picture Upoload Successfully!
+                    </div></b>";
+                  }
+                }
+                if (isset($_GET['error'])) {
+                  if ($_GET['error'] == 1) {
+                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Update User Details Failed!
+                    </div></b>";
+                  }
+                  if ($_GET['error'] == 2) {
+                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Please fill all fields!
                     </div></b>";
                   }
                 }
@@ -229,12 +247,7 @@ if (isset($_SESSION["user"])) {
     </div>
     <br><br>
 
-    <?php
-    if (isset($_GET['error'])) {
-      if ($_GET['error'] == 1) {
-        echo "<b><p style='color: red;'> Cannot Update Your Details !</p></b>";
-      }
-    } ?>
+    
 
     <div class="row mb-5">
       <div class="col-md-8 col-xl-6 text-center mx-auto">
