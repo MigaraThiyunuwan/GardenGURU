@@ -2,12 +2,8 @@
 require './DbConnector.php';
 require './persons.php';
 
-
 use classes\DbConnector;
-
 $dbcon = new DbConnector();
-?>
-<?php
 
 session_start();
 if (isset($_SESSION["manager"])) {
@@ -18,87 +14,38 @@ if (isset($_SESSION["manager"])) {
     header("Location: ./managerlogin.php?error=2");
     exit();
 }
-?>
-<?php
+function SanitizeInput($input)
+{
+    // Remove leading and trailing whitespace
+    $input = trim($input);
 
-$managerID = $manager->getManagerid();
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Remove backslashes
+    $input = stripslashes($input);
 
-    $firstName = $_POST["firstname"];
-    $lastName = $_POST["lastname"];
-    $email = $_POST["email"];
-    $phone = $_POST["phone"];
-    $NIC = $_POST["NIC"];
+    // Remove HTML tags
+    $input = strip_tags($input);
 
+    // Convert special characters to HTML entities (prevent XSS)
+    $input = htmlspecialchars($input);
 
-    try {
-        $con = $dbcon->getConnection();
-        $query = "UPDATE manager SET mFirstName = ?, mLastName = ?, mEmail = ?, mNIC = ?, mPhone = ? WHERE managerID = ?";
-        $pstmt = $con->prepare($query);
-        $pstmt->bindValue(1, $firstName);
-        $pstmt->bindValue(2, $lastName);
-        $pstmt->bindValue(3, $email);
-        $pstmt->bindValue(4, $NIC);
-        $pstmt->bindValue(5, $phone);
-        $pstmt->bindValue(6, $managerID);
-
-        $pstmt->execute();
-
-
-        if ($pstmt->execute()) {
-            // Unset all session variables
-            $_SESSION = array();
-
-            // Destroy the session
-            session_destroy();
-
-
-
-
-            try {
-                $con = $dbcon->getConnection();
-                $query = "SELECT * FROM manager WHERE managerID = ? ";
-                $pstmt = $con->prepare($query);
-                $pstmt->bindValue(1, $managerID);
-        
-                $pstmt->execute();
-        
-                $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
-        
-                foreach($rs as $row){
-                    $dbpassword = $row->mPassword;
-                    $dbFirstName = $row->mFirstName;
-                    $dbLastName = $row->mLastName;
-                    $dbEmail = $row->mEmail;
-                    $dbPhoneNo = $row->mPhone;
-                    $dbid = $row->$managerID;
-                    $dbNIC = $row->mNIC;
-                }
-               
-                
-        
-                    $manager = new Manager($dbFirstName, $dbLastName, $dbEmail, $dbpassword,$dbNIC, $dbid, $dbPhoneNo);
-                    session_start();
-                    $_SESSION["manager"] = $manager;
-                    header("Location: ../Manager.php");
-                    exit;
-                
-        
-            } catch (PDOException $exc) {
-                echo $exc->getMessage();
-            }
-
-
-        } else {
-            header("Location: ../Manager.php?error=1");
-            exit;
-        }
-    } catch (PDOException $exc) {
-        echo $exc->getMessage();
-    }
-
-
-
+    return $input;
 }
 
-?>
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $firstName = SanitizeInput($_POST["firstname"]);
+    $lastName = SanitizeInput($_POST["lastname"]);
+    $email = SanitizeInput($_POST["email"]);
+    $phone = SanitizeInput($_POST["phone"]);
+    $NIC = SanitizeInput($_POST["NIC"]);
+    $managerID = $manager->getManagerid();
+        // call EditManagerDetails function
+    if($manager->EditManagerDetails($firstName, $lastName, $email, $NIC, $phone, $managerID)){
+        header("Location: ../Manager.php");
+        exit;
+    } else {
+        header("Location: ../Manager.php?error=1");
+        exit;
+    }
+
+}

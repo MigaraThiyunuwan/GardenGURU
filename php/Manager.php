@@ -6,8 +6,7 @@ require_once './classes/persons.php';
 use classes\DbConnector;
 
 $dbcon = new DbConnector();
-?>
-<?php
+
 session_start();
 if (isset($_SESSION["manager"])) {
     // User is logged in, retrieve the user object
@@ -75,7 +74,7 @@ if (isset($_SESSION["manager"])) {
                 <a href="./classes/logout.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Log Out</a>
 
             </div>
-            <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
+
         </div>
     </nav>
     <!-- Navbar End -->
@@ -93,7 +92,8 @@ if (isset($_SESSION["manager"])) {
                                 <h4>Hello <?php echo $manager->getFirstName() . " " . $manager->getLastName(); ?> !</h4><br>
                                 <a class="btn btn-outline-primary " target="" href="./classes/logout.php">Log Out</a>
                                 <a class="btn btn-outline-primary " target="" href="./editManager.php">Edit</a>
-                                <button class="btn btn-danger">Change Password</button>
+                                <button class="btn btn-outline-danger">Change Password</button>
+
                             </div>
                         </div>
                     </div>
@@ -114,8 +114,6 @@ if (isset($_SESSION["manager"])) {
                             </div>
 
                             <hr>
-
-
 
                             <div class="row">
                                 <div class="col-sm-3">
@@ -147,15 +145,37 @@ if (isset($_SESSION["manager"])) {
                                     <?Php echo $manager->getManagerNIC(); ?>
                                 </div>
                             </div>
+                            <?php
+
+                            if (isset($_GET['success'])) {
+                                echo "<hr>";
+                                if ($_GET['success'] == 1) {
+
+                                    echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                                                User Deleted Successfully!
+                                                </div></b>";
+                                }
+                            }
+
+                            if (isset($_GET['error'])) {
+                                echo "<hr>";
+                                if ($_GET['error'] == 1) {
+
+                                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                                                User Deleting Failed!
+                                                </div></b>";
+                                }
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
             </div>
             <br>
 
-
             <div class="container-fluid"><br>
-                <h3 class="text-dark mb-4">User Details</h3><br>
+                <br>
+                <h3 class="text-dark mb-4">User Details</h3>
                 <div class="card shadow">
                     <div class="card-body">
                         <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
@@ -163,11 +183,11 @@ if (isset($_SESSION["manager"])) {
                                 <thead>
                                     <tr>
                                         <th>User ID</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>E-mail</th>
-                                        <th>Phone Number</th>
-                                        <th></th>
+                                        <th> First Name</th>
+                                        <th> Last Name</th>
+                                        <th> E-mail</th>
+                                        <th> Phone Number</th>
+                                        <th> Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -195,28 +215,152 @@ if (isset($_SESSION["manager"])) {
                                                 <td><?php echo $users->user_Email; ?></td>
                                                 <td><?php echo $users->user_PhoneNo; ?></td>
                                                 <td>
-                                                    <!-- <form action="" method="post"> -->
-                                                    <?php
-                                                    $ID = $users->user_id;
-                                                    ?>
-
-                                                    <form action="./classes/persons.php" method="post">
-
-                                                        <input type="hidden" name="userID" value="<?php echo "$ID" ?>">
-                                                        <button class="btn btn-danger" type="submit" name="action" value="processForm1">Delete</button>
-                                                        <button class="btn btn-success" type="submit" name="action" value="view">View</button>
-                                                        
-                                                    </form>
-
-                                                   
-
-
-                                                    <!-- <button class="btn btn-danger" type="button" name="delete">Delete</button> -->
-
-                                                    <!-- </form> -->
-
+                                                    <button type="button" class="btn btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletemodel<?php echo $users->user_id ?>">Delete </button>
+                                                    <!-- <button class="btn btn-success" type="submit" name="action" value="view">View</button> -->
+                                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#viewmodal<?php echo $users->user_id ?>">View</button>
                                                 </td>
                                             </tr>
+
+                                            <div class="modal fade shadow my-5" id="deletemodel<?php echo $users->user_id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content" style="background-color: white;">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm to Delete User
+                                                            </h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                            <div class="d-flex justify-content-between p-2">
+
+                                                                <div class="d-flex">
+                                                                    <p class="fw-bold me-2">
+                                                                        Are you sure to delete user "<?php echo $users->user_FirstName . " " . $users->user_LastName ?>" from the system?
+                                                                    </p>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <div class="row w-100">
+                                                                    <div class="col-md-6">
+                                                                        <form action='./classes/managerProcess.php' method='POST'>
+                                                                            <input type='hidden' name='UserID' value='<?php echo $users->user_id ?>'>
+
+                                                                            <button class="btn btn-danger w-100 " type="submit" data-bs-dismiss="modal" aria-label="Close">Confirm</button>
+
+                                                                        </form>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <button class="btn btn-success w-100" type="button" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal fade shadow my-5" id="viewmodal<?php echo $users->user_id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+                                                <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                    <div class="modal-content" style="background-color: white;">
+
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">You are viewing <?php echo $users->user_FirstName ?>'s details</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                            <div class="row">
+                                                                <div class="col-4">
+
+                                                                    <div class=" d-flex flex-column align-items-center justify-content-cente ">
+
+                                                                        <dvi class="p-3 ">
+                                                                            <img src="<?php echo $users->profile_picture ?>" alt="avatar" class="rounded-circle me-2 " style="width: 150px; height: 150px; object-fit: cover" />
+                                                                        </dvi>
+                                                                        <!--name-->
+                                                                        <h3 class="text-center m-0">
+                                                                            <?php echo $users->user_FirstName ?>
+                                                                        </h3>
+                                                                        <!--conatact details-->
+                                                                        <div class="d-flex justify-content-center align-items-center">
+                                                                            <i class="fa fa-envelope fs-7 me-1 mb-3 "></i>
+                                                                            <p class="">
+                                                                                <?php echo $users->user_Email ?>
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="px-2">
+
+                                                                        <div class="d-flex justify-content-between">
+                                                                            <p class="fw-bold m-0">District</p>
+                                                                            <p class="ms-3 m-0">
+                                                                                <?php echo $users->user_District ?>
+                                                                            </p>
+                                                                        </div>
+
+                                                                        <div class="d-flex justify-content-between">
+                                                                            <p class="fw-bold m-0">Gender</p>
+                                                                            <p class="ms-3 m-0">
+                                                                                <?php echo $users->user_Gender ?>
+                                                                            </p>
+                                                                        </div>
+
+
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="col-8">
+
+
+                                                                    <div class="d-flex flex-column ">
+                                                                        <h5>Full Name</h5>
+                                                                        <p class="m-0">
+                                                                            <?php echo $users->user_FirstName . " " . $users->user_LastName ?>
+                                                                        </p>
+                                                                    </div>
+                                                                    <hr>
+
+                                                                    <div class="d-flex flex-column ">
+                                                                        <h5>Email</h5>
+                                                                        <p class="m-0">
+                                                                            <?php echo $users->user_Email ?>
+                                                                        </p>
+                                                                    </div>
+                                                                    <hr>
+
+                                                                    <div class="d-flex flex-column ">
+                                                                        <h5>Phone</h5>
+                                                                        <p class="m-0">
+                                                                            <?php echo $users->user_PhoneNo ?>
+                                                                        </p>
+                                                                    </div>
+                                                                    <hr>
+
+                                                                    <div class="d-flex flex-column ">
+                                                                        <h5>Address</h5>
+                                                                        <p class="m-0">
+                                                                            <?php echo $users->user_address ?>
+                                                                        </p>
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="modal-footer d-flex justify-content-evenly">
+                                                            <button type="button" class="btn btn-outline-success w-100" data-bs-dismiss="modal" aria-label="Close">Ok</button>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
                                     <?php
                                         }
                                         // Calculate the total number of rows in the 'users' table (if not already calculated)
@@ -278,7 +422,8 @@ if (isset($_SESSION["manager"])) {
     <br>
 
     <div class="container"><br>
-        <h3 class="text-dark mb-4">News Feed</h3><br>
+        <br>
+        <h3 class="text-dark mb-4">News Feed</h3>
         <div class="card shadow">
             <div class="card-body">
                 <form action="" method="POST">
@@ -286,66 +431,70 @@ if (isset($_SESSION["manager"])) {
                         <table class="table my-0" id="dataTable">
                             <thead>
                                 <tr>
-                                    <th>NewsFeed ID</th>
+                                    <th>News ID</th>
                                     <th>NewsFeed Name</th>
-                                    <th>Author</th>
-
-
+                                    <th>Posted Date</th>
+                                    <th>Posted by</th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>N001</td>
                                     <td>Indoor Plant Trends</td>
+                                    <td>23 May 2023</td>
                                     <td>Kamal Edirisinghe</td>
 
                                     <td>
                                         <?php echo '<button class="btn btn-danger" type="submit" name="delete">Delete</button>'; ?>
-                                        <?php echo '<button class="btn btn-success" type="submit" name="edit">Edit</button>'; ?>
+
 
                                     </td>
                                 <tr>
                                 <tr>
                                     <td>N002</td>
                                     <td>Innovative Soil Regeneration</td>
+                                    <td>23 May 2023</td>
                                     <td>D.B.Senevirathne</td>
 
                                     <td>
                                         <?php echo '<button class="btn btn-danger" type="submit" name="delete">Delete</button>'; ?>
-                                        <?php echo '<button class="btn btn-success" type="submit" name="edit">Edit</button>'; ?>
+
 
                                     </td>
                                 <tr>
                                 <tr>
                                     <td>N003</td>
                                     <td>Plant Exebition</td>
+                                    <td>23 May 2023</td>
                                     <td>Victor Malinda</td>
 
                                     <td>
                                         <?php echo '<button class="btn btn-danger" type="submit" name="delete">Delete</button>'; ?>
-                                        <?php echo '<button class="btn btn-success" type="submit" name="edit">Edit</button>'; ?>
 
                                     </td>
                                 <tr>
                                 <tr>
                                     <td>N004</td>
                                     <td>Bio Securuty Measures</td>
+                                    <td>23 May 2023</td>
                                     <td>Gamini Perera</td>
 
                                     <td>
                                         <?php echo '<button class="btn btn-danger" type="submit" name="delete">Delete</button>'; ?>
-                                        <?php echo '<button class="btn btn-success" type="submit" name="edit">Edit</button>'; ?>
+
 
                                     </td>
                                 <tr>
                                 <tr>
                                     <td>N005</td>
                                     <td>Vertical Farming</td>
+                                    <td>23 May 2023</td>
                                     <td>Adithya Jayakodi</td>
 
                                     <td>
                                         <?php echo '<button class="btn btn-danger" type="submit" name="delete">Delete</button>'; ?>
-                                        <?php echo '<button class="btn btn-success" type="submit" name="edit">Edit</button>'; ?>
+
 
                                     </td>
                                 <tr>
@@ -380,10 +529,8 @@ if (isset($_SESSION["manager"])) {
 
 
     <div class="container"><br>
-        <h3 class="text-dark mb-4">Advertiesments</h3><br><br>
-
-        </br>
-        </br>
+        <br>
+        <h3 class="text-dark mb-4">Advertiesments</h3>
 
 
         <div class="card shadow">
@@ -395,7 +542,9 @@ if (isset($_SESSION["manager"])) {
                                 <tr>
                                     <th>Advertiesment ID</th>
                                     <th>Advertiesment Name</th>
-                                    <th>Author</th>
+                                    <th>Posted Date</th>
+                                    <th>Posted by</th>
+                                    <th>Delete</th>
 
 
                                 </tr>
@@ -404,6 +553,7 @@ if (isset($_SESSION["manager"])) {
                                 <tr>
                                     <td>Ad001</td>
                                     <td>Indoor Plant Trends</td>
+                                    <td>2023-09-09</td>
                                     <td>Kamal Edirisinghe</td>
 
                                     <td>
@@ -415,6 +565,7 @@ if (isset($_SESSION["manager"])) {
                                 <tr>
                                     <td>Ad002</td>
                                     <td>Innovative Soil Regeneration</td>
+                                    <td>2023-09-09</td>
                                     <td>D.B.Senevirathne</td>
 
                                     <td>
@@ -426,6 +577,7 @@ if (isset($_SESSION["manager"])) {
                                 <tr>
                                     <td>Ad003</td>
                                     <td>Plant Exebition</td>
+                                    <td>2023-09-09</td>
                                     <td>Victor Malinda</td>
 
                                     <td>
@@ -436,6 +588,7 @@ if (isset($_SESSION["manager"])) {
                                 <tr>
                                     <td>Ad004</td>
                                     <td>Bio Securuty Measures</td>
+                                    <td>2023-09-09</td>
                                     <td>Gamini Perera</td>
 
                                     <td>
@@ -447,6 +600,7 @@ if (isset($_SESSION["manager"])) {
                                 <tr>
                                     <td>Ad005</td>
                                     <td>Vertical Farming</td>
+                                    <td>2023-09-09</td>
                                     <td>Adithya Jayakodi</td>
 
                                     <td>
@@ -489,10 +643,9 @@ if (isset($_SESSION["manager"])) {
 
 
     <div class="container"><br>
-        <h3 class="text-dark mb-4">Manage Blog</h3><br><br>
+        <br>
+        <h3 class="text-dark mb-4">Manage Blog</h3>
 
-        </br>
-        </br>
 
 
         <div class="card shadow">
@@ -504,7 +657,9 @@ if (isset($_SESSION["manager"])) {
                                 <tr>
                                     <th>Blog ID</th>
                                     <th>Blog Name</th>
+                                    <th>Posted Date</th>
                                     <th>Author</th>
+                                    <th>Action</th>
 
 
                                 </tr>
@@ -513,6 +668,7 @@ if (isset($_SESSION["manager"])) {
                                 <tr>
                                     <td>Bl001</td>
                                     <td>Indoor Plant Trends</td>
+                                    <td>2023-09-09</td>
                                     <td>Kamal Edirisinghe</td>
 
                                     <td>
@@ -524,17 +680,18 @@ if (isset($_SESSION["manager"])) {
                                 <tr>
                                     <td>Bl002</td>
                                     <td>Innovative Soil Regeneration</td>
+                                    <td>2023-09-09</td>
                                     <td>D.B.Senevirathne</td>
 
                                     <td>
                                         <?php echo '<button class="btn btn-danger" type="submit" name="delete">Delete</button>'; ?>
-
 
                                     </td>
                                 <tr>
                                 <tr>
                                     <td>Bl003</td>
                                     <td>Plant Exebition</td>
+                                    <td>2023-09-09</td>
                                     <td>Victor Malinda</td>
 
                                     <td>
@@ -545,6 +702,7 @@ if (isset($_SESSION["manager"])) {
                                 <tr>
                                     <td>Bl004</td>
                                     <td>Bio Securuty Measures</td>
+                                    <td>2023-09-09</td>
                                     <td>Gamini Perera</td>
 
                                     <td>
@@ -556,6 +714,7 @@ if (isset($_SESSION["manager"])) {
                                 <tr>
                                     <td>Bl005</td>
                                     <td>Vertical Farming</td>
+                                    <td>2023-09-09</td>
                                     <td>Adithya Jayakodi</td>
 
                                     <td>
@@ -646,7 +805,7 @@ if (isset($_SESSION["manager"])) {
         </div>
     </div>
     <!-- Copyright End -->
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -148,7 +148,7 @@ if (isset($_SESSION["manager"])) {
                             </div>
                             <div class="ps-3">
                                 <h4>Plant Suggestion</h4>
-                                <span>Your Personalized Garden Guide: Where Green Dreams Blossom!</span>
+                                <span style="font-family: Georgia, 'Times New Roman', Times, serif">Your Personalized Garden Guide: Where Green Dreams Blossom!</span>
                             </div>
                         </div>
                     </div>
@@ -161,7 +161,7 @@ if (isset($_SESSION["manager"])) {
                             </div>
                             <div class="ps-3">
                                 <h4>Plant Selling</h4>
-                                <span>Planting Beauty Made Easy: Shop Plants Online at GardenGURU's Green Haven.</span>
+                                <span style="font-family: Georgia, 'Times New Roman', Times, serif">Planting Beauty Made Easy: Shop Plants Online at GardenGURU's Green Haven.</span>
                             </div>
                         </div>
                     </div>
@@ -174,7 +174,7 @@ if (isset($_SESSION["manager"])) {
                             </div>
                             <div class="ps-3">
                                 <h4>Advertiesment</h4>
-                                <span>Plant the Seeds of Success: Advertise Your Products with GardenGURU Today!</span>
+                                <span style="font-family: Georgia, 'Times New Roman', Times, serif">Plant the Seeds of Success: Advertise Your Products with GardenGURU Today!</span>
                             </div>
                         </div>
                     </div>
@@ -204,8 +204,9 @@ if (isset($_SESSION["manager"])) {
                                 <!-- <img class="img-fluid" src="img/icon/icon-3.png" alt="Icon"> -->
                             </div>
                             <h4 class="mb-3">Plant Suggestion</h4>
-                            <p class="mb-4">Get ready to transform your garden into a captivating symphony of colors, fragrances, and textures. Let's cultivate beauty together, one plant at a time. 🌼🌳</p>
+                            <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif">Get ready to transform your garden into a captivating symphony of colors, fragrances, and textures. Let's cultivate beauty together, one plant at a time. 🌼🌳</p>
                             <a class="btn btn-sm" href="./php/plantSuggestion.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
+                        
                         </div>
                     </div>
                 </div>
@@ -219,7 +220,7 @@ if (isset($_SESSION["manager"])) {
                                 <i class="fa-solid fa-newspaper fa-2xl text-primary"></i>
                             </div>
                             <h4 class="mb-3">News Feed</h4>
-                            <p class="mb-4">Join us as we unearth the secrets to flourishing gardens and explore the stories behind your favorite flora. Let's cultivate knowledge, one headline at a time. 🌼🌍</p>
+                            <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif">Join us as we unearth the secrets to flourishing gardens and explore the stories behind your favorite flora. Let's cultivate knowledge, one headline at a time. 🌼🌍</p>
                             <a class="btn btn-sm" href="./php/newsfeed.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>
@@ -234,7 +235,7 @@ if (isset($_SESSION["manager"])) {
                                 <i class="fa-solid fa-handshake fa-2xl text-primary"></i>
                             </div>
                             <h4 class="mb-3">Communication Forum</h4>
-                            <p class="mb-4">Join us in sowing the seeds of inspiration and cultivating a garden of knowledge like no other. Let's chat, share, and watch our gardening dreams grow wild! 🌍🌸</p>
+                            <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif">Join us in sowing the seeds of inspiration and cultivating a garden of knowledge like no other. Let's chat, share, and watch our gardening dreams grow wild! 🌍🌸</p>
                             <a class="btn btn-sm" href="./php/comForum.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>
@@ -249,7 +250,7 @@ if (isset($_SESSION["manager"])) {
                                 <i class="fa-solid fa-rectangle-ad fa-2xl text-primary"></i>
                             </div>
                             <h4 class="mb-3">Advertiesment</h4>
-                            <p class="mb-4">Grow Your Green Business with Us! With our platform, your gardening business can flourish like never before. 🌞🌳</p>
+                            <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif">Grow Your Green Business with Us! With our platform, your gardening business can flourish like never before. 🌞🌳</p>
                             <a class="btn btn-sm" href="../GardenGURU/php/Advertistment.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>
@@ -264,7 +265,7 @@ if (isset($_SESSION["manager"])) {
                                 <i class="fa-solid fa-shop fa-2xl text-primary"></i>
                             </div>
                             <h4 class="mb-3">Plant Selling</h4>
-                            <p class="mb-4"> Bring the Beauty of Nature Home! Browse our garden of possibilities where you'll find a world of green wonders waiting to transform your space. 🌷🏡</p>
+                            <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif"> Bring the Beauty of Nature Home! Browse our garden of possibilities where you'll find a world of green wonders waiting to transform your space. 🌷🏡</p>
                             <a class="btn btn-sm" href="./php/Selling.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>
@@ -279,9 +280,7 @@ if (isset($_SESSION["manager"])) {
                                 <i class="fa-solid fa-blog fa-2xl text-primary"></i>
                             </div>
                             <h4 class="mb-3">Blog</h4>
-                            <p class="mb-4"> Cultivate Your Knowledge with Us! 
-
-                                Welcome to our Gardener's Blog, your passport to a world of horticultural wisdom and green inspiration. 🌿📝</p>
+                            <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif"> Cultivate Your Knowledge with Us! Welcome to our Gardener's Blog, your passport to a world of horticultural wisdom and green inspiration. 🌿📝</p>
                             <a class="btn btn-sm" href="./php/blog.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>

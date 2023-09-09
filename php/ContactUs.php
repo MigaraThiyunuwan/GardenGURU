@@ -121,7 +121,7 @@ if (isset($_SESSION["manager"])) {
 
                         <br>
                         <p class="fs-5 fw-bold text-primary">Contact Us</p>
-                        <p>Welcome to our gardening haven! We're thrilled that you're considering getting in touch with us. Whether you have questions about our gardening services, need expert advice on plant care, or simply want to share your green thumb stories, we're here to listen and assist.</p>
+                        <p style="font-family: Georgia, 'Times New Roman', Times, serif">Welcome to our gardening haven! We're thrilled that you're considering getting in touch with us. Whether you have questions about our gardening services, need expert advice on plant care, or simply want to share your green thumb stories, we're here to listen and assist.</p>
 
                         <br>
                         <p class="fs-5 fw-bold text-primary">Get in Touch</p>
@@ -140,7 +140,7 @@ if (isset($_SESSION["manager"])) {
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                     
                     <h1 class="display-5 mb-5">Reach out and let's connect!</h1>
-                    <p class="mb-4">We're here to help! If you have any questions or need assistance, feel free to get in touch with us. We'd be delighted to assist you!</p>
+                    <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif">We're here to help! If you have any questions or need assistance, feel free to get in touch with us. We'd be delighted to assist you!</p>
                     <strong><p style="color: green;" id= "success"></p></strong>
                         <div class="row g-3">
                             <div class="col-md-6">

@@ -123,7 +123,7 @@ if (isset($_SESSION["user"])) {
           <?php
 
           // Retrieve all uploaded photos from the database
-          $sql = "SELECT image1_filename ,title,  description, user_FirstName, user_LastName FROM advertisements ORDER BY id DESC";
+          $sql = "SELECT image1_filename ,title,  description, user_FirstName, user_LastName, adPostedDate FROM advertisements ORDER BY id DESC";
           try {
 
             $stmt = $dbcon->query($sql);
@@ -143,6 +143,7 @@ if (isset($_SESSION["user"])) {
                       $description = $row["description"];
                       $fname = $row["user_FirstName"];
                       $lname = $row["user_LastName"];
+                      $adPostedDate = $row["adPostedDate"];
 
                       
                     ?>
@@ -166,9 +167,9 @@ if (isset($_SESSION["user"])) {
                             
                             <div class="product-buttons mt-4">
                               <div class="row ">
-                                <div class="col-6">
+                                <div class="col-12">
                                   
-                                  <i class="fa fa-user"> </i> Posted by: <?php echo $fname ." ". $lname ?>
+                                  <i class="fa fa-user"> </i> <b>Posted by: <?php echo $fname ." ". $lname . " (". $adPostedDate .")"?></b>
                                   
                                 </div>
                                 
@@ -178,9 +179,6 @@ if (isset($_SESSION["user"])) {
                         </div>
 
                       </div>
-
-
-
 
                     <?php
                     }

@@ -94,26 +94,27 @@
                                     <span class="ml-auto" style=""><a href="#" class="forgot-pass">Forgot Password?</a></span>
                                 </div>
 
-                                <!-- <input type="submit" value="Login" class="btn btn-primary my-3 w-100"> -->
+                                <?php
+                                if (isset($_GET['error'])) {
+                                    if($_GET['error'] == 1){
+                                        echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        Email address or Password Incorrect!
+                                        </div></b>";
+                                        
+                                    }
+                                    if($_GET['error'] == 2){
+                                        echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        You Need to Login to Your Account to Visit Profile.
+                                        </div></b>"; 
+                                    }
+                                    
+                                } ?>
 
 
                                 <button class="btn btn-primary my-3 w-100">
                                     login
                                 </button>
 
-
-                               
-
-                                <?php
-                                if (isset($_GET['error'])) {
-                                    if($_GET['error'] == 1){
-                                        echo "<b><p style='color: red;'> Email address or Password Incorrect !</p></b>";
-                                    }
-                                    if($_GET['error'] == 2){
-                                        echo "<b><p style='color: red;'> You Need to Login to Your Account to Visit Profile.</p></b>";
-                                    }
-                                    
-                                } ?>
                             </form>
                         </div>
                     </div>

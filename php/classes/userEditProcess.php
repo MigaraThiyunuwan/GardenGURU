@@ -3,7 +3,6 @@
 require './DbConnector.php';
 require './persons.php';
 
-
 use classes\DbConnector;
 
 $dbcon = new DbConnector();
@@ -19,90 +18,52 @@ if (isset($_SESSION["user"])) {
     header("Location: ./login.php?error=2");
     exit();
 }
-?>
-<?php
+function SanitizeInput($input)
+{
+    // Remove leading and trailing whitespace
+    $input = trim($input);
 
-$userID = $user->getUserId();
+    // Remove backslashes
+    $input = stripslashes($input);
+
+    // Remove HTML tags
+    $input = strip_tags($input);
+
+    // Convert special characters to HTML entities (prevent XSS)
+    $input = htmlspecialchars($input);
+
+    return $input;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $firstName = $_POST["firstname"];
-    $lastName = $_POST["lastname"];
-    $email = $_POST["email"];
-    $phone = $_POST["phone"];
-    $address = $_POST["address"];
+    if ((isset($_POST["firstname"]) && !empty($_POST["firstname"])) && (isset($_POST["lastname"]) && !empty($_POST["lastname"])) && (isset($_POST["phone"]) && !empty($_POST["phone"])) && (isset($_POST["address"]) && !empty($_POST["address"]))) {
 
+        $firstName = $_POST["firstname"];
+        $lastName = $_POST["lastname"];
+        $email = $_POST["email"];
+        $phone = $_POST["phone"];
+        $address = $_POST["address"];
+        $userID = $user->getUserId();
 
-    try {
-        $con = $dbcon->getConnection();
-        $query = "UPDATE users SET user_FirstName = ?, user_LastName = ?, user_Email = ?, user_PhoneNo = ?, user_address = ? WHERE user_id = ?";
-        $pstmt = $con->prepare($query);
-        $pstmt->bindValue(1, $firstName);
-        $pstmt->bindValue(2, $lastName);
-        $pstmt->bindValue(3, $email);
-        $pstmt->bindValue(4, $phone);
-        $pstmt->bindValue(5, $address);
-        $pstmt->bindValue(6, $userID);
+        $firstName = SanitizeInput($firstName);
+        $lastName = SanitizeInput($lastName);
+        $email = SanitizeInput($email);
+        $phone = SanitizeInput($phone);
+        $address = SanitizeInput($address);
 
-        $pstmt->execute();
-
-
-        if ($pstmt->execute()) {
-            // Unset all session variables
-            $_SESSION = array();
-
-            // Destroy the session
-            session_destroy();
-
-
-
-
-            try {
-                $con = $dbcon->getConnection();
-                $query = "SELECT * FROM users WHERE user_id = ? ";
-                $pstmt = $con->prepare($query);
-                $pstmt->bindValue(1, $userID);
-        
-                $pstmt->execute();
-        
-                $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
-        
-                foreach($rs as $row){
-                    $dbpassword = $row->user_Password;
-                    $dbFirstName = $row->user_FirstName;
-                    $dbLastName = $row->user_LastName;
-                    $dbEmail = $row->user_Email;
-                    $dbPhoneNo = $row->user_PhoneNo;
-                    $dbDistrict = $row->user_District;
-                    $dbGender = $row->user_Gender;
-                    $dbid = $row->user_id;
-                    $dbaddress = $row->user_address;
-                    $dbpicture = $row->profile_picture;
-                }
-               
-                
-        
-                    $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword,$dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbpicture);
-                    session_start();
-                    $_SESSION["user"] = $user;
-                    header("Location: ../user.php");
-                    exit;
-                
-        
-            } catch (PDOException $exc) {
-                echo $exc->getMessage();
-            }
-
-
+        // call EditUserDetails function in user class
+        if ($user->EditUserDetails($firstName, $lastName, $email, $phone, $address, $userID)) {
+            header("Location: ../user.php?success=2");
+            exit;
         } else {
             header("Location: ../user.php?error=1");
             exit;
         }
-    } catch (PDOException $exc) {
-        echo $exc->getMessage();
+    } else {
+        header("Location: ../user.php?error=2");
+        exit;
     }
-
-
-
 }
 
 ?>
