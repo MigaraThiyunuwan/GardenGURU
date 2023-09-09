@@ -26,6 +26,7 @@ if (isset($_POST['submit'])) {
     // Text description & Text title
     $text_description = $_POST["text_description"];
     $text_title = $_POST["text_title"];
+    $realDate = $_POST["realDate"];
 
     // Save text description in a text file
     //$text_file_path = "../txtfiles/Advertistment/Advertistment" . uniqid() . ".txt";
@@ -55,7 +56,7 @@ if (isset($_POST['submit'])) {
 
 
             $conn = $dbcon->getConnection();
-            $sql = "INSERT INTO advertisements ( user_FirstName, user_LastName, user_Email, image1_filename, title, description) VALUES ( ? ,?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO advertisements ( user_FirstName, user_LastName, user_Email, image1_filename, title, description, adPostedDate) VALUES ( ? ,?, ?, ?, ?, ?, ?)";
 
             $pstmt = $conn->prepare($sql);
             $pstmt->bindValue(1, $user->getFirstName());
@@ -65,6 +66,7 @@ if (isset($_POST['submit'])) {
            // $pstmt->bindValue(5, $destination2);
             $pstmt->bindValue(5, $text_title);
             $pstmt->bindValue(6, $text_description);
+            $pstmt->bindValue(7, $realDate);
 
             if ($pstmt->execute()) {
                 header("Location: ./user.php?success=3"); 

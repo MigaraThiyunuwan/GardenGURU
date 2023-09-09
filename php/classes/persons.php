@@ -273,11 +273,8 @@ class Manager extends person
         return $this->managerId;
     }
 
-    public function deleteUser()
+    public function deleteUser($user_id)
     {
-        require_once './DbConnector.php';
-
-        $user_id = $_POST['userID'];
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
@@ -285,8 +282,13 @@ class Manager extends person
             $query = "DELETE FROM users WHERE user_id = :user_id";
             $pstmt = $con->prepare($query);
             $pstmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-            $pstmt->execute();
-            header("Location: ../Manager.php");
+            $a = $pstmt->execute();
+            if($a > 0){
+                return true;
+            } else {
+                return false;
+            }
+            
         } catch (PDOException $exc) {
             echo $exc->getMessage();
         }
@@ -419,11 +421,7 @@ class Manager extends person
         }
     }
 }
-if (isset($_POST['action']) && $_POST['action'] == 'processForm1') {
 
-    $manager = new Manager(null, null, null, null, null, null, null,);
-    $manager->deleteUser();
-}
 if (isset($_POST['action']) && $_POST['action'] == 'view') {
 
     $manager = new Manager(null, null, null, null, null, null, null,);

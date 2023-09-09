@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         } catch (PDOException $exc) {
                             echo $exc->getMessage();
                         }
-
+                            // call RegisterUser function in user class
                         if (user::RegisterUser($firstname, $lastname, $email, $phone, $address, $password, $district, $gender, $picture)) {
                             header("Location: ../login.php?success=1");
                         } else {

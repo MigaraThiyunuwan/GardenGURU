@@ -395,21 +395,29 @@ if (isset($_SESSION["user"])) {
     <div class="close" id="close-button">+</div>
 
 
-      <form action="upload.php" method="post" enctype="multipart/form-data">
-        <!-- <input type="text" name="name" placeholder="Name" values="$name">
-        <input type="email" name="email" placeholder="E-Mail" values="$email"> -->
+      <form id="adForm" action="upload.php" method="post" enctype="multipart/form-data">
+        
         <label for="image1"><b>Select Image for Advertisement:</b></label>
         <input type="file" class="form-control" name="image1" id="image1" values="$filename1">
         <label for="text_title"><br><b>Add title for the Advertisement:</b></label>
         <input type="text" class="form-control"  name="text_title" id="text_title">
-        <!-- <label for="image2">Select Image for Advertisement Description:</label>
-        <input type="file" name="image2" id="image2">-->
         <label for="text_description"><br><b>Enter Your Description:</b></label>
         <textarea name="text_description" class="form-control" id="text_description" rows="5" cols="40"></textarea>
         <input type="hidden" name="submit" value="Put Advertisement" values="$filename2">
+        <input type="hidden" id="realDate" name="realDate">
         <button type="submit" style="margin-top: 15px;" class="btn btn-success">Put Advertisement</button>
       </form>
+      <script>
+        // Function to set the real date as the value of the hidden input field
+        function setRealDate() {
+            var currentDate = new Date();
+            var realDateField = document.getElementById('realDate');
+            realDateField.value = currentDate.toISOString();
+        }
 
+        // Call setRealDate() when the form is submitted
+        document.getElementById('adForm').addEventListener('submit', setRealDate);
+    </script>
 
 
     </div>
