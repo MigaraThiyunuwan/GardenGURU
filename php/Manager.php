@@ -90,10 +90,8 @@ if (isset($_SESSION["manager"])) {
                             <img src="../images/manager.png" alt="Admin" class="rounded-circle" width="150">
                             <div class="mt-3">
                                 <h4>Hello <?php echo $manager->getFirstName() . " " . $manager->getLastName(); ?> !</h4><br>
-                                <a class="btn btn-outline-primary " target="" href="./classes/logout.php">Log Out</a>
+                                <a class="btn btn-outline-danger " target="" href="./classes/logout.php">Log Out</a>
                                 <a class="btn btn-outline-primary " target="" href="./editManager.php">Edit</a>
-                                <button class="btn btn-outline-danger">Change Password</button>
-
                             </div>
                         </div>
                     </div>
@@ -106,7 +104,7 @@ if (isset($_SESSION["manager"])) {
 
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Manager Name</h6>
+                                    <h6 class="mb-0"><b>Manager Name</b></h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <?Php echo $manager->getFirstName() . " " . $manager->getLastName(); ?>
@@ -117,7 +115,7 @@ if (isset($_SESSION["manager"])) {
 
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">E-mail</h6>
+                                    <h6 class="mb-0"><b>E-mail</b></h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <?Php echo $manager->getEmail(); ?>
@@ -128,7 +126,7 @@ if (isset($_SESSION["manager"])) {
 
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Phone</h6>
+                                    <h6 class="mb-0"><b>Phone</b></h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <?Php echo $manager->getManagerPhoneNo(); ?>
@@ -139,7 +137,7 @@ if (isset($_SESSION["manager"])) {
 
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">NIC</h6>
+                                    <h6 class="mb-0"><b>NIC</b></h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <?Php echo $manager->getManagerNIC(); ?>
@@ -155,6 +153,24 @@ if (isset($_SESSION["manager"])) {
                                                 User Deleted Successfully!
                                                 </div></b>";
                                 }
+                                if ($_GET['success'] == 2) {
+
+                                    echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                                                News Deleted Successfully!
+                                                </div></b>";
+                                }
+                                if ($_GET['success'] == 3) {
+
+                                    echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                                                Advertiesment Deleted Successfully!
+                                                </div></b>";
+                                }
+                                if ($_GET['success'] == 4) {
+
+                                    echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                                                Blog Deleted Successfully!
+                                                </div></b>";
+                                }
                             }
 
                             if (isset($_GET['error'])) {
@@ -163,6 +179,24 @@ if (isset($_SESSION["manager"])) {
 
                                     echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
                                                 User Deleting Failed!
+                                                </div></b>";
+                                }
+                                if ($_GET['error'] == 2) {
+
+                                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                                                News Deleting Failed!
+                                                </div></b>";
+                                }
+                                if ($_GET['error'] == 3) {
+
+                                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                                        Advertiesment Deleting Failed!
+                                                </div></b>";
+                                }
+                                if ($_GET['error'] == 4) {
+
+                                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                                        Blog Deleting Failed!
                                                 </div></b>";
                                 }
                             }
@@ -196,10 +230,10 @@ if (isset($_SESSION["manager"])) {
                                         $con = $dbcon->getConnection();
 
                                         // Pagination logic
-                                        $start = isset($_GET['start']) ? intval($_GET['start']) : 0;
-                                        $rows_per_page = 5;
+                                        $start1 = isset($_GET['start1']) ? intval($_GET['start1']) : 0;
+                                        $rows_per_page1 = 5;
 
-                                        $query = "SELECT * FROM users LIMIT $start, $rows_per_page";
+                                        $query = "SELECT * FROM users LIMIT $start1, $rows_per_page1";
                                         $pstmt = $con->prepare($query);
                                         $pstmt->execute();
                                         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
@@ -209,7 +243,7 @@ if (isset($_SESSION["manager"])) {
                                     ?>
 
                                             <tr>
-                                                <td><?php echo "U-" . $users->user_id; ?></td>
+                                                <td><?php echo "U" . $users->user_id; ?></td>
                                                 <td><?php echo $users->user_FirstName; ?></td>
                                                 <td><?php echo $users->user_LastName; ?></td>
                                                 <td><?php echo $users->user_Email; ?></td>
@@ -364,8 +398,154 @@ if (isset($_SESSION["manager"])) {
                                     <?php
                                         }
                                         // Calculate the total number of rows in the 'users' table (if not already calculated)
+                                        if (!isset($total_rows1)) {
+                                            $total_rows_query1 = "SELECT COUNT(*) as total FROM users";
+                                            $total_rows_stmt1 = $con->prepare($total_rows_query1);
+                                            $total_rows_stmt1->execute();
+                                            $total_rows_result1 = $total_rows_stmt1->fetch(PDO::FETCH_ASSOC);
+                                            $total_rows1 = $total_rows_result1['total'];
+                                        }
+
+                                        // Calculate the total number of pages
+                                        $pages1 = ceil($total_rows1 / $rows_per_page1);
+                                    } catch (PDOException $exc) {
+                                        echo $exc->getMessage();
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 align-self-center">
+                                <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">
+                                    Showing <?php echo min($total_rows1, $start1 + 1) . ' to ' . min($total_rows1, $start1 + $rows_per_page1); ?> of <?php echo $total_rows1; ?>
+                                </p>
+                            </div>
+
+                            <div class="col-md-6">
+                                <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                    <ul class="pagination">
+                                        <?php
+                                        if ($start1 > 0) {
+                                            echo '<li class="page-item"><a class="page-link" href="?start1=' . ($start1 - $rows_per_page1) . '">Previous</a></li>';
+                                        } else {
+                                            echo '<li class="page-item disabled"><span class="page-link">Previous</span></li>';
+                                        }
+
+                                        for ($i1 = 1; $i1 <= $pages1; $i1++) {
+                                            echo '<li class="page-item' . (($start1 / $rows_per_page1 + 1) == $i1 ? ' active' : '') . '"><a class="page-link" href="?start1=' . (($i1 - 1) * $rows_per_page1) . '">' . $i1 . '</a></li>';
+                                        }
+
+                                        if ($start1 < ($pages1 - 1) * $rows_per_page1) {
+                                            echo '<li class="page-item"><a class="page-link" href="?start1=' . ($start1 + $rows_per_page1) . '">Next</a></li>';
+                                        } else {
+                                            echo '<li class="page-item disabled"><span class="page-link">Next</span></li>';
+                                        }
+                                        ?>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="container"><br>
+                <br>
+                <h3 class="text-dark mb-4">News Feed</h3>
+                <div class="card shadow">
+                    <div class="card-body">
+
+                        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                            <table class="table my-0" id="dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>News ID</th>
+                                        <th>Title</th>
+                                        <th>Posted Date</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    try {
+                                        $con = $dbcon->getConnection();
+
+                                        // Pagination logic
+                                        $start = isset($_GET['start']) ? intval($_GET['start']) : 0;
+                                        $rows_per_page = 5;
+
+                                        $query = "SELECT * FROM news LIMIT $start, $rows_per_page";
+                                        $pstmt = $con->prepare($query);
+                                        $pstmt->execute();
+                                        $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                                        foreach ($rs as $news) {
+                                            // Display user details as before
+                                    ?>
+
+                                            <tr>
+                                                <td><?php echo "N" . $news->newsId; ?></td>
+                                                <td><?php echo $news->title; ?></td>
+                                                <td><?php echo $news->newsPostedDate; ?></td>
+
+                                                <td>
+                                                    <button type="button" class="btn btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletemodel<?php echo $news->newsId ?>">Delete </button>
+
+                                                </td>
+                                            </tr>
+
+                                            <div class="modal fade shadow my-5" id="deletemodel<?php echo $news->newsId ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content" style="background-color: white;">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm to Delete News
+                                                            </h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                            <div class="d-flex justify-content-between p-2">
+
+                                                                <div class="d-flex">
+                                                                    <p class="fw-bold me-2">
+                                                                        Are you sure to delete news <span style="color: green;">"<?php echo $news->title ?>"</span> from the News Feed?
+                                                                    </p>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <div class="row w-100">
+                                                                    <div class="col-md-6">
+                                                                        <form action='./classes/managerProcess.php' method='POST'>
+                                                                            <input type='hidden' name='newsID' value='<?php echo $news->newsId ?>'>
+
+                                                                            <button class="btn btn-danger w-100 " type="submit" data-bs-dismiss="modal" aria-label="Close">Confirm</button>
+
+                                                                        </form>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <button class="btn btn-success w-100" type="button" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                    <?php
+                                        }
+                                        // Calculate the total number of rows in the 'news' table (if not already calculated)
                                         if (!isset($total_rows)) {
-                                            $total_rows_query = "SELECT COUNT(*) as total FROM users";
+                                            $total_rows_query = "SELECT COUNT(*) as total FROM news";
                                             $total_rows_stmt = $con->prepare($total_rows_query);
                                             $total_rows_stmt->execute();
                                             $total_rows_result = $total_rows_stmt->fetch(PDO::FETCH_ASSOC);
@@ -380,6 +560,7 @@ if (isset($_SESSION["manager"])) {
                                     ?>
                                 </tbody>
                             </table>
+
                         </div>
 
                         <div class="row">
@@ -415,343 +596,309 @@ if (isset($_SESSION["manager"])) {
                         </div>
                     </div>
                 </div>
-
             </div>
-        </div>
-    </div>
-    <br>
 
-    <div class="container"><br>
-        <br>
-        <h3 class="text-dark mb-4">News Feed</h3>
-        <div class="card shadow">
-            <div class="card-body">
-                <form action="" method="POST">
-                    <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                        <table class="table my-0" id="dataTable">
-                            <thead>
-                                <tr>
-                                    <th>News ID</th>
-                                    <th>NewsFeed Name</th>
-                                    <th>Posted Date</th>
-                                    <th>Posted by</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>N001</td>
-                                    <td>Indoor Plant Trends</td>
-                                    <td>23 May 2023</td>
-                                    <td>Kamal Edirisinghe</td>
+            <br>
+            <div class="container"><br>
+                <br>
+                <h3 class="text-dark mb-4">Advertiesments</h3>
+                <div class="card shadow">
+                    <div class="card-body">
 
-                                    <td>
-                                        <?php echo '<button class="btn btn-danger" type="submit" name="delete">Delete</button>'; ?>
+                        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                            <table class="table my-0" id="dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>Advertiesment ID</th>
+                                        <th>Advertiesment Title</th>
+                                        <th>Posted Date</th>
+                                        <th>Posted by</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    try {
+                                        $con = $dbcon->getConnection();
+
+                                        // Pagination logic
+                                        $start2 = isset($_GET['start2']) ? intval($_GET['start2']) : 0;
+                                        $rows_per_page2 = 5;
+
+                                        $query2 = "SELECT * FROM advertisements LIMIT $start2, $rows_per_page2";
+                                        $pstmt = $con->prepare($query2);
+                                        $pstmt->execute();
+                                        $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                                        foreach ($rs as $add) {
+                                            // Display user details as before
+                                    ?>
+
+                                            <tr>
+                                                <td><?php echo "A" . $add->id; ?></td>
+                                                <td><?php echo $add->title; ?></td>
+                                                <td><?php echo $add->adPostedDate; ?></td>
+                                                <td><?php echo $add->user_FirstName . " " . $add->user_LastName ?></td>
+                                                <td>
+                                                    <button type="button" class="btn btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAdmodel<?php echo $add->id ?>">Delete </button>
+
+                                                </td>
+                                            </tr>
+
+                                            <div class="modal fade shadow my-5" id="deleteAdmodel<?php echo $add->id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content" style="background-color: white;">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm to Delete Advertiesment
+                                                            </h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                            <div class="d-flex justify-content-between p-2">
+
+                                                                <div class="d-flex">
+                                                                    <p class="fw-bold me-2">
+                                                                        Are you sure to delete advertisement <span style="color: green;">"<?php echo $add->title ?>"</span> from the system?
+                                                                    </p>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <div class="row w-100">
+                                                                    <div class="col-md-6">
+                                                                        <form action='./classes/managerProcess.php' method='POST'>
+                                                                            <input type='hidden' name='addID' value='<?php echo $add->id ?>'>
+
+                                                                            <button class="btn btn-danger w-100 " type="submit" data-bs-dismiss="modal" aria-label="Close">Confirm</button>
+
+                                                                        </form>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <button class="btn btn-success w-100" type="button" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
 
-                                    </td>
-                                <tr>
-                                <tr>
-                                    <td>N002</td>
-                                    <td>Innovative Soil Regeneration</td>
-                                    <td>23 May 2023</td>
-                                    <td>D.B.Senevirathne</td>
+                                    <?php
+                                        }
+                                        // Calculate the total number of rows in the 'news' table (if not already calculated)
+                                        if (!isset($total_rows2)) {
+                                            $total_rows_query2 = "SELECT COUNT(*) as total FROM advertisements";
+                                            $total_rows_stmt2 = $con->prepare($total_rows_query2);
+                                            $total_rows_stmt2->execute();
+                                            $total_rows_result2 = $total_rows_stmt2->fetch(PDO::FETCH_ASSOC);
+                                            $total_rows2 = $total_rows_result2['total'];
+                                        }
 
-                                    <td>
-                                        <?php echo '<button class="btn btn-danger" type="submit" name="delete">Delete</button>'; ?>
+                                        // Calculate the total number of pages
+                                        $pages2 = ceil($total_rows2 / $rows_per_page2);
+                                    } catch (PDOException $exc) {
+                                        echo $exc->getMessage();
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
 
+                        </div>
 
-                                    </td>
-                                <tr>
-                                <tr>
-                                    <td>N003</td>
-                                    <td>Plant Exebition</td>
-                                    <td>23 May 2023</td>
-                                    <td>Victor Malinda</td>
+                        <div class="row">
+                            <div class="col-md-6 align-self-center">
+                                <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">
+                                    Showing <?php echo min($total_rows2, $start2 + 1) . ' to ' . min($total_rows2, $start2 + $rows_per_page2); ?> of <?php echo $total_rows2; ?>
+                                </p>
+                            </div>
 
-                                    <td>
-                                        <?php echo '<button class="btn btn-danger" type="submit" name="delete">Delete</button>'; ?>
+                            <div class="col-md-6">
+                                <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                    <ul class="pagination">
+                                        <?php
+                                        if ($start2 > 0) {
+                                            echo '<li class="page-item"><a class="page-link" href="?start2=' . ($start2 - $rows_per_page2) . '">Previous</a></li>';
+                                        } else {
+                                            echo '<li class="page-item disabled"><span class="page-link">Previous</span></li>';
+                                        }
 
-                                    </td>
-                                <tr>
-                                <tr>
-                                    <td>N004</td>
-                                    <td>Bio Securuty Measures</td>
-                                    <td>23 May 2023</td>
-                                    <td>Gamini Perera</td>
+                                        for ($i2 = 1; $i2 <= $pages2; $i2++) {
+                                            echo '<li class="page-item' . (($start2 / $rows_per_page2 + 1) == $i2 ? ' active' : '') . '"><a class="page-link" href="?start2=' . (($i2 - 1) * $rows_per_page2) . '">' . $i2 . '</a></li>';
+                                        }
 
-                                    <td>
-                                        <?php echo '<button class="btn btn-danger" type="submit" name="delete">Delete</button>'; ?>
-
-
-                                    </td>
-                                <tr>
-                                <tr>
-                                    <td>N005</td>
-                                    <td>Vertical Farming</td>
-                                    <td>23 May 2023</td>
-                                    <td>Adithya Jayakodi</td>
-
-                                    <td>
-                                        <?php echo '<button class="btn btn-danger" type="submit" name="delete">Delete</button>'; ?>
-
-
-                                    </td>
-                                <tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </form>
-                <div class="row">
-                    <div class="col-md-6 align-self-center">
-                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 05 of 20</p>
-                    </div>
-                    <div class="col-md-6">
-                        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                            <ul class="pagination">
-                                <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
-                            </ul>
-                        </nav>
+                                        if ($start2 < ($pages2 - 1) * $rows_per_page2) {
+                                            echo '<li class="page-item"><a class="page-link" href="?start2=' . ($start2 + $rows_per_page2) . '">Next</a></li>';
+                                        } else {
+                                            echo '<li class="page-item disabled"><span class="page-link">Next</span></li>';
+                                        }
+                                        ?>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <br>
 
 
+            <div class="container"><br>
+                <br>
+                <h3 class="text-dark mb-4">Blogs</h3>
+                <div class="card shadow">
+                    <div class="card-body">
 
-    <div class="container"><br>
-        <br>
-        <h3 class="text-dark mb-4">Advertiesments</h3>
+                        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                            <table class="table my-0" id="dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>Blog ID</th>
+                                        <th>Blog Title</th>
+                                        <th>Posted Date</th>
+                                        <th>Posted by</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    try {
+                                        $con = $dbcon->getConnection();
 
+                                        // Pagination logic
+                                        $start3 = isset($_GET['start3']) ? intval($_GET['start3']) : 0;
+                                        $rows_per_page3 = 5;
 
-        <div class="card shadow">
-            <div class="card-body">
-                <form action="" method="POST">
-                    <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                        <table class="table my-0" id="dataTable">
-                            <thead>
-                                <tr>
-                                    <th>Advertiesment ID</th>
-                                    <th>Advertiesment Name</th>
-                                    <th>Posted Date</th>
-                                    <th>Posted by</th>
-                                    <th>Delete</th>
+                                        $query3 = "SELECT * FROM blog LIMIT $start3, $rows_per_page3";
+                                        $pstmt = $con->prepare($query3);
+                                        $pstmt->execute();
+                                        $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
 
+                                        foreach ($rs as $blog) {
+                                            // Display user details as before
+                                    ?>
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Ad001</td>
-                                    <td>Indoor Plant Trends</td>
-                                    <td>2023-09-09</td>
-                                    <td>Kamal Edirisinghe</td>
+                                            <tr>
+                                                <td><?php echo "B" . $blog->blog_id; ?></td>
+                                                <td><?php echo $blog->blog_title; ?></td>
+                                                <td><?php echo $blog->blogPostedDate; ?></td>
+                                                <td><?php echo $blog->user_fname . " " . $blog->user_lname ?></td>
+                                                <td>
+                                                    <button type="button" class="btn btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteBlogmodel<?php echo $blog->blog_id ?>">Delete </button>
 
-                                    <td>
-                                        <?php echo '<button class="btn btn-danger" type="submit" name="delete">Delete</button>'; ?>
+                                                </td>
+                                            </tr>
 
+                                            <div class="modal fade shadow my-5" id="deleteBlogmodel<?php echo $blog->blog_id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content" style="background-color: white;">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm to Delete Advertiesment
+                                                            </h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
 
-                                    </td>
-                                <tr>
-                                <tr>
-                                    <td>Ad002</td>
-                                    <td>Innovative Soil Regeneration</td>
-                                    <td>2023-09-09</td>
-                                    <td>D.B.Senevirathne</td>
+                                                            <div class="d-flex justify-content-between p-2">
 
-                                    <td>
-                                        <?php echo '<button class="btn btn-danger" type="submit" name="delete">Delete</button>'; ?>
+                                                                <div class="d-flex">
+                                                                    <p class="fw-bold me-2">
+                                                                        Are you sure to delete advertisement <span style="color: green;">"<?php echo $blog->blog_title ?>"</span> from the system?
+                                                                    </p>
 
+                                                                </div>
 
-                                    </td>
-                                <tr>
-                                <tr>
-                                    <td>Ad003</td>
-                                    <td>Plant Exebition</td>
-                                    <td>2023-09-09</td>
-                                    <td>Victor Malinda</td>
+                                                            </div>
 
-                                    <td>
-                                        <?php echo '<button class="btn btn-danger" type="submit" name="delete">Delete</button>'; ?>
+                                                            <div class="modal-footer">
+                                                                <div class="row w-100">
+                                                                    <div class="col-md-6">
+                                                                        <form action='./classes/managerProcess.php' method='POST'>
+                                                                            <input type='hidden' name='blogID' value='<?php echo $blog->blog_id ?>'>
 
-                                    </td>
-                                <tr>
-                                <tr>
-                                    <td>Ad004</td>
-                                    <td>Bio Securuty Measures</td>
-                                    <td>2023-09-09</td>
-                                    <td>Gamini Perera</td>
+                                                                            <button class="btn btn-danger w-100 " type="submit" data-bs-dismiss="modal" aria-label="Close">Confirm</button>
 
-                                    <td>
-                                        <?php echo '<button class="btn btn-danger" type="submit" name="delete">Delete</button>'; ?>
-
-
-                                    </td>
-                                <tr>
-                                <tr>
-                                    <td>Ad005</td>
-                                    <td>Vertical Farming</td>
-                                    <td>2023-09-09</td>
-                                    <td>Adithya Jayakodi</td>
-
-                                    <td>
-                                        <?php echo '<button class="btn btn-danger" type="submit" name="delete">Delete</button>'; ?>
-
-
-                                    </td>
-                                <tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </form>
-                <div class="row">
-                    <div class="col-md-6 align-self-center">
-                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 05 of 20</p>
-                    </div>
-                    <div class="col-md-6">
-                        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                            <ul class="pagination">
-                                <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <br>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <button class="btn btn-success w-100" type="button" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
 
+                                    <?php
+                                        }
+                                        // Calculate the total number of rows in the 'news' table (if not already calculated)
+                                        if (!isset($total_rows3)) {
+                                            $total_rows_query3 = "SELECT COUNT(*) as total FROM blog";
+                                            $total_rows_stmt3 = $con->prepare($total_rows_query3);
+                                            $total_rows_stmt3->execute();
+                                            $total_rows_result3 = $total_rows_stmt3->fetch(PDO::FETCH_ASSOC);
+                                            $total_rows3 = $total_rows_result3['total'];
+                                        }
 
+                                        // Calculate the total number of pages
+                                        $pages3 = ceil($total_rows3 / $rows_per_page3);
+                                    } catch (PDOException $exc) {
+                                        echo $exc->getMessage();
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
 
+                        </div>
 
+                        <div class="row">
+                            <div class="col-md-6 align-self-center">
+                                <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">
+                                    Showing <?php echo min($total_rows3, $start3 + 1) . ' to ' . min($total_rows3, $start3 + $rows_per_page3); ?> of <?php echo $total_rows3; ?>
+                                </p>
+                            </div>
 
-    <div class="container"><br>
-        <br>
-        <h3 class="text-dark mb-4">Manage Blog</h3>
+                            <div class="col-md-6">
+                                <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                    <ul class="pagination">
+                                        <?php
+                                        if ($start3 > 0) {
+                                            echo '<li class="page-item"><a class="page-link" href="?start3=' . ($start3 - $rows_per_page3) . '">Previous</a></li>';
+                                        } else {
+                                            echo '<li class="page-item disabled"><span class="page-link">Previous</span></li>';
+                                        }
 
+                                        for ($i3 = 1; $i3 <= $pages3; $i3++) {
+                                            echo '<li class="page-item' . (($start3 / $rows_per_page3 + 1) == $i3 ? ' active' : '') . '"><a class="page-link" href="?start3=' . (($i3 - 1) * $rows_per_page3) . '">' . $i3 . '</a></li>';
+                                        }
 
-
-        <div class="card shadow">
-            <div class="card-body">
-                <form action="" method="POST">
-                    <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                        <table class="table my-0" id="dataTable">
-                            <thead>
-                                <tr>
-                                    <th>Blog ID</th>
-                                    <th>Blog Name</th>
-                                    <th>Posted Date</th>
-                                    <th>Author</th>
-                                    <th>Action</th>
-
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Bl001</td>
-                                    <td>Indoor Plant Trends</td>
-                                    <td>2023-09-09</td>
-                                    <td>Kamal Edirisinghe</td>
-
-                                    <td>
-                                        <?php echo '<button class="btn btn-danger" type="submit" name="delete">Delete</button>'; ?>
-
-
-                                    </td>
-                                <tr>
-                                <tr>
-                                    <td>Bl002</td>
-                                    <td>Innovative Soil Regeneration</td>
-                                    <td>2023-09-09</td>
-                                    <td>D.B.Senevirathne</td>
-
-                                    <td>
-                                        <?php echo '<button class="btn btn-danger" type="submit" name="delete">Delete</button>'; ?>
-
-                                    </td>
-                                <tr>
-                                <tr>
-                                    <td>Bl003</td>
-                                    <td>Plant Exebition</td>
-                                    <td>2023-09-09</td>
-                                    <td>Victor Malinda</td>
-
-                                    <td>
-                                        <?php echo '<button class="btn btn-danger" type="submit" name="delete">Delete</button>'; ?>
-
-                                    </td>
-                                <tr>
-                                <tr>
-                                    <td>Bl004</td>
-                                    <td>Bio Securuty Measures</td>
-                                    <td>2023-09-09</td>
-                                    <td>Gamini Perera</td>
-
-                                    <td>
-                                        <?php echo '<button class="btn btn-danger" type="submit" name="delete">Delete</button>'; ?>
-
-
-                                    </td>
-                                <tr>
-                                <tr>
-                                    <td>Bl005</td>
-                                    <td>Vertical Farming</td>
-                                    <td>2023-09-09</td>
-                                    <td>Adithya Jayakodi</td>
-
-                                    <td>
-                                        <?php echo '<button class="btn btn-danger" type="submit" name="delete">Delete</button>'; ?>
-
-
-                                    </td>
-                                <tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </form>
-                <div class="row">
-                    <div class="col-md-6 align-self-center">
-                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 05 of 20</p>
-                    </div>
-                    <div class="col-md-6">
-                        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                            <ul class="pagination">
-                                <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
-                            </ul>
-                        </nav>
+                                        if ($start3 < ($pages3 - 1) * $rows_per_page3) {
+                                            echo '<li class="page-item"><a class="page-link" href="?start3=' . ($start3 + $rows_per_page3) . '">Next</a></li>';
+                                        } else {
+                                            echo '<li class="page-item disabled"><span class="page-link">Next</span></li>';
+                                        }
+                                        ?>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+
+
+
+            
         </div>
     </div>
-    </div>
-    </div>
-    </div>
+   
 
-    <!-- <footer>
-             -->
+
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
@@ -770,19 +917,19 @@ if (isset($_SESSION["manager"])) {
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Services</h4>
-                    <a class="btn btn-link" href="#">Landscaping</a>
-                    <a class="btn btn-link" href="#">Pruning plants</a>
-                    <a class="btn btn-link" href="#">Urban Gardening</a>
-                    <a class="btn btn-link" href="#">Garden Maintenance</a>
-                    <a class="btn btn-link" href="#">Green Technology</a>
+                    <a class="btn btn-link" href="./plantSuggestion.php">Plant Suggestion</a>
+                    <a class="btn btn-link" href="./Advertistment.php">Advertiesment</a>
+                    <a class="btn btn-link" href="./Selling.php">Shop</a>
+                    <a class="btn btn-link" href="./blog.php">Blog</a>
+
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="#">About Us</a>
-                    <a class="btn btn-link" href="#">Contact Us</a>
-                    <a class="btn btn-link" href="#">Our Services</a>
-                    <a class="btn btn-link" href="#">Terms & Condition</a>
-                    <a class="btn btn-link" href="#">Support</a>
+                    <a class="btn btn-link" href="./AboutUs.php">About Us</a>
+                    <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
+                    <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
+                    <a class="btn btn-link" href="./login.php">Log Out</a>
+                    <a class="btn btn-link" href="./termsAndCondition.php">Terms & Condition</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <img src="../images/logo.png" style="width:220px;height:50px;">
@@ -791,6 +938,8 @@ if (isset($_SESSION["manager"])) {
         </div>
     </div>
     <!-- Footer End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
 
     <!-- Copyright Start -->

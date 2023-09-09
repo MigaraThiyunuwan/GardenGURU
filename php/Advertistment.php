@@ -5,13 +5,12 @@ require './classes/DbConnector.php';
 $dbConnector = new classes\DbConnector();
 $dbcon = $dbConnector->getConnection();
 
-?>
-<?php
+
 require './classes/persons.php';
 session_start();
-if (isset($_SESSION["user"])) {
+if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) ) {
   // User is logged in, retrieve the user object
-  $user = $_SESSION["user"];
+
 } else {
   // Redirect the user to login.php if not logged in
   header("Location: ./login.php?error=5");

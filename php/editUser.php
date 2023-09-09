@@ -63,13 +63,7 @@ if (isset($_SESSION["user"])) {
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
                 <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Profile</a>
-                <!-- <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-                    <div class="dropdown-menu bg-light m-0">
-                        <a href="./user.php" class="dropdown-item">Profile</a>
-                        <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
-                    </div>
-                </div> -->
+                
             </div>
 
     </nav>
@@ -87,7 +81,7 @@ if (isset($_SESSION["user"])) {
                                 <div class="mt-3">
                                     <h4>Hello! <?php echo $user->getFirstName() . "" . $user->getLastName() ?> !</h4><br>
                                    <!--  <a class="btn btn-outline-primary " target="" href="./classes/logout.php">Log Out</a>-->
-                                    <a class="btn btn-outline-info" id="popbutton" target="#" >Change Profile Picture</a>
+                                    <a class="btn btn-outline-primary" id="popbutton" target="#" >Change Profile Picture</a>
 
                                     <a class="btn btn-outline-danger " target="#" >Change Password</a>
                                 </div>
@@ -141,8 +135,8 @@ if (isset($_SESSION["user"])) {
                                     </div>
                                 </div>
                                 <div class="row ">
-                                    <div class="col-sm-6">
-                                        <div class="col-sm-9 text-secondary">
+                                    <div class="col">
+                                        <div class="col text-secondary">
                                             <button class="btn btn-primary my-3 w-100">
                                                 Save Changes
                                             </button>

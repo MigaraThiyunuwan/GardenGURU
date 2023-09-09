@@ -198,7 +198,7 @@ $newsCounter = 0;
             ?>
 
                     <article>
-                        <h4>just in </h4>
+                        <h4><?php echo $row['newsPostedDate']; ?></h4>
                         <div>
                             <h2><?php echo $row['title']; ?></h2>
 
@@ -385,10 +385,19 @@ $newsCounter = 0;
         </div>
     </div>
     <!-- Footer End -->
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
     <!-- Copyright Start -->
     <div class="container-fluid copyright py-4">
-        <!-- Copyright content goes here -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="index.php">GardenGURU</a>, All Right Reserved.
+                </div>
+
+            </div>
+        </div>
     </div>
     <!-- Copyright End -->
 

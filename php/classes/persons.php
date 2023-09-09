@@ -278,7 +278,6 @@ class Manager extends person
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
-
             $query = "DELETE FROM users WHERE user_id = :user_id";
             $pstmt = $con->prepare($query);
             $pstmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
@@ -294,37 +293,59 @@ class Manager extends person
         }
     }
 
-    public function viewUser()
+    public function deleteNews($newsId)
     {
-        require_once 'DbConnector.php';
-        $user_id = $_POST['userID'];
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
-
-            $query = "SELECT * FROM users WHERE user_id = ?";
+            $query = "DELETE FROM news WHERE newsId = :newsId";
             $pstmt = $con->prepare($query);
-            $pstmt->bindValue(1, $user_id);
+            $pstmt->bindParam(':newsId', $newsId, PDO::PARAM_INT);
+            $a = $pstmt->execute();
+            if($a > 0){
+                return true;
+            } else {
+                return false;
+            }
+            
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
 
-            $pstmt->execute();
+    public function deleteAdd($Addid){
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "DELETE FROM advertisements WHERE id = :id";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindParam(':id', $Addid, PDO::PARAM_INT);
+            $a = $pstmt->execute();
+            if($a > 0){
+                return true;
+            } else {
+                return false;
+            }
+            
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
 
-            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
-            foreach ($rs as $row) {
-                $dbpassword = $row->user_Password;
-                $dbFirstName = $row->user_FirstName;
-                $dbLastName = $row->user_LastName;
-                $dbEmail = $row->user_Email;
-                $dbPhoneNo = $row->user_PhoneNo;
-                $dbDistrict = $row->user_District;
-                $dbprofile_picture = $row->profile_picture;
-                $dbid = $row->user_id;
-                $dbGender = $row->user_Gender;
-                $dbaddress = $row->user_address;
-            };
-            $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbprofile_picture, $dbGender);
-            session_start();
-            $_SESSION["user1"] = $user;
-            header("Location: ../userView.php");
+    public function deleteBlog($Blogid){
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "DELETE FROM blog WHERE blog_id = :id";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindParam(':id', $Blogid, PDO::PARAM_INT);
+            $a = $pstmt->execute();
+            if($a > 0){
+                return true;
+            } else {
+                return false;
+            }
+            
         } catch (PDOException $exc) {
             echo $exc->getMessage();
         }
@@ -422,11 +443,7 @@ class Manager extends person
     }
 }
 
-if (isset($_POST['action']) && $_POST['action'] == 'view') {
 
-    $manager = new Manager(null, null, null, null, null, null, null,);
-    $manager->viewUser();
-}
 
 /* =========================================================|| Admin class (Child Class) ||====================================================================================== */
 class Admin extends person

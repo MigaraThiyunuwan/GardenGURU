@@ -8,7 +8,6 @@ if (isset($_SESSION["manager"])) {
     // User is logged in, retrieve the user object
     $manager = $_SESSION["manager"];
 } else {
-
     header("Location: ./managerlogin.php?error=2");
     exit();
 }
@@ -17,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if(isset($_POST['UserID'])){
         $UserID = $_POST['UserID'];
-            // call deleteUser function un Manager class
+            // call deleteUser function in Manager class
         if($manager->deleteUser($UserID)){
             header("Location: ../Manager.php?success=1");
         } else {
@@ -25,8 +24,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+    if(isset($_POST['newsID'])){
+        $newsID = $_POST['newsID'];
+            // call deleteUser function in Manager class
+        if($manager->deleteNews($newsID)){
+            header("Location: ../Manager.php?success=2");
+        } else {
+            header("Location: ../Manager.php?error=2");
+        }
+    }
 
+    if(isset($_POST['addID'])){
+        $addID = $_POST['addID'];
+            // call deleteAdd function in Manager class
+        if($manager->deleteAdd($addID)){
+            header("Location: ../Manager.php?success=3");
+        } else {
+            header("Location: ../Manager.php?error=3");
+        }
+    }
 
+    if(isset($_POST['blogID'])){
+        $blogID = $_POST['blogID'];
+            // call deleteAdd function in Manager class
+        if($manager->deleteBlog($blogID)){
+            header("Location: ../Manager.php?success=4");
+        } else {
+            header("Location: ../Manager.php?error=4");
+        }
+    }
 }
 
 ?>
