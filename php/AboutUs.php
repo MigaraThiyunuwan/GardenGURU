@@ -126,7 +126,7 @@ if (isset($_SESSION["manager"])) {
                     <h1 class="display-1 text-primary mb-0">15</h1>
                     <p class="text-primary mb-4">Year of Experience</p>
                     <h1 class="display-6 mb-4">Blooming Your Gardening Dreams with Us.</h1>
-                    <p class="mb-4">Join our community of passionate gardeners, immerse yourself in the art of nurturing plants, and let nature's charm unfold in your own backyard.
+                    <p class="mb-4"style="font-family: Georgia, 'Times New Roman', Times, serif">Join our community of passionate gardeners, immerse yourself in the art of nurturing plants, and let nature's charm unfold in your own backyard.
                         Get ready to discover the joy of gardening and witness the magic that unfolds when you connect with the earth.
                     </p>
                     <h4>"Nurture Your Green Thumb with Us!"</h4>
@@ -159,11 +159,11 @@ if (isset($_SESSION["manager"])) {
             <div class="row g-4 justify-content-center">
                 <div class="col-lg-6 col-md-8 text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h2 class="display-4 mb-4">Our Vision</h2>
-                    <p class="lead">To create a greener and more sustainable world by inspiring and empowering individuals to connect with nature through gardening.</p>
+                    <p class="lead" style="font-family: Georgia, 'Times New Roman', Times, serif">To create a greener and more sustainable world by inspiring and empowering individuals to connect with nature through gardening.</p>
                 </div>
                 <div class="col-lg-6 col-md-8 text-center wow fadeInUp" data-wow-delay="0.3s">
                     <h2 class="display-4 mb-4">Our Mission</h2>
-                    <p class="lead">To provide gardening enthusiasts with the knowledge, tools, and resources they need to cultivate beautiful and thriving gardens, while promoting environmental conservation and awareness.</p>
+                    <p class="lead" style="font-family: Georgia, 'Times New Roman', Times, serif">To provide gardening enthusiasts with the knowledge, tools, and resources they need to cultivate beautiful and thriving gardens, while promoting environmental conservation and awareness.</p>
                 </div>
             </div>
         </div>

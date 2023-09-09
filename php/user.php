@@ -115,7 +115,7 @@ if (isset($_SESSION["user"])) {
         <div class="card">
           <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center">
-              <img src="<?php echo $user->getPropic() ?>" alt="Admin" class="rounded-circle" width="150">
+              <img src="<?php echo $user->getPropic() ?>" alt="Admin" class="rounded-circle" width="150" height="150">
               <div class="mt-3">
                 <h4>Hello! <?php echo $user->getFirstName() ?></h4><br>
 
@@ -136,6 +136,12 @@ if (isset($_SESSION["user"])) {
                     Blog Posting Failed!
                     </div></b>";
                   }
+                  if ($_GET['success'] == 2) {
+
+                    echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                    User details updated suceessfully!
+                    </div></b>";
+                  }
                   if ($_GET['success'] == 3) {
 
                     echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
@@ -152,6 +158,18 @@ if (isset($_SESSION["user"])) {
 
                     echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
                     Picture Upoload Successfully!
+                    </div></b>";
+                  }
+                }
+                if (isset($_GET['error'])) {
+                  if ($_GET['error'] == 1) {
+                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Update User Details Failed!
+                    </div></b>";
+                  }
+                  if ($_GET['error'] == 2) {
+                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Please fill all fields!
                     </div></b>";
                   }
                 }
@@ -229,12 +247,7 @@ if (isset($_SESSION["user"])) {
     </div>
     <br><br>
 
-    <?php
-    if (isset($_GET['error'])) {
-      if ($_GET['error'] == 1) {
-        echo "<b><p style='color: red;'> Cannot Update Your Details !</p></b>";
-      }
-    } ?>
+    
 
     <div class="row mb-5">
       <div class="col-md-8 col-xl-6 text-center mx-auto">
@@ -382,21 +395,29 @@ if (isset($_SESSION["user"])) {
     <div class="close" id="close-button">+</div>
 
 
-      <form action="upload.php" method="post" enctype="multipart/form-data">
-        <!-- <input type="text" name="name" placeholder="Name" values="$name">
-        <input type="email" name="email" placeholder="E-Mail" values="$email"> -->
+      <form id="adForm" action="upload.php" method="post" enctype="multipart/form-data">
+        
         <label for="image1"><b>Select Image for Advertisement:</b></label>
         <input type="file" class="form-control" name="image1" id="image1" values="$filename1">
         <label for="text_title"><br><b>Add title for the Advertisement:</b></label>
         <input type="text" class="form-control"  name="text_title" id="text_title">
-        <!-- <label for="image2">Select Image for Advertisement Description:</label>
-        <input type="file" name="image2" id="image2">-->
         <label for="text_description"><br><b>Enter Your Description:</b></label>
         <textarea name="text_description" class="form-control" id="text_description" rows="5" cols="40"></textarea>
         <input type="hidden" name="submit" value="Put Advertisement" values="$filename2">
+        <input type="hidden" id="realDate" name="realDate">
         <button type="submit" style="margin-top: 15px;" class="btn btn-success">Put Advertisement</button>
       </form>
+      <script>
+        // Function to set the real date as the value of the hidden input field
+        function setRealDate() {
+            var currentDate = new Date();
+            var realDateField = document.getElementById('realDate');
+            realDateField.value = currentDate.toISOString();
+        }
 
+        // Call setRealDate() when the form is submitted
+        document.getElementById('adForm').addEventListener('submit', setRealDate);
+    </script>
 
 
     </div>

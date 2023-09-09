@@ -6,145 +6,6 @@ use classes\DbConnector;
 
 $dbcon = new DbConnector();
 
-$emailerror = null;
-$phoneerror = null;
-$missMatchError = null;
-$validPasswordError = null;
-function validateAndSanitizeInput($input)
-{
-    // Remove leading and trailing whitespace
-    $input = trim($input);
-
-    // Remove backslashes
-    $input = stripslashes($input);
-
-    // Remove HTML tags
-    $input = strip_tags($input);
-
-    // Convert special characters to HTML entities (prevent XSS)
-    $input = htmlspecialchars($input);
-
-    return $input;
-}
-
-function validate_password($password) {
-    // Check if the password length is at least 6 characters
-    if (strlen($password) < 6) {
-        return false;
-    }
-
-    // Check if the password contains at least one number
-    if (!preg_match('/\d/', $password)) {
-        return false;
-    }
-
-    // Check if the password contains at least one uppercase letter
-    if (!preg_match('/[A-Z]/', $password)) {
-        return false;
-    }
-
-    // Check if the password contains at least one special character
-    if (!preg_match('/[!@#$%^&*()_+{}\[\]:;<>,.?~\\\-]/', $password)) {
-        return false;
-    }
-
-    // If all conditions are met, the password is valid
-    return true;
-}
-
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    if (isset($_POST['firstname']) && !empty($_POST['firstname']) && isset($_POST['lastname']) && !empty($_POST['lastname']) && isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['phone']) && !empty($_POST['phone']) && isset($_POST['gender']) && !empty($_POST['gender']) && isset($_POST['district']) && !empty($_POST['district']) && isset($_POST['password']) && !empty($_POST['password']) && isset($_POST['passwordConfirmation']) && !empty($_POST['passwordConfirmation'])) {
-        $tempPass1 = $_POST["password"];
-        $tempPass2 = $_POST["passwordConfirmation"];
-
-        if (validate_password($tempPass1)){
-
-            if ($tempPass1 == $tempPass2) {
-                $firstname = $_POST["firstname"];
-                $lastname = $_POST["lastname"];
-                $email = $_POST["email"];
-                $phone = $_POST["phone"];
-                $gender = $_POST["gender"];
-                $district = $_POST["district"];
-                $address = $_POST["address"];
-                $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-                $picture = "../images/profile_pictures/Default.png";
-    
-                $firstname = validateAndSanitizeInput($firstname);
-                $lastname = validateAndSanitizeInput($lastname);
-                $email = validateAndSanitizeInput($email);
-                $phone = validateAndSanitizeInput($phone);
-                $gender = validateAndSanitizeInput($gender);
-                $district = validateAndSanitizeInput($district);
-                $address = validateAndSanitizeInput($address);
-    
-                $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-                if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    
-                        if(is_numeric($phone)){
-    
-                            try {
-                                $con = $dbcon->getConnection();
-                                $query = "INSERT INTO users(user_FirstName, user_LastName, user_Email, user_PhoneNo, user_address, user_Password, user_District, user_Gender, profile_picture) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                                $pstmt = $con->prepare($query);
-                                $pstmt->bindValue(1, $firstname);
-                                $pstmt->bindValue(2, $lastname);
-                                $pstmt->bindValue(3, $email);
-                                $pstmt->bindValue(4, $phone);
-                                $pstmt->bindValue(5, $address);
-                                $pstmt->bindValue(6, $password);
-                                $pstmt->bindValue(7, $district);
-                                $pstmt->bindValue(8, $gender);
-                                $pstmt->bindValue(9, $picture);
-                                $pstmt->execute();
-                                if (($pstmt->rowCount()) > 0) {
-            
-                                    header("Location: ./login.php?success=1");
-                                } else {
-                                    echo "Error, try again.";
-                                }
-                            } catch (PDOException $exc) {
-                                echo $exc->getMessage();
-                            }
-    
-                        }else{
-                            $phoneerror = "<b><div class='alert alert-danger py-2' role='alert'>
-                            Please Enter Valied Phone Number!
-                            </div></b>";
-                        }   
-                } else {
-                    $emailerror = "<b><div class='alert alert-danger py-2' role='alert'>
-                    Please Enter Valied Email!
-                    </div></b>";
-                }
-            } else {
-                $missMatchError = "<b><div class='alert alert-danger py-2' role='alert'>
-                Password Missmatch!
-                </div></b>";
-                
-            }
-        } else{
-            $validPasswordError = "<b><div class='alert alert-danger py-2' role='alert'>
-            Password Must Contain, <br></b>
-            <ul>
-                <li>More than 6 characters</li>
-                <li>At least one number</li>
-                <li>At least one Upper Case character</li>
-                <li>At least one Special Character</li>
-            </ul>
-            <b></div></b>";
-        }
-
-        
-
-
-    } else {
-        echo '<p style="color:red;" > <b>Please Fill all Fields.</b> </p>';
-    }
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -193,18 +54,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
                         <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
                         <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
-
                     </div>
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
+                <a href="./login.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Sign In</a>
 
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-                    <div class="dropdown-menu bg-light m-0">
-                        <a href="./login.php" class="dropdown-item">Log Out</a>
-                    </div>
-                </div>
             </div>
 
         </div>
@@ -220,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <!-- Registeration Form -->
             <div class="col-md-7 col-lg-6 ml-auto">
-                <form action="<?php $_SERVER["PHP_SELF"] ?>" method="POST">
+                <form action="./classes/registerProcess.php" method="POST">
                     <div class="row">
 
                         <!-- First Name -->
@@ -347,19 +202,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
 
                         <?php
-                        if($emailerror !==  null){
-                            echo $emailerror;
-                        }
-                        if($phoneerror !==  null){
-                            echo $phoneerror;
-                        }
-                        if($missMatchError !==  null){
-                            echo $missMatchError;
-                        }
-                        if($validPasswordError !== null){
-                            echo $validPasswordError;
-                        }
-                        ?>
+                        if (isset($_GET['error'])) {
+                            if ($_GET['error'] == 1) {
+
+                                echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        Please Enter Valied Phone Number!
+                                        </div></b>";
+                            }
+                            if ($_GET['error'] == 2) {
+
+                                echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        Please Enter Valied Email!
+                                        </div></b>";
+                            }
+                            if ($_GET['error'] == 3) {
+
+                                echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        Password Missmatch!
+                                        </div></b>";
+                            }
+                            if ($_GET['error'] == 4) {
+
+                                echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        Password Must Contain, <br></b>
+                                        <ul>
+                                            <li>More than 6 characters</li>
+                                            <li>At least one number</li>
+                                            <li>At least one Upper Case character</li>
+                                            <li>At least one Special Character</li>
+                                        </ul>
+                                        </div></b>";
+                            }
+                            if ($_GET['error'] == 5) {
+
+                                echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        Please Fill all Fields.
+                                        </div></b>";
+                            }
+                            if ($_GET['error'] == 6) {
+
+                                echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        There is a registered account for email you provided.
+                                        </div></b>";
+                            }
+                            if ($_GET['error'] == 7) {
+
+                                echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        Sorry! Registration failed.
+                                        </div></b>";
+                            }
+                        } ?>
 
                         <!-- Submit Button -->
                         <input type="submit" value="Create New Account" class="btn btn-primary my-3 w-100">

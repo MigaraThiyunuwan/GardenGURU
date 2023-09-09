@@ -83,7 +83,7 @@ if (isset($_SESSION["user"])) {
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                <img src="<?php echo $user->getPropic() ?> " alt="Admin" class="rounded-circle" width="150">
+                                <img src="<?php echo $user->getPropic() ?> " alt="Admin" class="rounded-circle" width="150" height="150">
                                 <div class="mt-3">
                                     <h4>Hello! <?php echo $user->getFirstName() . "" . $user->getLastName() ?> !</h4><br>
                                    <!--  <a class="btn btn-outline-primary " target="" href="./classes/logout.php">Log Out</a>-->
@@ -100,32 +100,32 @@ if (isset($_SESSION["user"])) {
                         <div class="card-body">
                             <form action="./classes/userEditProcess.php" method="post">
                                 <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">First Name</h6>
+                                    <div class="col-sm-3" style="margin-top: 25px;">
+                                        <h6 class="mb-0"><b>First Name</b></h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input type="text" name="firstname" class="form-control" value="<?php echo $user->getFirstName() ?>">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Last Name</h6>
+                                    <div class="col-sm-3" style="margin-top: 25px;">
+                                        <h6 class="mb-0"><b>Last Name</b></h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input type="text" name="lastname" class="form-control" value="<?php echo $user->getLastName() ?>">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Email</h6>
+                                    <div class="col-sm-3" style="margin-top: 25px;">
+                                        <h6 class="mb-0"><b>Email</b></h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input type="text" name="email" class="form-control" value="<?php echo $user->getEmail() ?>">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Phone</h6>
+                                    <div class="col-sm-3" style="margin-top: 25px;">
+                                        <h6 class="mb-0"><b>Phone</b></h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input type="text" name="phone" class="form-control" value="<?php echo $user->getPhoneNo() ?>">
@@ -133,8 +133,8 @@ if (isset($_SESSION["user"])) {
                                 </div>
 
                                 <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Address</h6>
+                                    <div class="col-sm-3" style="margin-top: 25px;">
+                                        <h6 class="mb-0"><b>Address</b></h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input type="text" name="address" class="form-control" value="<?php echo $user->getAddress() ?>">
