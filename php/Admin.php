@@ -51,7 +51,7 @@ if (isset($_SESSION["admin"])) {
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="index-2.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <img src="../images/logo.png" style="width:220px;height:50px;">
-            <!-- <h1 class="m-0">Garden<B>GURU</B></h1> -->
+            
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -61,7 +61,6 @@ if (isset($_SESSION["admin"])) {
                 <a href="../index.php" class="nav-item nav-link active">Home</a>
                 <a href="./plantSuggestion.php" class="nav-item nav-link">Plant Suggestions</a>
                 <a href="./Selling.php" class="nav-item nav-link">Shop</a>
-                <!-- <a href="../php/blog.php" class="nav-item nav-link">Blog</a> -->
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
                     <div class="dropdown-menu bg-light m-0">
@@ -75,15 +74,8 @@ if (isset($_SESSION["admin"])) {
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
                 <a href="./classes/logout.php" class="nav-item nav-link">Log Out</a>
-                <!-- <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-                    <div class="dropdown-menu bg-light m-0">
-                        <a href="./user.php" class="dropdown-item">Profile</a>
-                        <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
-                    </div>
-                </div> -->
+                <a href="./classes/logout.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Log Out</a>
             </div>
-            <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
         </div>
     </nav>
     <!-- Navbar End -->
@@ -153,6 +145,17 @@ if (isset($_SESSION["admin"])) {
                                     <?php echo $admin->getAdminNIC(); ?>
                                 </div>
                             </div>
+                            <?php
+                            if (isset($_GET['success'])) {
+                                echo "<hr>";
+                                if ($_GET['success'] == 1) {
+
+                                    echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                                                Manager Added Successfully!
+                                                </div></b>";
+                                }
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>

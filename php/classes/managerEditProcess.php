@@ -1,7 +1,7 @@
 <?php
 require './DbConnector.php';
 require './persons.php';
-
+require_once './Security.php';
 use classes\DbConnector;
 $dbcon = new DbConnector();
 
@@ -14,30 +14,14 @@ if (isset($_SESSION["manager"])) {
     header("Location: ./managerlogin.php?error=2");
     exit();
 }
-function SanitizeInput($input)
-{
-    // Remove leading and trailing whitespace
-    $input = trim($input);
-
-    // Remove backslashes
-    $input = stripslashes($input);
-
-    // Remove HTML tags
-    $input = strip_tags($input);
-
-    // Convert special characters to HTML entities (prevent XSS)
-    $input = htmlspecialchars($input);
-
-    return $input;
-}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $firstName = SanitizeInput($_POST["firstname"]);
-    $lastName = SanitizeInput($_POST["lastname"]);
-    $email = SanitizeInput($_POST["email"]);
-    $phone = SanitizeInput($_POST["phone"]);
-    $NIC = SanitizeInput($_POST["NIC"]);
+    $firstName = Security::SanitizeInput(($_POST["firstname"]));
+    $lastName = Security::SanitizeInput(($_POST["lastname"]));
+    $email = Security::SanitizeInput(($_POST["email"]));
+    $phone = Security::SanitizeInput(($_POST["phone"]));
+    $NIC = Security::SanitizeInput(($_POST["NIC"]));
     $managerID = $manager->getManagerid();
         // call EditManagerDetails function
     if($manager->EditManagerDetails($firstName, $lastName, $email, $NIC, $phone, $managerID)){

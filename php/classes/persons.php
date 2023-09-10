@@ -2,10 +2,8 @@
 
 use classes\DbConnector;
 
-?>
-
-<?php
 /* =========================================================|| person class (Parent Class) ||====================================================================================== */
+
 class person
 {
     private $FirstName;
@@ -282,12 +280,11 @@ class Manager extends person
             $pstmt = $con->prepare($query);
             $pstmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
             $a = $pstmt->execute();
-            if($a > 0){
+            if ($a > 0) {
                 return true;
             } else {
                 return false;
             }
-            
         } catch (PDOException $exc) {
             echo $exc->getMessage();
         }
@@ -302,18 +299,18 @@ class Manager extends person
             $pstmt = $con->prepare($query);
             $pstmt->bindParam(':newsId', $newsId, PDO::PARAM_INT);
             $a = $pstmt->execute();
-            if($a > 0){
+            if ($a > 0) {
                 return true;
             } else {
                 return false;
             }
-            
         } catch (PDOException $exc) {
             echo $exc->getMessage();
         }
     }
 
-    public function deleteAdd($Addid){
+    public function deleteAdd($Addid)
+    {
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
@@ -321,18 +318,18 @@ class Manager extends person
             $pstmt = $con->prepare($query);
             $pstmt->bindParam(':id', $Addid, PDO::PARAM_INT);
             $a = $pstmt->execute();
-            if($a > 0){
+            if ($a > 0) {
                 return true;
             } else {
                 return false;
             }
-            
         } catch (PDOException $exc) {
             echo $exc->getMessage();
         }
     }
 
-    public function deleteBlog($Blogid){
+    public function deleteBlog($Blogid)
+    {
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
@@ -340,12 +337,11 @@ class Manager extends person
             $pstmt = $con->prepare($query);
             $pstmt->bindParam(':id', $Blogid, PDO::PARAM_INT);
             $a = $pstmt->execute();
-            if($a > 0){
+            if ($a > 0) {
                 return true;
             } else {
                 return false;
             }
-            
         } catch (PDOException $exc) {
             echo $exc->getMessage();
         }
@@ -476,6 +472,31 @@ class Admin extends person
         return $this->adminId;
     }
 
+    public function AddManager($firstname, $lastname, $email, $password, $NIC, $phone)
+    {
+        try {
+
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "INSERT INTO manager(mFirstName, mLastName, mEmail, mPassword, mNIC, mPhone) VALUES(?, ?, ?, ?, ?, ?)";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $firstname);
+            $pstmt->bindValue(2, $lastname);
+            $pstmt->bindValue(3, $email);
+            $pstmt->bindValue(4, $password);
+            $pstmt->bindValue(5, $NIC);
+            $pstmt->bindValue(6, $phone);
+
+            $pstmt->execute();
+            if (($pstmt->rowCount()) > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
     public function deleteManager()
     {
         require_once './DbConnector.php';
