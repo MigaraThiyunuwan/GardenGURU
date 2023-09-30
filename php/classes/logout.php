@@ -1,7 +1,13 @@
 <?php
+require_once './persons.php';
+require_once './DbConnector.php';
 // Start the session
 session_start();
-
+if (isset($_SESSION["user"])) {
+  // User is logged in, retrieve the user object
+  $user = $_SESSION["user"];
+  $user->updateToken(null,null);
+}
 // Unset all session variables
 $_SESSION = array();
 

@@ -1,4 +1,3 @@
-
 <?php
 require './DbConnector.php';
 require './persons.php';
@@ -6,8 +5,6 @@ require_once './Security.php';
 use classes\DbConnector;
 
 $dbcon = new DbConnector();
-?>
-<?php
 
 session_start();
 if (isset($_SESSION["user"])) {

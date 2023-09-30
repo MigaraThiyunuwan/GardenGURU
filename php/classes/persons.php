@@ -165,15 +165,15 @@ class user extends person
                             $_SESSION['cart'][] = array('Item_Name' => $Item_Name, 'Price' => $Price, 'Quantity' => $Quantity);
                         }
 
-                        return true;
+                        return $user;
                     } else {
                     }
                 } catch (PDOException $exc) {
                     echo $exc->getMessage();
                 }
-                return true;
+                return $user;
             } else {
-                return false;
+                return null;
             }
         } catch (PDOException $exc) {
             echo $exc->getMessage();
@@ -232,6 +232,91 @@ class user extends person
                     echo $exc->getMessage();
                 }
             } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public function updateToken($token, $exp)
+    {
+        $dbcon = new DbConnector();
+        try {
+            $con = $dbcon->getConnection();
+            $query = "UPDATE users SET token = ?, expdate = ? WHERE user_id = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $token);
+            $pstmt->bindValue(2, $exp);
+            $pstmt->bindValue(3, $this->userId);
+            $pstmt->execute();
+            return ($pstmt->rowCount() > 0);
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public static function validateToken($token)
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT * FROM users WHERE token =?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $token);
+            $pstmt->execute();
+            $rs = $pstmt->fetch(PDO::FETCH_OBJ);
+            $dbexp = $rs->expdate;
+            $dbpassword = $rs->user_Password;
+            $dbFirstName = $rs->user_FirstName;
+            $dbLastName = $rs->user_LastName;
+            $dbEmail = $rs->user_Email;
+            $dbPhoneNo = $rs->user_PhoneNo;
+            $dbDistrict = $rs->user_District;
+            $dbGender = $rs->user_Gender;
+            $dbid = $rs->user_id;
+            $dbaddress = $rs->user_address;
+            $dbpicture = $rs->profile_picture;
+            $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbpicture, $dbGender);
+            if (($dbexp - time()) > 0) {
+
+                session_start();
+                $_SESSION["user"] = $user;
+                $_SESSION['cart'][0] = array('Item_Name' => null, 'Price' => null, 'Quantity' => null);
+                if (isset($_SESSION['cartTemp'])) {
+                    $_SESSION['cartTemp'] = null;
+                }
+
+                try {
+                    $con = $dbcon->getConnection();
+                    $query1 = "SELECT * FROM cart WHERE user_id = ? ";
+                    $pstmt1 = $con->prepare($query1);
+                    $pstmt1->bindValue(1, $user->getUserId());
+
+                    $pstmt1->execute();
+
+                    if ($pstmt1->rowCount() > 0) {
+
+                        $rs = $pstmt1->fetchAll(PDO::FETCH_OBJ);
+
+                        foreach ($rs as $row) {
+                            $Item_Name = $row->Item_Name;
+                            $Price = $row->Price;
+                            $Quantity = $row->Quantity;
+                            $_SESSION['cart'][] = array('Item_Name' => $Item_Name, 'Price' => $Price, 'Quantity' => $Quantity);
+                        }
+
+                        return true;
+                    } else {
+                    }
+                } catch (PDOException $exc) {
+                    echo $exc->getMessage();
+                }
+
+                return true;
+            } else {
+                $user->updateToken(null, null);
+                $user = null;
                 return false;
             }
         } catch (PDOException $exc) {
@@ -385,7 +470,6 @@ class Manager extends person
 
     public function EditManagerDetails($firstName, $lastName, $email, $NIC, $phone, $managerID)
     {
-
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
@@ -497,30 +581,23 @@ class Admin extends person
             echo $exc->getMessage();
         }
     }
-    public function deleteManager()
+    public function deleteManager($managerID)
     {
-        require_once './DbConnector.php';
-
-        $managerID = $_POST['managerID'];
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
 
-            // Prepare and execute the DELETE query
             $query = "DELETE FROM manager WHERE managerID = :managerID";
             $pstmt = $con->prepare($query);
             $pstmt->bindParam(':managerID', $managerID, PDO::PARAM_INT);
             $pstmt->execute();
-            header("Location: ../Admin.php");
+            if (($pstmt->rowCount()) > 0) {
+                return true;
+            } else {
+                return false;
+            }
         } catch (PDOException $exc) {
             echo $exc->getMessage();
-            // You can handle the error here or display an error message on the same page
         }
     }
-}
-
-if (isset($_POST['action']) && $_POST['action'] == 'processForm') {
-    // Call the PHP function when the form is submitted with the action 'processForm'
-    $admin = new Admin(null, null, null, null, null, null, null,);
-    $admin->deleteManager();
 }

@@ -212,10 +212,7 @@ if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) ) {
       border-radius: 5px;
     }
 
-    /* Style for the button */
-    .btn {
-      /* Your button styles here */
-    }
+    
   </style>
   <!-- Footer Start -->
   <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">

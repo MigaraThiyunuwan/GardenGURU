@@ -193,30 +193,87 @@ if (isset($_SESSION["manager"])) {
             } ?>
 
             <div class="col-lg-12">
-                <table class="table">
-                    <thead class="text-center">
-                        <tr>
-                            <th scope="col">Serial No.</th>
-                            <th scope="col">Item Name</th>
-                            <th scope="col">Item Price</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Total(Rs.)</th>
-                            <th scope="col">Remove</th>
+                
+                    <table class="table">
+                        <thead class="text-center">
+                            <tr>
+                                <!-- <th scope="col">Serial No.</th> -->
+                                <th scope="col">Item Name</th>
+                                <th scope="col">Item Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total(Rs.)</th>
+                                <th scope="col">Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+
+                            <?php
+                            $total = 0;
+                            if (isset($_SESSION['cart'])) {
+                                $serialNo = 1;
+                                foreach ($_SESSION['cart'] as $key => $value) {
+                                    $total = $total + $value['Price'];
+                                    if ($serialNo > 1) {
+                                        $serialNo--;
+                            ?>
+                                        <tr>
+                                            <!-- <td><?php echo $serialNo; ?></td> -->
+                                            <td><?php echo $value['Item_Name']; ?></td>
+                                            <td><?php echo $value['Price']; ?><input type='hidden' class='iprice' value='<?php echo $value['Price']; ?>'></td>
+                                            <td><input class='text-center iquantity' name='Mod_Quantity' onchange='this.form.submit()' type='number' value='<?php echo $value['Quantity']; ?>' min='1' max='10'></td>
+                                            <input type='hidden' name='Item_Name' value='<?php echo $value['Item_Name']; ?>'>
+                                            <td class='itotal'></td>
+                                            <td>
+                                                <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deletemodel<?php echo $serialNo ?>">Delete </button>
+                                            </td>
+                                        </tr>
+
+                                        <div class="modal fade shadow my-5" id="deletemodel<?php echo $serialNo ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm to Remove Item
+                                                        </h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                        <div class="d-flex justify-content-between p-2">
+
+                                                            <div class="d-flex">
+                                                                <p class="fw-bold me-2">
+                                                                    Are you sure to remove Item "<?php echo $value['Item_Name'] ?>" from cart?
+                                                                </p>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <form action='manage_cart.php' method='POST'>
+                                                                <input type='hidden' name='Item_Name' value='<?php echo $value['Item_Name']; ?>'>
+
+                                                                <button name='Remove_Item' class="btn btn-danger w-100" type="submit" data-bs-dismiss="modal" aria-label="Close">Confirm</button>
+
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php
+                                        $serialNo++;
+                                    }
+                                    $serialNo++;
+                                }
+                            }
 
 
-                        </tr>
-                    </thead>
-                    <tbody class="text-center">
-
-                        <?php
-                        $total = 0;
-                        if (isset($_SESSION['cart'])) {
-                            $serialNo = 1;
-                            foreach ($_SESSION['cart'] as $key => $value) {
-                                $total = $total + $value['Price'];
-                                if ($serialNo > 1) {
-                                    $serialNo--;
-                        ?>
+                            if (isset($_SESSION['cartTemp'])) {
+                                $serialNo = 1;
+                                foreach ($_SESSION['cartTemp'] as $key => $value) {
+                                    $total = $total + $value['Price'];
+                                    ?>
                                     <tr>
                                         <td><?php echo $serialNo; ?></td>
                                         <td><?php echo $value['Item_Name']; ?></td>
@@ -228,6 +285,7 @@ if (isset($_SESSION["manager"])) {
                                             <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deletemodel<?php echo $serialNo ?>">Delete </button>
                                         </td>
                                     </tr>
+
 
                                     <div class="modal fade shadow my-5" id="deletemodel<?php echo $serialNo ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
                                         <div class="modal-dialog modal-dialog-centered">
@@ -243,7 +301,7 @@ if (isset($_SESSION["manager"])) {
 
                                                         <div class="d-flex">
                                                             <p class="fw-bold me-2">
-                                                               Are you sure to remove Item "<?php echo $value['Item_Name'] ?>" from cart?
+                                                                Are you sure to remove Item "<?php echo $value['Item_Name'] ?>" from cart?
                                                             </p>
 
                                                         </div>
@@ -262,81 +320,23 @@ if (isset($_SESSION["manager"])) {
                                             </div>
                                         </div>
                                     </div>
-                                <?php
+
+                            <?php
                                     $serialNo++;
                                 }
-                                $serialNo++;
                             }
-                        }
 
+                            ?>
 
-                        if (isset($_SESSION['cartTemp'])) {
-                            $serialNo = 1;
-                            foreach ($_SESSION['cartTemp'] as $key => $value) {
-                                $total = $total + $value['Price'];
-                                ?>
-                                <tr>
-                                    <td><?php echo $serialNo; ?></td>
-                                    <td><?php echo $value['Item_Name']; ?></td>
-                                    <td><?php echo $value['Price']; ?><input type='hidden' class='iprice' value='<?php echo $value['Price']; ?>'></td>
-                                    <td><input class='text-center iquantity' name='Mod_Quantity' onchange='this.form.submit()' type='number' value='<?php echo $value['Quantity']; ?>' min='1' max='10'></td>
-                                    <input type='hidden' name='Item_Name' value='<?php echo $value['Item_Name']; ?>'>
-                                    <td class='itotal'></td>
-                                    <td>
-                                        <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deletemodel<?php echo $serialNo ?>">Delete </button>
-                                    </td>
-                                </tr>
-
-
-                                <div class="modal fade shadow my-5" id="deletemodel<?php echo $serialNo ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm to Remove Item
-                                                </h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-
-                                                <div class="d-flex justify-content-between p-2">
-
-                                                    <div class="d-flex">
-                                                        <p class="fw-bold me-2">
-                                                        Are you sure to remove Item "<?php echo $value['Item_Name'] ?>" from cart?
-                                                        </p>
-
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="modal-footer">
-                                                    <form action='manage_cart.php' method='POST'>
-                                                        <input type='hidden' name='Item_Name' value='<?php echo $value['Item_Name']; ?>'>
-
-                                                        <button name='Remove_Item' class="btn btn-danger w-100" type="submit" data-bs-dismiss="modal" aria-label="Close">Confirm</button>
-
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                        <?php
-                                $serialNo++;
-                            }
-                        }
-
-                        ?>
-
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                
             </div>
 
             <form action="payement.php" method="POST">
                 <div class="col-lg-12">
                     <div class="border bg-light rounded p-4">
-                        <h4>Grand Total: Rs.</h4>
+                        <h4 >Grand Total: Rs.</h4>
                         <h5 class="text-right" id="gtotal"> <?php echo  $total ?></h5>
                         <br>
                         <?php
