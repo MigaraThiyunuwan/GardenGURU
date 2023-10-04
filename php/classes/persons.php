@@ -6,11 +6,11 @@ use classes\DbConnector;
 
 class person
 {
-    private $FirstName;
-    private $LastName;
-    private $Email;
+    protected $FirstName;
+    protected $LastName;
+    protected $Email;
 
-    private $Password;
+    protected $Password;
 
     function __construct($FirstName, $LastName, $Email, $Password)
     {
@@ -181,7 +181,7 @@ class user extends person
         }
     }
 
-    public function EditUserDetails($firstName, $lastName, $email, $phone, $address, $userID)
+    public function EditUserDetails($firstName, $lastName, $email, $phone, $address)
     {
 
         try {
@@ -194,7 +194,7 @@ class user extends person
             $pstmt->bindValue(3, $email);
             $pstmt->bindValue(4, $phone);
             $pstmt->bindValue(5, $address);
-            $pstmt->bindValue(6, $userID);
+            $pstmt->bindValue(6, $this->userId);
 
             $pstmt->execute();
 
@@ -207,7 +207,7 @@ class user extends person
                     $con = $dbcon->getConnection();
                     $query = "SELECT * FROM users WHERE user_id = ? ";
                     $pstmt = $con->prepare($query);
-                    $pstmt->bindValue(1, $userID);
+                    $pstmt->bindValue(1, $this->userId);
 
                     $pstmt->execute();
 
@@ -322,6 +322,118 @@ class user extends person
             }
         } catch (PDOException $exc) {
             echo $exc->getMessage();
+        }
+    }
+
+    public function putAdvertisement($file, $text_title, $text_description, $realDate)
+    {
+        $tmp_name1 = $file['tmp_name'];
+        $filename1 = $file['name'];
+
+        $allowed = array('jpeg', 'png', 'jpg', 'JPEG', 'PNG', 'JPG');
+        $ext = pathinfo($filename1, PATHINFO_EXTENSION);
+
+        if (in_array($ext, $allowed)) {
+
+            if ($file['size'] < 5 * 1024 * 1024) {
+
+                $destination1 = '../../images/Adevertistment/' . $filename1;
+                $dbdestination = '../images/Adevertistment/' . $filename1;
+                if (move_uploaded_file($tmp_name1, $destination1)) { 
+                    
+                    try {
+                        $dbcon = new DbConnector();
+                        $conn = $dbcon->getConnection();
+                        $sql = "INSERT INTO advertisements (user_id, user_FirstName, user_LastName, user_Email, image1_filename, title, description, adPostedDate) VALUES ( ?, ? ,?, ?, ?, ?, ?, ?)";
+            
+                        $pstmt = $conn->prepare($sql);
+                        $pstmt->bindValue(1, $this->userId);
+                        $pstmt->bindValue(2, $this->FirstName);
+                        $pstmt->bindValue(3, $this->LastName);
+                        $pstmt->bindValue(4, $this->Email);
+                        $pstmt->bindValue(5, $dbdestination);
+                        $pstmt->bindValue(6, $text_title);
+                        $pstmt->bindValue(7, $text_description);
+                        $pstmt->bindValue(8, $realDate);
+            
+                        if ($pstmt->execute()) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    } catch (PDOException $exc) {
+                        echo $exc->getMessage();
+                    }
+                    
+                } else {
+                    header("Location: ../user.php?success=4");
+                    exit;
+                }
+            } else {
+                header("Location: ../user.php?error=3");
+                exit;
+            }
+        } else {
+            header("Location: ../user.php?error=4");
+            exit;
+        }
+
+    }
+    public function putBlog($file,$blogTitle,$blogDetails,$Date){
+        $targetFile = "../../images/blog/" . basename($file["name"]);
+        $dbPicture = "../images/blog/" . basename($file["name"]);
+        if (move_uploaded_file($file["tmp_name"], $targetFile)) {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "INSERT INTO blog (blog_title, user_id, user_fname, user_lname, blog_details, blog_image, blogPostedDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $blogTitle);
+            $pstmt->bindValue(2, $this->userId);
+            $pstmt->bindValue(3, $this->FirstName);
+            $pstmt->bindValue(4, $this->LastName);
+            $pstmt->bindValue(5, $blogDetails);
+            $pstmt->bindValue(6, $dbPicture);
+            $pstmt->bindValue(7, $Date);
+
+            $pstmt->execute();
+            if (($pstmt->rowCount()) > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            header("Location: ./user.php?success=0");
+        }
+    }
+
+    public function uploadProPic($file)
+    {
+        $tmp_name1 = $file['tmp_name'];
+        $filename1 = $file['name'];
+
+        $destination1 = '../../images/profile_pictures/' . $filename1;
+        $dbDestination = '../images/profile_pictures/' . $filename1;
+
+        if (move_uploaded_file($tmp_name1, $destination1)) {
+            try {
+                $dbcon = new DbConnector();
+                $conn = $dbcon->getConnection();
+                $sql = "UPDATE users SET profile_picture = ? WHERE user_id = ?;";
+
+                $pstmt = $conn->prepare($sql);
+                $pstmt->bindValue(1, $dbDestination);
+                $pstmt->bindValue(2, $this->userId);
+
+                if ($pstmt->execute()) {
+                    $this->ProPic = $dbDestination;
+
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (PDOException $exc) {
+                echo $exc->getMessage();
+            }
         }
     }
 }

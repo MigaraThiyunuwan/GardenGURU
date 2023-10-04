@@ -166,12 +166,12 @@ if (isset($_SESSION["user"])) {
 		<div class="close">+</div>
 	
 
-    <form action="changeprofilepicture.php" method="post" enctype="multipart/form-data">
+    <form action="./classes/changeprofilepicture.php" method="post" enctype="multipart/form-data">
         <!-- <input type="text" name="name" placeholder="Name" values="$name">
         <input type="email" name="email" placeholder="E-Mail" values="$email"> -->
         <label for="profile_picture"><b>Select Image for Profile Picture</b></label>
         <input type="file" class="form-control" name="profile_picture" id="profile_picture" values="">
-        <input type="submit" class="btn btn-success" name="submit" value="Submit" values="">
+        <input type="submit" class="btn btn-success" name="submit" value="Upload" values="">
     </form>
 
   

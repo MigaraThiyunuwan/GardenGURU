@@ -171,6 +171,26 @@ if (isset($_SESSION["user"])) {
                     Please fill all fields!
                     </div></b>";
                   }
+                  if ($_GET['error'] == 3) {
+                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Please upload image size less than 5MB
+                    </div></b>";
+                  }
+                  if ($_GET['error'] == 4) {
+                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Please upload JPG, JPGE or PNG image types
+                    </div></b>";
+                  }
+                  if ($_GET['error'] == 5) {
+                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Please upload image
+                    </div></b>";
+                  }
+                  if ($_GET['error'] == 6) {
+                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Profile Picture Failed!
+                    </div></b>";
+                  }
                 }
                 ?>
 
@@ -324,10 +344,10 @@ if (isset($_SESSION["user"])) {
 
 
   <!-- The modal -->
-  <div id="addBlogModal" class="modal">
+  <div id="addBlogModal" class="modal" style="margin-top: 20px; width: 100%;">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <form id="blogForm" action="./add_blog.php" method="post" enctype="multipart/form-data">
+      <form id="blogForm" action="./classes/putBlog.php" method="post" enctype="multipart/form-data">
         <label for="blog_title"><b>Blog Title:</b></label>
         <input type="text" class="form-control" id="blog_title" name="blog_title" required>
         <br>
@@ -405,8 +425,7 @@ if (isset($_SESSION["user"])) {
 
     <div class="close" id="close-button">+</div>
 
-
-      <form id="adForm" action="upload.php" method="post" enctype="multipart/form-data">
+      <form id="adForm" action="./classes/putAdd.php" method="post" enctype="multipart/form-data">
         
         <label for="image1"><b>Select Image for Advertisement:</b></label>
         <input type="file" class="form-control" name="image1" id="image1" values="$filename1">

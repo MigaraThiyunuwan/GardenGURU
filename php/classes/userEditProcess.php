@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $address = Security::SanitizeInput($address);
 
         // call EditUserDetails function in user class
-        if ($user->EditUserDetails($firstName, $lastName, $email, $phone, $address, $userID)) {
+        if ($user->EditUserDetails($firstName, $lastName, $email, $phone, $address)) {
             header("Location: ../user.php?success=2");
             exit;
         } else {
