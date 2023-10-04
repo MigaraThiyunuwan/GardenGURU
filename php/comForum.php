@@ -18,7 +18,7 @@ if (isset($_SESSION["manager"])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GardenGURU | Communication Forum</title>
-  <link href="../css/main2.css" rel="stylesheet" >
+  <!-- <link href="../css/main2.css" rel="stylesheet" > -->
       <!-- Customized Bootstrap Stylesheet -->
       <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- Template Stylesheet -->

@@ -143,8 +143,8 @@ try {
                 <div class="col">
                     <div class="single-post">
                         
-                        <div class="feature-img" >
-                            <img class="img-fluid" src="<?php echo $image ?>" style="width: 1260px; height: 550px;" >
+                        <div class="row" style="align-items:center;" >
+                            <img class="img-fluid" src="<?php echo $image ?>" style="" >
                         </div>
                         
                         <div class="blog_details">

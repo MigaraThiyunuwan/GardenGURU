@@ -127,7 +127,7 @@ if (isset($_SESSION["manager"])) {
                         <div class="col-lg-6">
                             <article class="blog_item">
                                 <div class="blog_item_img">
-                                    <img class="card-img rounded-0" src="<?php echo $blog_image; ?>" alt="" style="width: 635px; height: 400px;">
+                                    <img class="card-img rounded-0" src="<?php echo $blog_image; ?>" alt="" style=" ">
                                 </div>
                                 <div class="blog_details">
                                     <a class="d-inline-block" href="./readBlog.php?blog_id=<?php echo $blog_id; ?>">

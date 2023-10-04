@@ -141,7 +141,7 @@ class user extends person
                 $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbpicture, $dbGender);
                 session_start();
                 $_SESSION["user"] = $user;
-                $_SESSION['cart'][0] = array('Item_Name' => null, 'Price' => null, 'Quantity' => null);
+                $_SESSION['cart'][0] = array('ItemId' => null, 'Item_Name' => null, 'Price' => null, 'Quantity' => null);
                 if (isset($_SESSION['cartTemp'])) {
                     $_SESSION['cartTemp'] = null;
                 }
@@ -162,7 +162,8 @@ class user extends person
                             $Item_Name = $row->Item_Name;
                             $Price = $row->Price;
                             $Quantity = $row->Quantity;
-                            $_SESSION['cart'][] = array('Item_Name' => $Item_Name, 'Price' => $Price, 'Quantity' => $Quantity);
+                            $ItemId = $row->ItemId;
+                            $_SESSION['cart'][] = array('ItemId' => $ItemId, 'Item_Name' => $Item_Name, 'Price' => $Price, 'Quantity' => $Quantity);
                         }
 
                         return $user;

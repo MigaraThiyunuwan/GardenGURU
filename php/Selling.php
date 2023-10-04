@@ -166,14 +166,17 @@ if (isset($_SESSION["manager"])) {
                                         Item Already Added!
                                         </div></b>";
             }
+            if ($_GET['error'] == 2) {
+
+                echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        Failed to Add Item!
+                                        </div></b>";
+            }
         }
 
 
         ?>
         <div class="row">
-
-
-
 
             <?php
             try {
@@ -199,7 +202,7 @@ if (isset($_SESSION["manager"])) {
                             <div class="row">
                                 <div class="col-md-5 col-sm-12 col-xs-12">
                                     <div class="product-image">
-                                        <img src="<?php echo $item->ItemImage;  ?>"  class="img-responsive" style="height: 250px; width: 255px; ">
+                                        <img src="<?php echo $item->ItemImage;  ?>"  class="img-responsive" style="height: 250px; ">
                                     </div>
                                 </div>
                                 <div class="col-md-7 col-sm-12 col-xs-12">
@@ -240,11 +243,10 @@ if (isset($_SESSION["manager"])) {
 
                                                 <form action="manage_cart.php" method="POST">
 
-
-
                                                     <!-- <a href="javascript:void(0);" class="btn btn-success">Add to cart</a> -->
                                                     <input type="hidden" name="Item_Name" value="<?php echo $item->ItemName; ?>">
                                                     <input type="hidden" name="price" value="<?php echo $item->ItemPrice; ?>">
+                                                    <input type="hidden" name="ItemId" value="<?php echo $item->ItemId; ?>">
 
                                                     <?php
                                                     if ($item->ItemQuantity < 1) {
@@ -257,9 +259,6 @@ if (isset($_SESSION["manager"])) {
                                                     <?php
                                                     }
                                                     ?>
-
-
-
 
                                                 </form>
                                             </div>

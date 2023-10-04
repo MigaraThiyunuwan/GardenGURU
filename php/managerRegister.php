@@ -203,7 +203,7 @@ if (isset($_SESSION["admin"])) {
                         } ?>
 
                         <!-- Submit Button -->
-                        <input type="submit" value="Add new Manager." class="btn btn-primary my-3 w-100">
+                        <input type="submit" value="Add new Manager" class="btn btn-primary my-3 w-100">
 
 
                     </div>

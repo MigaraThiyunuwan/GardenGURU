@@ -21,8 +21,8 @@ if (isset($_SESSION["manager"])) {
 }
 ?>
 
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
 <head>
     <meta charset="utf-8">
@@ -109,73 +109,6 @@ if (isset($_SESSION["manager"])) {
             </ol>
         </div>
     </div>
-    <!-- Page Header End -->
-    <!---
-    <div class="container">
-        <div class="row2">
-
-            <div class="col-lg-12 text-center border rounded bg-light my-5">
-                <h1>
-                   MY CART
-                </h1>
-
-            </div>
-
-            <div class="col-lg-8">
-                <table class="table">
-  <thead class="text-center">
-    <tr>
-      <th scope="col">Serial No.</th>
-      <th scope="col">Item Name</th>
-      <th scope="col">Item Price</th>
-      <th scope="col">Quantity</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody class="text-center">
-
-    <?php
-    if (isset($_SESSION['cart'])) {
-        foreach ($_SESSION['cart'] as $key => $value) {
-            print_r($value);
-            echo "<tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-
-            ";
-        }
-    }
-    ?>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-    
-  </tbody>
-</table>
-            </div>
-
-        </div>
-    </div>
----->
 
     <div class="container">
         <div class="row2">
@@ -190,102 +123,73 @@ if (isset($_SESSION["manager"])) {
                                         Item Removed!
                                         </div></b>";
                 }
-            } ?>
+            } 
+            if (isset($_GET['error'])) {
+                if ($_GET['error'] == 1) {
+
+                    echo "<b><div class='alert alert-danger py-2' role='alert'>
+                        Failed to Remove Item!
+                        </div></b>";
+                }
+                if ($_GET['error'] == 2) {
+
+                    echo "<b><div class='alert alert-danger py-2' role='alert'>
+                        Please Enter valid quantity!
+                        </div></b>";
+                }
+                if ($_GET['error'] == 3) {
+
+                    echo "<b><div class='alert alert-danger py-2' role='alert'>
+                        No more items in stock!
+                        </div></b>";
+                }
+                if ($_GET['error'] == 4) {
+
+                    echo "<b><div class='alert alert-danger py-2' role='alert'>
+                        Failed to change quantity!
+                        </div></b>";
+                }
+            }
+            ?>
 
             <div class="col-lg-12">
-                
-                    <table class="table">
-                        <thead class="text-center">
-                            <tr>
-                                <!-- <th scope="col">Serial No.</th> -->
-                                <th scope="col">Item Name</th>
-                                <th scope="col">Item Price</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Total(Rs.)</th>
-                                <th scope="col">Remove</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-center">
 
-                            <?php
-                            $total = 0;
-                            if (isset($_SESSION['cart'])) {
-                                $serialNo = 1;
-                                foreach ($_SESSION['cart'] as $key => $value) {
-                                    $total = $total + $value['Price'];
-                                    if ($serialNo > 1) {
-                                        $serialNo--;
-                            ?>
-                                        <tr>
-                                            <!-- <td><?php echo $serialNo; ?></td> -->
-                                            <td><?php echo $value['Item_Name']; ?></td>
-                                            <td><?php echo $value['Price']; ?><input type='hidden' class='iprice' value='<?php echo $value['Price']; ?>'></td>
-                                            <td><input class='text-center iquantity' name='Mod_Quantity' onchange='this.form.submit()' type='number' value='<?php echo $value['Quantity']; ?>' min='1' max='10'></td>
-                                            <input type='hidden' name='Item_Name' value='<?php echo $value['Item_Name']; ?>'>
-                                            <td class='itotal'></td>
-                                            <td>
-                                                <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deletemodel<?php echo $serialNo ?>">Delete </button>
-                                            </td>
-                                        </tr>
+                <table class="table">
+                    <thead class="text-center">
+                        <tr>
+                            <!-- <th scope="col">Serial No.</th> -->
+                            <th scope="col">Item Name</th>
+                            <th scope="col">Item Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total(Rs.)</th>
+                            <th scope="col">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
 
-                                        <div class="modal fade shadow my-5" id="deletemodel<?php echo $serialNo ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm to Remove Item
-                                                        </h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-
-                                                        <div class="d-flex justify-content-between p-2">
-
-                                                            <div class="d-flex">
-                                                                <p class="fw-bold me-2">
-                                                                    Are you sure to remove Item "<?php echo $value['Item_Name'] ?>" from cart?
-                                                                </p>
-
-                                                            </div>
-
-                                                        </div>
-
-                                                        <div class="modal-footer">
-                                                            <form action='manage_cart.php' method='POST'>
-                                                                <input type='hidden' name='Item_Name' value='<?php echo $value['Item_Name']; ?>'>
-
-                                                                <button name='Remove_Item' class="btn btn-danger w-100" type="submit" data-bs-dismiss="modal" aria-label="Close">Confirm</button>
-
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <?php
-                                        $serialNo++;
-                                    }
-                                    $serialNo++;
-                                }
-                            }
-
-
-                            if (isset($_SESSION['cartTemp'])) {
-                                $serialNo = 1;
-                                foreach ($_SESSION['cartTemp'] as $key => $value) {
-                                    $total = $total + $value['Price'];
-                                    ?>
+                        <?php
+                        $total = 0;
+                        if (isset($_SESSION['cart'])) {
+                            $serialNo = 1;
+                            foreach ($_SESSION['cart'] as $key => $value) {
+                                $total = $total + $value['Price'];
+                                if ($serialNo > 1) {
+                                    $serialNo--;
+                        ?>
                                     <tr>
-                                        <td><?php echo $serialNo; ?></td>
+
                                         <td><?php echo $value['Item_Name']; ?></td>
                                         <td><?php echo $value['Price']; ?><input type='hidden' class='iprice' value='<?php echo $value['Price']; ?>'></td>
+                                        <form action='manage_cart.php' method='POST'>
                                         <td><input class='text-center iquantity' name='Mod_Quantity' onchange='this.form.submit()' type='number' value='<?php echo $value['Quantity']; ?>' min='1' max='10'></td>
                                         <input type='hidden' name='Item_Name' value='<?php echo $value['Item_Name']; ?>'>
+                                        <input type='hidden' name='ItemId' value='<?php echo $value['ItemId']; ?>'>
                                         <td class='itotal'></td>
+                                        </form>
                                         <td>
                                             <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deletemodel<?php echo $serialNo ?>">Delete </button>
                                         </td>
                                     </tr>
-
 
                                     <div class="modal fade shadow my-5" id="deletemodel<?php echo $serialNo ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
                                         <div class="modal-dialog modal-dialog-centered">
@@ -310,7 +214,7 @@ if (isset($_SESSION["manager"])) {
 
                                                     <div class="modal-footer">
                                                         <form action='manage_cart.php' method='POST'>
-                                                            <input type='hidden' name='Item_Name' value='<?php echo $value['Item_Name']; ?>'>
+                                                            <input type='hidden' name='ItemId' value='<?php echo $value['ItemId']; ?>'>
 
                                                             <button name='Remove_Item' class="btn btn-danger w-100" type="submit" data-bs-dismiss="modal" aria-label="Close">Confirm</button>
 
@@ -320,29 +224,100 @@ if (isset($_SESSION["manager"])) {
                                             </div>
                                         </div>
                                     </div>
-
-                            <?php
+                                <?php
                                     $serialNo++;
                                 }
+                                $serialNo++;
                             }
+                        }
 
-                            ?>
 
-                        </tbody>
-                    </table>
-                
+                        if (isset($_SESSION['cartTemp'])) {
+                            $serialNo = 1;
+                            foreach ($_SESSION['cartTemp'] as $key => $value) {
+                                $total = $total + $value['Price'];
+                                ?>
+                                <tr>
+                                    <!-- <td><?php echo $serialNo; ?></td> -->
+                                    <td><?php echo $value['Item_Name']; ?></td>
+                                    <td><?php echo $value['Price']; ?><input type='hidden' class='iprice' value='<?php echo $value['Price']; ?>'></td>
+                                    <form action='manage_cart.php' method='POST'>
+                                    <td><input class='text-center iquantity' name='Mod_Quantity' onchange='this.form.submit()' type='number' value='<?php echo $value['Quantity']; ?>' min='1' max='10'></td>
+                                    <input type='hidden' name='Item_Name' value='<?php echo $value['Item_Name']; ?>'>
+                                    <input type='hidden' name='ItemId' value='<?php echo $value['ItemId']; ?>'>
+                                    <td class='itotal'></td>
+                                    
+                                    </form>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deletemodel<?php echo $serialNo ?>">Delete </button>
+                                    </td>
+                                </tr>
+
+
+                                <div class="modal fade shadow my-5" id="deletemodel<?php echo $serialNo ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm to Remove Item
+                                                </h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <div class="d-flex justify-content-between p-2">
+
+                                                    <div class="d-flex">
+                                                        <p class="fw-bold me-2">
+                                                            Are you sure to remove Item "<?php echo $value['Item_Name'] ?>" from cart?
+                                                        </p>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <form action='manage_cart.php' method='POST'>
+                                                        <input type='hidden' name='ItemId' value='<?php echo $value['ItemId']; ?>'>
+
+                                                        <button name='Remove_Item' class="btn btn-danger w-100" type="submit" data-bs-dismiss="modal" aria-label="Close">Confirm</button>
+
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        <?php
+                                $serialNo++;
+                            }
+                        }
+
+                        ?>
+
+                    </tbody>
+                </table>
+
             </div>
 
             <form action="payement.php" method="POST">
                 <div class="col-lg-12">
                     <div class="border bg-light rounded p-4">
-                        <h4 >Grand Total: Rs.</h4>
+                        <h4>Grand Total: Rs.</h4>
                         <h5 class="text-right" id="gtotal"> <?php echo  $total ?></h5>
                         <br>
                         <?php
 
                         if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
 
+                            if (isset($_GET['error'])) {
+                                if ($_GET['error'] == 4) {
+
+                                    echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        Your card is expired!
+                                        </div></b>";
+                                }
+                            }
                         ?>
 
                             <div class="form-group">
@@ -354,7 +329,7 @@ if (isset($_SESSION["manager"])) {
                                 <input type="tel" name="phone_no" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Address</label>
+                                <label>Delivery Address</label>
                                 <input type="address" name="address" class="form-control" required>
                             </div>
                             <div class="form-check">
@@ -388,7 +363,7 @@ if (isset($_SESSION["manager"])) {
                                 <input type="tel" name="phone_no" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Address</label>
+                                <label>Delivery Address</label>
                                 <input type="address" name="address" class="form-control" required>
                             </div>
                             <div class="form-check">
@@ -421,8 +396,9 @@ if (isset($_SESSION["manager"])) {
         var iquantity = document.getElementsByClassName('iquantity');
         var itotal = document.getElementsByClassName('itotal');
         var gtotal = document.getElementById('gtotal'); // Use getElementById to select the grand total element
-
+        var button = document.getElementById("MYbtn");
         function subTotal() {
+            //button.click();
             gt = 0;
             for (i = 0; i < iprice.length; i++) {
                 itotal[i].innerText = (iprice[i].value) * (iquantity[i].value);

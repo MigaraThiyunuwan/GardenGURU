@@ -148,6 +148,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="container">
 
+        <div class="container mt-2">
+            <div class="row">
+
+                <?php if ($_SERVER["REQUEST_METHOD"] == "POST") { ?>
+                    <span><b>
+                            <p style="color:MediumSeaGreen;">In <?php echo $location ?> area when you have <?php echo $sun ?> sun exposure, <?php echo $soil ?> soil,
+                                and <?php echo $water ?> water, you have <?php echo $space ?> space to gardening and when your harvest time <?php echo $time ?>, it's suitable to grow below plants.</p>
+                        </b></span>
+                <?php  } ?>
+
+                <?php
+                if (isset($rs) && !empty($rs)) {
+                    foreach ($rs as $row) {
+                        try {
+                            $con = $dbcon->getConnection();
+                            $sql = "SELECT * FROM plant WHERE PlantID = ?";
+
+                            $pstmt = $con->prepare($sql);
+                            $pstmt->bindValue(1, $row->PlantID);
+                            $pstmt->execute();
+                            $plants = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                            foreach ($plants as $plant) {
+                                $plantName = $plant->PlantName;
+                                $filePath = $plant->FilePath;
+                ?>
+
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="card card-block">
+
+                                        <img src="<?php echo $filePath ?>" alt="Photo of sunset">
+                                        <h5 class="card-title mt-3 mb-3" style="margin-left: 10px;"><?php echo $plantName ?></h5>
+                                        <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your selections.</p>
+                                    </div>
+                                </div>
+
+                <?php
+                            }
+                        } catch (PDOException $exc) {
+                            echo $exc->getMessage();
+                        }
+                    }
+                } else {
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        echo "<p>No plants found for the given criteria.</p>";
+                    }
+                }
+                ?>
+            </div>
+
+
+        </div>
 
 
         <div class="row py-5 mt-4 align-items-center">
@@ -158,16 +210,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="container">
                 <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST">
                     <div class="row">
+                        <div class="col-sm">
+                            <!-- Select Box 1 -->
+                            <!-- <div class="input-group col"> -->
 
-                        <!-- Select Box 1 -->
-                        <div class="input-group col">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa-solid fa-location-dot fa-fade" style="color: #0b8952; font-size: 25px;"></i>
-                                </span>
-                            </div>
-                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Select Location</a>
-                            <select id="location" name="location" class="input-group-text bg-white px-4 border-md border-right-0">
+                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;"> <i class="fa-solid fa-location-dot fa-fade" style="color: #0b8952; font-size: 25px; margin-right: 10px;"></i>Select Location</a>
+                            <select id="location" name="location" class="form-control bg-white px-4 border-md border-right-0" style="margin-bottom: 20px;">
                                 <option value="Badulla">Badulla</option>
                                 <option value="Soranathota">Soranathota</option>
                                 <option value="Meegahakiula">Meegahakiula</option>
@@ -184,17 +232,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <option value="Uva Paranagama">Uva Paranagama</option>
                                 <option value="Welimada">Welimada</option>
                             </select>
+                            <!-- </div> -->
                         </div>
-
                         <!-- Select Box 2 -->
-                        <div class="input-group col">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa-solid fa-sun fa-beat-fade" style="color: #0b8952; font-size: 25px;"></i>
-                                </span>
-                            </div>
-                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Sun Exposure</a>
-                            <select id="sun" name="sun" class="input-group-text bg-white px-4 border-md border-right-0">
+                        <!-- <div class="input-group col"> -->
+                        <div class="col-sm">
+
+                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;"> <i class="fa-solid fa-sun fa-beat-fade" style="color: #0b8952; font-size: 25px; margin-right: 10px;"></i>Sun Exposure</a>
+                            <select id="sun" name="sun" class="form-control bg-white px-4 border-md border-right-0" style="margin-bottom: 20px;">
                                 <option value="High">High</option>
                                 <option value="Medium">Medium</option>
                                 <option value="Low">Low</option>
@@ -202,14 +247,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
 
                         <!-- Select Box 3 -->
-                        <div class="input-group col">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa-solid fa-person-digging fa-shake" style="color: #0b8952; font-size: 25px;"></i>
-                                </span>
-                            </div>
-                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Soil </a>
-                            <select id="soil" name="soil" class="input-group-text bg-white px-4 border-md border-right-0">
+                        <!-- <div class="input-group col"> -->
+                        <div class="col-sm">
+
+                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;"> <i class="fa-solid fa-person-digging fa-shake" style="color: #0b8952; font-size: 25px; margin-right: 10px;"></i>Soil </a>
+                            <select id="soil" name="soil" class="form-control bg-white px-4 border-md border-right-0">
                                 <option value="Reddish Brown Earths">Reddish Brown Earths</option>
                                 <option value="Red Yellow Podzolic">Red Yellow Podzolic</option>
                                 <!-- <option value="Low Humic Gley">Low Humic Gley</option> -->
@@ -222,14 +264,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="row" style="margin-top: 25px;">
 
                         <!-- Select Box 1 -->
-                        <div class="input-group col">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa-solid fa-droplet fa-bounce" style="color: #0b8952;font-size: 25px;"></i>
-                                </span>
-                            </div>
-                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Water</a>
-                            <select id="water" name="water" class="input-group-text bg-white px-4 border-md border-right-0">
+                        <!-- <div class="input-group col"> -->
+                        <div class="col-sm">
+
+                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;"> <i class="fa-solid fa-droplet fa-bounce" style="color: #0b8952;font-size: 25px; margin-right: 10px;"></i>Water</a>
+                            <select id="water" name="water" class="form-control bg-white px-4 border-md border-right-0" style="margin-bottom: 20px;">
                                 <option value="Easy to Find">Easy to found</option>
                                 <option value="Medium">Normally can found</option>
                                 <option value="Rare">Rare to found</option>
@@ -237,14 +276,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
 
                         <!-- Select Box 2 -->
-                        <div class="input-group col">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa-solid fa-landmark fa-fade" style="color: #0b8952;font-size: 25px;"></i>
-                                </span>
-                            </div>
-                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Space</a>
-                            <select id="space" name="space" class="input-group-text bg-white px-4 border-md border-right-0">
+                        <!-- <div class="input-group col"> -->
+                        <div class="col-sm">
+
+                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;"> <i class="fa-solid fa-landmark fa-fade" style="color: #0b8952;font-size: 25px; margin-right: 10px;"></i>Space</a>
+                            <select id="space" name="space" class="form-control bg-white px-4 border-md border-right-0" style="margin-bottom: 20px;">
                                 <option value="Limited">Limited</option>
                                 <option value="Average">Average</option>
                                 <option value="Large">Large</option>
@@ -252,19 +288,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
 
                         <!-- Select Box 3 -->
-                        <div class="input-group col">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa-solid fa-clock fa-flip" style="color: #0b8952;font-size: 25px;"></i>
-                                </span>
+                        <!-- <div class="input-group col"> -->
+                        <div class="col-sm">
+                            <div class="row">
+
+                                <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;"> <i class="fa-solid fa-clock fa-flip" style="color: #0b8952;font-size: 25px; margin-right: 10px;"></i>Harvest Time</a>
+                                <select id="time" name="time" class="form-control bg-white px-4 border-md border-right-0">
+                                    <option value="< 2 months">
+                                        < 2 months</option>
+                                    <option value="2 to 6 months">2 to 6 months</option>
+                                    <option value="6 to 12 months">6 to 12 months</option>
+                                    <option value="> 12 months">> 12 months</option>
+                                </select>
                             </div>
-                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Harvest Time</a>
-                            <select id="time" name="time" class="input-group-text bg-white px-4 border-md border-right-0">
-                                <option value="< 2 months">< 2 months</option>
-                                <option value="2 to 6 months">2 to 6 months</option>
-                                <option value="6 to 12 months">6 to 12 months</option>
-                                <option value="> 12 months">> 12 months</option>
-                            </select>
                         </div>
 
                     </div>
@@ -277,71 +313,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             </div>
 
-
-
-
         </div>
-
-
-
-    </div>
-
-
-    <div class="container mt-2">
-        <div class="row">
-
-            <?php if ($_SERVER["REQUEST_METHOD"] == "POST") { ?>
-                <span><b>
-                        <p style="color:MediumSeaGreen;">In <?php echo $location ?> area when you have <?php echo $sun ?> sun exposure, <?php echo $soil ?> soil,
-                            and <?php echo $water ?> water, you have <?php echo $space ?> space to gardening and when your harvest time <?php echo $time ?>, it's suitable to grow below plants.</p>
-                    </b></span>
-            <?php  } ?>
-
-            <?php
-            if (isset($rs) && !empty($rs)) {
-                foreach ($rs as $row) {
-                    try {
-                        $con = $dbcon->getConnection();
-                        $sql = "SELECT * FROM plant WHERE PlantID = ?";
-
-                        $pstmt = $con->prepare($sql);
-                        $pstmt->bindValue(1, $row->PlantID);
-                        $pstmt->execute();
-                        $plants = $pstmt->fetchAll(PDO::FETCH_OBJ);
-
-                        foreach ($plants as $plant) {
-                            $plantName = $plant->PlantName;
-                            $filePath = $plant->FilePath;
-            ?>
-
-                            <div class="col-md-3 col-sm-6">
-                                <div class="card card-block">
-
-                                    <img src="<?php echo $filePath ?>" alt="Photo of sunset">
-                                    <h5 class="card-title mt-3 mb-3" style="margin-left: 10px;"><?php echo $plantName ?></h5>
-                                    <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your situation.</p>
-                                </div>
-                            </div>
-
-            <?php
-                        }
-                    } catch (PDOException $exc) {
-                        echo $exc->getMessage();
-                    }
-                }
-            } else {
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    echo "<p>No plants found for the given criteria.</p>";
-                }
-            }
-            ?>
-        </div>
-        <span><b>
+        <span>
+            <b>
                 <br>
                 <p style="color:MediumSeaGreen;">Reddish Brown Earths - </p>වැලි ලෝම සිට සැහැල්ලු මැටි ලෝම දක්වා මතුපිට පස් ඇති අතර එය මැටි යටි පසකට ඉහළින් පිහිටා ඇත.
                 මතුපිට පස් සෙන්ටිමීටර 10 ත් 40 ත් අතර ඝනකමකින් යුක්ත වන අතර රතු සිට අළු දුඹුරු දක්වා වෙනස් වේ. යටි පස කහ සිට රතු සිට අළු දක්වා වෙනස් වේ. <br><br>
                 <p style="color:MediumSeaGreen;">Red Yellow Podzolic - </p>රතු සහ කහ පැහැති පාට සඳහා ප්රසිද්ධය. පාංශු මතුපිට සමහර ප්‍රදේශවල රතු හෝ තැඹිලි පාටින් ද තවත් ප්‍රදේශවල කහ පැහැයෙන්ද දිස් විය හැක.
-            </b></span>
+            </b>
+        </span>
 
     </div>
 
