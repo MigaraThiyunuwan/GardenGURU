@@ -119,9 +119,8 @@ if (isset($_SESSION["user"])) {
               <div class="mt-3">
                 <h4>Hello! <?php echo $user->getFirstName() ?></h4><br>
 
-                <a class="btn btn-outline-primary " target="" href="./classes/logout.php">Log Out</a>
+                <a class="btn btn-outline-danger " target="" href="./classes/logout.php">Log Out</a>
                 <a class="btn btn-outline-primary " target="" href="./editUser.php">Edit</a>
-                <a class="btn btn-outline-danger " target="" href="#">Change Password </a>
                 <?php
                 if (isset($_GET['success'])) {
                   if ($_GET['success'] == 1) {
@@ -170,6 +169,26 @@ if (isset($_SESSION["user"])) {
                   if ($_GET['error'] == 2) {
                     echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
                     Please fill all fields!
+                    </div></b>";
+                  }
+                  if ($_GET['error'] == 3) {
+                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Please upload image size less than 5MB
+                    </div></b>";
+                  }
+                  if ($_GET['error'] == 4) {
+                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Please upload JPG, JPGE or PNG image types
+                    </div></b>";
+                  }
+                  if ($_GET['error'] == 5) {
+                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Please upload image
+                    </div></b>";
+                  }
+                  if ($_GET['error'] == 6) {
+                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Profile Picture Failed!
                     </div></b>";
                   }
                 }
@@ -325,10 +344,10 @@ if (isset($_SESSION["user"])) {
 
 
   <!-- The modal -->
-  <div id="addBlogModal" class="modal">
+  <div id="addBlogModal" class="modal" style="margin-top: 20px; width: 100%;">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <form action="./add_blog.php" method="post" enctype="multipart/form-data">
+      <form id="blogForm" action="./classes/putBlog.php" method="post" enctype="multipart/form-data">
         <label for="blog_title"><b>Blog Title:</b></label>
         <input type="text" class="form-control" id="blog_title" name="blog_title" required>
         <br>
@@ -344,6 +363,7 @@ if (isset($_SESSION["user"])) {
         <input type="file" class="form-control" id="blog_image" name="blog_image" accept="image/*" required>
         <input type="hidden" id="ufname" name="ufname" value="<?php echo $user->getFirstName() ?>">
         <input type="hidden" id="ulname" name="ulname" value="<?php echo $user->getLastName() ?>">
+        <input type="hidden" id="Date" name="Date">
         <br>
         <div style="display: flex; flex-direction: column; align-items: center;">
         <button class="btn btn-success" type="submit">Add Blog</button>
@@ -351,6 +371,17 @@ if (isset($_SESSION["user"])) {
         </div>
         
       </form>
+      <script>
+        // Function to set the real date as the value of the hidden input field
+        function setRealDate() {
+            var currentDate = new Date();
+            var realDateField = document.getElementById('Date');
+            realDateField.value = currentDate.toISOString();
+        }
+
+        // Call setRealDate() when the form is submitted
+        document.getElementById('blogForm').addEventListener('submit', setRealDate);
+    </script>
     </div>
   </div>
 
@@ -394,8 +425,7 @@ if (isset($_SESSION["user"])) {
 
     <div class="close" id="close-button">+</div>
 
-
-      <form id="adForm" action="upload.php" method="post" enctype="multipart/form-data">
+      <form id="adForm" action="./classes/putAdd.php" method="post" enctype="multipart/form-data">
         
         <label for="image1"><b>Select Image for Advertisement:</b></label>
         <input type="file" class="form-control" name="image1" id="image1" values="$filename1">

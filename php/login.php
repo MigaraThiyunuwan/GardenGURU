@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+if (isset($_COOKIE['remember_user'])){
+    echo "seted";
+    header("Location:./classes/loginProcess.php");
+    exit;
+}
+?>
 <head>
     <meta charset="utf-8">
     <title>GardenGURU | Login</title>
@@ -18,9 +24,9 @@
 </head>
 
 <body>
-<?php 
+    <?php
 
-?>
+    ?>
 
 
     <!-- Navbar Start -->
@@ -77,40 +83,39 @@
                         <div class="col-md-8">
                             <div class="mb-4">
                                 <h3>Sign In</h3>
-                                <?php 
-                                    if (isset($_GET['success'])) {
-                                        if($_GET['success'] == 1){
-                                        
-                                            echo "<b><div class='alert alert-success py-2' role='alert'>
+                                <?php
+                                if (isset($_GET['success'])) {
+                                    if ($_GET['success'] == 1) {
+
+                                        echo "<b><div class='alert alert-success py-2' role='alert'>
                                             You Have Successfully Registered!
-                                            </div></b>"; 
-                                            
-                                        }
+                                            </div></b>";
                                     }
+                                }
                                 ?>
                                 <p class="mb-4"><b>Sign in to your account by entering email and password.</b></p>
                             </div>
                             <form action="./classes/loginProcess.php" method="post">
                                 <div class="form-group first">
                                     <!-- <label for="username">Username</label> -->
-                                    <input type="email" placeholder="Email" class="form-control" name="email" id="email" >
+                                    <input type="email" placeholder="Email" class="form-control" name="email" id="email">
                                 </div>
                                 <div class="form-group last mb-4">
                                     <!-- <label for="password">Password</label> -->
-                                    <input type="password" placeholder="password" class="form-control" name="password" id="password" >
+                                    <input type="password" placeholder="password" class="form-control" name="password" id="password">
                                 </div>
-                                <!-- <div class="d-flex mb-5 align-items-center">
-                                     <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
-                                        <input type="checkbox" checked="checked" />
+                                <div class="d-flex mb-5 align-items-center">
+                                    <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
+                                        <input type="checkbox" name="rememberuser" />
                                         <div class="control__indicator"></div>
-                                    </label> 
-                                    <span class="ml-auto" style=""><a href="#" class="forgot-pass">Forgot Password?</a></span>
-                                </div> -->
+                                    </label>
+                                    <!-- <span class="ml-auto" style=""><a href="#" class="forgot-pass">Forgot Password?</a></span> -->
+                                </div>
 
                                 <!-- <input type="submit" value="Login" class="btn btn-primary my-3 w-100"> -->
 
 
-                                <button class="btn btn-primary my-3 w-100">
+                                <button class="btn btn-primary my-3 w-100" type="submit">
                                     login
                                 </button>
 
@@ -121,42 +126,41 @@
                                 <div class="mb-4" style="margin-top: 15px;">
                                     <p class="mb-4">Login as <a href="./adminlogin.php" style="color: #38761d;">System Admin</a> or Login as <a href="./managerlogin.php" style="color: #38761d;">Manager</a>.</p>
                                 </div>
-
-                                <?php
-                                if (isset($_GET['error'])) {
-                                    if($_GET['error'] == 1){
-                                        
-                                        echo "<b><div class='alert alert-danger py-2' role='alert'>
-                                        Your Email or Password Incorrect!
-                                        </div></b>"; 
-                                        
-                                    }
-                                    if($_GET['error'] == 2){
-                                        
-                                        echo "<b><div class='alert alert-danger py-2' role='alert'>
-                                        You Need to Login to Your Account to Visit Profile.
-                                        </div></b>"; 
-                                    }
-                                    if($_GET['error'] == 3){
-                                        
-                                        echo "<b><div class='alert alert-danger py-2' role='alert'>
-                                        You Need to Login to Your Account to Visit Profile.
-                                        </div></b>"; 
-                                    }
-                                    if($_GET['error'] == 4){
-                                        
-                                        echo "<b><div class='alert alert-danger py-2' role='alert'>
-                                        You Need to Login to Your Account to make purchase.
-                                        </div></b>"; 
-                                    }
-                                    if($_GET['error'] == 5){
-                                        
-                                        echo "<b><div class='alert alert-danger py-2' role='alert'>
-                                        You Need to Login to Your User Account to View Advertisements.
-                                        </div></b>"; 
-                                    }
-                                } ?>
                             </form>
+                            <?php
+                            if (isset($_GET['error'])) {
+                                if ($_GET['error'] == 1) {
+
+                                    echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        Your Email or Password Incorrect!
+                                        </div></b>";
+                                }
+                                if ($_GET['error'] == 2) {
+
+                                    echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        You Need to Login to Your Account to Visit Profile.
+                                        </div></b>";
+                                }
+                                if ($_GET['error'] == 3) {
+
+                                    echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        You Need to Login to Your Account to Visit Profile.
+                                        </div></b>";
+                                }
+                                if ($_GET['error'] == 4) {
+
+                                    echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        You Need to Login to Your Account to make purchase.
+                                        </div></b>";
+                                }
+                                if ($_GET['error'] == 5) {
+
+                                    echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        You Need to Login to Your User Account to View Advertisements.
+                                        </div></b>";
+                                }
+                            } ?>
+
                         </div>
                     </div>
                 </div>
@@ -165,9 +169,9 @@
     </div>
 
     <!-- JavaScript Libraries -->
-    <!-- <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script> -->
-    <!-- <script src="../js/bootstrap.bundle.min.js"></script> -->
-    <!-- <script src="../js/main.js"></script> -->
+    <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script> 
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
 
 
 </body>

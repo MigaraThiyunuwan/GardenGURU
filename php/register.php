@@ -135,7 +135,7 @@ $dbcon = new DbConnector();
                                     <i class="fa-solid fa-mars-and-venus text-muted" style="font-size: 25px;"></i>
                                 </span>
                             </div>
-                            <a class="form-control bg-white border-left-0 border-md" style="color: #ccc; font-weight: bold;">Select Your Gender </a>
+                            <a class="form-control bg-white border-left-0 border-md" style="color: #ccc; font-weight: bold;">Your Gender </a>
                             <select id="gender" name="gender" class="input-group-text bg-white px-4 border-md border-right-0">
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -150,7 +150,7 @@ $dbcon = new DbConnector();
                                     <i class="fas fa-map-marker-alt text-muted" style="font-size: 25px;"></i>
                                 </span>
                             </div>
-                            <a class="form-control bg-white border-left-0 border-md" style="color: #ccc; font-weight: bold;">Select Your District </a>
+                            <a class="form-control bg-white border-left-0 border-md" style="color: #ccc; font-weight: bold;"> Your District </a>
                             <select id="district" name="district" class="input-group-text bg-white px-4 border-md border-right-0">
                                 <option value="Ampara">Ampara</option>
                                 <option value="Anuradhapura">Anuradhapura</option>

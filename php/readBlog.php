@@ -11,9 +11,14 @@ $dbcon = new DbConnector();
 
 session_start();
 $user = null;
+$manager = null;
 if (isset($_SESSION["user"])) {
     // User is logged in, retrieve the user object
     $user = $_SESSION["user"];
+}
+if (isset($_SESSION["manager"])) {
+    // User is logged in, retrieve the user object
+    $manager = $_SESSION["manager"];
 }
 ?>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
@@ -70,6 +75,10 @@ if (isset($_SESSION["user"])) {
                 ?>
                     <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
                 <?php
+                } else if ($manager != null) {
+                ?>
+                    <a href="./Manager.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
                 } else {
                 ?>
                     <a href="./login.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Sign In</a>
@@ -125,6 +134,7 @@ try {
             $lname = $row->user_lname;
             $details = $row->blog_details;
             $image = $row->blog_image;
+            $date = $row->blogPostedDate;
         }
        ?>
         <section class="blog_area single-post-area section-padding">
@@ -132,14 +142,16 @@ try {
             <div class="row">
                 <div class="col">
                     <div class="single-post">
-                        <div class="feature-img">
-                            <img class="img-fluid" src="<?php echo $image ?>" alt="">
+                        
+                        <div class="row" style="align-items:center;" >
+                            <img class="img-fluid" src="<?php echo $image ?>" style="" >
                         </div>
+                        
                         <div class="blog_details">
                             <h2 style="color: #2d2d2d;"> <?php echo $title ?>
                             </h2>
                             <ul class="blog-info-link mt-3 mb-4">
-                                <li><a href="#"><i class="fa fa-user"></i> <?php echo $fname . " " . $lname ?> </a></li>
+                                <li><a href="#"><i class="fa fa-user"></i> <?php echo $fname . " " . $lname." - ".$date  ?> </a></li>
 
                             </ul>
                             <p>

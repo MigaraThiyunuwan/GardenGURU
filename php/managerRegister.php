@@ -4,6 +4,15 @@ require './classes/DbConnector.php';
 use classes\DbConnector;
 
 $dbcon = new DbConnector();
+session_start();
+$admin = null;
+if (isset($_SESSION["admin"])) {
+    // User is logged in, retrieve the user object
+    $admin = $_SESSION["admin"];
+}else {
+    header("Location: ../login.php?error=5");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -57,15 +66,10 @@ $dbcon = new DbConnector();
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
-
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-                    <div class="dropdown-menu bg-light m-0">
-                        <a href="./login.php" class="dropdown-item">Log Out</a>
-                    </div>
-                </div>
+                <a href="./Admin.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+               
             </div>
-            <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
+            
         </div>
     </nav>
     <!-- Navbar End -->
@@ -79,7 +83,7 @@ $dbcon = new DbConnector();
 
             <!-- Registeration Form -->
             <div class="col-md-7 col-lg-6 ml-auto">
-                <form action="<?php $_SERVER["PHP_SELF"] ?>" method="POST">
+                <form action="./classes/ManagerRegisterProcess.php" method="POST">
                     <div class="row">
 
                         <!-- First Name -->
@@ -106,7 +110,7 @@ $dbcon = new DbConnector();
                         <div class="input-group col-lg-12 mb-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa-solid fa-at text-muted" style="font-size: 25px;"></i>
+                                    <i class="fa-solid fa-at text-muted" style="font-size: 25px;"></i>
                                 </span>
                             </div>
                             <input id="email" type="email" name="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md">
@@ -126,7 +130,7 @@ $dbcon = new DbConnector();
                         <div class="input-group col-lg-12 mb-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa-solid fa-envelope text-muted" style="font-size: 25px;"></i>
+                                    <i class="fa-solid fa-envelope text-muted" style="font-size: 25px;"></i>
                                 </span>
                             </div>
 
@@ -153,72 +157,57 @@ $dbcon = new DbConnector();
                             <input id="passwordConfirmation" type="password" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
                         </div>
 
+                        <?php
+                        if (isset($_GET['error'])) {
+                            if ($_GET['error'] == 1) {
+
+                                echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                Please Fill all Fields.
+                                </div></b>";
+                            }
+                            if ($_GET['error'] == 2) {
+
+                                echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                Password Missmatch!
+                                </div></b>";
+                            }
+                            if ($_GET['error'] == 3) {
+
+                                echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        Password Must Contain, <br></b>
+                                        <ul>
+                                            <li>More than 6 characters</li>
+                                            <li>At least one number</li>
+                                            <li>At least one Upper Case character</li>
+                                            <li>At least one Special Character</li>
+                                        </ul>
+                                        </div></b>";
+                            }
+                            if ($_GET['error'] == 4) {
+                                echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                    Please Enter Valied Email!
+                                    </div></b>";
+                            }
+                            if ($_GET['error'] == 5) {
+
+                                echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                    Please Enter Valied Phone Number
+                                    </div></b>";
+                            }
+                            if ($_GET['error'] == 6) {
+
+                                echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                    Sorry! Manager Registration failed.
+                                    </div></b>";
+                            }
+                        } ?>
+
                         <!-- Submit Button -->
-                        <input type="submit" value="Add new Manager." class="btn btn-primary my-3 w-100">
-                        <!-- <div class="form-group col-lg-12 mx-auto mb-0">
-                            <a href="#" class="btn btn-primary btn-block py-2">
-                                <span class="font-weight-bold">Create your account</span>
-                            </a>
-                        </div> -->
+                        <input type="submit" value="Add new Manager" class="btn btn-primary my-3 w-100">
+
 
                     </div>
                 </form>
-
-
-                <?php
-
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-                    if (isset($_POST['firstname']) && !empty($_POST['firstname']) && isset($_POST['lastname']) && !empty($_POST['lastname']) && isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['phone']) && !empty($_POST['phone']) && isset($_POST['password']) && !empty($_POST['password']) && isset($_POST['passwordConfirmation']) && !empty($_POST['passwordConfirmation']) && isset($_POST['NIC']) && !empty($_POST['NIC'])) {
-                        $tempPass1 = $_POST["password"];
-                        $tempPass2 = $_POST["passwordConfirmation"];
-
-                        if ($tempPass1 == $tempPass2) {
-                            $firstname = $_POST["firstname"];
-                            $lastname = $_POST["lastname"];
-                            $email = $_POST["email"];
-                            $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-                            $NIC = $_POST["NIC"];
-                            $phone = $_POST["phone"];
-                            
-
-                            try {
-                                $con = $dbcon->getConnection();
-                                $query = "INSERT INTO manager(mFirstName, mLastName, mEmail, mPassword, mNIC, mPhone) VALUES(?, ?, ?, ?, ?, ?)";
-                                $pstmt = $con->prepare($query);
-                                $pstmt->bindValue(1, $firstname);
-                                $pstmt->bindValue(2, $lastname);
-                                $pstmt->bindValue(3, $email);
-                                $pstmt->bindValue(4, $password);
-                                $pstmt->bindValue(5, $NIC);
-                                $pstmt->bindValue(6, $phone);
-                                
-                                $pstmt->execute();
-                                if (($pstmt->rowCount()) > 0) {
-                ?>
-                                    <!-- <button onclick="window.location.href='./Login.php';" class="btn btn-primary my-3 w-100">
-                                        You have Successfully registered. Click Here to Login Your Account.
-                                    </button> -->
-                <?php
-                                    echo "<b>You Have Successfully Added. <a href='./Admin.php'>Click here.</a></b>";
-                                } else {
-                                    echo "Error, try again.";
-                                }
-                            } catch (PDOException $exc) {
-                                echo $exc->getMessage();
-                            }
-                        } else {
-                            echo '<p style="color:red;" > <b>Password Missmatch.</b> </p>';
-                           
-                        }
-                    }else{
-                        echo '<p style="color:red;" > <b>Please Fill all Fields.</b> </p>';
-                    }
-                }
-
-                ?>
-
-
             </div>
         </div>
     </div>

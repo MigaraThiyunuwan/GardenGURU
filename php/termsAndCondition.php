@@ -4,9 +4,14 @@
 require_once './classes/persons.php';
 session_start();
 $user = null;
+$manager = null;
 if (isset($_SESSION["user"])) {
     // User is logged in, retrieve the user object
     $user = $_SESSION["user"];
+}
+if (isset($_SESSION["manager"])) {
+    // User is logged in, retrieve the user object
+    $manager = $_SESSION["manager"];
 }
 ?>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
@@ -63,6 +68,10 @@ if (isset($_SESSION["user"])) {
                 if ($user != null) {
                 ?>
                     <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else if ($manager != null) {
+                ?>
+                    <a href="./Manager.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
                 <?php
                 } else {
                 ?>

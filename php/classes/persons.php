@@ -2,17 +2,15 @@
 
 use classes\DbConnector;
 
-?>
-
-<?php
 /* =========================================================|| person class (Parent Class) ||====================================================================================== */
+
 class person
 {
-    private $FirstName;
-    private $LastName;
-    private $Email;
+    protected $FirstName;
+    protected $LastName;
+    protected $Email;
 
-    private $Password;
+    protected $Password;
 
     function __construct($FirstName, $LastName, $Email, $Password)
     {
@@ -143,6 +141,148 @@ class user extends person
                 $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbpicture, $dbGender);
                 session_start();
                 $_SESSION["user"] = $user;
+                $_SESSION['cart'][0] = array('ItemId' => null, 'Item_Name' => null, 'Price' => null, 'Quantity' => null);
+                if (isset($_SESSION['cartTemp'])) {
+                    $_SESSION['cartTemp'] = null;
+                }
+
+                try {
+                    $con = $dbcon->getConnection();
+                    $query1 = "SELECT * FROM cart WHERE user_id = ? ";
+                    $pstmt1 = $con->prepare($query1);
+                    $pstmt1->bindValue(1, $user->getUserId());
+
+                    $pstmt1->execute();
+
+                    if ($pstmt1->rowCount() > 0) {
+
+                        $rs = $pstmt1->fetchAll(PDO::FETCH_OBJ);
+
+                        foreach ($rs as $row) {
+                            $Item_Name = $row->Item_Name;
+                            $Price = $row->Price;
+                            $Quantity = $row->Quantity;
+                            $ItemId = $row->ItemId;
+                            $_SESSION['cart'][] = array('ItemId' => $ItemId, 'Item_Name' => $Item_Name, 'Price' => $Price, 'Quantity' => $Quantity);
+                        }
+
+                        return $user;
+                    } else {
+                    }
+                } catch (PDOException $exc) {
+                    echo $exc->getMessage();
+                }
+                return $user;
+            } else {
+                return null;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public function EditUserDetails($firstName, $lastName, $email, $phone, $address)
+    {
+
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "UPDATE users SET user_FirstName = ?, user_LastName = ?, user_Email = ?, user_PhoneNo = ?, user_address = ? WHERE user_id = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $firstName);
+            $pstmt->bindValue(2, $lastName);
+            $pstmt->bindValue(3, $email);
+            $pstmt->bindValue(4, $phone);
+            $pstmt->bindValue(5, $address);
+            $pstmt->bindValue(6, $this->userId);
+
+            $pstmt->execute();
+
+
+            if ($pstmt->execute()) {
+
+                $_SESSION["user"] = null;
+
+                try {
+                    $con = $dbcon->getConnection();
+                    $query = "SELECT * FROM users WHERE user_id = ? ";
+                    $pstmt = $con->prepare($query);
+                    $pstmt->bindValue(1, $this->userId);
+
+                    $pstmt->execute();
+
+                    $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                    foreach ($rs as $row) {
+                        $dbpassword = $row->user_Password;
+                        $dbFirstName = $row->user_FirstName;
+                        $dbLastName = $row->user_LastName;
+                        $dbEmail = $row->user_Email;
+                        $dbPhoneNo = $row->user_PhoneNo;
+                        $dbDistrict = $row->user_District;
+                        $dbGender = $row->user_Gender;
+                        $dbid = $row->user_id;
+                        $dbaddress = $row->user_address;
+                        $dbpicture = $row->profile_picture;
+                    }
+
+                    $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbpicture, $dbGender);
+                    $_SESSION["user"] = $user;
+                    return true;
+                } catch (PDOException $exc) {
+                    echo $exc->getMessage();
+                }
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public function updateToken($token, $exp)
+    {
+        $dbcon = new DbConnector();
+        try {
+            $con = $dbcon->getConnection();
+            $query = "UPDATE users SET token = ?, expdate = ? WHERE user_id = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $token);
+            $pstmt->bindValue(2, $exp);
+            $pstmt->bindValue(3, $this->userId);
+            $pstmt->execute();
+            return ($pstmt->rowCount() > 0);
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public static function validateToken($token)
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT * FROM users WHERE token =?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $token);
+            $pstmt->execute();
+            $rs = $pstmt->fetch(PDO::FETCH_OBJ);
+            $dbexp = $rs->expdate;
+            $dbpassword = $rs->user_Password;
+            $dbFirstName = $rs->user_FirstName;
+            $dbLastName = $rs->user_LastName;
+            $dbEmail = $rs->user_Email;
+            $dbPhoneNo = $rs->user_PhoneNo;
+            $dbDistrict = $rs->user_District;
+            $dbGender = $rs->user_Gender;
+            $dbid = $rs->user_id;
+            $dbaddress = $rs->user_address;
+            $dbpicture = $rs->profile_picture;
+            $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbpicture, $dbGender);
+            if (($dbexp - time()) > 0) {
+
+                session_start();
+                $_SESSION["user"] = $user;
                 $_SESSION['cart'][0] = array('Item_Name' => null, 'Price' => null, 'Quantity' => null);
                 if (isset($_SESSION['cartTemp'])) {
                     $_SESSION['cartTemp'] = null;
@@ -173,8 +313,11 @@ class user extends person
                 } catch (PDOException $exc) {
                     echo $exc->getMessage();
                 }
+
                 return true;
             } else {
+                $user->updateToken(null, null);
+                $user = null;
                 return false;
             }
         } catch (PDOException $exc) {
@@ -182,62 +325,115 @@ class user extends person
         }
     }
 
-    public function EditUserDetails($firstName, $lastName, $email, $phone, $address, $userID)
+    public function putAdvertisement($file, $text_title, $text_description, $realDate)
     {
+        $tmp_name1 = $file['tmp_name'];
+        $filename1 = $file['name'];
 
-        try {
+        $allowed = array('jpeg', 'png', 'jpg', 'JPEG', 'PNG', 'JPG');
+        $ext = pathinfo($filename1, PATHINFO_EXTENSION);
+
+        if (in_array($ext, $allowed)) {
+
+            if ($file['size'] < 5 * 1024 * 1024) {
+
+                $destination1 = '../../images/Adevertistment/' . $filename1;
+                $dbdestination = '../images/Adevertistment/' . $filename1;
+                if (move_uploaded_file($tmp_name1, $destination1)) { 
+                    
+                    try {
+                        $dbcon = new DbConnector();
+                        $conn = $dbcon->getConnection();
+                        $sql = "INSERT INTO advertisements (user_id, user_FirstName, user_LastName, user_Email, image1_filename, title, description, adPostedDate) VALUES ( ?, ? ,?, ?, ?, ?, ?, ?)";
+            
+                        $pstmt = $conn->prepare($sql);
+                        $pstmt->bindValue(1, $this->userId);
+                        $pstmt->bindValue(2, $this->FirstName);
+                        $pstmt->bindValue(3, $this->LastName);
+                        $pstmt->bindValue(4, $this->Email);
+                        $pstmt->bindValue(5, $dbdestination);
+                        $pstmt->bindValue(6, $text_title);
+                        $pstmt->bindValue(7, $text_description);
+                        $pstmt->bindValue(8, $realDate);
+            
+                        if ($pstmt->execute()) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    } catch (PDOException $exc) {
+                        echo $exc->getMessage();
+                    }
+                    
+                } else {
+                    header("Location: ../user.php?success=4");
+                    exit;
+                }
+            } else {
+                header("Location: ../user.php?error=3");
+                exit;
+            }
+        } else {
+            header("Location: ../user.php?error=4");
+            exit;
+        }
+
+    }
+    public function putBlog($file,$blogTitle,$blogDetails,$Date){
+        $targetFile = "../../images/blog/" . basename($file["name"]);
+        $dbPicture = "../images/blog/" . basename($file["name"]);
+        if (move_uploaded_file($file["tmp_name"], $targetFile)) {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
-            $query = "UPDATE users SET user_FirstName = ?, user_LastName = ?, user_Email = ?, user_PhoneNo = ?, user_address = ? WHERE user_id = ?";
+            $query = "INSERT INTO blog (blog_title, user_id, user_fname, user_lname, blog_details, blog_image, blogPostedDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
             $pstmt = $con->prepare($query);
-            $pstmt->bindValue(1, $firstName);
-            $pstmt->bindValue(2, $lastName);
-            $pstmt->bindValue(3, $email);
-            $pstmt->bindValue(4, $phone);
-            $pstmt->bindValue(5, $address);
-            $pstmt->bindValue(6, $userID);
+            $pstmt->bindValue(1, $blogTitle);
+            $pstmt->bindValue(2, $this->userId);
+            $pstmt->bindValue(3, $this->FirstName);
+            $pstmt->bindValue(4, $this->LastName);
+            $pstmt->bindValue(5, $blogDetails);
+            $pstmt->bindValue(6, $dbPicture);
+            $pstmt->bindValue(7, $Date);
 
             $pstmt->execute();
-
-
-            if ($pstmt->execute()) {
-
-                $_SESSION["user"] = null;
-
-                try {
-                    $con = $dbcon->getConnection();
-                    $query = "SELECT * FROM users WHERE user_id = ? ";
-                    $pstmt = $con->prepare($query);
-                    $pstmt->bindValue(1, $userID);
-
-                    $pstmt->execute();
-
-                    $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
-
-                    foreach ($rs as $row) {
-                        $dbpassword = $row->user_Password;
-                        $dbFirstName = $row->user_FirstName;
-                        $dbLastName = $row->user_LastName;
-                        $dbEmail = $row->user_Email;
-                        $dbPhoneNo = $row->user_PhoneNo;
-                        $dbDistrict = $row->user_District;
-                        $dbGender = $row->user_Gender;
-                        $dbid = $row->user_id;
-                        $dbaddress = $row->user_address;
-                        $dbpicture = $row->profile_picture;
-                    }
-
-                    $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbpicture, $dbGender);
-                    $_SESSION["user"] = $user;
-                    return true;
-                } catch (PDOException $exc) {
-                    echo $exc->getMessage();
-                }
+            if (($pstmt->rowCount()) > 0) {
+                return true;
             } else {
                 return false;
             }
-        } catch (PDOException $exc) {
-            echo $exc->getMessage();
+        } else {
+            header("Location: ./user.php?success=0");
+        }
+    }
+
+    public function uploadProPic($file)
+    {
+        $tmp_name1 = $file['tmp_name'];
+        $filename1 = $file['name'];
+
+        $destination1 = '../../images/profile_pictures/' . $filename1;
+        $dbDestination = '../images/profile_pictures/' . $filename1;
+
+        if (move_uploaded_file($tmp_name1, $destination1)) {
+            try {
+                $dbcon = new DbConnector();
+                $conn = $dbcon->getConnection();
+                $sql = "UPDATE users SET profile_picture = ? WHERE user_id = ?;";
+
+                $pstmt = $conn->prepare($sql);
+                $pstmt->bindValue(1, $dbDestination);
+                $pstmt->bindValue(2, $this->userId);
+
+                if ($pstmt->execute()) {
+                    $this->ProPic = $dbDestination;
+
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (PDOException $exc) {
+                echo $exc->getMessage();
+            }
         }
     }
 }
@@ -278,53 +474,72 @@ class Manager extends person
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
-
             $query = "DELETE FROM users WHERE user_id = :user_id";
             $pstmt = $con->prepare($query);
             $pstmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
             $a = $pstmt->execute();
-            if($a > 0){
+            if ($a > 0) {
                 return true;
             } else {
                 return false;
             }
-            
         } catch (PDOException $exc) {
             echo $exc->getMessage();
         }
     }
 
-    public function viewUser()
+    public function deleteNews($newsId)
     {
-        require_once 'DbConnector.php';
-        $user_id = $_POST['userID'];
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
-
-            $query = "SELECT * FROM users WHERE user_id = ?";
+            $query = "DELETE FROM news WHERE newsId = :newsId";
             $pstmt = $con->prepare($query);
-            $pstmt->bindValue(1, $user_id);
+            $pstmt->bindParam(':newsId', $newsId, PDO::PARAM_INT);
+            $a = $pstmt->execute();
+            if ($a > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
 
-            $pstmt->execute();
+    public function deleteAdd($Addid)
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "DELETE FROM advertisements WHERE id = :id";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindParam(':id', $Addid, PDO::PARAM_INT);
+            $a = $pstmt->execute();
+            if ($a > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
 
-            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
-            foreach ($rs as $row) {
-                $dbpassword = $row->user_Password;
-                $dbFirstName = $row->user_FirstName;
-                $dbLastName = $row->user_LastName;
-                $dbEmail = $row->user_Email;
-                $dbPhoneNo = $row->user_PhoneNo;
-                $dbDistrict = $row->user_District;
-                $dbprofile_picture = $row->profile_picture;
-                $dbid = $row->user_id;
-                $dbGender = $row->user_Gender;
-                $dbaddress = $row->user_address;
-            };
-            $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbprofile_picture, $dbGender);
-            session_start();
-            $_SESSION["user1"] = $user;
-            header("Location: ../userView.php");
+    public function deleteBlog($Blogid)
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "DELETE FROM blog WHERE blog_id = :id";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindParam(':id', $Blogid, PDO::PARAM_INT);
+            $a = $pstmt->execute();
+            if ($a > 0) {
+                return true;
+            } else {
+                return false;
+            }
         } catch (PDOException $exc) {
             echo $exc->getMessage();
         }
@@ -368,7 +583,6 @@ class Manager extends person
 
     public function EditManagerDetails($firstName, $lastName, $email, $NIC, $phone, $managerID)
     {
-
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
@@ -422,11 +636,7 @@ class Manager extends person
     }
 }
 
-if (isset($_POST['action']) && $_POST['action'] == 'view') {
 
-    $manager = new Manager(null, null, null, null, null, null, null,);
-    $manager->viewUser();
-}
 
 /* =========================================================|| Admin class (Child Class) ||====================================================================================== */
 class Admin extends person
@@ -459,30 +669,48 @@ class Admin extends person
         return $this->adminId;
     }
 
-    public function deleteManager()
+    public function AddManager($firstname, $lastname, $email, $password, $NIC, $phone)
     {
-        require_once './DbConnector.php';
+        try {
 
-        $managerID = $_POST['managerID'];
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "INSERT INTO manager(mFirstName, mLastName, mEmail, mPassword, mNIC, mPhone) VALUES(?, ?, ?, ?, ?, ?)";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $firstname);
+            $pstmt->bindValue(2, $lastname);
+            $pstmt->bindValue(3, $email);
+            $pstmt->bindValue(4, $password);
+            $pstmt->bindValue(5, $NIC);
+            $pstmt->bindValue(6, $phone);
+
+            $pstmt->execute();
+            if (($pstmt->rowCount()) > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+    public function deleteManager($managerID)
+    {
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
 
-            // Prepare and execute the DELETE query
             $query = "DELETE FROM manager WHERE managerID = :managerID";
             $pstmt = $con->prepare($query);
             $pstmt->bindParam(':managerID', $managerID, PDO::PARAM_INT);
             $pstmt->execute();
-            header("Location: ../Admin.php");
+            if (($pstmt->rowCount()) > 0) {
+                return true;
+            } else {
+                return false;
+            }
         } catch (PDOException $exc) {
             echo $exc->getMessage();
-            // You can handle the error here or display an error message on the same page
         }
     }
-}
-
-if (isset($_POST['action']) && $_POST['action'] == 'processForm') {
-    // Call the PHP function when the form is submitted with the action 'processForm'
-    $admin = new Admin(null, null, null, null, null, null, null,);
-    $admin->deleteManager();
 }

@@ -60,14 +60,7 @@ if (isset($_SESSION["manager"])) {
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
-
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-                    <div class="dropdown-menu bg-light m-0">
-                        <a href="./user.php" class="dropdown-item">Profile</a>
-                        <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
-                    </div>
-                </div>
+                <a href="./Manager.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Profile</a>
             </div>
 
     </nav>
@@ -84,9 +77,9 @@ if (isset($_SESSION["manager"])) {
                             <img src="../images/manager.png" alt="Admin" class="rounded-circle" width="150">
                                 <div class="mt-3">
                                     <h4>Hello! <?php echo $manager->getFirstName() . "" . $manager->getLastName() ?> !</h4><br>
-                                    <a class="btn btn-outline-primary " target="" href="./classes/logout.php">Log Out</a>
+                                    <a class="btn btn-outline-danger " target="" href="./classes/logout.php">Log Out</a>
 
-                                    <a class="btn btn-outline-danger " target="" href="#">Change Password</a>
+                                    <a class="btn btn-outline-primary " target="" href="#">Change Password</a>
                                 </div>
                             </div>
                         </div>

@@ -5,13 +5,12 @@ require './classes/DbConnector.php';
 $dbConnector = new classes\DbConnector();
 $dbcon = $dbConnector->getConnection();
 
-?>
-<?php
+
 require './classes/persons.php';
 session_start();
-if (isset($_SESSION["user"])) {
+if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) ) {
   // User is logged in, retrieve the user object
-  $user = $_SESSION["user"];
+
 } else {
   // Redirect the user to login.php if not logged in
   header("Location: ./login.php?error=5");
@@ -213,10 +212,7 @@ if (isset($_SESSION["user"])) {
       border-radius: 5px;
     }
 
-    /* Style for the button */
-    .btn {
-      /* Your button styles here */
-    }
+    
   </style>
   <!-- Footer Start -->
   <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">

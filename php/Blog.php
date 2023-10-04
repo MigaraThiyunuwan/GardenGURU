@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+require './classes/DbConnector.php';
+
+//use classes\DbConnector;
+$dbConnector = new classes\DbConnector();
+$dbcon = $dbConnector->getConnection();
 require_once './classes/persons.php';
 session_start();
 $user = null;
@@ -97,123 +102,124 @@ if (isset($_SESSION["manager"])) {
     <!-- Page Header End -->
 
     <?php
-    // Replace with your database connection details
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "gardenguru";
 
-    // Create a connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    $sql = "SELECT * FROM blog ORDER BY blog_id DESC";
+    try {
 
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Fetch blog data from the database
-    $sql = "SELECT * FROM blog";
-    $result = $conn->query($sql);
+        $stmt = $dbcon->query($sql);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($stmt->rowCount() > 0) {
 
     ?>
+            <div class="container">
+                <div class="row">
 
-    <div class="container">
-        <div class="row">
+                    <?php
+                    foreach ($result as $row) {
+                        $blog_id = $row["blog_id"];
+                        $blog_title = $row["blog_title"];
+                        $blogPostedDate = $row["blogPostedDate"];
+                        $user_fname = $row["user_fname"];
+                        $user_lname = $row["user_lname"];
+                        $blog_details = $row["blog_details"];
+                        $blog_image = $row["blog_image"];
+                    ?>
+                        <div class="col-lg-6">
+                            <article class="blog_item">
+                                <div class="blog_item_img">
+                                    <img class="card-img rounded-0" src="<?php echo $blog_image; ?>" alt="" style=" ">
+                                </div>
+                                <div class="blog_details">
+                                    <a class="d-inline-block" href="./readBlog.php?blog_id=<?php echo $blog_id; ?>">
+                                        <h2 class="blog-head" style="color: #2d2d2d;"><?php echo $blog_title; ?></h2>
+                                    </a>
+                                    <p><?php echo substr($blog_details, 0, 250) . '...'; ?></p>
+                                    <div class="row">
+                                        <div class="col"> <ul class="blog-info-link">
+                                            <li><i class="fa fa-user"></i><?php echo " ".$user_fname . " " . $user_lname; ?></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col"> <ul class="blog-info-link">
+                                            <?php echo $blogPostedDate ?>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
             <?php
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-            ?>
-
-                    <div class="col-lg-6">
-                        <article class="blog_item">
-                            <div class="blog_item_img">
-                                <img class="card-img rounded-0" src="<?php echo $row['blog_image']; ?>" alt="">
-                            </div>
-                            <div class="blog_details">
-                                <a class="d-inline-block" href="./readBlog.php?blog_id=<?php echo $row['blog_id']; ?>">
-                                    <h2 class="blog-head" style="color: #2d2d2d;"><?php echo $row['blog_title']; ?></h2>
-                                </a>
-                                <p><?php echo substr($row['blog_details'], 0, 250) . '...'; ?></p>
-                                <ul class="blog-info-link">
-                                    <li><a href="#"><i class="fa fa-user"></i><?php echo $row['user_fname'] ." " . $row['user_lname']; ?></a></li>
-                                </ul>
-                            </div>
-                        </article>
-                    </div>
-
-
-            <?php
+                    }
+                } else {
+                    echo "No blogs uploaded yet.";
                 }
-            } else {
-                echo '<p>No blog posts available.</p>';
+            } catch (PDOException $exc) {
+                die("Error executing the query: " . $exc->getMessage());
             }
-
-            $conn->close();
             ?>
-        </div>
-    </div>
+                </div>
+            </div>
 
-   <!-- Footer Start -->
-   <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Our Office</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+            <!-- Footer Start -->
+            <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+                <div class="container py-5">
+                    <div class="row g-5">
+                        <div class="col-lg-3 col-md-6">
+                            <h4 class="text-white mb-4">Our Office</h4>
+                            <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
+                            <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
+                            <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
+                            <div class="d-flex pt-2">
+                                <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-youtube"></i></a>
+                                <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <h4 class="text-white mb-4">Services</h4>
+                            <a class="btn btn-link" href="./plantSuggestion.php">Plant Suggestion</a>
+                            <a class="btn btn-link" href="./Advertistment.php">Advertiesment</a>
+                            <a class="btn btn-link" href="./Selling.php">Shop</a>
+                            <a class="btn btn-link" href="./blog.php">Blog</a>
+
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <h4 class="text-white mb-4">Quick Links</h4>
+                            <a class="btn btn-link" href="./AboutUs.php">About Us</a>
+                            <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
+                            <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
+                            <a class="btn btn-link" href="./login.php">Log Out</a>
+                            <a class="btn btn-link" href="./termsAndCondition.php">Terms & Condition</a>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <img src="../images/logo.png" style="width:220px;height:50px;">
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Services</h4>
-                    <a class="btn btn-link" href="./plantSuggestion.php">Plant Suggestion</a>
-                    <a class="btn btn-link" href="./Advertistment.php">Advertiesment</a>
-                    <a class="btn btn-link" href="./Selling.php">Shop</a>
-                    <a class="btn btn-link" href="./blog.php">Blog</a>
+            </div>
+            <!-- Footer End -->
+            <!-- Back to Top -->
+            <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="./AboutUs.php">About Us</a>
-                    <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
-                    <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
-                    <a class="btn btn-link" href="./login.php">Log Out</a>
-                    <a class="btn btn-link" href="./termsAndCondition.php">Terms & Condition</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <img src="../images/logo.png" style="width:220px;height:50px;">
+
+
+            <!-- Copyright Start -->
+            <div class="container-fluid copyright py-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            &copy; <a class="border-bottom" href="index.php">GardenGURU</a>, All Right Reserved.
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- Footer End -->
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+            <!-- Copyright End -->
 
-
-
-    <!-- Copyright Start -->
-    <div class="container-fluid copyright py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="border-bottom" href="index.php">GardenGURU</a>, All Right Reserved.
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- Copyright End -->
-
-    <!-- JavaScript Libraries -->
-    <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="../js/main.js"></script>
+            <!-- JavaScript Libraries -->
+            <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
+            <script src="../js/bootstrap.bundle.min.js"></script>
+            <script src="../js/main.js"></script>
 
 </body>
 
