@@ -2,30 +2,23 @@
 <html lang="en">
 <?php
 require_once './classes/persons.php';
-
-require_once './classes/DbConnector.php';
-
-use classes\DbConnector;
-
-$dbcon = new DbConnector();
-
 session_start();
 $user = null;
 $manager = null;
 if (isset($_SESSION["user"])) {
     // User is logged in, retrieve the user object
     $user = $_SESSION["user"];
-}
+} 
 if (isset($_SESSION["manager"])) {
     // User is logged in, retrieve the user object
     $manager = $_SESSION["manager"];
-}
+} 
 ?>
-<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
 
 <head>
     <meta charset="utf-8">
-    <title>GardenGURU | Read Blog</title>
+    <title>GardenGURU | About</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -34,15 +27,33 @@ if (isset($_SESSION["manager"])) {
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/readBlog.css" rel="stylesheet">
 
+    <style>
+        .page-header {
+            background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/AboutUs/header_img.jpg) center center no-repeat !important;
+            background-size: cover !important;
+        }
 
+        .team-members-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .team-item {
+            max-width: 300px;
+
+        }
+    </style>
 </head>
 
 <body>
-    <?php
+<?php 
 
-    ?>
+?>
+
+
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
@@ -66,7 +77,6 @@ if (isset($_SESSION["manager"])) {
                         <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
                         <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
                         <a href="./report.php" class="dropdown-item">Reporting</a>
-
                     </div>
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
@@ -86,15 +96,9 @@ if (isset($_SESSION["manager"])) {
                 <?php
                 }
                 ?>
-                <!-- <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-                    <div class="dropdown-menu bg-light m-0">
-                        <a href="./user.php" class="dropdown-item">Profile</a>
-                        <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
-                    </div>
-                </div> -->
+
             </div>
-            <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
+        
         </div>
     </nav>
     <!-- Navbar End -->
@@ -103,81 +107,16 @@ if (isset($_SESSION["manager"])) {
     <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
 
         <div class="container text-center py-5">
-            <h1 class="display-3 text-white mb-4 animated slideInDown">Blog</h1>
+            <h1 class="display-3 text-white mb-4 animated slideInDown">About Us</h1>
             <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item">Second divided from form fish beast made every of seas all gathered us saying he our</li>
+                <li class="breadcrumb-item">Nurture Your Green Thumb with Us!</li>
             </ol>
         </div>
     </div>
     <!-- Page Header End -->
-    <?php
-    $id = null;
-    if (isset($_GET['blog_id'])) {
-        $id = $_GET['blog_id'];
-    }
-    ?>
 
 
-<?Php
-try {
-        $con = $dbcon->getConnection();
-        $query = "SELECT * FROM blog WHERE blog_id = ? ";
-        $pstmt = $con->prepare($query);
-        $pstmt->bindValue(1, $id);
-       
-        $pstmt->execute();
-
-        $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
-
-        foreach($rs as $row){
-            $title = $row->blog_title;
-            $fname = $row->user_fname;
-            $lname = $row->user_lname;
-            $details = $row->blog_details;
-            $image = $row->blog_image;
-            $date = $row->blogPostedDate;
-        }
-       ?>
-        <section class="blog_area single-post-area section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="single-post">
-                        
-                        <div class="row" style="align-items:center;" >
-                            <img class="img-fluid" src="<?php echo $image ?>" style="" >
-                        </div>
-                        
-                        <div class="blog_details">
-                            <h2 style="color: #2d2d2d;"> <?php echo $title ?>
-                            </h2>
-                            <ul class="blog-info-link mt-3 mb-4">
-                                <li><a href="#"><i class="fa fa-user"></i> <?php echo $fname . " " . $lname." - ".$date  ?> </a></li>
-
-                            </ul>
-                            <p>
-                                <?php echo nl2br($details)?>
-                            </p>
-                           
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-    </section>
-    
-<?php
-    } catch (PDOException $exc) {
-        echo $exc->getMessage();
-    }
-
-
-?>
-
-
-    <!-- Footer Start -->
+   <!-- Footer Start -->
    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
@@ -233,11 +172,11 @@ try {
         </div>
     </div>
     <!-- Copyright End -->
-
     <!-- JavaScript Libraries -->
     <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/main.js"></script>
+
 
 
 </body>

@@ -339,13 +339,13 @@ class user extends person
 
                 $destination1 = '../../images/Adevertistment/' . $filename1;
                 $dbdestination = '../images/Adevertistment/' . $filename1;
-                if (move_uploaded_file($tmp_name1, $destination1)) { 
-                    
+                if (move_uploaded_file($tmp_name1, $destination1)) {
+
                     try {
                         $dbcon = new DbConnector();
                         $conn = $dbcon->getConnection();
                         $sql = "INSERT INTO advertisements (user_id, user_FirstName, user_LastName, user_Email, image1_filename, title, description, adPostedDate) VALUES ( ?, ? ,?, ?, ?, ?, ?, ?)";
-            
+
                         $pstmt = $conn->prepare($sql);
                         $pstmt->bindValue(1, $this->userId);
                         $pstmt->bindValue(2, $this->FirstName);
@@ -355,7 +355,7 @@ class user extends person
                         $pstmt->bindValue(6, $text_title);
                         $pstmt->bindValue(7, $text_description);
                         $pstmt->bindValue(8, $realDate);
-            
+
                         if ($pstmt->execute()) {
                             return true;
                         } else {
@@ -364,7 +364,6 @@ class user extends person
                     } catch (PDOException $exc) {
                         echo $exc->getMessage();
                     }
-                    
                 } else {
                     header("Location: ../user.php?success=4");
                     exit;
@@ -377,9 +376,9 @@ class user extends person
             header("Location: ../user.php?error=4");
             exit;
         }
-
     }
-    public function putBlog($file,$blogTitle,$blogDetails,$Date){
+    public function putBlog($file, $blogTitle, $blogDetails, $Date)
+    {
         $targetFile = "../../images/blog/" . basename($file["name"]);
         $dbPicture = "../images/blog/" . basename($file["name"]);
         if (move_uploaded_file($file["tmp_name"], $targetFile)) {
@@ -434,6 +433,27 @@ class user extends person
             } catch (PDOException $exc) {
                 echo $exc->getMessage();
             }
+        }
+    }
+
+    public function askQuestion($question)
+    {
+        try {
+            $dbcon = new DbConnector();
+            $conn = $dbcon->getConnection();
+            $sql = "INSERT INTO question (user_id, question) VALUES ( ?, ? )";
+
+            $pstmt = $conn->prepare($sql);
+            $pstmt->bindValue(1, $this->userId);
+            $pstmt->bindValue(2, $question);
+
+            if ($pstmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
         }
     }
 }

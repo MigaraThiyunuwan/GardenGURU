@@ -96,4 +96,38 @@ class Cart
             echo $exc->getMessage();
         }
     }
+
+    public function getTotal($userID){
+        try {
+            $query = "SELECT Price, Quantity FROM cart WHERE user_id = ?";
+            $pstmt = $this->con->prepare($query);
+            $pstmt->bindValue(1, $userID);
+            $pstmt->execute();
+            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+            $total = 0;
+            foreach ($rs as $item) {
+                $total = $total + ($item->Price * $item->Quantity);
+            }
+            return $total;
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public function resetCart($userID){
+        try {
+            $query = "DELETE FROM cart WHERE user_id = ?";
+            $pstmt = $this->con->prepare($query);
+            $pstmt->bindValue(1, $userID);
+
+            $pstmt->execute();
+            if (($pstmt->rowCount()) > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
 }

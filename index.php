@@ -64,7 +64,7 @@ if (isset($_SESSION["manager"])) {
                         <a href="./php/Advertistment.php" class="dropdown-item">Advertisement</a>
                         <a href="./php/newsfeed.php" class="dropdown-item">News Feed</a>
                         <a href="./php/comForum.php" class="dropdown-item">Communication Forum</a>
-
+                        <a href="./php/report.php" class="dropdown-item">Reporting</a>
                     </div>
                 </div>
                 <a href="./php/AboutUs.php" class="nav-item nav-link">About</a>

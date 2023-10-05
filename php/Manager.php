@@ -66,6 +66,7 @@ if (isset($_SESSION["manager"])) {
                         <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
                         <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
                         <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
+                        <a href="./report.php" class="dropdown-item">Reporting</a>
 
                     </div>
                 </div>
@@ -278,7 +279,7 @@ if (isset($_SESSION["manager"])) {
 
                                                             <div class="modal-footer">
                                                                 <div class="row w-100">
-                                                                    <div class="col-md-6">
+                                                                    <div class="col-md-6" style="margin-bottom: 10px;">
                                                                         <form action='./classes/managerProcess.php' method='POST'>
                                                                             <input type='hidden' name='UserID' value='<?php echo $users->user_id ?>'>
 
@@ -296,7 +297,7 @@ if (isset($_SESSION["manager"])) {
                                                 </div>
                                             </div>
 
-                                            <div class="modal fade shadow my-5" id="viewmodal<?php echo $users->user_id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+                                            <div class="modal fade shadow " id="viewmodal<?php echo $users->user_id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
                                                 <div class="modal-dialog modal-lg modal-dialog-centered">
                                                     <div class="modal-content" style="background-color: white;">
 
@@ -304,16 +305,16 @@ if (isset($_SESSION["manager"])) {
                                                             <h1 class="modal-title fs-5" id="exampleModalLabel">You are viewing <?php echo $users->user_FirstName ?>'s details</h1>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
-                                                        <div class="modal-body">
+                                                        <div class="modal-body" style="width: 100%;">
 
                                                             <div class="row">
                                                                 <div class="col-4">
 
                                                                     <div class=" d-flex flex-column align-items-center justify-content-cente ">
 
-                                                                        <dvi class="p-3 ">
+                                                                        <div class="p-3 ">
                                                                             <img src="<?php echo $users->profile_picture ?>" alt="avatar" class="rounded-circle me-2 " style="width: 150px; height: 150px; object-fit: cover" />
-                                                                        </dvi>
+                                                                        </div>
                                                                         <!--name-->
                                                                         <h3 class="text-center m-0">
                                                                             <?php echo $users->user_FirstName ?>
@@ -522,7 +523,7 @@ if (isset($_SESSION["manager"])) {
 
                                                             <div class="modal-footer">
                                                                 <div class="row w-100">
-                                                                    <div class="col-md-6">
+                                                                    <div class="col-md-6" style="margin-bottom: 10px;">
                                                                         <form action='./classes/managerProcess.php' method='POST'>
                                                                             <input type='hidden' name='newsID' value='<?php echo $news->newsId ?>'>
 
@@ -668,7 +669,7 @@ if (isset($_SESSION["manager"])) {
 
                                                             <div class="modal-footer">
                                                                 <div class="row w-100">
-                                                                    <div class="col-md-6">
+                                                                    <div class="col-md-6" style="margin-bottom: 10px;">
                                                                         <form action='./classes/managerProcess.php' method='POST'>
                                                                             <input type='hidden' name='addID' value='<?php echo $add->id ?>'>
 
@@ -814,7 +815,7 @@ if (isset($_SESSION["manager"])) {
 
                                                             <div class="modal-footer">
                                                                 <div class="row w-100">
-                                                                    <div class="col-md-6">
+                                                                    <div class="col-md-6" style="margin-bottom: 10px;">
                                                                         <form action='./classes/managerProcess.php' method='POST'>
                                                                             <input type='hidden' name='blogID' value='<?php echo $blog->blog_id ?>'>
 

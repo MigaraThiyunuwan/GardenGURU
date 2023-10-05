@@ -74,7 +74,7 @@ if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) ) {
             <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
             <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
             <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
-
+            <a href="./report.php" class="dropdown-item">Reporting</a>
           </div>
         </div>
         <a href="./AboutUs.php" class="nav-item nav-link">About</a>

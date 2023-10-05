@@ -92,7 +92,7 @@ if (isset($_SESSION["manager"])) {
                         <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
                         <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
                         <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
-
+                        <a href="./report.php" class="dropdown-item">Reporting</a>
                     </div>
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
@@ -241,7 +241,7 @@ if (isset($_SESSION["manager"])) {
                                                 </a>
 
 
-                                                <form action="manage_cart.php" method="POST">
+                                                <form action="./classes/manageCart.php" method="POST">
 
                                                     <!-- <a href="javascript:void(0);" class="btn btn-success">Add to cart</a> -->
                                                     <input type="hidden" name="Item_Name" value="<?php echo $item->ItemName; ?>">

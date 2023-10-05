@@ -1,18 +1,20 @@
 <?php
 
+require './DbConnector.php';
+require_once './Security.php';
+require_once './order.php';
+require_once './persons.php';
+require_once './cart.php';
 
 session_start();
 if (isset($_SESSION["user"])) {
     // User is logged in, retrieve the user object
-    $manager = $_SESSION["user"];
+    $user = $_SESSION["user"];
 } else {
 
     header("Location: ./login.php?error=4");
     exit();
 }
-
-
-require './DbConnector.php';
 
 use classes\DbConnector;
 
@@ -20,14 +22,22 @@ $dbcon = new DbConnector();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['pay'])) {
-        if (empty($_POST['nameOnCard']) || empty($_POST['cardNo']) || empty($_POST['expiry']) || empty($_POST['cvv']) || empty($_POST['streetAddress']) || empty($_POST['city']) || empty($_POST['state']) || empty($_POST['postalCode'])) {
+        if (empty($_POST['nameOnCard']) || empty($_POST['cardNo']) || empty($_POST['expiry']) || empty($_POST['cvv']) || empty($_POST['streetAddress']) || empty($_POST['city']) || empty($_POST['receiver']) || empty($_POST['postalCode'])) {
             header("Location: ../payement.php?error=3");
         } else {
 
-            $expiryDate = $_POST['expiry'];
-
+            $expiryDate = Security::SanitizeInput($_POST['expiry']);
+            $name = Security::SanitizeInput($_POST['nameOnCard']);
+            $cardno = Security::SanitizeInput($_POST['cardNo']);
+            $CVV = Security::SanitizeInput($_POST['cvv']);
+            $address = Security::SanitizeInput($_POST['streetAddress']);
+            $city = Security::SanitizeInput($_POST['city']);
+            $receiver = Security::SanitizeInput($_POST['receiver']);
+            $postalcode = Security::SanitizeInput($_POST['postalCode']);
+            $date = date('Y-m-d');
+            $cart = new Cart();
+            $total = $cart->getTotal($user->getUserId());
             $expiryDateTime = DateTime::createFromFormat('m/y', $expiryDate);
-
             $currentDate = new DateTime();
 
             if ($currentDate > $expiryDateTime) {
@@ -35,33 +45,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: ../mycart.php?error=4");
             } else {
 
-                $name = $_POST['nameOnCard'];
-                $cardno = $_POST['cardNo'];
-                $address = $_POST['streetAddress'];
-                $city = $_POST['city'];
-                $province = $_POST['state'];
-                $postalcode = $_POST['postalCode'];
+                $order = new Order($user->getUserId(), $date, $address, $city, $receiver, $postalcode, $total);
 
-                try {
 
-                    $con = $dbcon->getConnection();
-                    $query = "INSERT INTO payment (UserFirstName,UserLastName,UserAddress,OwnerCity,OwnerProvince,OwnerPostalCode) VALUES (?,?,?,?,?,?)";
-                    $pstmt = $con->prepare($query);
-                    $pstmt->bindValue(1, $name);
-                    $pstmt->bindValue(2, $cardno);
-                    $pstmt->bindValue(3, $address);
-                    $pstmt->bindValue(4, $city);
-                    $pstmt->bindValue(5, $province);
-                    $pstmt->bindValue(6, $postalcode);
-                    $pstmt->execute();
-                    if (($pstmt->rowCount()) > 0) {
-                        header("Location: ../payemntThankyou.php");
-                    } else {
-                        header("Location: ../mycart.php?error=5");
+
+
+
+                // DO PAYMENT HERE
+                // IF PAYMENT SUCCESS RUN BELOE CODE
+
+
+
+
+
+
+                $order->setOrderTransaction("success");
+
+                if ($order->placeOrder($user->getUserId())) {
+                    if ($cart->resetCart($user->getUserId())) {
+                        $_SESSION['cart'] = null;
+                        $_SESSION['cart'][0] = array('ItemId' => null, 'Item_Name' => null, 'Price' => null, 'Quantity' => null);
                     }
-                } catch (PDOException $e) {
 
-                    echo $e->getMessage();
+                    header("Location: ../payemntThankyou.php");
+                } else {
+                    header("Location: ../mycart.php?error=5");
                 }
             }
         }

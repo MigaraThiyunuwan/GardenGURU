@@ -1,12 +1,11 @@
 <?php
-require_once './classes/DbConnector.php';
-require_once './classes/cart.php';
-
+require_once './DbConnector.php';
+require_once './cart.php';
+require_once './persons.php';
 use classes\DbConnector;
 
 $dbcon = new DbConnector();
 
-require_once './classes/persons.php';
 session_start();
 $user = null;
 if (isset($_SESSION["user"])) {
@@ -20,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_SESSION['cart'])) {
             $myitems = array_column($_SESSION['cart'], 'Item_Name');
             if (in_array($_POST['Item_Name'], $myitems)) {
-                header("Location: ./selling.php?error=1");
+                header("Location: ../selling.php?error=1");
             } else {
                 $cart = new Cart();
                 // calling addItem function in Cart class
@@ -28,9 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $count = count($_SESSION['cart']);
                     $_SESSION['cart'][$count] = array('ItemId' => $_POST['ItemId'], 'Item_Name' => $_POST['Item_Name'], 'Price' => $_POST['price'], 'Quantity' => 1);
 
-                    header("Location: ./selling.php?success=1");
+                    header("Location: ../selling.php?success=1");
                 } else {
-                    header("Location: ./selling.php?error=2");
+                    header("Location: ../selling.php?error=2");
                 }
             }
         } else {
@@ -39,16 +38,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $myitems = array_column($_SESSION['cartTemp'], 'Item_Name');
                 if (in_array($_POST['Item_Name'], $myitems)) {
-                    header("Location: ./selling.php?error=1");
+                    header("Location: ../selling.php?error=1");
                 } else {
                     $count = count($_SESSION['cartTemp']);
                     $_SESSION['cartTemp'][$count] = array('ItemId' => $_POST['ItemId'], 'Item_Name' => $_POST['Item_Name'], 'Price' => $_POST['price'], 'Quantity' => 1);
 
-                    header("Location: ./selling.php?success=1");
+                    header("Location: ../selling.php?success=1");
                 }
             } else {
                 $_SESSION['cartTemp'][0] = array('ItemId' => $_POST['ItemId'], 'Item_Name' => $_POST['Item_Name'], 'Price' => $_POST['price'], 'Quantity' => 1);
-                header("Location: ./selling.php?success=1");
+                header("Location: ../selling.php?success=1");
             }
         }
     }
@@ -64,9 +63,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         unset($_SESSION['cart'][$key]);
                         $_SESSION['cart'] = array_values($_SESSION['cart']);
 
-                        header("Location: ./mycart.php?success=1");
+                        header("Location: ../mycart.php?success=1");
                     } else {
-                        header("Location: ./mycart.php?error=1");
+                        header("Location: ../mycart.php?error=1");
                     }
                 }
             }
@@ -77,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($value['ItemId'] == $_POST['ItemId']) {
                     unset($_SESSION['cartTemp'][$key]);
                     $_SESSION['cartTemp'] = array_values($_SESSION['cartTemp']);
-                    header("Location: ./mycart.php?success=1");
+                    header("Location: ../mycart.php?success=1");
                 }
             }
         }
@@ -95,15 +94,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         if ($cart->checkAvailability($_POST['ItemId'], $_POST['Mod_Quantity'])) {
                             if ($cart->changeQuantity($_POST['ItemId'], $user->getUserId(), $_POST['Mod_Quantity'])) {
                                 $_SESSION['cart'][$key]['Quantity'] = $_POST['Mod_Quantity'];
-                                header("Location: ./mycart.php");
+                                header("Location: ../mycart.php");
                             } else {
-                                header("Location: ./mycart.php?error=4");
+                                header("Location: ../mycart.php?error=4");
                             }
                         } else {
-                            header("Location: ./mycart.php?error=3");
+                            header("Location: ../mycart.php?error=3");
                         }
                     } else {
-                        header("Location: ./mycart.php?error=2");
+                        header("Location: ../mycart.php?error=2");
                     }
                 }
             }
@@ -114,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($value['ItemId'] == $_POST['ItemId']) {
                     $_SESSION['cartTemp'][$key]['Quantity'] = $_POST['Mod_Quantity'];
 
-                    header("Location:./mycart.php");
+                    header("Location:../mycart.php");
                 }
             }
         }
