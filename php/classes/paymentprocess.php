@@ -5,6 +5,7 @@ require_once './Security.php';
 require_once './order.php';
 require_once './persons.php';
 require_once './cart.php';
+require_once './shop.php';
 
 session_start();
 if (isset($_SESSION["user"])) {
@@ -60,8 +61,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
                 $order->setOrderTransaction("success");
+                $orderID = $order->placeOrder($user->getUserId());
+                if ($orderID != null) {
+                    $order->setOrderID($orderID);
+                    $shop = new Shop(null,null,null);
+                    foreach ($_SESSION['cart'] as $key => $value) {
+                        $order->setOrderItem($value['ItemId'], $value['Quantity']);
+                        $shop->reduceQuantity($value['ItemId'],$value['Quantity']);
+                    }
 
-                if ($order->placeOrder($user->getUserId())) {
+
                     if ($cart->resetCart($user->getUserId())) {
                         $_SESSION['cart'] = null;
                         $_SESSION['cart'][0] = array('ItemId' => null, 'Item_Name' => null, 'Price' => null, 'Quantity' => null);

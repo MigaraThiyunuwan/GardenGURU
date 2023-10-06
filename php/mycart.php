@@ -83,7 +83,7 @@ if (isset($_SESSION["manager"])) {
                 <?php
                 } else if ($manager != null) {
                 ?>
-                    <a href="./Manager.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                    <a href="./manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
                 <?php
                 } else {
                 ?>

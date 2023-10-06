@@ -11,7 +11,7 @@ if (isset($_SESSION["manager"])) {
     $manager = $_SESSION["manager"];
 } else {
     // Redirect the user to login.php if not logged in
-    header("Location: ./managerlogin.php?error=2");
+    header("Location: ../manager/managerlogin.php?error=2");
     exit();
 }
 
@@ -25,10 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $managerID = $manager->getManagerid();
         // call EditManagerDetails function
     if($manager->EditManagerDetails($firstName, $lastName, $email, $NIC, $phone, $managerID)){
-        header("Location: ../Manager.php");
+        header("Location: ../manager/managerProfile.php");
         exit;
     } else {
-        header("Location: ../Manager.php?error=1");
+        header("Location: ../manager/managerProfile.php?error=1");
         exit;
     }
 

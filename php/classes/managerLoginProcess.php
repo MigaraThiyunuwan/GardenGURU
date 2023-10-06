@@ -29,10 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = SanitizeInput($_POST["password"]);
 
     if(Manager::LoginManager($email,$password)){
-        header("Location: ../Manager.php");
+        header("Location: ../manager/managerProfile.php");
         exit;
     } else {
-        header("Location: ../managerlogin.php?error=1");
+        header("Location: ../manager/managerlogin.php?error=1");
         exit;
     }
     

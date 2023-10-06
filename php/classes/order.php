@@ -90,6 +90,33 @@ class Order
             $pstmt->bindValue(8, $this->OrderTransaction);
             $pstmt->bindValue(9, $this->OrderStatus);
             $pstmt->execute();
+            $orderID = $con->lastInsertId();
+
+            if (($pstmt->rowCount()) > 0) {
+                return $orderID;
+            } else {
+                return null;
+            }
+        } catch (PDOException $e) {
+
+            echo $e->getMessage();
+        }
+    }
+
+    public function setOrderItem($itemId, $quantity)
+    {
+        try {
+
+            $dbcon =  new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "INSERT INTO orderitem (orderID, ItemId, itemQuantity) VALUES (?, ?, ?)";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $this->orderID);
+            $pstmt->bindValue(2, $itemId);
+            $pstmt->bindValue(3, $quantity);
+
+            $pstmt->execute();
+
             if (($pstmt->rowCount()) > 0) {
                 return true;
             } else {
