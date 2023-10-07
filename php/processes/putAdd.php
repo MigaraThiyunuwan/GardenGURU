@@ -1,6 +1,6 @@
 <?php
-require './DbConnector.php';
-require './persons.php';
+require_once '../classes/DbConnector.php';
+require '../classes/persons.php';
 
 use classes\DbConnector;
 $dbcon = new DbConnector();
@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
     $file = $_FILES['image1'];
 
     if (isset($_FILES['image1']) && $_FILES['image1']['error'] === UPLOAD_ERR_OK) {
-
+        // call putAdvertisement function in user class
         if($user->putAdvertisement($file,$text_title, $text_description, $realDate)){
             header("Location: ../user.php?success=3");
         }else{
@@ -30,4 +30,3 @@ if (isset($_POST['submit'])) {
     }
  
 }
-?>

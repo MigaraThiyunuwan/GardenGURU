@@ -3,7 +3,7 @@
 <?php
 if (isset($_COOKIE['remember_user'])){
     echo "seted";
-    header("Location:./classes/loginProcess.php");
+    header("Location:./processes/loginProcess.php");
     exit;
 }
 ?>
@@ -95,7 +95,7 @@ if (isset($_COOKIE['remember_user'])){
                                 ?>
                                 <p class="mb-4"><b>Sign in to your account by entering email and password.</b></p>
                             </div>
-                            <form action="./classes/loginProcess.php" method="post">
+                            <form action="./processes/loginProcess.php" method="post">
                                 <div class="form-group first">
                                     <!-- <label for="username">Username</label> -->
                                     <input type="email" placeholder="Email" class="form-control" name="email" id="email">

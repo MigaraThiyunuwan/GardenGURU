@@ -1,11 +1,11 @@
 <?php
 
-require './DbConnector.php';
-require_once './Security.php';
-require_once './order.php';
-require_once './persons.php';
-require_once './cart.php';
-require_once './shop.php';
+require '../classes/DbConnector.php';
+require_once '../classes/Security.php';
+require_once '../classes/order.php';
+require_once '../classes/persons.php';
+require_once '../classes/cart.php';
+require_once '../classes/shop.php';
 
 session_start();
 if (isset($_SESSION["user"])) {
@@ -13,7 +13,7 @@ if (isset($_SESSION["user"])) {
     $user = $_SESSION["user"];
 } else {
 
-    header("Location: ./login.php?error=4");
+    header("Location: ../login.php?error=4");
     exit();
 }
 

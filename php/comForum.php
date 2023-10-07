@@ -122,7 +122,7 @@ if (isset($_SESSION["manager"])) {
             ?>
                 <div class="panel">
                     <div class="panel-body">
-                        <form action="./classes/comForumProcess.php" method="POST">
+                        <form action="./processes/comForumProcess.php" method="POST">
                             <?php $currentDate = date('Y-m-d'); ?>
                             <textarea class="form-control" name="question" rows="2" placeholder="Ask a Question?"></textarea>
                             <input type="hidden" name="date" value="<?php echo $currentDate ?>">

@@ -84,7 +84,7 @@ if (isset($_SESSION["admin"])) {
 
             <!-- Registeration Form -->
             <div class="col-md-7 col-lg-6 ml-auto">
-                <form action="./classes/ManagerRegisterProcess.php" method="POST">
+                <form action="./processes/ManagerRegisterProcess.php" method="POST">
                     <div class="row">
 
                         <!-- First Name -->

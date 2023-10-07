@@ -56,27 +56,6 @@ class Cart
         }
     }
 
-    public function checkAvailability($ItemId, $quantity)
-    {
-        try {
-            $query = "SELECT ItemQuantity FROM shop WHERE ItemId = ?";
-            $pstmt = $this->con->prepare($query);
-            $pstmt->bindValue(1, $ItemId);
-            $pstmt->execute();
-            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
-
-            foreach ($rs as $item) {
-                if ($item->ItemQuantity < $quantity) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        } catch (PDOException $exc) {
-            echo $exc->getMessage();
-        }
-    }
-
     public function changeQuantity($ItemId, $user_id, $quantity)
     {
         try {

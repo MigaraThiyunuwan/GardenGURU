@@ -1,18 +1,18 @@
 <?php
-require './DbConnector.php';
-require './persons.php';
-require_once './Security.php';
+require_once '../classes/DbConnector.php';
+require '../classes/persons.php';
+require '../classes/Security.php';
 use classes\DbConnector;
 
 $dbcon = new DbConnector();
 
 session_start();
 if (isset($_SESSION["user"])) {
-    // User is logged in, retrieve the user object
+
     $user = $_SESSION["user"];
 } else {
-    // Redirect the user to login.php if not logged in
-    header("Location: ./login.php?error=2");
+
+    header("Location: ../login.php?error=2");
     exit();
 }
 
@@ -46,5 +46,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 }
-
-?>

@@ -78,7 +78,7 @@
                                 <h3> Sign In as Admin</h3>
                                 <p class="mb-4">Sign in to your account by entering email and password.</p>
                             </div>
-                            <form action="./classes/adminLoginProcess.php" method="post">
+                            <form action="./processes/adminLoginProcess.php" method="post">
                                 <div class="form-group first">
                                     <!-- <label for="username">Username</label> -->
                                     <input type="email" placeholder="Email" class="form-control" name="email" id="email" >

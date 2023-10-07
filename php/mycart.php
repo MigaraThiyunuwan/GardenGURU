@@ -177,7 +177,7 @@ if (isset($_SESSION["manager"])) {
 
                                         <td><?php echo $value['Item_Name']; ?></td>
                                         <td><?php echo $value['Price']; ?><input type='hidden' class='iprice' value='<?php echo $value['Price']; ?>'></td>
-                                        <form action='./classes/manageCart.php' method='POST'>
+                                        <form action='./processes/manageCart.php' method='POST'>
                                             <td><input class='text-center iquantity' name='Mod_Quantity' onchange='this.form.submit()' type='number' value='<?php echo $value['Quantity']; ?>' min='1' max='10'></td>
                                             <input type='hidden' name='Item_Name' value='<?php echo $value['Item_Name']; ?>'>
                                             <input type='hidden' name='ItemId' value='<?php echo $value['ItemId']; ?>'>
@@ -210,7 +210,7 @@ if (isset($_SESSION["manager"])) {
                                                     </div>
 
                                                     <div class="modal-footer">
-                                                        <form action='./classes/manageCart.php' method='POST'>
+                                                        <form action='./processes/manageCart.php' method='POST'>
                                                             <input type='hidden' name='ItemId' value='<?php echo $value['ItemId']; ?>'>
 
                                                             <button name='Remove_Item' class="btn btn-danger w-100" type="submit" data-bs-dismiss="modal" aria-label="Close">Confirm</button>
@@ -238,7 +238,7 @@ if (isset($_SESSION["manager"])) {
                                     <!-- <td><?php echo $serialNo; ?></td> -->
                                     <td><?php echo $value['Item_Name']; ?></td>
                                     <td><?php echo $value['Price']; ?><input type='hidden' class='iprice' value='<?php echo $value['Price']; ?>'></td>
-                                    <form action='./classes/manageCart.php' method='POST'>
+                                    <form action='./processes/manageCart.php' method='POST'>
                                         <td><input class='text-center iquantity' name='Mod_Quantity' onchange='this.form.submit()' type='number' value='<?php echo $value['Quantity']; ?>' min='1' max='10'></td>
                                         <input type='hidden' name='Item_Name' value='<?php echo $value['Item_Name']; ?>'>
                                         <input type='hidden' name='ItemId' value='<?php echo $value['ItemId']; ?>'>
@@ -273,7 +273,7 @@ if (isset($_SESSION["manager"])) {
                                                 </div>
 
                                                 <div class="modal-footer">
-                                                    <form action='./classes/manageCart.php' method='POST'>
+                                                    <form action='./processes/manageCart.php' method='POST'>
                                                         <input type='hidden' name='ItemId' value='<?php echo $value['ItemId']; ?>'>
 
                                                         <button name='Remove_Item' class="btn btn-danger w-100" type="submit" data-bs-dismiss="modal" aria-label="Close">Confirm</button>

@@ -251,7 +251,7 @@ if (isset($_SESSION["manager"])) {
                                                             <div class="modal-footer">
                                                                 <div class="row w-100">
                                                                     <div class="col-md-6" style="margin-bottom: 10px;">
-                                                                        <form action='../classes/managerProcess.php' method='POST'>
+                                                                        <form action='../processes/managerProcess.php' method='POST'>
                                                                             <input type='hidden' name='blogID' value='<?php echo $blog->blog_id ?>'>
 
                                                                             <button class="btn btn-danger w-100 " type="submit" data-bs-dismiss="modal" aria-label="Close">Confirm</button>

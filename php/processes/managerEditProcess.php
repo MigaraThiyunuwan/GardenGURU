@@ -1,8 +1,10 @@
 <?php
-require './DbConnector.php';
-require './persons.php';
-require_once './Security.php';
+require_once '../classes/DbConnector.php';
+require '../classes/persons.php';
+require '../classes/Security.php';
+
 use classes\DbConnector;
+
 $dbcon = new DbConnector();
 
 session_start();
@@ -22,14 +24,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = Security::SanitizeInput(($_POST["email"]));
     $phone = Security::SanitizeInput(($_POST["phone"]));
     $NIC = Security::SanitizeInput(($_POST["NIC"]));
-    $managerID = $manager->getManagerid();
-        // call EditManagerDetails function
-    if($manager->EditManagerDetails($firstName, $lastName, $email, $NIC, $phone, $managerID)){
+    // call EditManagerDetails function
+    if ($manager->EditManagerDetails($firstName, $lastName, $email, $NIC, $phone)) {
         header("Location: ../manager/managerProfile.php");
         exit;
     } else {
         header("Location: ../manager/managerProfile.php?error=1");
         exit;
     }
-
 }

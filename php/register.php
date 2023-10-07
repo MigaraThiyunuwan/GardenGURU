@@ -76,7 +76,7 @@ $dbcon = new DbConnector();
 
             <!-- Registeration Form -->
             <div class="col-md-7 col-lg-6 ml-auto">
-                <form action="./classes/registerProcess.php" method="POST">
+                <form action="./processes/registerProcess.php" method="POST">
                     <div class="row">
 
                         <!-- First Name -->

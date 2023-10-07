@@ -1,7 +1,7 @@
 <?php
-require_once './DbConnector.php';
-require_once './persons.php';
-require_once './Security.php';
+require_once '../classes/DbConnector.php';
+require '../classes/persons.php';
+require '../classes/Security.php';
 
 use classes\DbConnector;
 
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
                     if (is_numeric($phone)) {
-
+                        // call AddManager function in Admin class
                         if ($admin->AddManager($firstname, $lastname, $email, $password, $NIC, $phone)) {
                             header("Location: ../Admin.php?success=1");
                         } else {

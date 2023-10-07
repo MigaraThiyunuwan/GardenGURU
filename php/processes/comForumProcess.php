@@ -1,7 +1,7 @@
 <?php
-require_once './DbConnector.php';
-require_once './Security.php';
-require_once './persons.php';
+require_once '../classes/DbConnector.php';
+require '../classes/persons.php';
+require '../classes/Security.php';
 
 use classes\DbConnector;
 
@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["ask_question"])) {
         $date = $_POST["date"];
         $question = Security::SanitizeInput($_POST["question"]);
+        //call askQuestion function in user class
         if ($user->askQuestion($question)) {
             header("Location: ../comForum.php?success=1");
         } else {

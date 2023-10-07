@@ -66,7 +66,7 @@ if (isset($_SESSION["admin"])) {
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                     <div class="dropdown-menu bg-light m-0">
                         <a href="./user.php" class="dropdown-item">Profile</a>
-                        <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
+                        <a href="./processes/logout.php" class="dropdown-item">Log Out</a>
                     </div>
                 </div>
             </div>
@@ -85,7 +85,7 @@ if (isset($_SESSION["admin"])) {
                             <img src="../images/admin.png" alt="Admin" class="rounded-circle" width="150">
                                 <div class="mt-3">
                                     <h4>Hello <?php echo $admin->getFirstName() . " " . $admin->getLastName() ?> !</h4><br>
-                                    <a class="btn btn-outline-primary " target="" href="./classes/logout.php">Log Out</a>
+                                    <a class="btn btn-outline-primary " target="" href="./processes/logout.php">Log Out</a>
 
                                     <a class="btn btn-outline-danger " target="" href="#">Change Password</a>
                                 </div>
@@ -96,7 +96,7 @@ if (isset($_SESSION["admin"])) {
                 <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body">
-                            <form action="./classes/adminEditProcess.php" method="post">
+                            <form action="./processes/adminEditProcess.php" method="post">
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
                                         <h6 class="mb-0">First Name</h6>

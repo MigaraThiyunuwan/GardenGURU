@@ -102,7 +102,7 @@ if (isset($_SESSION["user"])) {
         </div>
         <a href="./AboutUs.php" class="nav-item nav-link">About</a>
         <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
-        <a href="./classes/logout.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Log Out</a>
+        <a href="./processes/logout.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Log Out</a>
 
       </div>
 
@@ -120,7 +120,7 @@ if (isset($_SESSION["user"])) {
               <div class="mt-3">
                 <h4>Hello! <?php echo $user->getFirstName() ?></h4><br>
 
-                <a class="btn btn-outline-danger " target="" href="./classes/logout.php">Log Out</a>
+                <a class="btn btn-outline-danger " target="" href="./processes/logout.php">Log Out</a>
                 <a class="btn btn-outline-primary " target="" href="./editUser.php">Edit</a>
                 <?php
                 if (isset($_GET['success'])) {
@@ -348,7 +348,7 @@ if (isset($_SESSION["user"])) {
   <div id="addBlogModal" class="modal" style="margin-top: 20px; width: 100%;">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <form id="blogForm" action="./classes/putBlog.php" method="post" enctype="multipart/form-data">
+      <form id="blogForm" action="./processes/putBlog.php" method="post" enctype="multipart/form-data">
         <label for="blog_title"><b>Blog Title:</b></label>
         <input type="text" class="form-control" id="blog_title" name="blog_title" required>
         <br>
@@ -426,7 +426,7 @@ if (isset($_SESSION["user"])) {
 
     <div class="close" id="close-button">+</div>
 
-      <form id="adForm" action="./classes/putAdd.php" method="post" enctype="multipart/form-data">
+      <form id="adForm" action="./processes/putAdd.php" method="post" enctype="multipart/form-data">
         
         <label for="image1"><b>Select Image for Advertisement:</b></label>
         <input type="file" class="form-control" name="image1" id="image1" values="$filename1">

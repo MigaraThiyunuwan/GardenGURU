@@ -77,7 +77,7 @@ if (isset($_SESSION["manager"])) {
                             <img src="../../images/manager.png" alt="Admin" class="rounded-circle" width="150">
                                 <div class="mt-3">
                                     <h4>Hello! <?php echo $manager->getFirstName() . "" . $manager->getLastName() ?> !</h4><br>
-                                    <a class="btn btn-outline-danger " target="" href="../classes/logout.php">Log Out</a>
+                                    <a class="btn btn-outline-danger " target="" href="../processes/logout.php">Log Out</a>
 
                                     <a class="btn btn-outline-primary " target="" href="#">Change Password</a>
                                 </div>
@@ -88,7 +88,7 @@ if (isset($_SESSION["manager"])) {
                 <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body">
-                            <form action="../classes/managerEditProcess.php" method="post">
+                            <form action="../processes/managerEditProcess.php" method="post">
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
                                         <h6 class="mb-0">First Name</h6>

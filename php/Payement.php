@@ -97,7 +97,7 @@ $total = $cart->getTotal($user->getUserId());
         <div class="row">
             <div class="col-md-8">
                 <div class="card p-3">
-                    <form action="./classes/paymentprocess.php" method="POST">
+                    <form action="./processes/paymentprocess.php" method="POST">
                         <h6 class="text-uppercase"><b>Payment details</b></h6>
                         <div class="inputbox mt-3"> <input type="text" name="nameOnCard" class="form-control" required="required"> <span>Name on card</span> </div>
                         <div class="row">

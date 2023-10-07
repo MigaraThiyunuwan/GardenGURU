@@ -1,7 +1,7 @@
 <?php
 
-require_once './DbConnector.php';
-require_once './persons.php';
+require_once '../classes/DbConnector.php';
+require '../classes/persons.php';
 
 session_start();
 if (isset($_SESSION["manager"])) {

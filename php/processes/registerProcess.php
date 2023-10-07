@@ -1,7 +1,7 @@
 <?php
-require_once './DbConnector.php';
-require_once './persons.php';
-require_once './Security.php';
+require_once '../classes/DbConnector.php';
+require '../classes/persons.php';
+require '../classes/Security.php';
 use classes\DbConnector;
 $dbcon = new DbConnector();
 

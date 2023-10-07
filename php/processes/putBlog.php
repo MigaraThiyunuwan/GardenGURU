@@ -1,7 +1,9 @@
 <?php
-require_once './DbConnector.php';
-require_once './persons.php';
+require_once '../classes/DbConnector.php';
+require '../classes/persons.php';
+
 use classes\DbConnector;
+
 $dbcon = new DbConnector();
 session_start();
 if (isset($_SESSION["user"])) {
@@ -21,12 +23,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $file = $_FILES['blog_image'];
 
     if (isset($_FILES['blog_image']) && $_FILES['blog_image']['error'] === UPLOAD_ERR_OK) {
-
-        if($user->putBlog($file,$blogTitle,$blogDetails,$Date)){
+        // call putBlog function in user class
+        if ($user->putBlog($file, $blogTitle, $blogDetails, $Date)) {
             header("Location: ../user.php?success=1");
-        }else{
+        } else {
             header("Location: ../user.php?success=0");
         }
-
     }
 }

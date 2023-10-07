@@ -78,7 +78,7 @@
                                 <h3> Sign In as Manager</h3>
                                 <p class="mb-4">Sign in to your account by entering email and password.</p>
                             </div>
-                            <form action="../classes/managerLoginProcess.php" method="post">
+                            <form action="../processes/managerLoginProcess.php" method="post">
                                 <div class="form-group first">
                                     <!-- <label for="username">Username</label> -->
                                     <input type="email" placeholder="Email" class="form-control" name="email" id="email" >
@@ -124,14 +124,6 @@
         </div>
     </div>
 
-    <!-- JavaScript Libraries -->
-    <!-- <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script> -->
-    <!-- <script src="../js/bootstrap.bundle.min.js"></script> -->
-    <!-- <script src="../js/main.js"></script> -->
-
-
 </body>
-
-
 
 </html>

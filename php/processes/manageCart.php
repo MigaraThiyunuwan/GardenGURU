@@ -1,7 +1,10 @@
 <?php
-require_once './DbConnector.php';
-require_once './cart.php';
-require_once './persons.php';
+
+require_once '../classes/cart.php';
+require_once '../classes/shop.php';
+require_once '../classes/DbConnector.php';
+require '../classes/persons.php';
+
 use classes\DbConnector;
 
 $dbcon = new DbConnector();
@@ -91,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if ($_POST['Mod_Quantity'] > 0) {
                         $cart = new Cart();
                         //call to checkAvailability func and changeQuantity func
-                        if ($cart->checkAvailability($_POST['ItemId'], $_POST['Mod_Quantity'])) {
+                        if (Shop::checkAvailability($_POST['ItemId'], $_POST['Mod_Quantity'])) {
                             if ($cart->changeQuantity($_POST['ItemId'], $user->getUserId(), $_POST['Mod_Quantity'])) {
                                 $_SESSION['cart'][$key]['Quantity'] = $_POST['Mod_Quantity'];
                                 header("Location: ../mycart.php");

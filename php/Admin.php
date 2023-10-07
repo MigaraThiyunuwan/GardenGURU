@@ -74,8 +74,8 @@ if (isset($_SESSION["admin"])) {
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
-                <a href="./classes/logout.php" class="nav-item nav-link">Log Out</a>
-                <a href="./classes/logout.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Log Out</a>
+                
+                <a href="./processes/logout.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Log Out</a>
             </div>
         </div>
     </nav>
@@ -90,7 +90,7 @@ if (isset($_SESSION["admin"])) {
                             <img src="../images/admin.png" alt="Admin" class="rounded-circle" width="150">
                             <div class="mt-3">
                                 <h4>Hello <?php echo $admin->getFirstName() . " " . $admin->getLastName() ?> !</h4><br>
-                                <a class="btn btn-outline-danger " target="" href="./classes/logout.php">Log Out</a>
+                                <a class="btn btn-outline-danger " target="" href="./processes/logout.php">Log Out</a>
                                 <a class="btn btn-outline-success " target="" href="./Adminedit.php">Edit</a>
                                 <a href="./managerRegister.php"><button class="btn btn-outline-warning">Add New Manager</button></a>
                             </div>
@@ -249,7 +249,7 @@ if (isset($_SESSION["admin"])) {
                                                         <div class="modal-footer">
                                                             <div class="row w-100">
                                                                 <div class="col-md-6">
-                                                                    <form action='./classes/deleteManager.php' method='POST'>
+                                                                    <form action='./processes/deleteManager.php' method='POST'>
                                                                         <input type='hidden' name='ManagerID' value='<?php echo $managers->managerID ?>'>
 
                                                                         <button class="btn btn-danger w-100 " type="submit" data-bs-dismiss="modal" aria-label="Close">Confirm</button>

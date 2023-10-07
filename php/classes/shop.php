@@ -91,4 +91,26 @@ class Shop
             echo $exc->getMessage();
         }
     }
+    public static function checkAvailability($ItemId, $quantity)
+    {
+        try {
+            $dbcon =  new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT ItemQuantity FROM shop WHERE ItemId = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $ItemId);
+            $pstmt->execute();
+            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+            foreach ($rs as $item) {
+                if ($item->ItemQuantity < $quantity) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
 }
