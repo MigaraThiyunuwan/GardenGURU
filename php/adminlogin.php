@@ -92,7 +92,7 @@
                                         <input type="checkbox" checked="checked" />
                                         <div class="control__indicator"></div>
                                     </label> -->
-                                    <span class="ml-auto" style=""><a href="#" class="forgot-pass">Forgot Password?</a></span>
+                                    <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password?</a></span>
                                 </div>
 
                                 <!-- <input type="submit" value="Login" class="btn btn-primary my-3 w-100"> -->
