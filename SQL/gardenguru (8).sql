@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2023 at 04:06 AM
+-- Generation Time: Oct 08, 2023 at 03:14 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -81,9 +81,21 @@ INSERT INTO `advertisements` (`id`, `user_id`, `title`, `description`, `adPosted
 --
 
 CREATE TABLE `answer` (
+  `answerID` int(11) NOT NULL,
   `questionID` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `answerDate` date NOT NULL,
   `answer` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `answer`
+--
+
+INSERT INTO `answer` (`answerID`, `questionID`, `user_id`, `answerDate`, `answer`) VALUES
+(3, 7, 22, '2023-10-08', 'Successful carrot cultivation depends on soil preparation, sunlight, proper watering, thinning, and pest control. Carrots prefer well-drained soil, full sunlight, and consistent moisture. Thin seedlings to ensure proper spacing, and watch for pests and diseases. Harvest when carrots reach the desired size.'),
+(5, 7, 15, '2023-10-08', 'Soil Preparation: Use well-drained, loose, sandy loam soil with a pH of 6.0 to 6.8 and incorporate organic matter.\r\n\r\nClimate and Season: Plant in cool seasons, avoiding extreme heat.\r\n\r\nVariety Selection: Choose varieties suited to your climate and preferences.'),
+(6, 5, 2, '2023-10-08', 'Could you advise on the ideal timing and method for pruning tea bushes? I want to promote healthy growth and maximize yields in my tea cultivation. Your insights on when and how to prune effectively would be greatly appreciated.');
 
 -- --------------------------------------------------------
 
@@ -107,10 +119,10 @@ CREATE TABLE `blog` (
 --
 
 INSERT INTO `blog` (`blog_id`, `user_id`, `blog_title`, `blogPostedDate`, `user_fname`, `user_lname`, `blog_details`, `blog_image`) VALUES
-(1, NULL, 'Tea Cultivation in Sri Lanka', '2023-09-01', 'senura', 'adithya', 'Sri Lanka, often referred to as the \"Pearl of the Indian Ocean,\" is renowned for its stunning landscapes, diverse culture, and rich history. However, it is perhaps most famous for one thing: tea. Sri Lanka is one of the world\'s largest tea producers and exporters, and its lush tea plantations, sprawling across picturesque hills, are a sight to behold. In this article, we will explore the fascinating world of tea cultivation in Sri Lanka, from its historical roots to the modern-day industry.\r\n\r\nA Historical Overview\r\n\r\nTea cultivation in Sri Lanka has a captivating history. Before the arrival of tea, the island\'s primary crops were coffee and cinnamon. However, a devastating coffee blight in the late 19th century forced planters to seek alternative crops. It was then that a Scottish planter named James Taylor planted the first tea seedlings in Sri Lanka\'s central highlands in 1867. Little did he know that he was sowing the seeds of a booming industry that would shape the nation\'s economy for years to come.\r\n\r\nCultivation Methods\r\n\r\nSri Lanka\'s unique geography, with its varying elevations and climatic zones, provides the perfect conditions for tea cultivation. The process of growing tea in Sri Lanka typically involves the following steps:\r\n\r\nSelection of Suitable Land: Tea is cultivated at different elevations in Sri Lanka, each producing tea with distinct flavor profiles. Low-grown teas have a robust, full-bodied taste, while high-grown teas are known for their delicate and nuanced flavors.\r\n\r\nPlanting Tea Bushes: Tea bushes are propagated from seeds or cuttings. They are planted in rows on the hillsides to maximize sunlight exposure.\r\n\r\nPruning and Plucking: Regular pruning and plucking of the tea leaves ensure new growth and a constant supply of fresh leaves. Skilled tea pluckers hand-pick the top two leaves and a bud from each shoot.\r\n\r\nWithering: The freshly plucked leaves are spread out to wither, reducing their moisture content and making them pliable for rolling.\r\n\r\nRolling and Fermentation: After withering, the leaves are rolled to break their cell walls, initiating fermentation. This process is critical for developing the tea\'s flavor.\r\n\r\nDrying and Sorting: The rolled leaves are dried to halt fermentation and reduce moisture content further. They are then sorted into various grades based on size and quality.\r\n\r\nPackaging and Export: Once sorted, the tea is packaged for domestic consumption or export. Sri Lankan tea is highly sought after worldwide, known for its quality and unique flavor profiles.\r\n\r\nThe Diversity of Ceylon Tea\r\n\r\nSri Lanka\'s tea industry produces a wide range of teas, each with its own character and flavor. The country is famous for the following types of tea:\r\n\r\nBlack Tea: Sri Lanka is renowned for its black teas, including the well-known Ceylon tea. These teas are full-bodied and robust, making them ideal for breakfast blends.\r\n\r\nGreen Tea: Although less common than black tea, Sri Lanka also produces green teas, which are lighter and milder in flavor. Green tea has gained popularity for its health benefits.\r\n\r\nWhite Tea: White teas, made from the youngest leaves and buds, are the most delicate and subtle. They have a gentle flavor and are prized by connoisseurs.\r\n\r\nHerbal Teas: In addition to traditional tea types, Sri Lanka also cultivates a variety of herbal teas, such as cinnamon tea, ginger tea, and lemongrass tea.\r\n\r\nEconomic Impact and Sustainability\r\n\r\nTea cultivation plays a vital role in Sri Lanka\'s economy. It provides employment opportunities to hundreds of thousands of people, especially in the central highlands. The industry has also made significant strides in sustainable and ethical practices, with many plantations adopting environmentally friendly farming methods and supporting local communities.', '../images/blog/The Tea Cultivation  1.jpg'),
+(1, 15, 'Tea Cultivation in Sri Lanka', '2023-09-01', 'senura', 'adithya', 'Sri Lanka, often referred to as the \"Pearl of the Indian Ocean,\" is renowned for its stunning landscapes, diverse culture, and rich history. However, it is perhaps most famous for one thing: tea. Sri Lanka is one of the world\'s largest tea producers and exporters, and its lush tea plantations, sprawling across picturesque hills, are a sight to behold. In this article, we will explore the fascinating world of tea cultivation in Sri Lanka, from its historical roots to the modern-day industry.\r\n\r\nA Historical Overview\r\n\r\nTea cultivation in Sri Lanka has a captivating history. Before the arrival of tea, the island\'s primary crops were coffee and cinnamon. However, a devastating coffee blight in the late 19th century forced planters to seek alternative crops. It was then that a Scottish planter named James Taylor planted the first tea seedlings in Sri Lanka\'s central highlands in 1867. Little did he know that he was sowing the seeds of a booming industry that would shape the nation\'s economy for years to come.\r\n\r\nCultivation Methods\r\n\r\nSri Lanka\'s unique geography, with its varying elevations and climatic zones, provides the perfect conditions for tea cultivation. The process of growing tea in Sri Lanka typically involves the following steps:\r\n\r\nSelection of Suitable Land: Tea is cultivated at different elevations in Sri Lanka, each producing tea with distinct flavor profiles. Low-grown teas have a robust, full-bodied taste, while high-grown teas are known for their delicate and nuanced flavors.\r\n\r\nPlanting Tea Bushes: Tea bushes are propagated from seeds or cuttings. They are planted in rows on the hillsides to maximize sunlight exposure.\r\n\r\nPruning and Plucking: Regular pruning and plucking of the tea leaves ensure new growth and a constant supply of fresh leaves. Skilled tea pluckers hand-pick the top two leaves and a bud from each shoot.\r\n\r\nWithering: The freshly plucked leaves are spread out to wither, reducing their moisture content and making them pliable for rolling.\r\n\r\nRolling and Fermentation: After withering, the leaves are rolled to break their cell walls, initiating fermentation. This process is critical for developing the tea\'s flavor.\r\n\r\nDrying and Sorting: The rolled leaves are dried to halt fermentation and reduce moisture content further. They are then sorted into various grades based on size and quality.\r\n\r\nPackaging and Export: Once sorted, the tea is packaged for domestic consumption or export. Sri Lankan tea is highly sought after worldwide, known for its quality and unique flavor profiles.\r\n\r\nThe Diversity of Ceylon Tea\r\n\r\nSri Lanka\'s tea industry produces a wide range of teas, each with its own character and flavor. The country is famous for the following types of tea:\r\n\r\nBlack Tea: Sri Lanka is renowned for its black teas, including the well-known Ceylon tea. These teas are full-bodied and robust, making them ideal for breakfast blends.\r\n\r\nGreen Tea: Although less common than black tea, Sri Lanka also produces green teas, which are lighter and milder in flavor. Green tea has gained popularity for its health benefits.\r\n\r\nWhite Tea: White teas, made from the youngest leaves and buds, are the most delicate and subtle. They have a gentle flavor and are prized by connoisseurs.\r\n\r\nHerbal Teas: In addition to traditional tea types, Sri Lanka also cultivates a variety of herbal teas, such as cinnamon tea, ginger tea, and lemongrass tea.\r\n\r\nEconomic Impact and Sustainability\r\n\r\nTea cultivation plays a vital role in Sri Lanka\'s economy. It provides employment opportunities to hundreds of thousands of people, especially in the central highlands. The industry has also made significant strides in sustainable and ethical practices, with many plantations adopting environmentally friendly farming methods and supporting local communities.', '../images/blog/The Tea Cultivation  1.jpg'),
 (2, NULL, 'Coconut Cultivation in Sri Lanka', '2023-09-02', 'Nipuna', 'Deshan', 'Coconuts, often referred to as the \"tree of life\" in tropical regions, are among the most versatile and valuable crops grown worldwide. With their myriad uses, from providing food and shelter to offering essential raw materials for various industries, coconuts have earned their place as a vital agricultural commodity. In this article, we will delve into the fascinating world of coconut cultivation, exploring its history, cultivation methods, and the numerous benefits it offers to both growers and consumers.\r\n\r\nHistorical Background\r\n\r\nCoconut cultivation has a rich history that dates back thousands of years. Originating in the tropical regions of Southeast Asia, coconuts have been cultivated and utilized by civilizations across the globe. Their spread can be attributed to ancient seafaring communities who carried coconut palms with them on their voyages. As a result, coconuts are now found throughout the tropics and subtropics, from the Caribbean to the Pacific Islands.\r\n\r\nCultivation Methods\r\n\r\nSuccessful coconut cultivation requires specific environmental conditions and care. Here are the key steps and considerations for growing coconuts:\r\n\r\nClimate: Coconuts thrive in tropical and subtropical regions with consistent temperatures between 85°F to 95°F (29°C to 35°C). They require high humidity and regular rainfall, typically receiving around 60-100 inches (150-250 cm) of rain annually.\r\n\r\nSoil: Well-draining sandy or loamy soil is ideal for coconut palms. They also need a soil pH ranging from 5.0 to 8.0. Soil rich in organic matter promotes healthy growth.\r\n\r\nPlanting: Coconuts are usually grown from seeds (coconuts themselves) or seedlings. Plant the seeds or seedlings in holes that are approximately 2 feet (60 cm) deep and 3 feet (90 cm) apart. Proper spacing ensures sufficient room for each tree to grow.\r\n\r\nWatering: Young coconut palms need regular watering to establish their roots. Once mature, they can tolerate drought conditions. However, consistent moisture is essential during the fruit-bearing stage.\r\n\r\nFertilization: Coconut trees benefit from balanced fertilizers containing essential nutrients like nitrogen, phosphorus, and potassium. Fertilize regularly to support healthy growth and fruit production.\r\n\r\nPest and Disease Control: Monitor your coconut palms for common pests like beetles and diseases such as coconut wilt. Prompt action is essential to prevent damage.\r\n\r\nPruning: Prune dead or diseased fronds to maintain the health and aesthetics of the palm. Pruning also makes it easier to harvest coconuts.\r\n\r\nBenefits of Coconut Cultivation\r\n\r\nCoconut cultivation offers numerous advantages for both growers and consumers:\r\n\r\nNutrient-Rich Food: Coconuts provide a rich source of nutrition. Coconut water is a hydrating beverage, while coconut meat and oil are packed with healthy fats, vitamins, and minerals.\r\n\r\nVersatile Uses: Every part of the coconut tree is utilized. Apart from the edible parts, coir (the fiber from the husk) is used in making ropes and mats, while the shell is used for handicrafts and activated carbon production.\r\n\r\nSustainable Farming: Coconut farming is environmentally friendly as it requires minimal inputs and promotes biodiversity in tropical ecosystems.\r\n\r\nEconomic Opportunities: Coconut cultivation can provide a sustainable source of income for farmers in tropical regions, contributing to economic stability and rural development.\r\n\r\nMedicinal Properties: Coconut oil and other coconut-derived products are believed to have various health benefits, including antimicrobial and anti-inflammatory properties.\r\n\r\nRenewable Energy: Coconut shells and husks can be used as biomass for energy production, contributing to sustainable and renewable energy sources.', '../images/blog/SL771-4-1740x960-c-center.jpg'),
 (3, NULL, 'A Guide to Growing Roses in Your Home Garden', '2023-09-03', 'sasan', 'dilantha', '\r\nTitle: Cultivating Beauty: A Guide to Growing Roses in Your Home Garden\r\n\r\nIntroduction\r\n\r\nRoses have long been cherished for their exquisite beauty, fragrant blossoms, and symbolic significance. Cultivating roses in your home garden can be a rewarding and enjoyable experience, whether you\'re a seasoned gardener or a novice. In this article, we\'ll provide you with a comprehensive guide on how to grow roses successfully in your own outdoor oasis.\r\n\r\nChoosing the Right Rose Varieties\r\n\r\nBefore you start planting, it\'s essential to select rose varieties that are well-suited to your garden\'s climate and your personal preferences. There are three primary types of roses to consider:\r\n\r\nHybrid Tea Roses: These are known for their classic, elegant blooms and are a popular choice for cut flowers. Hybrid teas come in various colors and are often grown for their fragrance.\r\n\r\nFloribunda Roses: Floribundas produce clusters of smaller flowers and are known for their continuous bloom throughout the growing season. They come in a wide range of colors and are great for adding color to your garden.\r\n\r\nShrub Roses: Shrub roses are hardy and versatile, making them an excellent choice for novice gardeners. They come in various forms and sizes and are well-suited for landscaping purposes.\r\n\r\nPreparing the Soil\r\n\r\nRoses thrive in well-drained, fertile soil. Here\'s how to prepare your garden soil for rose cultivation:\r\n\r\nSelect a Sunny Location: Roses require at least six hours of direct sunlight each day. Choose a spot in your garden that receives ample sunlight.\r\n\r\nImprove Drainage: Ensure proper drainage by amending the soil with organic matter like compost or well-rotted manure. This will help prevent root rot, a common issue with roses.\r\n\r\nTest Soil pH: Roses prefer slightly acidic soil with a pH level between 6.0 and 6.5. You can adjust the pH using lime (to raise it) or sulfur (to lower it).\r\n\r\nPlanting Roses\r\n\r\nOnce your soil is prepared, it\'s time to plant your rose bushes. Here are the steps to follow:\r\n\r\nDig a Hole: Dig a hole that is twice as wide and deep as the rose\'s root ball.\r\n\r\nLoosen Roots: Gently remove the rose from its container, and loosen the roots if they appear root-bound.\r\n\r\nPlace the Rose: Position the rose in the hole, ensuring the bud union (the knob-like area where the rose is grafted onto the rootstock) is just above the soil level.\r\n\r\nBackfill: Fill the hole with soil, patting it down gently as you go to remove air pockets.\r\n\r\nWater: Give your newly planted rose a deep watering to settle the soil around the roots.\r\n\r\nCaring for Your Roses\r\n\r\nCaring for roses requires attention to watering, fertilizing, and pruning:\r\n\r\nWatering: Roses need consistent moisture but dislike wet feet. Water deeply at the base of the plant, early in the morning, to allow leaves to dry before evening and prevent fungal diseases.\r\n\r\nFertilizing: Feed your roses with a balanced, slow-release fertilizer in the spring and again after the first flush of blooms. Follow package instructions for application rates.\r\n\r\nMulching: Apply a layer of organic mulch around the base of your roses to retain moisture, suppress weeds, and regulate soil temperature.\r\n\r\nPruning: Prune your roses annually during the dormant season (usually late winter or early spring) to remove dead or weak branches, improve air circulation, and shape the plant.\r\n\r\nDisease and Pest Management: Keep an eye out for common rose pests like aphids and diseases like powdery mildew. Use organic remedies or consult your local nursery for appropriate treatments.', '../images/blog/Grow-Rose-at-Home-USA1.jpg'),
-(5, NULL, 'The Sweet Success of Mango Cultivation: A Comprehensive Guide', '2023-09-04', 'Migara', 'Thiyunuwan', '\r\nMango, often referred to as the \"King of Fruits,\" is a tropical delight cherished by people worldwide for its succulent taste and versatility in culinary applications. Mango cultivation has a rich history dating back over 4,000 years, with origins in South Asia. Today, mangoes are grown in various tropical and subtropical regions around the world, and their popularity continues to rise. In this comprehensive guide, we will explore the art and science of mango cultivation, from selecting the right variety to harvesting the sweet rewards.\r\n\r\nChoosing the Right Mango Variety\r\n\r\nThe first step in successful mango cultivation is selecting the right mango variety, as there are thousands of cultivars to choose from. The choice of variety should be influenced by factors such as climate, soil type, and local preferences. Here are a few popular mango varieties:\r\n\r\nAlphonso (Hapus): Known for its rich, sweet flavor, and aromatic fragrance, Alphonso mangoes are often considered the finest mangoes in the world. They are primarily grown in India.\r\n\r\nTommy Atkins: This variety is resistant to disease and can thrive in a variety of climates. It\'s a popular choice for commercial cultivation in many countries, including the United States.\r\n\r\nAtaulfo (Honey Mango): With its creamy texture and sweet taste, Ataulfo mangoes are a favorite for fresh consumption. They are often found in Mexico and other parts of the Americas.\r\n\r\nKeitt: Keitt mangoes are large and green, with a sweet flavor. They are known for their long shelf life and are commonly grown in Florida and California.\r\n\r\nKent: Kent mangoes are sweet and have minimal fiber, making them ideal for smoothies and desserts. They are grown in many countries, including Mexico, Ecuador, and Peru.\r\n\r\nClimatic and Soil Requirements\r\n\r\nMangoes thrive in tropical and subtropical climates with distinct wet and dry seasons. Ideally, mango trees should be planted in areas with temperatures between 30°F and 100°F (-1°C to 38°C). While mango trees are drought-tolerant, they require consistent moisture during the flowering and fruit-setting stages. Well-drained soil with a pH level between 5.5 and 7.5 is ideal for mango cultivation.\r\n\r\nPlanting Mango Trees\r\n\r\nSite Selection: Choose a sunny location that receives at least 6 to 8 hours of sunlight daily.\r\n\r\nSpacing: Mango trees require ample space to grow. Plant them at least 30 to 40 feet apart to allow for proper canopy development.\r\n\r\nPlanting: Dig a hole large enough to accommodate the root ball of the mango tree. Place the tree in the hole, ensuring that the graft union is above ground level. Fill the hole with soil, and water thoroughly.\r\n\r\nCaring for Mango Trees\r\n\r\nWatering: Young mango trees require regular watering. Once established, water deeply and infrequently to encourage deep root growth.\r\n\r\nFertilization: Apply balanced fertilizer in spring and late summer to provide essential nutrients.\r\n\r\nPruning: Prune the tree to maintain its shape and remove dead or diseased branches.\r\n\r\nPest and Disease Control: Monitor for common pests like mango fruit flies and anthracnose, and use appropriate pesticides when necessary.\r\n\r\nHarvesting Mangoes\r\n\r\nThe most exciting part of mango cultivation is harvesting the delicious fruit. Mangoes typically take 3 to 6 years to bear fruit, depending on the variety and growing conditions. Here\'s how to know when your mangoes are ready for harvest:\r\n\r\nColor: Mangoes should develop their characteristic color (e.g., orange, red, or yellow) and start to soften slightly when ripe. However, the exact color can vary depending on the variety.\r\n\r\nFirmness: Gently squeeze the fruit; it should yield slightly to pressure, but not be overly soft.\r\n\r\nSmell: Ripe mangoes emit a sweet, fruity aroma from the stem end.\r\n\r\nTo harvest mangoes, use a pole with a basket or a long-handled fruit picker to avoid damaging the fruit or tree branches. Cut the mango from the tree with a clean, sharp knife, leaving a short stem attached to the fruit.\r\n\r\nConclusion\r\n\r\nMango cultivation is a rewarding endeavor that can yield a bountiful harvest of this delectable fruit. By selecting the right variety, providing optimal growing conditions, and following proper care and maintenance practices, you can enjoy the sweet success of growing your own mangoes. Whether you\'re a commercial grower or a backyard enthusiast, the journey of cultivating mangoes is filled with flavor, fragrance, and the joy of nurturing a tropical treasure from bud to fruit.', '../images/blog/Nelna_Story-image.jpg');
+(5, 22, 'The Sweet Success of Mango Cultivation: A Comprehensive Guide', '2023-09-04', 'Migara', 'Thiyunuwan', '\r\nMango, often referred to as the \"King of Fruits,\" is a tropical delight cherished by people worldwide for its succulent taste and versatility in culinary applications. Mango cultivation has a rich history dating back over 4,000 years, with origins in South Asia. Today, mangoes are grown in various tropical and subtropical regions around the world, and their popularity continues to rise. In this comprehensive guide, we will explore the art and science of mango cultivation, from selecting the right variety to harvesting the sweet rewards.\r\n\r\nChoosing the Right Mango Variety\r\n\r\nThe first step in successful mango cultivation is selecting the right mango variety, as there are thousands of cultivars to choose from. The choice of variety should be influenced by factors such as climate, soil type, and local preferences. Here are a few popular mango varieties:\r\n\r\nAlphonso (Hapus): Known for its rich, sweet flavor, and aromatic fragrance, Alphonso mangoes are often considered the finest mangoes in the world. They are primarily grown in India.\r\n\r\nTommy Atkins: This variety is resistant to disease and can thrive in a variety of climates. It\'s a popular choice for commercial cultivation in many countries, including the United States.\r\n\r\nAtaulfo (Honey Mango): With its creamy texture and sweet taste, Ataulfo mangoes are a favorite for fresh consumption. They are often found in Mexico and other parts of the Americas.\r\n\r\nKeitt: Keitt mangoes are large and green, with a sweet flavor. They are known for their long shelf life and are commonly grown in Florida and California.\r\n\r\nKent: Kent mangoes are sweet and have minimal fiber, making them ideal for smoothies and desserts. They are grown in many countries, including Mexico, Ecuador, and Peru.\r\n\r\nClimatic and Soil Requirements\r\n\r\nMangoes thrive in tropical and subtropical climates with distinct wet and dry seasons. Ideally, mango trees should be planted in areas with temperatures between 30°F and 100°F (-1°C to 38°C). While mango trees are drought-tolerant, they require consistent moisture during the flowering and fruit-setting stages. Well-drained soil with a pH level between 5.5 and 7.5 is ideal for mango cultivation.\r\n\r\nPlanting Mango Trees\r\n\r\nSite Selection: Choose a sunny location that receives at least 6 to 8 hours of sunlight daily.\r\n\r\nSpacing: Mango trees require ample space to grow. Plant them at least 30 to 40 feet apart to allow for proper canopy development.\r\n\r\nPlanting: Dig a hole large enough to accommodate the root ball of the mango tree. Place the tree in the hole, ensuring that the graft union is above ground level. Fill the hole with soil, and water thoroughly.\r\n\r\nCaring for Mango Trees\r\n\r\nWatering: Young mango trees require regular watering. Once established, water deeply and infrequently to encourage deep root growth.\r\n\r\nFertilization: Apply balanced fertilizer in spring and late summer to provide essential nutrients.\r\n\r\nPruning: Prune the tree to maintain its shape and remove dead or diseased branches.\r\n\r\nPest and Disease Control: Monitor for common pests like mango fruit flies and anthracnose, and use appropriate pesticides when necessary.\r\n\r\nHarvesting Mangoes\r\n\r\nThe most exciting part of mango cultivation is harvesting the delicious fruit. Mangoes typically take 3 to 6 years to bear fruit, depending on the variety and growing conditions. Here\'s how to know when your mangoes are ready for harvest:\r\n\r\nColor: Mangoes should develop their characteristic color (e.g., orange, red, or yellow) and start to soften slightly when ripe. However, the exact color can vary depending on the variety.\r\n\r\nFirmness: Gently squeeze the fruit; it should yield slightly to pressure, but not be overly soft.\r\n\r\nSmell: Ripe mangoes emit a sweet, fruity aroma from the stem end.\r\n\r\nTo harvest mangoes, use a pole with a basket or a long-handled fruit picker to avoid damaging the fruit or tree branches. Cut the mango from the tree with a clean, sharp knife, leaving a short stem attached to the fruit.\r\n\r\nConclusion\r\n\r\nMango cultivation is a rewarding endeavor that can yield a bountiful harvest of this delectable fruit. By selecting the right variety, providing optimal growing conditions, and following proper care and maintenance practices, you can enjoy the sweet success of growing your own mangoes. Whether you\'re a commercial grower or a backyard enthusiast, the journey of cultivating mangoes is filled with flavor, fragrance, and the joy of nurturing a tropical treasure from bud to fruit.', '../images/blog/Nelna_Story-image.jpg');
 
 -- --------------------------------------------------------
 
@@ -126,15 +138,6 @@ CREATE TABLE `cart` (
   `Price` decimal(50,0) NOT NULL,
   `Quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`cartId`, `user_id`, `ItemId`, `Item_Name`, `Price`, `Quantity`) VALUES
-(1, 22, 1, 'Tomato', 80, 1),
-(2, 22, 2, 'Impatiens', 150, 1),
-(5, 22, 8, 'Lilly', 200, 1);
 
 -- --------------------------------------------------------
 
@@ -168,7 +171,7 @@ CREATE TABLE `manager` (
 --
 
 INSERT INTO `manager` (`managerID`, `mFirstName`, `mLastName`, `mEmail`, `mPassword`, `mNIC`, `mPhone`) VALUES
-(1, 'Malki', 'Madhubhashini', 'malki@gmail.com', '$2y$10$H6ux6v8yBwBxc9JfcAWb6uZzIaGq53v53OKIuaY8m4G9.HEbfZ/4W', '1234567877', '0762456784'),
+(1, 'Malki', 'Madhubhashini', 'malki@gmail.com', '$2y$10$H6ux6v8yBwBxc9JfcAWb6uZzIaGq53v53OKIuaY8m4G9.HEbfZ/4W', '1234567844', '0762456784'),
 (2, 'Jane', 'Smith', 'jane.smith@example.com', 'securepass', '0987654321', '+0987654321'),
 (3, 'ruwan', 'kumara', 'ruwan@gmail.com', '$2y$10$rDoZ12WktHpldUaRg.eHR.ntTEdB4pJk1I25KI0lnCuqP0dToctFO', '1234567234', '0771314567'),
 (4, 'lashan', 'sachintha', 'lashansachintha@gmail.com', '$2y$10$oo1tX7nGMIqVEPMSifGhMOLntRLLvbW6XHqbht9TpPgtFKfkwZjZO', '12345678923', '0771314567');
@@ -201,6 +204,52 @@ INSERT INTO `news` (`newsId`, `title`, `newsPostedDate`, `description`, `image`,
 (8, 'What planting tomatoes shows us about climate change', '2023-09-06', 'There’s a piece of gardening lore in my hometown which has been passed down for generations: never plant your tomatoes before Show Day, which, in Tasmania, is the fourth Saturday in October. If you’re foolhardy enough to plant them earlier, your tomato seedlings will suffer during the cold nights and won’t grow.', '../images/newsfeed/6.jpg', 'But does this kind of seasonal wisdom still work as the climate warps? We often talk about climate change in large-scale ways – how much the global average surface temperature will increase.'),
 (9, 'Farmers Adopt Drones for Crop Monitoring and Pest Control', '2023-09-07', 'In modern agriculture, there is a noteworthy shift towards the utilization of drones, or unmanned aerial vehicles, to improve farming practices. The headline \"Farmers Adopt Drones for Crop Monitoring and Pest Control\" encapsulates this evolving trend.', '../images/newsfeed/11.jpg', 'These drones are being increasingly employed for the purpose of crop monitoring. This involves the use of specialized drones equipped with cameras and sensors that capture detailed images and data about the condition of crops. These images are high-resolution and sometimes even include infrared or multispectral data.'),
 (10, 'Scientists Discover New Plant Species with Potential Medicinal Benefits', '2023-09-08', 'scientists have made a significant breakthrough in the field of botany by identifying a previously unknown plant species. This discovery is particularly noteworthy because this newly discovered plant exhibits promising medicinal properties.', '../images/newsfeed/12.jpg', 'The plant, which had not been documented before, has the potential to contain chemical compounds or substances that could be used for therapeutic or medicinal purposes.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orderitem`
+--
+
+CREATE TABLE `orderitem` (
+  `orderItemID` int(11) NOT NULL,
+  `orderID` int(11) NOT NULL,
+  `ItemId` int(11) NOT NULL,
+  `itemQuantity` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orderitem`
+--
+
+INSERT INTO `orderitem` (`orderItemID`, `orderID`, `ItemId`, `itemQuantity`) VALUES
+(3, 2, 2, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `orderID` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `orderDate` date NOT NULL,
+  `TotalPrice` int(255) NOT NULL,
+  `deliveryAddress` varchar(250) NOT NULL,
+  `city` varchar(60) NOT NULL,
+  `receiver` varchar(60) NOT NULL,
+  `postalCode` int(20) NOT NULL,
+  `OrderTransaction` varchar(60) NOT NULL,
+  `OrderStatus` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`orderID`, `user_id`, `orderDate`, `TotalPrice`, `deliveryAddress`, `city`, `receiver`, `postalCode`, `OrderTransaction`, `OrderStatus`) VALUES
+(2, 22, '2023-10-06', 750, 'dzgrx', 'Attanagalla', 'Ruwan kumara', 11120, 'success', 'waiting');
 
 -- --------------------------------------------------------
 
@@ -335,8 +384,17 @@ CREATE TABLE `plantwater` (
 CREATE TABLE `question` (
   `questionID` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `askDate` date NOT NULL,
   `question` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `question`
+--
+
+INSERT INTO `question` (`questionID`, `user_id`, `askDate`, `question`) VALUES
+(5, 22, '2023-10-08', 'Could you please provide guidance on the ideal timing and technique for pruning tea bushes to ensure optimal growth and yield?'),
+(7, 2, '2023-10-08', 'What are the key factors for successful carrot cultivation?');
 
 -- --------------------------------------------------------
 
@@ -358,7 +416,7 @@ CREATE TABLE `shop` (
 
 INSERT INTO `shop` (`ItemId`, `ItemName`, `ItemQuantity`, `ItemPrice`, `ItemImage`) VALUES
 (1, 'Tomato', 4, 80, '../images/Selling1/veg1.jpeg'),
-(2, 'Impatiens', 45, 150, '../images/Selling1/flower12.jpeg'),
+(2, 'Impatiens', 40, 150, '../images/Selling1/flower12.jpeg'),
 (3, 'Grapes', 0, 200, '../images/Selling1/grapes.jpeg'),
 (4, 'Cabbage', 56, 90, '../images/Selling1/cab12.jpeg'),
 (5, 'Rose', 2, 175, '../images/Selling1/flower45.jpeg'),
@@ -4225,7 +4283,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_FirstName`, `user_LastName`, `user_Email`, `user_PhoneNo`, `user_address`, `user_Password`, `user_District`, `user_Gender`, `profile_picture`, `token`, `expdate`) VALUES
-(2, 'Malki', 'Madhubhashini', 'malki@gmail.com', '0771314567', '58/1, waragoda, attanagalla.', '$2y$10$f4mGEjsEPgjVKdg3Qf.KjuNMPnc8nVNYkuEaJMHlCcXjhRwRjGni.', 'Mullaitivu', 'Female', '../images/profile_pictures/Malki.jpg', NULL, NULL),
+(2, 'Malki', 'Madhubhashini', 'malki@gmail.com', '0771314545', '58/1, waragoda, attanagalla.', '$2y$10$f4mGEjsEPgjVKdg3Qf.KjuNMPnc8nVNYkuEaJMHlCcXjhRwRjGni.', 'Mullaitivu', 'Female', '../images/profile_pictures/Malki.jpg', NULL, NULL),
 (15, 'senura', 'adithya', 'senura@gmail.com', '0883678234', 'No.29 Galle', '$2y$10$kX4vmXSvzJ0vwcP9yqIhH.LzD/cDvObjNgf12Vl2tKN7dIk8IeZZq', 'Galle', 'Male', '../images/profile_pictures/pp,840x830-pad,1000x1000,f8f8f8.u2.jpg', NULL, NULL),
 (16, 'sasan', 'dilantha', 'sasan@gmail.com', '0752245147', 'maravila, halawatha', '$2y$10$BUhAj1QuQv1Zq0SPU5.5VuDTaL3VvCEZwaGfuncunuDv7JTnOrQcu', 'Puttalam', 'Male', '../images/profile_pictures/Default.png', NULL, NULL),
 (18, 'sasan', 'dilantha', 'sasan@gmail.com', '0752245147', 'maravila, halawatha', '$2y$10$iKz.kbpz4mcKuRvVaS8a/uxOT.dNT3DWBtcP8eE0z.XmAeLobf0SO', 'Puttalam', 'Male', '../images/profile_pictures/Default.png', NULL, NULL),
@@ -4254,6 +4312,14 @@ ALTER TABLE `advertisements`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- Indexes for table `answer`
+--
+ALTER TABLE `answer`
+  ADD PRIMARY KEY (`answerID`),
+  ADD KEY `questionID` (`questionID`,`user_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `blog`
 --
 ALTER TABLE `blog`
@@ -4267,7 +4333,8 @@ ALTER TABLE `blog`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`cartId`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `ItemId` (`ItemId`);
 
 --
 -- Indexes for table `location`
@@ -4286,6 +4353,21 @@ ALTER TABLE `manager`
 --
 ALTER TABLE `news`
   ADD PRIMARY KEY (`newsId`);
+
+--
+-- Indexes for table `orderitem`
+--
+ALTER TABLE `orderitem`
+  ADD PRIMARY KEY (`orderItemID`),
+  ADD KEY `orderID` (`orderID`,`ItemId`),
+  ADD KEY `ItemId` (`ItemId`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`orderID`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `payment`
@@ -4323,7 +4405,8 @@ ALTER TABLE `plantwater`
 -- Indexes for table `question`
 --
 ALTER TABLE `question`
-  ADD PRIMARY KEY (`questionID`);
+  ADD PRIMARY KEY (`questionID`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `shop`
@@ -4375,7 +4458,13 @@ ALTER TABLE `waterlevel`
 -- AUTO_INCREMENT for table `advertisements`
 --
 ALTER TABLE `advertisements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `answer`
+--
+ALTER TABLE `answer`
+  MODIFY `answerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `blog`
@@ -4387,7 +4476,7 @@ ALTER TABLE `blog`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `location`
@@ -4399,13 +4488,25 @@ ALTER TABLE `location`
 -- AUTO_INCREMENT for table `manager`
 --
 ALTER TABLE `manager`
-  MODIFY `managerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `managerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
   MODIFY `newsId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `orderitem`
+--
+ALTER TABLE `orderitem`
+  MODIFY `orderItemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `payment`
@@ -4417,7 +4518,7 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `questionID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `questionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `shop`
@@ -4447,7 +4548,7 @@ ALTER TABLE `sunexposure`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `waterlevel`
@@ -4466,6 +4567,13 @@ ALTER TABLE `advertisements`
   ADD CONSTRAINT `advertisements_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `answer`
+--
+ALTER TABLE `answer`
+  ADD CONSTRAINT `answer_ibfk_1` FOREIGN KEY (`questionID`) REFERENCES `question` (`questionID`) ON DELETE CASCADE,
+  ADD CONSTRAINT `answer_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `blog`
 --
 ALTER TABLE `blog`
@@ -4475,13 +4583,27 @@ ALTER TABLE `blog`
 -- Constraints for table `cart`
 --
 ALTER TABLE `cart`
-  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`ItemId`) REFERENCES `shop` (`ItemId`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `location`
 --
 ALTER TABLE `location`
   ADD CONSTRAINT `location_ibfk_1` FOREIGN KEY (`locationID`) REFERENCES `plant` (`PlantID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `orderitem`
+--
+ALTER TABLE `orderitem`
+  ADD CONSTRAINT `orderitem_ibfk_1` FOREIGN KEY (`ItemId`) REFERENCES `shop` (`ItemId`) ON DELETE CASCADE,
+  ADD CONSTRAINT `orderitem_ibfk_2` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `plantsoil`
@@ -4500,6 +4622,12 @@ ALTER TABLE `plantsunexpo`
 --
 ALTER TABLE `plantwater`
   ADD CONSTRAINT `plantwater_ibfk_1` FOREIGN KEY (`PlantID`) REFERENCES `plant` (`PlantID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `question`
+--
+ALTER TABLE `question`
+  ADD CONSTRAINT `question_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `space`

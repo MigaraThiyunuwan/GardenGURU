@@ -290,7 +290,7 @@ if (isset($_SESSION["manager"])) {
 
             <?php
                 }
-                // Calculate the total number of rows in the 'users' table (if not already calculated)
+                
                 if (!isset($total_rows)) {
                     $total_rows_query = "SELECT COUNT(*) as total FROM shop";
                     $total_rows_stmt = $con->prepare($total_rows_query);

@@ -1,5 +1,5 @@
 <?php
-require './classes/DbConnector.php';
+require '../classes/DbConnector.php';
 
 use classes\DbConnector;
 
@@ -27,9 +27,9 @@ if (isset($_SESSION["admin"])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/register.css" rel="stylesheet">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/register.css" rel="stylesheet">
 
 
 </head>
@@ -41,8 +41,8 @@ if (isset($_SESSION["admin"])) {
     ?>
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-        <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <img src="../images/logo.png" style="width:220px;height:50px;">
+        <a href="../../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <img src="../../images/logo.png" style="width:220px;height:50px;">
             <!-- <h1 class="m-0">Garden<B>GURU</B></h1> -->
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -50,23 +50,23 @@ if (isset($_SESSION["admin"])) {
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="../index.php" class="nav-item nav-link active">Home</a>
-                <a href="./plantSuggestion.php" class="nav-item nav-link">Plant Suggestions</a>
-                <a href="./Selling.php" class="nav-item nav-link">Shop</a>
+                <a href="../../index.php" class="nav-item nav-link active">Home</a>
+                <a href="../plantSuggestion.php" class="nav-item nav-link">Plant Suggestions</a>
+                <a href="../Selling.php" class="nav-item nav-link">Shop</a>
                 <!-- <a href="../php/blog.php" class="nav-item nav-link">Blog</a> -->
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
                     <div class="dropdown-menu bg-light m-0">
-                        <a href="./blog.php" class="dropdown-item">Blog</a>
-                        <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
-                        <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
-                        <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
-                        <a href="./report.php" class="dropdown-item">Reporting</a>
+                        <a href="../blog.php" class="dropdown-item">Blog</a>
+                        <a href="../Advertistment.php" class="dropdown-item">Advertisement</a>
+                        <a href="../newsfeed.php" class="dropdown-item">News Feed</a>
+                        <a href="../comForum.php" class="dropdown-item">Communication Forum</a>
+                        <a href="../report.php" class="dropdown-item">Reporting</a>
 
                     </div>
                 </div>
-                <a href="./AboutUs.php" class="nav-item nav-link">About</a>
-                <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
+                <a href="../AboutUs.php" class="nav-item nav-link">About</a>
+                <a href="../ContactUs.php" class="nav-item nav-link">Contact</a>
                 <a href="./Admin.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
                
             </div>
@@ -79,12 +79,12 @@ if (isset($_SESSION["admin"])) {
         <div class="row py-5 mt-4 align-items-center">
             <!-- For Demo Purpose -->
             <div class="col-md-5 pr-lg-5 mb-5 mb-md-0" style="margin-right: 100px;">
-                <img src="../images/web.png" alt="" class="img-fluid mb-3 d-none d-md-block">
+                <img src="../../images/web.png" alt="" class="img-fluid mb-3 d-none d-md-block">
             </div>
 
             <!-- Registeration Form -->
             <div class="col-md-7 col-lg-6 ml-auto">
-                <form action="./processes/ManagerRegisterProcess.php" method="POST">
+                <form action="../processes/ManagerRegisterProcess.php" method="POST">
                     <div class="row">
 
                         <!-- First Name -->
@@ -213,9 +213,9 @@ if (isset($_SESSION["admin"])) {
         </div>
     </div>
     <!-- JavaScript Libraries -->
-    <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="../js/main.js"></script>
+    <script src="../../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/main.js"></script>
 </body>
 
 

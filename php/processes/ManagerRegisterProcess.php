@@ -44,23 +44,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if (is_numeric($phone)) {
                         // call AddManager function in Admin class
                         if ($admin->AddManager($firstname, $lastname, $email, $password, $NIC, $phone)) {
-                            header("Location: ../Admin.php?success=1");
+                            header("Location: ../admin/Admin.php?success=1");
                         } else {
-                            header("Location: ../managerRegister.php?error=6");
+                            header("Location: ../admin/managerRegister.php?error=6");
                         }
                     } else {
-                        header("Location: ../managerRegister.php?error=5");
+                        header("Location: ../admin/managerRegister.php?error=5");
                     }
                 } else {
-                    header("Location: ../managerRegister.php?error=4");
+                    header("Location: ../admin/managerRegister.php?error=4");
                 }
             } else {
-                header("Location: ../managerRegister.php?error=2");
+                header("Location: ../admin/managerRegister.php?error=2");
             }
         } else {
-            header("Location: ../managerRegister.php?error=3");
+            header("Location: ../admin/managerRegister.php?error=3");
         }
     } else {
-        header("Location: ../managerRegister.php?error=1");
+        header("Location: ../admin/managerRegister.php?error=1");
     }
 }

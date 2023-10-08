@@ -437,16 +437,40 @@ class user extends person
         }
     }
 
-    public function askQuestion($question)
+    public function askQuestion($question, $date)
     {
         try {
             $dbcon = new DbConnector();
             $conn = $dbcon->getConnection();
-            $sql = "INSERT INTO question (user_id, question) VALUES ( ?, ? )";
+            $sql = "INSERT INTO question (user_id, askDate, question) VALUES ( ?, ?, ? )";
 
             $pstmt = $conn->prepare($sql);
             $pstmt->bindValue(1, $this->userId);
-            $pstmt->bindValue(2, $question);
+            $pstmt->bindValue(2, $date);
+            $pstmt->bindValue(3, $question);
+
+            if ($pstmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public function giveAnswer($answer, $questionID, $date)
+    {
+        try {
+            $dbcon = new DbConnector();
+            $conn = $dbcon->getConnection();
+            $sql = "INSERT INTO answer (user_id, questionID, answerDate, answer) VALUES ( ?, ?, ?, ? )";
+
+            $pstmt = $conn->prepare($sql);
+            $pstmt->bindValue(1, $this->userId);
+            $pstmt->bindValue(2, $questionID);
+            $pstmt->bindValue(3, $date);
+            $pstmt->bindValue(4, $answer);
 
             if ($pstmt->execute()) {
                 return true;

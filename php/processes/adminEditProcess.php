@@ -11,7 +11,7 @@ session_start();
 if (isset($_SESSION["admin"])) {
     $admin = $_SESSION["admin"];
 } else {
-    header("Location: ../adminlogin.php?error=2");
+    header("Location: ./admin/adminlogin.php?error=2");
     exit();
 }
 
@@ -24,10 +24,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $NIC = Security::SanitizeInput($_POST["NIC"]);
 
     if ($admin->editAdminDetails($firstName, $lastName, $email, $NIC, $phone)) {
-        header("Location: ../Admin.php");
+        header("Location: ../admin/Admin.php");
         exit;
     } else {
-        header("Location: ../Admin.php?error=1");
+        header("Location: ../admin/Admin.php?error=1");
         exit;
     }
 }

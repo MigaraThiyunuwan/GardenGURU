@@ -2,6 +2,11 @@
 <html lang="en">
 <?php
 require_once './classes/persons.php';
+require_once './classes/DbConnector.php';
+
+use classes\DbConnector;
+
+$dbcon = new DbConnector();
 session_start();
 $user = null;
 $manager = null;
@@ -135,89 +140,211 @@ if (isset($_SESSION["manager"])) {
                         </form>
                     </div>
                     <?php
-                if (isset($_GET['success'])) {
-                  if ($_GET['success'] == 1) {
+                    if (isset($_GET['success'])) {
+                        if ($_GET['success'] == 1) {
 
-                    echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
-                    You asked question Successfully!
-                    </div></b>";
-                  }
-                }
-                ?>
+                            echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                                    You asked question Successfully!
+                                    </div></b>";
+                        }
+                        if ($_GET['success'] == 2) {
+
+                            echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                                    You answered to the Question Successfully!
+                                    </div></b>";
+                        }
+                    }
+                    ?>
                 </div>
             <?php
             }
             ?>
-            <div class="panel">
-                <div class="panel-body">
-                    <!-- Newsfeed Content -->
-                    <!--===================================================-->
-                    <div class="media-block">
-                        <a class="media-left " href="#"><img class="rounded-circle me-2 " style="width: 50px; height: 50px; object-fit: cover" alt="Profile Picture" src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
 
-                        <div class="media-body">
-                            <div class="mar-btm">
-                                <a href="#" class="btn-link text-semibold media-heading box-inline">Lisa D.</a>
-                                <p class="text-muted text-sm"><i class="fa fa-regular fa-clock"></i> 28 May 2023</p>
-                            </div>
 
-                            <p>consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
-                            <div class="pad-ver">
-                                <!-- <div class="btn-group">
+            <div class="panel-body">
+
+                <?php
+                try {
+                    $con = $dbcon->getConnection();
+
+                    // Pagination logic
+                    $start = isset($_GET['start']) ? intval($_GET['start']) : 0;
+                    $rows_per_page = 10;
+
+                    //$query = "SELECT * FROM question ORDER BY questionID DESC LIMIT $start, $rows_per_page ";
+                    $query1 = "SELECT u.user_FirstName, u.profile_picture, U.user_LastName, q.question, q.askDate, Q.questionID FROM users u JOIN question q ON u.user_id = q.user_id ORDER BY questionID DESC LIMIT $start, $rows_per_page ";
+                    $pstmt = $con->prepare($query1);
+                    $pstmt->execute();
+                    $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                    foreach ($rs as $item) {
+
+                ?>
+                        <div class="media-block">
+                            <a class="media-left " ><img class="rounded-circle me-2 " style="width: 50px; height: 50px; object-fit: cover" alt="Profile Picture" src="<?php echo $item->profile_picture;  ?>"></a>
+
+                            <div class="media-body">
+                                <div class="mar-btm" style="margin-left: 5px;">
+                                    <a  class="btn-link text-semibold media-heading box-inline"><?php echo $item->user_FirstName . " " . $item->user_LastName;  ?></a>
+                                    <p class="text-muted text-sm"><i class="fa fa-regular fa-clock"></i> <?php echo $item->askDate;  ?></p>
+                                </div>
+
+                                <p style="margin-left: 5px;"><?php echo $item->question;  ?></p>
+                                <div class="pad-ver">
+                                    <!-- <div class="btn-group">
                                     <a class="btn btn-sm btn-default btn-hover-success" href="#"><i class="fa fa-thumbs-up"></i></a>
                                     <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i class="fa fa-thumbs-down"></i></a>
                                 </div>
                                 <a class="btn btn-sm btn-default btn-hover-primary" href="#">Comment</a> -->
-                                <button class="btn btn-outline-success"><span class="toggle-comments"><i class="fa fa-reply"></i> reply</span></button>
-                            </div>
-                            <hr>
-
-                            <!-- Comments -->
-                            <div class="comments" style="display: none;">
+                                    <button class="btn btn-outline-success toggle-comments" style="margin-left: 5px;"><i class="fa fa-reply"></i> reply</button>
+                                </div>
+                                <hr>
 
 
+                                <!-- Comments -->
+                                <div class="comments" style="display: none;">
 
-                                <div class="media-block">
-                                    <a class="media-left" href="#"><img class="rounded-circle me-2 " style="width: 50px; height: 50px; object-fit: cover" alt="Profile Picture" src="https://bootdey.com/img/Content/avatar/avatar2.png"></a>
-                                    <div class="media-body">
-                                        <div class="mar-btm">
-                                            <a href="#" class="btn-link text-semibold media-heading box-inline">Bobby Marz</a>
-                                            <p class="text-muted text-sm"><i class="fa fa-regular fa-clock"></i> 29 May 2023</p>
-                                        </div>
-                                        <p>Sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
-                                        <!-- <div class="pad-ver">
+                                    <?php
+                                    //$query = "SELECT * FROM answer WHERE questionID = ?";
+                                    $query = "SELECT u.user_FirstName, u.profile_picture, u.user_LastName, a.answerDate, a.answer FROM users u JOIN answer a ON u.user_id = a.user_id WHERE questionID = ?";
+                                    
+                                    $pstmt1 = $con->prepare($query);
+                                    $pstmt1->bindValue(1, $item->questionID);
+
+
+                                    $pstmt1->execute();
+                                    $rs2 = $pstmt1->fetchAll(PDO::FETCH_OBJ);
+
+                                    foreach ($rs2 as $item1) {
+
+                                    ?>
+                                        <div class="media-block">
+                                            <a class="media-left" href="#"><img class="rounded-circle me-2 " style="width: 50px; height: 50px; object-fit: cover" alt="Profile Picture" src="<?php echo $item1->profile_picture;  ?>"></a>
+                                            <div class="media-body" style="margin-left: 5px;">
+                                                <div class="mar-btm">
+                                                    <a class="btn-link text-semibold media-heading box-inline" style="margin-left: 5px;"><?php echo $item1->user_FirstName . " " . $item1->user_LastName;  ?></a>
+                                                    <p class="text-muted text-sm"  ><i class="fa fa-regular fa-clock" style="margin-right: 5px;"></i><?php echo $item1->answerDate;  ?></p>
+                                                </div>
+                                                <p><?php echo $item1->answer;  ?></p>
+                                                <!-- <div class="pad-ver">
                                             <div class="btn-group">
                                                 <a class="btn btn-sm btn-default btn-hover-success active" href="#"><i class="fa fa-thumbs-up"></i> You Like it</a>
                                                 <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i class="fa fa-thumbs-down"></i></a>
                                             </div>
                                             <a class="btn btn-sm btn-default btn-hover-primary" href="#">Comment</a>
-                                        </div> -->
-                                        <hr>
-                                    </div>
+                                            </div> -->
+                                                <hr>
+                                            </div>
+                                        </div>
+                                    <?php
+
+                                    }
+                                    ?>
+
+                                    <?php
+                                    if (isset($_SESSION["user"])) {
+                                    ?>
+                                        <div class="panel-body">
+                                            <form action="./processes/comForumProcess.php" method="POST">
+                                                <textarea class="form-control" rows="2" placeholder="Answer to question" name="answer"></textarea>
+                                                <?php $currentDate = date('Y-m-d'); ?>
+                                                <input type="hidden" name="date" value="<?php echo $currentDate ?>">
+                                                <input type="hidden" name="QuestionID" value="<?php echo $item->questionID?>">
+                                                <div class="mar-top clearfix">
+                                                    <button class="btn btn-sm btn-primary pull-right" type="submit" name="giveAnswer"><i class="fa fa-pencil fa-fw"></i> Reply </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
+
                                 </div>
 
 
-                                <?php
-                                if (isset($_SESSION["user"])) {
-                                ?>
-                                    <div class="panel-body">
-                                        <textarea class="form-control" rows="2" placeholder="Answer to question"></textarea>
-                                        <div class="mar-top clearfix">
-                                            <button class="btn btn-sm btn-primary pull-right" type="submit"><i class="fa fa-pencil fa-fw"></i> Reply </button>
-
-                                        </div>
-                                    </div>
-                                <?php
-                                }
-                                ?>
 
                             </div>
                         </div>
+
+
+                <?php
+                    }
+
+                    if (!isset($total_rows)) {
+                        $total_rows_query = "SELECT COUNT(*) as TOTAL FROM question";
+                        $total_rows_stmt = $con->prepare($total_rows_query);
+                        $total_rows_stmt->execute();
+                        $total_rows_result = $total_rows_stmt->fetch(PDO::FETCH_ASSOC);
+                        $total_rows = $total_rows_result['TOTAL'];
+                    }
+
+                    // Calculate the total number of pages
+                    $pages = ceil($total_rows / $rows_per_page);
+                } catch (PDOException $exc) {
+                    echo $exc->getMessage();
+                }
+                ?>
+
+                <div class="row">
+                    <div class="col-md-6 align-self-center">
+                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">
+                            Showing <?php echo min($total_rows, $start + 1) . ' to ' . min($total_rows, $start + $rows_per_page); ?> of <?php echo $total_rows; ?>
+                        </p>
+
                     </div>
 
+                    <div class="col-md-6">
+                        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                            <ul class="pagination">
+                                <?php
+                                if ($start > 0) {
+                                    echo '<li class="page-item"><a class="page-link" href="?start=' . ($start - $rows_per_page) . '">Previous</a></li>';
+                                } else {
+                                    echo '<li class="page-item disabled"><span class="page-link">Previous</span></li>';
+                                }
 
+                                for ($i = 1; $i <= $pages; $i++) {
+                                    echo '<li class="page-item' . (($start / $rows_per_page + 1) == $i ? ' active' : '') . '"><a class="page-link" href="?start=' . (($i - 1) * $rows_per_page) . '">' . $i . '</a></li>';
+                                }
+
+                                if ($start < ($pages - 1) * $rows_per_page) {
+                                    echo '<li class="page-item"><a class="page-link" href="?start=' . ($start + $rows_per_page) . '">Next</a></li>';
+                                } else {
+                                    echo '<li class="page-item disabled"><span class="page-link">Next</span></li>';
+                                }
+                                ?>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
         </div>
     </div>
 

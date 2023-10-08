@@ -12,10 +12,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = Security::SanitizeInput($_POST["email"]);
     $password = Security::SanitizeInput($_POST["password"]);
     if (Admin::adminLogin($email, $password)) {
-        header("Location: ../Admin.php");
+        header("Location: ../admin/Admin.php");
         exit;
     } else {
-        header("Location: ../adminlogin.php?error=1");
+        header("Location: ../admin/adminlogin.php?error=1");
         exit;
     }
 }

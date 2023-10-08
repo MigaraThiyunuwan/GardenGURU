@@ -3,14 +3,14 @@
 
 
 <?php
-require './classes/persons.php';
+require '../classes/persons.php';
 session_start();
 if (isset($_SESSION["admin"])) {
     // User is logged in, retrieve the user object
     $admin = $_SESSION["admin"];
 } else {
     // Redirect the user to login.php if not logged in
-    header("Location: ./adminlogin.php?error=2");
+    header("Location: ../adminlogin.php?error=2");
     exit();
 }
 ?>
@@ -23,10 +23,10 @@ if (isset($_SESSION["admin"])) {
     <meta content="" name="description">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -35,8 +35,8 @@ if (isset($_SESSION["admin"])) {
     ?>
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-        <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <img src="../images/logo.png" style="width:220px;height:50px;">
+        <a href="../../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <img src="../../images/logo.png" style="width:220px;height:50px;">
             <!-- <h1 class="m-0">Garden<B>GURU</B></h1> -->
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -44,31 +44,24 @@ if (isset($_SESSION["admin"])) {
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="../index.php" class="nav-item nav-link active">Home</a>
-                <a href="./plantSuggestion.php" class="nav-item nav-link">Plant Suggestions</a>
-                <a href="./Selling.php" class="nav-item nav-link">Shop</a>
+                <a href="../../index.php" class="nav-item nav-link active">Home</a>
+                <a href="../plantSuggestion.php" class="nav-item nav-link">Plant Suggestions</a>
+                <a href="../Selling.php" class="nav-item nav-link">Shop</a>
                 <!-- <a href="../php/blog.php" class="nav-item nav-link">Blog</a> -->
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
                     <div class="dropdown-menu bg-light m-0">
-                        <a href="./blog.php" class="dropdown-item">Blog</a>
-                        <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
-                        <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
-                        <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
-                        <a href="./report.php" class="dropdown-item">Reporting</a>
+                        <a href="../blog.php" class="dropdown-item">Blog</a>
+                        <a href="../Advertistment.php" class="dropdown-item">Advertisement</a>
+                        <a href="../newsfeed.php" class="dropdown-item">News Feed</a>
+                        <a href="../comForum.php" class="dropdown-item">Communication Forum</a>
+                        <a href="../report.php" class="dropdown-item">Reporting</a>
 
                     </div>
                 </div>
-                <a href="./AboutUs.php" class="nav-item nav-link">About</a>
-                <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
-
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-                    <div class="dropdown-menu bg-light m-0">
-                        <a href="./user.php" class="dropdown-item">Profile</a>
-                        <a href="./processes/logout.php" class="dropdown-item">Log Out</a>
-                    </div>
-                </div>
+                <a href="../AboutUs.php" class="nav-item nav-link">About</a>
+                <a href="../ContactUs.php" class="nav-item nav-link">Contact</a>
+                <a href="./Admin.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Profile</a>
             </div>
 
     </nav>
@@ -82,10 +75,10 @@ if (isset($_SESSION["admin"])) {
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                            <img src="../images/admin.png" alt="Admin" class="rounded-circle" width="150">
+                            <img src="../../images/admin.png" alt="Admin" class="rounded-circle" width="150">
                                 <div class="mt-3">
                                     <h4>Hello <?php echo $admin->getFirstName() . " " . $admin->getLastName() ?> !</h4><br>
-                                    <a class="btn btn-outline-primary " target="" href="./processes/logout.php">Log Out</a>
+                                    <a class="btn btn-outline-primary " target="" href="../processes/logout.php">Log Out</a>
 
                                     <a class="btn btn-outline-danger " target="" href="#">Change Password</a>
                                 </div>
@@ -96,7 +89,7 @@ if (isset($_SESSION["admin"])) {
                 <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body">
-                            <form action="./processes/adminEditProcess.php" method="post">
+                            <form action="../processes/adminEditProcess.php" method="post">
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
                                         <h6 class="mb-0">First Name</h6>
@@ -174,22 +167,22 @@ if (isset($_SESSION["admin"])) {
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Services</h4>
-                    <a class="btn btn-link" href="./plantSuggestion.php">Plant Suggestion</a>
-                    <a class="btn btn-link" href="./Advertistment.php">Advertiesment</a>
-                    <a class="btn btn-link" href="./Selling.php">Shop</a>
-                    <a class="btn btn-link" href="./blog.php">Blog</a>
+                    <a class="btn btn-link" href="../plantSuggestion.php">Plant Suggestion</a>
+                    <a class="btn btn-link" href="../Advertistment.php">Advertiesment</a>
+                    <a class="btn btn-link" href="../Selling.php">Shop</a>
+                    <a class="btn btn-link" href="../blog.php">Blog</a>
 
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="./AboutUs.php">About Us</a>
-                    <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
-                    <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
-                    <a class="btn btn-link" href="./login.php">Log Out</a>
-                    <a class="btn btn-link" href="./termsAndCondition.php">Terms & Condition</a>
+                    <a class="btn btn-link" href="../AboutUs.php">About Us</a>
+                    <a class="btn btn-link" href="../ContactUs.php">Contact Us</a>
+                    <a class="btn btn-link" href="../newsfeed.php">News Feed</a>
+                    <a class="btn btn-link" href="../login.php">Log Out</a>
+                    <a class="btn btn-link" href="../termsAndCondition.php">Terms & Condition</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <img src="../images/logo.png" style="width:220px;height:50px;">
+                    <img src="../../images/logo.png" style="width:220px;height:50px;">
                 </div>
             </div>
         </div>
@@ -213,9 +206,9 @@ if (isset($_SESSION["admin"])) {
     </div>
     <!-- Copyright End -->
     <!-- JavaScript Libraries -->
-    <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="../js/main.js"></script>
+    <script src="../../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/main.js"></script>
 
 
 </body>

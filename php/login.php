@@ -124,7 +124,7 @@ if (isset($_COOKIE['remember_user'])){
                                     <p class="mb-4">Don't have an account yet? <a href="./register.php" style="color: #38761d;">Cick Here</a> to create one.</p>
                                 </div>
                                 <div class="mb-4" style="margin-top: 15px;">
-                                    <p class="mb-4">Login as <a href="./adminlogin.php" style="color: #38761d;">System Admin</a> or Login as <a href="./manager/managerlogin.php" style="color: #38761d;">Manager</a>.</p>
+                                    <p class="mb-4">Login as <a href="./admin/adminlogin.php" style="color: #38761d;">System Admin</a> or Login as <a href="./manager/managerlogin.php" style="color: #38761d;">Manager</a>.</p>
                                 </div>
                             </form>
                             <?php

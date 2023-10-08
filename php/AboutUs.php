@@ -6,11 +6,9 @@ session_start();
 $user = null;
 $manager = null;
 if (isset($_SESSION["user"])) {
-    // User is logged in, retrieve the user object
     $user = $_SESSION["user"];
 } 
 if (isset($_SESSION["manager"])) {
-    // User is logged in, retrieve the user object
     $manager = $_SESSION["manager"];
 } 
 ?>

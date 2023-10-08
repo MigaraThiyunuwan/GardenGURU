@@ -1,20 +1,18 @@
 <?php
-require './classes/DbConnector.php';
-require './classes/persons.php';
+require_once '../classes/DbConnector.php';
+require '../classes/persons.php';
 
 use classes\DbConnector;
 
 $dbcon = new DbConnector();
-?>
 
-<?php
 session_start();
 if (isset($_SESSION["admin"])) {
     // User is logged in, retrieve the user object
     $admin = $_SESSION["admin"];
 } else {
 
-    header("Location: ./adminlogin.php?error=2");
+    header("Location: ../adminlogin.php?error=2");
     exit();
 }
 ?>
@@ -23,9 +21,7 @@ if (isset($_SESSION["admin"])) {
 <!DOCTYPE html>
 <html lang="en">
 
-
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
 <head>
 
@@ -37,10 +33,10 @@ if (isset($_SESSION["admin"])) {
     <meta content="" name="description">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -50,7 +46,7 @@ if (isset($_SESSION["admin"])) {
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="index-2.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <img src="../images/logo.png" style="width:220px;height:50px;">
+            <img src="../../images/logo.png" style="width:220px;height:50px;">
 
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -58,24 +54,24 @@ if (isset($_SESSION["admin"])) {
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="../index.php" class="nav-item nav-link active">Home</a>
-                <a href="./plantSuggestion.php" class="nav-item nav-link">Plant Suggestions</a>
-                <a href="./Selling.php" class="nav-item nav-link">Shop</a>
+                <a href="../../index.php" class="nav-item nav-link active">Home</a>
+                <a href="../plantSuggestion.php" class="nav-item nav-link">Plant Suggestions</a>
+                <a href="../Selling.php" class="nav-item nav-link">Shop</a>
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
                     <div class="dropdown-menu bg-light m-0">
-                        <a href="./blog.php" class="dropdown-item">Blog</a>
-                        <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
-                        <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
-                        <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
-                        <a href="./report.php" class="dropdown-item">Reporting</a>
+                        <a href="../blog.php" class="dropdown-item">Blog</a>
+                        <a href="../Advertistment.php" class="dropdown-item">Advertisement</a>
+                        <a href="../newsfeed.php" class="dropdown-item">News Feed</a>
+                        <a href="../comForum.php" class="dropdown-item">Communication Forum</a>
+                        <a href="../report.php" class="dropdown-item">Reporting</a>
 
                     </div>
                 </div>
-                <a href="./AboutUs.php" class="nav-item nav-link">About</a>
-                <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
+                <a href="../AboutUs.php" class="nav-item nav-link">About</a>
+                <a href="../ContactUs.php" class="nav-item nav-link">Contact</a>
                 
-                <a href="./processes/logout.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Log Out</a>
+                <a href="../processes/logout.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Log Out</a>
             </div>
         </div>
     </nav>
@@ -87,10 +83,10 @@ if (isset($_SESSION["admin"])) {
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
-                            <img src="../images/admin.png" alt="Admin" class="rounded-circle" width="150">
+                            <img src="../../images/admin.png" alt="Admin" class="rounded-circle" width="150">
                             <div class="mt-3">
                                 <h4>Hello <?php echo $admin->getFirstName() . " " . $admin->getLastName() ?> !</h4><br>
-                                <a class="btn btn-outline-danger " target="" href="./processes/logout.php">Log Out</a>
+                                <a class="btn btn-outline-danger " target="" href="../processes/logout.php">Log Out</a>
                                 <a class="btn btn-outline-success " target="" href="./Adminedit.php">Edit</a>
                                 <a href="./managerRegister.php"><button class="btn btn-outline-warning">Add New Manager</button></a>
                             </div>
@@ -229,7 +225,7 @@ if (isset($_SESSION["admin"])) {
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content" style="background-color: white;">
                                                     <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm to Delete User
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm to Delete Manager
                                                         </h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
@@ -239,7 +235,7 @@ if (isset($_SESSION["admin"])) {
 
                                                             <div class="d-flex">
                                                                 <p class="fw-bold me-2">
-                                                                    Are you sure to delete user "<?php echo $managers->mFirstName . " " . $managers->mLastName ?>" from the system?
+                                                                    Are you sure to delete manager "<?php echo $managers->mFirstName . " " . $managers->mLastName ?>" from the system?
                                                                 </p>
 
                                                             </div>
@@ -249,7 +245,7 @@ if (isset($_SESSION["admin"])) {
                                                         <div class="modal-footer">
                                                             <div class="row w-100">
                                                                 <div class="col-md-6">
-                                                                    <form action='./processes/deleteManager.php' method='POST'>
+                                                                    <form action='../processes/deleteManager.php' method='POST'>
                                                                         <input type='hidden' name='ManagerID' value='<?php echo $managers->managerID ?>'>
 
                                                                         <button class="btn btn-danger w-100 " type="submit" data-bs-dismiss="modal" aria-label="Close">Confirm</button>
@@ -282,7 +278,7 @@ if (isset($_SESSION["admin"])) {
                                                                 <div class=" d-flex flex-column align-items-center justify-content-cente ">
 
                                                                     <dvi class="p-3 ">
-                                                                        <img src="../images/manager.png" alt="avatar" class="rounded-circle me-2 " style="width: 150px; height: 150px; object-fit: cover" />
+                                                                        <img src="../../images/manager.png" alt="avatar" class="rounded-circle me-2 " style="width: 150px; height: 150px; object-fit: cover" />
                                                                     </dvi>
                                                                     <!--name-->
                                                                     <h3 class="text-center m-0">
@@ -428,22 +424,22 @@ if (isset($_SESSION["admin"])) {
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Services</h4>
-                    <a class="btn btn-link" href="./plantSuggestion.php">Plant Suggestion</a>
-                    <a class="btn btn-link" href="./Advertistment.php">Advertiesment</a>
-                    <a class="btn btn-link" href="./Selling.php">Shop</a>
-                    <a class="btn btn-link" href="./blog.php">Blog</a>
+                    <a class="btn btn-link" href="../plantSuggestion.php">Plant Suggestion</a>
+                    <a class="btn btn-link" href="../Advertistment.php">Advertiesment</a>
+                    <a class="btn btn-link" href="../Selling.php">Shop</a>
+                    <a class="btn btn-link" href="../blog.php">Blog</a>
 
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="./AboutUs.php">About Us</a>
-                    <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
-                    <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
-                    <a class="btn btn-link" href="./login.php">Log Out</a>
-                    <a class="btn btn-link" href="./termsAndCondition.php">Terms & Condition</a>
+                    <a class="btn btn-link" href="../AboutUs.php">About Us</a>
+                    <a class="btn btn-link" href="../ContactUs.php">Contact Us</a>
+                    <a class="btn btn-link" href="../newsfeed.php">News Feed</a>
+                    <a class="btn btn-link" href="../login.php">Log Out</a>
+                    <a class="btn btn-link" href="../termsAndCondition.php">Terms & Condition</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <img src="../images/logo.png" style="width:220px;height:50px;">
+                    <img src="../../images/logo.png" style="width:220px;height:50px;">
                 </div>
             </div>
         </div>
