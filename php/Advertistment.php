@@ -8,9 +8,16 @@ $dbcon = $dbConnector->getConnection();
 
 require './classes/persons.php';
 session_start();
+$user =null;
+$manager = null;
 if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) ) {
   // User is logged in, retrieve the user object
-
+  if(isset($_SESSION["user"])){
+    $user = $_SESSION["user"];
+  }
+  if(isset($_SESSION["manager"])){
+    $manager = $_SESSION["manager"];
+  }
 } else {
   // Redirect the user to login.php if not logged in
   header("Location: ./login.php?error=5");
@@ -21,8 +28,8 @@ if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) ) {
 <html lang="en">
 
 
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
 <head>
   <meta charset="utf-8">
@@ -74,13 +81,26 @@ if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) ) {
             <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
             <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
             <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
-
+            <a href="./report.php" class="dropdown-item">Reporting</a>
           </div>
         </div>
         <a href="./AboutUs.php" class="nav-item nav-link">About</a>
         <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
-        <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
-
+        <?php
+                if ($user != null) {
+                ?>
+                    <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else if ($manager != null) {
+                ?>
+                    <a href="./manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else {
+                ?>
+                    <a href="./login.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Sign In</a>
+                <?php
+                }
+                ?>
       </div>
     </div>
     <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->

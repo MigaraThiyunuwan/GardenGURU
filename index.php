@@ -64,7 +64,7 @@ if (isset($_SESSION["manager"])) {
                         <a href="./php/Advertistment.php" class="dropdown-item">Advertisement</a>
                         <a href="./php/newsfeed.php" class="dropdown-item">News Feed</a>
                         <a href="./php/comForum.php" class="dropdown-item">Communication Forum</a>
-
+                        <a href="./php/report.php" class="dropdown-item">Reporting</a>
                     </div>
                 </div>
                 <a href="./php/AboutUs.php" class="nav-item nav-link">About</a>
@@ -76,7 +76,7 @@ if (isset($_SESSION["manager"])) {
                 <?php
                 } else if ($manager != null) {
                 ?>
-                    <a href="./php/Manager.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                    <a href="./php/manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
                 <?php
                 } else {
                 ?>

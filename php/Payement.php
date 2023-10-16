@@ -1,27 +1,29 @@
-
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
+require_once './classes/cart.php';
+require_once './classes/persons.php';
+require_once './classes/DbConnector.php';
 session_start();
 if (isset($_SESSION["user"])) {
-    // User is logged in, retrieve the user object
-    $manager = $_SESSION["user"];
-} else {
 
+    $user = $_SESSION["user"];
+} else {
     header("Location: ./login.php?error=4");
     exit();
 }
-?>
 
+$cart = new Cart();
+$total = $cart->getTotal($user->getUserId());
+
+?>
+<!DOCTYPE html>
+<html lang="en">
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
 <head>
     <meta charset="utf-8">
     <title>GardenGURU | Payment</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -33,7 +35,7 @@ if (isset($_SESSION["user"])) {
 </head>
 
 <body>
-    
+
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
@@ -62,26 +64,28 @@ if (isset($_SESSION["user"])) {
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
 
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-                    <div class="dropdown-menu bg-light m-0">
-                        <a href="./user.php" class="dropdown-item">Profile</a>
-                        <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
-                    </div>
-                </div>
+                <?php
+                if ($user != null) {
+                ?>
+                    <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else if ($manager != null) {
+                ?>
+                    <a href="./manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else {
+                ?>
+                    <a href="./login.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Sign In</a>
+                <?php
+                }
+                ?>
             </div>
             <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
         </div>
     </nav>
     <!-- Navbar End -->
 
-    <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        $price = $_POST['total'];
-    }
-
-    ?>
     <div class="container1 mt-5 px-5">
 
         <div class="mb-4">
@@ -92,8 +96,8 @@ if (isset($_SESSION["user"])) {
         <div class="row">
             <div class="col-md-8">
                 <div class="card p-3">
-                    <form action="./classes/paymentprocess.php" method="POST">
-                        <h6 class="text-uppercase">Payment details</h6>
+                    <form action="./processes/paymentprocess.php" method="POST">
+                        <h6 class="text-uppercase"><b>Payment details</b></h6>
                         <div class="inputbox mt-3"> <input type="text" name="nameOnCard" class="form-control" required="required"> <span>Name on card</span> </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -109,22 +113,26 @@ if (isset($_SESSION["user"])) {
                             </div>
                         </div>
                         <div class="mt-4 mb-4">
-                            <h6 class="text-uppercase">Billing Address</h6>
+                            <h6 class="text-uppercase"><b>Billing Address</b></h6>
                             <div class="row mt-3">
 
                                 <div class="col-md-6">
-                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="streetAddress" class="form-control" required="required"> <span>Street Address</span> </div>
+                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="receiver" class="form-control" required="required"> <span>Receiver's Name</span> </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="inputbox mt-3 mr-2"> <input type="address" name="streetAddress" class="form-control" required="required"> <span>Street Address</span> </div>
+                                </div>
+
+                            </div>
+                            <div class="row mt-2">
+                                <!-- <div class="col-md-6">
+                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="state" class="form-control" required="required"> <span>State/Province</span> </div>
+                                </div> -->
                                 <div class="col-md-6">
                                     <div class="inputbox mt-3 mr-2"> <input type="text" name="city" class="form-control" required="required"> <span>City</span> </div>
                                 </div>
-                            </div>
-                            <div class="row mt-2">
                                 <div class="col-md-6">
-                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="state" class="form-control" required="required"> <span>State/Province</span> </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="postalCode" class="form-control" required="required"> <span>Postal code</span> </div>
+                                    <div class="inputbox mt-3 mr-2"> <input type="number" name="tel" class="form-control" required="required"> <span>Contact Number</span> </div>
 
                                 </div>
                             </div>
@@ -132,7 +140,9 @@ if (isset($_SESSION["user"])) {
                         <div class="mt-4 mb-4 d-flex justify-content-between">
 
                             <!-- <span>Previous step</span> -->
-                            <button class="btn btn-success px-3" type="submit" name="pay">Pay Rs.<?php if(isset($price)){echo $price;} ?></button>
+                            <button class="btn btn-success px-3" type="submit" name="pay">Pay Rs.<?php if (isset($total)) {
+                                                                                                        echo $total;
+                                                                                                    } ?></button>
                         </div>
                     </form>
                 </div>
@@ -144,7 +154,9 @@ if (isset($_SESSION["user"])) {
 
                     <span>You have to pay</span>
                     <div class="d-flex flex-row align-items-end mb-3">
-                        <h1 class="mb-0 yellow">Rs. <?php if(isset($price)){echo $price;} ?></h1> <span>.00</span>
+                        <h1 class="mb-0 yellow">Rs. <?php if (isset($total)) {
+                                                        echo $total;
+                                                    } ?></h1> <span>.00</span>
                     </div>
 
                     <span>Enjoy all the features and perk after you complete the payment</span>
@@ -165,12 +177,11 @@ if (isset($_SESSION["user"])) {
 
         </div>
 
-
     </div>
 
 
     <!-- Footer Start -->
-   <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
@@ -231,7 +242,5 @@ if (isset($_SESSION["user"])) {
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/main.js"></script>
 </body>
-
-
 
 </html>

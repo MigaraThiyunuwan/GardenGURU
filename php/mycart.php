@@ -3,12 +3,12 @@
 <?php
 
 require_once './classes/DbConnector.php';
+require_once './classes/persons.php';
 
 use classes\DbConnector;
 
 $dbcon = new DbConnector();
 
-require_once './classes/persons.php';
 session_start();
 $user = null;
 $manager = null;
@@ -30,11 +30,8 @@ if (isset($_SESSION["manager"])) {
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <!-- Customized Bootstrap Stylesheet -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/Selling.css" rel="stylesheet">
 
@@ -56,7 +53,7 @@ if (isset($_SESSION["manager"])) {
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <img src="../images/logo.png" style="width:220px;height:50px;">
-            <!-- <h1 class="m-0">Garden<B>GURU</B></h1> -->
+
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -66,7 +63,7 @@ if (isset($_SESSION["manager"])) {
                 <a href="../index.php" class="nav-item nav-link active">Home</a>
                 <a href="./plantSuggestion.php" class="nav-item nav-link">Plant Suggestions</a>
                 <a href="./Selling.php" class="nav-item nav-link">Shop</a>
-                <!-- <a href="../php/blog.php" class="nav-item nav-link">Blog</a> -->
+
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
                     <div class="dropdown-menu bg-light m-0">
@@ -86,7 +83,7 @@ if (isset($_SESSION["manager"])) {
                 <?php
                 } else if ($manager != null) {
                 ?>
-                    <a href="./Manager.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                    <a href="./manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
                 <?php
                 } else {
                 ?>
@@ -95,7 +92,7 @@ if (isset($_SESSION["manager"])) {
                 }
                 ?>
             </div>
-            <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
+
         </div>
     </nav>
     <!-- Navbar End -->
@@ -123,7 +120,7 @@ if (isset($_SESSION["manager"])) {
                                         Item Removed!
                                         </div></b>";
                 }
-            } 
+            }
             if (isset($_GET['error'])) {
                 if ($_GET['error'] == 1) {
 
@@ -180,11 +177,11 @@ if (isset($_SESSION["manager"])) {
 
                                         <td><?php echo $value['Item_Name']; ?></td>
                                         <td><?php echo $value['Price']; ?><input type='hidden' class='iprice' value='<?php echo $value['Price']; ?>'></td>
-                                        <form action='manage_cart.php' method='POST'>
-                                        <td><input class='text-center iquantity' name='Mod_Quantity' onchange='this.form.submit()' type='number' value='<?php echo $value['Quantity']; ?>' min='1' max='10'></td>
-                                        <input type='hidden' name='Item_Name' value='<?php echo $value['Item_Name']; ?>'>
-                                        <input type='hidden' name='ItemId' value='<?php echo $value['ItemId']; ?>'>
-                                        <td class='itotal'></td>
+                                        <form action='./processes/manageCart.php' method='POST'>
+                                            <td><input class='text-center iquantity' name='Mod_Quantity' onchange='this.form.submit()' type='number' value='<?php echo $value['Quantity']; ?>' min='1' max='10'></td>
+                                            <input type='hidden' name='Item_Name' value='<?php echo $value['Item_Name']; ?>'>
+                                            <input type='hidden' name='ItemId' value='<?php echo $value['ItemId']; ?>'>
+                                            <td class='itotal'></td>
                                         </form>
                                         <td>
                                             <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deletemodel<?php echo $serialNo ?>">Delete </button>
@@ -213,7 +210,7 @@ if (isset($_SESSION["manager"])) {
                                                     </div>
 
                                                     <div class="modal-footer">
-                                                        <form action='manage_cart.php' method='POST'>
+                                                        <form action='./processes/manageCart.php' method='POST'>
                                                             <input type='hidden' name='ItemId' value='<?php echo $value['ItemId']; ?>'>
 
                                                             <button name='Remove_Item' class="btn btn-danger w-100" type="submit" data-bs-dismiss="modal" aria-label="Close">Confirm</button>
@@ -241,12 +238,12 @@ if (isset($_SESSION["manager"])) {
                                     <!-- <td><?php echo $serialNo; ?></td> -->
                                     <td><?php echo $value['Item_Name']; ?></td>
                                     <td><?php echo $value['Price']; ?><input type='hidden' class='iprice' value='<?php echo $value['Price']; ?>'></td>
-                                    <form action='manage_cart.php' method='POST'>
-                                    <td><input class='text-center iquantity' name='Mod_Quantity' onchange='this.form.submit()' type='number' value='<?php echo $value['Quantity']; ?>' min='1' max='10'></td>
-                                    <input type='hidden' name='Item_Name' value='<?php echo $value['Item_Name']; ?>'>
-                                    <input type='hidden' name='ItemId' value='<?php echo $value['ItemId']; ?>'>
-                                    <td class='itotal'></td>
-                                    
+                                    <form action='./processes/manageCart.php' method='POST'>
+                                        <td><input class='text-center iquantity' name='Mod_Quantity' onchange='this.form.submit()' type='number' value='<?php echo $value['Quantity']; ?>' min='1' max='10'></td>
+                                        <input type='hidden' name='Item_Name' value='<?php echo $value['Item_Name']; ?>'>
+                                        <input type='hidden' name='ItemId' value='<?php echo $value['ItemId']; ?>'>
+                                        <td class='itotal'></td>
+
                                     </form>
                                     <td>
                                         <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deletemodel<?php echo $serialNo ?>">Delete </button>
@@ -276,7 +273,7 @@ if (isset($_SESSION["manager"])) {
                                                 </div>
 
                                                 <div class="modal-footer">
-                                                    <form action='manage_cart.php' method='POST'>
+                                                    <form action='./processes/manageCart.php' method='POST'>
                                                         <input type='hidden' name='ItemId' value='<?php echo $value['ItemId']; ?>'>
 
                                                         <button name='Remove_Item' class="btn btn-danger w-100" type="submit" data-bs-dismiss="modal" aria-label="Close">Confirm</button>
@@ -300,11 +297,11 @@ if (isset($_SESSION["manager"])) {
 
             </div>
 
-            <form action="payement.php" method="POST">
+            <!-- <form action="payement.php" method="POST"> -->
                 <div class="col-lg-12">
                     <div class="border bg-light rounded p-4">
                         <h4>Grand Total: Rs.</h4>
-                        <h5 class="text-right" id="gtotal"> <?php echo  $total ?></h5>
+                        <h4 class="text-right" id="gtotal"> <?php echo  $total ?></h4>
                         <br>
                         <?php
 
@@ -320,28 +317,10 @@ if (isset($_SESSION["manager"])) {
                             }
                         ?>
 
-                            <div class="form-group">
-                                <label>Full Name</label>
-                                <input type="full_name" name="full_name" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Phone Number</label>
-                                <input type="tel" name="phone_no" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Delivery Address</label>
-                                <input type="address" name="address" class="form-control" required>
-                            </div>
-                            <div class="form-check">
-                                <!-- <input class="form-check-input" type="radio" name="pay_mode" value="COD" id="flexRadioDefault2" checked> -->
-                                <!-- <label class="form-check-label" for="flexRadioDefault2">
-                                        Cash On Delivery
-                                    </label> -->
-                            </div>
-                            <br>
                             <input type="hidden" name="total" value="<?php echo $total ?>">
-                            <button class="btn btn-primary btn-block" name="purchase">Make Purchase</button>
-
+                            <?php if($total > 0){ ?>
+                            <a href="./Payement.php" class="btn btn-primary btn-block" name="purchase">Make Purchase</a>
+                            <?php } ?>
                         <?php
 
                         }
@@ -354,27 +333,9 @@ if (isset($_SESSION["manager"])) {
 
                         ?>
 
-                            <div class="form-group">
-                                <label>Full Name</label>
-                                <input type="full_name" name="full_name" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Phone Number</label>
-                                <input type="tel" name="phone_no" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Delivery Address</label>
-                                <input type="address" name="address" class="form-control" required>
-                            </div>
-                            <div class="form-check">
-                                <!-- <input class="form-check-input" type="radio" name="pay_mode" value="COD" id="flexRadioDefault2" checked> -->
-                                <!-- <label class="form-check-label" for="flexRadioDefault2">
-            Cash On Delivery
-        </label> -->
-                            </div>
                             <br>
                             <input type="hidden" name="total" value="<?php echo $total ?>">
-                            <button class="btn btn-primary btn-block" name="purchase">Make Purchase</button>
+                            <a href="./Payement.php" class="btn btn-primary btn-block" name="purchase">Make Purchase</a>
 
                         <?php
 
@@ -385,7 +346,7 @@ if (isset($_SESSION["manager"])) {
                     </div>
 
                 </div>
-            </form>
+            <!-- </form> -->
 
         </div>
     </div>
@@ -397,6 +358,7 @@ if (isset($_SESSION["manager"])) {
         var itotal = document.getElementsByClassName('itotal');
         var gtotal = document.getElementById('gtotal'); // Use getElementById to select the grand total element
         var button = document.getElementById("MYbtn");
+
         function subTotal() {
             //button.click();
             gt = 0;

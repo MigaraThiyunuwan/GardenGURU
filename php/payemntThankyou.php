@@ -109,7 +109,7 @@ if (isset($_SESSION["manager"])) {
        
         body {
             
-            background-image: url('../images/web.png') ;
+            /* background-image: url('../images/web.png') ; */
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: 100% 100%;
@@ -144,6 +144,7 @@ if (isset($_SESSION["manager"])) {
                         <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
                         <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
                         <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
+                        <a href="./report.php" class="dropdown-item">Reporting</a>
 
                     </div>
                 </div>
@@ -156,7 +157,7 @@ if (isset($_SESSION["manager"])) {
                 <?php
                 } else if ($manager != null) {
                 ?>
-                    <a href="./Manager.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                    <a href="./manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
                 <?php
                 } else {
                 ?>
@@ -168,7 +169,7 @@ if (isset($_SESSION["manager"])) {
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                     <div class="dropdown-menu bg-light m-0">
                         <a href="./user.php" class="dropdown-item">Profile</a>
-                        <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
+                        <a href="./processes/logout.php" class="dropdown-item">Log Out</a>
                     </div>
                 </div> -->
             </div>
@@ -176,7 +177,7 @@ if (isset($_SESSION["manager"])) {
         </div>
     </nav>
     <!-- Navbar End -->
-    <div id="loader" style="margin-top: 200px;">
+    <div id="loader" style="margin-top: 100px;">
 
     </div>
 
@@ -189,10 +190,11 @@ if (isset($_SESSION["manager"])) {
         </div>
     </div>
 
-    <div style="display:none; " id="myDiv" class="animate-bottom">
+    <div style="display:none; " id="myDiv" class="animate-bottom" style="margin-top: 200px;">
         <h1>Payment success!</h1>
         <h2>Thank you for palced your order with us.</h2>
-        <a href="../index.php" class="btn btn-primary py-sm-3 px-sm-4" style="margin-top: 500px;">Back to Home</a>
+        <a href="../index.php" class="btn btn-primary py-sm-3 px-sm-4" style="margin-top: 100px;">Back to Home</a>
+        <a href="./mybill.php" target="_blank" class="btn btn-primary py-sm-3 px-sm-4" style="margin-top: 100px;">Download Bill</a>
     </div>
 
     <script>

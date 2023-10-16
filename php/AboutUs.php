@@ -6,11 +6,9 @@ session_start();
 $user = null;
 $manager = null;
 if (isset($_SESSION["user"])) {
-    // User is logged in, retrieve the user object
     $user = $_SESSION["user"];
 } 
 if (isset($_SESSION["manager"])) {
-    // User is logged in, retrieve the user object
     $manager = $_SESSION["manager"];
 } 
 ?>
@@ -76,7 +74,7 @@ if (isset($_SESSION["manager"])) {
                         <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
                         <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
                         <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
-
+                        <a href="./report.php" class="dropdown-item">Reporting</a>
                     </div>
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
@@ -88,7 +86,7 @@ if (isset($_SESSION["manager"])) {
                 <?php
                 } else if ($manager != null) {
                 ?>
-                    <a href="./Manager.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                    <a href="./manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
                 <?php
                 } else {
                 ?>
@@ -177,6 +175,7 @@ if (isset($_SESSION["manager"])) {
                 <p class="fs-5 fw-bold text-primary">Our Team</p>
                 <h1 class="display-5 mb-5">Dedicated & Experienced Team Members</h1>
             </div>
+            
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="team-item rounded">

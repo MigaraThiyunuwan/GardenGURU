@@ -93,7 +93,7 @@ $newsCounter = 0;
                         <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
                         <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
                         <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
-
+                        <a href="./report.php" class="dropdown-item">Reporting</a>
                     </div>
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
@@ -105,7 +105,7 @@ $newsCounter = 0;
                 <?php
                 } else if ($manager != null) {
                 ?>
-                    <a href="./Manager.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                    <a href="./manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
                 <?php
                 } else {
                 ?>
@@ -133,7 +133,7 @@ $newsCounter = 0;
     <!-- Page Header Start -->
 
 
-    <main>
+    <main class="container">
         <section class="main-container-left">
 
             <div class="col-lg-12 text-center border rounded bg-light my-5">
@@ -150,7 +150,7 @@ $newsCounter = 0;
                 ?>
                 <div class="container-top-left">
                     <article>
-                        <img style="height: 450px;" src="<?php echo $row['image'];  ?>">
+                        <img style="height: 400px;" src="<?php echo $row['image'];  ?>">
 
                         <div>
                             <div style="margin-top: 10px;">

@@ -92,7 +92,7 @@ if (isset($_SESSION["manager"])) {
                         <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
                         <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
                         <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
-
+                        <a href="./report.php" class="dropdown-item">Reporting</a>
                     </div>
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
@@ -118,7 +118,7 @@ if (isset($_SESSION["manager"])) {
                 <?php
                 } else if ($manager != null) {
                 ?>
-                    <a href="./Manager.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                    <a href="./manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
                 <?php
                 } else {
                 ?>
@@ -241,7 +241,7 @@ if (isset($_SESSION["manager"])) {
                                                 </a>
 
 
-                                                <form action="manage_cart.php" method="POST">
+                                                <form action="./processes/manageCart.php" method="POST">
 
                                                     <!-- <a href="javascript:void(0);" class="btn btn-success">Add to cart</a> -->
                                                     <input type="hidden" name="Item_Name" value="<?php echo $item->ItemName; ?>">
@@ -290,7 +290,7 @@ if (isset($_SESSION["manager"])) {
 
             <?php
                 }
-                // Calculate the total number of rows in the 'users' table (if not already calculated)
+                
                 if (!isset($total_rows)) {
                     $total_rows_query = "SELECT COUNT(*) as total FROM shop";
                     $total_rows_stmt = $con->prepare($total_rows_query);

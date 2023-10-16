@@ -12,12 +12,12 @@ class person
 
     protected $Password;
 
-    function __construct($FirstName, $LastName, $Email, $Password)
+    function __construct($FirstName, $LastName, $Email)
     {
         $this->FirstName = $FirstName;
         $this->LastName = $LastName;
         $this->Email = $Email;
-        $this->Password = $Password;
+        // $this->Password = $Password;
     }
     public function getFirstName()
     {
@@ -46,9 +46,9 @@ class user extends person
     private $Address;
     private $ProPic;
     private $Gender;
-    function __construct($FirstName, $LastName, $Email, $Password, $Address, $userId, $District, $PhoneNo, $ProPic, $Gender)
+    function __construct($FirstName, $LastName, $Email, $Address, $userId, $District, $PhoneNo, $ProPic, $Gender)
     {
-        parent::__construct($FirstName, $LastName, $Email,  $Password);
+        parent::__construct($FirstName, $LastName, $Email);
         $this->userId = $userId;
         $this->District = $District;
         $this->PhoneNo = $PhoneNo;
@@ -138,7 +138,7 @@ class user extends person
 
             if (password_verify($password, $dbpassword)) {
 
-                $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbpicture, $dbGender);
+                $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbpicture, $dbGender);
                 session_start();
                 $_SESSION["user"] = $user;
                 $_SESSION['cart'][0] = array('ItemId' => null, 'Item_Name' => null, 'Price' => null, 'Quantity' => null);
@@ -214,7 +214,7 @@ class user extends person
                     $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
 
                     foreach ($rs as $row) {
-                        $dbpassword = $row->user_Password;
+                        //  $dbpassword = $row->user_Password;
                         $dbFirstName = $row->user_FirstName;
                         $dbLastName = $row->user_LastName;
                         $dbEmail = $row->user_Email;
@@ -226,7 +226,7 @@ class user extends person
                         $dbpicture = $row->profile_picture;
                     }
 
-                    $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbpicture, $dbGender);
+                    $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbpicture, $dbGender);
                     $_SESSION["user"] = $user;
                     return true;
                 } catch (PDOException $exc) {
@@ -267,8 +267,9 @@ class user extends person
             $pstmt->bindValue(1, $token);
             $pstmt->execute();
             $rs = $pstmt->fetch(PDO::FETCH_OBJ);
+
             $dbexp = $rs->expdate;
-            $dbpassword = $rs->user_Password;
+            // $dbpassword = $rs->user_Password;
             $dbFirstName = $rs->user_FirstName;
             $dbLastName = $rs->user_LastName;
             $dbEmail = $rs->user_Email;
@@ -278,7 +279,7 @@ class user extends person
             $dbid = $rs->user_id;
             $dbaddress = $rs->user_address;
             $dbpicture = $rs->profile_picture;
-            $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbpicture, $dbGender);
+            $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbpicture, $dbGender);
             if (($dbexp - time()) > 0) {
 
                 session_start();
@@ -339,13 +340,13 @@ class user extends person
 
                 $destination1 = '../../images/Adevertistment/' . $filename1;
                 $dbdestination = '../images/Adevertistment/' . $filename1;
-                if (move_uploaded_file($tmp_name1, $destination1)) { 
-                    
+                if (move_uploaded_file($tmp_name1, $destination1)) {
+
                     try {
                         $dbcon = new DbConnector();
                         $conn = $dbcon->getConnection();
                         $sql = "INSERT INTO advertisements (user_id, user_FirstName, user_LastName, user_Email, image1_filename, title, description, adPostedDate) VALUES ( ?, ? ,?, ?, ?, ?, ?, ?)";
-            
+
                         $pstmt = $conn->prepare($sql);
                         $pstmt->bindValue(1, $this->userId);
                         $pstmt->bindValue(2, $this->FirstName);
@@ -355,7 +356,7 @@ class user extends person
                         $pstmt->bindValue(6, $text_title);
                         $pstmt->bindValue(7, $text_description);
                         $pstmt->bindValue(8, $realDate);
-            
+
                         if ($pstmt->execute()) {
                             return true;
                         } else {
@@ -364,7 +365,6 @@ class user extends person
                     } catch (PDOException $exc) {
                         echo $exc->getMessage();
                     }
-                    
                 } else {
                     header("Location: ../user.php?success=4");
                     exit;
@@ -377,9 +377,9 @@ class user extends person
             header("Location: ../user.php?error=4");
             exit;
         }
-
     }
-    public function putBlog($file,$blogTitle,$blogDetails,$Date){
+    public function putBlog($file, $blogTitle, $blogDetails, $Date)
+    {
         $targetFile = "../../images/blog/" . basename($file["name"]);
         $dbPicture = "../images/blog/" . basename($file["name"]);
         if (move_uploaded_file($file["tmp_name"], $targetFile)) {
@@ -436,6 +436,51 @@ class user extends person
             }
         }
     }
+
+    public function askQuestion($question, $date)
+    {
+        try {
+            $dbcon = new DbConnector();
+            $conn = $dbcon->getConnection();
+            $sql = "INSERT INTO question (user_id, askDate, question) VALUES ( ?, ?, ? )";
+
+            $pstmt = $conn->prepare($sql);
+            $pstmt->bindValue(1, $this->userId);
+            $pstmt->bindValue(2, $date);
+            $pstmt->bindValue(3, $question);
+
+            if ($pstmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public function giveAnswer($answer, $questionID, $date)
+    {
+        try {
+            $dbcon = new DbConnector();
+            $conn = $dbcon->getConnection();
+            $sql = "INSERT INTO answer (user_id, questionID, answerDate, answer) VALUES ( ?, ?, ?, ? )";
+
+            $pstmt = $conn->prepare($sql);
+            $pstmt->bindValue(1, $this->userId);
+            $pstmt->bindValue(2, $questionID);
+            $pstmt->bindValue(3, $date);
+            $pstmt->bindValue(4, $answer);
+
+            if ($pstmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
 }
 
 /* =========================================================|| Manager class (Child Class) ||====================================================================================== */
@@ -446,9 +491,9 @@ class Manager extends person
 
     private $PhoneNo;
 
-    public function __construct($FirstName, $LastName, $Email, $Password, $NIC, $managerId, $PhoneNo)
+    public function __construct($FirstName, $LastName, $Email, $NIC, $managerId, $PhoneNo)
     {
-        parent::__construct($FirstName, $LastName, $Email,  $Password);
+        parent::__construct($FirstName, $LastName, $Email);
         $this->NIC = $NIC;
         $this->PhoneNo = $PhoneNo;
         $this->managerId = $managerId;
@@ -545,6 +590,26 @@ class Manager extends person
         }
     }
 
+    public function manageOrder($orderID, $status)
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "UPDATE orders SET OrderStatus = ? WHERE orderID = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $status);
+            $pstmt->bindValue(2, $orderID);
+            $a = $pstmt->execute();
+            if ($a > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
     public static function LoginManager($email, $password)
     {
         try {
@@ -569,7 +634,7 @@ class Manager extends person
             };
             if (password_verify($password, $dbpassword)) {
 
-                $manager = new Manager($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbNIC, $dbmID, $dbPhoneNo);
+                $manager = new Manager($dbFirstName, $dbLastName, $dbEmail, $dbNIC, $dbmID, $dbPhoneNo);
                 session_start();
                 $_SESSION["manager"] = $manager;
                 return true;
@@ -581,7 +646,7 @@ class Manager extends person
         }
     }
 
-    public function EditManagerDetails($firstName, $lastName, $email, $NIC, $phone, $managerID)
+    public function EditManagerDetails($firstName, $lastName, $email, $NIC, $phone)
     {
         try {
             $dbcon = new DbConnector();
@@ -593,7 +658,7 @@ class Manager extends person
             $pstmt->bindValue(3, $email);
             $pstmt->bindValue(4, $NIC);
             $pstmt->bindValue(5, $phone);
-            $pstmt->bindValue(6, $managerID);
+            $pstmt->bindValue(6, $this->managerId);
 
             $pstmt->execute();
 
@@ -605,7 +670,7 @@ class Manager extends person
                     $con = $dbcon->getConnection();
                     $query = "SELECT * FROM manager WHERE managerID = ? ";
                     $pstmt = $con->prepare($query);
-                    $pstmt->bindValue(1, $managerID);
+                    $pstmt->bindValue(1, $this->managerId);
 
                     $pstmt->execute();
 
@@ -616,11 +681,11 @@ class Manager extends person
                         $dbLastName = $row->mLastName;
                         $dbEmail = $row->mEmail;
                         $dbPhoneNo = $row->mPhone;
-                        $dbpassword = $row->mPassword;
+                        // $dbpassword = $row->mPassword;
                         $dbNIC = $row->mNIC;
                     }
 
-                    $manager = new Manager($dbFirstName, $dbLastName, $dbEmail, $dbpassword, $dbNIC, $managerID, $dbPhoneNo);
+                    $manager = new Manager($dbFirstName, $dbLastName, $dbEmail, $dbNIC, $this->managerId, $dbPhoneNo);
 
                     $_SESSION["manager"] = $manager;
                     return true;
@@ -646,9 +711,9 @@ class Admin extends person
     private $NIC;
     private $PhoneNo;
 
-    public function __construct($FirstName, $LastName, $Email, $Password, $NIC, $adminId, $PhoneNo)
+    public function __construct($FirstName, $LastName, $Email, $NIC, $adminId, $PhoneNo)
     {
-        parent::__construct($FirstName, $LastName, $Email,  $Password);
+        parent::__construct($FirstName, $LastName, $Email);
         $this->NIC = $NIC;
         $this->PhoneNo = $PhoneNo;
         $this->adminId = $adminId;
@@ -669,6 +734,43 @@ class Admin extends person
         return $this->adminId;
     }
 
+    public static function adminLogin($email, $password)
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT * FROM admin WHERE aEmail = ? ";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $email);
+
+            $pstmt->execute();
+
+            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+            foreach ($rs as $row) {
+                $dbpassword = $row->aPassword;
+                $dbFirstName = $row->aFirstName;
+                $dbLastName = $row->aLastName;
+                $dbEmail = $row->aEmail;
+                $dbPhoneNo = $row->aPhone;
+                $dbNIC = $row->aNIC;
+                $dbaID = $row->adminID;
+            }
+
+            if (password_verify($password, $dbpassword)) {
+
+                $admin = new Admin($dbFirstName, $dbLastName, $dbEmail, $dbNIC, $dbaID, $dbPhoneNo);
+                session_start();
+                $_SESSION["admin"] = $admin;
+                return true;
+            } else {
+
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
     public function AddManager($firstname, $lastname, $email, $password, $NIC, $phone)
     {
         try {
@@ -706,6 +808,56 @@ class Admin extends person
             $pstmt->execute();
             if (($pstmt->rowCount()) > 0) {
                 return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public function editAdminDetails($firstName, $lastName, $email, $NIC, $phone)
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "UPDATE admin SET aFirstName = ?, aLastName = ?, aEmail = ?, aNIC = ?, aPhone = ? WHERE adminID = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $firstName);
+            $pstmt->bindValue(2, $lastName);
+            $pstmt->bindValue(3, $email);
+            $pstmt->bindValue(4, $NIC);
+            $pstmt->bindValue(5, $phone);
+            $pstmt->bindValue(6, $this->adminId);
+
+            $pstmt->execute();
+
+            if ($pstmt->execute()) {
+                $_SESSION["admin"] = null;
+                try {
+
+                    $con = $dbcon->getConnection();
+                    $query = "SELECT * FROM admin WHERE adminID = ? ";
+                    $pstmt1 = $con->prepare($query);
+                    $pstmt1->bindValue(1, $this->adminId);
+                    $pstmt1->execute();
+                    $rs = $pstmt1->fetchAll(PDO::FETCH_OBJ);
+
+                    foreach ($rs as $row) {
+                        // $dbpassword = $row->aPassword;
+                        $dbFirstName = $row->aFirstName;
+                        $dbLastName = $row->aLastName;
+                        $dbEmail = $row->aEmail;
+                        $dbPhoneNo = $row->aPhone;
+                        $dbNIC = $row->aNIC;
+                    }
+
+                    $adminNew = new admin($dbFirstName, $dbLastName, $dbEmail, $dbNIC, $this->adminId, $dbPhoneNo);
+                    $_SESSION["admin"] = $adminNew;
+                    return true;
+                } catch (PDOException $exc) {
+                    echo $exc->getMessage();
+                }
             } else {
                 return false;
             }

@@ -57,6 +57,7 @@ if (isset($_SESSION["user"])) {
                         <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
                         <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
                         <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
+                        <a href="./report.php" class="dropdown-item">Reporting</a>
 
                     </div>
                 </div>
@@ -80,7 +81,7 @@ if (isset($_SESSION["user"])) {
                                 <img src="<?php echo $user->getPropic() ?> " alt="Admin" class="rounded-circle" width="150" height="150">
                                 <div class="mt-3">
                                     <h4>Hello! <?php echo $user->getFirstName() . "" . $user->getLastName() ?> !</h4><br>
-                                   <!--  <a class="btn btn-outline-primary " target="" href="./classes/logout.php">Log Out</a>-->
+                                   <!--  <a class="btn btn-outline-primary " target="" href="./processes/logout.php">Log Out</a>-->
                                     <a class="btn btn-outline-primary" id="popbutton" target="#" >Change Profile Picture</a>
 
                                     <a class="btn btn-outline-danger " target="#" >Change Password</a>
@@ -92,7 +93,7 @@ if (isset($_SESSION["user"])) {
                 <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body">
-                            <form action="./classes/userEditProcess.php" method="post">
+                            <form action="./processes/userEditProcess.php" method="post">
                                 <div class="row mb-3">
                                     <div class="col-sm-3" style="margin-top: 25px;">
                                         <h6 class="mb-0"><b>First Name</b></h6>
@@ -166,7 +167,7 @@ if (isset($_SESSION["user"])) {
 		<div class="close">+</div>
 	
 
-    <form action="./classes/changeprofilepicture.php" method="post" enctype="multipart/form-data">
+    <form action="./processes/changeprofilepicture.php" method="post" enctype="multipart/form-data">
         <!-- <input type="text" name="name" placeholder="Name" values="$name">
         <input type="email" name="email" placeholder="E-Mail" values="$email"> -->
         <label for="profile_picture"><b>Select Image for Profile Picture</b></label>

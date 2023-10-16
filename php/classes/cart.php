@@ -56,27 +56,6 @@ class Cart
         }
     }
 
-    public function checkAvailability($ItemId, $quantity)
-    {
-        try {
-            $query = "SELECT ItemQuantity FROM shop WHERE ItemId = ?";
-            $pstmt = $this->con->prepare($query);
-            $pstmt->bindValue(1, $ItemId);
-            $pstmt->execute();
-            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
-
-            foreach ($rs as $item) {
-                if ($item->ItemQuantity < $quantity) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        } catch (PDOException $exc) {
-            echo $exc->getMessage();
-        }
-    }
-
     public function changeQuantity($ItemId, $user_id, $quantity)
     {
         try {
@@ -85,6 +64,40 @@ class Cart
             $pstmt->bindValue(1, $quantity);
             $pstmt->bindValue(2, $user_id);
             $pstmt->bindValue(3, $ItemId);
+
+            $pstmt->execute();
+            if (($pstmt->rowCount()) > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public function getTotal($userID){
+        try {
+            $query = "SELECT Price, Quantity FROM cart WHERE user_id = ?";
+            $pstmt = $this->con->prepare($query);
+            $pstmt->bindValue(1, $userID);
+            $pstmt->execute();
+            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+            $total = 0;
+            foreach ($rs as $item) {
+                $total = $total + ($item->Price * $item->Quantity);
+            }
+            return $total;
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public function resetCart($userID){
+        try {
+            $query = "DELETE FROM cart WHERE user_id = ?";
+            $pstmt = $this->con->prepare($query);
+            $pstmt->bindValue(1, $userID);
 
             $pstmt->execute();
             if (($pstmt->rowCount()) > 0) {
