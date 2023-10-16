@@ -241,7 +241,7 @@ if (isset($_SESSION["manager"])) {
                                                 </a>
 
 
-                                                <form action="./classes/manageCart.php" method="POST">
+                                                <form action="./processes/manageCart.php" method="POST">
 
                                                     <!-- <a href="javascript:void(0);" class="btn btn-success">Add to cart</a> -->
                                                     <input type="hidden" name="Item_Name" value="<?php echo $item->ItemName; ?>">

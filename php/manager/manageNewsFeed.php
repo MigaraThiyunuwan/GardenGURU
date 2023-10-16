@@ -150,7 +150,7 @@ if (isset($_SESSION["manager"])) {
                 <a href="./manageBlogs.php" class="w-100"><button class="mybtn w-100">Manage Blog</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                    <button class="mybtn w-100">Button</button>
+                <a href="./manageOrder.php" class="w-100"><button class="mybtn w-100">Orders</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
                     <button class="mybtn w-100">Button</button>

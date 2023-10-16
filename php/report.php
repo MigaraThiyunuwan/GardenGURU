@@ -2,17 +2,21 @@
 <html lang="en">
 <?php
 require_once './classes/persons.php';
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 session_start();
 $user = null;
 $manager = null;
 if (isset($_SESSION["user"])) {
     // User is logged in, retrieve the user object
     $user = $_SESSION["user"];
-} 
+}
 if (isset($_SESSION["manager"])) {
     // User is logged in, retrieve the user object
     $manager = $_SESSION["manager"];
-} 
+}
 ?>
 
 
@@ -49,9 +53,9 @@ if (isset($_SESSION["manager"])) {
 </head>
 
 <body>
-<?php 
+    <?php
 
-?>
+    ?>
 
 
     <!-- Navbar Start -->
@@ -98,11 +102,12 @@ if (isset($_SESSION["manager"])) {
                 ?>
 
             </div>
-        
+
         </div>
     </nav>
     <!-- Navbar End -->
 
+ 
     <!-- Page Header Start -->
     <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
 
@@ -116,8 +121,8 @@ if (isset($_SESSION["manager"])) {
     <!-- Page Header End -->
 
 
-   <!-- Footer Start -->
-   <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">

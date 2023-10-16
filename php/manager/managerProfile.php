@@ -316,9 +316,9 @@ if (isset($_SESSION["manager"])) {
                             <div class="btn-square rounded-circle mx-auto mb-3">
                                 <i class="fa-solid fa-shop fa-2xl text-primary"></i>
                             </div>
-                            <h4 class="mb-3">Plant Selling</h4>
-                            <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif"> Bring the Beauty of Nature Home! Browse our garden of possibilities where you'll find a world of green wonders waiting to transform your space. 🌷🏡</p>
-                            <a class="btn btn-sm" href="./php/Selling.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
+                            <h4 class="mb-3">Manage Orders</h4>
+                            <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif">add suitable caption for this. add suitable caption for this. add suitable caption for this</p>
+                            <a class="btn btn-sm" href="./manageOrder.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>
                 </div>

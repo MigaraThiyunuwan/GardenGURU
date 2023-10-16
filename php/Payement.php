@@ -23,8 +23,7 @@ $total = $cart->getTotal($user->getUserId());
     <meta charset="utf-8">
     <title>GardenGURU | Payment</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -133,7 +132,7 @@ $total = $cart->getTotal($user->getUserId());
                                     <div class="inputbox mt-3 mr-2"> <input type="text" name="city" class="form-control" required="required"> <span>City</span> </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="postalCode" class="form-control" required="required"> <span>Postal code</span> </div>
+                                    <div class="inputbox mt-3 mr-2"> <input type="number" name="tel" class="form-control" required="required"> <span>Contact Number</span> </div>
 
                                 </div>
                             </div>
@@ -177,7 +176,6 @@ $total = $cart->getTotal($user->getUserId());
             </div>
 
         </div>
-
 
     </div>
 
@@ -244,7 +242,5 @@ $total = $cart->getTotal($user->getUserId());
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/main.js"></script>
 </body>
-
-
 
 </html>

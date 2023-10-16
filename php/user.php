@@ -3,6 +3,11 @@
 
 <?php
 require_once './classes/persons.php';
+require_once './classes/DbConnector.php';
+
+use classes\DbConnector;
+
+$dbcon = new DbConnector();
 session_start();
 if (isset($_SESSION["user"])) {
   // User is logged in, retrieve the user object
@@ -267,14 +272,82 @@ if (isset($_SESSION["user"])) {
     </div>
     <br><br>
 
-    
+
 
     <div class="row mb-5">
       <div class="col-md-8 col-xl-6 text-center mx-auto">
-        <h2 class="display-6 fw-bold mb-4">Check out <span class="underline">amazing plans</span> for your profile</h2>
-        <p class="text-muted">Now you can publish advertiesments , post Questions ,buy plants through our website</p>
+        <h2 class="display-6 fw-bold mb-4">My Orders</h2>
+        <p class="text-muted">Your Placed order will be follow</p>
       </div>
     </div>
+
+    <div class="table-responsive table mt-2" style="margin-bottom: 20px;">
+      <table class="table my-0" id="dataTable">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Billing Name</th>
+            <th>Billing Address</th>
+            <th>Total Amount</th>
+            <th>Order Status</th>
+            <th>View Bill</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          try {
+            $con = $dbcon->getConnection();
+            $query = "SELECT * FROM orders WHERE user_id = ? ORDER BY orderID DESC";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $user->getUserId());
+            $pstmt->execute();
+            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+            foreach ($rs as $order) {
+              // Display user details as before
+          ?>
+
+              <tr>
+                <td><?php echo $order->orderID ?></td>
+                <td><?php echo $order->receiver ?></td>
+                <td><?php echo $order->deliveryAddress ?></td>
+                <td><?php echo $order->TotalPrice ?></td>
+                <td>
+                  <?php
+                  if ($order->OrderStatus == "waiting") {
+                  ?>
+                    <span class="btn btn-outline-warning">Waiting</span>
+                  <?php
+                  } else if ($order->OrderStatus == "success") {
+                  ?>
+                    <span class="btn btn-outline-success">Ready</span>
+                  <?php
+                  } else if ($order->OrderStatus == "rejected") {
+                  ?>
+                    <span class="btn btn-outline-danger">Rejected</span>
+                  <?php
+                  }
+                  ?>
+                </td>
+                <td>
+                  <!-- <button type="button" class="btn btn btn-danger" >Delete  -->
+                  <a class="btn btn btn-warning" target="_blank" href="./mybill.php?orderID=<?php echo $order->orderID ?>">View Bill</a>
+                </td>
+              </tr>
+          <?php
+            }
+          } catch (PDOException $exc) {
+            echo $exc->getMessage();
+          }
+          ?>
+        </tbody>
+      </table>
+
+    </div>
+
+
+
+
 
     <div class="row g-4">
       <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -354,11 +427,11 @@ if (isset($_SESSION["user"])) {
         <br>
         <!-- <label for="blog_details">Blog Details:</label>
             <textarea id="blog_details" name="blog_details" required></textarea> -->
-       
-          <!-- <span class="input-group-text"><b>Blog Details:</b></span> -->
-          <label for="blog_title"><b>Blog Details:</b></label>
-          <textarea class="form-control" name="blog_details" aria-label="With textarea" required></textarea>
-       
+
+        <!-- <span class="input-group-text"><b>Blog Details:</b></span> -->
+        <label for="blog_title"><b>Blog Details:</b></label>
+        <textarea class="form-control" name="blog_details" aria-label="With textarea" required></textarea>
+
         <br>
         <label for="blog_image"><b>Blog Image:</b></label>
         <input type="file" class="form-control" id="blog_image" name="blog_image" accept="image/*" required>
@@ -367,22 +440,22 @@ if (isset($_SESSION["user"])) {
         <input type="hidden" id="Date" name="Date">
         <br>
         <div style="display: flex; flex-direction: column; align-items: center;">
-        <button class="btn btn-success" type="submit">Add Blog</button>
+          <button class="btn btn-success" type="submit">Add Blog</button>
 
         </div>
-        
+
       </form>
       <script>
         // Function to set the real date as the value of the hidden input field
         function setRealDate() {
-            var currentDate = new Date();
-            var realDateField = document.getElementById('Date');
-            realDateField.value = currentDate.toISOString();
+          var currentDate = new Date();
+          var realDateField = document.getElementById('Date');
+          realDateField.value = currentDate.toISOString();
         }
 
         // Call setRealDate() when the form is submitted
         document.getElementById('blogForm').addEventListener('submit', setRealDate);
-    </script>
+      </script>
     </div>
   </div>
 
@@ -424,14 +497,14 @@ if (isset($_SESSION["user"])) {
   <div class="bg-modal">
     <div class="modal-contents ">
 
-    <div class="close" id="close-button">+</div>
+      <div class="close" id="close-button">+</div>
 
       <form id="adForm" action="./processes/putAdd.php" method="post" enctype="multipart/form-data">
-        
+
         <label for="image1"><b>Select Image for Advertisement:</b></label>
         <input type="file" class="form-control" name="image1" id="image1" values="$filename1">
         <label for="text_title"><br><b>Add title for the Advertisement:</b></label>
-        <input type="text" class="form-control"  name="text_title" id="text_title">
+        <input type="text" class="form-control" name="text_title" id="text_title">
         <label for="text_description"><br><b>Enter Your Description:</b></label>
         <textarea name="text_description" class="form-control" id="text_description" rows="5" cols="40"></textarea>
         <input type="hidden" name="submit" value="Put Advertisement" values="$filename2">
@@ -441,30 +514,30 @@ if (isset($_SESSION["user"])) {
       <script>
         // Function to set the real date as the value of the hidden input field
         function setRealDate() {
-            var currentDate = new Date();
-            var realDateField = document.getElementById('realDate');
-            realDateField.value = currentDate.toISOString();
+          var currentDate = new Date();
+          var realDateField = document.getElementById('realDate');
+          realDateField.value = currentDate.toISOString();
         }
 
         // Call setRealDate() when the form is submitted
         document.getElementById('adForm').addEventListener('submit', setRealDate);
-    </script>
+      </script>
 
 
     </div>
   </div>
 
   <script>
-  // JavaScript to handle the close button functionality
-  const closeButton = document.getElementById('close-button');
-  const modalContents = document.querySelector('.modal-contents');
-  const bgModal = document.querySelector('.bg-modal');
+    // JavaScript to handle the close button functionality
+    const closeButton = document.getElementById('close-button');
+    const modalContents = document.querySelector('.modal-contents');
+    const bgModal = document.querySelector('.bg-modal');
 
-  closeButton.addEventListener('click', () => {
-    modalContents.style.display = 'none';
-    bgModal.style.display = 'none';
-  });
-</script>
+    closeButton.addEventListener('click', () => {
+      modalContents.style.display = 'none';
+      bgModal.style.display = 'none';
+    });
+  </script>
 
 
 
@@ -477,43 +550,43 @@ if (isset($_SESSION["user"])) {
 
   <!-- Footer Start -->
   <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Our Office</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Services</h4>
-                    <a class="btn btn-link" href="./plantSuggestion.php">Plant Suggestion</a>
-                    <a class="btn btn-link" href="./Advertistment.php">Advertiesment</a>
-                    <a class="btn btn-link" href="./Selling.php">Shop</a>
-                    <a class="btn btn-link" href="./blog.php">Blog</a>
-
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="./AboutUs.php">About Us</a>
-                    <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
-                    <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
-                    <a class="btn btn-link" href="./login.php">Log Out</a>
-                    <a class="btn btn-link" href="./termsAndCondition.php">Terms & Condition</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <img src="../images/logo.png" style="width:220px;height:50px;">
-                </div>
-            </div>
+    <div class="container py-5">
+      <div class="row g-5">
+        <div class="col-lg-3 col-md-6">
+          <h4 class="text-white mb-4">Our Office</h4>
+          <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
+          <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
+          <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
+          <div class="d-flex pt-2">
+            <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
+            <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+            <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-youtube"></i></a>
+            <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
         </div>
+        <div class="col-lg-3 col-md-6">
+          <h4 class="text-white mb-4">Services</h4>
+          <a class="btn btn-link" href="./plantSuggestion.php">Plant Suggestion</a>
+          <a class="btn btn-link" href="./Advertistment.php">Advertiesment</a>
+          <a class="btn btn-link" href="./Selling.php">Shop</a>
+          <a class="btn btn-link" href="./blog.php">Blog</a>
+
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h4 class="text-white mb-4">Quick Links</h4>
+          <a class="btn btn-link" href="./AboutUs.php">About Us</a>
+          <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
+          <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
+          <a class="btn btn-link" href="./login.php">Log Out</a>
+          <a class="btn btn-link" href="./termsAndCondition.php">Terms & Condition</a>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <img src="../images/logo.png" style="width:220px;height:50px;">
+        </div>
+      </div>
     </div>
-    <!-- Footer End -->
+  </div>
+  <!-- Footer End -->
   <!-- Back to Top -->
   <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 

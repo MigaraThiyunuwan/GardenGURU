@@ -78,7 +78,7 @@ class Order
 
             $dbcon =  new DbConnector();
             $con = $dbcon->getConnection();
-            $query = "INSERT INTO orders (user_id, orderDate, TotalPrice, deliveryAddress, city, receiver, postalCode, OrderTransaction, OrderStatus) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $query = "INSERT INTO orders (user_id, orderDate, TotalPrice, deliveryAddress, city, receiver, CoNum, OrderTransaction, OrderStatus) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $pstmt = $con->prepare($query);
             $pstmt->bindValue(1, $user_id);
             $pstmt->bindValue(2, $this->orderDate);

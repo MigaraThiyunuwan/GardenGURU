@@ -53,6 +53,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: ../manager/manageBlogs.php?error=4");
         }
     }
-}
 
-?>
+    if(isset($_POST['OrderID'])){
+        $OrderID = $_POST['OrderID'];
+        $status = $_POST['status'];
+            // call manageOrder function in Manager class
+        if($manager->manageOrder($OrderID,$status)){
+            header("Location: ../manager/manageOrder.php?success=1");
+        } else {
+            header("Location: ../manager/manageOrder.php?error=1");
+        }
+    }
+
+    
+}

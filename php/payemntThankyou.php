@@ -109,7 +109,7 @@ if (isset($_SESSION["manager"])) {
        
         body {
             
-            background-image: url('../images/web.png') ;
+            /* background-image: url('../images/web.png') ; */
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: 100% 100%;
@@ -177,7 +177,7 @@ if (isset($_SESSION["manager"])) {
         </div>
     </nav>
     <!-- Navbar End -->
-    <div id="loader" style="margin-top: 200px;">
+    <div id="loader" style="margin-top: 100px;">
 
     </div>
 
@@ -190,10 +190,11 @@ if (isset($_SESSION["manager"])) {
         </div>
     </div>
 
-    <div style="display:none; " id="myDiv" class="animate-bottom">
+    <div style="display:none; " id="myDiv" class="animate-bottom" style="margin-top: 200px;">
         <h1>Payment success!</h1>
         <h2>Thank you for palced your order with us.</h2>
-        <a href="../index.php" class="btn btn-primary py-sm-3 px-sm-4" style="margin-top: 500px;">Back to Home</a>
+        <a href="../index.php" class="btn btn-primary py-sm-3 px-sm-4" style="margin-top: 100px;">Back to Home</a>
+        <a href="./mybill.php" target="_blank" class="btn btn-primary py-sm-3 px-sm-4" style="margin-top: 100px;">Download Bill</a>
     </div>
 
     <script>

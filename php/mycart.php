@@ -297,7 +297,7 @@ if (isset($_SESSION["manager"])) {
 
             </div>
 
-            <form action="payement.php" method="POST">
+            <!-- <form action="payement.php" method="POST"> -->
                 <div class="col-lg-12">
                     <div class="border bg-light rounded p-4">
                         <h4>Grand Total: Rs.</h4>
@@ -318,8 +318,9 @@ if (isset($_SESSION["manager"])) {
                         ?>
 
                             <input type="hidden" name="total" value="<?php echo $total ?>">
-                            <button class="btn btn-primary btn-block" name="purchase">Make Purchase</button>
-
+                            <?php if($total > 0){ ?>
+                            <a href="./Payement.php" class="btn btn-primary btn-block" name="purchase">Make Purchase</a>
+                            <?php } ?>
                         <?php
 
                         }
@@ -334,7 +335,7 @@ if (isset($_SESSION["manager"])) {
 
                             <br>
                             <input type="hidden" name="total" value="<?php echo $total ?>">
-                            <button class="btn btn-primary btn-block" name="purchase">Make Purchase</button>
+                            <a href="./Payement.php" class="btn btn-primary btn-block" name="purchase">Make Purchase</a>
 
                         <?php
 
@@ -345,7 +346,7 @@ if (isset($_SESSION["manager"])) {
                     </div>
 
                 </div>
-            </form>
+            <!-- </form> -->
 
         </div>
     </div>

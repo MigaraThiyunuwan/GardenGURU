@@ -590,6 +590,26 @@ class Manager extends person
         }
     }
 
+    public function manageOrder($orderID, $status)
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "UPDATE orders SET OrderStatus = ? WHERE orderID = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $status);
+            $pstmt->bindValue(2, $orderID);
+            $a = $pstmt->execute();
+            if ($a > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
     public static function LoginManager($email, $password)
     {
         try {

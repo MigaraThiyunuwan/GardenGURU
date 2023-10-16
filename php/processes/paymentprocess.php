@@ -23,7 +23,7 @@ $dbcon = new DbConnector();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['pay'])) {
-        if (empty($_POST['nameOnCard']) || empty($_POST['cardNo']) || empty($_POST['expiry']) || empty($_POST['cvv']) || empty($_POST['streetAddress']) || empty($_POST['city']) || empty($_POST['receiver']) || empty($_POST['postalCode'])) {
+        if (empty($_POST['nameOnCard']) || empty($_POST['cardNo']) || empty($_POST['expiry']) || empty($_POST['cvv']) || empty($_POST['streetAddress']) || empty($_POST['city']) || empty($_POST['receiver']) || empty($_POST['tel'])) {
             header("Location: ../payement.php?error=3");
         } else {
 
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $address = Security::SanitizeInput($_POST['streetAddress']);
             $city = Security::SanitizeInput($_POST['city']);
             $receiver = Security::SanitizeInput($_POST['receiver']);
-            $postalcode = Security::SanitizeInput($_POST['postalCode']);
+            $tel = Security::SanitizeInput($_POST['tel']);
             $date = date('Y-m-d');
             $cart = new Cart();
             $total = $cart->getTotal($user->getUserId());
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: ../mycart.php?error=4");
             } else {
 
-                $order = new Order($user->getUserId(), $date, $address, $city, $receiver, $postalcode, $total);
+                $order = new Order($user->getUserId(), $date, $address, $city, $receiver, $tel, $total);
 
 
 
@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION['cart'] = null;
                         $_SESSION['cart'][0] = array('ItemId' => null, 'Item_Name' => null, 'Price' => null, 'Quantity' => null);
                     }
-
+                    $_SESSION['orderID'] = $orderID;
                     header("Location: ../payemntThankyou.php");
                 } else {
                     header("Location: ../mycart.php?error=5");
