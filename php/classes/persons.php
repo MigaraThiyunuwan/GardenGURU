@@ -410,9 +410,17 @@ class user extends person
     {
         $tmp_name1 = $file['tmp_name'];
         $filename1 = $file['name'];
+        $userID = $this->userId; // Assuming $this->userId holds the user's ID.
 
-        $destination1 = '../../images/profile_pictures/' . $filename1;
-        $dbDestination = '../images/profile_pictures/' . $filename1;
+        $newFilename = $userID . '.' . pathinfo($filename1, PATHINFO_EXTENSION); // Generate the new filename.
+
+
+        $destination1 = '../../images/profile_pictures/' . $newFilename;
+        $dbDestination = '../images/profile_pictures/' . $newFilename;
+
+        if (file_exists($destination1)) {
+            unlink($destination1);
+        }
 
         if (move_uploaded_file($tmp_name1, $destination1)) {
             try {
@@ -607,6 +615,84 @@ class Manager extends person
             }
         } catch (PDOException $exc) {
             echo $exc->getMessage();
+        }
+    }
+
+    public function changePrice($ItemID, $newPrice)
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "UPDATE shop SET ItemPrice = ? WHERE ItemId = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $newPrice);
+            $pstmt->bindValue(2, $ItemID);
+            $a = $pstmt->execute();
+            if ($a > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public function changeQty($ItemID, $total)
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "UPDATE shop SET ItemQuantity = ? WHERE ItemId = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $total);
+            $pstmt->bindValue(2, $ItemID);
+            $a = $pstmt->execute();
+            if ($a > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public function addItem($file, $price, $name)
+    {
+        $tmp_name1 = $file['tmp_name'];
+        $filename1 = $file['name'];
+        $randomString = bin2hex(random_bytes(8));
+
+        $newFilename = $randomString . '.' . pathinfo($filename1, PATHINFO_EXTENSION);
+
+        $destination1 = '../../images/Selling1/' . $newFilename;
+        $dbDestination = '../images/Selling1/' . $newFilename;
+
+        if (file_exists($destination1)) {
+            unlink($destination1);
+        }
+
+        if (move_uploaded_file($tmp_name1, $destination1)) {
+            try {
+                $dbcon = new DbConnector();
+                $conn = $dbcon->getConnection();
+                $sql = "INSERT INTO shop (ItemName, ItemQuantity, ItemPrice, ItemImage) VALUES ( ?, ?, ?, ? )";
+
+                $pstmt = $conn->prepare($sql);
+                $pstmt->bindValue(1, $name);
+                $pstmt->bindValue(2, 0);
+                $pstmt->bindValue(3, $price);
+                $pstmt->bindValue(4, $dbDestination);
+
+                if ($pstmt->execute()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (PDOException $exc) {
+                echo $exc->getMessage();
+            }
         }
     }
 

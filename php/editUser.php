@@ -28,7 +28,7 @@ if (isset($_SESSION["user"])) {
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/popup.css" rel="stylesheet">
-    
+
 </head>
 
 <body>
@@ -64,7 +64,7 @@ if (isset($_SESSION["user"])) {
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
                 <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Profile</a>
-                
+
             </div>
 
     </nav>
@@ -81,10 +81,11 @@ if (isset($_SESSION["user"])) {
                                 <img src="<?php echo $user->getPropic() ?> " alt="Admin" class="rounded-circle" width="150" height="150">
                                 <div class="mt-3">
                                     <h4>Hello! <?php echo $user->getFirstName() . "" . $user->getLastName() ?> !</h4><br>
-                                   <!--  <a class="btn btn-outline-primary " target="" href="./processes/logout.php">Log Out</a>-->
-                                    <a class="btn btn-outline-primary" id="popbutton" target="#" >Change Profile Picture</a>
+                                    <!--  <a class="btn btn-outline-primary " target="" href="./processes/logout.php">Log Out</a>-->
+                                    <!-- <a class="btn btn-outline-primary" id="popbutton" target="#">Change Profile Picture</a> -->
+                                    <button type="button" class="btn btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addQtymodel">Change Profile Picture </button>
+                                    <a class="btn btn-outline-danger " target="#">Change Password</a>
 
-                                    <a class="btn btn-outline-danger " target="#" >Change Password</a>
                                 </div>
                             </div>
                         </div>
@@ -144,7 +145,7 @@ if (isset($_SESSION["user"])) {
 
                                         </div>
                                     </div>
-                                 
+
                                 </div>
                             </form>
                         </div>
@@ -154,46 +155,43 @@ if (isset($_SESSION["user"])) {
     </section>
 
 
+    <div class="modal fade shadow my-5" id="addQtymodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background-color: white;">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Select Image for Profile Picture
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="./processes/changeprofilepicture.php" method="post" enctype="multipart/form-data">
+                        <div class="d-flex justify-content-between p-2">
+
+                            <div class="d-flex">
+                                <p class="fw-bold me-2">
+                                    <input type="file" class="form-control" name="profile_picture" id="profile_picture" values="">
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <div class="row w-100">
+                                <div class="col-md">
+                                    <input type="submit" class="btn btn-success w-100 " name="submit" value="Upload" values="">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-   <!-- popupr Start -->
-
-
-<!-- Modal Section -->
-
-<div class="bg-modal" >
-	<div class="modal-contents " >
-
-		<div class="close">+</div>
-	
-
-    <form action="./processes/changeprofilepicture.php" method="post" enctype="multipart/form-data">
-        <!-- <input type="text" name="name" placeholder="Name" values="$name">
-        <input type="email" name="email" placeholder="E-Mail" values="$email"> -->
-        <label for="profile_picture"><b>Select Image for Profile Picture</b></label>
-        <input type="file" class="form-control" name="profile_picture" id="profile_picture" values="">
-        <input type="submit" class="btn btn-success" name="submit" value="Upload" values="">
-    </form>
-
-  
-
-	</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-    
     <!-- Footer Start -->
-   <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
@@ -248,13 +246,11 @@ if (isset($_SESSION["user"])) {
         </div>
     </div>
     <!-- Copyright End -->
-   <!-- JavaScript Libraries -->
-   <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- JavaScript Libraries -->
+    <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/popup.js"></script>
- 
+
 
 </body>
-
-

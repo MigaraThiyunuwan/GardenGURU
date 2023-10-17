@@ -10,7 +10,7 @@ class Report
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
-            $query = "SELECT o.receiver, o.orderDate, o.TotalPrice, o.deliveryAddress, o.CoNum, o.city, oi.itemQuantity, s.ItemName, s.ItemPrice
+            $query = "SELECT o.receiver, o.orderDate, o.TotalPrice, o.deliveryAddress, o.CoNum, o.city, o.OrderStatus, oi.itemQuantity, s.ItemName, s.ItemPrice
             FROM orders o
             JOIN orderitem oi ON o.orderID = oi.orderID
             JOIN shop s ON oi.ItemId = s.ItemId
@@ -34,7 +34,8 @@ class Report
                     $row['ItemName'],
                     $row['ItemPrice'],
                     $row['CoNum'],
-                    $row['city']
+                    $row['city'],
+                    $row['OrderStatus']
                 );
             }
             return $myarray;

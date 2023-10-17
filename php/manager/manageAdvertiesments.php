@@ -153,7 +153,7 @@ if (isset($_SESSION["manager"])) {
                 <a href="./manageOrder.php" class="w-100"><button class="mybtn w-100">Orders</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                    <button class="mybtn w-100">Button</button>
+                <a href="./manageShop.php" class="w-100"><button class="mybtn w-100">Manage Shop</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
                     <button class="mybtn w-100">Button</button>
@@ -207,7 +207,7 @@ if (isset($_SESSION["manager"])) {
                                         $start2 = isset($_GET['start2']) ? intval($_GET['start2']) : 0;
                                         $rows_per_page2 = 20;
 
-                                        $query2 = "SELECT * FROM advertisements LIMIT $start2, $rows_per_page2";
+                                        $query2 = "SELECT * FROM advertisements ORDER BY id DESC LIMIT $start2, $rows_per_page2";
                                         $pstmt = $con->prepare($query2);
                                         $pstmt->execute();
                                         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
@@ -217,7 +217,7 @@ if (isset($_SESSION["manager"])) {
                                     ?>
 
                                             <tr>
-                                                <td><?php echo "A" . $add->id; ?></td>
+                                                <td><?php echo $add->id; ?></td>
                                                 <td><?php echo $add->title; ?></td>
                                                 <td><?php echo $add->adPostedDate; ?></td>
                                                 <td><?php echo $add->user_FirstName . " " . $add->user_LastName ?></td>

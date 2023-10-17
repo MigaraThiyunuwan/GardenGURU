@@ -329,11 +329,11 @@ if (isset($_SESSION["manager"])) {
                         </div>
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
-                                <i class="fa-solid fa-blog fa-2xl text-primary"></i>
+                                <i class="fa-solid fa-shop fa-2xl text-primary"></i>
                             </div>
-                            <h4 class="mb-3">Blog</h4>
-                            <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif"> Cultivate Your Knowledge with Us! Welcome to our Gardener's Blog, your passport to a world of horticultural wisdom and green inspiration. 🌿📝</p>
-                            <a class="btn btn-sm" href="./php/blog.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
+                            <h4 class="mb-3">Manage Shop</h4>
+                            <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif">add suitable caption for this. add suitable caption for this. add suitable caption for this</p>
+                            <a class="btn btn-sm" href="./manageShop.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>
                 </div>

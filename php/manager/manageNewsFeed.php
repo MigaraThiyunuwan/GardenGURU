@@ -153,7 +153,7 @@ if (isset($_SESSION["manager"])) {
                 <a href="./manageOrder.php" class="w-100"><button class="mybtn w-100">Orders</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                    <button class="mybtn w-100">Button</button>
+                <a href="./manageShop.php" class="w-100"><button class="mybtn w-100">Manage Shop</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
                     <button class="mybtn w-100">Button</button>
@@ -208,7 +208,7 @@ if (isset($_SESSION["manager"])) {
                                         $start = isset($_GET['start']) ? intval($_GET['start']) : 0;
                                         $rows_per_page = 20;
 
-                                        $query = "SELECT * FROM news LIMIT $start, $rows_per_page";
+                                        $query = "SELECT * FROM news ORDER BY newsId DESC LIMIT $start, $rows_per_page";
                                         $pstmt = $con->prepare($query);
                                         $pstmt->execute();
                                         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
@@ -218,9 +218,10 @@ if (isset($_SESSION["manager"])) {
                                     ?>
 
                                             <tr>
-                                                <td><?php echo "N" . $news->newsId; ?></td>
+                                                <td><?php echo $news->newsId; ?></td>
                                                 <td><?php echo $news->title; ?></td>
                                                 <td><?php echo $news->newsPostedDate; ?></td>
+                                                
 
                                                 <td>
                                                     <button type="button" class="btn btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletemodel<?php echo $news->newsId ?>">Delete </button>

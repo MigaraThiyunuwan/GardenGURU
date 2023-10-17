@@ -126,7 +126,7 @@ if (isset($_SESSION["manager"])) {
     <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
 
         <div class="container text-center py-5">
-            <h1 class="display-3 text-white mb-4 animated slideInDown">Manage Blogs</h1>
+            <h1 class="display-3 text-white mb-4 animated slideInDown">Manage Shop</h1>
             <ol class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item">Nurture Your Green Thumb with Us!</li>
             </ol>
@@ -144,16 +144,16 @@ if (isset($_SESSION["manager"])) {
                     <a href="./manageUsers.php" class="w-100"><button class="mybtn w-100">User Details</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                <a href="./manageNewsFeed.php" class="w-100"><button class="mybtn w-100">News Feed</button></a>
+                    <a href="./manageNewsFeed.php" class="w-100"><button class="mybtn w-100">News Feed</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                <a href="./manageAdvertiesments.php" class="w-100"><button class="mybtn w-100">Advertiesment</button></a>
+                    <a href="./manageAdvertiesments.php" class="w-100"><button class="mybtn w-100">Advertiesment</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                <a href="./manageOrder.php" class="w-100"><button class="mybtn w-100">Orders</button></a>
+                    <a href="./manageOrder.php" class="w-100"><button class="mybtn w-100">Orders</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                <a href="./manageShop.php" class="w-100"><button class="mybtn w-100">Manage Shop</button></a>
+                    <a href="./manageBlogs.php" class="w-100"><button class="mybtn w-100">Manage Blog</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
                     <button class="mybtn w-100">Button</button>
@@ -166,24 +166,91 @@ if (isset($_SESSION["manager"])) {
                 <?php
 
                 if (isset($_GET['success'])) {
-                    if ($_GET['success'] == 4) {
+                    if ($_GET['success'] == 1) {
 
                         echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
-                                    Blog Deleted Successfully!
+                                    Price Changed Successfully!
+                                    </div></b>";
+                    }
+                    if ($_GET['success'] == 2) {
+
+                        echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                                    Quantity Changed Successfully!
+                                    </div></b>";
+                    }
+                    if ($_GET['success'] == 3) {
+
+                        echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                                    New Item Added Successfully. Please Set the quantity!
                                     </div></b>";
                     }
                 }
                 if (isset($_GET['error'])) {
-                   
-                    if ($_GET['error'] == 4) {
+
+                    if ($_GET['error'] == 1) {
 
                         echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
-                            Blog Deleting Failed!
+                            Price Changing Failed!
+                                    </div></b>";
+                    }
+                    if ($_GET['error'] == 2) {
+
+                        echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                            Quantity Changing Failed!
+                                    </div></b>";
+                    }
+
+                    if ($_GET['error'] == 3) {
+
+                        echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                            New Item Add Failed!
                                     </div></b>";
                     }
                 }
                 ?>
-              
+
+                <button type="button" class="btn btn btn-success" style="margin-bottom: 10px;" data-bs-toggle="modal" data-bs-target="#addItem">Add New Item to the Shop</button>
+
+                <div class="modal fade shadow my-5" id="addItem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content" style="background-color: white;">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Item to the Shop
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action='../processes/managerProcess.php' method='POST' enctype="multipart/form-data">
+                                    <div class="d-flex justify-content-between p-2">
+
+                                        <div class="d-flex">
+                                            <!-- <p class="fw-bold me-2"> -->
+                                            <p class="fw-bold me-2">
+                                                Itam Name : <input type="text" name="itamName"><br><br>
+                                                Item Price : <input type="number" name="itemPrice"><br><br>
+                                                Item Image : <input type="file" class="form-control" name="itemImage" id="itemImage" values="">
+                                                
+                                            </p>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <div class="row w-100">
+                                            <div class="col-md-6" style="margin-bottom: 10px;">
+                                                <button class="btn btn-danger w-100 " type="submit" data-bs-dismiss="modal" aria-label="Close">Add</button>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button class="btn btn-success w-100" type="button" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="card shadow">
                     <div class="card-body">
 
@@ -191,11 +258,13 @@ if (isset($_SESSION["manager"])) {
                             <table class="table my-0" id="dataTable">
                                 <thead>
                                     <tr>
-                                        <th>Blog ID</th>
-                                        <th>Blog Title</th>
-                                        <th>Posted Date</th>
-                                        <th>Posted by</th>
-                                        <th>Delete</th>
+                                        <th>Item ID</th>
+                                        <th>Item Name</th>
+                                        <th>Unit Price</th>
+                                        <th>Change Price</th>
+                                        <th>Available Qty</th>
+                                        <th>Add Qty</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -207,62 +276,123 @@ if (isset($_SESSION["manager"])) {
                                         $start3 = isset($_GET['start3']) ? intval($_GET['start3']) : 0;
                                         $rows_per_page3 = 20;
 
-                                        $query3 = "SELECT * FROM blog ORDER BY blog_id DESC LIMIT $start3, $rows_per_page3";
+                                        $query3 = "SELECT * FROM shop LIMIT $start3, $rows_per_page3";
                                         $pstmt = $con->prepare($query3);
                                         $pstmt->execute();
                                         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
 
-                                        foreach ($rs as $blog) {
+                                        foreach ($rs as $shop) {
                                             // Display user details as before
                                     ?>
 
                                             <tr>
-                                                <td><?php echo $blog->blog_id; ?></td>
-                                                <td><?php echo $blog->blog_title; ?></td>
-                                                <td><?php echo $blog->blogPostedDate; ?></td>
-                                                <td><?php echo $blog->user_fname . " " . $blog->user_lname ?></td>
+                                                <td><?php echo $shop->ItemId; ?></td>
+                                                <td><?php echo $shop->ItemName; ?></td>
+                                                <td><?php echo $shop->ItemPrice; ?></td>
                                                 <td>
-                                                    <button type="button" class="btn btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteBlogmodel<?php echo $blog->blog_id ?>">Delete </button>
+                                                    <button type="button" class="btn btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#changePrice<?php echo $shop->ItemId ?>">Change </button>
+
+                                                </td>
+                                                <?php
+                                                if ($shop->ItemQuantity < 6) {
+                                                ?>
+                                                    <td style="background-color: #FF8A71;"><?php echo $shop->ItemQuantity ?></td>
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <td><?php echo $shop->ItemQuantity ?></td>
+                                                <?php
+                                                }
+                                                ?>
+
+                                                <td>
+                                                    <button type="button" class="btn btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#addQtymodel<?php echo $shop->ItemId ?>">Add </button>
 
                                                 </td>
                                             </tr>
 
-                                            <div class="modal fade shadow my-5" id="deleteBlogmodel<?php echo $blog->blog_id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+                                            <div class="modal fade shadow my-5" id="addQtymodel<?php echo $shop->ItemId ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content" style="background-color: white;">
                                                         <div class="modal-header">
-                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm to Delete Advertiesment
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm to Add new Quantity
                                                             </h1>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
+                                                            <form action='../processes/managerProcess.php' method='POST'>
+                                                                <div class="d-flex justify-content-between p-2">
 
-                                                            <div class="d-flex justify-content-between p-2">
+                                                                    <div class="d-flex">
+                                                                        <p class="fw-bold me-2">
+                                                                            Current Quantity : <?php echo $shop->ItemQuantity ?> <br>
+                                                                            New Quantity : <input type="number" name="newQty">
+                                                                            <input type='hidden' name='currentQty' value='<?php echo $shop->ItemQuantity ?>'>
+                                                                            <input type='hidden' name='ItemID' value='<?php echo $shop->ItemId ?>'>
+                                                                        </p>
 
-                                                                <div class="d-flex">
-                                                                    <p class="fw-bold me-2">
-                                                                        Are you sure to delete advertisement <span style="color: green;">"<?php echo $blog->blog_title ?>"</span> from the system?
-                                                                    </p>
+                                                                    </div>
 
                                                                 </div>
 
-                                                            </div>
+                                                                <div class="modal-footer">
+                                                                    <div class="row w-100">
+                                                                        <div class="col-md-6" style="margin-bottom: 10px;">
 
-                                                            <div class="modal-footer">
-                                                                <div class="row w-100">
-                                                                    <div class="col-md-6" style="margin-bottom: 10px;">
-                                                                        <form action='../processes/managerProcess.php' method='POST'>
-                                                                            <input type='hidden' name='blogID' value='<?php echo $blog->blog_id ?>'>
+
 
                                                                             <button class="btn btn-danger w-100 " type="submit" data-bs-dismiss="modal" aria-label="Close">Confirm</button>
 
-                                                                        </form>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <button class="btn btn-success w-100" type="button" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <button class="btn btn-success w-100" type="button" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal fade shadow my-5" id="changePrice<?php echo $shop->ItemId ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content" style="background-color: white;">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm to Change Item Price
+                                                            </h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action='../processes/managerProcess.php' method='POST'>
+                                                                <div class="d-flex justify-content-between p-2">
+
+                                                                    <div class="d-flex">
+                                                                        <p class="fw-bold me-2">
+                                                                            Current Price : Rs. <?php echo $shop->ItemPrice ?> <br>
+                                                                            New Price : <input type="number" name="newPrice">
+                                                                            <input type='hidden' name='ItemID' value='<?php echo $shop->ItemId ?>'>
+                                                                        </p>
+
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                    <div class="row w-100">
+                                                                        <div class="col-md-6" style="margin-bottom: 10px;">
+
+                                                                            <button class="btn btn-danger w-100 " type="submit" data-bs-dismiss="modal" aria-label="Close">Confirm</button>
+
+
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <button class="btn btn-success w-100" type="button" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -273,7 +403,7 @@ if (isset($_SESSION["manager"])) {
                                         }
                                         // Calculate the total number of rows in the 'news' table (if not already calculated)
                                         if (!isset($total_rows3)) {
-                                            $total_rows_query3 = "SELECT COUNT(*) as total FROM blog";
+                                            $total_rows_query3 = "SELECT COUNT(*) as total FROM shop";
                                             $total_rows_stmt3 = $con->prepare($total_rows_query3);
                                             $total_rows_stmt3->execute();
                                             $total_rows_result3 = $total_rows_stmt3->fetch(PDO::FETCH_ASSOC);
