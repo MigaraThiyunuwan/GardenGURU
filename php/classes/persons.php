@@ -310,6 +310,7 @@ class user extends person
 
                         return true;
                     } else {
+                        return false;
                     }
                 } catch (PDOException $exc) {
                     echo $exc->getMessage();

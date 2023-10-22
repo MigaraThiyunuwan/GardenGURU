@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2023 at 03:14 PM
+-- Generation Time: Oct 22, 2023 at 01:54 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -95,7 +95,9 @@ CREATE TABLE `answer` (
 INSERT INTO `answer` (`answerID`, `questionID`, `user_id`, `answerDate`, `answer`) VALUES
 (3, 7, 22, '2023-10-08', 'Successful carrot cultivation depends on soil preparation, sunlight, proper watering, thinning, and pest control. Carrots prefer well-drained soil, full sunlight, and consistent moisture. Thin seedlings to ensure proper spacing, and watch for pests and diseases. Harvest when carrots reach the desired size.'),
 (5, 7, 15, '2023-10-08', 'Soil Preparation: Use well-drained, loose, sandy loam soil with a pH of 6.0 to 6.8 and incorporate organic matter.\r\n\r\nClimate and Season: Plant in cool seasons, avoiding extreme heat.\r\n\r\nVariety Selection: Choose varieties suited to your climate and preferences.'),
-(6, 5, 2, '2023-10-08', 'Could you advise on the ideal timing and method for pruning tea bushes? I want to promote healthy growth and maximize yields in my tea cultivation. Your insights on when and how to prune effectively would be greatly appreciated.');
+(6, 5, 2, '2023-10-08', 'Could you advise on the ideal timing and method for pruning tea bushes? I want to promote healthy growth and maximize yields in my tea cultivation. Your insights on when and how to prune effectively would be greatly appreciated.'),
+(7, 7, 2, '2023-10-16', 'Thank you all ❤️'),
+(8, 8, 22, '2023-10-17', 'Hello, as a mango farmer, soil preparation is vital for successful mango tree growth. Begin with a soil test, ensure well-drained, sunny locations, and amend soil based on results. Adequate spacing, proper watering, and fertilization are key. Consult local experts and resources for specific guidance to ensure healthy mango trees.');
 
 -- --------------------------------------------------------
 
@@ -223,7 +225,29 @@ CREATE TABLE `orderitem` (
 --
 
 INSERT INTO `orderitem` (`orderItemID`, `orderID`, `ItemId`, `itemQuantity`) VALUES
-(3, 2, 2, 5);
+(3, 2, 2, 5),
+(4, 3, 2, 1),
+(5, 4, 2, 5),
+(6, 4, 5, 2),
+(7, 4, 6, 3),
+(8, 4, 10, 1),
+(9, 4, 7, 2),
+(10, 5, 2, 1),
+(11, 5, 8, 2),
+(12, 5, 4, 10),
+(13, 5, 7, 3),
+(14, 5, 15, 5),
+(15, 6, 1, 2),
+(16, 6, 2, 5),
+(17, 6, 6, 6),
+(18, 6, 9, 1),
+(19, 7, 1, 1),
+(20, 7, 10, 2),
+(21, 7, 11, 3),
+(22, 7, 7, 1),
+(23, 8, 10, 1),
+(24, 8, 6, 3),
+(25, 8, 13, 2);
 
 -- --------------------------------------------------------
 
@@ -239,7 +263,7 @@ CREATE TABLE `orders` (
   `deliveryAddress` varchar(250) NOT NULL,
   `city` varchar(60) NOT NULL,
   `receiver` varchar(60) NOT NULL,
-  `postalCode` int(20) NOT NULL,
+  `CoNum` int(20) NOT NULL,
   `OrderTransaction` varchar(60) NOT NULL,
   `OrderStatus` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -248,8 +272,14 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`orderID`, `user_id`, `orderDate`, `TotalPrice`, `deliveryAddress`, `city`, `receiver`, `postalCode`, `OrderTransaction`, `OrderStatus`) VALUES
-(2, 22, '2023-10-06', 750, 'dzgrx', 'Attanagalla', 'Ruwan kumara', 11120, 'success', 'waiting');
+INSERT INTO `orders` (`orderID`, `user_id`, `orderDate`, `TotalPrice`, `deliveryAddress`, `city`, `receiver`, `CoNum`, `OrderTransaction`, `OrderStatus`) VALUES
+(2, 22, '2023-10-06', 750, 'dzgrx', 'Attanagalla', 'Ruwan kumara', 11120, 'success', 'success'),
+(3, 22, '2023-10-09', 150, 'thtr', 'Attanagalla', 'Ruwan kumara', 11120, 'success', 'success'),
+(4, 22, '2023-10-16', 1660, '56/2, Temple Rd. Kelaniya', 'Attanagalla', 'Nimal Perera', 771516783, 'success', 'waiting'),
+(5, 22, '2023-10-16', 2350, '23/1, Main Street, Nittambuwa', 'Nittambuwa', 'Tharindu Buddhika', 771629789, 'success', 'rejected'),
+(6, 22, '2023-10-16', 1780, '56/9, lake round, kurunegala', 'kurunegala', 'lashan sachintha', 778634967, 'success', 'waiting'),
+(7, 2, '2023-10-17', 930, 'No 23, Kurunegoda, Kotiyakumbura.', 'Kegalle', 'Malki Madhubhashini', 763857450, 'success', 'waiting'),
+(8, 15, '2023-10-17', 610, 'No.4, Galle Rd. Makuluwa', 'Galle', 'Sunura Adithya', 2147483647, 'success', 'waiting');
 
 -- --------------------------------------------------------
 
@@ -394,7 +424,8 @@ CREATE TABLE `question` (
 
 INSERT INTO `question` (`questionID`, `user_id`, `askDate`, `question`) VALUES
 (5, 22, '2023-10-08', 'Could you please provide guidance on the ideal timing and technique for pruning tea bushes to ensure optimal growth and yield?'),
-(7, 2, '2023-10-08', 'What are the key factors for successful carrot cultivation?');
+(7, 2, '2023-10-08', 'What are the key factors for successful carrot cultivation?'),
+(8, 15, '2023-10-17', 'Hello, I&#039;m a mango farmer, and I&#039;m looking for guidance on how to properly prepare the soil for planting mango trees. Could you please provide me with some advice or direct me to a reliable source of information? I want to ensure that the soil conditions are optimal for the health and growth of my mango trees.?');
 
 -- --------------------------------------------------------
 
@@ -416,20 +447,21 @@ CREATE TABLE `shop` (
 
 INSERT INTO `shop` (`ItemId`, `ItemName`, `ItemQuantity`, `ItemPrice`, `ItemImage`) VALUES
 (1, 'Tomato', 4, 80, '../images/Selling1/veg1.jpeg'),
-(2, 'Impatiens', 40, 150, '../images/Selling1/flower12.jpeg'),
-(3, 'Grapes', 0, 200, '../images/Selling1/grapes.jpeg'),
-(4, 'Cabbage', 56, 90, '../images/Selling1/cab12.jpeg'),
-(5, 'Rose', 2, 175, '../images/Selling1/flower45.jpeg'),
-(6, 'pomegranate', 23, 120, '../images/Selling1/prom.jpeg'),
-(7, 'Red Chillie', 34, 50, '../images/Selling1/redp2.jpeg'),
-(8, 'Lilly', 3, 200, '../images/Selling1/lily3.jpeg'),
-(9, 'Mango', 1, 150, '../images/Selling1/mango.jpeg'),
-(10, 'Verbena', 78, 100, '../images/Selling1/purple1.jpeg'),
-(11, 'Baby Rose', 35, 200, '../images/Selling1/rose.jpeg'),
-(12, 'Sunflower', 22, 300, '../images/Selling1/wh2.jpeg'),
-(13, 'Brinjole', 78, 75, '../images/Selling1/brin1.jpeg'),
-(14, 'Grapes', 45, 350, '../images/Selling1/grapes.jpeg'),
-(15, 'Corn', 10, 150, '../images/Selling1/corn.jpeg');
+(2, 'Impatiens', 28, 150, '../images/Selling1/flower12.jpeg'),
+(3, 'Grapes', 1, 200, '../images/Selling1/grapes.jpeg'),
+(4, 'Cabbage', 46, 90, '../images/Selling1/cab12.jpeg'),
+(5, 'Rose', 4, 175, '../images/Selling1/flower45.jpeg'),
+(6, 'pomegranate', 11, 120, '../images/Selling1/prom.jpeg'),
+(7, 'Red Chillie', 28, 50, '../images/Selling1/redp2.jpeg'),
+(8, 'Lilly', 1, 200, '../images/Selling1/lily3.jpeg'),
+(9, 'Mango', 10, 150, '../images/Selling1/mango.jpeg'),
+(10, 'Verbena', 74, 100, '../images/Selling1/purple1.jpeg'),
+(11, 'Baby Rose', 32, 200, '../images/Selling1/rose.jpeg'),
+(12, 'Sunflower', 22, 295, '../images/Selling1/wh2.jpeg'),
+(13, 'Brinjole', 76, 75, '../images/Selling1/brin1.jpeg'),
+(14, 'Grapes', 45, 365, '../images/Selling1/grapes.jpeg'),
+(15, 'Corn', 5, 150, '../images/Selling1/corn.jpeg'),
+(16, 'Banana', 10, 400, '../images/Selling1/2ce3976a24da11b5.jpg');
 
 -- --------------------------------------------------------
 
@@ -4283,11 +4315,19 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_FirstName`, `user_LastName`, `user_Email`, `user_PhoneNo`, `user_address`, `user_Password`, `user_District`, `user_Gender`, `profile_picture`, `token`, `expdate`) VALUES
-(2, 'Malki', 'Madhubhashini', 'malki@gmail.com', '0771314545', '58/1, waragoda, attanagalla.', '$2y$10$f4mGEjsEPgjVKdg3Qf.KjuNMPnc8nVNYkuEaJMHlCcXjhRwRjGni.', 'Mullaitivu', 'Female', '../images/profile_pictures/Malki.jpg', NULL, NULL),
-(15, 'senura', 'adithya', 'senura@gmail.com', '0883678234', 'No.29 Galle', '$2y$10$kX4vmXSvzJ0vwcP9yqIhH.LzD/cDvObjNgf12Vl2tKN7dIk8IeZZq', 'Galle', 'Male', '../images/profile_pictures/pp,840x830-pad,1000x1000,f8f8f8.u2.jpg', NULL, NULL),
+(2, 'Malki', 'Madhubhashini', 'malki@gmail.com', '0771314545', '58/1, waragoda, attanagalla.', '$2y$10$f4mGEjsEPgjVKdg3Qf.KjuNMPnc8nVNYkuEaJMHlCcXjhRwRjGni.', 'Mullaitivu', 'Female', '../images/profile_pictures/2.jpg', NULL, NULL),
+(15, 'senura', 'adithya', 'senura@gmail.com', '0883678234', 'No.29 Galle', '$2y$10$f4mGEjsEPgjVKdg3Qf.KjuNMPnc8nVNYkuEaJMHlCcXjhRwRjGni.', 'Galle', 'Male', '../images/profile_pictures/pp,840x830-pad,1000x1000,f8f8f8.u2.jpg', NULL, NULL),
 (16, 'sasan', 'dilantha', 'sasan@gmail.com', '0752245147', 'maravila, halawatha', '$2y$10$BUhAj1QuQv1Zq0SPU5.5VuDTaL3VvCEZwaGfuncunuDv7JTnOrQcu', 'Puttalam', 'Male', '../images/profile_pictures/Default.png', NULL, NULL),
 (18, 'sasan', 'dilantha', 'sasan@gmail.com', '0752245147', 'maravila, halawatha', '$2y$10$iKz.kbpz4mcKuRvVaS8a/uxOT.dNT3DWBtcP8eE0z.XmAeLobf0SO', 'Puttalam', 'Male', '../images/profile_pictures/Default.png', NULL, NULL),
-(22, 'Migara', 'Thiyunuwan', 'migarathiyunuwan@gmail.com', '0771416968', '58/1, waragoda, attanagalla.', '$2y$10$M.eylxWD0b4AKyfD3DxoEOxXIN4I2WNUFv4JsmGvMKXHXrZLCXYQW', 'Gampaha', 'Male', '../images/profile_pictures/IMG_2315.jpg', NULL, NULL);
+(22, 'Migara', 'Thiyunuwan', 'migarathiyunuwan@gmail.com', '0771416968', '58/1, waragoda, attanagalla.', '$2y$10$M.eylxWD0b4AKyfD3DxoEOxXIN4I2WNUFv4JsmGvMKXHXrZLCXYQW', 'Gampaha', 'Male', '../images/profile_pictures/22.jpg', NULL, NULL),
+(34, 'gjm', 'gchm', 'ghm@gmail.com', '3434636', '58/1, waragoda, attanagalla.', '$2y$10$YFvEpyCKIWbidmWfYDSg6uPicLdR9Aj9rJPTWOGAZpNxLFzazFvHe', 'Monaragala', 'Female', '../images/profile_pictures/Default.png', NULL, NULL),
+(35, 'fnernyr', 'edhhtet', 'thedrht@gmail.com', '0771536245', '58/1, waragoda, attanagalla.', '$2y$10$ESji7nt0FGOA64a6abxluOfBjk6xeXJ3mlWq1aXUhhAGCYMuYN4BO', 'Nuwara Eliya', 'Female', '../images/profile_pictures/Default.png', NULL, NULL),
+(36, 'hjtcyhtr', 'fthjrthj', 'ftghrfdh@gmail.com', '0752245147', '58/1, waragoda, attanagalla.', '$2y$10$X73G6B3hsta4.XtsISBPZOx2ufw3eVqAO7MIaeCp/GgtVkT894E46', 'Matale', 'Male', '../images/profile_pictures/Default.png', NULL, NULL),
+(37, 'trhrh', 'rhethh', 'dgherth@gmail.com', '0771314567', '58/1, waragoda, attanagalla.', '$2y$10$H1mxSRlNLaFlsS5t5CiQk..Q5qSUTYyTvbnhxbJ9TgAQN4Dw5jzFW', 'Jaffna', 'Male', '../images/profile_pictures/Default.png', NULL, NULL),
+(38, 'kyuktyku', 'yukyuk', 'tyuktyuk@gmail.com', '0752245147', '58/1, waragoda, attanagalla.', '$2y$10$K6LJl52Lw6BNE0vb04l0Y.ob9I9Q8UElTS46yxE/rmB1yEDxF5.3u', 'Kandy', 'Female', '../images/profile_pictures/Default.png', NULL, NULL),
+(39, 'gegee', 'ghehe4h', 'dxtht@gmail.com', '0883678234', '58/1, waragoda, attanagalla.', '$2y$10$oj/2oV3T9I9molqwNasJI.JPqL2FMz0xzyLBEUn36DOUBocHtm2hC', 'Kilinochchi', 'Female', '../images/profile_pictures/Default.png', NULL, NULL),
+(40, 'sfdghgh', 'dsfrhh', 'sgwsr@gmail.com', '0771536245', '58/1, waragoda, attanagalla.', '$2y$10$StFxehQ24lo/Ks1ARZr9G.P9DSbVdpAgwF2UxKEoLBCR3snnfvrei', 'Gampaha', 'Female', '../images/profile_pictures/Default.png', NULL, NULL),
+(41, 'rghweh', 'wehte', 'het@gmail.com', '0771314567', '58/1, waragoda, attanagalla.', '$2y$10$OPc4r7ilUOCEMv2gfzwHaumi1vwRlXofHeOnQ4GoNom/LzhrTlaZu', 'Gampaha', 'Male', '../images/profile_pictures/Default.png', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -4464,7 +4504,7 @@ ALTER TABLE `advertisements`
 -- AUTO_INCREMENT for table `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `answerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `answerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `blog`
@@ -4476,7 +4516,7 @@ ALTER TABLE `blog`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `location`
@@ -4500,13 +4540,13 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT for table `orderitem`
 --
 ALTER TABLE `orderitem`
-  MODIFY `orderItemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `orderItemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `payment`
@@ -4518,13 +4558,13 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `questionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `questionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `shop`
 --
 ALTER TABLE `shop`
-  MODIFY `ItemId` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ItemId` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `soiltype`
@@ -4548,7 +4588,7 @@ ALTER TABLE `sunexposure`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `waterlevel`

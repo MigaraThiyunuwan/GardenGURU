@@ -1,6 +1,7 @@
 <?php
 require_once '../classes/DbConnector.php';
 require_once '../classes/persons.php';
+require_once '../classes/report.php';
 
 
 use classes\DbConnector;
@@ -210,7 +211,9 @@ if (isset($_SESSION["manager"])) {
                 ?>
 
                 <button type="button" class="btn btn btn-success" style="margin-bottom: 10px;" data-bs-toggle="modal" data-bs-target="#addItem">Add New Item to the Shop</button>
-
+                <a class="btn btn btn-outline-success" style="margin-bottom: 10px;"><?php echo "Total income : Rs." . Report::totalIncome()  ?></a>
+                
+                
                 <div class="modal fade shadow my-5" id="addItem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content" style="background-color: white;">

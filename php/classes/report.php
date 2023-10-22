@@ -20,7 +20,7 @@ class Report
 
             $pstmt->execute();
 
-           // $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+            // $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
 
             $myarray = array(); // Initialize an empty array
 
@@ -39,6 +39,231 @@ class Report
                 );
             }
             return $myarray;
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public static function totalIncome()
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT TotalPrice FROM orders";
+            $pstmt = $con->prepare($query);
+
+            $pstmt->execute();
+            $total = 0;
+            if ($pstmt->rowCount() > 0) {
+
+                $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                foreach ($rs as $row) {
+                    $total = $total + $row->TotalPrice;
+                }
+
+                return $total;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public static function RegisteredUsers()
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT COUNT(*) as total FROM users";
+            $stmt = $con->prepare($query);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $total = $result['total'];
+            $roundedNumber = floor($total / 10) * 10;
+            return $roundedNumber;
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+    public static function totalOrders()
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT COUNT(*) as total FROM orders";
+            $stmt = $con->prepare($query);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $total = $result['total'];
+            $roundedNumber = floor($total / 10) * 10;
+            return $roundedNumber;
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public static function happyCustomers()
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT COUNT(*) as total FROM orders WHERE OrderStatus = ?";
+            $stmt = $con->prepare($query);
+            $stmt->bindValue(1, "success");
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $total = $result['total'];
+            $roundedNumber = floor($total / 10) * 10;
+            return $roundedNumber;
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public static function availableItems()
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT COUNT(*) as total FROM shop";
+            $stmt = $con->prepare($query);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $total = $result['total'];
+            $roundedNumber = floor($total / 10) * 10;
+            return $roundedNumber;
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public static function maleUserPercentage()
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT COUNT(*) as total FROM users";
+            $stmt = $con->prepare($query);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $total = $result['total'];
+
+            $query1 = "SELECT COUNT(*) as total FROM users WHERE user_Gender = ?";
+            $stmt1 = $con->prepare($query1);
+            $stmt1->bindValue(1, "Male");
+            $stmt1->execute();
+            $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+            $male = $result1['total'];
+
+            $percentage1 = ($male / $total) * 100;
+            $percentage = number_format($percentage1, 2);
+            return ($percentage);
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public static function femaleUserPercentage()
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT COUNT(*) as total FROM users";
+            $stmt = $con->prepare($query);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $total = $result['total'];
+
+            $query1 = "SELECT COUNT(*) as total FROM users WHERE user_Gender = ?";
+            $stmt1 = $con->prepare($query1);
+            $stmt1->bindValue(1, "Female");
+            $stmt1->execute();
+            $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+            $female = $result1['total'];
+
+            $percentage1 = ($female / $total) * 100;
+            $percentage = number_format($percentage1, 2);
+            return ($percentage);
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public static function maleOrderPercentage()
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT COUNT(*) as total FROM orders AS o JOIN users AS u ON o.user_id = u.user_id WHERE u.user_Gender = ?";
+            $stmt = $con->prepare($query);
+            $stmt->bindValue(1, 'Male');
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $totalMale = $result['total'];
+
+            $query1 = "SELECT COUNT(*) as total FROM orders";
+            $stmt1 = $con->prepare($query1);
+            $stmt1->execute();
+            $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+            $total1 = $result1['total'];
+
+
+            $percentage1 = ($totalMale / $total1) * 100;
+            $percentage = number_format($percentage1, 2);
+            return $percentage;
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public static function femaleOrderPercentage()
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT COUNT(*) as total FROM orders AS o JOIN users AS u ON o.user_id = u.user_id WHERE u.user_Gender = ?";
+            $stmt = $con->prepare($query);
+            $stmt->bindValue(1, "Female");
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $totalFemale = $result['total'];
+
+            $query1 = "SELECT COUNT(*) as total FROM orders";
+            $stmt1 = $con->prepare($query1);
+            $stmt1->execute();
+            $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+            $total = $result1['total'];
+
+
+            $percentage1 = ($totalFemale / $total) * 100;
+            $percentage = number_format($percentage1, 2);
+            return $percentage;
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public static function districtUserPercentage($district)
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT COUNT(*) as total FROM users";
+            $stmt = $con->prepare($query);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $total = $result['total'];
+
+            $query1 = "SELECT COUNT(*) as total FROM users WHERE user_District = ?";
+            $stmt1 = $con->prepare($query1);
+            $stmt1->bindValue(1, $district);
+            $stmt1->execute();
+            $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+            $female = $result1['total'];
+
+            $percentage1 = ($female / $total) * 100;
+            $percentage = number_format($percentage1, 2);
+            return ($percentage);
         } catch (PDOException $exc) {
             echo $exc->getMessage();
         }
