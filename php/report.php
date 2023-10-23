@@ -257,304 +257,105 @@ if (isset($_SESSION["manager"])) {
 
 
         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+        <canvas id="myChart23" style="width:100%; "></canvas>
 
-        <div class="row">
-            <div class="row" style="text-align: center;">
-                <p style="margin-top: 50px;"><b>District Diversity: A Visual Snapshot of Registered Users</b></p>
-            </div>
+        <script>
+            var yValues = [];
+            var xValues = [];
 
-            <div class="col-md-4">
-                <div id="column-example-4">
-                    <table class="charts-css column show-labels data-spacing-10">
-
-                        <tbody>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Ampara")) / 100)
-                                ?>
-                                <th scope="row">1</th>
-                                <td style="--size: <?php echo $value ?>;"> </td>
-                            </tr>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Anuradhapura")) / 100)
-                                ?>
-                                <th scope="row">2</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Badulla")) / 100)
-                                ?>
-                                <th scope="row">3</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Batticaloa")) / 100)
-                                ?>
-                                <th scope="row">4</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Colombo")) / 100)
-                                ?>
-                                <th scope="row">5</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div id="column-example-4">
-                    <table class="charts-css column show-labels data-spacing-10">
-
-                        <tbody>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Galle")) / 100)
-                                ?>
-                                <th scope="row">6</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Gampaha")) / 100)
-                                ?>
-                                <th scope="row">7</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Hambantota")) / 100)
-                                ?>
-                                <th scope="row">8</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Jaffna")) / 100)
-                                ?>
-                                <th scope="row">9</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Kalutara")) / 100)
-                                ?>
-                                <th scope="row">10</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div id="column-example-4">
-                    <table class="charts-css column show-labels data-spacing-10">
-
-                        <tbody>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Kandy")) / 100)
-                                ?>
-                                <th scope="row">11</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Galle")) / 100)
-                                ?>
-                                <th scope="row">12</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Kilinochchi")) / 100)
-                                ?>
-                                <th scope="row">13</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Kurunegala")) / 100)
-                                ?>
-                                <th scope="row">14</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Mannar")) / 100)
-                                ?>
-                                <th scope="row">15</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="row" style="margin-top: 50px;">
-            <div class="col-md-4">
-                <div id="column-example-4">
-                    <table class="charts-css column show-labels data-spacing-10">
-
-                        <tbody>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Matale")) / 100)
-                                ?>
-                                <th scope="row">16</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Matara")) / 100)
-                                ?>
-                                <th scope="row">17</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Monaragala")) / 100)
-                                ?>
-                                <th scope="row">18</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Mullaitivu")) / 100)
-                                ?>
-                                <th scope="row">19</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Nuwara Eliya")) / 100)
-                                ?>
-                                <th scope="row">20</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div id="column-example-4">
-                    <table class="charts-css column show-labels data-spacing-10">
-
-                        <tbody>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Polonnaruwa")) / 100)
-                                ?>
-                                <th scope="row">21</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Puttalam")) / 100)
-                                ?>
-                                <th scope="row">22</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Ratnapura")) / 100)
-                                ?>
-                                <th scope="row">23</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Trincomalee")) / 100)
-                                ?>
-                                <th scope="row">24</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-                            <tr>
-                                <?php
-                                $value = ((1 * Report::districtUserPercentage("Vavuniya")) / 100)
-                                ?>
-                                <th scope="row">25</th>
-                                <td style="--size: <?php echo $value ?>;"></td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="col-md-4" style="margin-top: 10px;">
-                <div class="row">
-                    <div class="col">
-                        <div class="d-flex justify-content-between">
-                            <p>
-                                <b>
-                                    <ol style="font-size: 14px;">
-                                        <li>Ampara</li>
-                                        <li>A'pura</li>
-                                        <li>Badulla</li>
-                                        <li>Batticaloa</li>
-                                        <li>Colombo</li>
-                                        <li>Galle</li>
-                                        <li>Gampaha</li>
-                                        <li>Ham'tota</li>
-                                    </ol>
-                                </b>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="d-flex justify-content-between">
-                            <p>
-                                <b>
-                                    <ol start="9" style="font-size: 14px;">
-
-                                        <li>Jaffna</li>
-                                        <li>Kalutara</li>
-                                        <li>Kandy</li>
-                                        <li>Kegalle</li>
-                                        <li>K'nochchi</li>
-                                        <li>Ku'gala</li>
-                                        <li>Mannar</li>
-                                        <li>Matale</li>
-                                    </ol>
-                                </b>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="d-flex justify-content-between">
-                            <p>
-                                <b>
-                                    <ol start="17" style="font-size: 14px;">
-
-                                        <li>Matara</li>
-                                        <li>Mo'gala</li>
-                                        <li>Mullaitivu</li>
-                                        <li>N' Eliya</li>
-                                        <li>P'naruwa</li>
-                                        <li>Puttalam</li>
-                                        <li>Ratnapura</li>
-                                        <li>Trincomalee</li>
-                                        <li>Vavuniya</li>
-                                    </ol>
-                                </b>
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+            var xValues = ["Ampara",
+                "Anuradhapura",
+                "Badulla",
+                "Batticaloa",
+                "Colombo",
+                "Galle",
+                "Gampaha",
+                "Hambantota",
+                "Jaffna",
+                "Kalutara",
+                "Kandy",
+                "Kegalle",
+                "Kilinochchi",
+                "Kurunegala",
+                "Mannar",
+                "Matale",
+                "Matara",
+                "Monaragala",
+                "Mullaitivu",
+                "Nuwara Eliya",
+                "Polonnaruwa",
+                "Puttalam",
+                "Ratnapura",
+                "Trincomalee",
+                "Vavuniya",
+            ];
 
 
-        </div>
+            <?php
+            $districts = [
+                "Ampara",
+                "Anuradhapura",
+                "Badulla",
+                "Batticaloa",
+                "Colombo",
+                "Galle",
+                "Gampaha",
+                "Hambantota",
+                "Jaffna",
+                "Kalutara",
+                "Kandy",
+                "Kegalle",
+                "Kilinochchi",
+                "Kurunegala",
+                "Mannar",
+                "Matale",
+                "Matara",
+                "Monaragala",
+                "Mullaitivu",
+                "Nuwara Eliya",
+                "Polonnaruwa",
+                "Puttalam",
+                "Ratnapura",
+                "Trincomalee",
+                "Vavuniya",
+            ];
+
+
+
+
+            foreach ($districts as $district) {
+            ?>
+                yValues.push(<?php echo ((Report::districtUserPercentage($district))) ?>);
+
+
+            <?php
+            }
+            ?>
+
+            var barColors = ["red", "green", "blue", "orange", "brown", "green", "blue", "orange", "brown", "red", "green", "blue", "orange", "brown", "green", "blue", "orange", "brown", "blue", "orange", "brown", "green", "blue", "orange", "green"];
+
+            new Chart("myChart23", {
+                type: "bar",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: "District Diversity: A Visual Snapshot of Registered Users"
+                    }
+                }
+            });
+        </script>
+
 
         <div id="myChart" style="width:100%;  height:1000px;"></div>
 
@@ -567,7 +368,8 @@ if (isset($_SESSION["manager"])) {
             function drawChart() {
                 const data = google.visualization.arrayToDataTable([
                     ['Item', 'Qty'],
-                 
+
+
 
                     <?php
                     try {
@@ -584,26 +386,24 @@ if (isset($_SESSION["manager"])) {
                                 $itemName = $row->ItemName;
                                 $ItemId = $row->ItemId;
 
-                    ?>
-                                ['<?php echo $itemName ?>', <?php echo Report::totalSales($ItemId) ?>],
+                    ?>['<?php echo $itemName ?>', <?php echo Report::totalSales($ItemId) ?>],
 
                     <?php
 
                             }
-
-                          
                         }
                     } catch (PDOException $exc) {
                         echo $exc->getMessage();
                     }
                     ?>
-                    
+
                 ]);
 
 
 
                 const options = {
-                    title: 'Total Sales in GardenGuru'
+                    title: 'Total Sales in GardenGuru',
+                    colors: ['#378a13', '#78d278']
                 };
 
                 const chart = new google.visualization.BarChart(document.getElementById('myChart'));
@@ -612,12 +412,6 @@ if (isset($_SESSION["manager"])) {
         </script>
 
         <!-- ///////////////////////////////////////////////////////////////////////////////////// -->
-
-
-
-
-
-
 
 
     </div>
