@@ -2,7 +2,12 @@
 <html lang="en">
 
 <?php
-require './classes/persons.php';
+require_once './classes/persons.php';
+require_once './classes/DbConnector.php';
+
+use classes\DbConnector;
+
+$dbcon = new DbConnector();
 session_start();
 if (isset($_SESSION["user"])) {
   // User is logged in, retrieve the user object
@@ -14,11 +19,11 @@ if (isset($_SESSION["user"])) {
 }
 ?>
 
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
 <head>
   <meta charset="utf-8">
-  <title>Gardener - Gardening Website Template</title>
+  <title>GardenGURU | Profile</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -26,49 +31,47 @@ if (isset($_SESSION["user"])) {
   <script src="https://kit.fontawesome.com/0008de2df6.js" crossorigin="anonymous"></script>
   <!-- Customized Bootstrap Stylesheet -->
   <link href="../css/bootstrap.min.css" rel="stylesheet">
- 
+
   <!-- Template Stylesheet -->
   <link href="../css/style.css" rel="stylesheet">
   <link href="../css/popup.css" rel="stylesheet">
 
 
   <style>
-  /* Style for the blog popup modal */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-}
+    /* Style for the blog popup modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
 
-.modal-content {
-    background-color: white;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 60%;
-}
+    .modal-content {
+      background-color: white;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 60%;
+    }
 
-/* Style for the close button */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
+    /* Style for the close button */
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
   </style>
 </head>
 
@@ -98,27 +101,19 @@ if (isset($_SESSION["user"])) {
             <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
             <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
             <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
+            <a href="./report.php" class="dropdown-item">Reporting</a>
 
           </div>
         </div>
         <a href="./AboutUs.php" class="nav-item nav-link">About</a>
         <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
+        <a href="./processes/logout.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Log Out</a>
 
-        <div class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-          <div class="dropdown-menu bg-light m-0">
-            <a href="./user.php" class="dropdown-item">Profile</a>
-            <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
-          </div>
-        </div>
       </div>
 
     </div>
   </nav>
   <!-- Navbar End -->
-
-
-  
 
   <div class="container">
     <div class="row">
@@ -126,14 +121,85 @@ if (isset($_SESSION["user"])) {
         <div class="card">
           <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center">
-              <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+              <img src="<?php echo $user->getPropic() ?>" alt="Admin" class="rounded-circle" width="150" height="150">
               <div class="mt-3">
                 <h4>Hello! <?php echo $user->getFirstName() ?></h4><br>
 
-                <a class="btn btn-outline-primary " target="" href="./classes/logout.php">Log Out</a>
+                <a class="btn btn-outline-danger " target="" href="./processes/logout.php">Log Out</a>
                 <a class="btn btn-outline-primary " target="" href="./editUser.php">Edit</a>
-                <a class="btn btn-outline-danger " target="" href="#">Change Password</a>
-                <!-- <button class="btn btn-danger">Change Password</button> -->
+                <?php
+                if (isset($_GET['success'])) {
+                  if ($_GET['success'] == 1) {
+
+                    echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                    Blog Uploaded Successfully!
+                    </div></b>";
+                  }
+                  if ($_GET['success'] == 0) {
+
+                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Blog Posting Failed!
+                    </div></b>";
+                  }
+                  if ($_GET['success'] == 2) {
+
+                    echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                    User details updated suceessfully!
+                    </div></b>";
+                  }
+                  if ($_GET['success'] == 3) {
+
+                    echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                    Advertiesement Posted Successfully!
+                    </div></b>";
+                  }
+                  if ($_GET['success'] == 4) {
+
+                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Advertiesement Posting Failed!
+                    </div></b>";
+                  }
+                  if ($_GET['success'] == 6) {
+
+                    echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                    Picture Upoload Successfully!
+                    </div></b>";
+                  }
+                }
+                if (isset($_GET['error'])) {
+                  if ($_GET['error'] == 1) {
+                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Update User Details Failed!
+                    </div></b>";
+                  }
+                  if ($_GET['error'] == 2) {
+                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Please fill all fields!
+                    </div></b>";
+                  }
+                  if ($_GET['error'] == 3) {
+                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Please upload image size less than 5MB
+                    </div></b>";
+                  }
+                  if ($_GET['error'] == 4) {
+                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Please upload JPG, JPGE or PNG image types
+                    </div></b>";
+                  }
+                  if ($_GET['error'] == 5) {
+                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Please upload image
+                    </div></b>";
+                  }
+                  if ($_GET['error'] == 6) {
+                    echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Profile Picture Failed!
+                    </div></b>";
+                  }
+                }
+                ?>
+
               </div>
             </div>
           </div>
@@ -147,7 +213,7 @@ if (isset($_SESSION["user"])) {
 
               <div class="row">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Full Name</h6>
+                  <h6 class="mb-0"><b>Full Name</b></h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
                   <?php echo $user->getFirstName() . " " . $user->getLastName(); ?>
@@ -158,7 +224,7 @@ if (isset($_SESSION["user"])) {
 
               <div class="row">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Email</h6>
+                  <h6 class="mb-0"><b>Email</b></h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
                   <?php echo $user->getEmail() ?>
@@ -169,7 +235,7 @@ if (isset($_SESSION["user"])) {
 
               <div class="row">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Phone</h6>
+                  <h6 class="mb-0"><b>Phone</b></h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
                   <?php echo $user->getPhoneNo() ?>
@@ -180,7 +246,7 @@ if (isset($_SESSION["user"])) {
 
               <div class="row">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">District</h6>
+                  <h6 class="mb-0"><b>District</b></h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
                   <?php echo $user->getDistrict() ?>
@@ -191,7 +257,7 @@ if (isset($_SESSION["user"])) {
 
               <div class="row">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Address</h6>
+                  <h6 class="mb-0"><b>Address</b></h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
                   <?php echo $user->getAddress() ?>
@@ -206,180 +272,278 @@ if (isset($_SESSION["user"])) {
     </div>
     <br><br>
 
-    <?php
-    if (isset($_GET['error'])) {
-      if ($_GET['error'] == 1) {
-        echo "<b><p style='color: red;'> Cannot Update Your Details !</p></b>";
-      }
-    } ?>
+
 
     <div class="row mb-5">
       <div class="col-md-8 col-xl-6 text-center mx-auto">
-        <h2 class="display-6 fw-bold mb-4">Check out <span class="underline">amazing plans</span> for your profile</h2>
-        <p class="text-muted">Now you can publish advertiesments , post Questions ,buy plants through our website</p>
+        <h2 class="display-6 fw-bold mb-4">My Orders</h2>
+        <p class="text-muted">Your Placed order will be follow</p>
       </div>
     </div>
-    
-    
-   
-  
+
+    <div class="table-responsive table mt-2" style="margin-bottom: 20px;">
+      <table class="table my-0" id="dataTable">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Billing Name</th>
+            <th>Billing Address</th>
+            <th>Total Amount</th>
+            <th>Order Status</th>
+            <th>View Bill</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          try {
+            $con = $dbcon->getConnection();
+            $query = "SELECT * FROM orders WHERE user_id = ? ORDER BY orderID DESC";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $user->getUserId());
+            $pstmt->execute();
+            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+            foreach ($rs as $order) {
+              // Display user details as before
+          ?>
+
+              <tr>
+                <td><?php echo $order->orderID ?></td>
+                <td><?php echo $order->receiver ?></td>
+                <td><?php echo $order->deliveryAddress ?></td>
+                <td><?php echo $order->TotalPrice ?></td>
+                <td>
+                  <?php
+                  if ($order->OrderStatus == "waiting") {
+                  ?>
+                    <span class="btn btn-outline-warning">Waiting</span>
+                  <?php
+                  } else if ($order->OrderStatus == "success") {
+                  ?>
+                    <span class="btn btn-outline-success">Ready</span>
+                  <?php
+                  } else if ($order->OrderStatus == "rejected") {
+                  ?>
+                    <span class="btn btn-outline-danger">Rejected</span>
+                  <?php
+                  }
+                  ?>
+                </td>
+                <td>
+                  <!-- <button type="button" class="btn btn btn-danger" >Delete  -->
+                  <a class="btn btn btn-warning" target="_blank" href="./mybill.php?orderID=<?php echo $order->orderID ?>">View Bill</a>
+                </td>
+              </tr>
+          <?php
+            }
+          } catch (PDOException $exc) {
+            echo $exc->getMessage();
+          }
+          ?>
+        </tbody>
+      </table>
+
+    </div>
 
 
 
-  <div class="row g-4">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item rounded d-flex h-100">
-                        <div class="service-img rounded">
-                            <img class="img-fluid" src="../images/web.png" alt="">
-                        </div>
-                        <div class="service-text rounded p-5">
-                            <div class="btn-square rounded-circle mx-auto mb-3">
-                                <!-- <i class="fa fa-leaf" aria-hidden="true"></i> -->
-                                <i class="fa fa-newspaper-o fa-2xl" style="color: #256a4f;"></i>
-                                <!-- <img class="img-fluid" src="img/icon/icon-3.png" alt="Icon"> -->
-                            </div>
-                            <h4 class="mb-3">Advertiesments</h4>
-                            <p class="mb-4">Now you can put advertiesments to our website.</p>
-                            <a class="btn btn-sm" id="popbutton" href="#"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item rounded d-flex h-100">
-                        <div class="service-img rounded">
-                            <img class="img-fluid" src="../images/web.png" alt="">
-                        </div>
-                        <div class="service-text rounded p-5">
-                            <div class="btn-square rounded-circle mx-auto mb-3">
-                                <i class="fa-solid fa-question-circle fa-2xl" style="color: #256a4f;"></i>
-                            </div>
-                            <h4 class="mb-3">Ask Question</h4>
-                            <p class="mb-4">Click the button to get answer from our agriculture consultants.</p>
-                            <a class="btn btn-sm" href="comForum.php"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item rounded d-flex h-100">
-                        <div class="service-img rounded">
-                            <img class="img-fluid" src="../images/web.png" alt="">
-                        </div>
-                        <div class="service-text rounded p-5">
-                            <div class="btn-square rounded-circle mx-auto mb-3">
-                                <i class="fa-solid fa-shopping-cart fa-2xl" style="color: #256a4f;"></i>
-                            </div>
-                            <h4 class="mb-3">Buy Plants</h4>
-                            <p class="mb-4">Click the button for buy plants and gardening supplies.</p>
-                            <a class="btn btn-sm" href="Selling.php"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item rounded d-flex h-100">
-                        <div class="service-img rounded">
-                            <img class="img-fluid" src="../images/web.png" alt="">
-                        </div>
-                        <div class="service-text rounded p-5">
-                            <div class="btn-square rounded-circle mx-auto mb-3">
-                                <i class="fa-solid fa-shopping-cart fa-2xl" style="color: #256a4f;"></i>
-                            </div>
-                            <h4 class="mb-3">Add Blog</h4>
-                            <p class="mb-4">Click the button for Add your post to blog page.</p>
-                            <a class="btn btn-sm" id="addBlogButton" href="#" ><i class="fa fa-plus text-primary me-2"></i>Click here</a>
-                        </div>
-                    </div>
-                </div>
-  </div>
+
+
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="service-item rounded d-flex h-100">
+          <div class="service-img rounded">
+            <img class="img-fluid" src="../images/web.png" alt="">
+          </div>
+          <div class="service-text rounded p-5">
+            <div class="btn-square rounded-circle mx-auto mb-3">
+              <!-- <i class="fa fa-leaf" aria-hidden="true"></i> -->
+              <i class="fa fa-newspaper-o fa-2xl" style="color: #256a4f;"></i>
+              <!-- <img class="img-fluid" src="img/icon/icon-3.png" alt="Icon"> -->
+            </div>
+            <h4 class="mb-3">Advertiesments</h4>
+            <p class="mb-4">Now you can put advertiesments to our website.</p>
+            <a class="btn btn-sm" id="popbutton" href="#"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+        <div class="service-item rounded d-flex h-100">
+          <div class="service-img rounded">
+            <img class="img-fluid" src="../images/web.png" alt="">
+          </div>
+          <div class="service-text rounded p-5">
+            <div class="btn-square rounded-circle mx-auto mb-3">
+              <i class="fa-solid fa-question-circle fa-2xl" style="color: #256a4f;"></i>
+            </div>
+            <h4 class="mb-3">Ask Question</h4>
+            <p class="mb-4">Click the button to get answer from our agriculture consultants.</p>
+            <a class="btn btn-sm" href="comForum.php"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+        <div class="service-item rounded d-flex h-100">
+          <div class="service-img rounded">
+            <img class="img-fluid" src="../images/web.png" alt="">
+          </div>
+          <div class="service-text rounded p-5">
+            <div class="btn-square rounded-circle mx-auto mb-3">
+              <i class="fa-solid fa-shopping-cart fa-2xl" style="color: #256a4f;"></i>
+            </div>
+            <h4 class="mb-3">Buy Plants</h4>
+            <p class="mb-4">Click the button for buy plants and gardening supplies.</p>
+            <a class="btn btn-sm" href="Selling.php"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+        <div class="service-item rounded d-flex h-100">
+          <div class="service-img rounded">
+            <img class="img-fluid" src="../images/web.png" alt="">
+          </div>
+          <div class="service-text rounded p-5">
+            <div class="btn-square rounded-circle mx-auto mb-3">
+              <i class="fa-solid fa-shopping-cart fa-2xl" style="color: #256a4f;"></i>
+            </div>
+            <h4 class="mb-3">Add Blog</h4>
+            <p class="mb-4">Click the button for Add your post to blog page.</p>
+            <a class="btn btn-sm" id="addBlogButton" href="#"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 
 
   <!-- The modal -->
-<div id="addBlogModal" class="modal">
+  <div id="addBlogModal" class="modal" style="margin-top: 20px; width: 100%;">
     <div class="modal-content">
-        <span class="close">&times;</span>
-        <form action="add_blog.php" method="post" enctype="multipart/form-data">
-            <label for="blog_title">Blog Title:</label>
-            <input type="text" id="blog_title" name="blog_title" required>
-            <br>
-            <label for="blog_details">Blog Details:</label>
-            <textarea id="blog_details" name="blog_details" required></textarea>
-            <br>
-            <label for="blog_image">Blog Image:</label>
-            <input type="file" id="blog_image" name="blog_image" accept="image/*" required>
-            <br>
-            <button type="submit">Add Blog</button>
-        </form>
+      <span class="close">&times;</span>
+      <form id="blogForm" action="./processes/putBlog.php" method="post" enctype="multipart/form-data">
+        <label for="blog_title"><b>Blog Title:</b></label>
+        <input type="text" class="form-control" id="blog_title" name="blog_title" required>
+        <br>
+        <!-- <label for="blog_details">Blog Details:</label>
+            <textarea id="blog_details" name="blog_details" required></textarea> -->
+
+        <!-- <span class="input-group-text"><b>Blog Details:</b></span> -->
+        <label for="blog_title"><b>Blog Details:</b></label>
+        <textarea class="form-control" name="blog_details" aria-label="With textarea" required></textarea>
+
+        <br>
+        <label for="blog_image"><b>Blog Image:</b></label>
+        <input type="file" class="form-control" id="blog_image" name="blog_image" accept="image/*" required>
+        <input type="hidden" id="ufname" name="ufname" value="<?php echo $user->getFirstName() ?>">
+        <input type="hidden" id="ulname" name="ulname" value="<?php echo $user->getLastName() ?>">
+        <input type="hidden" id="Date" name="Date">
+        <br>
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <button class="btn btn-success" type="submit">Add Blog</button>
+
+        </div>
+
+      </form>
+      <script>
+        // Function to set the real date as the value of the hidden input field
+        function setRealDate() {
+          var currentDate = new Date();
+          var realDateField = document.getElementById('Date');
+          realDateField.value = currentDate.toISOString();
+        }
+
+        // Call setRealDate() when the form is submitted
+        document.getElementById('blogForm').addEventListener('submit', setRealDate);
+      </script>
     </div>
-</div>
-
-<!-- Include your JavaScript to handle the modal -->
-<script src="your_js_script.js"></script>
-   <!-- popupr Start -->
+  </div>
 
 
-<script>
+  <script src="your_js_script.js"></script>
+  <!-- popupr Start -->
 
-  // Get the modal
-var modal = document.getElementById("addBlogModal");
 
-// Get the button that opens the modal
-var btn = document.getElementById("addBlogButton");
+  <script>
+    // Get the modal
+    var modal = document.getElementById("addBlogModal");
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+    // Get the button that opens the modal
+    var btn = document.getElementById("addBlogButton");
 
-// When the user clicks the button, open the modal
-btn.onclick = function () {
-    modal.style.display = "block";
-}
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+      modal.style.display = "block";
     }
-}
 
-</script>
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
 
-<!-- Modal Section -->
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
 
-<div class="bg-modal" >
-	<div class="modal-contents " >
+  <!-- Modal Section -->
 
-		<div class="close">+</div>
-	
+  <div class="bg-modal">
+    <div class="modal-contents ">
 
-    <form action="upload.php" method="post" enctype="multipart/form-data">
-        <!-- <input type="text" name="name" placeholder="Name" values="$name">
-        <input type="email" name="email" placeholder="E-Mail" values="$email"> -->
-        <label for="image1">Select Image for Advertisement:</label>
-        <input type="file" name="image1" id="image1" values="$filename1">
-        <label for="text_title">Add title for the Advertisement:</label>
-        <input type="text" name="text_title" id="text_title" >
-          <!-- <label for="image2">Select Image for Advertisement Description:</label>
-        <input type="file" name="image2" id="image2">-->
-        <label for="text_description">Enter Your Description:</label>
-        <textarea name="text_description" id="text_description" rows="5" cols="40"></textarea>
-        <input type="submit" name="submit" value="Submit" values="$filename2">
-    </form>
+      <div class="close" id="close-button">+</div>
 
-  
+      <form id="adForm" action="./processes/putAdd.php" method="post" enctype="multipart/form-data">
 
-	</div>
-</div>
+        <label for="image1"><b>Select Image for Advertisement:</b></label>
+        <input type="file" class="form-control" name="image1" id="image1" values="$filename1">
+        <label for="text_title"><br><b>Add title for the Advertisement:</b></label>
+        <input type="text" class="form-control" name="text_title" id="text_title">
+        <label for="text_description"><br><b>Enter Your Description:</b></label>
+        <textarea name="text_description" class="form-control" id="text_description" rows="5" cols="40"></textarea>
+        <input type="hidden" name="submit" value="Put Advertisement" values="$filename2">
+        <input type="hidden" id="realDate" name="realDate">
+        <button type="submit" style="margin-top: 15px;" class="btn btn-success">Put Advertisement</button>
+      </form>
+      <script>
+        // Function to set the real date as the value of the hidden input field
+        function setRealDate() {
+          var currentDate = new Date();
+          var realDateField = document.getElementById('realDate');
+          realDateField.value = currentDate.toISOString();
+        }
+
+        // Call setRealDate() when the form is submitted
+        document.getElementById('adForm').addEventListener('submit', setRealDate);
+      </script>
+
+
+    </div>
+  </div>
+
+  <script>
+    // JavaScript to handle the close button functionality
+    const closeButton = document.getElementById('close-button');
+    const modalContents = document.querySelector('.modal-contents');
+    const bgModal = document.querySelector('.bg-modal');
+
+    closeButton.addEventListener('click', () => {
+      modalContents.style.display = 'none';
+      bgModal.style.display = 'none';
+    });
+  </script>
 
 
 
 
 
- <!-- popupr Stop -->
+  <!-- popupr Stop -->
 
 
 
@@ -402,19 +566,19 @@ window.onclick = function (event) {
         </div>
         <div class="col-lg-3 col-md-6">
           <h4 class="text-white mb-4">Services</h4>
-          <a class="btn btn-link" href="#">Landscaping</a>
-          <a class="btn btn-link" href="#">Pruning plants</a>
-          <a class="btn btn-link" href="#">Urban Gardening</a>
-          <a class="btn btn-link" href="#">Garden Maintenance</a>
-          <a class="btn btn-link" href="#">Green Technology</a>
+          <a class="btn btn-link" href="./plantSuggestion.php">Plant Suggestion</a>
+          <a class="btn btn-link" href="./Advertistment.php">Advertiesment</a>
+          <a class="btn btn-link" href="./Selling.php">Shop</a>
+          <a class="btn btn-link" href="./blog.php">Blog</a>
+
         </div>
         <div class="col-lg-3 col-md-6">
           <h4 class="text-white mb-4">Quick Links</h4>
-          <a class="btn btn-link" href="#">About Us</a>
-          <a class="btn btn-link" href="#">Contact Us</a>
-          <a class="btn btn-link" href="#">Our Services</a>
-          <a class="btn btn-link" href="#">Terms & Condition</a>
-          <a class="btn btn-link" href="#">Support</a>
+          <a class="btn btn-link" href="./AboutUs.php">About Us</a>
+          <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
+          <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
+          <a class="btn btn-link" href="./login.php">Log Out</a>
+          <a class="btn btn-link" href="./termsAndCondition.php">Terms & Condition</a>
         </div>
         <div class="col-lg-3 col-md-6">
           <img src="../images/logo.png" style="width:220px;height:50px;">
@@ -440,9 +604,9 @@ window.onclick = function (event) {
   </div>
   <!-- Copyright End -->
 
-   <!-- JavaScript Libraries -->
-   <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="../js/main.js"></script>
-    <script src="../js/popup.js"></script>
+  <!-- JavaScript Libraries -->
+  <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/popup.js"></script>
 </body>

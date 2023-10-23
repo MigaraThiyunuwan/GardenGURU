@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+require_once './classes/persons.php';
+session_start();
+$user = null;
+$manager = null;
+if (isset($_SESSION["user"])) {
+    $user = $_SESSION["user"];
+} 
+if (isset($_SESSION["manager"])) {
+    $manager = $_SESSION["manager"];
+} 
+?>
 
 
 <head>
     <meta charset="utf-8">
-    <title>GardenGURU</title>
+    <title>GardenGURU | About</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -63,21 +74,29 @@
                         <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
                         <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
                         <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
-
+                        <a href="./report.php" class="dropdown-item">Reporting</a>
                     </div>
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
+                <?php
+                if ($user != null) {
+                ?>
+                    <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else if ($manager != null) {
+                ?>
+                    <a href="./manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else {
+                ?>
+                    <a href="./login.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Sign In</a>
+                <?php
+                }
+                ?>
 
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-                    <div class="dropdown-menu bg-light m-0">
-                        <a href="./user.php" class="dropdown-item">Profile</a>
-                        <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
-                    </div>
-                </div>
             </div>
-            <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
+        
         </div>
     </nav>
     <!-- Navbar End -->
@@ -105,7 +124,7 @@
                     <h1 class="display-1 text-primary mb-0">15</h1>
                     <p class="text-primary mb-4">Year of Experience</p>
                     <h1 class="display-6 mb-4">Blooming Your Gardening Dreams with Us.</h1>
-                    <p class="mb-4">Join our community of passionate gardeners, immerse yourself in the art of nurturing plants, and let nature's charm unfold in your own backyard.
+                    <p class="mb-4"style="font-family: Georgia, 'Times New Roman', Times, serif">Join our community of passionate gardeners, immerse yourself in the art of nurturing plants, and let nature's charm unfold in your own backyard.
                         Get ready to discover the joy of gardening and witness the magic that unfolds when you connect with the earth.
                     </p>
                     <h4>"Nurture Your Green Thumb with Us!"</h4>
@@ -138,11 +157,11 @@
             <div class="row g-4 justify-content-center">
                 <div class="col-lg-6 col-md-8 text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h2 class="display-4 mb-4">Our Vision</h2>
-                    <p class="lead">To create a greener and more sustainable world by inspiring and empowering individuals to connect with nature through gardening.</p>
+                    <p class="lead" style="font-family: Georgia, 'Times New Roman', Times, serif">To create a greener and more sustainable world by inspiring and empowering individuals to connect with nature through gardening.</p>
                 </div>
                 <div class="col-lg-6 col-md-8 text-center wow fadeInUp" data-wow-delay="0.3s">
                     <h2 class="display-4 mb-4">Our Mission</h2>
-                    <p class="lead">To provide gardening enthusiasts with the knowledge, tools, and resources they need to cultivate beautiful and thriving gardens, while promoting environmental conservation and awareness.</p>
+                    <p class="lead" style="font-family: Georgia, 'Times New Roman', Times, serif">To provide gardening enthusiasts with the knowledge, tools, and resources they need to cultivate beautiful and thriving gardens, while promoting environmental conservation and awareness.</p>
                 </div>
             </div>
         </div>
@@ -156,6 +175,7 @@
                 <p class="fs-5 fw-bold text-primary">Our Team</p>
                 <h1 class="display-5 mb-5">Dedicated & Experienced Team Members</h1>
             </div>
+            
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="team-item rounded">
@@ -235,8 +255,8 @@
     </div>
     <!-- Team End -->
 
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+   <!-- Footer Start -->
+   <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
@@ -253,19 +273,19 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Services</h4>
-                    <a class="btn btn-link" href="#">Landscaping</a>
-                    <a class="btn btn-link" href="#">Pruning plants</a>
-                    <a class="btn btn-link" href="#">Urban Gardening</a>
-                    <a class="btn btn-link" href="#">Garden Maintenance</a>
-                    <a class="btn btn-link" href="#">Green Technology</a>
+                    <a class="btn btn-link" href="./plantSuggestion.php">Plant Suggestion</a>
+                    <a class="btn btn-link" href="./Advertistment.php">Advertiesment</a>
+                    <a class="btn btn-link" href="./Selling.php">Shop</a>
+                    <a class="btn btn-link" href="./blog.php">Blog</a>
+
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="#">About Us</a>
-                    <a class="btn btn-link" href="#">Contact Us</a>
-                    <a class="btn btn-link" href="#">Our Services</a>
-                    <a class="btn btn-link" href="#">Terms & Condition</a>
-                    <a class="btn btn-link" href="#">Support</a>
+                    <a class="btn btn-link" href="./AboutUs.php">About Us</a>
+                    <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
+                    <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
+                    <a class="btn btn-link" href="./login.php">Log Out</a>
+                    <a class="btn btn-link" href="./termsAndCondition.php">Terms & Condition</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <img src="../images/logo.png" style="width:220px;height:50px;">

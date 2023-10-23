@@ -40,12 +40,12 @@
 <html lang="en">
 
 
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
 <head>
     <meta charset="utf-8">
-    <title>GardenGURU</title>
+    <title>GardenGURU | OTP</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -92,7 +92,7 @@
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                     <div class="dropdown-menu bg-light m-0">
                         <a href="./user.php" class="dropdown-item">Profile</a>
-                        <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
+                        <a href="./processes/logout.php" class="dropdown-item">Log Out</a>
                     </div>
                 </div>
             </div>
@@ -118,8 +118,8 @@
 </form>
 
 
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+  <!-- Footer Start -->
+  <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
@@ -136,19 +136,19 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Services</h4>
-                    <a class="btn btn-link" href="#">Landscaping</a>
-                    <a class="btn btn-link" href="#">Pruning plants</a>
-                    <a class="btn btn-link" href="#">Urban Gardening</a>
-                    <a class="btn btn-link" href="#">Garden Maintenance</a>
-                    <a class="btn btn-link" href="#">Green Technology</a>
+                    <a class="btn btn-link" href="./plantSuggestion.php">Plant Suggestion</a>
+                    <a class="btn btn-link" href="./Advertistment.php">Advertiesment</a>
+                    <a class="btn btn-link" href="./Selling.php">Shop</a>
+                    <a class="btn btn-link" href="./blog.php">Blog</a>
+
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="#">About Us</a>
-                    <a class="btn btn-link" href="#">Contact Us</a>
-                    <a class="btn btn-link" href="#">Our Services</a>
-                    <a class="btn btn-link" href="#">Terms & Condition</a>
-                    <a class="btn btn-link" href="#">Support</a>
+                    <a class="btn btn-link" href="./AboutUs.php">About Us</a>
+                    <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
+                    <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
+                    <a class="btn btn-link" href="./login.php">Log Out</a>
+                    <a class="btn btn-link" href="./termsAndCondition.php">Terms & Condition</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <img src="../images/logo.png" style="width:220px;height:50px;">

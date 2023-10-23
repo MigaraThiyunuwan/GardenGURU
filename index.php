@@ -2,23 +2,24 @@
 <html lang="en">
 
 <?php
-require './php/classes/persons.php';
+require_once './php/classes/persons.php';
 session_start();
+$user = null;
+$manager = null;
 if (isset($_SESSION["user"])) {
     // User is logged in, retrieve the user object
     $user = $_SESSION["user"];
-} 
-// else {
-   
-//     header("Location: ./php/login.php");
-//     exit();
-// }
+}
+if (isset($_SESSION["manager"])) {
+    $manager = $_SESSION["manager"];
+}
+
 ?>
 
 
 <head>
     <meta charset="utf-8">
-    <title>GardenGURU</title>
+    <title>GardenGURU | Home</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -44,7 +45,7 @@ if (isset($_SESSION["user"])) {
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <img src="images/logo.png" style="width:220px;height:50px;">
-            
+
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -63,19 +64,26 @@ if (isset($_SESSION["user"])) {
                         <a href="./php/Advertistment.php" class="dropdown-item">Advertisement</a>
                         <a href="./php/newsfeed.php" class="dropdown-item">News Feed</a>
                         <a href="./php/comForum.php" class="dropdown-item">Communication Forum</a>
-
+                        <a href="./php/report.php" class="dropdown-item">Reporting</a>
                     </div>
                 </div>
                 <a href="./php/AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./php/ContactUs.php" class="nav-item nav-link">Contact</a>
-
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-                    <div class="dropdown-menu bg-light m-0">
-                        <a href="./php/user.php" class="dropdown-item">Profile</a>
-                        <a href="./php/classes/logout.php" class="dropdown-item">Log Out</a>
-                    </div>
-                </div>
+                <?php
+                if ($user != null) {
+                ?>
+                    <a href="./php/user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else if ($manager != null) {
+                ?>
+                    <a href="./php/manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else {
+                ?>
+                    <a href="./php/login.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Sign In</a>
+                <?php
+                }
+                ?>
 
             </div>
 
@@ -95,7 +103,7 @@ if (isset($_SESSION["user"])) {
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
                                     <h1 class="display-1 text-white mb-5 animated slideInDown">Make Your Home Like Garden</h1>
-                                    <a href="#" class="btn btn-primary py-sm-3 px-sm-4">Explore More</a>
+                                    <a href="./php/register.php" class="btn btn-primary py-sm-3 px-sm-4">Sign Up Now</a>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +116,7 @@ if (isset($_SESSION["user"])) {
                             <div class="row justify-content-center">
                                 <div class="col-lg-7">
                                     <h1 class="display-1 text-white mb-5 animated slideInDown">Create Your Own Small Garden At Home</h1>
-                                    <a href="#" class="btn btn-primary py-sm-3 px-sm-4">Explore More</a>
+                                    <a href="./php/register.php" class="btn btn-primary py-sm-3 px-sm-4">Sign Up Now</a>
                                 </div>
                             </div>
                         </div>
@@ -135,12 +143,12 @@ if (isset($_SESSION["user"])) {
                     <div class="bg-white shadow d-flex align-items-center h-100 px-5" style="min-height: 160px;">
                         <div class="d-flex">
                             <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                                <i class="fa fa-times text-primary"></i>
-
+                                <!-- <i class="fa fa-times text-primary"></i> -->
+                                <i class="fa fa-solid fa-lightbulb text-primary"></i>
                             </div>
                             <div class="ps-3">
-                                <h4>No Hidden Cost</h4>
-                                <span>Clita erat ipsum lorem sit sed stet duo justo</span>
+                                <h4>Plant Suggestion</h4>
+                                <span style="font-family: Georgia, 'Times New Roman', Times, serif">Your Personalized Garden Guide: Where Green Dreams Blossom!</span>
                             </div>
                         </div>
                     </div>
@@ -152,8 +160,8 @@ if (isset($_SESSION["user"])) {
                                 <i class="fa fa-users text-primary"></i>
                             </div>
                             <div class="ps-3">
-                                <h4>Dedicated Team</h4>
-                                <span>Clita erat ipsum lorem sit sed stet duo justo</span>
+                                <h4>Plant Selling</h4>
+                                <span style="font-family: Georgia, 'Times New Roman', Times, serif">Planting Beauty Made Easy: Shop Plants Online at GardenGURU's Green Haven.</span>
                             </div>
                         </div>
                     </div>
@@ -162,11 +170,11 @@ if (isset($_SESSION["user"])) {
                     <div class="bg-white shadow d-flex align-items-center h-100 px-5" style="min-height: 160px;">
                         <div class="d-flex">
                             <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                                <i class="fa fa-phone text-primary"></i>
+                                <i class="fa fa-solid fa-rectangle-ad text-primary"></i>
                             </div>
                             <div class="ps-3">
-                                <h4>24/7 Available</h4>
-                                <span>Clita erat ipsum lorem sit sed stet duo justo</span>
+                                <h4>Advertiesment</h4>
+                                <span style="font-family: Georgia, 'Times New Roman', Times, serif">Plant the Seeds of Success: Advertise Your Products with GardenGURU Today!</span>
                             </div>
                         </div>
                     </div>
@@ -192,12 +200,13 @@ if (isset($_SESSION["user"])) {
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
                                 <!-- <i class="fa fa-leaf" aria-hidden="true"></i> -->
-                                <i class="fa-sharp fa-solid fa-seedling fa-2xl" style="color: #256a4f;"></i>
+                                <i class="fa-sharp fa-solid fa-seedling fa-2xl text-primary"></i>
                                 <!-- <img class="img-fluid" src="img/icon/icon-3.png" alt="Icon"> -->
                             </div>
                             <h4 class="mb-3">Plant Suggestion</h4>
-                            <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                            <a class="btn btn-sm" href="#"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
+                            <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif">Get ready to transform your garden into a captivating symphony of colors, fragrances, and textures. Let's cultivate beauty together, one plant at a time. 🌼🌳</p>
+                            <a class="btn btn-sm" href="./php/plantSuggestion.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
+                        
                         </div>
                     </div>
                 </div>
@@ -208,11 +217,11 @@ if (isset($_SESSION["user"])) {
                         </div>
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
-                                <i class="fa-solid fa-newspaper fa-2xl" style="color: #256a4f;"></i>
+                                <i class="fa-solid fa-newspaper fa-2xl text-primary"></i>
                             </div>
                             <h4 class="mb-3">News Feed</h4>
-                            <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                            <a class="btn btn-sm" href="#"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
+                            <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif">Join us as we unearth the secrets to flourishing gardens and explore the stories behind your favorite flora. Let's cultivate knowledge, one headline at a time. 🌼🌍</p>
+                            <a class="btn btn-sm" href="./php/newsfeed.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>
                 </div>
@@ -223,11 +232,11 @@ if (isset($_SESSION["user"])) {
                         </div>
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
-                                <i class="fa-solid fa-handshake fa-2xl" style="color: #256a4f;"></i>
+                                <i class="fa-solid fa-handshake fa-2xl text-primary"></i>
                             </div>
                             <h4 class="mb-3">Communication Forum</h4>
-                            <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                            <a class="btn btn-sm" href="#"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
+                            <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif">Join us in sowing the seeds of inspiration and cultivating a garden of knowledge like no other. Let's chat, share, and watch our gardening dreams grow wild! 🌍🌸</p>
+                            <a class="btn btn-sm" href="./php/comForum.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>
                 </div>
@@ -238,10 +247,10 @@ if (isset($_SESSION["user"])) {
                         </div>
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
-                                <i class="fa-solid fa-rectangle-ad fa-2xl" style="color: #256a4f;"></i>
+                                <i class="fa-solid fa-rectangle-ad fa-2xl text-primary"></i>
                             </div>
                             <h4 class="mb-3">Advertiesment</h4>
-                            <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                            <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif">Grow Your Green Business with Us! With our platform, your gardening business can flourish like never before. 🌞🌳</p>
                             <a class="btn btn-sm" href="../GardenGURU/php/Advertistment.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>
@@ -253,11 +262,11 @@ if (isset($_SESSION["user"])) {
                         </div>
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
-                                <i class="fa-solid fa-shop fa-2xl " style="color: #256a4f;"></i>
+                                <i class="fa-solid fa-shop fa-2xl text-primary"></i>
                             </div>
                             <h4 class="mb-3">Plant Selling</h4>
-                            <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                            <a class="btn btn-sm" href="#"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
+                            <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif"> Bring the Beauty of Nature Home! Browse our garden of possibilities where you'll find a world of green wonders waiting to transform your space. 🌷🏡</p>
+                            <a class="btn btn-sm" href="./php/Selling.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>
                 </div>
@@ -268,10 +277,10 @@ if (isset($_SESSION["user"])) {
                         </div>
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
-                                <i class="fa-solid fa-blog fa-2xl" style="color: #256a4f;"></i>
+                                <i class="fa-solid fa-blog fa-2xl text-primary"></i>
                             </div>
                             <h4 class="mb-3">Blog</h4>
-                            <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                            <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif"> Cultivate Your Knowledge with Us! Welcome to our Gardener's Blog, your passport to a world of horticultural wisdom and green inspiration. 🌿📝</p>
                             <a class="btn btn-sm" href="./php/blog.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>

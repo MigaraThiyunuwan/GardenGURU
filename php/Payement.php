@@ -1,16 +1,29 @@
+<?php
+require_once './classes/cart.php';
+require_once './classes/persons.php';
+require_once './classes/DbConnector.php';
+session_start();
+if (isset($_SESSION["user"])) {
+
+    $user = $_SESSION["user"];
+} else {
+    header("Location: ./login.php?error=4");
+    exit();
+}
+
+$cart = new Cart();
+$total = $cart->getTotal($user->getUserId());
+
+?>
 <!DOCTYPE html>
 <html lang="en">
-
-
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
 <head>
     <meta charset="utf-8">
-    <title>GardenGURU</title>
+    <title>GardenGURU | Payment</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -22,9 +35,7 @@
 </head>
 
 <body>
-    <?php
 
-    ?>
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
@@ -53,18 +64,27 @@
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
 
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-                    <div class="dropdown-menu bg-light m-0">
-                        <a href="./user.php" class="dropdown-item">Profile</a>
-                        <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
-                    </div>
-                </div>
+                <?php
+                if ($user != null) {
+                ?>
+                    <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else if ($manager != null) {
+                ?>
+                    <a href="./manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else {
+                ?>
+                    <a href="./login.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Sign In</a>
+                <?php
+                }
+                ?>
             </div>
             <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
         </div>
     </nav>
     <!-- Navbar End -->
+
 
     <div class="container1 mt-5 px-5">
 
@@ -74,11 +94,10 @@
             <span>please make the payment, after that you can enjoy all the features and benefits.</span>
         </div>
         <div class="row">
-
             <div class="col-md-8">
                 <div class="card p-3">
-                    <form action="OTP.php" method="POST">
-                        <h6 class="text-uppercase">Payment details</h6>
+                    <form action="./processes/paymentprocess.php" method="POST">
+                        <h6 class="text-uppercase"><b>Payment details</b></h6>
                         <div class="inputbox mt-3"> <input type="text" name="nameOnCard" class="form-control" required="required"> <span>Name on card</span> </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -94,22 +113,26 @@
                             </div>
                         </div>
                         <div class="mt-4 mb-4">
-                            <h6 class="text-uppercase">Billing Address</h6>
+                            <h6 class="text-uppercase"><b>Billing Address</b></h6>
                             <div class="row mt-3">
 
                                 <div class="col-md-6">
-                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="streetAddress" class="form-control" required="required"> <span>Street Address</span> </div>
+                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="receiver" class="form-control" required="required"> <span>Receiver's Name</span> </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="inputbox mt-3 mr-2"> <input type="address" name="streetAddress" class="form-control" required="required"> <span>Street Address</span> </div>
+                                </div>
+
+                            </div>
+                            <div class="row mt-2">
+                                <!-- <div class="col-md-6">
+                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="state" class="form-control" required="required"> <span>State/Province</span> </div>
+                                </div> -->
                                 <div class="col-md-6">
                                     <div class="inputbox mt-3 mr-2"> <input type="text" name="city" class="form-control" required="required"> <span>City</span> </div>
                                 </div>
-                            </div>
-                            <div class="row mt-2">
                                 <div class="col-md-6">
-                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="state" class="form-control" required="required"> <span>State/Province</span> </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="postalCode" class="form-control" required="required"> <span>Postal code</span> </div>
+                                    <div class="inputbox mt-3 mr-2"> <input type="number" name="tel" class="form-control" required="required"> <span>Contact Number</span> </div>
 
                                 </div>
                             </div>
@@ -117,13 +140,12 @@
                         <div class="mt-4 mb-4 d-flex justify-content-between">
 
                             <!-- <span>Previous step</span> -->
-                            <button class="btn btn-success px-3">Pay Rs.549</button>
+                            <button class="btn btn-success px-3" type="submit" name="pay">Pay Rs.<?php if (isset($total)) {
+                                                                                                        echo $total;
+                                                                                                    } ?></button>
                         </div>
                     </form>
                 </div>
-
-
-
             </div>
 
             <div class="col-md-4">
@@ -132,7 +154,9 @@
 
                     <span>You have to pay</span>
                     <div class="d-flex flex-row align-items-end mb-3">
-                        <h1 class="mb-0 yellow">Rs.549</h1> <span>.00</span>
+                        <h1 class="mb-0 yellow">Rs. <?php if (isset($total)) {
+                                                        echo $total;
+                                                    } ?></h1> <span>.00</span>
                     </div>
 
                     <span>Enjoy all the features and perk after you complete the payment</span>
@@ -152,7 +176,6 @@
             </div>
 
         </div>
-
 
     </div>
 
@@ -175,19 +198,19 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Services</h4>
-                    <a class="btn btn-link" href="#">Landscaping</a>
-                    <a class="btn btn-link" href="#">Pruning plants</a>
-                    <a class="btn btn-link" href="#">Urban Gardening</a>
-                    <a class="btn btn-link" href="#">Garden Maintenance</a>
-                    <a class="btn btn-link" href="#">Green Technology</a>
+                    <a class="btn btn-link" href="./plantSuggestion.php">Plant Suggestion</a>
+                    <a class="btn btn-link" href="./Advertistment.php">Advertiesment</a>
+                    <a class="btn btn-link" href="./Selling.php">Shop</a>
+                    <a class="btn btn-link" href="./blog.php">Blog</a>
+
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="#">About Us</a>
-                    <a class="btn btn-link" href="#">Contact Us</a>
-                    <a class="btn btn-link" href="#">Our Services</a>
-                    <a class="btn btn-link" href="#">Terms & Condition</a>
-                    <a class="btn btn-link" href="#">Support</a>
+                    <a class="btn btn-link" href="./AboutUs.php">About Us</a>
+                    <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
+                    <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
+                    <a class="btn btn-link" href="./login.php">Log Out</a>
+                    <a class="btn btn-link" href="./termsAndCondition.php">Terms & Condition</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <img src="../images/logo.png" style="width:220px;height:50px;">
@@ -219,7 +242,5 @@
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/main.js"></script>
 </body>
-
-
 
 </html>

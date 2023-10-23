@@ -1,31 +1,76 @@
+<?php
+require_once './classes/persons.php';
+session_start();
+$user = null;
+$manager = null;
+if (isset($_SESSION["user"])) {
+    // User is logged in, retrieve the user object
+    $user = $_SESSION["user"];
+}
+if (isset($_SESSION["manager"])) {
+    // User is logged in, retrieve the user object
+    $manager = $_SESSION["manager"];
+}
+require './classes/DbConnector.php';
+
+use classes\DbConnector;
+
+$dbcon = new DbConnector(); // Create a new instance of DbConnector class
+$conn = $dbcon->getConnection(); // Get the database connection object
+
+$latestStoriesQuery = "SELECT * FROM news ORDER BY newsId DESC LIMIT 3";
+$latestStoriesResult = $conn->query($latestStoriesQuery);
+
+
+$newsCounter = 0;
+
+?>
+
 <!DOCTYPE html>
 <html class="no-js">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>GardenGURU | News</title>
     <meta name="description" content>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/main1.css">
-
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <!-- google fonts -->
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-
-    <!-- fontawesome -->
+    <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
+    <style>
+        .page-header {
+            background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/Selling1/download.jpeg) center center no-repeat !important;
+            background-size: cover !important;
+        }
 
+        .team-members-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
 
+        .team-item {
+            max-width: 300px;
 
+        }
+    </style>
 </head>
 
 <body>
-<?php 
-
-?>
-<!-- navo -->
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="../index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
@@ -48,211 +93,261 @@
                         <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
                         <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
                         <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
-
+                        <a href="./report.php" class="dropdown-item">Reporting</a>
                     </div>
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
+                <?php
+                if ($user != null) {
+                ?>
+                    <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else if ($manager != null) {
+                ?>
+                    <a href="./manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else {
+                ?>
+                    <a href="./login.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Sign In</a>
+                <?php
+                }
+                ?>
 
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-                    <div class="dropdown-menu bg-light m-0">
-                        <a href="./user.php" class="dropdown-item">Profile</a>
-                        <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
-                    </div>
-                </div>
             </div>
-            <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
+
         </div>
     </nav>
     <!-- Navbar End -->
 
-    <section class="banner">
-        <div class="banner-main-content">
-            <h2>GET THE LATEST NEWS FOR PLANT ENTHUSIASTS!</h2>
-            <!-- <h3</h3> -->
-
-
-
-            <div class="current-news-head">
-                <h3>Indoor Plant Trends Inspire Home Decor
-                    <span>by Kamal Edirisinghe</span>
-                </h3>
-
-                <h3>Innovative Soil Regeneration Techniques Restore Degraded Lands
-                    <span>by D.B.Seneviratne</span>
-                </h3>
-
-                <h3>Record-Breaking Plant Exhibition Draws Gardeners Globally<span>by Victor Malinda</span></h3>
-
-                <h3>Biosecurity Measures Implemented to Protect Plant Health<span>by Gamini Perera</span></h3>
-            </div>
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container text-center py-5">
+            <h1 class="display-3 text-white mb-4 animated slideInDown">Newsfeed</h1>
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"> Get the latest news for plant enthusiasts!</li>
+            </ol>
         </div>
-
-        <div class="banner-sub-content">
-            <div class="hot-topic">
-                <img src="../images/newsfeed/Watersaving_Tips_Image_Overlay_V2-1.webp" alt>
-
-                <div class="hot-topic-content">
-                    <h2>Revolutionary Water-Saving Technique Gains Traction in Agriculture</h2>
-
-                    <!--                         <h3>New Topic 1</h3>
- -->
-                    <p>A breakthrough water-saving technique developed by researchers at a leading agricultural institute has caught the attention of farmers worldwide. Using soil moisture sensors and precision irrigation, this innovative approach has shown a significant reduction in water usage while increasing crop yields. </p>
-                    <a href="#">Read More</a>
-                </div>
-            </div>
-
-            <div class="hot-topic">
-                <img src="../images/newsfeed/12-urban-ag.png" alt>
-
-                <div class="hot-topic-content">
-                    <h2>Urban Gardening Movement Flourishing in Cities</h2>
+    </div>
+    <!-- Page Header End -->
+    <!-- Page Header Start -->
 
 
-                    <p>In response to the growing interest in sustainable living and green spaces, urban gardening is witnessing a surge in popularity. More and more city dwellers are embracing container gardening, rooftop gardens, and community plots to grow fresh produce and beautify their surroundings. </p>
-                    <a href="#">Read More</a>
-                </div>
-            </div>
-
-            <div class="hot-topic">
-                <img src="../images/newsfeed/imagesss.jpeg" alt>
-
-                <div class="hot-topic-content">
-                    <h2>Plant-Based Agriculture Leads to Reduced Carbon Emissions</h2>
-
-
-                    <p>A recent study conducted by an environmental research organization revealed that transitioning from animal-based agriculture to plant-based agriculture can significantly reduce carbon emissions. The study highlights the positive impact of adopting a plant-based diet, not only for personal health but also for the environment.</p>
-                    <a href="#">Read More</a>
-                </div>
-            </div>
-
-            <div class="hot-topic">
-                <img src="../images/newsfeed/amazon.jpg" alt>
-
-                <div class="hot-topic-content">
-                    <h2>Newly Discovered Plant Species in the Amazon Rainforest</h2>
-
-
-                    <p>A team of biologists exploring the depths of the Amazon rainforest has stumbled upon a previously unknown plant species with unique medicinal properties. Initial studies suggest that extracts from this plant could have potential applications in treating certain ailments.
-                    </p>
-                    <a href="#">Read More</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <hr>
-
-    <main>
+    <main class="container">
         <section class="main-container-left">
-            <h2>Top Stories</h2>
-            <div class="container-top-left">
-                <article>
-                    <img src="../images/newsfeed/GettyImages-1318237749.webp">
 
-                    <div>
-                        <h3>AI-Powered Farming Tools Enhancing Productivity</h3>
-
-                        <p>Artificial Intelligence (AI) continues to revolutionize the agricultural landscape with the introduction of AI-powered farming tools. From automated crop monitoring systems to drones equipped with AI algorithms for precision agriculture, these technologies are streamlining farming processes, optimizing resource usage, and maximizing yields.</p>
-
-                        <a href="#">Read More <span>>></span></a>
-                    </div>
-                </article>
+            <div class="col-lg-12 text-center border rounded bg-light my-5">
+                <h2>Latest News</h2>
             </div>
+            <?php
+            while ($row = $latestStoriesResult->fetch(PDO::FETCH_ASSOC)) {
+                // Increment the counter for each news story
+                $newsCounter++;
+            ?>
 
-            <div class="container-bottom-left">
-                <article>
-                    <img src="../images/newsfeed/csm_NRP_1551_d35b1af732.webp">
-                    <div>
-                        <h3>Global Seed Vault Celebrates Milestone</h3>
-                        <p>The Svalbard Global Seed Vault, often referred to as the "Doomsday Vault," recently reached a remarkable milestone by storing its one-millionth seed sample. Located in the Arctic permafrost, the vault serves as a vital resource for preserving plant genetic diversity and safeguarding against potential food crises, climate-related disasters, and other threats to global agriculture.</p>
+                <?php
 
-                        <a href="#">Read More <span>>></span></a>
-                    </div>
-                </article>
+                ?>
+                <div class="container-top-left">
+                    <article>
+                        <img style="height: 400px;" src="<?php echo $row['image'];  ?>">
 
-                <article>
-                    <img src="../images/newsfeed/12-urban-ag.png">
-                    <div>
-                        <h3>Bioengineered Superplants Show Promising Results</h3>
-                        <p>Scientists working on bioengineering projects have made significant strides in developing "superplants" that exhibit enhanced resilience to diseases, pests, and adverse environmental conditions. By incorporating desirable traits from various plant species, these bioengineered crops have demonstrated the potential to increase food security and sustainability, though they also raise ethical and ecological concerns.</p>
+                        <div>
+                            <div style="margin-top: 10px;">
+                                <h2><?php echo $row['title']; ?></h2>
+                            </div>
 
-                        <a href="#">Read More <span>>></span></a>
-                    </div>
-                </article>
-            </div>
+                            <p id="description<?php echo $newsCounter; ?>" class="truncated"><?php echo $row['description']; ?></p>
+                            <button class="btn btn-outline-success" id="readMoreButton<?php echo $newsCounter; ?>">Read More</button>
+                            <p id="fullDescription<?php echo $newsCounter; ?>" style="display: none;"><?php echo $row['full_content']; ?></p>
+                            <button class="btn btn-success" id="readLessButton<?php echo $newsCounter; ?>" style="display: none;">Read Less</button>
+
+                        </div>
+                    </article>
+                </div>
+
+            <?php
+            }
+            ?>
         </section>
 
         <section class="main-container-right">
-            <h2>Latest Stories</h2>
 
-            <article>
-                <h4>just in </h4>
-                <div>
-                    <h2>Vertical Farming Takes Off in Urban Centers</h2>
+            <div class="col-lg-12 text-center border rounded bg-light my-5">
+                <h2>Other News</h2>
+            </div>
 
-                    <p>Vertical farming, an innovative method of growing crops in stacked layers, is gaining momentum in urban centers worldwide. With limited arable land in cities, vertical farms offer a solution to produce fresh, pesticide-free vegetables and herbs locally.</p>
 
-                    <a href="#">Read More <span>>></span></a>
+            <?php
+            try {
+                $con = $dbcon->getConnection();
+
+                // Pagination logic
+                $start = isset($_GET['start']) ? intval($_GET['start']) : 0;
+                $start = $start + 3;
+                $rows_per_page = 9;
+
+                $query = "SELECT * FROM news ORDER BY newsId DESC LIMIT $start , $rows_per_page";
+                $query = $conn->query($query);
+
+
+                $otherNewsCounter = 0;
+                while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                    $otherNewsCounter++;
+                    
+            ?>
+
+                    <article>
+                        <h4><?php echo $row['newsPostedDate']; ?></h4>
+                        <div>
+                            <h2><?php echo $row['title']; ?></h2>
+
+                            <p id="otherDescription<?php echo $otherNewsCounter; ?>" class="truncated"><?php echo $row['description']; ?></p>
+                            <button class="btn btn-outline-success" id="otherReadMoreButton<?php echo $otherNewsCounter; ?>">Read More</button>
+                            <p id="otherFullDescription<?php echo $otherNewsCounter; ?>" style="display: none;"><?php echo $row['full_content']; ?></p>
+                            <button class="btn btn-success" id="otherReadLessButton<?php echo $otherNewsCounter; ?>" style="display: none;">Read Less</button>
+                        </div>
+                        <img src="<?php echo $row['image']; ?>">
+                    </article>
+
+            <?php
+                }
+                // Calculate the total number of rows in the 'users' table (if not already calculated)
+                if (!isset($total_rows)) {
+                    $total_rows_query = "SELECT COUNT(*) as total FROM news";
+                    $total_rows_stmt = $con->prepare($total_rows_query);
+                    $total_rows_stmt->execute();
+                    $total_rows_result = $total_rows_stmt->fetch(PDO::FETCH_ASSOC);
+                    $total_rows = $total_rows_result['total'];
+                }
+
+                // Calculate the total number of pages
+                $pages = ceil($total_rows / $rows_per_page);
+            } catch (PDOException $exc) {
+                echo $exc->getMessage();
+            }
+            ?>
+
+            <div class="row">
+                <div class="col-md-6 align-self-center">
+                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">
+                        Showing <?php echo min($total_rows, $start + 1) . ' to ' . min($total_rows, $start + $rows_per_page); ?> of <?php echo $total_rows; ?>
+                    </p>
                 </div>
-                <img src="../images/newsfeed/vertical-farming-cities-dassault-systemes.jpg">
-            </article>
 
-            <article>
-                <h4>just in </h4>
-                <div>
-                    <h2>New Legislation Promotes Pollinator-Friendly Farming Practices</h2>
+                <div class="col-md-6">
+                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                        <ul class="pagination">
+                            <?php
+                            if ($start > 0) {
+                                echo '<li class="page-item"><a class="page-link" href="?start=' . ($start - $rows_per_page) . '">Previous</a></li>';
+                            } else {
+                                echo '<li class="page-item disabled"><span class="page-link">Previous</span></li>';
+                            }
 
-                    <p>In response to the declining populations of bees and other pollinators, several countries have introduced legislation to promote pollinator-friendly farming practices. These measures encourage the use of native wildflowers as cover crops, reduced pesticide application, and the establishment of pollinator-friendly habitats on farmland.</p>
+                            for ($i = 1; $i <= $pages; $i++) {
+                                echo '<li class="page-item' . (($start / $rows_per_page + 1) == $i ? ' active' : '') . '"><a class="page-link" href="?start=' . (($i - 1) * $rows_per_page) . '">' . $i . '</a></li>';
+                            }
 
-                    <a href="#">Read More <span>>></span></a>
+                            if ($start < ($pages - 1) * $rows_per_page) {
+                                echo '<li class="page-item"><a class="page-link" href="?start=' . ($start + $rows_per_page) . '">Next</a></li>';
+                            } else {
+                                echo '<li class="page-item disabled"><span class="page-link">Next</span></li>';
+                            }
+                            ?>
+                        </ul>
+                    </nav>
                 </div>
-                <img src="../images/newsfeed/221017-bee-better-pollinator-certifications-farms-sustainability-pesticides-7-Doug-Crabtree-in-sunflower-crop_by-Jennifer-Hopwood-Xerces-Society.jpg">
-            </article>
-
-            <article>
-                <h4>just in </h4>
-                <div>
-                    <h2>Rise of AI-Powered Plant Identification Apps</h2>
-
-                    <p>Plant identification apps powered by AI are becoming increasingly popular among gardening enthusiasts and nature lovers. These apps utilize machine learning algorithms to identify plant species from images taken with smartphones.</p>
-
-                    <a href="#">Read More <span>>></span></a>
-                </div>
-                <img src="../images/newsfeed/PictureThis-identification.webp">
-            </article>
-
-            <article>
-                <h4>just in </h4>
-                <div>
-                    <h2>Organic Farming Receives Government Support</h2>
-
-                    <p>Governments worldwide are providing increased support and incentives for organic farming practices. Recognizing the importance of sustainable agriculture, subsidies, grants, and educational programs are being introduced to encourage farmers to transition to organic methods.</p>
-
-                    <a href="#">Read More <span>>></span></a>
-                </div>
-                <img src="../images/newsfeed/selecting-best-maize-variety.jpg">
-            </article>
-
-            <article>
-                <h4>just in </h4>
-                <div>
-                    <h2>Hybrid Varieties Show Promise in Climate-Resilient Farming</h2>
-
-                    <p>With climate change posing challenges to traditional crop varieties, farmers are turning to hybrid plant breeds that exhibit greater resilience to extreme weather conditions. These climate-resilient hybrids have demonstrated improved tolerance to heat, drought, and flooding, offering hope for ensuring food security amidst changing climatic patterns.</p>
-
-                    <a href="#">Read More <span>>></span></a>
-                </div>
-                <img src="../images/newsfeed/rice_plant.webp">
-            </article>
+            </div>
         </section>
+
     </main>
 
-    <!-- <footer>
-             -->
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <style>
+        /* Style for the Read More button */
+        .read-more-button {
+            padding: 5px 10px;
+            /* Adjust padding to control button size */
+            font-size: 14px;
+            /* Adjust font size as needed */
+        }
+
+        .story-content {
+            display: flex;
+            align-items: center;
+            /* Vertically center the content */
+        }
+
+        .truncated {
+            flex: 1;
+            /* Allow the paragraph to take remaining horizontal space */
+            margin-right: 10px;
+            /* Add some spacing between the paragraph and image */
+        }
+
+        img {
+            max-width: 100%;
+            /* Ensure the image doesn't exceed its container */
+        }
+    </style>
+    <script>
+        <?php
+        // Generate JavaScript code for each news story
+        for ($i = 1; $i <= $newsCounter; $i++) {
+        ?>
+            const description<?php echo $i; ?> = document.getElementById("description<?php echo $i; ?>");
+            const readMoreButton<?php echo $i; ?> = document.getElementById("readMoreButton<?php echo $i; ?>");
+            const fullDescription<?php echo $i; ?> = document.getElementById("fullDescription<?php echo $i; ?>");
+            const readLessButton<?php echo $i; ?> = document.getElementById("readLessButton<?php echo $i; ?>");
+
+            readMoreButton<?php echo $i; ?>.addEventListener("click", function() {
+                description<?php echo $i; ?>.classList.remove("truncated");
+                readMoreButton<?php echo $i; ?>.style.display = "none";
+                fullDescription<?php echo $i; ?>.style.display = "block";
+                readLessButton<?php echo $i; ?>.style.display = "inline";
+            });
+
+            readLessButton<?php echo $i; ?>.addEventListener("click", function() {
+                description<?php echo $i; ?>.classList.add("truncated");
+                readMoreButton<?php echo $i; ?>.style.display = "inline";
+                fullDescription<?php echo $i; ?>.style.display = "none";
+                readLessButton<?php echo $i; ?>.style.display = "none";
+            });
+        <?php
+        }
+        ?>
+    </script>
+
+    <script>
+        <?php
+        for ($i = 1; $i <= $otherNewsCounter; $i++) {
+        ?>
+            const otherDescription<?php echo $i; ?> = document.getElementById("otherDescription<?php echo $i; ?>");
+            const otherReadMoreButton<?php echo $i; ?> = document.getElementById("otherReadMoreButton<?php echo $i; ?>");
+            const otherFullDescription<?php echo $i; ?> = document.getElementById("otherFullDescription<?php echo $i; ?>");
+            const otherReadLessButton<?php echo $i; ?> = document.getElementById("otherReadLessButton<?php echo $i; ?>");
+
+            otherReadMoreButton<?php echo $i; ?>.addEventListener("click", function() {
+                otherDescription<?php echo $i; ?>.classList.remove("truncated");
+                otherReadMoreButton<?php echo $i; ?>.style.display = "none";
+                otherFullDescription<?php echo $i; ?>.style.display = "block";
+                otherReadLessButton<?php echo $i; ?>.style.display = "inline";
+            });
+
+            otherReadLessButton<?php echo $i; ?>.addEventListener("click", function() {
+                otherDescription<?php echo $i; ?>.classList.add("truncated");
+                otherReadMoreButton<?php echo $i; ?>.style.display = "inline";
+                otherFullDescription<?php echo $i; ?>.style.display = "none";
+                otherReadLessButton<?php echo $i; ?>.style.display = "none";
+            });
+        <?php
+        }
+        ?>
+    </script>
+
+
+       <!-- Footer Start -->
+       <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
@@ -269,19 +364,19 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Services</h4>
-                    <a class="btn btn-link" href="#">Landscaping</a>
-                    <a class="btn btn-link" href="#">Pruning plants</a>
-                    <a class="btn btn-link" href="#">Urban Gardening</a>
-                    <a class="btn btn-link" href="#">Garden Maintenance</a>
-                    <a class="btn btn-link" href="#">Green Technology</a>
+                    <a class="btn btn-link" href="./plantSuggestion.php">Plant Suggestion</a>
+                    <a class="btn btn-link" href="./Advertistment.php">Advertiesment</a>
+                    <a class="btn btn-link" href="./Selling.php">Shop</a>
+                    <a class="btn btn-link" href="./blog.php">Blog</a>
+
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="#">About Us</a>
-                    <a class="btn btn-link" href="#">Contact Us</a>
-                    <a class="btn btn-link" href="#">Our Services</a>
-                    <a class="btn btn-link" href="#">Terms & Condition</a>
-                    <a class="btn btn-link" href="#">Support</a>
+                    <a class="btn btn-link" href="./AboutUs.php">About Us</a>
+                    <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
+                    <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
+                    <a class="btn btn-link" href="./login.php">Log Out</a>
+                    <a class="btn btn-link" href="./termsAndCondition.php">Terms & Condition</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <img src="../images/logo.png" style="width:220px;height:50px;">
@@ -290,7 +385,8 @@
         </div>
     </div>
     <!-- Footer End -->
-
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
     <!-- Copyright Start -->
     <div class="container-fluid copyright py-4">
@@ -305,12 +401,10 @@
     </div>
     <!-- Copyright End -->
 
-
     <!-- JavaScript Libraries -->
     <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="../js/main.js"></script>
-    <script src="../js/script1.js" async defer></script>
+
 </body>
 
 </html>

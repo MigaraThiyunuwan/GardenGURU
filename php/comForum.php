@@ -1,22 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+require_once './classes/persons.php';
+require_once './classes/DbConnector.php';
+
+use classes\DbConnector;
+
+$dbcon = new DbConnector();
+session_start();
+$user = null;
+$manager = null;
+if (isset($_SESSION["user"])) {
+    // User is logged in, retrieve the user object
+    $user = $_SESSION["user"];
+}
+if (isset($_SESSION["manager"])) {
+    // User is logged in, retrieve the user object
+    $manager = $_SESSION["manager"];
+}
+?>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Question and Answer Forum</title>
-  <link href="../css/main2.css" rel="stylesheet" >
-      <!-- Customized Bootstrap Stylesheet -->
-      <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GardenGURU | Communication Forum</title>
+    <!-- <link href="../css/main2.css" rel="stylesheet" > -->
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/comForum.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .page-header {
+            background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/AboutUs/header_img.jpg) center center no-repeat !important;
+            background-size: cover !important;
+        }
+
+        .team-members-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .team-item {
+            max-width: 300px;
+
+        }
+    </style>
+
+
 </head>
 
 <body>
-<?php 
+    <?php
 
-?>
+    ?>
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
@@ -40,34 +81,271 @@
                         <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
                         <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
                         <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
-
+                        <a href="./report.php" class="dropdown-item">Reporting</a>
                     </div>
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
-
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-                    <div class="dropdown-menu bg-light m-0">
-                        <a href="./user.php" class="dropdown-item">Profile</a>
-                        <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
-                    </div>
-                </div>
+                <?php
+                if ($user != null) {
+                ?>
+                    <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else if ($manager != null) {
+                ?>
+                    <a href="./manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else {
+                ?>
+                    <a href="./login.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Sign In</a>
+                <?php
+                }
+                ?>
             </div>
             <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
         </div>
     </nav>
     <!-- Navbar End -->
 
-    <h1>Welcome to the Question and Answer Forum</h1>
-    <div class="question-container">
-        <h2>Ask a question:</h2>
-        <textarea id="question-input" rows="4" cols="50" placeholder="Type your question here"></textarea>
-        <button class="button" onclick="submitQuestion()">Submit</button>
-    </div>
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
 
-    <div class="answer-container" id="answer-container">
-        <!-- The answers will be added here dynamically -->
+        <div class="container text-center py-5">
+            <h1 class="display-3 text-white mb-4 animated slideInDown">Communication forum</h1>
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item">Nurture Your Green Thumb with Us!</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <div class="container bootdey">
+        <div class="col-md-12 bootstrap snippets">
+            <?php
+            if (isset($_SESSION["user"])) {
+            ?>
+                <div class="panel">
+                    <div class="panel-body">
+                        <form action="./processes/comForumProcess.php" method="POST">
+                            <?php $currentDate = date('Y-m-d'); ?>
+                            <textarea class="form-control" name="question" rows="2" placeholder="Ask a Question?"></textarea>
+                            <input type="hidden" name="date" value="<?php echo $currentDate ?>">
+                            <div class="mar-top clearfix">
+                                <button class="btn btn-sm btn-primary pull-right" name="ask_question" type="submit"> <i class="fa fa-pencil fa-fw"></i> Post </button>
+                                <!-- <a class="btn btn-trans btn-icon fa fa-video-camera add-tooltip" href="#"></a>
+                                <a class="btn btn-trans btn-icon fa fa-camera add-tooltip" href="#"></a>
+                                <a class="btn btn-trans btn-icon fa fa-file add-tooltip" href="#"></a> -->
+                            </div>
+                        </form>
+                    </div>
+                    <?php
+                    if (isset($_GET['success'])) {
+                        if ($_GET['success'] == 1) {
+
+                            echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                                    You asked question Successfully!
+                                    </div></b>";
+                        }
+                        if ($_GET['success'] == 2) {
+
+                            echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                                    You answered to the Question Successfully!
+                                    </div></b>";
+                        }
+                    }
+                    ?>
+                </div>
+            <?php
+            }
+            ?>
+
+
+            <div class="panel-body">
+
+                <?php
+                try {
+                    $con = $dbcon->getConnection();
+
+                    // Pagination logic
+                    $start = isset($_GET['start']) ? intval($_GET['start']) : 0;
+                    $rows_per_page = 10;
+
+                    //$query = "SELECT * FROM question ORDER BY questionID DESC LIMIT $start, $rows_per_page ";
+                    $query1 = "SELECT u.user_FirstName, u.profile_picture, U.user_LastName, q.question, q.askDate, Q.questionID FROM users u JOIN question q ON u.user_id = q.user_id ORDER BY questionID DESC LIMIT $start, $rows_per_page ";
+                    $pstmt = $con->prepare($query1);
+                    $pstmt->execute();
+                    $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                    foreach ($rs as $item) {
+
+                ?>
+                        <div class="media-block">
+                            <a class="media-left " ><img class="rounded-circle me-2 " style="width: 50px; height: 50px; object-fit: cover" alt="Profile Picture" src="<?php echo $item->profile_picture;  ?>"></a>
+
+                            <div class="media-body">
+                                <div class="mar-btm" style="margin-left: 5px;">
+                                    <a  class="btn-link text-semibold media-heading box-inline"><?php echo $item->user_FirstName . " " . $item->user_LastName;  ?></a>
+                                    <p class="text-muted text-sm"><i class="fa fa-regular fa-clock"></i> <?php echo $item->askDate;  ?></p>
+                                </div>
+
+                                <p style="margin-left: 5px;"><?php echo $item->question;  ?></p>
+                                <div class="pad-ver">
+                                    <!-- <div class="btn-group">
+                                    <a class="btn btn-sm btn-default btn-hover-success" href="#"><i class="fa fa-thumbs-up"></i></a>
+                                    <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i class="fa fa-thumbs-down"></i></a>
+                                </div>
+                                <a class="btn btn-sm btn-default btn-hover-primary" href="#">Comment</a> -->
+                                    <button class="btn btn-outline-success toggle-comments" style="margin-left: 5px;"><i class="fa fa-reply"></i> reply</button>
+                                </div>
+                                <hr>
+
+
+                                <!-- Comments -->
+                                <div class="comments" style="display: none;">
+
+                                    <?php
+                                    //$query = "SELECT * FROM answer WHERE questionID = ?";
+                                    $query = "SELECT u.user_FirstName, u.profile_picture, u.user_LastName, a.answerDate, a.answer FROM users u JOIN answer a ON u.user_id = a.user_id WHERE questionID = ?";
+                                    
+                                    $pstmt1 = $con->prepare($query);
+                                    $pstmt1->bindValue(1, $item->questionID);
+
+
+                                    $pstmt1->execute();
+                                    $rs2 = $pstmt1->fetchAll(PDO::FETCH_OBJ);
+
+                                    foreach ($rs2 as $item1) {
+
+                                    ?>
+                                        <div class="media-block">
+                                            <a class="media-left" href="#"><img class="rounded-circle me-2 " style="width: 50px; height: 50px; object-fit: cover" alt="Profile Picture" src="<?php echo $item1->profile_picture;  ?>"></a>
+                                            <div class="media-body" style="margin-left: 5px;">
+                                                <div class="mar-btm">
+                                                    <a class="btn-link text-semibold media-heading box-inline" style="margin-left: 5px;"><?php echo $item1->user_FirstName . " " . $item1->user_LastName;  ?></a>
+                                                    <p class="text-muted text-sm"  ><i class="fa fa-regular fa-clock" style="margin-right: 5px;"></i><?php echo $item1->answerDate;  ?></p>
+                                                </div>
+                                                <p><?php echo $item1->answer;  ?></p>
+                                                <!-- <div class="pad-ver">
+                                            <div class="btn-group">
+                                                <a class="btn btn-sm btn-default btn-hover-success active" href="#"><i class="fa fa-thumbs-up"></i> You Like it</a>
+                                                <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i class="fa fa-thumbs-down"></i></a>
+                                            </div>
+                                            <a class="btn btn-sm btn-default btn-hover-primary" href="#">Comment</a>
+                                            </div> -->
+                                                <hr>
+                                            </div>
+                                        </div>
+                                    <?php
+
+                                    }
+                                    ?>
+
+                                    <?php
+                                    if (isset($_SESSION["user"])) {
+                                    ?>
+                                        <div class="panel-body">
+                                            <form action="./processes/comForumProcess.php" method="POST">
+                                                <textarea class="form-control" rows="2" placeholder="Answer to question" name="answer"></textarea>
+                                                <?php $currentDate = date('Y-m-d'); ?>
+                                                <input type="hidden" name="date" value="<?php echo $currentDate ?>">
+                                                <input type="hidden" name="QuestionID" value="<?php echo $item->questionID?>">
+                                                <div class="mar-top clearfix">
+                                                    <button class="btn btn-sm btn-primary pull-right" type="submit" name="giveAnswer"><i class="fa fa-pencil fa-fw"></i> Reply </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+
+                <?php
+                    }
+
+                    if (!isset($total_rows)) {
+                        $total_rows_query = "SELECT COUNT(*) as TOTAL FROM question";
+                        $total_rows_stmt = $con->prepare($total_rows_query);
+                        $total_rows_stmt->execute();
+                        $total_rows_result = $total_rows_stmt->fetch(PDO::FETCH_ASSOC);
+                        $total_rows = $total_rows_result['TOTAL'];
+                    }
+
+                    // Calculate the total number of pages
+                    $pages = ceil($total_rows / $rows_per_page);
+                } catch (PDOException $exc) {
+                    echo $exc->getMessage();
+                }
+                ?>
+
+                <div class="row">
+                    <div class="col-md-6 align-self-center">
+                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">
+                            Showing <?php echo min($total_rows, $start + 1) . ' to ' . min($total_rows, $start + $rows_per_page); ?> of <?php echo $total_rows; ?>
+                        </p>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                            <ul class="pagination">
+                                <?php
+                                if ($start > 0) {
+                                    echo '<li class="page-item"><a class="page-link" href="?start=' . ($start - $rows_per_page) . '">Previous</a></li>';
+                                } else {
+                                    echo '<li class="page-item disabled"><span class="page-link">Previous</span></li>';
+                                }
+
+                                for ($i = 1; $i <= $pages; $i++) {
+                                    echo '<li class="page-item' . (($start / $rows_per_page + 1) == $i ? ' active' : '') . '"><a class="page-link" href="?start=' . (($i - 1) * $rows_per_page) . '">' . $i . '</a></li>';
+                                }
+
+                                if ($start < ($pages - 1) * $rows_per_page) {
+                                    echo '<li class="page-item"><a class="page-link" href="?start=' . ($start + $rows_per_page) . '">Next</a></li>';
+                                } else {
+                                    echo '<li class="page-item disabled"><span class="page-link">Next</span></li>';
+                                }
+                                ?>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+        </div>
     </div>
 
 
@@ -89,19 +367,19 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Services</h4>
-                    <a class="btn btn-link" href="#">Landscaping</a>
-                    <a class="btn btn-link" href="#">Pruning plants</a>
-                    <a class="btn btn-link" href="#">Urban Gardening</a>
-                    <a class="btn btn-link" href="#">Garden Maintenance</a>
-                    <a class="btn btn-link" href="#">Green Technology</a>
+                    <a class="btn btn-link" href="./plantSuggestion.php">Plant Suggestion</a>
+                    <a class="btn btn-link" href="./Advertistment.php">Advertiesment</a>
+                    <a class="btn btn-link" href="./Selling.php">Shop</a>
+                    <a class="btn btn-link" href="./blog.php">Blog</a>
+
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="#">About Us</a>
-                    <a class="btn btn-link" href="#">Contact Us</a>
-                    <a class="btn btn-link" href="#">Our Services</a>
-                    <a class="btn btn-link" href="#">Terms & Condition</a>
-                    <a class="btn btn-link" href="#">Support</a>
+                    <a class="btn btn-link" href="./AboutUs.php">About Us</a>
+                    <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
+                    <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
+                    <a class="btn btn-link" href="./login.php">Log Out</a>
+                    <a class="btn btn-link" href="./termsAndCondition.php">Terms & Condition</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <img src="../images/logo.png" style="width:220px;height:50px;">
@@ -115,8 +393,8 @@
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
 
- <!-- Copyright Start -->
- <div class="container-fluid copyright py-4">
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
@@ -129,6 +407,14 @@
     <!-- Copyright End -->
 
     <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".toggle-comments").click(function() {
+                $(this).closest(".media-block").find(".comments").toggle();
+            });
+        });
+    </script>
     <script src="../js/script2.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>

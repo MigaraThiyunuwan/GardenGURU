@@ -5,6 +5,20 @@ use classes\DbConnector;
 
 $dbcon = new DbConnector();
 
+
+require_once './classes/persons.php';
+session_start();
+$user = null;
+$manager = null;
+if (isset($_SESSION["user"])) {
+    // User is logged in, retrieve the user object
+    $user = $_SESSION["user"];
+}
+if (isset($_SESSION["manager"])) {
+    $manager = $_SESSION["manager"];
+}
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $location = $_POST["location"];
@@ -41,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="utf-8">
-    <title>Gardener - Gardening Website Template</title>
+    <title>GardenGURU | Plant Suggestion</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -60,6 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             background-size: cover !important;
         }
     </style>
+    
 </head>
 
 <body class="body">
@@ -79,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="../index.php" class="nav-item nav-link active">Home</a>
                 <a href="./plantSuggestion.php" class="nav-item nav-link">Plant Suggestions</a>
-                <a href="./Selling.php" class="nav-item nav-link">Shop</a>
+                <a href="./Selling.php" class="nav-item nav-link ">Shop</a>
                 <!-- <a href="../php/blog.php" class="nav-item nav-link">Blog</a> -->
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
@@ -88,19 +103,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
                         <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
                         <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
-
+                        <a href="./report.php" class="dropdown-item">Reporting</a>
                     </div>
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
 
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-                    <div class="dropdown-menu bg-light m-0">
-                        <a href="./user.php" class="dropdown-item">Profile</a>
-                        <a href="./classes/logout.php" class="dropdown-item">Log Out</a>
-                    </div>
-                </div>
+
+                <?php
+                if ($user != null) {
+                ?>
+                    <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else if ($manager != null) {
+                ?>
+                    <a href="./manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else {
+                ?>
+                    <a href="./login.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Sign In</a>
+                <?php
+                }
+                ?>
+
 
             </div>
             <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
@@ -114,7 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="container text-center py-5">
             <h1 class="display-3 text-white mb-4 animated slideInDown">Plant Suggestions</h1>
             <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item">Here we suggest you plants for home gardening.</li>
+                <li class="breadcrumb-item">Welcome to our Plant Suggestion, your personal botanical matchmaker!</li>
             </ol>
         </div>
     </div>
@@ -124,6 +149,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="container">
 
+        <div class="container mt-2">
+            <div class="row">
+
+                <?php if ($_SERVER["REQUEST_METHOD"] == "POST") { ?>
+                    <span><b>
+                            <p style="color:MediumSeaGreen;">In <?php echo $location ?> area when you have <?php echo $sun ?> sun exposure, <?php echo $soil ?> soil,
+                                and <?php echo $water ?> water, you have <?php echo $space ?> space to gardening and when your harvest time <?php echo $time ?>, it's suitable to grow below plants.</p>
+                        </b></span>
+                <?php  } ?>
+
+                <?php
+                if (isset($rs) && !empty($rs)) {
+                    foreach ($rs as $row) {
+                        try {
+                            $con = $dbcon->getConnection();
+                            $sql = "SELECT * FROM plant WHERE PlantID = ?";
+
+                            $pstmt = $con->prepare($sql);
+                            $pstmt->bindValue(1, $row->PlantID);
+                            $pstmt->execute();
+                            $plants = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                            foreach ($plants as $plant) {
+                                $plantName = $plant->PlantName;
+                                $filePath = $plant->FilePath;
+                ?>
+
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="card card-block">
+
+                                        <img src="<?php echo $filePath ?>" alt="Photo of sunset">
+                                        <h5 class="card-title mt-3 mb-3" style="margin-left: 10px;"><?php echo $plantName ?></h5>
+                                        <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your selections.</p>
+                                    </div>
+                                </div>
+
+                <?php
+                            }
+                        } catch (PDOException $exc) {
+                            echo $exc->getMessage();
+                        }
+                    }
+                } else {
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        echo "<p>No plants found for the given criteria.</p>";
+                    }
+                }
+                ?>
+            </div>
+
+
+        </div>
 
 
         <div class="row py-5 mt-4 align-items-center">
@@ -134,16 +211,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="container">
                 <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST">
                     <div class="row">
+                        <div class="col-sm">
+                            <!-- Select Box 1 -->
+                            <!-- <div class="input-group col"> -->
 
-                        <!-- Select Box 1 -->
-                        <div class="input-group col">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa-solid fa-location-dot fa-fade" style="color: #0b8952; font-size: 25px;"></i>
-                                </span>
-                            </div>
-                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Select Location</a>
-                            <select id="location" name="location" class="input-group-text bg-white px-4 border-md border-right-0">
+                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;"> <i class="fa-solid fa-location-dot fa-fade" style="color: #0b8952; font-size: 25px; margin-right: 10px;"></i>Select Location</a>
+                            <select id="location" name="location" class="form-control bg-white px-4 border-md border-right-0" style="margin-bottom: 20px;">
                                 <option value="Badulla">Badulla</option>
                                 <option value="Soranathota">Soranathota</option>
                                 <option value="Meegahakiula">Meegahakiula</option>
@@ -160,17 +233,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <option value="Uva Paranagama">Uva Paranagama</option>
                                 <option value="Welimada">Welimada</option>
                             </select>
+                            <!-- </div> -->
                         </div>
-
                         <!-- Select Box 2 -->
-                        <div class="input-group col">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa-solid fa-sun fa-beat-fade" style="color: #0b8952; font-size: 25px;"></i>
-                                </span>
-                            </div>
-                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Sun Exposure</a>
-                            <select id="sun" name="sun" class="input-group-text bg-white px-4 border-md border-right-0">
+                        <!-- <div class="input-group col"> -->
+                        <div class="col-sm">
+
+                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;"> <i class="fa-solid fa-sun fa-beat-fade" style="color: #0b8952; font-size: 25px; margin-right: 10px;"></i>Sun Exposure</a>
+                            <select id="sun" name="sun" class="form-control bg-white px-4 border-md border-right-0" style="margin-bottom: 20px;">
                                 <option value="High">High</option>
                                 <option value="Medium">Medium</option>
                                 <option value="Low">Low</option>
@@ -178,14 +248,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
 
                         <!-- Select Box 3 -->
-                        <div class="input-group col">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa-solid fa-person-digging fa-shake" style="color: #0b8952; font-size: 25px;"></i>
-                                </span>
-                            </div>
-                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Soil </a>
-                            <select id="soil" name="soil" class="input-group-text bg-white px-4 border-md border-right-0">
+                        <!-- <div class="input-group col"> -->
+                        <div class="col-sm">
+
+                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;"> <i class="fa-solid fa-person-digging fa-shake" style="color: #0b8952; font-size: 25px; margin-right: 10px;"></i>Soil </a>
+                            <select id="soil" name="soil" class="form-control bg-white px-4 border-md border-right-0">
                                 <option value="Reddish Brown Earths">Reddish Brown Earths</option>
                                 <option value="Red Yellow Podzolic">Red Yellow Podzolic</option>
                                 <!-- <option value="Low Humic Gley">Low Humic Gley</option> -->
@@ -198,51 +265,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="row" style="margin-top: 25px;">
 
                         <!-- Select Box 1 -->
-                        <div class="input-group col">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa-solid fa-droplet fa-bounce" style="color: #0b8952;font-size: 25px;"></i>
-                                </span>
-                            </div>
-                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Water</a>
-                            <select id="water" name="water" class="input-group-text bg-white px-4 border-md border-right-0">
-                                <option value="Easy to found">Easy to found</option>
+                        <!-- <div class="input-group col"> -->
+                        <div class="col-sm">
+
+                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;"> <i class="fa-solid fa-droplet fa-bounce" style="color: #0b8952;font-size: 25px; margin-right: 10px;"></i>Water</a>
+                            <select id="water" name="water" class="form-control bg-white px-4 border-md border-right-0" style="margin-bottom: 20px;">
+                                <option value="Easy to Find">Easy to found</option>
                                 <option value="Medium">Normally can found</option>
                                 <option value="Rare">Rare to found</option>
                             </select>
                         </div>
 
                         <!-- Select Box 2 -->
-                        <div class="input-group col">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa-solid fa-landmark fa-fade" style="color: #0b8952;font-size: 25px;"></i>
-                                </span>
-                            </div>
-                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Space</a>
-                            <select id="space" name="space" class="input-group-text bg-white px-4 border-md border-right-0">
+                        <!-- <div class="input-group col"> -->
+                        <div class="col-sm">
+
+                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;"> <i class="fa-solid fa-landmark fa-fade" style="color: #0b8952;font-size: 25px; margin-right: 10px;"></i>Space</a>
+                            <select id="space" name="space" class="form-control bg-white px-4 border-md border-right-0" style="margin-bottom: 20px;">
                                 <option value="Limited">Limited</option>
                                 <option value="Average">Average</option>
                                 <option value="Large">Large</option>
-
                             </select>
                         </div>
 
                         <!-- Select Box 3 -->
-                        <div class="input-group col">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa-solid fa-clock fa-flip" style="color: #0b8952;font-size: 25px;"></i>
-                                </span>
+                        <!-- <div class="input-group col"> -->
+                        <div class="col-sm">
+                            <div class="row">
+
+                                <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;"> <i class="fa-solid fa-clock fa-flip" style="color: #0b8952;font-size: 25px; margin-right: 10px;"></i>Harvest Time</a>
+                                <select id="time" name="time" class="form-control bg-white px-4 border-md border-right-0">
+                                    <option value="< 2 months">
+                                        < 2 months</option>
+                                    <option value="2 to 6 months">2 to 6 months</option>
+                                    <option value="6 to 12 months">6 to 12 months</option>
+                                    <option value="> 12 months">> 12 months</option>
+                                </select>
                             </div>
-                            <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;">Harvest Time</a>
-                            <select id="time" name="time" class="input-group-text bg-white px-4 border-md border-right-0">
-                                <option value="< 2 months">
-                                    < 2 months</option>
-                                <option value="2 to 6 months">2 to 6 months</option>
-                                <option value="6 to 12 months">6 to 12 months</option>
-                                <option value="> 12 months">> 12 months</option>
-                            </select>
                         </div>
 
                     </div>
@@ -255,73 +314,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             </div>
 
-
-
-
         </div>
-
-
-
-    </div>
-
-
-    <div class="container mt-2">
-        <div class="row">
-
-      <?php  if ($_SERVER["REQUEST_METHOD"] == "POST") { ?>
-        <span ><b><p style="color:MediumSeaGreen;">In <?php echo $location ?> area when you have <?php echo $sun ?> sun exposure, <?php echo $soil ?> soil,
-        and <?php echo $water ?> water, you have <?php echo $space ?> space to gardening and when your harvest time <?php echo $time ?>, it's suitable to grow below plants.</p></b></span>
-      <?php  } ?>
-
-            <?php
-            if (isset($rs) && !empty($rs)) {
-                foreach ($rs as $row) {
-                    try {
-                        $con = $dbcon->getConnection();
-                        $sql = "SELECT * FROM plant WHERE PlantID = ?";
-
-                        $pstmt = $con->prepare($sql);
-                        $pstmt->bindValue(1, $row->PlantID);
-                        $pstmt->execute();
-                        $plants = $pstmt->fetchAll(PDO::FETCH_OBJ);
-
-                        foreach ($plants as $plant) {
-                            $plantName = $plant->PlantName;
-                            $filePath = $plant->FilePath;
-            ?>
-
-
-
-                            <div class="col-md-3 col-sm-6">
-                                <div class="card card-block">
-
-                                    <img src="<?php echo $filePath ?>" alt="Photo of sunset">
-                                    <h5 class="card-title mt-3 mb-3" style="margin-left: 10px;"><?php echo $plantName ?></h5>
-                                    <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your situation.</p>
-                                </div>
-                            </div>
-
-
-
-
-            <?php
-                        }
-                    } catch (PDOException $exc) {
-                        echo $exc->getMessage();
-                    }
-                }
-            } else {
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    echo "<p>No plants found for the given criteria.</p>";
-                }
-            }
-            ?>
-        </div>
-        <span><b>
-                <br><p style="color:MediumSeaGreen;">Reddish Brown Earths - </p>වැලි ලෝම සිට සැහැල්ලු මැටි ලෝම දක්වා මතුපිට පස් ඇති අතර එය මැටි යටි පසකට ඉහළින් පිහිටා ඇත.
+        <span>
+            <b>
+                <br>
+                <p style="color:MediumSeaGreen;">Reddish Brown Earths - </p>වැලි ලෝම සිට සැහැල්ලු මැටි ලෝම දක්වා මතුපිට පස් ඇති අතර එය මැටි යටි පසකට ඉහළින් පිහිටා ඇත.
                 මතුපිට පස් සෙන්ටිමීටර 10 ත් 40 ත් අතර ඝනකමකින් යුක්ත වන අතර රතු සිට අළු දුඹුරු දක්වා වෙනස් වේ. යටි පස කහ සිට රතු සිට අළු දක්වා වෙනස් වේ. <br><br>
                 <p style="color:MediumSeaGreen;">Red Yellow Podzolic - </p>රතු සහ කහ පැහැති පාට සඳහා ප්රසිද්ධය. පාංශු මතුපිට සමහර ප්‍රදේශවල රතු හෝ තැඹිලි පාටින් ද තවත් ප්‍රදේශවල කහ පැහැයෙන්ද දිස් විය හැක.
-            </b></span>
+            </b>
+        </span>
 
     </div>
 
@@ -345,19 +346,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Services</h4>
-                    <a class="btn btn-link" href="#">Landscaping</a>
-                    <a class="btn btn-link" href="#">Pruning plants</a>
-                    <a class="btn btn-link" href="#">Urban Gardening</a>
-                    <a class="btn btn-link" href="#">Garden Maintenance</a>
-                    <a class="btn btn-link" href="#">Green Technology</a>
+                    <a class="btn btn-link" href="./plantSuggestion.php">Plant Suggestion</a>
+                    <a class="btn btn-link" href="./Advertistment.php">Advertiesment</a>
+                    <a class="btn btn-link" href="./Selling.php">Shop</a>
+                    <a class="btn btn-link" href="./blog.php">Blog</a>
+
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="#">About Us</a>
-                    <a class="btn btn-link" href="#">Contact Us</a>
-                    <a class="btn btn-link" href="#">Our Services</a>
-                    <a class="btn btn-link" href="#">Terms & Condition</a>
-                    <a class="btn btn-link" href="#">Support</a>
+                    <a class="btn btn-link" href="./AboutUs.php">About Us</a>
+                    <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
+                    <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
+                    <a class="btn btn-link" href="./login.php">Log Out</a>
+                    <a class="btn btn-link" href="./termsAndCondition.php">Terms & Condition</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <img src="../images/logo.png" style="width:220px;height:50px;">
@@ -366,7 +367,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
     <!-- Footer End -->
-    Back to Top
+
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
 
@@ -376,7 +377,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="border-bottom" href="index.php">GardenGURU</a>, All Right Reserved.
+                    &copy; <a class="border-bottom" href="../index.php">GardenGURU</a>, All Right Reserved.
                 </div>
 
             </div>
