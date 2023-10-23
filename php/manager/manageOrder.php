@@ -375,7 +375,7 @@ if (isset($_SESSION["manager"])) {
                                                                     <form action='../processes/managerProcess.php' method='POST'>
                                                                         <input type='hidden' name='OrderID' value='<?php echo $order->orderID ?>'>
                                                                         <input type='hidden' name='status' value='success'>
-                                                                        <button class="btn btn-success w-100" type="button" data-bs-dismiss="modal" aria-label="Close">Confirm</button>
+                                                                        <button class="btn btn-success w-100" type="submit" data-bs-dismiss="modal" aria-label="Close">Confirm</button>
                                                                     </form>
                                                                 </div>
                                                                 <div class="col-md-6">

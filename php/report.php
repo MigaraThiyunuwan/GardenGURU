@@ -154,7 +154,7 @@ if (isset($_SESSION["manager"])) {
 
         <div class="row">
             <div class="col-md-6">
-                <p style="margin-top: 50px;"><b>Gender Diversity: A Visual Snapshot of Our Registered Users</b></p>
+                <!-- <p style="margin-top: 50px;"><b>Gender Diversity: A Visual Snapshot of Our Registered Users</b></p> -->
                 <div id="myChart1" style="width:100%; max-width:600px; height:500px;">
                 </div>
                 <script>
@@ -172,8 +172,8 @@ if (isset($_SESSION["manager"])) {
                         ]);
 
                         const options = {
-                            title: '',
-                            colors: ['#378a13', '#78d278'] 
+                            title: 'Gender Diversity: A Visual Snapshot of Our Registered Users',
+                            colors: ['#378a13', '#78d278']
                         };
 
                         const chart = new google.visualization.PieChart(document.getElementById('myChart1'));
@@ -205,7 +205,7 @@ if (isset($_SESSION["manager"])) {
             </div>
 
             <div class="col-md-6">
-                <p style="margin-top: 50px;"><b>Gender Diversity: A Visual Snapshot of Recieved Orders</b></p>
+                <!-- <p style="margin-top: 50px;"><b>Gender Diversity: A Visual Snapshot of Recieved Orders</b></p> -->
                 <div id="myChart2" style="width:100%; max-width:600px; height:500px;">
                 </div>
                 <script>
@@ -223,8 +223,8 @@ if (isset($_SESSION["manager"])) {
                         ]);
 
                         const options = {
-                            title: '',
-                            colors: ['#378a13', '#78d278'] 
+                            title: 'Gender Diversity: A Visual Snapshot of Recieved Orders',
+                            colors: ['#378a13', '#78d278']
                         };
 
                         const chart = new google.visualization.PieChart(document.getElementById('myChart2'));
@@ -556,174 +556,72 @@ if (isset($_SESSION["manager"])) {
 
         </div>
 
-        <!-- ///////////////////////////////////////////////////////////////////////////////////// -->
-        <div class="row" style="margin-top: 50px;">
+        <div id="myChart" style="width:100%;  height:1000px;"></div>
 
-            <?php
-            try {
-                $con = $dbcon->getConnection();
+        <script>
+            google.charts.load('current', {
+                'packages': ['corechart']
+            });
+            google.charts.setOnLoadCallback(drawChart);
 
-                // Pagination logic
-                $start = isset($_GET['start']) ? intval($_GET['start']) : 0;
-                $rows_per_page = 10;
+            function drawChart() {
+                const data = google.visualization.arrayToDataTable([
+                    ['Item', 'Qty'],
+                 
 
-                $query = "SELECT * FROM shop LIMIT $start, $rows_per_page";
-                $pstmt = $con->prepare($query);
-                $pstmt->execute();
-                $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+                    <?php
+                    try {
+                        $con = $dbcon->getConnection();
+                        $query = "SELECT ItemId, ItemName FROM shop";
+                        $pstmt = $con->prepare($query);
 
-                foreach ($rs as $item) {
+                        $pstmt->execute();
+                        if ($pstmt->rowCount() > 0) {
 
-            ?>
+                            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
 
-                    <div class="col-xs-12 col-md-4 bootstrap snippets bootdeys">
+                            foreach ($rs as $row) {
+                                $itemName = $row->ItemName;
+                                $ItemId = $row->ItemId;
 
-                        <!-- product -->
-                        <div class="product-content product-wrap clearfix">
-                            <div class="row">
-                                <!-- <div class="col-md-5 col-sm-12 col-xs-12">
-                                    <div class="product-image">
-                                        <img src="<?php echo $item->ItemImage;  ?>" class="img-responsive" style="height: 250px; ">
-                                    </div>
-                                </div> -->
-                                <div class="col-md-7 col-sm-12 col-xs-12">
-                                    <div class="product-deatil" style="margin-left: 10px;">
-                                        <h5 class="name">
-                                            <a>
-                                                <h4><?php echo $item->ItemName;  ?></h4>
-                                            </a>
-                                        </h5>
-                                        <p class="price-container">
-                                            <span> <?php echo "Rs." . $item->ItemPrice . ".00" ?> </span>
-                                        </p>
-                                        <span class="tag1"></span>
-                                    </div>
-                                    <div class="description" style="margin-left: 10px;">
-                                        <?php if ($item->ItemQuantity > 0) {
-                                        ?>
-                                            <p><b><?php echo $item->ItemQuantity; ?> Items Availabe.</b></p>
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <p style="color: red;"><b>No Items Availabe.</b></p>
-                                        <?php
-                                        }
-                                        ?>
-                                    </div>
-                                    <div class="product-info smart-form">
-                                        <div class="row">
-                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                    ?>
+                                ['<?php echo $itemName ?>', <?php echo Report::totalSales($ItemId) ?>],
 
-                                                <a href="./mycart.php">
-                                                    <div class="icon-container">
+                    <?php
 
-                                                        <i class="fa fa-shopping-cart cart-icon" style="position: absolute; top: 10px; right: 10px; font-size: 24px; margin: 10px;"></i> <!-- Font Awesome icon -->
-                                                    </div>
-                                                </a>
+                            }
 
-
-                                                <form action="./processes/manageCart.php" method="POST">
-
-                                                    <!-- <a href="javascript:void(0);" class="btn btn-success">Add to cart</a> -->
-                                                    <input type="hidden" name="Item_Name" value="<?php echo $item->ItemName; ?>">
-                                                    <input type="hidden" name="price" value="<?php echo $item->ItemPrice; ?>">
-                                                    <input type="hidden" name="ItemId" value="<?php echo $item->ItemId; ?>">
-
-                                                    <?php
-                                                    if ($item->ItemQuantity < 1) {
-                                                    ?>
-                                                        <button type="submit" class="btn btn-success" name="Add_To_Cart" disabled>Add to Cart</button>
-                                                    <?php
-                                                    } else {
-                                                    ?>
-                                                        <button type="submit" class="btn btn-success" name="Add_To_Cart">Add to Cart</button>
-                                                    <?php
-                                                    }
-                                                    ?>
-
-                                                </form>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6 col-xs-6">
-
-                                                <?php if ($item->ItemQuantity < 1) {
-                                                ?>
-
-                                                    <b>
-                                                        <div style="color: red;" role='alert'>
-                                                            Out of Stock!
-                                                        </div>
-                                                    </b>
-
-                                                <?php
-                                                }
-                                                ?>
+                          
+                        }
+                    } catch (PDOException $exc) {
+                        echo $exc->getMessage();
+                    }
+                    ?>
+                    
+                ]);
 
 
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end product -->
-                    </div>
+                const options = {
+                    title: 'Total Sales in GardenGuru'
+                };
 
-            <?php
-                }
-
-                if (!isset($total_rows)) {
-                    $total_rows_query = "SELECT COUNT(*) as total FROM shop";
-                    $total_rows_stmt = $con->prepare($total_rows_query);
-                    $total_rows_stmt->execute();
-                    $total_rows_result = $total_rows_stmt->fetch(PDO::FETCH_ASSOC);
-                    $total_rows = $total_rows_result['total'];
-                }
-
-                // Calculate the total number of pages
-                $pages = ceil($total_rows / $rows_per_page);
-            } catch (PDOException $exc) {
-                echo $exc->getMessage();
+                const chart = new google.visualization.BarChart(document.getElementById('myChart'));
+                chart.draw(data, options);
             }
-            ?>
+        </script>
 
-            <div class="row">
-                <div class="col-md-6 align-self-center">
-                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">
-                        Showing <?php echo min($total_rows, $start + 1) . ' to ' . min($total_rows, $start + $rows_per_page); ?> of <?php echo $total_rows; ?>
-                    </p>
+        <!-- ///////////////////////////////////////////////////////////////////////////////////// -->
 
-                </div>
 
-                <div class="col-md-6">
-                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                        <ul class="pagination">
-                            <?php
-                            if ($start > 0) {
-                                echo '<li class="page-item"><a class="page-link" href="?start=' . ($start - $rows_per_page) . '">Previous</a></li>';
-                            } else {
-                                echo '<li class="page-item disabled"><span class="page-link">Previous</span></li>';
-                            }
 
-                            for ($i = 1; $i <= $pages; $i++) {
-                                echo '<li class="page-item' . (($start / $rows_per_page + 1) == $i ? ' active' : '') . '"><a class="page-link" href="?start=' . (($i - 1) * $rows_per_page) . '">' . $i . '</a></li>';
-                            }
 
-                            if ($start < ($pages - 1) * $rows_per_page) {
-                                echo '<li class="page-item"><a class="page-link" href="?start=' . ($start + $rows_per_page) . '">Next</a></li>';
-                            } else {
-                                echo '<li class="page-item disabled"><span class="page-link">Next</span></li>';
-                            }
-                            ?>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
+
 
 
 
     </div>
+
 
 
 

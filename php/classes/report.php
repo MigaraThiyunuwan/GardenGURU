@@ -268,4 +268,31 @@ class Report
             echo $exc->getMessage();
         }
     }
+
+    public static function totalSales($itemID)
+{
+    try {
+        $dbcon = new DbConnector();
+        $con = $dbcon->getConnection();
+        $query = "SELECT oi.ItemId, SUM(oi.itemQuantity) AS TotalSales
+            FROM orderitem oi
+            INNER JOIN orders o ON oi.orderID = o.orderID
+            WHERE o.OrderStatus = 'success' AND oi.ItemId = ?
+            GROUP BY oi.ItemId ";
+        $pstmt = $con->prepare($query);
+        $pstmt->bindValue(1, $itemID);
+        $pstmt->execute();
+        
+        if ($pstmt->rowCount() > 0) {
+            $result = $pstmt->fetch(PDO::FETCH_OBJ);
+            $total = $result->TotalSales;
+
+            return $total;
+        }
+        return 0; // Item not found or no sales for the item.
+    } catch (PDOException $exc) {
+        echo $exc->getMessage();
+    }
+}
+
 }

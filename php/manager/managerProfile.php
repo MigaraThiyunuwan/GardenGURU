@@ -82,6 +82,7 @@ if (isset($_SESSION["manager"])) {
 
         }
     </style>
+  
 </head>
 
 <body>
@@ -202,18 +203,10 @@ if (isset($_SESSION["manager"])) {
 
                             if (isset($_GET['success'])) {
                                 echo "<hr>";
-                                
-                                
-                                
-                                
                             }
 
                             if (isset($_GET['error'])) {
                                 echo "<hr>";
-                                
-                                
-                                
-                               
                             }
                             ?>
                         </div>
@@ -222,26 +215,7 @@ if (isset($_SESSION["manager"])) {
             </div>
             <br>
 
-            <!-- <div class="row" style="margin-top: 20px;">
-                <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px; ">
-                    <a href="./manager/manageUsers.php" class="w-100"><button class="mybtn w-100">User Details</button></a>
-                </div>
-                <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                    <a href="./manager/manageNewsFeed.php" class="w-100"><button class="mybtn w-100">News Feed</button></a>
-                </div>
-                <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                    <a href="./manager/manageAdvertiesments.php" class="w-100"><button class="mybtn w-100">Advertiesment</button></a>
-                </div>
-                <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                    <a href="./manager/manageBlogs.php" class="w-100"><button class="mybtn w-100">Manage Blog</button></a>
-                </div>
-                <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                    <button class="mybtn w-100">Button</button>
-                </div>
-                <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                    <button class="mybtn w-100">Button</button>
-                </div>
-            </div> -->
+            
 
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -258,7 +232,7 @@ if (isset($_SESSION["manager"])) {
                             <h4 class="mb-3">Manage Users</h4>
                             <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif">Take charge of user management with the 'Manage Users' button. This feature allows you to efficiently oversee and administrate user accounts, ensuring smooth operations and user satisfaction. Click now to maintain control and optimize your website.</p>
                             <a class="btn btn-sm" href="./manageUsers.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
-                        
+
                         </div>
                     </div>
                 </div>

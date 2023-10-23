@@ -56,6 +56,30 @@ if (isset($_SESSION["manager"])) {
 
         }
     </style>
+    <style>
+        .active-nav {
+            background-color: darkgreen !important;
+        }
+    </style>
+    <script>
+  // Get all navigation links
+  const navLinks = document.querySelectorAll('.nav-item');
+
+  // Add a click event listener to each link
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      // Remove the "active-nav" class from all links
+      navLinks.forEach(navLink => {
+        navLink.classList.remove('active-nav');
+      });
+
+      // Add the "active-nav" class to the clicked link
+      link.classList.add('active-nav');
+    });
+  });
+</script>
+
+
 </head>
 
 <body>
@@ -79,12 +103,55 @@ if (isset($_SESSION["manager"])) {
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="../index.php" class="nav-item nav-link active">Home</a>
+
+
+
+        <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+    <!-- ... (your existing code) ... -->
+    <a href="../index.php" class="nav-item nav-link active active-nav">Home</a>
+    <a href="./test2.php" class="nav-item nav-link">Plant Suggestions</a>
+    <a href="./Selling.php" class="nav-item nav-link">Shop</a>
+    <!-- ... (other navigation links) ... -->
+</nav>
+
+
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+            <div class="">
+                <div class="nav-wrapper d-flex align-items-center justify-content-end">
+                    <ul class="nav nav-pills d-none d-md-flex" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="pills-company-tab" data-toggle="pill" href="../index.php" role="tab" aria-controls="pills-company" aria-selected="true">Home</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="pills-product-tab" data-toggle="pill" href="#pills-product" role="tab" aria-controls="pills-product" aria-selected="false">Product</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="pills-news-tab" data-toggle="pill" href="#pills-news" role="tab" aria-controls="pills-news" aria-selected="false">News</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
+                        </li>
+
+                        <li class="nav-item" role="presentation">
+                            <div class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
+                                <div class="dropdown-menu bg-light m-0">
+                                    <a href="./blog.php" class="dropdown-item">Blog</a>
+                                    <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
+                                    <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
+                                    <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
+                                    <a href="./report.php" class="dropdown-item">Reporting</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- <a href="../index.php" class="nav-item nav-link active">Home</a>
                 <a href="./plantSuggestion.php" class="nav-item nav-link">Plant Suggestions</a>
                 <a href="./Selling.php" class="nav-item nav-link">Shop</a>
-                <!-- <a href="../php/blog.php" class="nav-item nav-link">Blog</a> -->
+             
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
                     <div class="dropdown-menu bg-light m-0">
@@ -125,12 +192,49 @@ if (isset($_SESSION["manager"])) {
                     <a href="./login.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Sign In</a>
                 <?php
                 }
-                ?>
+                ?> -->
             </div>
             <!-- <a href="#" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a> -->
         </div>
     </nav>
     <!-- Navbar End -->
+
+
+
+
+
+    <!-- <div class="nav-wrapper d-flex align-items-center justify-content-end">
+        <ul class="nav nav-pills d-none d-md-flex" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="pills-company-tab" data-toggle="pill" href="../index.php" role="tab" aria-controls="pills-company" aria-selected="true">Home</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="pills-product-tab" data-toggle="pill" href="#pills-product" role="tab" aria-controls="pills-product" aria-selected="false">Product</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="pills-news-tab" data-toggle="pill" href="#pills-news" role="tab" aria-controls="pills-news" aria-selected="false">News</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
+            </li>
+
+            <li class="nav-item" role="presentation">
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
+                    <div class="dropdown-menu bg-light m-0">
+                        <a href="./blog.php" class="dropdown-item">Blog</a>
+                        <a href="./Advertistment.php" class="dropdown-item">Advertisement</a>
+                        <a href="./newsfeed.php" class="dropdown-item">News Feed</a>
+                        <a href="./comForum.php" class="dropdown-item">Communication Forum</a>
+                        <a href="./report.php" class="dropdown-item">Reporting</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+
+    </div> -->
+
     <!-- Page Header Start -->
     <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
 
@@ -195,14 +299,14 @@ if (isset($_SESSION["manager"])) {
 
             ?>
 
-                    <div class="col-xs-12 col-md-6 bootstrap snippets bootdeys" >
+                    <div class="col-xs-12 col-md-6 bootstrap snippets bootdeys">
 
                         <!-- product -->
-                        <div class="product-content product-wrap clearfix" >
+                        <div class="product-content product-wrap clearfix">
                             <div class="row">
                                 <div class="col-md-5 col-sm-12 col-xs-12">
                                     <div class="product-image">
-                                        <img src="<?php echo $item->ItemImage;  ?>"  class="img-responsive" style="height: 250px; ">
+                                        <img src="<?php echo $item->ItemImage;  ?>" class="img-responsive" style="height: 250px; ">
                                     </div>
                                 </div>
                                 <div class="col-md-7 col-sm-12 col-xs-12">
@@ -290,7 +394,7 @@ if (isset($_SESSION["manager"])) {
 
             <?php
                 }
-                
+
                 if (!isset($total_rows)) {
                     $total_rows_query = "SELECT COUNT(*) as total FROM shop";
                     $total_rows_stmt = $con->prepare($total_rows_query);
@@ -347,9 +451,9 @@ if (isset($_SESSION["manager"])) {
 
     </section>
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s" >
-        <div class="container py-5" >
-            <div class="row g-5" >
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Our Office</h4>
                     <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
