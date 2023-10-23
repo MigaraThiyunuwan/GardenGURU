@@ -1,3 +1,12 @@
+<?php
+require './classes/DbConnector.php';
+
+//use classes\DbConnector;
+$dbConnector = new classes\DbConnector();
+$dbcon = $dbConnector->getConnection();
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -74,7 +83,6 @@
         </div>
     </div>
     <!-- Page Header End -->
-
     <?php
 // Replace with your database connection details
 $servername = "localhost";
@@ -82,53 +90,48 @@ $username = "root";
 $password = "";
 $dbname = "gardenguru";
 
-// Create a connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+try {
+    // Create a PDO connection
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    // Fetch blog data from the database
+    $sql = "SELECT blog_id, blog_title, blog_details, blog_image FROM blog";
+    $result = $conn->query($sql);
+    
+    echo '<div class="container">';
+    echo '<div class="row">';
+    
+    if ($result->rowCount() > 0) {
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            echo '<div class="col-lg-6">';
+            echo '<article class="blog_item">';
+            echo '<div class="blog_item_img">';
+            echo '<img class="card-img rounded-0" src=' . $row["blog_image"] . ' alt="">';
+            echo '</div>';
+            echo '<div class="blog_details">';
+            echo '<a class="d-inline-block" href="./readBlog.php?blog_id=' . $row["blog_id"] . '">';
+            echo '<h2 class="blog-head" style="color: #2d2d2d;">' . $row["blog_title"] . '</h2>';
+            echo '</a>';
+            echo '<p>' . $row["blog_details"] . '</p>';
+            echo '<ul class="blog-info-link">';
+            echo '<li><a href="#"><i class="fa fa-user"></i> Migara Thiyunuwan</a></li>';
+            echo '</ul>';
+            echo '</div>';
+            echo '</article>';
+            echo '</div>';
+        }
+    } else {
+        echo '<p>No blog posts available.</p>';
+    }
+    
+    echo '</div>';
+    echo '</div>';
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
 }
-
-// Fetch blog data from the database
-$sql = "SELECT blog_id, blog_title, blog_details, blog_image FROM blog";
-$result = $conn->query($sql);
-
 ?>
 
-
-
-
-<div class="container">
-    <div class="row">
-        <?php
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo '<div class="col-lg-6">';
-                echo '<article class="blog_item">';
-                echo '<div class="blog_item_img">';
-                echo '<img class="card-img rounded-0" src=' . $row["blog_image"] . ' alt="">';
-                echo '</div>';
-                echo '<div class="blog_details">';
-                echo '<a class="d-inline-block" href="./readBlog.php?blog_id=' . $row["blog_id"] . '">';
-                echo '<h2 class="blog-head" style="color: #2d2d2d;">' . $row["blog_title"] . '</h2>';
-                echo '</a>';
-                echo '<p>' . $row["blog_details"] . '</p>';
-                echo '<ul class="blog-info-link">';
-                echo '<li><a href="#"><i class="fa fa-user"></i> Migara Thiyunuwan</a></li>';
-                echo '</ul>';
-                echo '</div>';
-                echo '</article>';
-                echo '</div>';
-            }
-        } else {
-            echo '<p>No blog posts available.</p>';
-        }
-
-        $conn->close();
-        ?>
-    </div>
-</div>
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
