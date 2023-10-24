@@ -7,7 +7,7 @@ use PDO;
 class DbConnector {
 
     private $host = "localhost";
-    private $dbname = "gardenguru";
+    private $dbname = "gardenguru (9)";
     private $dbuser = "root";
     private $dbpw = "";
 
@@ -22,7 +22,3 @@ class DbConnector {
     }
 
 }
-
-
-
-?>

@@ -62,22 +62,22 @@ if (isset($_SESSION["manager"])) {
         }
     </style>
     <script>
-  // Get all navigation links
-  const navLinks = document.querySelectorAll('.nav-item');
+        // Get all navigation links
+        const navLinks = document.querySelectorAll('.nav-item');
 
-  // Add a click event listener to each link
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      // Remove the "active-nav" class from all links
-      navLinks.forEach(navLink => {
-        navLink.classList.remove('active-nav');
-      });
+        // Add a click event listener to each link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                // Remove the "active-nav" class from all links
+                navLinks.forEach(navLink => {
+                    navLink.classList.remove('active-nav');
+                });
 
-      // Add the "active-nav" class to the clicked link
-      link.classList.add('active-nav');
-    });
-  });
-</script>
+                // Add the "active-nav" class to the clicked link
+                link.classList.add('active-nav');
+            });
+        });
+    </script>
 
 
 </head>
@@ -107,12 +107,12 @@ if (isset($_SESSION["manager"])) {
 
 
         <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-    <!-- ... (your existing code) ... -->
-    <a href="../index.php" class="nav-item nav-link active active-nav">Home</a>
-    <a href="./test2.php" class="nav-item nav-link">Plant Suggestions</a>
-    <a href="./Selling.php" class="nav-item nav-link">Shop</a>
-    <!-- ... (other navigation links) ... -->
-</nav>
+            <!-- ... (your existing code) ... -->
+            <a href="../index.php" class="nav-item nav-link active active-nav">Home</a>
+            <a href="./test2.php" class="nav-item nav-link">Plant Suggestions</a>
+            <a href="./Selling.php" class="nav-item nav-link">Shop</a>
+            <!-- ... (other navigation links) ... -->
+        </nav>
 
 
 
@@ -513,6 +513,129 @@ if (isset($_SESSION["manager"])) {
     <script src="../js/main.js"></script>
 
 </body>
+
+
+<?php
+
+
+session_start();
+
+
+require_once './classes/User.php';
+
+require_once './classes/DbConnector.php';
+
+use classes\User;
+
+use classes\DbConnector;
+
+if (isset($_COOKIE["remember_me"])) {
+
+
+    $user = new User(null, null, null, null, null);
+
+    if ($user->isValidToken($_COOKIE["remember_me"], DbConnector::getConnection())) {
+
+        $_SESSION["user_id"] = $user->getID(); //this value will be save to this session
+
+
+        $_SESSION["user_firstname"] = $user->getFirstName();
+
+
+        $_SESSION["user_lastname"] = $user->getLastName();
+
+        $location = "user/"; //redirect user to user home page
+
+    } else {
+
+        setcookie("remember_me", "", (time() - (30 * 24 * 60 * 60)));
+
+        $location = "index.php";
+    }
+}
+
+// Check if username and password are submitted
+
+
+
+elseif (isset($_POST["username"], $_POST["password"])) {
+
+
+
+    $username = $_POST["username"];
+
+
+
+    $password = $_POST["password"];
+
+
+    if (!empty($username) && !empty($password)) {
+
+
+
+        $user = new User(null, null, $username, $password, null);
+
+
+        if ($user->authenticate(DbConnector::getConnection())) {
+
+
+
+            // User authentication successful, store user object in session
+
+
+
+            $_SESSION["user_id"] = $user->getID(); //this value will be save to this session
+
+
+
+            $_SESSION["user_firstname"] = $user->getFirstName();
+
+
+
+            $_SESSION["user_lastname"] = $user->getLastName();
+
+            if (isset($_POST["remember_me"])) {
+
+                $token = bin2hex(random_bytes(32));
+
+                $expiry = time() + (30 * 24 * 60 * 60);
+
+
+                if ($user->update($token, $expiry, DbConnector::getConnection())) {
+
+                    //if this is true then only im going to set the cookie
+
+                    setcookie("remember_me", $token, $expiry);
+                }
+            }
+
+            $location = "user/";
+        } else {
+
+            // Username or password incorrect
+
+            $location = "index.php?status=2";
+        }
+    } else {
+
+        // Required fields are not submitted
+
+
+        $location = "index.php?status=1";
+    }
+} else {
+
+    // Fields are not submitted
+
+    $location = "index.php?status=0";
+}
+
+// Redirect based on the determined location
+
+header("Location: " . $location);
+
+?>
+
 
 
 
