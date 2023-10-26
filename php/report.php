@@ -258,7 +258,7 @@ if (isset($_SESSION["manager"])) {
 
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-        <canvas id="myChart23" style="width:100%; "></canvas>
+        <canvas id="myChart23" style="width:100%; height: 10px; "></canvas>
 
         <script>
             var yValues = [];
