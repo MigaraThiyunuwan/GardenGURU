@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 require_once './classes/DbConnector.php';
@@ -548,3 +549,363 @@ if (isset($_SESSION["manager"])) {
 
 
 </html>
+=======
+<?php 
+/////////////////////////////////////////////// Malki ///////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////// Lashan ///////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////// dharani ///////////////////////////////////////////////////////////////////
+
+<?php
+
+
+
+
+session_start();
+
+require_once './classes/User.php';
+require_once './classes/DbConnector.php';
+
+
+use classes\User;
+use classes\DbConnector;
+
+if(isset($_COOKIE["remember_me"])){
+    
+    $user=new User(null,null,null,null,null);
+    
+    if($user->isValidToken($_COOKIE["remember_me"],DbConnector::getConnection())){
+        $_SESSION["user_id"]=$user->getID();
+         $_SESSION["first_name"]=$user->getFirst_name();
+         $_SESSION["last_name"]=$user->getLast_name();
+         $location="user/";
+    }
+    
+}
+
+else if(isset($_POST["username"],$_POST["password"])){
+    $username =$_POST["username"];
+    $password=$_POST["password"];
+    
+    
+    if(!empty($username) && !empty($password)){
+        
+        $user = new User(null,ull,$username,$password,null);
+        
+        if($user->autheticate(DbConnector::getConnection())){
+            $_SESSION["user_id"]=$user->getId();
+            $_SESSION["first_name"]=$user->getFirst_name();
+            $_SESSION["last_name"]=$user->getLast_name();
+            
+            
+            if($_POST["remember_me"]){
+                 $token = bin2hex(random_bytes(32));
+                 $expiry = time() + (30*24*60*60);
+                 
+                 if($user->update($token, $expiry, DbConnector::getConnection())){
+                     setcookie("remember_me",$token,$expiry);
+                 }
+                
+            }
+            $location="user/";  
+        }else{
+            $location="index.php?status=1";
+        }
+    }
+}
+
+header("Location:" .$location);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////// Navo ///////////////////////////////////////////////////////////////////
+>>>>>>> origin/migara
