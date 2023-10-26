@@ -262,7 +262,7 @@ if (isset($_SESSION["manager"])) {
 
         <script>
             var yValues = [];
-            var xValues = [];
+            var xValues = [];                            
 
             var xValues = ["Ampara",
                 "Anuradhapura",
