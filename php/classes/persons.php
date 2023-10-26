@@ -327,6 +327,21 @@ class user extends person
         }
     }
 
+    public function changePassword($password) {
+        $dbcon = new DbConnector();
+        try {
+            $con = $dbcon->getConnection();
+            $query = "UPDATE users SET user_Password = ? WHERE user_id = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $password);
+            $pstmt->bindValue(2, $this->userId);
+            $pstmt->execute();
+            return ($pstmt->rowCount() > 0);
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
     public function putAdvertisement($file, $text_title, $text_description, $realDate)
     {
         $tmp_name1 = $file['tmp_name'];
@@ -523,6 +538,20 @@ class Manager extends person
         return $this->managerId;
     }
 
+    public function changePassword($password) {
+        $dbcon = new DbConnector();
+        try {
+            $con = $dbcon->getConnection();
+            $query = "UPDATE manager SET mPassword = ? WHERE managerID = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $password);
+            $pstmt->bindValue(2, $this->managerId);
+            $pstmt->execute();
+            return ($pstmt->rowCount() > 0);
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
     public function deleteUser($user_id)
     {
         try {
