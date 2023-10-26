@@ -24,6 +24,16 @@ class MYPDF extends TCPDF
         $this->SetDrawColor(0, 0, 0);
         $this->SetLineWidth(0.3);
 
+        if($data[0][9] == 'rejected'){
+            $this->SetTextColor(255,0,0);
+            $this->Cell(0, 10, "We are sorry! We can not accept your order at this moment. Please try to place new order.", 0, 1);
+        }
+
+        if($data[0][9] == 'success'){
+            $this->SetTextColor(0,128,0);
+            $this->Cell(0, 10, "We confiremed your order. Your package will be delivered within 2-7 days.", 0, 1);
+            $this->SetTextColor(0);
+        }
         // Customer details
      //   $this->Cell(0, 10, 'Bill To:', 0, 1);
         $this->Cell(0, 10, "Receiver Name: ".$data[0][0], 0, 1);
@@ -58,7 +68,7 @@ class MYPDF extends TCPDF
             $this->Ln();
             $fill = !$fill;
         }
-        $this->Cell(0, 10, "Total = " . $data[0][2], 1, 1, 'C', 0, '', 0);
+        $this->Cell(0, 10, "Total : " . $data[0][2]."/=", 1, 1, 'C', 0, '', 0);
 
 
         // Closing line
@@ -119,11 +129,7 @@ $header = array('Item', 'Qty', 'Unit Price', 'Total');
 ////////////////////////////////////// $data = $pdf->LoadData('data/table_data_demo.txt');
 
 $data = Report::getBill($orderID);
-// $data = array(
-//     array('John', 'Doe', '30', 'dhdhe'),
-//     array('Alice', 'Smith', '25', 'dhethe'),
-//     array('Bob', 'Johnson', '28', 'erghe')
-// );
+
 // print colored table
 $pdf->ColoredTable($header, $data);
 

@@ -2,6 +2,12 @@
 <html lang="en">
 <?php
 require_once './classes/persons.php';
+require_once './classes/report.php';
+require_once './classes/DbConnector.php';
+
+use classes\DbConnector;
+
+$dbcon = new DbConnector();
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -22,32 +28,24 @@ if (isset($_SESSION["manager"])) {
 
 <head>
     <meta charset="utf-8">
-    <title>GardenGURU | About</title>
+    <title>GardenGURU | Reports</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css">
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/report.css" rel="stylesheet">
+    <link href="../css/Selling.css" rel="stylesheet">
 
     <style>
         .page-header {
             background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/AboutUs/header_img.jpg) center center no-repeat !important;
             background-size: cover !important;
-        }
-
-        .team-members-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .team-item {
-            max-width: 300px;
-
         }
     </style>
 </head>
@@ -107,18 +105,319 @@ if (isset($_SESSION["manager"])) {
     </nav>
     <!-- Navbar End -->
 
- 
+
     <!-- Page Header Start -->
     <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
 
         <div class="container text-center py-5">
-            <h1 class="display-3 text-white mb-4 animated slideInDown">About Us</h1>
+            <h1 class="display-3 text-white mb-4 animated slideInDown">Reports</h1>
             <ol class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item">Nurture Your Green Thumb with Us!</li>
             </ol>
         </div>
     </div>
     <!-- Page Header End -->
+    <div class="container">
+        <div class="Reportrow">
+            <div class="Reportcolumn">
+                <div class="Reportcard">
+                    <p><i class="fa fa-user" style="font-size:50px;"></i></p>
+                    <h3><?php echo Report::RegisteredUsers() ?>+</h3>
+                    <p>Registered Users</p>
+                </div>
+            </div>
+
+            <div class="Reportcolumn">
+                <div class="Reportcard">
+                    <p><i class="fa fa-check" style="font-size:50px;"></i></p>
+                    <h3><?php echo Report::totalOrders() ?>+</h3>
+                    <p>Orders</p>
+                </div>
+            </div>
+
+            <div class="Reportcolumn">
+                <div class="Reportcard">
+                    <p><i class="fa fa-smile-beam" style="font-size:50px;"></i></p>
+                    <h3><?php echo Report::happyCustomers() ?>+</h3>
+                    <p>Happy Customers</p>
+                </div>
+            </div>
+
+            <div class="Reportcolumn">
+                <div class="Reportcard">
+                    <p><i class="fa fa-shopping-bag" style="font-size:50px;"></i></p>
+                    <h3><?php echo Report::availableItems() ?>+</h3>
+                    <p>Available Items</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <!-- <p style="margin-top: 50px;"><b>Gender Diversity: A Visual Snapshot of Our Registered Users</b></p> -->
+                <div id="myChart1" style="width:100%; max-width:600px; height:500px;">
+                </div>
+                <script>
+                    google.charts.load('current', {
+                        'packages': ['corechart']
+                    });
+                    google.charts.setOnLoadCallback(drawChart);
+
+                    function drawChart() {
+                        const data = google.visualization.arrayToDataTable([
+                            ['Gender', 'Count'],
+                            ['Male', <?php echo Report::maleUserPercentage() ?>],
+                            ['Female', <?php echo Report::femaleUserPercentage() ?>],
+
+                        ]);
+
+                        const options = {
+                            title: 'Gender Diversity: A Visual Snapshot of Our Registered Users',
+                            colors: ['#378a13', '#78d278']
+                        };
+
+                        const chart = new google.visualization.PieChart(document.getElementById('myChart1'));
+                        chart.draw(data, options);
+                    }
+                </script>
+
+                <!-- <div id="bar-example-4" style=" margin-left: 0px;">
+                    <table class="charts-css bar show-labels data-spacing-10">
+
+                        <tbody>
+                            <tr>
+                                <th scope="row">Male <br><?php echo Report::maleUserPercentage() ?>% </th>
+                                <?php
+                                $maleValue = ((1.2 * Report::maleUserPercentage()) / 100)
+                                ?>
+                                <td style="--size: <?php echo $maleValue ?>; --color: #378a13; margin-bottom: 5px"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Female <br> <?php echo Report::femaleUserPercentage() ?>%</th>
+                                <?php
+                                $femaleValue = ((1.2 * Report::femaleUserPercentage()) / 100)
+                                ?>
+                                <td style="--size: <?php echo $femaleValue ?>; --color: #baffc9;"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> -->
+            </div>
+
+            <div class="col-md-6">
+                <!-- <p style="margin-top: 50px;"><b>Gender Diversity: A Visual Snapshot of Recieved Orders</b></p> -->
+                <div id="myChart2" style="width:100%; max-width:600px; height:500px;">
+                </div>
+                <script>
+                    google.charts.load('current', {
+                        'packages': ['corechart']
+                    });
+                    google.charts.setOnLoadCallback(drawChart);
+
+                    function drawChart() {
+                        const data = google.visualization.arrayToDataTable([
+                            ['Gender', 'Count'],
+                            ['Male', <?php echo Report::maleOrderPercentage() ?>],
+                            ['Female', <?php echo Report::femaleOrderPercentage() ?>],
+
+                        ]);
+
+                        const options = {
+                            title: 'Gender Diversity: A Visual Snapshot of Recieved Orders',
+                            colors: ['#378a13', '#78d278']
+                        };
+
+                        const chart = new google.visualization.PieChart(document.getElementById('myChart2'));
+                        chart.draw(data, options);
+                    }
+                </script>
+
+                <!-- <div id="bar-example-4" style=" margin-right: 0px;">
+                    <table class="charts-css bar show-labels reverse data-spacing-10">
+
+                        <tbody>
+                            <tr>
+                                <th scope="row">Male <br><?php echo Report::maleOrderPercentage() ?>% </th>
+                                <?php
+                                $maleOrderValue = ((1.2 * Report::maleOrderPercentage()) / 100)
+                                ?>
+                                <td style="--size: <?php echo $maleOrderValue ?>; margin-bottom: 5px"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Female <br><?php echo Report::femaleOrderPercentage() ?>%</th>
+                                <?php
+                                $femaleOrderValue = ((1.2 * Report::femaleOrderPercentage()) / 100)
+                                ?>
+                                <td style="--size: <?php echo $femaleOrderValue ?>;"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> -->
+            </div>
+
+
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+        <canvas id="myChart23" style="width:100%; "></canvas>
+
+        <script>
+            var yValues = [];
+            var xValues = [];                            
+
+            var xValues = ["Ampara",
+                "Anuradhapura",
+                "Badulla",
+                "Batticaloa",
+                "Colombo",
+                "Galle",
+                "Gampaha",
+                "Hambantota",
+                "Jaffna",
+                "Kalutara",
+                "Kandy",
+                "Kegalle",
+                "Kilinochchi",
+                "Kurunegala",
+                "Mannar",
+                "Matale",
+                "Matara",
+                "Monaragala",
+                "Mullaitivu",
+                "Nuwara Eliya",
+                "Polonnaruwa",
+                "Puttalam",
+                "Ratnapura",
+                "Trincomalee",
+                "Vavuniya",
+            ];
+
+
+            <?php
+            $districts = [
+                "Ampara",
+                "Anuradhapura",
+                "Badulla",
+                "Batticaloa",
+                "Colombo",
+                "Galle",
+                "Gampaha",
+                "Hambantota",
+                "Jaffna",
+                "Kalutara",
+                "Kandy",
+                "Kegalle",
+                "Kilinochchi",
+                "Kurunegala",
+                "Mannar",
+                "Matale",
+                "Matara",
+                "Monaragala",
+                "Mullaitivu",
+                "Nuwara Eliya",
+                "Polonnaruwa",
+                "Puttalam",
+                "Ratnapura",
+                "Trincomalee",
+                "Vavuniya",
+            ];
+
+
+
+
+            foreach ($districts as $district) {
+            ?>
+                yValues.push(<?php echo ((Report::districtUserPercentage($district))) ?>);
+
+
+            <?php
+            }
+            ?>
+
+            var barColors = ["red", "green", "blue", "orange", "brown", "green", "blue", "orange", "brown", "red", "green", "blue", "orange", "brown", "green", "blue", "orange", "brown", "blue", "orange", "brown", "green", "blue", "orange", "green"];
+
+            new Chart("myChart23", {
+                type: "bar",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: "District Diversity: A Visual Snapshot of Registered Users"
+                    }
+                }
+            });
+        </script>
+
+
+        <div id="myChart" style="width:100%;  height:1000px;"></div>
+
+        <script>
+            google.charts.load('current', {
+                'packages': ['corechart']
+            });
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+                const data = google.visualization.arrayToDataTable([
+                    ['Item', 'Qty'],
+
+
+
+                    <?php
+                    try {
+                        $con = $dbcon->getConnection();
+                        $query = "SELECT ItemId, ItemName FROM shop";
+                        $pstmt = $con->prepare($query);
+
+                        $pstmt->execute();
+                        if ($pstmt->rowCount() > 0) {
+
+                            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                            foreach ($rs as $row) {
+                                $itemName = $row->ItemName;
+                                $ItemId = $row->ItemId;
+
+                    ?>['<?php echo $itemName ?>', <?php echo Report::totalSales($ItemId) ?>],
+
+                    <?php
+
+                            }
+                        }
+                    } catch (PDOException $exc) {
+                        echo $exc->getMessage();
+                    }
+                    ?>
+
+                ]);
+
+
+
+                const options = {
+                    title: 'Total Sales in GardenGuru',
+                    colors: ['#378a13', '#78d278']
+                };
+
+                const chart = new google.visualization.BarChart(document.getElementById('myChart'));
+                chart.draw(data, options);
+            }
+        </script>
+
+        <!-- ///////////////////////////////////////////////////////////////////////////////////// -->
+
+
+    </div>
+
+
+
 
 
     <!-- Footer Start -->
