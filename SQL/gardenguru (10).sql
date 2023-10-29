@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2023 at 01:54 PM
+-- Generation Time: Oct 29, 2023 at 04:23 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -57,9 +57,6 @@ CREATE TABLE `advertisements` (
   `title` text NOT NULL,
   `description` text NOT NULL,
   `adPostedDate` date DEFAULT NULL,
-  `user_FirstName` varchar(30) DEFAULT NULL,
-  `user_LastName` varchar(30) DEFAULT NULL,
-  `user_Email` varchar(60) DEFAULT NULL,
   `image1_filename` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -67,12 +64,12 @@ CREATE TABLE `advertisements` (
 -- Dumping data for table `advertisements`
 --
 
-INSERT INTO `advertisements` (`id`, `user_id`, `title`, `description`, `adPostedDate`, `user_FirstName`, `user_LastName`, `user_Email`, `image1_filename`) VALUES
-(1, NULL, '🌱 Discover the Garden Hero: The Hand Shovel! 🌱', 'Tired of struggling with flimsy tools that just can\'t handle your garden tasks? Meet your gardening sidekick – the Hand Shovel!\n\n Why Choose Our Hand Shovel?\n\n Durable: Crafted for tough jobs, it\'s built to last!\n Ergonomic: Designed for comfort, no more hand strain!\n Multipurpose: Perfect for planting, digging, and weeding!\n Compact: Ideal for small spaces and easy to carry!\n Rust-Resistant: Endures the elements like a champ!\n Easy to Clean: Rinse, and it\'s ready for action!\n\n Special Offer: Only $19.99! \n\n Order now and get a FREE gardening glove! \n\nContact us today to order:\n📞 Call: 555-123-4567\n📧 Email: info@handshovelheroes.com\n\nUpgrade your garden game with the Hand Shovel – your garden\'s new best friend!', '2023-09-01', 'sasan', 'dilantha', 'sasan@gmail.com', '../images/Adevertistment/test1_add.jpg'),
-(2, NULL, '🌱 Pro-Grade Hand Shovel! 🌱', 'Tired of cheap, flimsy shovels that leave your garden dreams buried? Elevate your gardening game with our Pro-Grade Hand Shovel!\n\n What Makes Our Hand Shovel Stand Out? \n\n Durability: Engineered to last, it\'s a shovel that won\'t quit!\n Comfort: Ergonomic design ensures fatigue-free gardening!\n Versatility: Perfect for planting, digging, weeding, and more!\n Compact Design: Fits into tight spots and is easy to store!\n Rust-Proof: Built to endure the elements for years to come!\n\n Price: Only $24.99! \n\nReady to transform your garden? Contact us today:\n\n📞 Call: 555-789-1234\n📧 Email: info@progradehandshovel.com\n🌐 Website: www.progradehandshovel.com\n\nUpgrade your gardening experience with the Pro-Grade Hand Shovel – your garden\'s ultimate partner!', '2023-09-02', 'sasan', 'dilantha', 'sasan@gmail.com', '../images/Adevertistment/test2_add.jpg'),
-(3, NULL, '🍂 Introducing the Garden Rake  🍂', 'Tired of struggling with inadequate tools that can\'t keep up with your seasonal clean-up? Say goodbye to the hassle and hello to efficiency with our incredible Garden Rake!\n\n Why Choose Our Garden Rake? \n\n Robust and Reliable: Built to last, our garden rake tackles any job with ease!\n Comfortable Grip: Designed for your comfort, it makes yard work a breeze!\n Versatile Wonder: Perfect for leaves, debris, and leveling soil!\n Compact and Convenient: Easy to store and carry for all your yard tasks!\n Rust-Resistant: Designed to withstand the elements for lasting use!\n Effortless Maintenance: A quick hose-down, and it\'s ready for action!\n\n Price: Only $29.99! \n\n Order now and get a FREE pair of gardening gloves! \n\nContact us today to order:\n📞 Call: 555-789-5678\n📧 Email: info@gardenrakepro.com\n🌐 Website: www.gardenrakepro.com\n\nDon\'t miss out on the opportunity to make your yard work easier and more enjoyable. Upgrade your toolkit with the Ultimate Garden Rake today!', '2023-09-03', 'Nipuna', 'Deshan', 'nipuna@gmail.com', '../images/Adevertistment/b5cff84ec4e752ba107721c62121f4b1.jpg'),
-(4, NULL, '🌊 Majestic Water Horse! 🌊', 'Looking for aquatic adventures with style and ease? Discover our stunning Water Horse, designed for unforgettable experiences!\n\n What Sets Our Water Horse Apart? \n\n Elegant Design: It\'s a true beauty on the water!\n Effortless Glide: Maneuver with ease on lakes, rivers, and oceans.\n Supreme Comfort: Plush, ergonomic seating for endless enjoyment.\n Thrilling Performance: Powered by cutting-edge water tech for speed and precision.\n Built to Last: Crafted with quality, ready for countless adventures!\n\n Price: Starting at just $5,999! \n\n Order now and receive a FREE waterproof gear bag for your next expedition! \n\n\n Get in touch today to learn more:\n\n📞 Call: 555-123-4567\n📧 Email: info@waterhorseadventures.com\n🌐 Website: www.waterhorseadventures.com\n\nDive into a world of aquatic wonders – click below to order your Water Horse today! 🌅🌊', '2023-09-03', 'Nipuna', 'Deshan', 'nipuna@gmail.com', '../images/Adevertistment/best-garden-hoses-1650293773.jpg'),
-(6, NULL, '🍂 Introducing the Garden Rake  🍂', 'Tired of struggling with inadequate tools that can\'t keep up with your seasonal clean-up? Say goodbye to the hassle and hello to efficiency with our incredible Garden Rake!\r\n\r\n Why Choose Our Garden Rake? \r\n\r\n Robust and Reliable: Built to last, our garden rake tackles any job with ease!\r\n Comfortable Grip: Designed for your comfort, it makes yard work a breeze!\r\n Versatile Wonder: Perfect for leaves, debris, and leveling soil!\r\n Compact and Convenient: Easy to store and carry for all your yard tasks!\r\n Rust-Resistant: Designed to withstand the elements for lasting use!\r\n Effortless Maintenance: A quick hose-down, and it\'s ready for action!\r\n\r\n Price: Only $29.99! \r\n\r\n Order now and get a FREE pair of gardening gloves! \r\n\r\nContact us today to order:\r\n📞 Call: 555-789-5678\r\n📧 Email: info@gardenrakepro.com\r\n🌐 Website: www.gardenrakepro.com\r\n\r\nDon\'t miss out on the opportunity to make your yard work easier and more enjoyable. Upgrade your toolkit with the Ultimate Garden Rake today!', '2023-09-05', 'Migara', 'Thiyunuwan', 'migarathiyunuwan@gmail.com', '../images/Adevertistment/8f278c48f76f57020202c58b26ee16b1.jpg');
+INSERT INTO `advertisements` (`id`, `user_id`, `title`, `description`, `adPostedDate`, `image1_filename`) VALUES
+(1, 2, '🌱 Discover the Garden Hero: The Hand Shovel! 🌱', 'Tired of struggling with flimsy tools that just can\'t handle your garden tasks? Meet your gardening sidekick – the Hand Shovel!\n\n Why Choose Our Hand Shovel?\n\n Durable: Crafted for tough jobs, it\'s built to last!\n Ergonomic: Designed for comfort, no more hand strain!\n Multipurpose: Perfect for planting, digging, and weeding!\n Compact: Ideal for small spaces and easy to carry!\n Rust-Resistant: Endures the elements like a champ!\n Easy to Clean: Rinse, and it\'s ready for action!\n\n Special Offer: Only $19.99! \n\n Order now and get a FREE gardening glove! \n\nContact us today to order:\n📞 Call: 555-123-4567\n📧 Email: info@handshovelheroes.com\n\nUpgrade your garden game with the Hand Shovel – your garden\'s new best friend!', '2023-09-01', '../images/Adevertistment/test1_add.jpg'),
+(2, 15, '🌱 Pro-Grade Hand Shovel! 🌱', 'Tired of cheap, flimsy shovels that leave your garden dreams buried? Elevate your gardening game with our Pro-Grade Hand Shovel!\n\n What Makes Our Hand Shovel Stand Out? \n\n Durability: Engineered to last, it\'s a shovel that won\'t quit!\n Comfort: Ergonomic design ensures fatigue-free gardening!\n Versatility: Perfect for planting, digging, weeding, and more!\n Compact Design: Fits into tight spots and is easy to store!\n Rust-Proof: Built to endure the elements for years to come!\n\n Price: Only $24.99! \n\nReady to transform your garden? Contact us today:\n\n📞 Call: 555-789-1234\n📧 Email: info@progradehandshovel.com\n🌐 Website: www.progradehandshovel.com\n\nUpgrade your gardening experience with the Pro-Grade Hand Shovel – your garden\'s ultimate partner!', '2023-09-02', '../images/Adevertistment/test2_add.jpg'),
+(3, 16, '🍂 Introducing the Garden Rake  🍂', 'Tired of struggling with inadequate tools that can\'t keep up with your seasonal clean-up? Say goodbye to the hassle and hello to efficiency with our incredible Garden Rake!\n\n Why Choose Our Garden Rake? \n\n Robust and Reliable: Built to last, our garden rake tackles any job with ease!\n Comfortable Grip: Designed for your comfort, it makes yard work a breeze!\n Versatile Wonder: Perfect for leaves, debris, and leveling soil!\n Compact and Convenient: Easy to store and carry for all your yard tasks!\n Rust-Resistant: Designed to withstand the elements for lasting use!\n Effortless Maintenance: A quick hose-down, and it\'s ready for action!\n\n Price: Only $29.99! \n\n Order now and get a FREE pair of gardening gloves! \n\nContact us today to order:\n📞 Call: 555-789-5678\n📧 Email: info@gardenrakepro.com\n🌐 Website: www.gardenrakepro.com\n\nDon\'t miss out on the opportunity to make your yard work easier and more enjoyable. Upgrade your toolkit with the Ultimate Garden Rake today!', '2023-09-03', '../images/Adevertistment/b5cff84ec4e752ba107721c62121f4b1.jpg'),
+(4, 22, '🌊 Majestic Water Horse! 🌊', 'Looking for aquatic adventures with style and ease? Discover our stunning Water Horse, designed for unforgettable experiences!\n\n What Sets Our Water Horse Apart? \n\n Elegant Design: It\'s a true beauty on the water!\n Effortless Glide: Maneuver with ease on lakes, rivers, and oceans.\n Supreme Comfort: Plush, ergonomic seating for endless enjoyment.\n Thrilling Performance: Powered by cutting-edge water tech for speed and precision.\n Built to Last: Crafted with quality, ready for countless adventures!\n\n Price: Starting at just $5,999! \n\n Order now and receive a FREE waterproof gear bag for your next expedition! \n\n\n Get in touch today to learn more:\n\n📞 Call: 555-123-4567\n📧 Email: info@waterhorseadventures.com\n🌐 Website: www.waterhorseadventures.com\n\nDive into a world of aquatic wonders – click below to order your Water Horse today! 🌅🌊', '2023-09-03', '../images/Adevertistment/best-garden-hoses-1650293773.jpg'),
+(6, 22, '🍂 Introducing the Garden Rake  🍂', 'Tired of struggling with inadequate tools that can\'t keep up with your seasonal clean-up? Say goodbye to the hassle and hello to efficiency with our incredible Garden Rake!\r\n\r\n Why Choose Our Garden Rake? \r\n\r\n Robust and Reliable: Built to last, our garden rake tackles any job with ease!\r\n Comfortable Grip: Designed for your comfort, it makes yard work a breeze!\r\n Versatile Wonder: Perfect for leaves, debris, and leveling soil!\r\n Compact and Convenient: Easy to store and carry for all your yard tasks!\r\n Rust-Resistant: Designed to withstand the elements for lasting use!\r\n Effortless Maintenance: A quick hose-down, and it\'s ready for action!\r\n\r\n Price: Only $29.99! \r\n\r\n Order now and get a FREE pair of gardening gloves! \r\n\r\nContact us today to order:\r\n📞 Call: 555-789-5678\r\n📧 Email: info@gardenrakepro.com\r\n🌐 Website: www.gardenrakepro.com\r\n\r\nDon\'t miss out on the opportunity to make your yard work easier and more enjoyable. Upgrade your toolkit with the Ultimate Garden Rake today!', '2023-09-05', '../images/Adevertistment/8f278c48f76f57020202c58b26ee16b1.jpg');
 
 -- --------------------------------------------------------
 
@@ -107,11 +104,9 @@ INSERT INTO `answer` (`answerID`, `questionID`, `user_id`, `answerDate`, `answer
 
 CREATE TABLE `blog` (
   `blog_id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
   `blog_title` varchar(255) NOT NULL,
   `blogPostedDate` date DEFAULT NULL,
-  `user_fname` varchar(60) NOT NULL,
-  `user_lname` varchar(60) NOT NULL,
   `blog_details` text NOT NULL,
   `blog_image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -120,11 +115,11 @@ CREATE TABLE `blog` (
 -- Dumping data for table `blog`
 --
 
-INSERT INTO `blog` (`blog_id`, `user_id`, `blog_title`, `blogPostedDate`, `user_fname`, `user_lname`, `blog_details`, `blog_image`) VALUES
-(1, 15, 'Tea Cultivation in Sri Lanka', '2023-09-01', 'senura', 'adithya', 'Sri Lanka, often referred to as the \"Pearl of the Indian Ocean,\" is renowned for its stunning landscapes, diverse culture, and rich history. However, it is perhaps most famous for one thing: tea. Sri Lanka is one of the world\'s largest tea producers and exporters, and its lush tea plantations, sprawling across picturesque hills, are a sight to behold. In this article, we will explore the fascinating world of tea cultivation in Sri Lanka, from its historical roots to the modern-day industry.\r\n\r\nA Historical Overview\r\n\r\nTea cultivation in Sri Lanka has a captivating history. Before the arrival of tea, the island\'s primary crops were coffee and cinnamon. However, a devastating coffee blight in the late 19th century forced planters to seek alternative crops. It was then that a Scottish planter named James Taylor planted the first tea seedlings in Sri Lanka\'s central highlands in 1867. Little did he know that he was sowing the seeds of a booming industry that would shape the nation\'s economy for years to come.\r\n\r\nCultivation Methods\r\n\r\nSri Lanka\'s unique geography, with its varying elevations and climatic zones, provides the perfect conditions for tea cultivation. The process of growing tea in Sri Lanka typically involves the following steps:\r\n\r\nSelection of Suitable Land: Tea is cultivated at different elevations in Sri Lanka, each producing tea with distinct flavor profiles. Low-grown teas have a robust, full-bodied taste, while high-grown teas are known for their delicate and nuanced flavors.\r\n\r\nPlanting Tea Bushes: Tea bushes are propagated from seeds or cuttings. They are planted in rows on the hillsides to maximize sunlight exposure.\r\n\r\nPruning and Plucking: Regular pruning and plucking of the tea leaves ensure new growth and a constant supply of fresh leaves. Skilled tea pluckers hand-pick the top two leaves and a bud from each shoot.\r\n\r\nWithering: The freshly plucked leaves are spread out to wither, reducing their moisture content and making them pliable for rolling.\r\n\r\nRolling and Fermentation: After withering, the leaves are rolled to break their cell walls, initiating fermentation. This process is critical for developing the tea\'s flavor.\r\n\r\nDrying and Sorting: The rolled leaves are dried to halt fermentation and reduce moisture content further. They are then sorted into various grades based on size and quality.\r\n\r\nPackaging and Export: Once sorted, the tea is packaged for domestic consumption or export. Sri Lankan tea is highly sought after worldwide, known for its quality and unique flavor profiles.\r\n\r\nThe Diversity of Ceylon Tea\r\n\r\nSri Lanka\'s tea industry produces a wide range of teas, each with its own character and flavor. The country is famous for the following types of tea:\r\n\r\nBlack Tea: Sri Lanka is renowned for its black teas, including the well-known Ceylon tea. These teas are full-bodied and robust, making them ideal for breakfast blends.\r\n\r\nGreen Tea: Although less common than black tea, Sri Lanka also produces green teas, which are lighter and milder in flavor. Green tea has gained popularity for its health benefits.\r\n\r\nWhite Tea: White teas, made from the youngest leaves and buds, are the most delicate and subtle. They have a gentle flavor and are prized by connoisseurs.\r\n\r\nHerbal Teas: In addition to traditional tea types, Sri Lanka also cultivates a variety of herbal teas, such as cinnamon tea, ginger tea, and lemongrass tea.\r\n\r\nEconomic Impact and Sustainability\r\n\r\nTea cultivation plays a vital role in Sri Lanka\'s economy. It provides employment opportunities to hundreds of thousands of people, especially in the central highlands. The industry has also made significant strides in sustainable and ethical practices, with many plantations adopting environmentally friendly farming methods and supporting local communities.', '../images/blog/The Tea Cultivation  1.jpg'),
-(2, NULL, 'Coconut Cultivation in Sri Lanka', '2023-09-02', 'Nipuna', 'Deshan', 'Coconuts, often referred to as the \"tree of life\" in tropical regions, are among the most versatile and valuable crops grown worldwide. With their myriad uses, from providing food and shelter to offering essential raw materials for various industries, coconuts have earned their place as a vital agricultural commodity. In this article, we will delve into the fascinating world of coconut cultivation, exploring its history, cultivation methods, and the numerous benefits it offers to both growers and consumers.\r\n\r\nHistorical Background\r\n\r\nCoconut cultivation has a rich history that dates back thousands of years. Originating in the tropical regions of Southeast Asia, coconuts have been cultivated and utilized by civilizations across the globe. Their spread can be attributed to ancient seafaring communities who carried coconut palms with them on their voyages. As a result, coconuts are now found throughout the tropics and subtropics, from the Caribbean to the Pacific Islands.\r\n\r\nCultivation Methods\r\n\r\nSuccessful coconut cultivation requires specific environmental conditions and care. Here are the key steps and considerations for growing coconuts:\r\n\r\nClimate: Coconuts thrive in tropical and subtropical regions with consistent temperatures between 85°F to 95°F (29°C to 35°C). They require high humidity and regular rainfall, typically receiving around 60-100 inches (150-250 cm) of rain annually.\r\n\r\nSoil: Well-draining sandy or loamy soil is ideal for coconut palms. They also need a soil pH ranging from 5.0 to 8.0. Soil rich in organic matter promotes healthy growth.\r\n\r\nPlanting: Coconuts are usually grown from seeds (coconuts themselves) or seedlings. Plant the seeds or seedlings in holes that are approximately 2 feet (60 cm) deep and 3 feet (90 cm) apart. Proper spacing ensures sufficient room for each tree to grow.\r\n\r\nWatering: Young coconut palms need regular watering to establish their roots. Once mature, they can tolerate drought conditions. However, consistent moisture is essential during the fruit-bearing stage.\r\n\r\nFertilization: Coconut trees benefit from balanced fertilizers containing essential nutrients like nitrogen, phosphorus, and potassium. Fertilize regularly to support healthy growth and fruit production.\r\n\r\nPest and Disease Control: Monitor your coconut palms for common pests like beetles and diseases such as coconut wilt. Prompt action is essential to prevent damage.\r\n\r\nPruning: Prune dead or diseased fronds to maintain the health and aesthetics of the palm. Pruning also makes it easier to harvest coconuts.\r\n\r\nBenefits of Coconut Cultivation\r\n\r\nCoconut cultivation offers numerous advantages for both growers and consumers:\r\n\r\nNutrient-Rich Food: Coconuts provide a rich source of nutrition. Coconut water is a hydrating beverage, while coconut meat and oil are packed with healthy fats, vitamins, and minerals.\r\n\r\nVersatile Uses: Every part of the coconut tree is utilized. Apart from the edible parts, coir (the fiber from the husk) is used in making ropes and mats, while the shell is used for handicrafts and activated carbon production.\r\n\r\nSustainable Farming: Coconut farming is environmentally friendly as it requires minimal inputs and promotes biodiversity in tropical ecosystems.\r\n\r\nEconomic Opportunities: Coconut cultivation can provide a sustainable source of income for farmers in tropical regions, contributing to economic stability and rural development.\r\n\r\nMedicinal Properties: Coconut oil and other coconut-derived products are believed to have various health benefits, including antimicrobial and anti-inflammatory properties.\r\n\r\nRenewable Energy: Coconut shells and husks can be used as biomass for energy production, contributing to sustainable and renewable energy sources.', '../images/blog/SL771-4-1740x960-c-center.jpg'),
-(3, NULL, 'A Guide to Growing Roses in Your Home Garden', '2023-09-03', 'sasan', 'dilantha', '\r\nTitle: Cultivating Beauty: A Guide to Growing Roses in Your Home Garden\r\n\r\nIntroduction\r\n\r\nRoses have long been cherished for their exquisite beauty, fragrant blossoms, and symbolic significance. Cultivating roses in your home garden can be a rewarding and enjoyable experience, whether you\'re a seasoned gardener or a novice. In this article, we\'ll provide you with a comprehensive guide on how to grow roses successfully in your own outdoor oasis.\r\n\r\nChoosing the Right Rose Varieties\r\n\r\nBefore you start planting, it\'s essential to select rose varieties that are well-suited to your garden\'s climate and your personal preferences. There are three primary types of roses to consider:\r\n\r\nHybrid Tea Roses: These are known for their classic, elegant blooms and are a popular choice for cut flowers. Hybrid teas come in various colors and are often grown for their fragrance.\r\n\r\nFloribunda Roses: Floribundas produce clusters of smaller flowers and are known for their continuous bloom throughout the growing season. They come in a wide range of colors and are great for adding color to your garden.\r\n\r\nShrub Roses: Shrub roses are hardy and versatile, making them an excellent choice for novice gardeners. They come in various forms and sizes and are well-suited for landscaping purposes.\r\n\r\nPreparing the Soil\r\n\r\nRoses thrive in well-drained, fertile soil. Here\'s how to prepare your garden soil for rose cultivation:\r\n\r\nSelect a Sunny Location: Roses require at least six hours of direct sunlight each day. Choose a spot in your garden that receives ample sunlight.\r\n\r\nImprove Drainage: Ensure proper drainage by amending the soil with organic matter like compost or well-rotted manure. This will help prevent root rot, a common issue with roses.\r\n\r\nTest Soil pH: Roses prefer slightly acidic soil with a pH level between 6.0 and 6.5. You can adjust the pH using lime (to raise it) or sulfur (to lower it).\r\n\r\nPlanting Roses\r\n\r\nOnce your soil is prepared, it\'s time to plant your rose bushes. Here are the steps to follow:\r\n\r\nDig a Hole: Dig a hole that is twice as wide and deep as the rose\'s root ball.\r\n\r\nLoosen Roots: Gently remove the rose from its container, and loosen the roots if they appear root-bound.\r\n\r\nPlace the Rose: Position the rose in the hole, ensuring the bud union (the knob-like area where the rose is grafted onto the rootstock) is just above the soil level.\r\n\r\nBackfill: Fill the hole with soil, patting it down gently as you go to remove air pockets.\r\n\r\nWater: Give your newly planted rose a deep watering to settle the soil around the roots.\r\n\r\nCaring for Your Roses\r\n\r\nCaring for roses requires attention to watering, fertilizing, and pruning:\r\n\r\nWatering: Roses need consistent moisture but dislike wet feet. Water deeply at the base of the plant, early in the morning, to allow leaves to dry before evening and prevent fungal diseases.\r\n\r\nFertilizing: Feed your roses with a balanced, slow-release fertilizer in the spring and again after the first flush of blooms. Follow package instructions for application rates.\r\n\r\nMulching: Apply a layer of organic mulch around the base of your roses to retain moisture, suppress weeds, and regulate soil temperature.\r\n\r\nPruning: Prune your roses annually during the dormant season (usually late winter or early spring) to remove dead or weak branches, improve air circulation, and shape the plant.\r\n\r\nDisease and Pest Management: Keep an eye out for common rose pests like aphids and diseases like powdery mildew. Use organic remedies or consult your local nursery for appropriate treatments.', '../images/blog/Grow-Rose-at-Home-USA1.jpg'),
-(5, 22, 'The Sweet Success of Mango Cultivation: A Comprehensive Guide', '2023-09-04', 'Migara', 'Thiyunuwan', '\r\nMango, often referred to as the \"King of Fruits,\" is a tropical delight cherished by people worldwide for its succulent taste and versatility in culinary applications. Mango cultivation has a rich history dating back over 4,000 years, with origins in South Asia. Today, mangoes are grown in various tropical and subtropical regions around the world, and their popularity continues to rise. In this comprehensive guide, we will explore the art and science of mango cultivation, from selecting the right variety to harvesting the sweet rewards.\r\n\r\nChoosing the Right Mango Variety\r\n\r\nThe first step in successful mango cultivation is selecting the right mango variety, as there are thousands of cultivars to choose from. The choice of variety should be influenced by factors such as climate, soil type, and local preferences. Here are a few popular mango varieties:\r\n\r\nAlphonso (Hapus): Known for its rich, sweet flavor, and aromatic fragrance, Alphonso mangoes are often considered the finest mangoes in the world. They are primarily grown in India.\r\n\r\nTommy Atkins: This variety is resistant to disease and can thrive in a variety of climates. It\'s a popular choice for commercial cultivation in many countries, including the United States.\r\n\r\nAtaulfo (Honey Mango): With its creamy texture and sweet taste, Ataulfo mangoes are a favorite for fresh consumption. They are often found in Mexico and other parts of the Americas.\r\n\r\nKeitt: Keitt mangoes are large and green, with a sweet flavor. They are known for their long shelf life and are commonly grown in Florida and California.\r\n\r\nKent: Kent mangoes are sweet and have minimal fiber, making them ideal for smoothies and desserts. They are grown in many countries, including Mexico, Ecuador, and Peru.\r\n\r\nClimatic and Soil Requirements\r\n\r\nMangoes thrive in tropical and subtropical climates with distinct wet and dry seasons. Ideally, mango trees should be planted in areas with temperatures between 30°F and 100°F (-1°C to 38°C). While mango trees are drought-tolerant, they require consistent moisture during the flowering and fruit-setting stages. Well-drained soil with a pH level between 5.5 and 7.5 is ideal for mango cultivation.\r\n\r\nPlanting Mango Trees\r\n\r\nSite Selection: Choose a sunny location that receives at least 6 to 8 hours of sunlight daily.\r\n\r\nSpacing: Mango trees require ample space to grow. Plant them at least 30 to 40 feet apart to allow for proper canopy development.\r\n\r\nPlanting: Dig a hole large enough to accommodate the root ball of the mango tree. Place the tree in the hole, ensuring that the graft union is above ground level. Fill the hole with soil, and water thoroughly.\r\n\r\nCaring for Mango Trees\r\n\r\nWatering: Young mango trees require regular watering. Once established, water deeply and infrequently to encourage deep root growth.\r\n\r\nFertilization: Apply balanced fertilizer in spring and late summer to provide essential nutrients.\r\n\r\nPruning: Prune the tree to maintain its shape and remove dead or diseased branches.\r\n\r\nPest and Disease Control: Monitor for common pests like mango fruit flies and anthracnose, and use appropriate pesticides when necessary.\r\n\r\nHarvesting Mangoes\r\n\r\nThe most exciting part of mango cultivation is harvesting the delicious fruit. Mangoes typically take 3 to 6 years to bear fruit, depending on the variety and growing conditions. Here\'s how to know when your mangoes are ready for harvest:\r\n\r\nColor: Mangoes should develop their characteristic color (e.g., orange, red, or yellow) and start to soften slightly when ripe. However, the exact color can vary depending on the variety.\r\n\r\nFirmness: Gently squeeze the fruit; it should yield slightly to pressure, but not be overly soft.\r\n\r\nSmell: Ripe mangoes emit a sweet, fruity aroma from the stem end.\r\n\r\nTo harvest mangoes, use a pole with a basket or a long-handled fruit picker to avoid damaging the fruit or tree branches. Cut the mango from the tree with a clean, sharp knife, leaving a short stem attached to the fruit.\r\n\r\nConclusion\r\n\r\nMango cultivation is a rewarding endeavor that can yield a bountiful harvest of this delectable fruit. By selecting the right variety, providing optimal growing conditions, and following proper care and maintenance practices, you can enjoy the sweet success of growing your own mangoes. Whether you\'re a commercial grower or a backyard enthusiast, the journey of cultivating mangoes is filled with flavor, fragrance, and the joy of nurturing a tropical treasure from bud to fruit.', '../images/blog/Nelna_Story-image.jpg');
+INSERT INTO `blog` (`blog_id`, `user_id`, `blog_title`, `blogPostedDate`, `blog_details`, `blog_image`) VALUES
+(1, 15, 'Tea Cultivation in Sri Lanka', '2023-09-01', 'Sri Lanka, often referred to as the \"Pearl of the Indian Ocean,\" is renowned for its stunning landscapes, diverse culture, and rich history. However, it is perhaps most famous for one thing: tea. Sri Lanka is one of the world\'s largest tea producers and exporters, and its lush tea plantations, sprawling across picturesque hills, are a sight to behold. In this article, we will explore the fascinating world of tea cultivation in Sri Lanka, from its historical roots to the modern-day industry.\r\n\r\nA Historical Overview\r\n\r\nTea cultivation in Sri Lanka has a captivating history. Before the arrival of tea, the island\'s primary crops were coffee and cinnamon. However, a devastating coffee blight in the late 19th century forced planters to seek alternative crops. It was then that a Scottish planter named James Taylor planted the first tea seedlings in Sri Lanka\'s central highlands in 1867. Little did he know that he was sowing the seeds of a booming industry that would shape the nation\'s economy for years to come.\r\n\r\nCultivation Methods\r\n\r\nSri Lanka\'s unique geography, with its varying elevations and climatic zones, provides the perfect conditions for tea cultivation. The process of growing tea in Sri Lanka typically involves the following steps:\r\n\r\nSelection of Suitable Land: Tea is cultivated at different elevations in Sri Lanka, each producing tea with distinct flavor profiles. Low-grown teas have a robust, full-bodied taste, while high-grown teas are known for their delicate and nuanced flavors.\r\n\r\nPlanting Tea Bushes: Tea bushes are propagated from seeds or cuttings. They are planted in rows on the hillsides to maximize sunlight exposure.\r\n\r\nPruning and Plucking: Regular pruning and plucking of the tea leaves ensure new growth and a constant supply of fresh leaves. Skilled tea pluckers hand-pick the top two leaves and a bud from each shoot.\r\n\r\nWithering: The freshly plucked leaves are spread out to wither, reducing their moisture content and making them pliable for rolling.\r\n\r\nRolling and Fermentation: After withering, the leaves are rolled to break their cell walls, initiating fermentation. This process is critical for developing the tea\'s flavor.\r\n\r\nDrying and Sorting: The rolled leaves are dried to halt fermentation and reduce moisture content further. They are then sorted into various grades based on size and quality.\r\n\r\nPackaging and Export: Once sorted, the tea is packaged for domestic consumption or export. Sri Lankan tea is highly sought after worldwide, known for its quality and unique flavor profiles.\r\n\r\nThe Diversity of Ceylon Tea\r\n\r\nSri Lanka\'s tea industry produces a wide range of teas, each with its own character and flavor. The country is famous for the following types of tea:\r\n\r\nBlack Tea: Sri Lanka is renowned for its black teas, including the well-known Ceylon tea. These teas are full-bodied and robust, making them ideal for breakfast blends.\r\n\r\nGreen Tea: Although less common than black tea, Sri Lanka also produces green teas, which are lighter and milder in flavor. Green tea has gained popularity for its health benefits.\r\n\r\nWhite Tea: White teas, made from the youngest leaves and buds, are the most delicate and subtle. They have a gentle flavor and are prized by connoisseurs.\r\n\r\nHerbal Teas: In addition to traditional tea types, Sri Lanka also cultivates a variety of herbal teas, such as cinnamon tea, ginger tea, and lemongrass tea.\r\n\r\nEconomic Impact and Sustainability\r\n\r\nTea cultivation plays a vital role in Sri Lanka\'s economy. It provides employment opportunities to hundreds of thousands of people, especially in the central highlands. The industry has also made significant strides in sustainable and ethical practices, with many plantations adopting environmentally friendly farming methods and supporting local communities.', '../images/blog/The Tea Cultivation  1.jpg'),
+(2, 2, 'Coconut Cultivation in Sri Lanka', '2023-09-02', 'Coconuts, often referred to as the \"tree of life\" in tropical regions, are among the most versatile and valuable crops grown worldwide. With their myriad uses, from providing food and shelter to offering essential raw materials for various industries, coconuts have earned their place as a vital agricultural commodity. In this article, we will delve into the fascinating world of coconut cultivation, exploring its history, cultivation methods, and the numerous benefits it offers to both growers and consumers.\r\n\r\nHistorical Background\r\n\r\nCoconut cultivation has a rich history that dates back thousands of years. Originating in the tropical regions of Southeast Asia, coconuts have been cultivated and utilized by civilizations across the globe. Their spread can be attributed to ancient seafaring communities who carried coconut palms with them on their voyages. As a result, coconuts are now found throughout the tropics and subtropics, from the Caribbean to the Pacific Islands.\r\n\r\nCultivation Methods\r\n\r\nSuccessful coconut cultivation requires specific environmental conditions and care. Here are the key steps and considerations for growing coconuts:\r\n\r\nClimate: Coconuts thrive in tropical and subtropical regions with consistent temperatures between 85°F to 95°F (29°C to 35°C). They require high humidity and regular rainfall, typically receiving around 60-100 inches (150-250 cm) of rain annually.\r\n\r\nSoil: Well-draining sandy or loamy soil is ideal for coconut palms. They also need a soil pH ranging from 5.0 to 8.0. Soil rich in organic matter promotes healthy growth.\r\n\r\nPlanting: Coconuts are usually grown from seeds (coconuts themselves) or seedlings. Plant the seeds or seedlings in holes that are approximately 2 feet (60 cm) deep and 3 feet (90 cm) apart. Proper spacing ensures sufficient room for each tree to grow.\r\n\r\nWatering: Young coconut palms need regular watering to establish their roots. Once mature, they can tolerate drought conditions. However, consistent moisture is essential during the fruit-bearing stage.\r\n\r\nFertilization: Coconut trees benefit from balanced fertilizers containing essential nutrients like nitrogen, phosphorus, and potassium. Fertilize regularly to support healthy growth and fruit production.\r\n\r\nPest and Disease Control: Monitor your coconut palms for common pests like beetles and diseases such as coconut wilt. Prompt action is essential to prevent damage.\r\n\r\nPruning: Prune dead or diseased fronds to maintain the health and aesthetics of the palm. Pruning also makes it easier to harvest coconuts.\r\n\r\nBenefits of Coconut Cultivation\r\n\r\nCoconut cultivation offers numerous advantages for both growers and consumers:\r\n\r\nNutrient-Rich Food: Coconuts provide a rich source of nutrition. Coconut water is a hydrating beverage, while coconut meat and oil are packed with healthy fats, vitamins, and minerals.\r\n\r\nVersatile Uses: Every part of the coconut tree is utilized. Apart from the edible parts, coir (the fiber from the husk) is used in making ropes and mats, while the shell is used for handicrafts and activated carbon production.\r\n\r\nSustainable Farming: Coconut farming is environmentally friendly as it requires minimal inputs and promotes biodiversity in tropical ecosystems.\r\n\r\nEconomic Opportunities: Coconut cultivation can provide a sustainable source of income for farmers in tropical regions, contributing to economic stability and rural development.\r\n\r\nMedicinal Properties: Coconut oil and other coconut-derived products are believed to have various health benefits, including antimicrobial and anti-inflammatory properties.\r\n\r\nRenewable Energy: Coconut shells and husks can be used as biomass for energy production, contributing to sustainable and renewable energy sources.', '../images/blog/SL771-4-1740x960-c-center.jpg'),
+(3, 18, 'A Guide to Growing Roses in Your Home Garden', '2023-09-03', '\r\nTitle: Cultivating Beauty: A Guide to Growing Roses in Your Home Garden\r\n\r\nIntroduction\r\n\r\nRoses have long been cherished for their exquisite beauty, fragrant blossoms, and symbolic significance. Cultivating roses in your home garden can be a rewarding and enjoyable experience, whether you\'re a seasoned gardener or a novice. In this article, we\'ll provide you with a comprehensive guide on how to grow roses successfully in your own outdoor oasis.\r\n\r\nChoosing the Right Rose Varieties\r\n\r\nBefore you start planting, it\'s essential to select rose varieties that are well-suited to your garden\'s climate and your personal preferences. There are three primary types of roses to consider:\r\n\r\nHybrid Tea Roses: These are known for their classic, elegant blooms and are a popular choice for cut flowers. Hybrid teas come in various colors and are often grown for their fragrance.\r\n\r\nFloribunda Roses: Floribundas produce clusters of smaller flowers and are known for their continuous bloom throughout the growing season. They come in a wide range of colors and are great for adding color to your garden.\r\n\r\nShrub Roses: Shrub roses are hardy and versatile, making them an excellent choice for novice gardeners. They come in various forms and sizes and are well-suited for landscaping purposes.\r\n\r\nPreparing the Soil\r\n\r\nRoses thrive in well-drained, fertile soil. Here\'s how to prepare your garden soil for rose cultivation:\r\n\r\nSelect a Sunny Location: Roses require at least six hours of direct sunlight each day. Choose a spot in your garden that receives ample sunlight.\r\n\r\nImprove Drainage: Ensure proper drainage by amending the soil with organic matter like compost or well-rotted manure. This will help prevent root rot, a common issue with roses.\r\n\r\nTest Soil pH: Roses prefer slightly acidic soil with a pH level between 6.0 and 6.5. You can adjust the pH using lime (to raise it) or sulfur (to lower it).\r\n\r\nPlanting Roses\r\n\r\nOnce your soil is prepared, it\'s time to plant your rose bushes. Here are the steps to follow:\r\n\r\nDig a Hole: Dig a hole that is twice as wide and deep as the rose\'s root ball.\r\n\r\nLoosen Roots: Gently remove the rose from its container, and loosen the roots if they appear root-bound.\r\n\r\nPlace the Rose: Position the rose in the hole, ensuring the bud union (the knob-like area where the rose is grafted onto the rootstock) is just above the soil level.\r\n\r\nBackfill: Fill the hole with soil, patting it down gently as you go to remove air pockets.\r\n\r\nWater: Give your newly planted rose a deep watering to settle the soil around the roots.\r\n\r\nCaring for Your Roses\r\n\r\nCaring for roses requires attention to watering, fertilizing, and pruning:\r\n\r\nWatering: Roses need consistent moisture but dislike wet feet. Water deeply at the base of the plant, early in the morning, to allow leaves to dry before evening and prevent fungal diseases.\r\n\r\nFertilizing: Feed your roses with a balanced, slow-release fertilizer in the spring and again after the first flush of blooms. Follow package instructions for application rates.\r\n\r\nMulching: Apply a layer of organic mulch around the base of your roses to retain moisture, suppress weeds, and regulate soil temperature.\r\n\r\nPruning: Prune your roses annually during the dormant season (usually late winter or early spring) to remove dead or weak branches, improve air circulation, and shape the plant.\r\n\r\nDisease and Pest Management: Keep an eye out for common rose pests like aphids and diseases like powdery mildew. Use organic remedies or consult your local nursery for appropriate treatments.', '../images/blog/Grow-Rose-at-Home-USA1.jpg'),
+(5, 22, 'The Sweet Success of Mango Cultivation: A Comprehensive Guide', '2023-09-04', '\r\nMango, often referred to as the \"King of Fruits,\" is a tropical delight cherished by people worldwide for its succulent taste and versatility in culinary applications. Mango cultivation has a rich history dating back over 4,000 years, with origins in South Asia. Today, mangoes are grown in various tropical and subtropical regions around the world, and their popularity continues to rise. In this comprehensive guide, we will explore the art and science of mango cultivation, from selecting the right variety to harvesting the sweet rewards.\r\n\r\nChoosing the Right Mango Variety\r\n\r\nThe first step in successful mango cultivation is selecting the right mango variety, as there are thousands of cultivars to choose from. The choice of variety should be influenced by factors such as climate, soil type, and local preferences. Here are a few popular mango varieties:\r\n\r\nAlphonso (Hapus): Known for its rich, sweet flavor, and aromatic fragrance, Alphonso mangoes are often considered the finest mangoes in the world. They are primarily grown in India.\r\n\r\nTommy Atkins: This variety is resistant to disease and can thrive in a variety of climates. It\'s a popular choice for commercial cultivation in many countries, including the United States.\r\n\r\nAtaulfo (Honey Mango): With its creamy texture and sweet taste, Ataulfo mangoes are a favorite for fresh consumption. They are often found in Mexico and other parts of the Americas.\r\n\r\nKeitt: Keitt mangoes are large and green, with a sweet flavor. They are known for their long shelf life and are commonly grown in Florida and California.\r\n\r\nKent: Kent mangoes are sweet and have minimal fiber, making them ideal for smoothies and desserts. They are grown in many countries, including Mexico, Ecuador, and Peru.\r\n\r\nClimatic and Soil Requirements\r\n\r\nMangoes thrive in tropical and subtropical climates with distinct wet and dry seasons. Ideally, mango trees should be planted in areas with temperatures between 30°F and 100°F (-1°C to 38°C). While mango trees are drought-tolerant, they require consistent moisture during the flowering and fruit-setting stages. Well-drained soil with a pH level between 5.5 and 7.5 is ideal for mango cultivation.\r\n\r\nPlanting Mango Trees\r\n\r\nSite Selection: Choose a sunny location that receives at least 6 to 8 hours of sunlight daily.\r\n\r\nSpacing: Mango trees require ample space to grow. Plant them at least 30 to 40 feet apart to allow for proper canopy development.\r\n\r\nPlanting: Dig a hole large enough to accommodate the root ball of the mango tree. Place the tree in the hole, ensuring that the graft union is above ground level. Fill the hole with soil, and water thoroughly.\r\n\r\nCaring for Mango Trees\r\n\r\nWatering: Young mango trees require regular watering. Once established, water deeply and infrequently to encourage deep root growth.\r\n\r\nFertilization: Apply balanced fertilizer in spring and late summer to provide essential nutrients.\r\n\r\nPruning: Prune the tree to maintain its shape and remove dead or diseased branches.\r\n\r\nPest and Disease Control: Monitor for common pests like mango fruit flies and anthracnose, and use appropriate pesticides when necessary.\r\n\r\nHarvesting Mangoes\r\n\r\nThe most exciting part of mango cultivation is harvesting the delicious fruit. Mangoes typically take 3 to 6 years to bear fruit, depending on the variety and growing conditions. Here\'s how to know when your mangoes are ready for harvest:\r\n\r\nColor: Mangoes should develop their characteristic color (e.g., orange, red, or yellow) and start to soften slightly when ripe. However, the exact color can vary depending on the variety.\r\n\r\nFirmness: Gently squeeze the fruit; it should yield slightly to pressure, but not be overly soft.\r\n\r\nSmell: Ripe mangoes emit a sweet, fruity aroma from the stem end.\r\n\r\nTo harvest mangoes, use a pole with a basket or a long-handled fruit picker to avoid damaging the fruit or tree branches. Cut the mango from the tree with a clean, sharp knife, leaving a short stem attached to the fruit.\r\n\r\nConclusion\r\n\r\nMango cultivation is a rewarding endeavor that can yield a bountiful harvest of this delectable fruit. By selecting the right variety, providing optimal growing conditions, and following proper care and maintenance practices, you can enjoy the sweet success of growing your own mangoes. Whether you\'re a commercial grower or a backyard enthusiast, the journey of cultivating mangoes is filled with flavor, fragrance, and the joy of nurturing a tropical treasure from bud to fruit.', '../images/blog/Nelna_Story-image.jpg');
 
 -- --------------------------------------------------------
 
@@ -144,13 +139,54 @@ CREATE TABLE `cart` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `harvesttime`
+--
+
+CREATE TABLE `harvesttime` (
+  `harvestTimeId` int(11) NOT NULL,
+  `harvestTimeName` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `harvesttime`
+--
+
+INSERT INTO `harvesttime` (`harvestTimeId`, `harvestTimeName`) VALUES
+(1, '2 to 6 months'),
+(2, '6 to 12 months'),
+(3, '> 12 months');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `location`
 --
 
 CREATE TABLE `location` (
   `locationID` int(11) NOT NULL,
-  `locationName` int(11) NOT NULL
+  `locationName` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `location`
+--
+
+INSERT INTO `location` (`locationID`, `locationName`) VALUES
+(2, 'Badulla'),
+(3, 'Soranathota'),
+(4, 'Meegahakiula'),
+(5, 'Kandaketiya'),
+(6, 'Rideemaliyadda'),
+(7, 'Mahiyanganaya'),
+(8, 'Passara'),
+(9, 'Lunugala'),
+(10, 'Hali Ela'),
+(11, 'Ella'),
+(12, 'Bandarawela'),
+(13, 'Haputale'),
+(14, 'Haldummulla'),
+(15, 'Uva Paranagama'),
+(16, 'Welimada');
 
 -- --------------------------------------------------------
 
@@ -247,7 +283,13 @@ INSERT INTO `orderitem` (`orderItemID`, `orderID`, `ItemId`, `itemQuantity`) VAL
 (22, 7, 7, 1),
 (23, 8, 10, 1),
 (24, 8, 6, 3),
-(25, 8, 13, 2);
+(25, 8, 13, 2),
+(26, 9, 3, 1),
+(27, 9, 5, 1),
+(28, 9, 6, 3),
+(29, 9, 9, 3),
+(30, 9, 8, 1),
+(31, 9, 11, 7);
 
 -- --------------------------------------------------------
 
@@ -279,7 +321,8 @@ INSERT INTO `orders` (`orderID`, `user_id`, `orderDate`, `TotalPrice`, `delivery
 (5, 22, '2023-10-16', 2350, '23/1, Main Street, Nittambuwa', 'Nittambuwa', 'Tharindu Buddhika', 771629789, 'success', 'rejected'),
 (6, 22, '2023-10-16', 1780, '56/9, lake round, kurunegala', 'kurunegala', 'lashan sachintha', 778634967, 'success', 'waiting'),
 (7, 2, '2023-10-17', 930, 'No 23, Kurunegoda, Kotiyakumbura.', 'Kegalle', 'Malki Madhubhashini', 763857450, 'success', 'waiting'),
-(8, 15, '2023-10-17', 610, 'No.4, Galle Rd. Makuluwa', 'Galle', 'Sunura Adithya', 2147483647, 'success', 'waiting');
+(8, 15, '2023-10-17', 610, 'No.4, Galle Rd. Makuluwa', 'Galle', 'Sunura Adithya', 2147483647, 'success', 'success'),
+(9, 2, '2023-10-23', 2785, 'No 23, Kurunegoda, Kotiyakumbura.', 'Kegalle', 'Malki Madhubhashini', 771526789, 'success', 'success');
 
 -- --------------------------------------------------------
 
@@ -448,15 +491,15 @@ CREATE TABLE `shop` (
 INSERT INTO `shop` (`ItemId`, `ItemName`, `ItemQuantity`, `ItemPrice`, `ItemImage`) VALUES
 (1, 'Tomato', 4, 80, '../images/Selling1/veg1.jpeg'),
 (2, 'Impatiens', 28, 150, '../images/Selling1/flower12.jpeg'),
-(3, 'Grapes', 1, 200, '../images/Selling1/grapes.jpeg'),
+(3, 'Grapes', 0, 200, '../images/Selling1/grapes.jpeg'),
 (4, 'Cabbage', 46, 90, '../images/Selling1/cab12.jpeg'),
-(5, 'Rose', 4, 175, '../images/Selling1/flower45.jpeg'),
-(6, 'pomegranate', 11, 120, '../images/Selling1/prom.jpeg'),
+(5, 'Rose', 3, 175, '../images/Selling1/flower45.jpeg'),
+(6, 'pomegranate', 8, 120, '../images/Selling1/prom.jpeg'),
 (7, 'Red Chillie', 28, 50, '../images/Selling1/redp2.jpeg'),
-(8, 'Lilly', 1, 200, '../images/Selling1/lily3.jpeg'),
-(9, 'Mango', 10, 150, '../images/Selling1/mango.jpeg'),
+(8, 'Lilly', 0, 200, '../images/Selling1/lily3.jpeg'),
+(9, 'Mango', 7, 150, '../images/Selling1/mango.jpeg'),
 (10, 'Verbena', 74, 100, '../images/Selling1/purple1.jpeg'),
-(11, 'Baby Rose', 32, 200, '../images/Selling1/rose.jpeg'),
+(11, 'Baby Rose', 25, 200, '../images/Selling1/rose.jpeg'),
 (12, 'Sunflower', 22, 295, '../images/Selling1/wh2.jpeg'),
 (13, 'Brinjole', 76, 75, '../images/Selling1/brin1.jpeg'),
 (14, 'Grapes', 45, 365, '../images/Selling1/grapes.jpeg'),
@@ -474,6 +517,14 @@ CREATE TABLE `soiltype` (
   `soilTypeName` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `soiltype`
+--
+
+INSERT INTO `soiltype` (`soilTypeID`, `soilTypeName`) VALUES
+(1, 'Reddish Brown Earths'),
+(2, 'Red Yellow Podzolic');
+
 -- --------------------------------------------------------
 
 --
@@ -484,6 +535,15 @@ CREATE TABLE `space` (
   `spaceID` int(11) NOT NULL,
   `spaceName` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `space`
+--
+
+INSERT INTO `space` (`spaceID`, `spaceName`) VALUES
+(1, 'Limited'),
+(2, 'Average'),
+(3, 'Large');
 
 -- --------------------------------------------------------
 
@@ -4289,6 +4349,15 @@ CREATE TABLE `sunexposure` (
   `sunExpoName` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `sunexposure`
+--
+
+INSERT INTO `sunexposure` (`sunExpoID`, `sunExpoName`) VALUES
+(1, 'High'),
+(2, 'Medium'),
+(3, 'Low');
+
 -- --------------------------------------------------------
 
 --
@@ -4321,13 +4390,13 @@ INSERT INTO `users` (`user_id`, `user_FirstName`, `user_LastName`, `user_Email`,
 (18, 'sasan', 'dilantha', 'sasan@gmail.com', '0752245147', 'maravila, halawatha', '$2y$10$iKz.kbpz4mcKuRvVaS8a/uxOT.dNT3DWBtcP8eE0z.XmAeLobf0SO', 'Puttalam', 'Male', '../images/profile_pictures/Default.png', NULL, NULL),
 (22, 'Migara', 'Thiyunuwan', 'migarathiyunuwan@gmail.com', '0771416968', '58/1, waragoda, attanagalla.', '$2y$10$M.eylxWD0b4AKyfD3DxoEOxXIN4I2WNUFv4JsmGvMKXHXrZLCXYQW', 'Gampaha', 'Male', '../images/profile_pictures/22.jpg', NULL, NULL),
 (34, 'gjm', 'gchm', 'ghm@gmail.com', '3434636', '58/1, waragoda, attanagalla.', '$2y$10$YFvEpyCKIWbidmWfYDSg6uPicLdR9Aj9rJPTWOGAZpNxLFzazFvHe', 'Monaragala', 'Female', '../images/profile_pictures/Default.png', NULL, NULL),
-(35, 'fnernyr', 'edhhtet', 'thedrht@gmail.com', '0771536245', '58/1, waragoda, attanagalla.', '$2y$10$ESji7nt0FGOA64a6abxluOfBjk6xeXJ3mlWq1aXUhhAGCYMuYN4BO', 'Nuwara Eliya', 'Female', '../images/profile_pictures/Default.png', NULL, NULL),
 (36, 'hjtcyhtr', 'fthjrthj', 'ftghrfdh@gmail.com', '0752245147', '58/1, waragoda, attanagalla.', '$2y$10$X73G6B3hsta4.XtsISBPZOx2ufw3eVqAO7MIaeCp/GgtVkT894E46', 'Matale', 'Male', '../images/profile_pictures/Default.png', NULL, NULL),
 (37, 'trhrh', 'rhethh', 'dgherth@gmail.com', '0771314567', '58/1, waragoda, attanagalla.', '$2y$10$H1mxSRlNLaFlsS5t5CiQk..Q5qSUTYyTvbnhxbJ9TgAQN4Dw5jzFW', 'Jaffna', 'Male', '../images/profile_pictures/Default.png', NULL, NULL),
 (38, 'kyuktyku', 'yukyuk', 'tyuktyuk@gmail.com', '0752245147', '58/1, waragoda, attanagalla.', '$2y$10$K6LJl52Lw6BNE0vb04l0Y.ob9I9Q8UElTS46yxE/rmB1yEDxF5.3u', 'Kandy', 'Female', '../images/profile_pictures/Default.png', NULL, NULL),
 (39, 'gegee', 'ghehe4h', 'dxtht@gmail.com', '0883678234', '58/1, waragoda, attanagalla.', '$2y$10$oj/2oV3T9I9molqwNasJI.JPqL2FMz0xzyLBEUn36DOUBocHtm2hC', 'Kilinochchi', 'Female', '../images/profile_pictures/Default.png', NULL, NULL),
 (40, 'sfdghgh', 'dsfrhh', 'sgwsr@gmail.com', '0771536245', '58/1, waragoda, attanagalla.', '$2y$10$StFxehQ24lo/Ks1ARZr9G.P9DSbVdpAgwF2UxKEoLBCR3snnfvrei', 'Gampaha', 'Female', '../images/profile_pictures/Default.png', NULL, NULL),
-(41, 'rghweh', 'wehte', 'het@gmail.com', '0771314567', '58/1, waragoda, attanagalla.', '$2y$10$OPc4r7ilUOCEMv2gfzwHaumi1vwRlXofHeOnQ4GoNom/LzhrTlaZu', 'Gampaha', 'Male', '../images/profile_pictures/Default.png', NULL, NULL);
+(41, 'rghweh', 'wehte', 'het@gmail.com', '0771314567', '58/1, waragoda, attanagalla.', '$2y$10$OPc4r7ilUOCEMv2gfzwHaumi1vwRlXofHeOnQ4GoNom/LzhrTlaZu', 'Gampaha', 'Male', '../images/profile_pictures/Default.png', NULL, NULL),
+(42, 'th4eth', '4ht4h', 'ghr4t5@gmail.com', '0771314567', '58/1, waragoda, attanagalla.', '$2y$10$mPSAPG92pIQuzOS.obbw/uqzMAjQf0znB85GXJ6ZIfXnWTuchhfcW', 'Kilinochchi', 'Male', '../images/profile_pictures/Default.png', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -4339,6 +4408,15 @@ CREATE TABLE `waterlevel` (
   `waterLevelID` int(11) NOT NULL,
   `waterLevelName` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `waterlevel`
+--
+
+INSERT INTO `waterlevel` (`waterLevelID`, `waterLevelName`) VALUES
+(1, 'Easy to Find'),
+(2, 'Medium'),
+(3, 'Rare');
 
 --
 -- Indexes for dumped tables
@@ -4364,9 +4442,7 @@ ALTER TABLE `answer`
 --
 ALTER TABLE `blog`
   ADD PRIMARY KEY (`blog_id`),
-  ADD UNIQUE KEY `user_id` (`user_id`),
-  ADD UNIQUE KEY `user_id_2` (`user_id`),
-  ADD KEY `user_id_3` (`user_id`);
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `cart`
@@ -4375,6 +4451,12 @@ ALTER TABLE `cart`
   ADD PRIMARY KEY (`cartId`),
   ADD KEY `user_id` (`user_id`),
   ADD KEY `ItemId` (`ItemId`);
+
+--
+-- Indexes for table `harvesttime`
+--
+ALTER TABLE `harvesttime`
+  ADD PRIMARY KEY (`harvestTimeId`);
 
 --
 -- Indexes for table `location`
@@ -4498,7 +4580,7 @@ ALTER TABLE `waterlevel`
 -- AUTO_INCREMENT for table `advertisements`
 --
 ALTER TABLE `advertisements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `answer`
@@ -4510,19 +4592,25 @@ ALTER TABLE `answer`
 -- AUTO_INCREMENT for table `blog`
 --
 ALTER TABLE `blog`
-  MODIFY `blog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `blog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
+--
+-- AUTO_INCREMENT for table `harvesttime`
+--
+ALTER TABLE `harvesttime`
+  MODIFY `harvestTimeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
-  MODIFY `locationID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `locationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `manager`
@@ -4540,13 +4628,13 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT for table `orderitem`
 --
 ALTER TABLE `orderitem`
-  MODIFY `orderItemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `orderItemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `payment`
@@ -4564,37 +4652,37 @@ ALTER TABLE `question`
 -- AUTO_INCREMENT for table `shop`
 --
 ALTER TABLE `shop`
-  MODIFY `ItemId` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `ItemId` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `soiltype`
 --
 ALTER TABLE `soiltype`
-  MODIFY `soilTypeID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `soilTypeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `space`
 --
 ALTER TABLE `space`
-  MODIFY `spaceID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `spaceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `sunexposure`
 --
 ALTER TABLE `sunexposure`
-  MODIFY `sunExpoID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sunExpoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `waterlevel`
 --
 ALTER TABLE `waterlevel`
-  MODIFY `waterLevelID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `waterLevelID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -4617,7 +4705,8 @@ ALTER TABLE `answer`
 -- Constraints for table `blog`
 --
 ALTER TABLE `blog`
-  ADD CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
 -- Constraints for table `cart`
