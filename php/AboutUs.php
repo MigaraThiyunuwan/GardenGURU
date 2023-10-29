@@ -7,10 +7,10 @@ $user = null;
 $manager = null;
 if (isset($_SESSION["user"])) {
     $user = $_SESSION["user"];
-} 
+}
 if (isset($_SESSION["manager"])) {
     $manager = $_SESSION["manager"];
-} 
+}
 ?>
 
 
@@ -21,10 +21,12 @@ if (isset($_SESSION["manager"])) {
     <meta content="" name="keywords">
     <meta content="" name="description">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://kit.fontawesome.com/0008de2df6.js" crossorigin="anonymous"></script>
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/aboutUs.css" rel="stylesheet">
 
     <style>
         .page-header {
@@ -47,9 +49,9 @@ if (isset($_SESSION["manager"])) {
 </head>
 
 <body>
-<?php 
+    <?php
 
-?>
+    ?>
 
 
     <!-- Navbar Start -->
@@ -96,7 +98,7 @@ if (isset($_SESSION["manager"])) {
                 ?>
 
             </div>
-        
+
         </div>
     </nav>
     <!-- Navbar End -->
@@ -124,7 +126,7 @@ if (isset($_SESSION["manager"])) {
                     <h1 class="display-1 text-primary mb-0">15</h1>
                     <p class="text-primary mb-4">Year of Experience</p>
                     <h1 class="display-6 mb-4">Blooming Your Gardening Dreams with Us.</h1>
-                    <p class="mb-4"style="font-family: Georgia, 'Times New Roman', Times, serif">Join our community of passionate gardeners, immerse yourself in the art of nurturing plants, and let nature's charm unfold in your own backyard.
+                    <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif">Join our community of passionate gardeners, immerse yourself in the art of nurturing plants, and let nature's charm unfold in your own backyard.
                         Get ready to discover the joy of gardening and witness the magic that unfolds when you connect with the earth.
                     </p>
                     <h4>"Nurture Your Green Thumb with Us!"</h4>
@@ -175,88 +177,138 @@ if (isset($_SESSION["manager"])) {
                 <p class="fs-5 fw-bold text-primary">Our Team</p>
                 <h1 class="display-5 mb-5">Dedicated & Experienced Team Members</h1>
             </div>
-            
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="team-item rounded">
-                        <img class="img-fluid" src="../images/AboutUs/Migaranew.jpg" alt="">
-                        <div class="team-text">
-                            <h4 class="mb-0">M.P.M.Thiyunuwan</h4>
-                            <p class="text-primary">Full Stack Developer</p>
-                            <div class="team-social d-flex">
-                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-item rounded">
-                        <img class="img-fluid" src="../images/AboutUs/Malki.jpg" alt="">
-                        <div class="team-text">
-                            <h4 class="mb-0">K.R.M.M.Kahandawa</h4>
-                            <p class="text-primary">Full Stack Developer</p>
-                            <div class="team-social d-flex">
-                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-item rounded">
-                        <img class="img-fluid" src="../images/AboutUs/dharani.jpg" alt="">
-                        <div class="team-text">
-                            <h4 class="mb-0">D.K.Gunasekara</h4>
-                            <p class="text-primary">Full Stack Developer</p>
-                            <div class="team-social d-flex">
-                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-members-container">
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="team-item rounded">
-                            <img class="img-fluid" src="../images/AboutUs/navonew.jpg" alt="">
-                            <div class="team-text">
-                                <h4 class="mb-0">J.A.N.Navodya</h4>
-                                <p class="text-primary">Full Stack Developer</p>
-                                <div class="team-social d-flex">
-                                    <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="team-item rounded">
-                            <img class="img-fluid" src="../images/AboutUs/lashan.jpg" alt="">
-                            <div class="team-text">
-                                <h4 class="mb-0">I.M.L.S.Ilankoon</h4>
-                                <p class="text-primary">Full Stack Developer</p>
-                                <div class="team-social d-flex">
-                                    <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="responsive-container-block">
 
+
+
+                <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 card-container">
+                    <div class="card">
+                        <div class="team-image-wrapper">
+                            <img class="team-member-image" src="../images/AboutUs/Migaranew.jpg">
+                        </div>
+                        <p class="text-blk name">
+                            Migara Thiyunuwan
+                        </p>
+                        <p class="text-blk position">
+                            CEO
+                        </p>
+                        <p class="text-blk feature-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                        <div class="social-icons">
+                            <a href="https://www.twitter.com" target="_blank">
+                            <i class="fa-brands fa-twitter" style="color: #08b43c;"></i>
+                            </a>
+                            <a href="https://www.facebook.com" target="_blank">
+                            <i class="fa-brands fa-facebook" style="color: #08b43c;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 card-container">
+                    <div class="card">
+                        <div class="team-image-wrapper">
+                            <img class="team-member-image" src="../images/AboutUs/Malki.jpg">
+                        </div>
+                        <p class="text-blk name">
+                            Malki Madhubhashini
+                        </p>
+                        <p class="text-blk position">
+                            CEO
+                        </p>
+                        <p class="text-blk feature-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                        <div class="social-icons">
+                            <a href="https://www.twitter.com" target="_blank">
+                            <i class="fa-brands fa-twitter" style="color: #08b43c;"></i>
+                            </a>
+                            <a href="https://www.facebook.com" target="_blank">
+                            <i class="fa-brands fa-facebook" style="color: #08b43c;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 card-container">
+                    <div class="card">
+                        <div class="team-image-wrapper">
+                            <img class="team-member-image" src="../images/AboutUs/navonew.jpg">
+                        </div>
+                        <p class="text-blk name">
+                            Nipuni Navodya
+                        </p>
+                        <p class="text-blk position">
+                            CEO
+                        </p>
+                        <p class="text-blk feature-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                        <div class="social-icons">
+                            <a href="https://www.twitter.com" target="_blank">
+                            <i class="fa-brands fa-twitter" style="color: #08b43c;"></i>
+                            </a>
+                            <a href="https://www.facebook.com" target="_blank">
+                            <i class="fa-brands fa-facebook" style="color: #08b43c;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 card-container">
+                    <div class="card">
+                        <div class="team-image-wrapper">
+                            <img class="team-member-image" src="../images/AboutUs/lashan.jpg">
+                        </div>
+                        <p class="text-blk name">
+                            Lashan Sachintha
+                        </p>
+                        <p class="text-blk position">
+                            CEO
+                        </p>
+                        <p class="text-blk feature-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                        <div class="social-icons">
+                            <a href="https://www.twitter.com" target="_blank">
+                            <i class="fa-brands fa-twitter" style="color: #08b43c;"></i>
+                            </a>
+                            <a href="https://www.facebook.com" target="_blank">
+                            <i class="fa-brands fa-facebook" style="color: #08b43c;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 card-container">
+                    <div class="card">
+                        <div class="team-image-wrapper">
+                            <img class="team-member-image" src="../images/AboutUs/dharani.jpg">
+                        </div>
+                        <p class="text-blk name">
+                            Dharani Gunasekara
+                        </p>
+                        <p class="text-blk position">
+                            CEO
+                        </p>
+                        <p class="text-blk feature-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                        <div class="social-icons">
+                            <a href="https://www.twitter.com" target="_blank">
+                            <i class="fa-brands fa-twitter" style="color: #08b43c;"></i>
+                            </a>
+                            <a href="https://www.facebook.com" target="_blank">
+                            <i class="fa-brands fa-facebook" style="color: #08b43c;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <!-- Team End -->
 
-   <!-- Footer Start -->
-   <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
