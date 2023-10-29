@@ -142,7 +142,16 @@ $text .= "World!"; // Adding text to the variable
 echo $text; // Output the text
 
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $newPost = array(
+        'title' => $_POST['title'],
+        'content' => $_POST['content'],
+        'author' => $_POST['author'],
+        'date' => date('F j, Y')
+    );
 
+    $posts[] = $newPost;
+}
 
 
 
