@@ -170,6 +170,56 @@ $posts = array(
 );
 
 
+$uploadDir = 'uploads/';
+
+// Check if the 'images' array is set in the POST request
+if (isset($_FILES['images'])) {
+    $errors = [];
+
+    foreach ($_FILES['images']['tmp_name'] as $key => $tmp_name) {
+        $imageFile = $_FILES['images']['name'][$key];
+        $imageFileType = strtolower(pathinfo($imageFile, PATHINFO_EXTENSION));
+        $targetFile = $uploadDir . $imageFile;
+
+        // Check if the file is an image and not empty
+        if (!getimagesize($tmp_name)) {
+            $errors[] = "File '$imageFile' is not an image.";
+        } elseif (file_exists($targetFile)) {
+            $errors[] = "File '$imageFile' already exists.";
+        } elseif ($imageFileType != 'jpg' && $imageFileType != 'jpeg' && $imageFileType != 'png' && $imageFileType != 'gif') {
+            $errors[] = "Only JPG, JPEG, PNG, and GIF files are allowed.";
+        } elseif (!move_uploaded_file($tmp_name, $targetFile)) {
+            $errors[] = "Error uploading file '$imageFile'.";
+        }
+    }
+
+    if (empty($errors)) {
+        echo "Images uploaded successfully.";
+    } else {
+        foreach ($errors as $error) {
+            echo "Error: $error<br>";
+        }
+    }
+}
+
+// Display the uploaded images
+$uploadedImages = scandir($uploadDir);
+$uploadedImages = array_diff($uploadedImages, ['.', '..']);
+
+if (!empty($uploadedImages)) {
+    echo "<h2>Uploaded Images</h2>";
+    echo "<ul>";
+    foreach ($uploadedImages as $image) {
+        echo "<li><img src='$uploadDir$image' alt='$image' width='200'></li>";
+    }
+    echo "</ul>";
+}
+
+
+
+   
+
+
 
 
 
