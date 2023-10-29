@@ -32,7 +32,7 @@ if (isset($_SESSION["manager"])) {
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/blog.css" rel="stylesheet">
-
+    <link href="../css/reviews.css" rel="stylesheet">
 
 </head>
 
@@ -102,8 +102,21 @@ if (isset($_SESSION["manager"])) {
     <!-- Page Header End -->
 
     <?php
+    $sql = "SELECT
+    b.blog_id,
+    b.blog_title,
+    b.blogPostedDate,
+    b.blog_details,
+    b.blog_image,
+    u.user_FirstName,
+    u.user_LastName
+    FROM
+    blog b
+    INNER JOIN
+    users u
+    ON
+    b.user_id = u.user_id ORDER BY blog_id DESC;";
 
-    $sql = "SELECT * FROM blog ORDER BY blog_id DESC";
     try {
 
         $stmt = $dbcon->query($sql);
@@ -119,8 +132,8 @@ if (isset($_SESSION["manager"])) {
                         $blog_id = $row["blog_id"];
                         $blog_title = $row["blog_title"];
                         $blogPostedDate = $row["blogPostedDate"];
-                        $user_fname = $row["user_fname"];
-                        $user_lname = $row["user_lname"];
+                        $user_fname = $row["user_FirstName"];
+                        $user_lname = $row["user_LastName"];
                         $blog_details = $row["blog_details"];
                         $blog_image = $row["blog_image"];
                     ?>
@@ -165,9 +178,9 @@ if (isset($_SESSION["manager"])) {
                     <div class="row g-5">
                         <div class="col-lg-3 col-md-6">
                             <h4 class="text-white mb-4">Our Office</h4>
-                            <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
-                            <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
-                            <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
+                            <p style="color: white;" class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
+                            <p style="color: white;" class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
+                            <p style="color: white;" class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
                             <div class="d-flex pt-2">
                                 <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
                                 <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>

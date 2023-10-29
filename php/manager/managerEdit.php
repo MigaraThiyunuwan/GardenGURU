@@ -121,6 +121,12 @@ if (isset($_SESSION["manager"])) {
                                                    Password Change Failed!
                                                     </div></b>";
                                         }
+                                        if ($_GET['error'] == 5) {
+
+                                            echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                                                   Current Password Incorrect!
+                                                    </div></b>";
+                                        }
                                     }
                                     ?>
 

@@ -1,12 +1,10 @@
 <?php
-
 require_once '../classes/cart.php';
 require_once '../classes/shop.php';
 require_once '../classes/DbConnector.php';
 require '../classes/persons.php';
 
 use classes\DbConnector;
-
 $dbcon = new DbConnector();
 
 session_start();

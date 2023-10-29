@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $password = Security::SanitizeInput($_POST["password"]);
     //call LoginManager function in Manager class
-    if (Manager::LoginManager($email, $password)) {
+    if (person::login($email, $password, "manager")) {
         header("Location: ../manager/managerProfile.php");
         exit;
     } else {

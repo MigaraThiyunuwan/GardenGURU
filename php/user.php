@@ -194,7 +194,7 @@ if (isset($_SESSION["user"])) {
                   }
                   if ($_GET['error'] == 6) {
                     echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
-                    Profile Picture Failed!
+                    Profile Picture upload Failed!
                     </div></b>";
                   }
                 }
@@ -345,11 +345,7 @@ if (isset($_SESSION["user"])) {
 
     </div>
 
-
-
-
-
-    <div class="row g-4">
+    <div class="row g-4" style="margin-top: 20px;">
       <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
         <div class="service-item rounded d-flex h-100">
           <div class="service-img rounded">
@@ -363,7 +359,9 @@ if (isset($_SESSION["user"])) {
             </div>
             <h4 class="mb-3">Advertiesments</h4>
             <p class="mb-4">Now you can put advertiesments to our website.</p>
-            <a class="btn btn-sm" id="popbutton" href="#"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
+            <!-- <a class="btn btn-sm" id="popbutton" href="#"><i class="fa fa-plus text-primary me-2"></i>Click here</a> -->
+
+            <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#addadd"><i class="fa fa-plus text-primary me-2"></i>Click here </button>
           </div>
         </div>
       </div>
@@ -408,12 +406,147 @@ if (isset($_SESSION["user"])) {
             </div>
             <h4 class="mb-3">Add Blog</h4>
             <p class="mb-4">Click the button for Add your post to blog page.</p>
-            <a class="btn btn-sm" id="addBlogButton" href="#"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
+            <!-- <a class="btn btn-sm" id="addBlogButton" href="#"><i class="fa fa-plus text-primary me-2"></i>Click here</a> -->
+            <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#putblog"><i class="fa fa-plus text-primary me-2"></i>Click here </button>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="modal fade shadow my-5" id="addadd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+      <div class="modal-dialog modal-dialog-centered">
+        <div style="width: 100%;" class="modal-content" style="background-color: white;">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Post Advertiesement
+            </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <div class="d-flex justify-content-between p-2">
+
+              <div class="col">
+                <?php
+                $currentDate = date("Y-m-d");
+                ?>
+
+                <form action="./processes/putAdd.php" method="post" enctype="multipart/form-data">
+                  <div class="row">
+                    <p class="fw-bold me-2">
+                      Select Image for Advertisement:
+                    </p>
+                    <input type="file" class="form-control" name="image1" id="image1" values="$filename1">
+
+                  </div>
+                  <div class="row">
+                    <p class="fw-bold me-2">
+                      Add title for the Advertisement:
+                    </p>
+                    <input type="text" class="form-control" name="text_title" id="text_title">
+
+                  </div>
+                  <div class="row">
+                    <p class="fw-bold me-2">
+                      Enter Your Description:
+                    </p>
+                    <textarea name="text_description" class="form-control" id="text_description" rows="5" cols="40"></textarea>
+
+                  </div>
+                  <input type="hidden" name="realDate" value="<?php echo $currentDate ?>">
+
+              </div>
+
+            </div>
+
+            <div class="modal-footer">
+              <div class="row w-100">
+                <div class="col-md-6" style="margin-bottom: 10px;">
+
+                  <button class="btn btn-success w-100 " type="submit">Post</button>
+                  </form>
+
+                </div>
+                <div class="col-md-6">
+                  <button class="btn btn-danger w-100" type="button" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade shadow my-5" id="putblog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+      <div class="modal-dialog modal-dialog-centered">
+        <div style="width: 100%;" class="modal-content" style="background-color: white;">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Blog
+            </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <div class="d-flex justify-content-between p-2">
+
+              <div class="col">
+                <?php
+                $currentDate = date("Y-m-d");
+                ?>
+
+                <form action="./processes/putBlog.php" method="post" enctype="multipart/form-data">
+                  <div class="row">
+                    <p class="fw-bold me-2">
+                      Blog Image:
+                    </p>
+                    <input type="file" class="form-control" id="blog_image" name="blog_image" accept="image/*" required>
+                  </div>
+                  <div class="row">
+                  <p class="fw-bold me-2">
+                      Blog Title:
+                    </p>
+                    <input type="text" class="form-control" id="blog_title" name="blog_title" required>
+
+                  </div>
+                  <div class="row">
+                    <p class="fw-bold me-2">
+                      Blog Details:
+                    </p>
+                    <textarea class="form-control" name="blog_details" aria-label="With textarea" required></textarea>
+
+                  </div>
+                  <input type="hidden" name="Date" value="<?php echo $currentDate ?>">
+
+              </div>
+
+            </div>
+
+            <div class="modal-footer">
+              <div class="row w-100">
+                <div class="col-md-6" style="margin-bottom: 10px;">
+
+                  <button class="btn btn-success w-100 " type="submit">Post</button>
+                  </form>
+
+                </div>
+                <div class="col-md-6">
+                  <button class="btn btn-danger w-100" type="button" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
   </div>
+
+
 
 
 
@@ -425,10 +558,6 @@ if (isset($_SESSION["user"])) {
         <label for="blog_title"><b>Blog Title:</b></label>
         <input type="text" class="form-control" id="blog_title" name="blog_title" required>
         <br>
-        <!-- <label for="blog_details">Blog Details:</label>
-            <textarea id="blog_details" name="blog_details" required></textarea> -->
-
-        <!-- <span class="input-group-text"><b>Blog Details:</b></span> -->
         <label for="blog_title"><b>Blog Details:</b></label>
         <textarea class="form-control" name="blog_details" aria-label="With textarea" required></textarea>
 
@@ -492,40 +621,7 @@ if (isset($_SESSION["user"])) {
     }
   </script>
 
-  <!-- Modal Section -->
 
-  <div class="bg-modal">
-    <div class="modal-contents ">
-
-      <div class="close" id="close-button">+</div>
-
-      <form id="adForm" action="./processes/putAdd.php" method="post" enctype="multipart/form-data">
-
-        <label for="image1"><b>Select Image for Advertisement:</b></label>
-        <input type="file" class="form-control" name="image1" id="image1" values="$filename1">
-        <label for="text_title"><br><b>Add title for the Advertisement:</b></label>
-        <input type="text" class="form-control" name="text_title" id="text_title">
-        <label for="text_description"><br><b>Enter Your Description:</b></label>
-        <textarea name="text_description" class="form-control" id="text_description" rows="5" cols="40"></textarea>
-        <input type="hidden" name="submit" value="Put Advertisement" values="$filename2">
-        <input type="hidden" id="realDate" name="realDate">
-        <button type="submit" style="margin-top: 15px;" class="btn btn-success">Put Advertisement</button>
-      </form>
-      <script>
-        // Function to set the real date as the value of the hidden input field
-        function setRealDate() {
-          var currentDate = new Date();
-          var realDateField = document.getElementById('realDate');
-          realDateField.value = currentDate.toISOString();
-        }
-
-        // Call setRealDate() when the form is submitted
-        document.getElementById('adForm').addEventListener('submit', setRealDate);
-      </script>
-
-
-    </div>
-  </div>
 
   <script>
     // JavaScript to handle the close button functionality
