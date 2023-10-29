@@ -154,7 +154,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 
-
+$posts = array(
+    array(
+        'title' => 'First Blog Post',
+        'content' => 'This is the content of the first blog post.',
+        'author' => 'John Doe',
+        'date' => 'October 29, 2023'
+    ),
+    array(
+        'title' => 'Second Blog Post',
+        'content' => 'This is the content of the second blog post.',
+        'author' => 'Jane Smith',
+        'date' => 'October 30, 2023'
+    )
+);
 
 
 
