@@ -137,6 +137,9 @@ if (isset($_POST["submit"])) {
 }
 
 
+$text = "Hello, ";
+$text .= "World!"; // Adding text to the variable
+echo $text; // Output the text
 
 
 
