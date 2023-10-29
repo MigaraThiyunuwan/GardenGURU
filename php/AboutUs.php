@@ -27,7 +27,7 @@ if (isset($_SESSION["manager"])) {
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/aboutUs.css" rel="stylesheet">
-
+    <link href="../css/reviews.css" rel="stylesheet">
     <style>
         .page-header {
             background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/AboutUs/header_img.jpg) center center no-repeat !important;
@@ -170,6 +170,101 @@ if (isset($_SESSION["manager"])) {
     </div>
     <!-- Vision and Mission Grid End -->
 
+
+    <div class="container" style="margin-top: 30px;">
+        <div class="row">
+            <div class="col-md-12 course-details-content">
+
+                <div class="course-content">
+                    <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                        <p class="fs-5 fw-bold text-primary">User Reviews</p>
+                        <h1 class="display-5 mb-5">What our customers say about us</h1>
+                    </div>
+                    
+                    <div class="row row--30">
+                        <div class="col-lg-4">
+                            <div class="rating-box">
+                                <div class="rating-number">5.0</div>
+                                <div class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> </div>
+                                <span>(25 Review)</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="review-wrapper">
+                                <div class="single-progress-bar">
+                                    <div class="rating-text"> 5 <i class="fa fa-star" aria-hidden="true"></i> </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <span class="rating-value">23</span>
+                                </div>
+                                <div class="single-progress-bar">
+                                    <div class="rating-text"> 4 <i class="fa fa-star" aria-hidden="true"></i> </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <span class="rating-value">3</span>
+                                </div>
+                                <div class="single-progress-bar">
+                                    <div class="rating-text"> 3 <i class="fa fa-star" aria-hidden="true"></i> </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <span class="rating-value">2</span>
+                                </div>
+                                <div class="single-progress-bar">
+                                    <div class="rating-text"> 2 <i class="fa fa-star" aria-hidden="true"></i> </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <span class="rating-value">3</span>
+                                </div>
+                                <div class="single-progress-bar">
+                                    <div class="rating-text"> 1 <i class="fa fa-star" aria-hidden="true"></i> </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="0" aria-valuemin="80" aria-valuemax="100"></div>
+                                    </div>
+                                    <span class="rating-value">2</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comment-wrapper pt--40">
+                        
+                        <!--  Comment Box start--->
+                        <div class="edu-comment">
+                            <div class="thumbnail"> <img style="width: 100%; height: 100%;" src="../images/profile_pictures//22.jpg" alt="Comment Images"> </div>
+                            <div class="comment-content">
+                                <div class="comment-top">
+                                    <h6 class="title">CSS Tutorials</h6>
+                                    <div class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> </div>
+                                </div>
+                                <span class="subtitle">“ Outstanding Review Design ”</span>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                        </div>
+                        <!-- Comment Box end--->
+                        <!--  Comment Box start--->
+                        <div class="edu-comment">
+                            <div class="thumbnail"> <img style="width: 100%; height: 100%;" src="../images/profile_pictures//2.jpg" alt="Comment Images"> </div>
+                            <div class="comment-content">
+                                <div class="comment-top">
+                                    <h6 class="title">HTML CSS Tutorials</h6>
+                                    <div class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> </div>
+                                </div>
+                                <span class="subtitle">“ Nice Review Design ”</span>
+                                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam.</p>
+                            </div>
+                        </div>
+                        <!--  Comment Box end--->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Team Start -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -190,17 +285,17 @@ if (isset($_SESSION["manager"])) {
                             Migara Thiyunuwan
                         </p>
                         <p class="text-blk position">
-                            CEO
+                            Full Stack Dev
                         </p>
                         <p class="text-blk feature-text">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         </p>
                         <div class="social-icons">
                             <a href="https://www.twitter.com" target="_blank">
-                            <i class="fa-brands fa-twitter" style="color: #08b43c;"></i>
+                                <i class="fa-brands fa-twitter" style="color: #08b43c;"></i>
                             </a>
                             <a href="https://www.facebook.com" target="_blank">
-                            <i class="fa-brands fa-facebook" style="color: #08b43c;"></i>
+                                <i class="fa-brands fa-facebook" style="color: #08b43c;"></i>
                             </a>
                         </div>
                     </div>
@@ -214,17 +309,17 @@ if (isset($_SESSION["manager"])) {
                             Malki Madhubhashini
                         </p>
                         <p class="text-blk position">
-                            CEO
+                            Full Stack Dev
                         </p>
                         <p class="text-blk feature-text">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         </p>
                         <div class="social-icons">
                             <a href="https://www.twitter.com" target="_blank">
-                            <i class="fa-brands fa-twitter" style="color: #08b43c;"></i>
+                                <i class="fa-brands fa-twitter" style="color: #08b43c;"></i>
                             </a>
                             <a href="https://www.facebook.com" target="_blank">
-                            <i class="fa-brands fa-facebook" style="color: #08b43c;"></i>
+                                <i class="fa-brands fa-facebook" style="color: #08b43c;"></i>
                             </a>
                         </div>
                     </div>
@@ -238,17 +333,17 @@ if (isset($_SESSION["manager"])) {
                             Nipuni Navodya
                         </p>
                         <p class="text-blk position">
-                            CEO
+                            Full Stack Dev
                         </p>
                         <p class="text-blk feature-text">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         </p>
                         <div class="social-icons">
                             <a href="https://www.twitter.com" target="_blank">
-                            <i class="fa-brands fa-twitter" style="color: #08b43c;"></i>
+                                <i class="fa-brands fa-twitter" style="color: #08b43c;"></i>
                             </a>
                             <a href="https://www.facebook.com" target="_blank">
-                            <i class="fa-brands fa-facebook" style="color: #08b43c;"></i>
+                                <i class="fa-brands fa-facebook" style="color: #08b43c;"></i>
                             </a>
                         </div>
                     </div>
@@ -262,17 +357,17 @@ if (isset($_SESSION["manager"])) {
                             Lashan Sachintha
                         </p>
                         <p class="text-blk position">
-                            CEO
+                            Full Stack Dev
                         </p>
                         <p class="text-blk feature-text">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         </p>
                         <div class="social-icons">
                             <a href="https://www.twitter.com" target="_blank">
-                            <i class="fa-brands fa-twitter" style="color: #08b43c;"></i>
+                                <i class="fa-brands fa-twitter" style="color: #08b43c;"></i>
                             </a>
                             <a href="https://www.facebook.com" target="_blank">
-                            <i class="fa-brands fa-facebook" style="color: #08b43c;"></i>
+                                <i class="fa-brands fa-facebook" style="color: #08b43c;"></i>
                             </a>
                         </div>
                     </div>
@@ -286,17 +381,17 @@ if (isset($_SESSION["manager"])) {
                             Dharani Gunasekara
                         </p>
                         <p class="text-blk position">
-                            CEO
+                            Full Stack Dev
                         </p>
                         <p class="text-blk feature-text">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         </p>
                         <div class="social-icons">
                             <a href="https://www.twitter.com" target="_blank">
-                            <i class="fa-brands fa-twitter" style="color: #08b43c;"></i>
+                                <i class="fa-brands fa-twitter" style="color: #08b43c;"></i>
                             </a>
                             <a href="https://www.facebook.com" target="_blank">
-                            <i class="fa-brands fa-facebook" style="color: #08b43c;"></i>
+                                <i class="fa-brands fa-facebook" style="color: #08b43c;"></i>
                             </a>
                         </div>
                     </div>
@@ -313,9 +408,9 @@ if (isset($_SESSION["manager"])) {
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Our Office</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
+                    <p style="color: white;" class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
+                    <p style="color: white;" class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
+                    <p style="color: white;" class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>

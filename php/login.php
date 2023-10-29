@@ -2,7 +2,7 @@
 <html lang="en">
 <?php
 if (isset($_COOKIE['remember_user'])){
-    echo "seted";
+   
     header("Location:./processes/loginProcess.php");
     exit;
 }

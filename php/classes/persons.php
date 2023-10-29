@@ -35,6 +35,271 @@ class person
     {
         return $this->Password;
     }
+
+    public static function login($email, $password, $role)
+    {
+        if ($role == "user") {
+            try {
+                $dbcon = new DbConnector();
+                $con = $dbcon->getConnection();
+                $query = "SELECT * FROM users WHERE user_Email = ? ";
+                $pstmt = $con->prepare($query);
+                $pstmt->bindValue(1, $email);
+
+                $pstmt->execute();
+
+                $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                foreach ($rs as $row) {
+                    $dbpassword = $row->user_Password;
+                    $dbFirstName = $row->user_FirstName;
+                    $dbLastName = $row->user_LastName;
+                    $dbEmail = $row->user_Email;
+                    $dbPhoneNo = $row->user_PhoneNo;
+                    $dbDistrict = $row->user_District;
+                    $dbGender = $row->user_Gender;
+                    $dbid = $row->user_id;
+                    $dbaddress = $row->user_address;
+                    $dbpicture = $row->profile_picture;
+                }
+
+                if (password_verify($password, $dbpassword)) {
+
+                    $user = new user($dbFirstName, $dbLastName, $dbEmail, $dbaddress, $dbid, $dbDistrict, $dbPhoneNo, $dbpicture, $dbGender);
+                    session_start();
+                    $_SESSION["user"] = $user;
+                    $_SESSION['cart'][0] = array('ItemId' => null, 'Item_Name' => null, 'Price' => null, 'Quantity' => null);
+                    if (isset($_SESSION['cartTemp'])) {
+                        $_SESSION['cartTemp'] = null;
+                    }
+
+                    try {
+                        $con = $dbcon->getConnection();
+                        $query1 = "SELECT * FROM cart WHERE user_id = ? ";
+                        $pstmt1 = $con->prepare($query1);
+                        $pstmt1->bindValue(1, $user->getUserId());
+
+                        $pstmt1->execute();
+
+                        if ($pstmt1->rowCount() > 0) {
+
+                            $rs = $pstmt1->fetchAll(PDO::FETCH_OBJ);
+
+                            foreach ($rs as $row) {
+                                $Item_Name = $row->Item_Name;
+                                $Price = $row->Price;
+                                $Quantity = $row->Quantity;
+                                $ItemId = $row->ItemId;
+                                $_SESSION['cart'][] = array('ItemId' => $ItemId, 'Item_Name' => $Item_Name, 'Price' => $Price, 'Quantity' => $Quantity);
+                            }
+
+                            return $user;
+                        } else {
+                        }
+                    } catch (PDOException $exc) {
+                        echo $exc->getMessage();
+                    }
+                    return $user;
+                } else {
+                    return null;
+                }
+            } catch (PDOException $exc) {
+                echo $exc->getMessage();
+            }
+        } else if ($role == "manager") {
+            try {
+                $dbcon = new DbConnector();
+                $con = $dbcon->getConnection();
+                $query = "SELECT * FROM manager WHERE mEmail = ? ";
+                $pstmt = $con->prepare($query);
+                $pstmt->bindValue(1, $email);
+
+                $pstmt->execute();
+
+                $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                foreach ($rs as $row) {
+                    $dbpassword = $row->mPassword;
+                    $dbFirstName = $row->mFirstName;
+                    $dbLastName = $row->mLastName;
+                    $dbEmail = $row->mEmail;
+                    $dbPhoneNo = $row->mPhone;
+                    $dbNIC = $row->mNIC;
+                    $dbmID = $row->managerID;
+                };
+                if (password_verify($password, $dbpassword)) {
+
+                    $manager = new Manager($dbFirstName, $dbLastName, $dbEmail, $dbNIC, $dbmID, $dbPhoneNo);
+                    session_start();
+                    $_SESSION["manager"] = $manager;
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (PDOException $exc) {
+                echo $exc->getMessage();
+            }
+        } else if ($role == "admin") {
+            try {
+                $dbcon = new DbConnector();
+                $con = $dbcon->getConnection();
+                $query = "SELECT * FROM admin WHERE aEmail = ? ";
+                $pstmt = $con->prepare($query);
+                $pstmt->bindValue(1, $email);
+
+                $pstmt->execute();
+
+                $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                foreach ($rs as $row) {
+                    $dbpassword = $row->aPassword;
+                    $dbFirstName = $row->aFirstName;
+                    $dbLastName = $row->aLastName;
+                    $dbEmail = $row->aEmail;
+                    $dbPhoneNo = $row->aPhone;
+                    $dbNIC = $row->aNIC;
+                    $dbaID = $row->adminID;
+                }
+
+                if (password_verify($password, $dbpassword)) {
+
+                    $admin = new Admin($dbFirstName, $dbLastName, $dbEmail, $dbNIC, $dbaID, $dbPhoneNo);
+                    session_start();
+                    $_SESSION["admin"] = $admin;
+                    return true;
+                } else {
+
+                    return false;
+                }
+            } catch (PDOException $exc) {
+                echo $exc->getMessage();
+            }
+        } else {
+            return false;
+        }
+    }
+    public function checkPassword($password, $id, $role)
+    {
+
+        if ($role == "user") {
+            try {
+                $dbcon = new DbConnector();
+                $con = $dbcon->getConnection();
+                $query = "SELECT user_Password FROM users WHERE user_id = ? ";
+                $pstmt = $con->prepare($query);
+                $pstmt->bindValue(1, $id);
+
+                $pstmt->execute();
+
+                $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                foreach ($rs as $row) {
+                    $dbpassword = $row->user_Password;
+                };
+                if (password_verify($password, $dbpassword)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (PDOException $exc) {
+                echo $exc->getMessage();
+            }
+        } else if ($role == "manager") {
+            try {
+                $dbcon = new DbConnector();
+                $con = $dbcon->getConnection();
+                $query = "SELECT mPassword FROM manager WHERE managerID = ? ";
+                $pstmt = $con->prepare($query);
+                $pstmt->bindValue(1, $id);
+
+                $pstmt->execute();
+
+                $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                foreach ($rs as $row) {
+                    $dbpassword = $row->mPassword;
+                };
+                if (password_verify($password, $dbpassword)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (PDOException $exc) {
+                echo $exc->getMessage();
+            }
+        } else if ($role == "admin") {
+            try {
+                $dbcon = new DbConnector();
+                $con = $dbcon->getConnection();
+                $query = "SELECT aPassword FROM admin WHERE adminID = ? ";
+                $pstmt = $con->prepare($query);
+                $pstmt->bindValue(1, $id);
+
+                $pstmt->execute();
+
+                $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                foreach ($rs as $row) {
+                    $dbpassword = $row->aPassword;
+                };
+                if (password_verify($password, $dbpassword)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (PDOException $exc) {
+                echo $exc->getMessage();
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public function changePassword($password, $id, $role)
+    {
+        if ($role == "user") {
+            $dbcon = new DbConnector();
+            try {
+                $con = $dbcon->getConnection();
+                $query = "UPDATE users SET user_Password = ? WHERE user_id = ?";
+                $pstmt = $con->prepare($query);
+                $pstmt->bindValue(1, $password);
+                $pstmt->bindValue(2, $id);
+                $pstmt->execute();
+                return ($pstmt->rowCount() > 0);
+            } catch (PDOException $exc) {
+                echo $exc->getMessage();
+            }
+        } else if ($role == "manager") {
+            $dbcon = new DbConnector();
+            try {
+                $con = $dbcon->getConnection();
+                $query = "UPDATE manager SET mPassword = ? WHERE managerID = ?";
+                $pstmt = $con->prepare($query);
+                $pstmt->bindValue(1, $password);
+                $pstmt->bindValue(2, $id);
+                $pstmt->execute();
+                return ($pstmt->rowCount() > 0);
+            } catch (PDOException $exc) {
+                echo $exc->getMessage();
+            }
+        } else if ($role == "admin") {
+            $dbcon = new DbConnector();
+            try {
+                $con = $dbcon->getConnection();
+                $query = "UPDATE admin SET aPassword = ? WHERE adminID = ?";
+                $pstmt = $con->prepare($query);
+                $pstmt->bindValue(1, $password);
+                $pstmt->bindValue(2, $id);
+                $pstmt->execute();
+                return ($pstmt->rowCount() > 0);
+            } catch (PDOException $exc) {
+                echo $exc->getMessage();
+            }
+        } else {
+            return false;
+        }
+    }
 }
 
 /* =========================================================|| user class (Child Class) ||====================================================================================== */
@@ -167,7 +432,6 @@ class user extends person
                         }
 
                         return $user;
-                    } else {
                     }
                 } catch (PDOException $exc) {
                     echo $exc->getMessage();
@@ -293,7 +557,7 @@ class user extends person
                     $con = $dbcon->getConnection();
                     $query1 = "SELECT * FROM cart WHERE user_id = ? ";
                     $pstmt1 = $con->prepare($query1);
-                    $pstmt1->bindValue(1, $user->getUserId());
+                    $pstmt1->bindValue(1, $dbid);
 
                     $pstmt1->execute();
 
@@ -305,12 +569,11 @@ class user extends person
                             $Item_Name = $row->Item_Name;
                             $Price = $row->Price;
                             $Quantity = $row->Quantity;
-                            $_SESSION['cart'][] = array('Item_Name' => $Item_Name, 'Price' => $Price, 'Quantity' => $Quantity);
+                            $ItemId = $row->ItemId;
+                            $_SESSION['cart'][] = array('ItemId' => $ItemId, 'Item_Name' => $Item_Name, 'Price' => $Price, 'Quantity' => $Quantity);
                         }
 
                         return true;
-                    } else {
-                        return false;
                     }
                 } catch (PDOException $exc) {
                     echo $exc->getMessage();
@@ -327,25 +590,11 @@ class user extends person
         }
     }
 
-    public function changePassword($password) {
-        $dbcon = new DbConnector();
-        try {
-            $con = $dbcon->getConnection();
-            $query = "UPDATE users SET user_Password = ? WHERE user_id = ?";
-            $pstmt = $con->prepare($query);
-            $pstmt->bindValue(1, $password);
-            $pstmt->bindValue(2, $this->userId);
-            $pstmt->execute();
-            return ($pstmt->rowCount() > 0);
-        } catch (PDOException $exc) {
-            echo $exc->getMessage();
-        }
-    }
-
     public function putAdvertisement($file, $text_title, $text_description, $realDate)
     {
         $tmp_name1 = $file['tmp_name'];
         $filename1 = $file['name'];
+        $randomString = bin2hex(random_bytes(8));
 
         $allowed = array('jpeg', 'png', 'jpg', 'JPEG', 'PNG', 'JPG');
         $ext = pathinfo($filename1, PATHINFO_EXTENSION);
@@ -353,25 +602,22 @@ class user extends person
         if (in_array($ext, $allowed)) {
 
             if ($file['size'] < 5 * 1024 * 1024) {
-
-                $destination1 = '../../images/Adevertistment/' . $filename1;
-                $dbdestination = '../images/Adevertistment/' . $filename1;
+                $newFilename = $randomString . '.' . pathinfo($filename1, PATHINFO_EXTENSION);
+                $destination1 = '../../images/Adevertistment/' . $newFilename;
+                $dbdestination = '../images/Adevertistment/' . $newFilename;
                 if (move_uploaded_file($tmp_name1, $destination1)) {
 
                     try {
                         $dbcon = new DbConnector();
                         $conn = $dbcon->getConnection();
-                        $sql = "INSERT INTO advertisements (user_id, user_FirstName, user_LastName, user_Email, image1_filename, title, description, adPostedDate) VALUES ( ?, ? ,?, ?, ?, ?, ?, ?)";
+                        $sql = "INSERT INTO advertisements (user_id, image1_filename, title, description, adPostedDate) VALUES ( ?, ? ,?, ?, ?)";
 
                         $pstmt = $conn->prepare($sql);
                         $pstmt->bindValue(1, $this->userId);
-                        $pstmt->bindValue(2, $this->FirstName);
-                        $pstmt->bindValue(3, $this->LastName);
-                        $pstmt->bindValue(4, $this->Email);
-                        $pstmt->bindValue(5, $dbdestination);
-                        $pstmt->bindValue(6, $text_title);
-                        $pstmt->bindValue(7, $text_description);
-                        $pstmt->bindValue(8, $realDate);
+                        $pstmt->bindValue(2, $dbdestination);
+                        $pstmt->bindValue(3, $text_title);
+                        $pstmt->bindValue(4, $text_description);
+                        $pstmt->bindValue(5, $realDate);
 
                         if ($pstmt->execute()) {
                             return true;
@@ -396,29 +642,47 @@ class user extends person
     }
     public function putBlog($file, $blogTitle, $blogDetails, $Date)
     {
-        $targetFile = "../../images/blog/" . basename($file["name"]);
-        $dbPicture = "../images/blog/" . basename($file["name"]);
-        if (move_uploaded_file($file["tmp_name"], $targetFile)) {
-            $dbcon = new DbConnector();
-            $con = $dbcon->getConnection();
-            $query = "INSERT INTO blog (blog_title, user_id, user_fname, user_lname, blog_details, blog_image, blogPostedDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
-            $pstmt = $con->prepare($query);
-            $pstmt->bindValue(1, $blogTitle);
-            $pstmt->bindValue(2, $this->userId);
-            $pstmt->bindValue(3, $this->FirstName);
-            $pstmt->bindValue(4, $this->LastName);
-            $pstmt->bindValue(5, $blogDetails);
-            $pstmt->bindValue(6, $dbPicture);
-            $pstmt->bindValue(7, $Date);
+        $tmp_name1 = $file['tmp_name'];
+        $filename1 = $file['name'];
+        $randomString = bin2hex(random_bytes(8));
 
-            $pstmt->execute();
-            if (($pstmt->rowCount()) > 0) {
-                return true;
+        $allowed = array('jpeg', 'png', 'jpg', 'JPEG', 'PNG', 'JPG');
+        $ext = pathinfo($filename1, PATHINFO_EXTENSION);
+
+        if (in_array($ext, $allowed)) {
+
+            if ($file['size'] < 5 * 1024 * 1024) {
+                $newFilename = $randomString . '.' . pathinfo($filename1, PATHINFO_EXTENSION);
+                $destination1 = '../../images/blog/' . $newFilename;
+                $dbdestination = '../images/blog/' . $newFilename;
+
+                if (move_uploaded_file($tmp_name1, $destination1)) {
+                    $dbcon = new DbConnector();
+                    $con = $dbcon->getConnection();
+                    $query = "INSERT INTO blog (blog_title, user_id, blog_details, blog_image, blogPostedDate) VALUES (?, ?, ?, ?, ?)";
+                    $pstmt = $con->prepare($query);
+                    $pstmt->bindValue(1, $blogTitle);
+                    $pstmt->bindValue(2, $this->userId);
+                    $pstmt->bindValue(3, $blogDetails);
+                    $pstmt->bindValue(4, $dbdestination);
+                    $pstmt->bindValue(5, $Date);
+
+                    $pstmt->execute();
+                    if (($pstmt->rowCount()) > 0) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    header("Location: ./user.php?success=0");
+                }
             } else {
-                return false;
+                header("Location: ../user.php?error=3");
+                exit;
             }
         } else {
-            header("Location: ./user.php?success=0");
+            header("Location: ../user.php?error=4");
+            exit;
         }
     }
 
@@ -538,20 +802,21 @@ class Manager extends person
         return $this->managerId;
     }
 
-    public function changePassword($password) {
-        $dbcon = new DbConnector();
-        try {
-            $con = $dbcon->getConnection();
-            $query = "UPDATE manager SET mPassword = ? WHERE managerID = ?";
-            $pstmt = $con->prepare($query);
-            $pstmt->bindValue(1, $password);
-            $pstmt->bindValue(2, $this->managerId);
-            $pstmt->execute();
-            return ($pstmt->rowCount() > 0);
-        } catch (PDOException $exc) {
-            echo $exc->getMessage();
-        }
-    }
+    // public function changePassword($password)
+    // {
+    //     $dbcon = new DbConnector();
+    //     try {
+    //         $con = $dbcon->getConnection();
+    //         $query = "UPDATE manager SET mPassword = ? WHERE managerID = ?";
+    //         $pstmt = $con->prepare($query);
+    //         $pstmt->bindValue(1, $password);
+    //         $pstmt->bindValue(2, $this->managerId);
+    //         $pstmt->execute();
+    //         return ($pstmt->rowCount() > 0);
+    //     } catch (PDOException $exc) {
+    //         echo $exc->getMessage();
+    //     }
+    // }
     public function deleteUser($user_id)
     {
         try {
@@ -694,73 +959,88 @@ class Manager extends person
         $filename1 = $file['name'];
         $randomString = bin2hex(random_bytes(8));
 
-        $newFilename = $randomString . '.' . pathinfo($filename1, PATHINFO_EXTENSION);
+        $allowed = array('jpeg', 'png', 'jpg', 'JPEG', 'PNG', 'JPG');
+        $ext = pathinfo($filename1, PATHINFO_EXTENSION);
 
-        $destination1 = '../../images/Selling1/' . $newFilename;
-        $dbDestination = '../images/Selling1/' . $newFilename;
+        if (in_array($ext, $allowed)) {
 
-        if (file_exists($destination1)) {
-            unlink($destination1);
-        }
+            if ($file['size'] < 5 * 1024 * 1024) {
 
-        if (move_uploaded_file($tmp_name1, $destination1)) {
-            try {
-                $dbcon = new DbConnector();
-                $conn = $dbcon->getConnection();
-                $sql = "INSERT INTO shop (ItemName, ItemQuantity, ItemPrice, ItemImage) VALUES ( ?, ?, ?, ? )";
+                $newFilename = $randomString . '.' . pathinfo($filename1, PATHINFO_EXTENSION);
 
-                $pstmt = $conn->prepare($sql);
-                $pstmt->bindValue(1, $name);
-                $pstmt->bindValue(2, 0);
-                $pstmt->bindValue(3, $price);
-                $pstmt->bindValue(4, $dbDestination);
+                $destination1 = '../../images/Selling1/' . $newFilename;
+                $dbDestination = '../images/Selling1/' . $newFilename;
 
-                if ($pstmt->execute()) {
-                    return true;
-                } else {
-                    return false;
+                if (file_exists($destination1)) {
+                    unlink($destination1);
                 }
-            } catch (PDOException $exc) {
-                echo $exc->getMessage();
-            }
-        }
-    }
 
-    public static function LoginManager($email, $password)
-    {
-        try {
-            $dbcon = new DbConnector();
-            $con = $dbcon->getConnection();
-            $query = "SELECT * FROM manager WHERE mEmail = ? ";
-            $pstmt = $con->prepare($query);
-            $pstmt->bindValue(1, $email);
+                if (move_uploaded_file($tmp_name1, $destination1)) {
+                    try {
+                        $dbcon = new DbConnector();
+                        $conn = $dbcon->getConnection();
+                        $sql = "INSERT INTO shop (ItemName, ItemQuantity, ItemPrice, ItemImage) VALUES ( ?, ?, ?, ? )";
 
-            $pstmt->execute();
+                        $pstmt = $conn->prepare($sql);
+                        $pstmt->bindValue(1, $name);
+                        $pstmt->bindValue(2, 0);
+                        $pstmt->bindValue(3, $price);
+                        $pstmt->bindValue(4, $dbDestination);
 
-            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
-
-            foreach ($rs as $row) {
-                $dbpassword = $row->mPassword;
-                $dbFirstName = $row->mFirstName;
-                $dbLastName = $row->mLastName;
-                $dbEmail = $row->mEmail;
-                $dbPhoneNo = $row->mPhone;
-                $dbNIC = $row->mNIC;
-                $dbmID = $row->managerID;
-            };
-            if (password_verify($password, $dbpassword)) {
-
-                $manager = new Manager($dbFirstName, $dbLastName, $dbEmail, $dbNIC, $dbmID, $dbPhoneNo);
-                session_start();
-                $_SESSION["manager"] = $manager;
-                return true;
+                        if ($pstmt->execute()) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    } catch (PDOException $exc) {
+                        echo $exc->getMessage();
+                    }
+                }
             } else {
-                return false;
+                header("Location: ../manager/manageShop.php?error=4");
+                exit();
             }
-        } catch (PDOException $exc) {
-            echo $exc->getMessage();
+        } else {
+            header("Location: ../manager/manageShop.php?error=5");
+            exit();
         }
     }
+
+    // public static function LoginManager($email, $password)
+    // {
+    //     try {
+    //         $dbcon = new DbConnector();
+    //         $con = $dbcon->getConnection();
+    //         $query = "SELECT * FROM manager WHERE mEmail = ? ";
+    //         $pstmt = $con->prepare($query);
+    //         $pstmt->bindValue(1, $email);
+
+    //         $pstmt->execute();
+
+    //         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+    //         foreach ($rs as $row) {
+    //             $dbpassword = $row->mPassword;
+    //             $dbFirstName = $row->mFirstName;
+    //             $dbLastName = $row->mLastName;
+    //             $dbEmail = $row->mEmail;
+    //             $dbPhoneNo = $row->mPhone;
+    //             $dbNIC = $row->mNIC;
+    //             $dbmID = $row->managerID;
+    //         };
+    //         if (password_verify($password, $dbpassword)) {
+
+    //             $manager = new Manager($dbFirstName, $dbLastName, $dbEmail, $dbNIC, $dbmID, $dbPhoneNo);
+    //             session_start();
+    //             $_SESSION["manager"] = $manager;
+    //             return true;
+    //         } else {
+    //             return false;
+    //         }
+    //     } catch (PDOException $exc) {
+    //         echo $exc->getMessage();
+    //     }
+    // }
 
     public function EditManagerDetails($firstName, $lastName, $email, $NIC, $phone)
     {
@@ -850,43 +1130,43 @@ class Admin extends person
         return $this->adminId;
     }
 
-    public static function adminLogin($email, $password)
-    {
-        try {
-            $dbcon = new DbConnector();
-            $con = $dbcon->getConnection();
-            $query = "SELECT * FROM admin WHERE aEmail = ? ";
-            $pstmt = $con->prepare($query);
-            $pstmt->bindValue(1, $email);
+    // public static function adminLogin($email, $password)
+    // {
+    //     try {
+    //         $dbcon = new DbConnector();
+    //         $con = $dbcon->getConnection();
+    //         $query = "SELECT * FROM admin WHERE aEmail = ? ";
+    //         $pstmt = $con->prepare($query);
+    //         $pstmt->bindValue(1, $email);
 
-            $pstmt->execute();
+    //         $pstmt->execute();
 
-            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+    //         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
 
-            foreach ($rs as $row) {
-                $dbpassword = $row->aPassword;
-                $dbFirstName = $row->aFirstName;
-                $dbLastName = $row->aLastName;
-                $dbEmail = $row->aEmail;
-                $dbPhoneNo = $row->aPhone;
-                $dbNIC = $row->aNIC;
-                $dbaID = $row->adminID;
-            }
+    //         foreach ($rs as $row) {
+    //             $dbpassword = $row->aPassword;
+    //             $dbFirstName = $row->aFirstName;
+    //             $dbLastName = $row->aLastName;
+    //             $dbEmail = $row->aEmail;
+    //             $dbPhoneNo = $row->aPhone;
+    //             $dbNIC = $row->aNIC;
+    //             $dbaID = $row->adminID;
+    //         }
 
-            if (password_verify($password, $dbpassword)) {
+    //         if (password_verify($password, $dbpassword)) {
 
-                $admin = new Admin($dbFirstName, $dbLastName, $dbEmail, $dbNIC, $dbaID, $dbPhoneNo);
-                session_start();
-                $_SESSION["admin"] = $admin;
-                return true;
-            } else {
+    //             $admin = new Admin($dbFirstName, $dbLastName, $dbEmail, $dbNIC, $dbaID, $dbPhoneNo);
+    //             session_start();
+    //             $_SESSION["admin"] = $admin;
+    //             return true;
+    //         } else {
 
-                return false;
-            }
-        } catch (PDOException $exc) {
-            echo $exc->getMessage();
-        }
-    }
+    //             return false;
+    //         }
+    //     } catch (PDOException $exc) {
+    //         echo $exc->getMessage();
+    //     }
+    // }
     public function AddManager($firstname, $lastname, $email, $password, $NIC, $phone)
     {
         try {

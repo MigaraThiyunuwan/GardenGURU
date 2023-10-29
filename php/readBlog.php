@@ -35,7 +35,7 @@ if (isset($_SESSION["manager"])) {
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/readBlog.css" rel="stylesheet">
-
+    <link href="../css/reviews.css" rel="stylesheet">
 
 </head>
 
@@ -183,9 +183,9 @@ try {
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Our Office</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
+                    <p style="color: white;" class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
+                    <p style="color: white;" class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
+                    <p style="color: white;" class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
@@ -203,7 +203,7 @@ try {
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="./AboutUs.php">About Us</a>
+                    <a class="btn btn-link" href="./AboutUs.php">  About Us </a> 
                     <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
                     <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
                     <a class="btn btn-link" href="./login.php">Log Out</a>
