@@ -121,7 +121,11 @@ if (isset($_SESSION["manager"])) {
 <?Php
 try {
         $con = $dbcon->getConnection();
-        $query = "SELECT * FROM blog WHERE blog_id = ? ";
+        $query = "SELECT b.blog_id, b.blog_title, b.blogPostedDate, b.blog_details, b.blog_image, 
+        u.user_FirstName, u.user_LastName
+        FROM blog b
+        JOIN users u ON b.user_id = u.user_id
+        WHERE b.blog_id = ?;";
         $pstmt = $con->prepare($query);
         $pstmt->bindValue(1, $id);
        
@@ -131,8 +135,8 @@ try {
 
         foreach($rs as $row){
             $title = $row->blog_title;
-            $fname = $row->user_fname;
-            $lname = $row->user_lname;
+            $fname = $row->user_FirstName;
+            $lname = $row->user_LastName;
             $details = $row->blog_details;
             $image = $row->blog_image;
             $date = $row->blogPostedDate;

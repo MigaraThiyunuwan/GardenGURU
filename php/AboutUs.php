@@ -28,6 +28,7 @@ if (isset($_SESSION["manager"])) {
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/aboutUs.css" rel="stylesheet">
     <link href="../css/reviews.css" rel="stylesheet">
+    <link href="../css/review.css" rel="stylesheet">
     <style>
         .page-header {
             background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/AboutUs/header_img.jpg) center center no-repeat !important;
@@ -117,6 +118,33 @@ if (isset($_SESSION["manager"])) {
 
     <!-- About Start -->
     <div class="container-xxl py-5">
+        <?php
+        if (isset($_GET['success'])) {
+            if ($_GET['success'] == 1) {
+
+                echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                    Review Submited Successfully!
+                    </div></b>";
+            }
+        }
+        if (isset($_GET['error'])) {
+            if ($_GET['error'] == 1) {
+                echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Review Submit Failed!
+                    </div></b>";
+            }
+            if ($_GET['error'] == 2) {
+                echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    Please Fill all fields!
+                    </div></b>";
+            }
+            if ($_GET['error'] == 3) {
+                echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                    You can not access that page!
+                    </div></b>";
+            }
+        }
+        ?>
         <div class="container">
             <div class="row g-5 align-items-end">
                 <div class="col-lg-3 col-md-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -180,15 +208,71 @@ if (isset($_SESSION["manager"])) {
                         <p class="fs-5 fw-bold text-primary">User Reviews</p>
                         <h1 class="display-5 mb-5">What our customers say about us</h1>
                     </div>
-                    
+
                     <div class="row row--30">
                         <div class="col-lg-4">
                             <div class="rating-box">
                                 <div class="rating-number">5.0</div>
                                 <div class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> </div>
-                                <span>(25 Review)</span>
+                                <span>(25 Review) </span> <br>
+                                <button type="button" style="margin-top: 10px;" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addadd">write Review</button>
                             </div>
                         </div>
+
+
+                        <div class="modal fade shadow my-5" id="addadd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div style="width: 100%;" class="modal-content" style="background-color: white;">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Submit a Review
+                                        </h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <div class="d-flex justify-content-between p-2">
+
+                                            <div class="container d-flex justify-content-center mt-5">
+
+                                                <div class="card1 text-center mb-4">
+                                                    <form action="./processes/reviewProcess.php" method="POST">
+                                                        <p class="fw-bold me-2">
+                                                            Enter Your Review:
+                                                        </p>
+                                                        <textarea name="text_description" class="form-control" id="text_description" rows="5" cols="40"></textarea>
+                                                        <div class="rate bg-success py-3 text-white mt-3">
+
+                                                            <h6 class="mb-0">Rate your driver</h6>
+
+                                                            <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                                                            </div>
+
+                                                        </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <div class="row w-100">
+                                                <div class="col-md-6" style="margin-bottom: 10px;">
+
+                                                    <button class="btn btn-success w-100 " type="submit">Submit</button>
+                                                    </form>
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <button class="btn btn-danger w-100" type="button" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div class="col-lg-8">
                             <div class="review-wrapper">
                                 <div class="single-progress-bar">
@@ -198,28 +282,28 @@ if (isset($_SESSION["manager"])) {
                                     </div>
                                     <span class="rating-value">23</span>
                                 </div>
-                                <div class="single-progress-bar">
+                                <div class="single-progress-bar" style="margin-top: 7px;">
                                     <div class="rating-text"> 4 <i class="fa fa-star" aria-hidden="true"></i> </div>
                                     <div class="progress">
                                         <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <span class="rating-value">3</span>
                                 </div>
-                                <div class="single-progress-bar">
+                                <div class="single-progress-bar" style="margin-top: 7px;">
                                     <div class="rating-text"> 3 <i class="fa fa-star" aria-hidden="true"></i> </div>
                                     <div class="progress">
                                         <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <span class="rating-value">2</span>
                                 </div>
-                                <div class="single-progress-bar">
+                                <div class="single-progress-bar" style="margin-top: 7px;">
                                     <div class="rating-text"> 2 <i class="fa fa-star" aria-hidden="true"></i> </div>
                                     <div class="progress">
                                         <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <span class="rating-value">3</span>
                                 </div>
-                                <div class="single-progress-bar">
+                                <div class="single-progress-bar" style="margin-top: 7px;">
                                     <div class="rating-text"> 1 <i class="fa fa-star" aria-hidden="true"></i> </div>
                                     <div class="progress">
                                         <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="0" aria-valuemin="80" aria-valuemax="100"></div>
@@ -231,34 +315,63 @@ if (isset($_SESSION["manager"])) {
                     </div>
 
                     <div class="comment-wrapper pt--40">
-                        
-                        <!--  Comment Box start--->
-                        <div class="edu-comment">
-                            <div class="thumbnail"> <img style="width: 100%; height: 100%;" src="../images/profile_pictures//22.jpg" alt="Comment Images"> </div>
-                            <div class="comment-content">
-                                <div class="comment-top">
-                                    <h6 class="title">CSS Tutorials</h6>
-                                    <div class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> </div>
+
+                        <div id="comment-container">
+                            <!--  Comment Box start--->
+                            <div class="edu-comment">
+                                <div class="thumbnail"> <img style="width: 75px; height: 75px;" src="../images/profile_pictures//22.jpg" alt="Comment Images"> </div>
+                                <div class="comment-content">
+                                    <div class="comment-top">
+                                        <h6 class="title">Migara Thiyunuwan</h6>
+                                        <div class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> </div>
+                                    </div>
+                                    <!-- <span class="subtitle">“ Outstanding Review Design ”</span> -->
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                                 </div>
-                                <span class="subtitle">“ Outstanding Review Design ”</span>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                             </div>
+                            <!-- Comment Box end--->
+                            <button id="see-more-button" class="btn btn-success">See More</button>
                         </div>
-                        <!-- Comment Box end--->
-                        <!--  Comment Box start--->
-                        <div class="edu-comment">
-                            <div class="thumbnail"> <img style="width: 100%; height: 100%;" src="../images/profile_pictures//2.jpg" alt="Comment Images"> </div>
-                            <div class="comment-content">
-                                <div class="comment-top">
-                                    <h6 class="title">HTML CSS Tutorials</h6>
-                                    <div class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> </div>
-                                </div>
-                                <span class="subtitle">“ Nice Review Design ”</span>
-                                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam.</p>
-                            </div>
-                        </div>
-                        <!--  Comment Box end--->
                     </div>
+
+
+
+                    <script>
+                        // JavaScript to handle the "See More" button
+                        document.addEventListener("DOMContentLoaded", function() {
+                            const commentContainer = document.getElementById("comment-container");
+                            const seeMoreButton = document.getElementById("see-more-button");
+                            const reviews = [...commentContainer.querySelectorAll(".edu-comment")];
+                            const numVisibleReviews = 3;
+
+                            // Function to show/hide reviews
+                            function toggleReviews() {
+                                for (let i = numVisibleReviews; i < reviews.length; i++) {
+                                    reviews[i].style.display = reviews[i].style.display === "none" ? "block" : "none";
+                                }
+
+                                // Toggle "See More" button text
+                                if (reviews.slice(numVisibleReviews).some(review => review.style.display === "none")) {
+                                    seeMoreButton.textContent = "See More";
+                                } else {
+                                    seeMoreButton.textContent = "See Less";
+                                }
+                            }
+
+                            // Initial state
+                            toggleReviews();
+
+                            // Handle "See More" button click
+                            seeMoreButton.addEventListener("click", function() {
+                                toggleReviews();
+                            });
+                        });
+                    </script>
+
+
+
+
+
                 </div>
             </div>
         </div>
@@ -462,7 +575,7 @@ if (isset($_SESSION["manager"])) {
     <script src="../GardenGURU/code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/main.js"></script>
-
+    <script src="../js/popup.js"></script>
 
 
 </body>
