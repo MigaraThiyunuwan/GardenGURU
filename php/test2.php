@@ -216,6 +216,35 @@ if (!empty($uploadedImages)) {
 }
 
 
+// Include the TCPDF library
+require_once('tcpdf/tcpdf.php');
+
+// Create a new PDF document
+$pdf = new TCPDF();
+
+// Set document information
+$pdf->SetCreator('Your Name');
+$pdf->SetAuthor('Your Name');
+$pdf->SetTitle('Sample PDF');
+$pdf->SetSubject('Sample PDF Document');
+$pdf->SetKeywords('TCPDF, PDF, example, test');
+
+// Set the page header and footer
+$pdf->SetHeaderData('', 0, 'Sample PDF', 'Header Text');
+$pdf->setHeaderFont(Array('helvetica', '', 12));
+$pdf->setFooterFont(Array('helvetica', '', 8));
+
+// Add a page
+$pdf->AddPage();
+
+// Set font
+$pdf->SetFont('helvetica', '', 12);
+
+// Add content to the PDF
+$pdf->Cell(0, 10, 'Hello, World!', 0, 1, 'C');
+
+// Output the PDF to the browser or save it to a file
+$pdf->Output('sample.pdf', 'I');
 
    
 
