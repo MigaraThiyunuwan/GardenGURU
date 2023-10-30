@@ -7,10 +7,10 @@ $user = null;
 $manager = null;
 if (isset($_SESSION["user"])) {
     $user = $_SESSION["user"];
-} 
+}
 if (isset($_SESSION["manager"])) {
     $manager = $_SESSION["manager"];
-} 
+}
 ?>
 
 
@@ -21,11 +21,13 @@ if (isset($_SESSION["manager"])) {
     <meta content="" name="keywords">
     <meta content="" name="description">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://kit.fontawesome.com/0008de2df6.js" crossorigin="anonymous"></script>
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
-
+    <link href="../css/aboutUs.css" rel="stylesheet">
+    <link href="../css/reviews.css" rel="stylesheet">
     <style>
         .page-header {
             background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../images/AboutUs/header_img.jpg) center center no-repeat !important;
@@ -47,9 +49,9 @@ if (isset($_SESSION["manager"])) {
 </head>
 
 <body>
-<?php 
+    <?php
 
-?>
+    ?>
 
 
     <!-- Navbar Start -->
@@ -96,7 +98,7 @@ if (isset($_SESSION["manager"])) {
                 ?>
 
             </div>
-        
+
         </div>
     </nav>
     <!-- Navbar End -->
@@ -124,7 +126,7 @@ if (isset($_SESSION["manager"])) {
                     <h1 class="display-1 text-primary mb-0">15</h1>
                     <p class="text-primary mb-4">Year of Experience</p>
                     <h1 class="display-6 mb-4">Blooming Your Gardening Dreams with Us.</h1>
-                    <p class="mb-4"style="font-family: Georgia, 'Times New Roman', Times, serif">Join our community of passionate gardeners, immerse yourself in the art of nurturing plants, and let nature's charm unfold in your own backyard.
+                    <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif">Join our community of passionate gardeners, immerse yourself in the art of nurturing plants, and let nature's charm unfold in your own backyard.
                         Get ready to discover the joy of gardening and witness the magic that unfolds when you connect with the earth.
                     </p>
                     <h4>"Nurture Your Green Thumb with Us!"</h4>
@@ -168,6 +170,101 @@ if (isset($_SESSION["manager"])) {
     </div>
     <!-- Vision and Mission Grid End -->
 
+
+    <div class="container" style="margin-top: 30px;">
+        <div class="row">
+            <div class="col-md-12 course-details-content">
+
+                <div class="course-content">
+                    <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                        <p class="fs-5 fw-bold text-primary">User Reviews</p>
+                        <h1 class="display-5 mb-5">What our customers say about us</h1>
+                    </div>
+                    
+                    <div class="row row--30">
+                        <div class="col-lg-4">
+                            <div class="rating-box">
+                                <div class="rating-number">5.0</div>
+                                <div class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> </div>
+                                <span>(25 Review)</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="review-wrapper">
+                                <div class="single-progress-bar">
+                                    <div class="rating-text"> 5 <i class="fa fa-star" aria-hidden="true"></i> </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <span class="rating-value">23</span>
+                                </div>
+                                <div class="single-progress-bar">
+                                    <div class="rating-text"> 4 <i class="fa fa-star" aria-hidden="true"></i> </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <span class="rating-value">3</span>
+                                </div>
+                                <div class="single-progress-bar">
+                                    <div class="rating-text"> 3 <i class="fa fa-star" aria-hidden="true"></i> </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <span class="rating-value">2</span>
+                                </div>
+                                <div class="single-progress-bar">
+                                    <div class="rating-text"> 2 <i class="fa fa-star" aria-hidden="true"></i> </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <span class="rating-value">3</span>
+                                </div>
+                                <div class="single-progress-bar">
+                                    <div class="rating-text"> 1 <i class="fa fa-star" aria-hidden="true"></i> </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="0" aria-valuemin="80" aria-valuemax="100"></div>
+                                    </div>
+                                    <span class="rating-value">2</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comment-wrapper pt--40">
+                        
+                        <!--  Comment Box start--->
+                        <div class="edu-comment">
+                            <div class="thumbnail"> <img style="width: 100%; height: 100%;" src="../images/profile_pictures//22.jpg" alt="Comment Images"> </div>
+                            <div class="comment-content">
+                                <div class="comment-top">
+                                    <h6 class="title">CSS Tutorials</h6>
+                                    <div class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> </div>
+                                </div>
+                                <span class="subtitle">“ Outstanding Review Design ”</span>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                        </div>
+                        <!-- Comment Box end--->
+                        <!--  Comment Box start--->
+                        <div class="edu-comment">
+                            <div class="thumbnail"> <img style="width: 100%; height: 100%;" src="../images/profile_pictures//2.jpg" alt="Comment Images"> </div>
+                            <div class="comment-content">
+                                <div class="comment-top">
+                                    <h6 class="title">HTML CSS Tutorials</h6>
+                                    <div class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> </div>
+                                </div>
+                                <span class="subtitle">“ Nice Review Design ”</span>
+                                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam.</p>
+                            </div>
+                        </div>
+                        <!--  Comment Box end--->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Team Start -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -175,95 +272,145 @@ if (isset($_SESSION["manager"])) {
                 <p class="fs-5 fw-bold text-primary">Our Team</p>
                 <h1 class="display-5 mb-5">Dedicated & Experienced Team Members</h1>
             </div>
-            
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="team-item rounded">
-                        <img class="img-fluid" src="../images/AboutUs/Migaranew.jpg" alt="">
-                        <div class="team-text">
-                            <h4 class="mb-0">M.P.M.Thiyunuwan</h4>
-                            <p class="text-primary">Full Stack Developer</p>
-                            <div class="team-social d-flex">
-                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-item rounded">
-                        <img class="img-fluid" src="../images/AboutUs/Malki.jpg" alt="">
-                        <div class="team-text">
-                            <h4 class="mb-0">K.R.M.M.Kahandawa</h4>
-                            <p class="text-primary">Full Stack Developer</p>
-                            <div class="team-social d-flex">
-                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-item rounded">
-                        <img class="img-fluid" src="../images/AboutUs/dharani.jpg" alt="">
-                        <div class="team-text">
-                            <h4 class="mb-0">D.K.Gunasekara</h4>
-                            <p class="text-primary">Full Stack Developer</p>
-                            <div class="team-social d-flex">
-                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-members-container">
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="team-item rounded">
-                            <img class="img-fluid" src="../images/AboutUs/navonew.jpg" alt="">
-                            <div class="team-text">
-                                <h4 class="mb-0">J.A.N.Navodya</h4>
-                                <p class="text-primary">Full Stack Developer</p>
-                                <div class="team-social d-flex">
-                                    <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="team-item rounded">
-                            <img class="img-fluid" src="../images/AboutUs/lashan.jpg" alt="">
-                            <div class="team-text">
-                                <h4 class="mb-0">I.M.L.S.Ilankoon</h4>
-                                <p class="text-primary">Full Stack Developer</p>
-                                <div class="team-social d-flex">
-                                    <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square rounded-circle me-2" href="#"><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="responsive-container-block">
 
+
+
+                <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 card-container">
+                    <div class="card">
+                        <div class="team-image-wrapper">
+                            <img class="team-member-image" src="../images/AboutUs/Migaranew.jpg">
+                        </div>
+                        <p class="text-blk name">
+                            Migara Thiyunuwan
+                        </p>
+                        <p class="text-blk position">
+                            Full Stack Dev
+                        </p>
+                        <p class="text-blk feature-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                        <div class="social-icons">
+                            <a href="https://www.twitter.com" target="_blank">
+                                <i class="fa-brands fa-twitter" style="color: #08b43c;"></i>
+                            </a>
+                            <a href="https://www.facebook.com" target="_blank">
+                                <i class="fa-brands fa-facebook" style="color: #08b43c;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 card-container">
+                    <div class="card">
+                        <div class="team-image-wrapper">
+                            <img class="team-member-image" src="../images/AboutUs/Malki.jpg">
+                        </div>
+                        <p class="text-blk name">
+                            Malki Madhubhashini
+                        </p>
+                        <p class="text-blk position">
+                            Full Stack Dev
+                        </p>
+                        <p class="text-blk feature-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                        <div class="social-icons">
+                            <a href="https://www.twitter.com" target="_blank">
+                                <i class="fa-brands fa-twitter" style="color: #08b43c;"></i>
+                            </a>
+                            <a href="https://www.facebook.com" target="_blank">
+                                <i class="fa-brands fa-facebook" style="color: #08b43c;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 card-container">
+                    <div class="card">
+                        <div class="team-image-wrapper">
+                            <img class="team-member-image" src="../images/AboutUs/navonew.jpg">
+                        </div>
+                        <p class="text-blk name">
+                            Nipuni Navodya
+                        </p>
+                        <p class="text-blk position">
+                            Full Stack Dev
+                        </p>
+                        <p class="text-blk feature-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                        <div class="social-icons">
+                            <a href="https://www.twitter.com" target="_blank">
+                                <i class="fa-brands fa-twitter" style="color: #08b43c;"></i>
+                            </a>
+                            <a href="https://www.facebook.com" target="_blank">
+                                <i class="fa-brands fa-facebook" style="color: #08b43c;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 card-container">
+                    <div class="card">
+                        <div class="team-image-wrapper">
+                            <img class="team-member-image" src="../images/AboutUs/lashan.jpg">
+                        </div>
+                        <p class="text-blk name">
+                            Lashan Sachintha
+                        </p>
+                        <p class="text-blk position">
+                            Full Stack Dev
+                        </p>
+                        <p class="text-blk feature-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                        <div class="social-icons">
+                            <a href="https://www.twitter.com" target="_blank">
+                                <i class="fa-brands fa-twitter" style="color: #08b43c;"></i>
+                            </a>
+                            <a href="https://www.facebook.com" target="_blank">
+                                <i class="fa-brands fa-facebook" style="color: #08b43c;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 card-container">
+                    <div class="card">
+                        <div class="team-image-wrapper">
+                            <img class="team-member-image" src="../images/AboutUs/dharani.jpg">
+                        </div>
+                        <p class="text-blk name">
+                            Dharani Gunasekara
+                        </p>
+                        <p class="text-blk position">
+                            Full Stack Dev
+                        </p>
+                        <p class="text-blk feature-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                        <div class="social-icons">
+                            <a href="https://www.twitter.com" target="_blank">
+                                <i class="fa-brands fa-twitter" style="color: #08b43c;"></i>
+                            </a>
+                            <a href="https://www.facebook.com" target="_blank">
+                                <i class="fa-brands fa-facebook" style="color: #08b43c;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <!-- Team End -->
 
-   <!-- Footer Start -->
-   <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Our Office</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
+                    <p style="color: white;" class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
+                    <p style="color: white;" class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
+                    <p style="color: white;" class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>

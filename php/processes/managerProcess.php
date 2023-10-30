@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($manager->addItem($_FILES['itemImage'], $itemPrice, $itamName)) {
             header("Location: ../manager/manageShop.php?success=3");
         } else {
-            header("Location: ../manager/manageShop.php?error=4");
+            header("Location: ../manager/manageShop.php?error=3");
         }
     }
 }
