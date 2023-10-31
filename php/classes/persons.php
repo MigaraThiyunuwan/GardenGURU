@@ -769,6 +769,49 @@ class user extends person
             echo $exc->getMessage();
         }
     }
+
+    public function writeReview($rate, $description)
+    {
+        try {
+            $dbcon = new DbConnector();
+            $conn = $dbcon->getConnection();
+            $sql = "INSERT INTO review (user_id, rate, description) VALUES ( ?, ?, ? )";
+
+            $pstmt = $conn->prepare($sql);
+            $pstmt->bindValue(1, $this->userId);
+            $pstmt->bindValue(2, $rate);
+            $pstmt->bindValue(3, $description);
+            if ($pstmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public function editReview($rate, $description)
+    {
+        try {
+            $dbcon = new DbConnector();
+            $conn = $dbcon->getConnection();
+           // $sql = "INSERT INTO review (user_id, rate, description) VALUES ( ?, ?, ? )";
+            $sql = "UPDATE review SET rate = ? , description = ? WHERE user_id = ?";
+
+            $pstmt = $conn->prepare($sql);
+            $pstmt->bindValue(1, $rate);
+            $pstmt->bindValue(2, $description);
+            $pstmt->bindValue(3, $this->userId);
+            if ($pstmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
 }
 
 /* =========================================================|| Manager class (Child Class) ||====================================================================================== */
