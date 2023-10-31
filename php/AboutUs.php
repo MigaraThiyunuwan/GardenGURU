@@ -230,30 +230,30 @@ if (isset($_SESSION["manager"])) {
                                 ?>
                                 <div class="rating-number"><?php echo $score ?></div>
                                 <?php
-                                
-                               $fullStars = floor($score);
-                               $halfStar = $score - $fullStars >= 0.5;
-                           
-                               if ($score <= 0) {
-                                   $fullStars = 0;
-                                   $halfStar = false;
-                               }
-                           
-                               for ($i = 1; $i <= $fullStars; $i++) {
-                                   echo '<i class="fa fa-star" aria-hidden="true"></i>'; // Unicode star character
-                               }
-                               
-                               if ($halfStar) {
-                                   echo '<i class="fa-solid fa-star-half-stroke" aria-hidden="true"></i>';
-                                   $fullStars++; // Increment full stars if there's a half star
-                               }
-                              
-                               $emptyStars = 5 - $fullStars;
-                               for ($i = 1; $i <= $emptyStars; $i++) {
-                                   echo '<i class="fa-regular fa-star" aria-hidden="true"></i>'; // Unicode empty star character
-                               }
+
+                                $fullStars = floor($score);
+                                $halfStar = $score - $fullStars >= 0.5;
+
+                                if ($score <= 0) {
+                                    $fullStars = 0;
+                                    $halfStar = false;
+                                }
+
+                                for ($i = 1; $i <= $fullStars; $i++) {
+                                    echo '<i class="fa fa-star" aria-hidden="true"></i>'; // Unicode star character
+                                }
+
+                                if ($halfStar) {
+                                    echo '<i class="fa-solid fa-star-half-stroke" aria-hidden="true"></i>';
+                                    $fullStars++; // Increment full stars if there's a half star
+                                }
+
+                                $emptyStars = 5 - $fullStars;
+                                for ($i = 1; $i <= $emptyStars; $i++) {
+                                    echo '<i class="fa-regular fa-star" aria-hidden="true"></i>'; // Unicode empty star character
+                                }
                                 ?>
-                                
+
 
                                 <span> <br>(<?php echo $totalReviews ?> Reviews) </span> <br>
                                 <?php
@@ -450,19 +450,65 @@ if (isset($_SESSION["manager"])) {
                     <div class="comment-wrapper pt--40">
 
                         <div id="comment-container">
-                            <!--  Comment Box start--->
-                            <div class="edu-comment">
-                                <div class="thumbnail"> <img style="width: 75px; height: 75px;" src="../images/profile_pictures//22.jpg" alt="Comment Images"> </div>
-                                <div class="comment-content">
-                                    <div class="comment-top">
-                                        <h6 class="title">Migara Thiyunuwan</h6>
-                                        <div class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> </div>
+
+                            <?php
+
+                            try {
+                                $dbcon = new DbConnector();
+                                $con = $dbcon->getConnection();
+                                
+                                $sql = "SELECT
+                                R.reviewID,
+                                R.user_id,
+                                R.rate,
+                                R.description,
+                                U.user_FirstName,
+                                U.user_LastName,
+                                U.profile_picture
+                            FROM
+                                review AS R
+                            JOIN
+                                users AS U
+                            ON
+                                R.user_id = U.user_id ORDER BY R.reviewID DESC;";
+
+                                $pstmt = $con->prepare($sql);
+
+                                $pstmt->execute();
+                                $reviews = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                                foreach ($reviews as $row) {
+
+                            ?>
+
+                                    <!--  Comment Box start--->
+                                    <div class="edu-comment">
+                                        <div class="thumbnail"> <img style="width: 75px; height: 75px;" src="<?php echo $row->profile_picture ?> " alt="Comment Images"> </div>
+                                        <div class="comment-content">
+                                            <div class="comment-top">
+                                                <h6 class="title"><?php echo $row->user_FirstName . " " . $row->user_LastName ?></h6>
+                                                <div class="rating">
+                                                    
+                                                    <?php
+                                                    for ($i = 1; $i <= $row->rate; $i++) {
+                                                        echo '<i class="fa fa-star" aria-hidden="true"></i>';
+                                                    }
+                                                    ?>
+
+                                                </div>
+                                            </div>
+                                            <!-- <span class="subtitle">“ Outstanding Review Design ”</span> -->
+                                            <p><?php echo $row->description ?> </p>
+                                        </div>
                                     </div>
-                                    <!-- <span class="subtitle">“ Outstanding Review Design ”</span> -->
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                </div>
-                            </div>
-                            <!-- Comment Box end--->
+                                    <!-- Comment Box end--->
+
+                            <?php
+                                }
+                            } catch (PDOException $exc) {
+                                echo $exc->getMessage();
+                            }
+                            ?>
                             <button id="see-more-button" class="btn btn-success">See More</button>
                         </div>
                     </div>
