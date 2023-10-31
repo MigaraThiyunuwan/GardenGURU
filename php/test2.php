@@ -818,6 +818,44 @@ header("Location:" .$location);
 
 
 
+require_once './classes/User.php';
+require_once './classes/DbConnecter';
+
+use classes\User;
+use classes\DbConnector;
+
+if(isset($_POST["firstname"],$_POST["lastname"],$_POST["username"],$_POST["password"])){
+    if(empty($_POST["firstname"])|| empty($_POST["lastname"]) || empty($_POST["username"]) || empty($_POST["password"])){
+        
+        $location ="sign_up.php?status=1";
+    }
+    else{
+        $firstname =$_POST["firstname"];
+        $lastname =$_POST["lastname"];
+        $username =$_POST["username"];
+        $password = password_hash($_POST["password"],PASSWORD_BCRYPT);
+        
+        $role="customer";
+        
+        $user = new User( $firstname,$lastname, $username,$password);
+        
+        if($user->register(DbConnector::getConnection())){
+            
+            $location ="sign_up.php?status=2";
+            
+        }
+        
+        else{
+            $location= "sign_up.php?status=3";
+        }
+    }
+}else{
+    $location ="sign_up.php?status=0";
+}
+
+header("Location".$loaction);
+
+
 
 
 
