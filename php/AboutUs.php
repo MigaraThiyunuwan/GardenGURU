@@ -2,6 +2,11 @@
 <html lang="en">
 <?php
 require_once './classes/persons.php';
+require_once './classes/DbConnector.php';
+require_once './classes/report.php';
+
+use classes\DbConnector;
+
 session_start();
 $user = null;
 $manager = null;
@@ -126,6 +131,12 @@ if (isset($_SESSION["manager"])) {
                     Review Submited Successfully!
                     </div></b>";
             }
+            if ($_GET['success'] == 2) {
+
+                echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                    Review Edited Successfully!
+                    </div></b>";
+            }
         }
         if (isset($_GET['error'])) {
             if ($_GET['error'] == 1) {
@@ -198,7 +209,7 @@ if (isset($_SESSION["manager"])) {
     </div>
     <!-- Vision and Mission Grid End -->
 
-
+    <!-- Reviews -->
     <div class="container" style="margin-top: 30px;">
         <div class="row">
             <div class="col-md-12 course-details-content">
@@ -212,103 +223,225 @@ if (isset($_SESSION["manager"])) {
                     <div class="row row--30">
                         <div class="col-lg-4">
                             <div class="rating-box">
-                                <div class="rating-number">5.0</div>
-                                <div class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> </div>
-                                <span>(25 Review) </span> <br>
-                                <button type="button" style="margin-top: 10px;" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addadd">write Review</button>
-                            </div>
-                        </div>
+                                <?php
+                                $totalSum = 5 * Report::reviewStarCount(5) + 4 * Report::reviewStarCount(4) + 3 * Report::reviewStarCount(3) + 2 * Report::reviewStarCount(2) + Report::reviewStarCount(1);
+                                $totalReviews = Report::reviewStarCount(5) + Report::reviewStarCount(4) + Report::reviewStarCount(3) + Report::reviewStarCount(2) + Report::reviewStarCount(1);
+                                $score = round($totalSum / $totalReviews, 1);
+                                ?>
+                                <div class="rating-number"><?php echo $score ?></div>
+                                <?php
+                                
+                               $fullStars = floor($score);
+                               $halfStar = $score - $fullStars >= 0.5;
+                           
+                               if ($score <= 0) {
+                                   $fullStars = 0;
+                                   $halfStar = false;
+                               }
+                           
+                               for ($i = 1; $i <= $fullStars; $i++) {
+                                   echo '<i class="fa fa-star" aria-hidden="true"></i>'; // Unicode star character
+                               }
+                               
+                               if ($halfStar) {
+                                   echo '<i class="fa-solid fa-star-half-stroke" aria-hidden="true"></i>';
+                                   $fullStars++; // Increment full stars if there's a half star
+                               }
+                              
+                               $emptyStars = 5 - $fullStars;
+                               for ($i = 1; $i <= $emptyStars; $i++) {
+                                   echo '<i class="fa-regular fa-star" aria-hidden="true"></i>'; // Unicode empty star character
+                               }
+                                ?>
+                                
+
+                                <span> <br>(<?php echo $totalReviews ?> Reviews) </span> <br>
+                                <?php
+                                if (isset($_SESSION["user"])) {
+                                    $myReview = null;
+                                    try {
+                                        $dbcon = new DbConnector();
+                                        $con = $dbcon->getConnection();
+                                        $query = "SELECT * FROM review WHERE user_id = ?";
+                                        $pstmt = $con->prepare($query);
+                                        $pstmt->bindValue(1, $user->getUserId());
+                                        $pstmt->execute();
+
+                                        if ($pstmt->rowCount() > 0) {
+                                            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                                            foreach ($rs as $row) {
+                                                $myReview = $row->description;
+                                            }
 
 
-                        <div class="modal fade shadow my-5" id="addadd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div style="width: 100%;" class="modal-content" style="background-color: white;">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Submit a Review
-                                        </h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
 
-                                        <div class="d-flex justify-content-between p-2">
+                                ?>
 
-                                            <div class="container d-flex justify-content-center mt-5">
+                                            <button type="button" style="margin-top: 10px;" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editReview">Edit Review</button>
 
-                                                <div class="card1 text-center mb-4">
-                                                    <form action="./processes/reviewProcess.php" method="POST">
-                                                        <p class="fw-bold me-2">
-                                                            Enter Your Review:
-                                                        </p>
-                                                        <textarea name="text_description" class="form-control" id="text_description" rows="5" cols="40"></textarea>
-                                                        <div class="rate bg-success py-3 text-white mt-3">
+                                            <div class="modal fade shadow my-5" id="editReview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div style="width: 100%;" class="modal-content" style="background-color: white;">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit My Review
+                                                            </h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
 
-                                                            <h6 class="mb-0">Rate your driver</h6>
+                                                            <div class="d-flex justify-content-between p-2">
 
-                                                            <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                                                                <div class="container d-flex justify-content-center mt-5">
+
+                                                                    <div class="card1 text-center mb-4">
+                                                                        <form action="./processes/reviewProcess.php" method="POST">
+                                                                            <p class="fw-bold me-2">
+                                                                                Enter Your Review:
+                                                                            </p>
+                                                                            <textarea name="edit_description" placeholder="<?php echo $myReview ?>" class="form-control" id="text_description" rows="5" cols="40"></textarea>
+                                                                            <div class="rate bg-success py-3 text-white mt-3">
+
+                                                                                <h6 class="mb-0">Rate your driver</h6>
+
+                                                                                <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                                                                                </div>
+
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+
                                                             </div>
 
+                                                            <div class="modal-footer">
+                                                                <div class="row w-100">
+                                                                    <div class="col-md-6" style="margin-bottom: 10px;">
+
+                                                                        <button class="btn btn-success w-100 " type="submit">Submit</button>
+                                                                        </form>
+
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <button class="btn btn-danger w-100" type="button" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
                                                         </div>
+                                                    </div>
                                                 </div>
                                             </div>
+                                        <?php
 
-                                        </div>
+                                        } else {
 
-                                        <div class="modal-footer">
-                                            <div class="row w-100">
-                                                <div class="col-md-6" style="margin-bottom: 10px;">
+                                        ?>
 
-                                                    <button class="btn btn-success w-100 " type="submit">Submit</button>
-                                                    </form>
+                                            <button type="button" style="margin-top: 10px;" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#submitReview">write Review</button>
 
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <button class="btn btn-danger w-100" type="button" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                                            <div class="modal fade shadow my-5" id="submitReview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div style="width: 100%;" class="modal-content" style="background-color: white;">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Submit a Review
+                                                            </h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                            <div class="d-flex justify-content-between p-2">
+
+                                                                <div class="container d-flex justify-content-center mt-5">
+
+                                                                    <div class="card1 text-center mb-4">
+                                                                        <form action="./processes/reviewProcess.php" method="POST">
+                                                                            <p class="fw-bold me-2">
+                                                                                Enter Your Review:
+                                                                            </p>
+                                                                            <textarea name="text_description" class="form-control" id="text_description" rows="5" cols="40"></textarea>
+                                                                            <div class="rate bg-success py-3 text-white mt-3">
+
+                                                                                <h6 class="mb-0">Rate your driver</h6>
+
+                                                                                <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                                                                                </div>
+
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <div class="row w-100">
+                                                                    <div class="col-md-6" style="margin-bottom: 10px;">
+
+                                                                        <button class="btn btn-success w-100 " type="submit">Submit</button>
+                                                                        </form>
+
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <button class="btn btn-danger w-100" type="button" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
+                                <?php
 
-                                        </div>
-                                    </div>
-                                </div>
+                                        }
+                                    } catch (PDOException $exc) {
+                                        echo $exc->getMessage();
+                                    }
+                                }
+
+                                ?>
+
                             </div>
                         </div>
+                        <?php
+                        $totalReviews = Report::reviewStarCount(5) + Report::reviewStarCount(4) + Report::reviewStarCount(3) + Report::reviewStarCount(2) + Report::reviewStarCount(1);
 
-
+                        ?>
                         <div class="col-lg-8">
                             <div class="review-wrapper">
                                 <div class="single-progress-bar">
                                     <div class="rating-text"> 5 <i class="fa fa-star" aria-hidden="true"></i> </div>
                                     <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar" role="progressbar" style="width: <?php echo (Report::reviewStarCount(5) / $totalReviews) * 100 ?>%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <span class="rating-value">23</span>
+                                    <span class="rating-value"><?php echo Report::reviewStarCount(5) ?></span>
                                 </div>
                                 <div class="single-progress-bar" style="margin-top: 7px;">
                                     <div class="rating-text"> 4 <i class="fa fa-star" aria-hidden="true"></i> </div>
                                     <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar" role="progressbar" style="width: <?php echo (Report::reviewStarCount(4) / $totalReviews) * 100 ?>%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <span class="rating-value">3</span>
+                                    <span class="rating-value"><?php echo Report::reviewStarCount(4) ?></span>
                                 </div>
                                 <div class="single-progress-bar" style="margin-top: 7px;">
                                     <div class="rating-text"> 3 <i class="fa fa-star" aria-hidden="true"></i> </div>
                                     <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar" role="progressbar" style="width: <?php echo (Report::reviewStarCount(3) / $totalReviews) * 100 ?>%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <span class="rating-value">2</span>
+                                    <span class="rating-value"><?php echo Report::reviewStarCount(3) ?></span>
                                 </div>
                                 <div class="single-progress-bar" style="margin-top: 7px;">
                                     <div class="rating-text"> 2 <i class="fa fa-star" aria-hidden="true"></i> </div>
                                     <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar" role="progressbar" style="width: <?php echo (Report::reviewStarCount(2) / $totalReviews) * 100 ?>%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <span class="rating-value">3</span>
+                                    <span class="rating-value"><?php echo Report::reviewStarCount(2) ?></span>
                                 </div>
                                 <div class="single-progress-bar" style="margin-top: 7px;">
                                     <div class="rating-text"> 1 <i class="fa fa-star" aria-hidden="true"></i> </div>
                                     <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="0" aria-valuemin="80" aria-valuemax="100"></div>
+                                        <div class="progress-bar" role="progressbar" style="width: <?php echo (Report::reviewStarCount(1) / $totalReviews) * 100 ?>%" aria-valuenow="0" aria-valuemin="80" aria-valuemax="100"></div>
                                     </div>
-                                    <span class="rating-value">2</span>
+                                    <span class="rating-value"><?php echo Report::reviewStarCount(1) ?></span>
                                 </div>
                             </div>
                         </div>
@@ -377,6 +510,7 @@ if (isset($_SESSION["manager"])) {
         </div>
     </div>
 
+    <!-- Reviews End -->
 
     <!-- Team Start -->
     <div class="container-xxl py-5">
