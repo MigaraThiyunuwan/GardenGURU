@@ -191,7 +191,7 @@ $newsCounter = 0;
                 $otherNewsCounter = 0;
                 while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                     $otherNewsCounter++;
-                    
+
             ?>
 
                     <article>
@@ -343,8 +343,8 @@ $newsCounter = 0;
     </script>
 
 
-       <!-- Footer Start -->
-       <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
@@ -382,8 +382,8 @@ $newsCounter = 0;
         </div>
     </div>
     <!-- Footer End -->
-<!-- Back to Top -->
-<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
     <!-- Copyright Start -->
     <div class="container-fluid copyright py-4">
