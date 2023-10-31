@@ -180,28 +180,6 @@ if (isset($_SESSION["manager"])) {
                         chart.draw(data, options);
                     }
                 </script>
-
-                <!-- <div id="bar-example-4" style=" margin-left: 0px;">
-                    <table class="charts-css bar show-labels data-spacing-10">
-
-                        <tbody>
-                            <tr>
-                                <th scope="row">Male <br><?php echo Report::maleUserPercentage() ?>% </th>
-                                <?php
-                                $maleValue = ((1.2 * Report::maleUserPercentage()) / 100)
-                                ?>
-                                <td style="--size: <?php echo $maleValue ?>; --color: #378a13; margin-bottom: 5px"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Female <br> <?php echo Report::femaleUserPercentage() ?>%</th>
-                                <?php
-                                $femaleValue = ((1.2 * Report::femaleUserPercentage()) / 100)
-                                ?>
-                                <td style="--size: <?php echo $femaleValue ?>; --color: #baffc9;"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> -->
             </div>
 
             <div class="col-md-6">
@@ -231,28 +209,6 @@ if (isset($_SESSION["manager"])) {
                         chart.draw(data, options);
                     }
                 </script>
-
-                <!-- <div id="bar-example-4" style=" margin-right: 0px;">
-                    <table class="charts-css bar show-labels reverse data-spacing-10">
-
-                        <tbody>
-                            <tr>
-                                <th scope="row">Male <br><?php echo Report::maleOrderPercentage() ?>% </th>
-                                <?php
-                                $maleOrderValue = ((1.2 * Report::maleOrderPercentage()) / 100)
-                                ?>
-                                <td style="--size: <?php echo $maleOrderValue ?>; margin-bottom: 5px"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Female <br><?php echo Report::femaleOrderPercentage() ?>%</th>
-                                <?php
-                                $femaleOrderValue = ((1.2 * Report::femaleOrderPercentage()) / 100)
-                                ?>
-                                <td style="--size: <?php echo $femaleOrderValue ?>;"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> -->
             </div>
 
 
@@ -350,7 +306,7 @@ if (isset($_SESSION["manager"])) {
                     },
                     title: {
                         display: true,
-                        text: "District Diversity: A Visual Snapshot of Registered Users"
+                        text: "District Diversity Percentage: A Visual Snapshot of Registered Users"
                     }
                 }
             });

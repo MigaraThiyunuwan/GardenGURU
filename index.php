@@ -28,8 +28,8 @@ if (isset($_SESSION["manager"])) {
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Template Stylesheet -->
     <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/reviews.css" rel="stylesheet">
 
 
 </head>
@@ -206,7 +206,7 @@ if (isset($_SESSION["manager"])) {
                             <h4 class="mb-3">Plant Suggestion</h4>
                             <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif">Get ready to transform your garden into a captivating symphony of colors, fragrances, and textures. Let's cultivate beauty together, one plant at a time. 🌼🌳</p>
                             <a class="btn btn-sm" href="./php/plantSuggestion.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
-                        
+
                         </div>
                     </div>
                 </div>
@@ -289,6 +289,71 @@ if (isset($_SESSION["manager"])) {
         </div>
     </div>
     <!-- Service End -->
+    <div class="container-xxl py-5">
+        <div class="row">
+            <div class="col-md-12 course-details-content">
+                <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                    <p class="fs-5 fw-bold text-primary">User Reviews</p>
+                    <h1 class="display-5 mb-5">What our customers say about us</h1>
+                </div>
+
+
+
+                <div class="row row--30">
+                    <div class="col-lg-4">
+                        <div class="rating-box">
+                            <div class="rating-number">5.0</div>
+                            <div class="rating"> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> </div>
+                            <!-- <span>(25 Review)</span> -->
+                            <a href="#">(25 Review)</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="review-wrapper">
+                            <div class="single-progress-bar">
+                                <div class="rating-text"> 5 <i class="fa fa-star" aria-hidden="true"></i> </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="rating-value">23</span>
+                            </div>
+                            <div class="single-progress-bar">
+                                <div class="rating-text"> 4 <i class="fa fa-star" aria-hidden="true"></i> </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="rating-value">3</span>
+                            </div>
+                            <div class="single-progress-bar">
+                                <div class="rating-text"> 3 <i class="fa fa-star" aria-hidden="true"></i> </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="rating-value">2</span>
+                            </div>
+                            <div class="single-progress-bar">
+                                <div class="rating-text"> 2 <i class="fa fa-star" aria-hidden="true"></i> </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="rating-value">3</span>
+                            </div>
+                            <div class="single-progress-bar">
+                                <div class="rating-text"> 1 <i class="fa fa-star" aria-hidden="true"></i> </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="0" aria-valuemin="80" aria-valuemax="100"></div>
+                                </div>
+                                <span class="rating-value">2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
@@ -296,9 +361,9 @@ if (isset($_SESSION["manager"])) {
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Our Office</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
+                    <p style="color: white;" class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
+                    <p style="color: white;" class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
+                    <p style="color: white;" class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>

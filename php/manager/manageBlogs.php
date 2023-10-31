@@ -206,8 +206,16 @@ if (isset($_SESSION["manager"])) {
                                         // Pagination logic
                                         $start3 = isset($_GET['start3']) ? intval($_GET['start3']) : 0;
                                         $rows_per_page3 = 20;
-
-                                        $query3 = "SELECT * FROM blog ORDER BY blog_id DESC LIMIT $start3, $rows_per_page3";
+                                        $query3 = "SELECT 
+                                        b.blog_id,
+                                        b.blog_title,
+                                        b.blogPostedDate,
+                                        b.blog_details,
+                                        b.blog_image,
+                                        u.user_FirstName,
+                                        u.user_LastName
+                                        FROM blog b
+                                        INNER JOIN users u ON b.user_id = u.user_id ORDER BY blog_id DESC LIMIT $start3, $rows_per_page3;";
                                         $pstmt = $con->prepare($query3);
                                         $pstmt->execute();
                                         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
@@ -220,7 +228,7 @@ if (isset($_SESSION["manager"])) {
                                                 <td><?php echo $blog->blog_id; ?></td>
                                                 <td><?php echo $blog->blog_title; ?></td>
                                                 <td><?php echo $blog->blogPostedDate; ?></td>
-                                                <td><?php echo $blog->user_fname . " " . $blog->user_lname ?></td>
+                                                <td><?php echo $blog->user_FirstName . " " . $blog->user_LastName ?></td>
                                                 <td>
                                                     <button type="button" class="btn btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteBlogmodel<?php echo $blog->blog_id ?>">Delete </button>
 
