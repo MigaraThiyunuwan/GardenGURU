@@ -17,37 +17,6 @@ if (isset($_SESSION["user"])) {
 if (isset($_SESSION["manager"])) {
     $manager = $_SESSION["manager"];
 }
-
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $location = $_POST["location"];
-    $soil = $_POST["soil"];
-    $sun = $_POST["sun"];
-    $water = $_POST["water"];
-    $space = $_POST["space"];
-    $time = $_POST["time"];
-
-    try {
-        $con = $dbcon->getConnection();
-        $sql = "SELECT PlantID FROM suggestion WHERE Location = ? AND SunExposure = ? AND Soil = ? AND Water = ? AND Space = ? AND HarvestTime = ?";
-
-        $pstmt = $con->prepare($sql);
-        $pstmt->bindValue(1, $location);
-        $pstmt->bindValue(2, $sun);
-        $pstmt->bindValue(3, $soil);
-        $pstmt->bindValue(4, $water);
-        $pstmt->bindValue(5, $space);
-        $pstmt->bindValue(6, $time);
-
-        $pstmt->execute();
-        $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
-    } catch (PDOException $exc) {
-        echo $exc->getMessage();
-    }
-}
-
-
 ?>
 
 <!DOCTYPE html>
@@ -74,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             background-size: cover !important;
         }
     </style>
-    
+
 </head>
 
 <body class="body">
@@ -152,57 +121,78 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="container mt-2">
             <div class="row">
 
-                <?php if ($_SERVER["REQUEST_METHOD"] == "POST") { ?>
-                    <span><b>
+                <?php if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+                    $location = $_POST["location"];
+                    $soil = $_POST["soil"];
+                    $sun = $_POST["sun"];
+                    $water = $_POST["water"];
+                    $space = $_POST["space"];
+                    $time = $_POST["time"];
+
+                ?>
+                    <!-- <span><b>
                             <p style="color:MediumSeaGreen;">In <?php echo $location ?> area when you have <?php echo $sun ?> sun exposure, <?php echo $soil ?> soil,
                                 and <?php echo $water ?> water, you have <?php echo $space ?> space to gardening and when your harvest time <?php echo $time ?>, it's suitable to grow below plants.</p>
-                        </b></span>
-                <?php  } ?>
+                        </b></span> -->
+                    <?php
 
-                <?php
-                if (isset($rs) && !empty($rs)) {
-                    foreach ($rs as $row) {
-                        try {
-                            $con = $dbcon->getConnection();
-                            $sql = "SELECT * FROM plant WHERE PlantID = ?";
+                    try {
+                        $con = $dbcon->getConnection();
+                        // $sql = "SELECT * FROM plant WHERE PlantID = ?";
+                        $sql = "SELECT DISTINCT p.*
 
-                            $pstmt = $con->prepare($sql);
-                            $pstmt->bindValue(1, $row->PlantID);
-                            $pstmt->execute();
-                            $plants = $pstmt->fetchAll(PDO::FETCH_OBJ);
+                        FROM plant p
 
-                            foreach ($plants as $plant) {
-                                $plantName = $plant->PlantName;
-                                $filePath = $plant->FilePath;
-                ?>
+                        JOIN plantsunexpo ps ON p.PlantID = ps.PlantID
 
-                                <div class="col-md-3 col-sm-6">
-                                    <div class="card card-block">
+                        JOIN plantsoil pst ON p.PlantID = pst.PlantID
 
-                                        <img src="<?php echo $filePath ?>" alt="Photo of sunset">
-                                        <h5 class="card-title mt-3 mb-3" style="margin-left: 10px;"><?php echo $plantName ?></h5>
-                                        <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your selections.</p>
-                                    </div>
+                        JOIN plantwater pw ON p.PlantID = pw.PlantID
+
+                        JOIN Plantlocation pl ON p.PlantID = pl.PlantID
+
+                        JOIN plantspace pspace ON p.PlantID = pspace.PlantID
+
+                        JOIN plantharvesttime pht ON p.PlantID = pht.PlantID
+
+                        WHERE
+
+                        ps.sunExpoID = ? AND pst.soilTypeID = ? AND pw.waterLevelID = ? AND pl.locationID = ? AND pht.harvestTimeId = ? AND pspace.spaceID = ?";
+
+                        $pstmt = $con->prepare($sql);
+                        $pstmt->bindValue(1, $sun);
+                        $pstmt->bindValue(2, $soil);
+                        $pstmt->bindValue(3, $water);
+                        $pstmt->bindValue(4, $location);
+                        $pstmt->bindValue(5, $time);
+                        $pstmt->bindValue(6, $space);
+                        $pstmt->execute();
+                        $plants = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                        foreach ($plants as $plant) {
+                            $plantName = $plant->PlantName;
+                            $filePath = $plant->FilePath;
+                            $description = $plant->description;
+                    ?>  
+                            <div class="col-md-3 col-sm-6">
+                                <div class="card card-block" style="margin-top: 10px;">
+                                    <img src="<?php echo $filePath ?>" alt="Photo of sunset">
+                                    <h4 class="card-title mt-3 mb-3" style="margin-left: 10px;"><?php echo $plantName ?></h4>
+                                    <p class="card-text" style="margin-left: 10px; height: 100px;"><?php echo $description ?></p>
                                 </div>
-
+                            </div>
                 <?php
-                            }
-                        } catch (PDOException $exc) {
-                            echo $exc->getMessage();
                         }
+                    } catch (PDOException $exc) {
+                        echo $exc->getMessage();
                     }
-                } else {
-                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                        echo "<p>No plants found for the given criteria.</p>";
-                    }
-                }
-                ?>
+                } ?>
+
             </div>
 
 
         </div>
-
-
         <div class="row py-5 mt-4 align-items-center">
             <!-- <span><b>
                     <p style="color:Tomato;"> Note:-</p>
@@ -217,21 +207,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                             <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;"> <i class="fa-solid fa-location-dot fa-fade" style="color: #0b8952; font-size: 25px; margin-right: 10px;"></i>Select Location</a>
                             <select id="location" name="location" class="form-control bg-white px-4 border-md border-right-0" style="margin-bottom: 20px;">
-                                <option value="Badulla">Badulla</option>
-                                <option value="Soranathota">Soranathota</option>
-                                <option value="Meegahakiula">Meegahakiula</option>
-                                <option value="Kandaketiya">Kandaketiya</option>
-                                <option value="Rideemaliyadda">Rideemaliyadda</option>
-                                <option value="Mahiyanganaya">Mahiyanganaya</option>
-                                <option value="Passara">Passara</option>
-                                <option value="Lunugala">Lunugala</option>
-                                <option value="Hali Ela">Hali Ela</option>
-                                <option value="Ella">Ella</option>
-                                <option value="Bandarawela">Bandarawela</option>
-                                <option value="Haputale">Haputale</option>
-                                <option value="Haldummulla">Haldummulla</option>
-                                <option value="Uva Paranagama">Uva Paranagama</option>
-                                <option value="Welimada">Welimada</option>
+                                <option value="2">Badulla</option>
+                                <option value="3">Soranathota</option>
+                                <option value="4">Meegahakiula</option>
+                                <option value="5">Kandaketiya</option>
+                                <option value="6">Rideemaliyadda</option>
+                                <option value="7">Mahiyanganaya</option>
+                                <option value="8">Passara</option>
+                                <option value="9">Lunugala</option>
+                                <option value="10">Hali Ela</option>
+                                <option value="11">Ella</option>
+                                <option value="12">Bandarawela</option>
+                                <option value="13">Haputale</option>
+                                <option value="14">Haldummulla</option>
+                                <option value="15">Uva Paranagama</option>
+                                <option value="16">Welimada</option>
                             </select>
                             <!-- </div> -->
                         </div>
@@ -241,9 +231,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                             <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;"> <i class="fa-solid fa-sun fa-beat-fade" style="color: #0b8952; font-size: 25px; margin-right: 10px;"></i>Sun Exposure</a>
                             <select id="sun" name="sun" class="form-control bg-white px-4 border-md border-right-0" style="margin-bottom: 20px;">
-                                <option value="High">High</option>
-                                <option value="Medium">Medium</option>
-                                <option value="Low">Low</option>
+                                <option value="1">High</option>
+                                <option value="2">Medium</option>
+                                <option value="3">Low</option>
                             </select>
                         </div>
 
@@ -253,8 +243,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                             <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;"> <i class="fa-solid fa-person-digging fa-shake" style="color: #0b8952; font-size: 25px; margin-right: 10px;"></i>Soil </a>
                             <select id="soil" name="soil" class="form-control bg-white px-4 border-md border-right-0">
-                                <option value="Reddish Brown Earths">Reddish Brown Earths</option>
-                                <option value="Red Yellow Podzolic">Red Yellow Podzolic</option>
+                                <option value="1">Reddish Brown Earths</option>
+                                <option value="2">Red Yellow Podzolic</option>
                                 <!-- <option value="Low Humic Gley">Low Humic Gley</option> -->
                                 <!-- <option value="Mountain regosols">Mountain regosols</option> -->
                             </select>
@@ -270,9 +260,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                             <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;"> <i class="fa-solid fa-droplet fa-bounce" style="color: #0b8952;font-size: 25px; margin-right: 10px;"></i>Water</a>
                             <select id="water" name="water" class="form-control bg-white px-4 border-md border-right-0" style="margin-bottom: 20px;">
-                                <option value="Easy to Find">Easy to found</option>
-                                <option value="Medium">Normally can found</option>
-                                <option value="Rare">Rare to found</option>
+                                <option value="1">Easy to found</option>
+                                <option value="2">Normally can found</option>
+                                <option value="3">Rare to found</option>
                             </select>
                         </div>
 
@@ -282,9 +272,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                             <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;"> <i class="fa-solid fa-landmark fa-fade" style="color: #0b8952;font-size: 25px; margin-right: 10px;"></i>Space</a>
                             <select id="space" name="space" class="form-control bg-white px-4 border-md border-right-0" style="margin-bottom: 20px;">
-                                <option value="Limited">Limited</option>
-                                <option value="Average">Average</option>
-                                <option value="Large">Large</option>
+                                <option value="1">Limited</option>
+                                <option value="2">Average</option>
+                                <option value="3">Large</option>
                             </select>
                         </div>
 
@@ -295,11 +285,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                 <a class="form-control bg-white border-left-0 border-md" style="color: #5b5b5b; font-weight: bold;"> <i class="fa-solid fa-clock fa-flip" style="color: #0b8952;font-size: 25px; margin-right: 10px;"></i>Harvest Time</a>
                                 <select id="time" name="time" class="form-control bg-white px-4 border-md border-right-0">
-                                    <option value="< 2 months">
-                                        < 2 months</option>
-                                    <option value="2 to 6 months">2 to 6 months</option>
-                                    <option value="6 to 12 months">6 to 12 months</option>
-                                    <option value="> 12 months">> 12 months</option>
+                                    <!-- <option value="< 2 months">< 2 months</option> -->
+                                    <option value="1">2 to 6 months</option>
+                                    <option value="2">6 to 12 months</option>
+                                    <option value="3">> 12 months</option>
                                 </select>
                             </div>
                         </div>
