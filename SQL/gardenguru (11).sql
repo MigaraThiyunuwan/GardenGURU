@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2023 at 04:23 PM
+-- Generation Time: Oct 31, 2023 at 05:26 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -94,7 +94,10 @@ INSERT INTO `answer` (`answerID`, `questionID`, `user_id`, `answerDate`, `answer
 (5, 7, 15, '2023-10-08', 'Soil Preparation: Use well-drained, loose, sandy loam soil with a pH of 6.0 to 6.8 and incorporate organic matter.\r\n\r\nClimate and Season: Plant in cool seasons, avoiding extreme heat.\r\n\r\nVariety Selection: Choose varieties suited to your climate and preferences.'),
 (6, 5, 2, '2023-10-08', 'Could you advise on the ideal timing and method for pruning tea bushes? I want to promote healthy growth and maximize yields in my tea cultivation. Your insights on when and how to prune effectively would be greatly appreciated.'),
 (7, 7, 2, '2023-10-16', 'Thank you all ❤️'),
-(8, 8, 22, '2023-10-17', 'Hello, as a mango farmer, soil preparation is vital for successful mango tree growth. Begin with a soil test, ensure well-drained, sunny locations, and amend soil based on results. Adequate spacing, proper watering, and fertilization are key. Consult local experts and resources for specific guidance to ensure healthy mango trees.');
+(8, 8, 22, '2023-10-17', 'Hello, as a mango farmer, soil preparation is vital for successful mango tree growth. Begin with a soil test, ensure well-drained, sunny locations, and amend soil based on results. Adequate spacing, proper watering, and fertilization are key. Consult local experts and resources for specific guidance to ensure healthy mango trees.'),
+(9, 9, 36, '2023-10-31', 'In Galle, for successful banana cultivation, I recommend considering varieties such as [specific banana varieties suited for your region], which have proven adaptability to our local climate. Ensure well-drained, loamy soils with a pH range of 5.5 to 6.5, enriched with organic matter. Incorporate well-rotted compost before planting and use a balanced 14-14-14 NPK fertilizer at recommended intervals. Effective pest and disease management is crucial; watch for common threats like aphids, nematodes, and banana weevils. Implement regular inspection and control measures, such as using organic pesticides when necessary, to safeguard your crop&#039;s health and maximize yield. Additionally, remember to tailor your care to the specific conditions in your region to optimize banana growth and production.'),
+(10, 10, 18, '2023-10-25', 'To successfully cultivate oranges in Rathnapura, it\'s crucial to choose varieties that thrive in our climate, such as [specific orange varieties suited for your region]. These varieties are well-suited for our local conditions and have a track record of performance. Prior to planting, prepare the soil by ensuring it\'s well-draining, with a pH of around 6.0 to 7.0, and amend it with organic matter like compost or well-rotted manure. When it comes to fertilization, a balanced 10-10-10 NPK fertilizer is suitable for orange trees, and you should apply it in late winter or early spring. Regular pruning to remove dead or diseased branches and proper spacing for good air circulation is essential. Keep a watchful eye for common pests like citrus aphids, scales, and diseases like citrus canker. Implement integrated pest management techniques and consider using horticultural oils or organic insecticides when necessary. For harvesting, oranges are typically ready when they reach their full color, and they should be harvested with care to avoid damage. By following these guidelines, you can optimize your orange orchard\'s health and productivity in our region.'),
+(11, 11, 38, '2023-10-31', 'To excel in grapevine cultivation in Jaffna, you should prioritize grape varieties known to thrive in our climate. Varieties such as [specific grape varieties suited for your region] are well-suited to our local conditions and have a track record of success. Prepare the soil by ensuring it&#039;s well-draining, with a pH of around 6.0 to 7.0, and enrich it with organic matter like compost or well-rotted manure before planting. Fertilize the grapevines with a balanced NPK fertilizer, typically in early spring, to support growth and fruit development. Vigilant pest and disease management is essential. Keep an eye out for common grapevine pests like aphids, grapevine leafhoppers, and fungal diseases like powdery mildew. Implement integrated pest management strategies, including the judicious use of fungicides and insecticides when necessary. Pruning is vital to control vine growth and improve fruit quality; the timing and extent of pruning may vary based on the specific grape variety. Harvesting grapes should be done at the optimal ripeness, typically determined by taste and sugar content. By following these guidelines, you can establish a successful and productive grapevine vineyard tailored to our region&#039;s unique conditions.');
 
 -- --------------------------------------------------------
 
@@ -289,7 +292,16 @@ INSERT INTO `orderitem` (`orderItemID`, `orderID`, `ItemId`, `itemQuantity`) VAL
 (28, 9, 6, 3),
 (29, 9, 9, 3),
 (30, 9, 8, 1),
-(31, 9, 11, 7);
+(31, 9, 11, 7),
+(32, 10, 7, 3),
+(33, 10, 16, 2),
+(34, 10, 1, 2),
+(35, 11, 2, 1),
+(36, 11, 5, 1),
+(37, 11, 4, 2),
+(38, 11, 9, 1),
+(39, 12, 12, 5),
+(40, 12, 16, 2);
 
 -- --------------------------------------------------------
 
@@ -317,12 +329,15 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`orderID`, `user_id`, `orderDate`, `TotalPrice`, `deliveryAddress`, `city`, `receiver`, `CoNum`, `OrderTransaction`, `OrderStatus`) VALUES
 (2, 22, '2023-10-06', 750, 'dzgrx', 'Attanagalla', 'Ruwan kumara', 11120, 'success', 'success'),
 (3, 22, '2023-10-09', 150, 'thtr', 'Attanagalla', 'Ruwan kumara', 11120, 'success', 'success'),
-(4, 22, '2023-10-16', 1660, '56/2, Temple Rd. Kelaniya', 'Attanagalla', 'Nimal Perera', 771516783, 'success', 'waiting'),
+(4, 22, '2023-10-16', 1660, '56/2, Temple Rd. Kelaniya', 'Attanagalla', 'Nimal Perera', 771516783, 'success', 'success'),
 (5, 22, '2023-10-16', 2350, '23/1, Main Street, Nittambuwa', 'Nittambuwa', 'Tharindu Buddhika', 771629789, 'success', 'rejected'),
-(6, 22, '2023-10-16', 1780, '56/9, lake round, kurunegala', 'kurunegala', 'lashan sachintha', 778634967, 'success', 'waiting'),
-(7, 2, '2023-10-17', 930, 'No 23, Kurunegoda, Kotiyakumbura.', 'Kegalle', 'Malki Madhubhashini', 763857450, 'success', 'waiting'),
+(6, 22, '2023-10-16', 1780, '56/9, lake round, kurunegala', 'kurunegala', 'lashan sachintha', 778634967, 'success', 'success'),
+(7, 2, '2023-10-17', 930, 'No 23, Kurunegoda, Kotiyakumbura.', 'Kegalle', 'Malki Madhubhashini', 763857450, 'success', 'success'),
 (8, 15, '2023-10-17', 610, 'No.4, Galle Rd. Makuluwa', 'Galle', 'Sunura Adithya', 2147483647, 'success', 'success'),
-(9, 2, '2023-10-23', 2785, 'No 23, Kurunegoda, Kotiyakumbura.', 'Kegalle', 'Malki Madhubhashini', 771526789, 'success', 'success');
+(9, 2, '2023-10-23', 2785, 'No 23, Kurunegoda, Kotiyakumbura.', 'Kegalle', 'Malki Madhubhashini', 771526789, 'success', 'success'),
+(10, 34, '2023-10-31', 1110, 'No. 26, Galle', 'Galle', 'Damith Asanka', 762342312, 'success', 'success'),
+(11, 37, '2023-10-31', 655, 'no.69, Medamulana, Weeraketiya', 'Hambanthota', 'Shiranthi Rajapaksha', 712349204, 'success', 'success'),
+(12, 36, '2023-10-31', 2275, 'No.91, Pelmadulla rd. Rathnapura', 'Rathnapura', 'Shashika Nisansala', 774519634, 'success', 'success');
 
 -- --------------------------------------------------------
 
@@ -356,42 +371,85 @@ INSERT INTO `payment` (`payamentID`, `UserFirstName`, `UserLastName`, `UserAddre
 CREATE TABLE `plant` (
   `PlantID` int(11) NOT NULL,
   `PlantName` varchar(50) NOT NULL,
-  `FilePath` varchar(100) NOT NULL
+  `FilePath` varchar(100) NOT NULL,
+  `description` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `plant`
 --
 
-INSERT INTO `plant` (`PlantID`, `PlantName`, `FilePath`) VALUES
-(1, 'Beans', '../images/suggesstions/beans.jpg'),
-(2, 'Leeks', '../images/suggesstions/leeks.jpg'),
-(3, 'Potato', '../images/suggesstions/potato.jpeg'),
-(4, 'Carrot', '../images/suggesstions/carrot.jpg'),
-(5, 'Banana', '../images/suggesstions/banana.jpg'),
-(6, 'Papaya', '../images/suggesstions/papaya.jpg'),
-(7, 'Pineapple', '../images/suggesstions/pineapple.jpg'),
-(8, 'Mango', '../images/suggesstions/mango.jpg'),
-(9, 'Guava', '../images/suggesstions/guava.jpg'),
-(10, 'Passion Fruit', '../images/suggesstions/passion.jpg'),
-(11, 'Jackfruit', '../images/suggesstions/jackfruit.jpg'),
-(12, 'Avocado', '../images/suggesstions/avacado.png'),
-(13, 'Pomegranate', '../images/suggesstions/pomegranate.jpg'),
-(14, 'Dragon Fruit', '../images/suggesstions/dragon.jpg'),
-(15, 'Rambutan', '../images/suggesstions/rambutan.jpg'),
-(16, 'Orange', '../images/suggesstions/orange.jpg'),
-(17, 'Lime', '../images/suggesstions/lime.jpg'),
-(18, 'Tamarind', '../images/suggesstions/tamarind.jpeg'),
-(19, 'Watermelon', '../images/suggesstions/watermelon.jpg'),
-(20, 'Tomato', '../images/suggesstions/tomato.jpeg'),
-(21, 'Cabbage', '../images/suggesstions/cabbage.jpg'),
-(22, 'Cucumber', '../images/suggesstions/cucumber.jpg'),
-(23, 'Lettuce', '../images/suggesstions/lettuce.jpg'),
-(24, 'Radish', '../images/suggesstions/radish.jpg'),
-(25, 'Eggplant', '../images/suggesstions/eggplant.jpg'),
-(26, 'Spinach', '../images/suggesstions/spinach.jpg'),
-(27, 'Beetroot', '../images/suggesstions/beetroot.jpg'),
-(28, 'Peas', '../images/suggesstions/peas.jpg');
+INSERT INTO `plant` (`PlantID`, `PlantName`, `FilePath`, `description`) VALUES
+(1, 'Beans', '../images/suggesstions/beans.jpg', 'Beans are nutritious legumes, packed with protein, fiber, and vitamins, making them a versatile culinary staple.'),
+(2, 'Leeks', '../images/suggesstions/leeks.jpg', 'Leeks, with their mild onion flavor, are versatile vegetables, enhancing dishes with their unique taste and texture.'),
+(3, 'Potato', '../images/suggesstions/potato.jpeg', 'Potatoes are starchy, versatile tubers that form the basis of countless delicious dishes, from fries to mash.'),
+(4, 'Carrot', '../images/suggesstions/carrot.jpg', 'Carrots are vibrant orange root vegetables, known for their sweet flavor and high vitamin A content.'),
+(5, 'Banana', '../images/suggesstions/banana.jpg', 'Bananas are creamy, potassium-rich fruits with a natural sweetness, making them a nutritious and convenient snack choice.'),
+(6, 'Papaya', '../images/suggesstions/papaya.jpg', 'Papaya is a tropical fruit with vibrant orange flesh, known for its sweet, exotic flavor and digestive benefits.'),
+(7, 'Pineapple', '../images/suggesstions/pineapple.jpg', 'Pineapple is a tropical fruit, featuring a sweet, tangy taste and vibrant yellow flesh, perfect for refreshing treats.'),
+(8, 'Mango', '../images/suggesstions/mango.jpg', 'Mangoes are luscious tropical fruits, celebrated for their juicy, aromatic flesh and rich, exotic flavor.'),
+(9, 'Guava', '../images/suggesstions/guava.jpg', 'Guava is a tropical fruit, prized for its fragrant, pink flesh, and delightful sweet-tart taste, packed with nutrients.'),
+(10, 'Passion Fruit', '../images/suggesstions/passion.jpg', 'Passion fruit is an exotic, round fruit with aromatic seeds, celebrated for its unique flavor and health benefits.'),
+(11, 'Jackfruit', '../images/suggesstions/jackfruit.jpg', 'Jackfruit is a massive tropical fruit with fibrous, sweet flesh, popular as a meat substitute in vegan cuisine.'),
+(12, 'Avocado', '../images/suggesstions/avacado.png', 'Avocado, a creamy green fruit, is prized for its rich, buttery texture and healthy monounsaturated fats. Deliciously nutritious!'),
+(13, 'Pomegranate', '../images/suggesstions/pomegranate.jpg', 'Pomegranate, with jewel-like seeds, offers a sweet-tart taste and antioxidant richness, making it a nutritious, delightful fruit.'),
+(14, 'Dragon Fruit', '../images/suggesstions/dragon.jpg', 'Dragon fruit, visually striking with pink or yellow skin and white flesh, is sweet, tropical, and exotic.'),
+(15, 'Rambutan', '../images/suggesstions/rambutan.jpg', 'Rambutan is a hairy, tropical fruit with sweet, juicy flesh, known for its unique appearance and delightful taste.'),
+(16, 'Orange', '../images/suggesstions/orange.jpg', 'Oranges are vibrant citrus fruits, bursting with vitamin C and a zesty, sweet-tart flavor. A refreshing, healthy choice.'),
+(17, 'Lime', '../images/suggesstions/lime.jpg', 'Limes are small, tangy citrus fruits, perfect for adding zesty flavor to dishes, drinks, and desserts.'),
+(18, 'Tamarind', '../images/suggesstions/tamarind.jpeg', 'Tamarind, a tangy tropical fruit, boasts a unique sweet-sour taste and is a key ingredient in many cuisines.'),
+(19, 'Watermelon', '../images/suggesstions/watermelon.jpg', 'Watermelon is a juicy, hydrating fruit with vibrant pink flesh, perfect for quenching thirst on hot days.'),
+(20, 'Tomato', '../images/suggesstions/tomato.jpeg', 'Tomatoes are versatile red fruits, essential in various dishes, offering a blend of sweetness and acidity.'),
+(21, 'Cabbage', '../images/suggesstions/cabbage.jpg', 'Cabbage is a leafy, cruciferous vegetable, offering a mild, crisp texture and a versatile addition to meals.'),
+(22, 'Cucumber', '../images/suggesstions/cucumber.jpg', 'Cucumbers are refreshing, crisp vegetables, low in calories, and perfect for salads, snacks, and hydration.'),
+(23, 'Lettuce', '../images/suggesstions/lettuce.jpg', 'Lettuce is a leafy, green vegetable, commonly used in salads, providing a fresh, crisp, and nutritious base.'),
+(24, 'Radish', '../images/suggesstions/radish.jpg', 'Radishes are vibrant, crunchy root vegetables, adding a peppery kick to salads and enhancing culinary diversity.'),
+(25, 'Eggplant', '../images/suggesstions/eggplant.jpg', 'Eggplant, a deep purple, glossy vegetable, offers a meaty texture and absorbs flavors, perfect for diverse dishes.'),
+(26, 'Spinach', '../images/suggesstions/spinach.jpg', NULL),
+(27, 'Beetroot', '../images/suggesstions/beetroot.jpg', NULL),
+(28, 'Peas', '../images/suggesstions/peas.jpg', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `plantharvesttime`
+--
+
+CREATE TABLE `plantharvesttime` (
+  `PlantID` int(11) NOT NULL,
+  `harvestTimeId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `plantharvesttime`
+--
+
+INSERT INTO `plantharvesttime` (`PlantID`, `harvestTimeId`) VALUES
+(1, 1),
+(2, 1),
+(3, 2),
+(4, 1),
+(5, 3),
+(6, 2),
+(7, 3),
+(8, 2),
+(9, 2),
+(10, 1),
+(11, 3),
+(12, 2),
+(13, 1),
+(14, 1),
+(15, 1),
+(16, 3),
+(17, 2),
+(18, 3),
+(19, 1),
+(20, 1),
+(21, 1),
+(22, 1),
+(23, 1),
+(24, 1),
+(25, 1);
 
 -- --------------------------------------------------------
 
@@ -404,6 +462,255 @@ CREATE TABLE `plantlocation` (
   `locationID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `plantlocation`
+--
+
+INSERT INTO `plantlocation` (`PlantID`, `locationID`) VALUES
+(1, 2),
+(1, 3),
+(1, 4),
+(1, 5),
+(1, 6),
+(1, 8),
+(1, 9),
+(1, 10),
+(1, 11),
+(1, 12),
+(1, 13),
+(1, 14),
+(1, 15),
+(1, 16),
+(2, 2),
+(2, 8),
+(2, 12),
+(2, 13),
+(2, 14),
+(2, 15),
+(2, 16),
+(3, 2),
+(3, 3),
+(3, 4),
+(3, 5),
+(3, 6),
+(3, 7),
+(3, 8),
+(3, 9),
+(3, 10),
+(3, 11),
+(3, 15),
+(4, 2),
+(4, 3),
+(4, 8),
+(4, 9),
+(4, 10),
+(4, 11),
+(4, 12),
+(4, 13),
+(4, 14),
+(4, 15),
+(4, 16),
+(5, 2),
+(5, 3),
+(5, 4),
+(5, 5),
+(5, 6),
+(5, 7),
+(6, 4),
+(6, 5),
+(6, 6),
+(6, 7),
+(7, 4),
+(7, 5),
+(7, 6),
+(7, 7),
+(8, 2),
+(8, 3),
+(8, 4),
+(8, 5),
+(8, 6),
+(8, 7),
+(8, 8),
+(8, 9),
+(8, 10),
+(8, 11),
+(8, 15),
+(8, 2),
+(8, 3),
+(8, 4),
+(8, 5),
+(8, 6),
+(8, 7),
+(8, 8),
+(8, 9),
+(8, 10),
+(8, 11),
+(10, 2),
+(10, 6),
+(10, 7),
+(10, 8),
+(10, 9),
+(10, 10),
+(10, 11),
+(10, 13),
+(10, 14),
+(10, 16),
+(11, 2),
+(11, 3),
+(11, 4),
+(11, 5),
+(11, 6),
+(11, 7),
+(11, 8),
+(11, 9),
+(11, 10),
+(11, 11),
+(11, 12),
+(11, 13),
+(11, 14),
+(11, 15),
+(11, 16),
+(12, 2),
+(12, 3),
+(12, 4),
+(12, 8),
+(12, 9),
+(12, 10),
+(12, 11),
+(12, 12),
+(12, 13),
+(12, 16),
+(13, 2),
+(13, 3),
+(13, 4),
+(13, 5),
+(13, 6),
+(13, 7),
+(13, 8),
+(13, 9),
+(13, 10),
+(13, 11),
+(13, 14),
+(13, 15),
+(13, 16),
+(14, 2),
+(14, 3),
+(14, 4),
+(14, 5),
+(14, 6),
+(14, 7),
+(14, 8),
+(14, 9),
+(14, 10),
+(14, 11),
+(15, 2),
+(15, 3),
+(15, 4),
+(15, 5),
+(15, 6),
+(15, 7),
+(15, 8),
+(15, 9),
+(15, 10),
+(15, 11),
+(15, 12),
+(15, 13),
+(15, 14),
+(15, 15),
+(15, 16),
+(16, 2),
+(16, 3),
+(16, 6),
+(16, 8),
+(16, 9),
+(16, 10),
+(16, 11),
+(16, 12),
+(16, 13),
+(16, 16),
+(17, 2),
+(17, 8),
+(17, 9),
+(17, 10),
+(17, 11),
+(17, 12),
+(17, 13),
+(17, 14),
+(17, 15),
+(17, 16),
+(18, 2),
+(18, 3),
+(18, 4),
+(18, 5),
+(18, 6),
+(18, 7),
+(18, 8),
+(18, 9),
+(18, 10),
+(18, 11),
+(18, 12),
+(18, 13),
+(18, 14),
+(18, 15),
+(18, 16),
+(19, 4),
+(19, 5),
+(19, 6),
+(19, 7),
+(20, 2),
+(20, 3),
+(20, 4),
+(20, 5),
+(20, 6),
+(20, 7),
+(20, 8),
+(20, 9),
+(20, 10),
+(20, 11),
+(20, 12),
+(20, 13),
+(20, 14),
+(20, 15),
+(21, 10),
+(21, 11),
+(21, 12),
+(21, 13),
+(21, 14),
+(21, 15),
+(21, 16),
+(22, 4),
+(22, 5),
+(22, 6),
+(22, 7),
+(23, 10),
+(23, 11),
+(23, 12),
+(23, 13),
+(23, 14),
+(23, 15),
+(23, 16),
+(24, 10),
+(24, 11),
+(24, 12),
+(24, 13),
+(24, 14),
+(24, 15),
+(24, 16),
+(25, 2),
+(25, 3),
+(25, 4),
+(25, 5),
+(25, 6),
+(25, 7),
+(25, 8),
+(25, 9),
+(25, 10),
+(25, 11),
+(25, 12),
+(25, 13),
+(25, 14),
+(25, 15);
+
 -- --------------------------------------------------------
 
 --
@@ -414,6 +721,55 @@ CREATE TABLE `plantsoil` (
   `PlantID` int(11) NOT NULL,
   `soilTypeID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `plantsoil`
+--
+
+INSERT INTO `plantsoil` (`PlantID`, `soilTypeID`) VALUES
+(1, 1),
+(1, 2),
+(2, 1),
+(3, 1),
+(3, 2),
+(4, 1),
+(4, 2),
+(5, 2),
+(6, 1),
+(6, 2),
+(7, 1),
+(8, 1),
+(8, 2),
+(9, 2),
+(10, 1),
+(11, 1),
+(11, 2),
+(12, 1),
+(13, 1),
+(13, 2),
+(14, 1),
+(15, 1),
+(15, 2),
+(16, 1),
+(16, 2),
+(17, 1),
+(17, 2),
+(18, 1),
+(18, 2),
+(19, 1),
+(19, 2),
+(20, 1),
+(20, 2),
+(21, 1),
+(21, 2),
+(22, 1),
+(22, 2),
+(23, 1),
+(23, 2),
+(24, 1),
+(24, 2),
+(25, 1),
+(25, 2);
 
 -- --------------------------------------------------------
 
@@ -426,6 +782,61 @@ CREATE TABLE `plantspace` (
   `spaceID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `plantspace`
+--
+
+INSERT INTO `plantspace` (`PlantID`, `spaceID`) VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(2, 1),
+(2, 2),
+(2, 3),
+(3, 3),
+(4, 2),
+(4, 3),
+(5, 2),
+(5, 3),
+(6, 2),
+(6, 3),
+(7, 1),
+(7, 2),
+(7, 3),
+(8, 2),
+(8, 3),
+(9, 2),
+(9, 3),
+(10, 1),
+(10, 2),
+(10, 3),
+(11, 2),
+(11, 3),
+(12, 2),
+(12, 3),
+(13, 1),
+(13, 2),
+(13, 3),
+(14, 1),
+(14, 2),
+(14, 3),
+(15, 2),
+(15, 3),
+(16, 1),
+(16, 2),
+(16, 3),
+(17, 1),
+(17, 2),
+(17, 3),
+(18, 3),
+(19, 1),
+(20, 1),
+(21, 1),
+(22, 1),
+(23, 1),
+(24, 1),
+(25, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -437,6 +848,59 @@ CREATE TABLE `plantsunexpo` (
   `sunExpoID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `plantsunexpo`
+--
+
+INSERT INTO `plantsunexpo` (`PlantID`, `sunExpoID`) VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(2, 2),
+(2, 3),
+(3, 1),
+(3, 2),
+(4, 1),
+(4, 2),
+(5, 2),
+(5, 3),
+(6, 1),
+(6, 2),
+(7, 1),
+(7, 2),
+(8, 1),
+(8, 2),
+(8, 3),
+(9, 3),
+(10, 2),
+(10, 3),
+(11, 1),
+(11, 2),
+(11, 3),
+(12, 2),
+(12, 3),
+(13, 1),
+(13, 2),
+(14, 1),
+(14, 2),
+(14, 3),
+(15, 1),
+(15, 2),
+(16, 1),
+(16, 2),
+(16, 3),
+(17, 1),
+(17, 2),
+(17, 3),
+(18, 1),
+(19, 1),
+(20, 1),
+(21, 2),
+(22, 1),
+(23, 2),
+(24, 2),
+(25, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -447,6 +911,63 @@ CREATE TABLE `plantwater` (
   `PlantID` int(11) NOT NULL,
   `waterLevelID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `plantwater`
+--
+
+INSERT INTO `plantwater` (`PlantID`, `waterLevelID`) VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(2, 1),
+(2, 2),
+(2, 3),
+(3, 1),
+(3, 2),
+(4, 1),
+(5, 1),
+(5, 2),
+(5, 3),
+(6, 1),
+(6, 2),
+(7, 1),
+(7, 2),
+(7, 3),
+(8, 1),
+(8, 2),
+(8, 3),
+(9, 1),
+(9, 2),
+(9, 3),
+(10, 1),
+(10, 2),
+(11, 1),
+(11, 2),
+(11, 3),
+(12, 1),
+(12, 2),
+(13, 1),
+(13, 2),
+(13, 3),
+(14, 1),
+(14, 2),
+(14, 3),
+(15, 1),
+(15, 2),
+(16, 1),
+(16, 2),
+(17, 1),
+(17, 2),
+(18, 2),
+(19, 3),
+(20, 1),
+(21, 1),
+(22, 3),
+(23, 1),
+(24, 1),
+(25, 1),
+(25, 2);
 
 -- --------------------------------------------------------
 
@@ -468,7 +989,37 @@ CREATE TABLE `question` (
 INSERT INTO `question` (`questionID`, `user_id`, `askDate`, `question`) VALUES
 (5, 22, '2023-10-08', 'Could you please provide guidance on the ideal timing and technique for pruning tea bushes to ensure optimal growth and yield?'),
 (7, 2, '2023-10-08', 'What are the key factors for successful carrot cultivation?'),
-(8, 15, '2023-10-17', 'Hello, I&#039;m a mango farmer, and I&#039;m looking for guidance on how to properly prepare the soil for planting mango trees. Could you please provide me with some advice or direct me to a reliable source of information? I want to ensure that the soil conditions are optimal for the health and growth of my mango trees.?');
+(8, 15, '2023-10-17', 'Hello, I&#039;m a mango farmer, and I&#039;m looking for guidance on how to properly prepare the soil for planting mango trees. Could you please provide me with some advice or direct me to a reliable source of information? I want to ensure that the soil conditions are optimal for the health and growth of my mango trees.?'),
+(9, 34, '2023-10-20', 'I&#039;m new to banana cultivation in Galle. Could you please provide me with advice on the best banana varieties suited for this region, the ideal soil conditions and fertilization requirements, effective pest and disease management strategies, as well as any specific climate-related tips to ensure a successful banana crop?'),
+(10, 36, '2023-10-24', 'I\'m interested in cultivating oranges in Rathnapura. Could you please provide advice on the most suitable orange varieties for our climate, the ideal soil preparation and fertilization methods, strategies for pest and disease control, and any particular considerations regarding pruning and harvesting to ensure a successful orange orchard?'),
+(11, 37, '2023-10-30', 'I&#039;m considering starting a grapevine cultivation project in Jaffna. Could you please provide guidance on the most suitable grape varieties for our climate, the best practices for soil preparation and fertilization, effective methods for pest and disease control, and advice on pruning and harvesting to ensure a thriving grapevine vineyard?');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `review`
+--
+
+CREATE TABLE `review` (
+  `reviewID` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `rate` int(11) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `review`
+--
+
+INSERT INTO `review` (`reviewID`, `user_id`, `rate`, `description`) VALUES
+(4, 22, 5, 'I stumbled upon this plant-selling website, and it&#039;s like stumbling into a lush, botanical paradise right in the heart of the internet. As an avid plant enthusiast, I&#039;ve explored numerous online plant shops, but this one has truly captured my heart and green thumb.'),
+(5, 2, 4, 'In the ever-expanding world of e-commerce, I stumbled upon a hidden gem - a delightful online floral emporium that has rekindled my love for all things botanical. This website has surpassed my expectations and ignited a newfound passion for flowers.'),
+(6, 15, 5, 'If you&#039;re on a quest to transform your living space into a lush, green paradise, look no further than this remarkable plant-selling website. From the moment I landed on their homepage, I was captivated by the beauty and sheer diversity of their offerings.'),
+(7, 18, 3, 'I recently explored this plant-selling website, and my experience, while generally positive, left room for improvement.'),
+(8, 34, 5, 'I recently stumbled upon a plant-selling website that left me in awe. From the moment I landed on the homepage, I knew I had found a horticultural gem that deserved a resounding five-star review.'),
+(9, 36, 4, 'I recently had the pleasure of exploring a plant-selling website that has taken my plant-loving experience to new heights. I am delighted to award this website a perfect four-star rating'),
+(10, 37, 5, 'I recently had the pleasure of discovering a plant-selling website that has completely captivated my heart and soul. It&#039;s an absolute honor to bestow a perfect five-star rating on this verdant sanctuary'),
+(11, 38, 5, 'If you&#039;re looking to delve into the art of grape cultivation or simply enhance your existing vineyard, you&#039;ve arrived at the perfect destination. This comprehensive guide to grape cultivation deserves nothing less than a five-star rating for its outstanding wealth of knowledge and support in achieving bountiful grape harvests.');
 
 -- --------------------------------------------------------
 
@@ -489,22 +1040,21 @@ CREATE TABLE `shop` (
 --
 
 INSERT INTO `shop` (`ItemId`, `ItemName`, `ItemQuantity`, `ItemPrice`, `ItemImage`) VALUES
-(1, 'Tomato', 4, 80, '../images/Selling1/veg1.jpeg'),
-(2, 'Impatiens', 28, 150, '../images/Selling1/flower12.jpeg'),
-(3, 'Grapes', 0, 200, '../images/Selling1/grapes.jpeg'),
-(4, 'Cabbage', 46, 90, '../images/Selling1/cab12.jpeg'),
-(5, 'Rose', 3, 175, '../images/Selling1/flower45.jpeg'),
+(1, 'Tomato', 12, 80, '../images/Selling1/veg1.jpeg'),
+(2, 'Impatiens', 27, 150, '../images/Selling1/flower12.jpeg'),
+(3, 'Grapes', 23, 200, '../images/Selling1/grapes.jpeg'),
+(4, 'Cabbage', 44, 90, '../images/Selling1/cab12.jpeg'),
+(5, 'Rose', 8, 175, '../images/Selling1/flower45.jpeg'),
 (6, 'pomegranate', 8, 120, '../images/Selling1/prom.jpeg'),
-(7, 'Red Chillie', 28, 50, '../images/Selling1/redp2.jpeg'),
-(8, 'Lilly', 0, 200, '../images/Selling1/lily3.jpeg'),
-(9, 'Mango', 7, 150, '../images/Selling1/mango.jpeg'),
+(7, 'Red Chillie', 25, 50, '../images/Selling1/redp2.jpeg'),
+(8, 'Lilly', 5, 200, '../images/Selling1/lily3.jpeg'),
+(9, 'Mango', 6, 150, '../images/Selling1/mango.jpeg'),
 (10, 'Verbena', 74, 100, '../images/Selling1/purple1.jpeg'),
 (11, 'Baby Rose', 25, 200, '../images/Selling1/rose.jpeg'),
-(12, 'Sunflower', 22, 295, '../images/Selling1/wh2.jpeg'),
+(12, 'Sunflower', 17, 295, '../images/Selling1/wh2.jpeg'),
 (13, 'Brinjole', 76, 75, '../images/Selling1/brin1.jpeg'),
-(14, 'Grapes', 45, 365, '../images/Selling1/grapes.jpeg'),
 (15, 'Corn', 5, 150, '../images/Selling1/corn.jpeg'),
-(16, 'Banana', 10, 400, '../images/Selling1/2ce3976a24da11b5.jpg');
+(16, 'Banana', 6, 400, '../images/Selling1/2ce3976a24da11b5.jpg');
 
 -- --------------------------------------------------------
 
@@ -4386,13 +4936,13 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `user_FirstName`, `user_LastName`, `user_Email`, `user_PhoneNo`, `user_address`, `user_Password`, `user_District`, `user_Gender`, `profile_picture`, `token`, `expdate`) VALUES
 (2, 'Malki', 'Madhubhashini', 'malki@gmail.com', '0771314545', '58/1, waragoda, attanagalla.', '$2y$10$f4mGEjsEPgjVKdg3Qf.KjuNMPnc8nVNYkuEaJMHlCcXjhRwRjGni.', 'Mullaitivu', 'Female', '../images/profile_pictures/2.jpg', NULL, NULL),
 (15, 'senura', 'adithya', 'senura@gmail.com', '0883678234', 'No.29 Galle', '$2y$10$f4mGEjsEPgjVKdg3Qf.KjuNMPnc8nVNYkuEaJMHlCcXjhRwRjGni.', 'Galle', 'Male', '../images/profile_pictures/pp,840x830-pad,1000x1000,f8f8f8.u2.jpg', NULL, NULL),
-(16, 'sasan', 'dilantha', 'sasan@gmail.com', '0752245147', 'maravila, halawatha', '$2y$10$BUhAj1QuQv1Zq0SPU5.5VuDTaL3VvCEZwaGfuncunuDv7JTnOrQcu', 'Puttalam', 'Male', '../images/profile_pictures/Default.png', NULL, NULL),
-(18, 'sasan', 'dilantha', 'sasan@gmail.com', '0752245147', 'maravila, halawatha', '$2y$10$iKz.kbpz4mcKuRvVaS8a/uxOT.dNT3DWBtcP8eE0z.XmAeLobf0SO', 'Puttalam', 'Male', '../images/profile_pictures/Default.png', NULL, NULL),
+(16, 'sasan', 'dilantha', 'sasan@gmail.com', '0752245147', 'maravila, halawatha', '$2y$10$f4mGEjsEPgjVKdg3Qf.KjuNMPnc8nVNYkuEaJMHlCcXjhRwRjGni.', 'Puttalam', 'Male', '../images/profile_pictures/Default.png', NULL, NULL),
+(18, 'Chamara', 'Weerasinghe', 'chamara@gmail.com', '0752245147', 'maravila, halawatha', '$2y$10$f4mGEjsEPgjVKdg3Qf.KjuNMPnc8nVNYkuEaJMHlCcXjhRwRjGni.', 'Puttalam', 'Male', '../images/profile_pictures/18.jpg', NULL, NULL),
 (22, 'Migara', 'Thiyunuwan', 'migarathiyunuwan@gmail.com', '0771416968', '58/1, waragoda, attanagalla.', '$2y$10$M.eylxWD0b4AKyfD3DxoEOxXIN4I2WNUFv4JsmGvMKXHXrZLCXYQW', 'Gampaha', 'Male', '../images/profile_pictures/22.jpg', NULL, NULL),
-(34, 'gjm', 'gchm', 'ghm@gmail.com', '3434636', '58/1, waragoda, attanagalla.', '$2y$10$YFvEpyCKIWbidmWfYDSg6uPicLdR9Aj9rJPTWOGAZpNxLFzazFvHe', 'Monaragala', 'Female', '../images/profile_pictures/Default.png', NULL, NULL),
-(36, 'hjtcyhtr', 'fthjrthj', 'ftghrfdh@gmail.com', '0752245147', '58/1, waragoda, attanagalla.', '$2y$10$X73G6B3hsta4.XtsISBPZOx2ufw3eVqAO7MIaeCp/GgtVkT894E46', 'Matale', 'Male', '../images/profile_pictures/Default.png', NULL, NULL),
-(37, 'trhrh', 'rhethh', 'dgherth@gmail.com', '0771314567', '58/1, waragoda, attanagalla.', '$2y$10$H1mxSRlNLaFlsS5t5CiQk..Q5qSUTYyTvbnhxbJ9TgAQN4Dw5jzFW', 'Jaffna', 'Male', '../images/profile_pictures/Default.png', NULL, NULL),
-(38, 'kyuktyku', 'yukyuk', 'tyuktyuk@gmail.com', '0752245147', '58/1, waragoda, attanagalla.', '$2y$10$K6LJl52Lw6BNE0vb04l0Y.ob9I9Q8UElTS46yxE/rmB1yEDxF5.3u', 'Kandy', 'Female', '../images/profile_pictures/Default.png', NULL, NULL),
+(34, 'Damith', 'Asanka', 'damith@gmail.com', '3434636', '58/1, waragoda, attanagalla.', '$2y$10$f4mGEjsEPgjVKdg3Qf.KjuNMPnc8nVNYkuEaJMHlCcXjhRwRjGni.', 'Monaragala', 'Female', '../images/profile_pictures/34.png', NULL, NULL),
+(36, 'Shashika', 'Nisansala', 'shashika@gmail.com', '0752245147', '58/1, waragoda, attanagalla.', '$2y$10$f4mGEjsEPgjVKdg3Qf.KjuNMPnc8nVNYkuEaJMHlCcXjhRwRjGni.', 'Matale', 'Male', '../images/profile_pictures/36.jpg', NULL, NULL),
+(37, 'Princess', 'Shiranthi', 'shiranthi@gmail.com', '0771314567', '58/1, waragoda, attanagalla.', '$2y$10$f4mGEjsEPgjVKdg3Qf.KjuNMPnc8nVNYkuEaJMHlCcXjhRwRjGni.', 'Jaffna', 'Male', '../images/profile_pictures/37.jpg', NULL, NULL),
+(38, 'Mahinda', 'Rajapaksha', 'mahinda@gmail.com', '0752245147', 'Medamulana, Weeraketiya', '$2y$10$f4mGEjsEPgjVKdg3Qf.KjuNMPnc8nVNYkuEaJMHlCcXjhRwRjGni.', 'Kandy', 'Female', '../images/profile_pictures/38.jpeg', NULL, NULL),
 (39, 'gegee', 'ghehe4h', 'dxtht@gmail.com', '0883678234', '58/1, waragoda, attanagalla.', '$2y$10$oj/2oV3T9I9molqwNasJI.JPqL2FMz0xzyLBEUn36DOUBocHtm2hC', 'Kilinochchi', 'Female', '../images/profile_pictures/Default.png', NULL, NULL),
 (40, 'sfdghgh', 'dsfrhh', 'sgwsr@gmail.com', '0771536245', '58/1, waragoda, attanagalla.', '$2y$10$StFxehQ24lo/Ks1ARZr9G.P9DSbVdpAgwF2UxKEoLBCR3snnfvrei', 'Gampaha', 'Female', '../images/profile_pictures/Default.png', NULL, NULL),
 (41, 'rghweh', 'wehte', 'het@gmail.com', '0771314567', '58/1, waragoda, attanagalla.', '$2y$10$OPc4r7ilUOCEMv2gfzwHaumi1vwRlXofHeOnQ4GoNom/LzhrTlaZu', 'Gampaha', 'Male', '../images/profile_pictures/Default.png', NULL, NULL),
@@ -4421,6 +4971,12 @@ INSERT INTO `waterlevel` (`waterLevelID`, `waterLevelName`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`adminID`);
 
 --
 -- Indexes for table `advertisements`
@@ -4531,6 +5087,13 @@ ALTER TABLE `question`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- Indexes for table `review`
+--
+ALTER TABLE `review`
+  ADD PRIMARY KEY (`reviewID`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `shop`
 --
 ALTER TABLE `shop`
@@ -4577,6 +5140,12 @@ ALTER TABLE `waterlevel`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `adminID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `advertisements`
 --
 ALTER TABLE `advertisements`
@@ -4586,7 +5155,7 @@ ALTER TABLE `advertisements`
 -- AUTO_INCREMENT for table `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `answerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `answerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `blog`
@@ -4598,7 +5167,7 @@ ALTER TABLE `blog`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `harvesttime`
@@ -4628,13 +5197,13 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT for table `orderitem`
 --
 ALTER TABLE `orderitem`
-  MODIFY `orderItemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `orderItemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `payment`
@@ -4646,7 +5215,13 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `questionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `questionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `review`
+--
+ALTER TABLE `review`
+  MODIFY `reviewID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `shop`
@@ -4757,6 +5332,12 @@ ALTER TABLE `plantwater`
 --
 ALTER TABLE `question`
   ADD CONSTRAINT `question_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `review`
+--
+ALTER TABLE `review`
+  ADD CONSTRAINT `review_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `space`

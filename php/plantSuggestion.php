@@ -173,17 +173,15 @@ if (isset($_SESSION["manager"])) {
                         foreach ($plants as $plant) {
                             $plantName = $plant->PlantName;
                             $filePath = $plant->FilePath;
-                    ?>
-
+                            $description = $plant->description;
+                    ?>  
                             <div class="col-md-3 col-sm-6">
-                                <div class="card card-block">
-
+                                <div class="card card-block" style="margin-top: 10px;">
                                     <img src="<?php echo $filePath ?>" alt="Photo of sunset">
-                                    <h5 class="card-title mt-3 mb-3" style="margin-left: 10px;"><?php echo $plantName ?></h5>
-                                    <p class="card-text" style="margin-left: 10px;">This plant is best suited for planting according to your selections.</p>
+                                    <h4 class="card-title mt-3 mb-3" style="margin-left: 10px;"><?php echo $plantName ?></h4>
+                                    <p class="card-text" style="margin-left: 10px; height: 100px;"><?php echo $description ?></p>
                                 </div>
                             </div>
-
                 <?php
                         }
                     } catch (PDOException $exc) {
