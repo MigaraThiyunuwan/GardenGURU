@@ -35,7 +35,7 @@ if (isset($_SESSION["manager"])) {
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/readBlog.css" rel="stylesheet">
-
+    <link href="../css/reviews.css" rel="stylesheet">
 
 </head>
 
@@ -121,7 +121,11 @@ if (isset($_SESSION["manager"])) {
 <?Php
 try {
         $con = $dbcon->getConnection();
-        $query = "SELECT * FROM blog WHERE blog_id = ? ";
+        $query = "SELECT b.blog_id, b.blog_title, b.blogPostedDate, b.blog_details, b.blog_image, 
+        u.user_FirstName, u.user_LastName
+        FROM blog b
+        JOIN users u ON b.user_id = u.user_id
+        WHERE b.blog_id = ?;";
         $pstmt = $con->prepare($query);
         $pstmt->bindValue(1, $id);
        
@@ -131,8 +135,8 @@ try {
 
         foreach($rs as $row){
             $title = $row->blog_title;
-            $fname = $row->user_fname;
-            $lname = $row->user_lname;
+            $fname = $row->user_FirstName;
+            $lname = $row->user_LastName;
             $details = $row->blog_details;
             $image = $row->blog_image;
             $date = $row->blogPostedDate;
@@ -183,9 +187,9 @@ try {
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Our Office</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
+                    <p style="color: white;" class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
+                    <p style="color: white;" class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
+                    <p style="color: white;" class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
@@ -203,7 +207,7 @@ try {
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="./AboutUs.php">About Us</a>
+                    <a class="btn btn-link" href="./AboutUs.php">  About Us </a> 
                     <a class="btn btn-link" href="./ContactUs.php">Contact Us</a>
                     <a class="btn btn-link" href="./newsfeed.php">News Feed</a>
                     <a class="btn btn-link" href="./login.php">Log Out</a>

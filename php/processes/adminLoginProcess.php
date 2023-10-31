@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $email = Security::SanitizeInput($_POST["email"]);
     $password = Security::SanitizeInput($_POST["password"]);
-    if (Admin::adminLogin($email, $password)) {
+    if (person::login($email, $password, "admin")) {
         header("Location: ../admin/Admin.php");
         exit;
     } else {

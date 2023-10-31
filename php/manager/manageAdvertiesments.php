@@ -207,7 +207,16 @@ if (isset($_SESSION["manager"])) {
                                         $start2 = isset($_GET['start2']) ? intval($_GET['start2']) : 0;
                                         $rows_per_page2 = 20;
 
-                                        $query2 = "SELECT * FROM advertisements ORDER BY id DESC LIMIT $start2, $rows_per_page2";
+                                        $query2 = "SELECT 
+                                        advertisements.id,
+                                        advertisements.title,
+                                        advertisements.description,
+                                        advertisements.adPostedDate,
+                                        advertisements.image1_filename,
+                                        users.user_FirstName,
+                                        users.user_LastName
+                                        FROM advertisements
+                                        LEFT JOIN users ON advertisements.user_id = users.user_id ORDER BY id DESC LIMIT $start2, $rows_per_page2;";
                                         $pstmt = $con->prepare($query2);
                                         $pstmt->execute();
                                         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);

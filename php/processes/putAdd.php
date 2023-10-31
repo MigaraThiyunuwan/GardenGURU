@@ -1,6 +1,7 @@
 <?php
 require_once '../classes/DbConnector.php';
 require '../classes/persons.php';
+require_once '../classes/Security.php';
 
 use classes\DbConnector;
 $dbcon = new DbConnector();
@@ -13,10 +14,10 @@ if (isset($_SESSION["user"])) {
     exit();
 }
 
-if (isset($_POST['submit'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $text_description = $_POST["text_description"];
-    $text_title = $_POST["text_title"];
+    $text_description = Security::SanitizeInput($_POST["text_description"]);
+    $text_title = Security::SanitizeInput($_POST["text_title"]);
     $realDate = $_POST["realDate"];
     $file = $_FILES['image1'];
 
