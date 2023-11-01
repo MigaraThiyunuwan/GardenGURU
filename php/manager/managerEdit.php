@@ -157,14 +157,14 @@ if (isset($_SESSION["manager"])) {
                                                 <input class="form-control" type="password" name="currentPassword1">
 
                                             </div>
-                                            <div class="row">
+                                            <div class="row" style="margin-top: 10px;">
                                                 <p class="fw-bold me-2">
                                                     Confirm Current Password :
                                                 </p>
                                                 <input class="form-control" type="password" name="currentPassword2">
 
                                             </div>
-                                            <div class="row">
+                                            <div class="row" style="margin-top: 10px;">
                                                 <p class="fw-bold me-2">
                                                     New Password :
                                                 </p>

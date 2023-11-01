@@ -147,13 +147,13 @@ if (isset($_SESSION["manager"])) {
                     <a href="./manageAdvertiesments.php" class="w-100"><button class="mybtn w-100">Advertiesment</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                <a href="./manageBlogs.php" class="w-100"><button class="mybtn w-100">Manage Blog</button></a>
+                    <a href="./manageBlogs.php" class="w-100"><button class="mybtn w-100">Manage Blog</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                <a href="./manageOrder.php" class="w-100"><button class="mybtn w-100">Orders</button></a>
+                    <a href="./manageOrder.php" class="w-100"><button class="mybtn w-100">Orders</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                <a href="./manageShop.php" class="w-100"><button class="mybtn w-100">Manage Shop</button></a>
+                    <a href="./manageShop.php" class="w-100"><button class="mybtn w-100">Manage Shop</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
                     <button class="mybtn w-100">Button</button>
@@ -163,10 +163,10 @@ if (isset($_SESSION["manager"])) {
             <!-- <button style="--c:#E95A49">Button</button> -->
 
             <div class="container"><br>
-            <?php
+                <?php
 
                 if (isset($_GET['success'])) {
-                    
+
                     if ($_GET['success'] == 2) {
 
                         echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
@@ -187,8 +187,114 @@ if (isset($_SESSION["manager"])) {
                 <br>
 
                 <div class="card shadow">
+                    <?php
+
+                    if (isset($_GET['success'])) {
+                        if ($_GET['success'] == 1) {
+
+                            echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                    News Posted Successfully!
+                    </div></b>";
+                        }
+                        
+                    }
+                    if (isset($_GET['error'])) {
+
+                        if ($_GET['error'] == 1) {
+
+                            echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                            Please upload JPG, JPGE or PNG image types!
+                    </div></b>";
+                        }
+                        if ($_GET['error'] == 2) {
+
+                            echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                            Please upload image less than 5MB!
+                    </div></b>";
+                        }
+
+                        if ($_GET['error'] == 3) {
+
+                            echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+            News Posting Failed!
+                    </div></b>";
+                        }
+                    }
+                    ?>
                     <div class="card-body">
 
+                        <div class="col">
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#postNews">Post a News </button>
+                        </div>
+                        <div class="modal fade shadow my-5" id="postNews" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content" style="background-color: white;">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Post a News
+                                        </h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <div class="d-flex justify-content-between p-2">
+
+                                            <div class="col">
+                                                <form action='../processes/managerProcess.php' method='POST' enctype="multipart/form-data">
+
+                                                    <div class="row">
+                                                        <p class="fw-bold me-2">
+                                                            Upload Image:
+                                                        </p>
+                                                        <input type="file" class="form-control" name="newsimage1" id="image1" values="$filename1">
+
+                                                    </div>
+
+                                                    <div class="row" style="margin-top: 10px;">
+                                                        <p class="fw-bold me-2">
+                                                            Enter Title:
+                                                        </p>
+                                                        <input class="form-control" type="text" name="title">
+
+                                                    </div>
+
+                                                    <div class="row" style="margin-top: 10px;">
+                                                        <p class="fw-bold me-2">
+                                                            Brief Description :
+                                                        </p>
+                                                        <textarea name="description" class="form-control" id="text_description" rows="2" cols="40"></textarea>
+
+                                                    </div>
+
+                                                    <div class="row" style="margin-top: 10px;">
+                                                        <p class="fw-bold me-2">
+                                                            News Content:
+                                                        </p>
+                                                        <textarea name="content" class="form-control" id="text_description" rows="5" cols="40"></textarea>
+
+                                                    </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <div class="row w-100">
+                                                <div class="col-md-6" style="margin-bottom: 10px;">
+
+                                                    <button class="btn btn-success w-100 " type="submit">Post</button>
+                                                    </form>
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <button class="btn btn-danger w-100" type="button" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
                             <table class="table my-0" id="dataTable">
                                 <thead>
@@ -221,7 +327,7 @@ if (isset($_SESSION["manager"])) {
                                                 <td><?php echo $news->newsId; ?></td>
                                                 <td><?php echo $news->title; ?></td>
                                                 <td><?php echo $news->newsPostedDate; ?></td>
-                                                
+
 
                                                 <td>
                                                     <button type="button" class="btn btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletemodel<?php echo $news->newsId ?>">Delete </button>

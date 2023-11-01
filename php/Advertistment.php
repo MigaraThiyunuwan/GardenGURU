@@ -184,7 +184,9 @@ if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) ) {
                               </a>
                             </h3>
                             <p class="product-description">
+                              <b>
                               <?php echo nl2br($description); ?>
+                              </b>
                             </p>
                             
                             <div class="product-buttons mt-4">
