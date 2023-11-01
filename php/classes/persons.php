@@ -1049,6 +1049,63 @@ class Manager extends person
         }
     }
 
+    public function postNews($file, $title, $description, $content, $date)
+    {
+        $tmp_name1 = $file['tmp_name'];
+        $filename1 = $file['name'];
+        $randomString = bin2hex(random_bytes(8));
+
+        $allowed = array('jpeg', 'png', 'jpg', 'JPEG', 'PNG', 'JPG');
+        $ext = pathinfo($filename1, PATHINFO_EXTENSION);
+
+        if (in_array($ext, $allowed)) {
+
+            if ($file['size'] < 5 * 1024 * 1024) {
+
+                $newFilename = $randomString . '.' . pathinfo($filename1, PATHINFO_EXTENSION);
+
+                $destination1 = '../../images/newsfeed/' . $newFilename;
+                $dbDestination = '../images/newsfeed/' . $newFilename;
+
+                if (file_exists($destination1)) {
+                    unlink($destination1);
+                }
+
+                if (move_uploaded_file($tmp_name1, $destination1)) {
+                    try {
+                        $dbcon = new DbConnector();
+                        $conn = $dbcon->getConnection();
+                        $sql = "INSERT INTO news (title, newsPostedDate, description, image, full_content) VALUES ( ?, ?, ?, ?, ?)";
+
+                        $pstmt = $conn->prepare($sql);
+                        $pstmt->bindValue(1, $title);
+                        $pstmt->bindValue(2, $date);
+                        $pstmt->bindValue(3, $description);
+                        $pstmt->bindValue(4, $dbDestination);
+                        $pstmt->bindValue(5, $content);
+
+                        if ($pstmt->execute()) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    } catch (PDOException $exc) {
+                        echo $exc->getMessage();
+                    }
+                } else {
+                    header("Location: ../manager/manageNewsFeed.php?error=3");
+                    exit();
+                }
+            } else {
+                header("Location: ../manager/manageNewsFeed.php?error=2");
+                exit();
+            }
+        } else {
+            header("Location: ../manager/manageNewsFeed.php?error=1");
+            exit();
+        }
+    }
+
     // public static function LoginManager($email, $password)
     // {
     //     try {

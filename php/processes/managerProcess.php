@@ -1,5 +1,5 @@
 <?php
-
+require_once '../classes/Security.php';
 require_once '../classes/DbConnector.php';
 require '../classes/persons.php';
 
@@ -90,13 +90,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (isset($_FILES['itemImage']) && $_FILES['itemImage']['error'] === UPLOAD_ERR_OK) {
-        $itamName = $_POST['itamName'];
-        $itemPrice = $_POST['itemPrice'];
+        $itamName = Security::SanitizeInput($_POST['itamName']);
+        $itemPrice = Security::SanitizeInput($_POST['itemPrice']);
         // call addItem function in Manager class
         if ($manager->addItem($_FILES['itemImage'], $itemPrice, $itamName)) {
             header("Location: ../manager/manageShop.php?success=3");
         } else {
             header("Location: ../manager/manageShop.php?error=3");
+        }
+    }
+
+    if (isset($_FILES['newsimage1']) && $_FILES['newsimage1']['error'] === UPLOAD_ERR_OK) {
+        $title = Security::SanitizeInput($_POST['title']);
+        $description = Security::SanitizeInput($_POST['description']);
+        $content = Security::SanitizeInput($_POST['content']);
+        $currentDate = date('Y-m-d');
+        // call postNews function in Manager class
+        if ($manager->postNews($_FILES['newsimage1'], $title, $description, $content, $currentDate)) { //$title, $description, $content, $date
+            header("Location: ../manager/manageNewsFeed.php?success=1");
+        } else {
+            header("Location: ../manager/manageNewsFeed.php?error=3");
         }
     }
 }
