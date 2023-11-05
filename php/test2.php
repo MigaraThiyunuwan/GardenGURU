@@ -856,6 +856,42 @@ if(isset($_POST["firstname"],$_POST["lastname"],$_POST["username"],$_POST["passw
 header("Location".$loaction);
 
 
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Check if all required fields are set and not empty
+    if (isset($_POST["firstname"], $_POST["lastname"], $_POST["username"], $_POST["email"], $_POST["password"])) {
+        if (empty($_POST["firstname"]) || empty($_POST["lastname"]) || empty($_POST["username"]) || empty($_POST["email"]) || empty($_POST["password"])) {
+            header("Location: index.php?error=1");
+            exit;
+        } else {
+            $firstName1 = $_POST["firstname"];
+            $lastName1 = $_POST["lastname"];
+            $userName1 = $_POST["username"];
+            $email1 = $_POST["email"];
+            $password1 = password_hash($_POST["password"], PASSWORD_BCRYPT);
+
+            // Create a new User object with user data
+            $user = new User($firstName1, $lastName1, $userName1, $email1, $password1);
+
+            // Assuming your User class has a register method
+            $dbConnection = (new DbConnecter())->getConnection();
+
+            if ($user->register($dbConnection)) {
+                header("Location: index.php?error=2");
+                exit;
+            } else {
+                // Handle registration failure
+                header("Location: index.php?error=3");
+                exit;
+            }
+        }
+    } else {
+        header("Location: index.php?error=1");
+        exit;
+    }
+}
+
+// Rest of your code for displaying the registration form, error messages, etc.
+?>
 
 
 
