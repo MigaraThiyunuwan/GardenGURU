@@ -126,23 +126,28 @@ if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) ) {
       <p class="fs-5 fw-bold text-primary">Discover a World of Possibilities</p>
       <h1 class="display-5 mb-5">Explore Our Exclusive Collection</h1>
     </div>
-
-
-
-
-
-
-
-
+    
     <!-- newly added advertiesments -->
     <!-- Projects Start -->
     <div class="container-xxl py-5">
       <div class="container">
         <div class="row g-4 portfolio-container">
           <?php
-
-          // Retrieve all uploaded photos from the database
-          $sql = "SELECT image1_filename ,title,  description, user_FirstName, user_LastName, adPostedDate FROM advertisements ORDER BY id DESC";
+          $sql = "SELECT
+          a.id AS advertisement_id,
+          a.title AS advertisement_title,
+          a.description AS advertisement_description,
+          a.adPostedDate AS advertisement_posted_date,
+          a.image1_filename AS advertisement_image_filename,
+          u.user_FirstName AS user_first_name,
+          u.user_LastName AS user_last_name
+        FROM
+          advertisements a
+        INNER JOIN
+          users u
+        ON
+          a.user_id = u.user_id;";
+          
           try {
 
             $stmt = $dbcon->query($sql);
@@ -157,14 +162,12 @@ if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) ) {
 
                     <?php
                     foreach ($result as $row) {
-                      $photoName = $row["image1_filename"];
-                      $title = $row["title"];
-                      $description = $row["description"];
-                      $fname = $row["user_FirstName"];
-                      $lname = $row["user_LastName"];
-                      $adPostedDate = $row["adPostedDate"];
-
-                      
+                      $photoName = $row["advertisement_image_filename"];
+                      $title = $row["advertisement_title"];
+                      $description = $row["advertisement_description"];
+                      $fname = $row["user_first_name"];
+                      $lname = $row["user_last_name"];
+                      $adPostedDate = $row["advertisement_posted_date"];
                     ?>
                       <div class="col-md-6" style="margin-bottom: 25px;">
                         <div class="block product no-border z-depth-2-top z-depth-2--hover">
@@ -181,7 +184,9 @@ if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) ) {
                               </a>
                             </h3>
                             <p class="product-description">
+                              <b>
                               <?php echo nl2br($description); ?>
+                              </b>
                             </p>
                             
                             <div class="product-buttons mt-4">

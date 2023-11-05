@@ -74,17 +74,132 @@ if (isset($_SESSION["manager"])) {
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                            <img src="../../images/manager.png" alt="Admin" class="rounded-circle" width="150">
+                                <img src="../../images/manager.png" alt="Admin" class="rounded-circle" width="150">
                                 <div class="mt-3">
                                     <h4>Hello! <?php echo $manager->getFirstName() . "" . $manager->getLastName() ?> !</h4><br>
                                     <a class="btn btn-outline-danger " target="" href="../processes/logout.php">Log Out</a>
 
-                                    <a class="btn btn-outline-primary " target="" href="#">Change Password</a>
+                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#changePassword">Change Password </button>
+                                    <?php
+                                    if (isset($_GET['success'])) {
+                                        if ($_GET['success'] == 1) {
+
+                                            echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                                                    Password changed Successfully!
+                                                    </div></b>";
+                                        }
+                                    }
+
+                                    if (isset($_GET['error'])) {
+                                        if ($_GET['error'] == 1) {
+
+                                            echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                                                    Plese fill all Fields!
+                                                    </div></b>";
+                                        }
+                                        if ($_GET['error'] == 2) {
+
+                                            echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                                                   Password Miss Match!
+                                                    </div></b>";
+                                        }
+                                        if ($_GET['error'] == 3) {
+
+                                            echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        Password Must Contain, <br></b>
+                                        <ul>
+                                            <li>More than 6 characters</li>
+                                            <li>At least one number</li>
+                                            <li>At least one Upper Case character</li>
+                                            <li>At least one Special Character</li>
+                                        </ul>
+                                        </div></b>";
+                                        }
+                                        if ($_GET['error'] == 4) {
+
+                                            echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                                                   Password Change Failed!
+                                                    </div></b>";
+                                        }
+                                        if ($_GET['error'] == 5) {
+
+                                            echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                                                   Current Password Incorrect!
+                                                    </div></b>";
+                                        }
+                                    }
+                                    ?>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="modal fade shadow my-5" id="changePassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content" style="background-color: white;">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Change Password
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="d-flex justify-content-between p-2">
+
+                                    <div class="col">
+                                        <form action='../processes/changePassword.php' method='POST'>
+                                            <div class="row">
+                                                <p class="fw-bold me-2">
+                                                    Enter Current Password:
+                                                </p>
+                                                <input class="form-control" type="password" name="currentPassword1">
+
+                                            </div>
+                                            <div class="row" style="margin-top: 10px;">
+                                                <p class="fw-bold me-2">
+                                                    Confirm Current Password :
+                                                </p>
+                                                <input class="form-control" type="password" name="currentPassword2">
+
+                                            </div>
+                                            <div class="row" style="margin-top: 10px;">
+                                                <p class="fw-bold me-2">
+                                                    New Password :
+                                                </p>
+                                                <input class="form-control" type="password" name="newPassword">
+
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <div class="row w-100">
+                                        <div class="col-md-6" style="margin-bottom: 10px;">
+
+                                            <button class="btn btn-danger w-100 " type="submit">Change</button>
+                                            </form>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button class="btn btn-success w-100" type="button" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
                 <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body">
@@ -139,7 +254,7 @@ if (isset($_SESSION["manager"])) {
 
                                         </div>
                                     </div>
-                                 
+
                                 </div>
                             </form>
                         </div>
@@ -148,8 +263,8 @@ if (isset($_SESSION["manager"])) {
                 <br><br>
     </section>
 
-   <!-- Footer Start -->
-   <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">

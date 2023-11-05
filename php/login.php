@@ -2,7 +2,7 @@
 <html lang="en">
 <?php
 if (isset($_COOKIE['remember_user'])){
-    echo "seted";
+   
     header("Location:./processes/loginProcess.php");
     exit;
 }
@@ -157,6 +157,12 @@ if (isset($_COOKIE['remember_user'])){
 
                                     echo "<b><div class='alert alert-danger py-2' role='alert'>
                                         You Need to Login to Your User Account to View Advertisements.
+                                        </div></b>";
+                                }
+                                if ($_GET['error'] == 6) {
+
+                                    echo "<b><div class='alert alert-danger py-2' role='alert'>
+                                        You Need to Login to Your User Account to Submit a Review.
                                         </div></b>";
                                 }
                             } ?>

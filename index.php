@@ -3,6 +3,12 @@
 
 <?php
 require_once './php/classes/persons.php';
+require_once './php/classes/report.php';
+require_once './php/classes/DbConnector.php';
+
+use classes\DbConnector;
+
+$dbcon = new DbConnector();
 session_start();
 $user = null;
 $manager = null;
@@ -28,18 +34,34 @@ if (isset($_SESSION["manager"])) {
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Template Stylesheet -->
     <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/reviews.css" rel="stylesheet">
+    <style>
+        .width-auto {
+            width: auto;
+        }
+
+        .text-lg {
+            font-size: 2rem;
+        }
+
+        .carousel-indicators li {
+            border: none;
+            background: #ccc;
+        }
+
+        .carousel-indicators li.active {
+            background: #28a745;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
 </head>
 
 <body class="body">
-
-    <?php
-
-    ?>
-
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
@@ -206,7 +228,7 @@ if (isset($_SESSION["manager"])) {
                             <h4 class="mb-3">Plant Suggestion</h4>
                             <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif">Get ready to transform your garden into a captivating symphony of colors, fragrances, and textures. Let's cultivate beauty together, one plant at a time. 🌼🌳</p>
                             <a class="btn btn-sm" href="./php/plantSuggestion.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
-                        
+
                         </div>
                     </div>
                 </div>
@@ -289,6 +311,237 @@ if (isset($_SESSION["manager"])) {
         </div>
     </div>
     <!-- Service End -->
+    <div class="container-xxl py-5">
+        <div class="row">
+            <div class="col-md-12 course-details-content">
+                <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                    <p class="fs-5 fw-bold text-primary">User Reviews</p>
+                    <h1 class="display-5 mb-5">What our customers say about us</h1>
+                </div>
+
+
+
+                <div class="row row--30">
+                    <div class="col-lg-4">
+                        <div class="rating-box">
+                            <?php
+                            $totalSum = 5 * Report::reviewStarCount(5) + 4 * Report::reviewStarCount(4) + 3 * Report::reviewStarCount(3) + 2 * Report::reviewStarCount(2) + Report::reviewStarCount(1);
+                            $totalReviews = Report::reviewStarCount(5) + Report::reviewStarCount(4) + Report::reviewStarCount(3) + Report::reviewStarCount(2) + Report::reviewStarCount(1);
+                            $score = round($totalSum / $totalReviews, 1);
+                            ?>
+                            <div class="rating-number"><?php echo $score ?></div>
+                            <?php
+
+                            $fullStars = floor($score);
+                            $halfStar = $score - $fullStars >= 0.5;
+
+                            if ($score <= 0) {
+                                $fullStars = 0;
+                                $halfStar = false;
+                            }
+
+                            for ($i = 1; $i <= $fullStars; $i++) {
+                                echo '<i class="fa fa-star" aria-hidden="true"></i>'; // Unicode star character
+                            }
+
+                            if ($halfStar) {
+                                echo '<i class="fa-solid fa-star-half-stroke" aria-hidden="true"></i>';
+                                $fullStars++; // Increment full stars if there's a half star
+                            }
+
+                            $emptyStars = 5 - $fullStars;
+                            for ($i = 1; $i <= $emptyStars; $i++) {
+                                echo '<i class="fa-regular fa-star" aria-hidden="true"></i>'; // Unicode empty star character
+                            }
+                            ?>
+
+
+                            <span> <br>(<?php echo $totalReviews ?> Reviews) </span> <br>
+                        </div>
+                    </div>
+                    <?php
+                    $totalReviews = Report::reviewStarCount(5) + Report::reviewStarCount(4) + Report::reviewStarCount(3) + Report::reviewStarCount(2) + Report::reviewStarCount(1);
+
+                    ?>
+                    <div class="col-lg-8">
+                        <div class="review-wrapper">
+                            <div class="single-progress-bar">
+                                <div class="rating-text"> 5 <i class="fa fa-star" aria-hidden="true"></i> </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: <?php echo (Report::reviewStarCount(5) / $totalReviews) * 100 ?>%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="rating-value"><?php echo Report::reviewStarCount(5) ?></span>
+                            </div>
+                            <div class="single-progress-bar" style="margin-top: 7px;">
+                                <div class="rating-text"> 4 <i class="fa fa-star" aria-hidden="true"></i> </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: <?php echo (Report::reviewStarCount(4) / $totalReviews) * 100 ?>%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="rating-value"><?php echo Report::reviewStarCount(4) ?></span>
+                            </div>
+                            <div class="single-progress-bar" style="margin-top: 7px;">
+                                <div class="rating-text"> 3 <i class="fa fa-star" aria-hidden="true"></i> </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: <?php echo (Report::reviewStarCount(3) / $totalReviews) * 100 ?>%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="rating-value"><?php echo Report::reviewStarCount(3) ?></span>
+                            </div>
+                            <div class="single-progress-bar" style="margin-top: 7px;">
+                                <div class="rating-text"> 2 <i class="fa fa-star" aria-hidden="true"></i> </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: <?php echo (Report::reviewStarCount(2) / $totalReviews) * 100 ?>%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="rating-value"><?php echo Report::reviewStarCount(2) ?></span>
+                            </div>
+                            <div class="single-progress-bar" style="margin-top: 7px;">
+                                <div class="rating-text"> 1 <i class="fa fa-star" aria-hidden="true"></i> </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: <?php echo (Report::reviewStarCount(1) / $totalReviews) * 100 ?>%" aria-valuenow="0" aria-valuemin="80" aria-valuemax="100"></div>
+                                </div>
+                                <span class="rating-value"><?php echo Report::reviewStarCount(1) ?></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <section class="pb-5" style="margin-top: 50px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="p-5 bg-white shadow rounded">
+                            <!-- Bootstrap carousel-->
+                            <div class="carousel slide" id="carouselExampleIndicators" data-ride="carousel">
+                                <!-- Bootstrap carousel indicators [nav] -->
+                                <ol class="carousel-indicators mb-0">
+                                    <li class="active" data-target="#carouselExampleIndicators" data-slide-to="0"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                </ol>
+
+
+                                <!-- Bootstrap inner [slides]-->
+                                <div class="carousel-inner px-5 pb-4">
+
+                                    <?php
+                                    try {
+                                        $con = $dbcon->getConnection();
+
+                                        $query = "SELECT
+                                        r.reviewID,
+                                        r.rate,
+                                        r.description,
+                                        u.user_FirstName,
+                                        u.user_LastName,
+                                        u.profile_picture
+                                    FROM
+                                        review AS r
+                                    JOIN
+                                        users AS u
+                                    ON
+                                        r.user_id = u.user_id
+                                    WHERE
+                                        r.rate = 5
+                                    ORDER BY
+                                        r.reviewID DESC
+                                    LIMIT 1";
+                                        $pstmt = $con->prepare($query);
+                                        $pstmt->execute();
+                                        $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                                        foreach ($rs as $item) {
+                                            $imagePathRelative = str_replace("../", "./", $item->profile_picture);
+
+                                    ?>
+                                            <div class="carousel-item active">
+                                                <div class="media"><img class="rounded-circle img-thumbnail" src="<?php echo "" . $imagePathRelative ?>" alt="" width="75">
+                                                    <div class="media-body ml-3">
+                                                        <blockquote class="blockquote border-0 p-0">
+                                                            <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 text-success"> </i><?php echo " " . $item->description ?> <i class="fa fa-quote-right mr-3 text-success"> </i></p>
+                                                            <footer class="blockquote-footer">Registered User -
+                                                                <cite title="Source Title"><?php echo $item->user_FirstName . " " . $item->user_LastName ?></cite>
+                                                            </footer>
+                                                        </blockquote>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    <?php
+                                        }
+                                    } catch (PDOException $exc) {
+                                        echo $exc->getMessage();
+                                    }
+                                    
+                                    try {
+                                        $con = $dbcon->getConnection();
+
+                                        $query = "SELECT
+                                        r.reviewID,
+                                        r.rate,
+                                        r.description,
+                                        u.user_FirstName,
+                                        u.user_LastName,
+                                        u.profile_picture
+                                    FROM
+                                        review AS r
+                                    JOIN
+                                        users AS u
+                                    ON
+                                        r.user_id = u.user_id
+                                    WHERE
+                                        r.rate = 5
+                                    ORDER BY
+                                        r.reviewID DESC
+                                    LIMIT 1,4";
+                                        $pstmt = $con->prepare($query);
+                                        $pstmt->execute();
+                                        $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+
+                                        foreach ($rs as $item) {
+                                            $imagePathRelative = str_replace("../", "./", $item->profile_picture);
+
+                                    ?>
+                                            <div class="carousel-item">
+                                                <div class="media"><img class="rounded-circle img-thumbnail" src="<?php echo "" . $imagePathRelative ?>" alt="" width="75">
+                                                    <div class="media-body ml-3">
+                                                        <blockquote class="blockquote border-0 p-0">
+                                                            <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 text-success"></i><?php echo " " . $item->description ?> <i class="fa fa-quote-right mr-3 text-success"> </i></p>
+                                                            <footer class="blockquote-footer">Registered User - 
+                                                                <cite title="Source Title"><?php echo $item->user_FirstName . " " . $item->user_LastName ?></cite>
+                                                            </footer>
+                                                        </blockquote>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    <?php
+                                        }
+                                    } catch (PDOException $exc) {
+                                        echo $exc->getMessage();
+                                    }
+                                    ?>
+                                    
+                                </div>
+
+
+                                <!-- Bootstrap controls [dots]-->
+                                <a class="carousel-control-prev width-auto" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                    <i class="fa fa-angle-left text-dark text-lg"></i>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next width-auto" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                    <i class="fa fa-angle-right text-dark text-lg"></i>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
@@ -296,9 +549,9 @@ if (isset($_SESSION["manager"])) {
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Our Office</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
+                    <p style="color: white;" class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>No. 58, Passara Road, Badulla</p>
+                    <p style="color: white;" class="mb-2"><i class="fa fa-phone-alt me-3"></i>+9455 34 67279</p>
+                    <p style="color: white;" class="mb-2"><i class="fa fa-envelope me-3"></i>info@gardenguru.com</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-square btn-outline-light rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>

@@ -2,6 +2,7 @@
 require_once '../classes/DbConnector.php';
 require '../classes/persons.php';
 require '../classes/Security.php';
+
 use classes\DbConnector;
 
 $dbcon = new DbConnector();
@@ -45,4 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ../user.php?error=2");
         exit;
     }
+
+    
 }

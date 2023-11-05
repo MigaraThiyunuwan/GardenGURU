@@ -8,7 +8,7 @@ class Shop
     private $ItemName;
     private $ItemQuantity;
     private $ItemPrice;
-    private $ItameImage;
+    private $ItamImage;
 
     public function __construct($ItemName, $ItemQuantity, $ItemPrice)
     {
@@ -16,7 +16,7 @@ class Shop
         $this->ItemName = $ItemName;
         $this->ItemQuantity = $ItemQuantity;
         $this->ItemPrice = $ItemPrice;
-        $this->ItameImage = null;
+        $this->ItamImage = null;
     }
 
     public function setItemId($id)
@@ -31,7 +31,7 @@ class Shop
 
     public function setItemImage($img)
     {
-        $this->ItameImage = $img;
+        $this->ItamImage = $img;
     }
 
     public function getItemId()
@@ -54,9 +54,9 @@ class Shop
         return $this->ItemPrice;
     }
 
-    public function getItameImage()
+    public function getItamImage()
     {
-        return $this->ItameImage;
+        return $this->ItamImage;
     }
 
     public function reduceQuantity($ItemId, $amount)
