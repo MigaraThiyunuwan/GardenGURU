@@ -845,21 +845,6 @@ class Manager extends person
         return $this->managerId;
     }
 
-    // public function changePassword($password)
-    // {
-    //     $dbcon = new DbConnector();
-    //     try {
-    //         $con = $dbcon->getConnection();
-    //         $query = "UPDATE manager SET mPassword = ? WHERE managerID = ?";
-    //         $pstmt = $con->prepare($query);
-    //         $pstmt->bindValue(1, $password);
-    //         $pstmt->bindValue(2, $this->managerId);
-    //         $pstmt->execute();
-    //         return ($pstmt->rowCount() > 0);
-    //     } catch (PDOException $exc) {
-    //         echo $exc->getMessage();
-    //     }
-    // }
     public function deleteUser($user_id)
     {
         try {
@@ -1106,42 +1091,6 @@ class Manager extends person
         }
     }
 
-    // public static function LoginManager($email, $password)
-    // {
-    //     try {
-    //         $dbcon = new DbConnector();
-    //         $con = $dbcon->getConnection();
-    //         $query = "SELECT * FROM manager WHERE mEmail = ? ";
-    //         $pstmt = $con->prepare($query);
-    //         $pstmt->bindValue(1, $email);
-
-    //         $pstmt->execute();
-
-    //         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
-
-    //         foreach ($rs as $row) {
-    //             $dbpassword = $row->mPassword;
-    //             $dbFirstName = $row->mFirstName;
-    //             $dbLastName = $row->mLastName;
-    //             $dbEmail = $row->mEmail;
-    //             $dbPhoneNo = $row->mPhone;
-    //             $dbNIC = $row->mNIC;
-    //             $dbmID = $row->managerID;
-    //         };
-    //         if (password_verify($password, $dbpassword)) {
-
-    //             $manager = new Manager($dbFirstName, $dbLastName, $dbEmail, $dbNIC, $dbmID, $dbPhoneNo);
-    //             session_start();
-    //             $_SESSION["manager"] = $manager;
-    //             return true;
-    //         } else {
-    //             return false;
-    //         }
-    //     } catch (PDOException $exc) {
-    //         echo $exc->getMessage();
-    //     }
-    // }
-
     public function EditManagerDetails($firstName, $lastName, $email, $NIC, $phone)
     {
         try {
@@ -1230,43 +1179,6 @@ class Admin extends person
         return $this->adminId;
     }
 
-    // public static function adminLogin($email, $password)
-    // {
-    //     try {
-    //         $dbcon = new DbConnector();
-    //         $con = $dbcon->getConnection();
-    //         $query = "SELECT * FROM admin WHERE aEmail = ? ";
-    //         $pstmt = $con->prepare($query);
-    //         $pstmt->bindValue(1, $email);
-
-    //         $pstmt->execute();
-
-    //         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
-
-    //         foreach ($rs as $row) {
-    //             $dbpassword = $row->aPassword;
-    //             $dbFirstName = $row->aFirstName;
-    //             $dbLastName = $row->aLastName;
-    //             $dbEmail = $row->aEmail;
-    //             $dbPhoneNo = $row->aPhone;
-    //             $dbNIC = $row->aNIC;
-    //             $dbaID = $row->adminID;
-    //         }
-
-    //         if (password_verify($password, $dbpassword)) {
-
-    //             $admin = new Admin($dbFirstName, $dbLastName, $dbEmail, $dbNIC, $dbaID, $dbPhoneNo);
-    //             session_start();
-    //             $_SESSION["admin"] = $admin;
-    //             return true;
-    //         } else {
-
-    //             return false;
-    //         }
-    //     } catch (PDOException $exc) {
-    //         echo $exc->getMessage();
-    //     }
-    // }
     public function AddManager($firstname, $lastname, $email, $password, $NIC, $phone)
     {
         try {

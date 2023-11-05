@@ -302,7 +302,7 @@ if (isset($_SESSION["manager"])) {
                                                                             <textarea name="edit_description" placeholder="<?php echo $myReview ?>" class="form-control" id="text_description" rows="5" cols="40"></textarea>
                                                                             <div class="rate bg-success py-3 text-white mt-3">
 
-                                                                                <h6 class="mb-0">Rate your driver</h6>
+                                                                                <h6 class="mb-0" style="color: white;">Rate GardenGURU</h6>
 
                                                                                 <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
                                                                                 </div>
@@ -361,7 +361,7 @@ if (isset($_SESSION["manager"])) {
                                                                             <textarea name="text_description" class="form-control" id="text_description" rows="5" cols="40"></textarea>
                                                                             <div class="rate bg-success py-3 text-white mt-3">
 
-                                                                                <h6 class="mb-0">Rate your driver</h6>
+                                                                                <h6 class="mb-0" style="color: white;">Rate GardenGURU</h6>
 
                                                                                 <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
                                                                                 </div>
