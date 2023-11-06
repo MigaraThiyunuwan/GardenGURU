@@ -246,7 +246,56 @@ $pdf->Cell(0, 10, 'Hello, World!', 0, 1, 'C');
 // Output the PDF to the browser or save it to a file
 $pdf->Output('sample.pdf', 'I');
 
-   
+
+// Load the image
+$image = imagecreatefromjpeg('input.jpg');
+
+// Set the text color and font
+$textColor = imagecolorallocate($image, 255, 255, 255); // White color
+$font = 'arial.ttf'; // You can specify a TrueType font file
+
+// Define the text to be added
+$text = 'Hello, World!';
+
+// Define the position where the text will be added
+$x = 10; // X-coordinate
+$y = 30; // Y-coordinate
+
+// Add the text to the image
+imagettftext($image, 20, 0, $x, $y, $textColor, $font, $text);
+
+// Output the image with the text
+header('Content-Type: image/jpeg');
+imagejpeg($image);
+
+// Free up memory by destroying the image resource
+imagedestroy($image);
+
+ // Load the image
+$image = imagecreatefromjpeg('input.jpg');
+
+// Set the text color
+$textColor = imagecolorallocate($image, 255, 255, 255); // White color
+
+// Define the text to be added
+$text = 'Hello, World!';
+
+// Define the font size
+$fontSize = 20;
+
+// Define the position where the text will be added
+$x = 10; // X-coordinate
+$y = 30; // Y-coordinate
+
+// Add the text to the image
+imagestring($image, 5, $x, $y, $text, $textColor);
+
+// Output the image with the text
+header('Content-Type: image/jpeg');
+imagejpeg($image);
+
+// Free up memory by destroying the image resource
+imagedestroy($image); 
 
 
 
