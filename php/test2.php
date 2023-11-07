@@ -297,7 +297,40 @@ imagejpeg($image);
 // Free up memory by destroying the image resource
 imagedestroy($image); 
 
+// PHP program to check given string is  
+// all characters -Uppercase characters 
+  
+$string1 = 'GEEKSFORGEEKS'; 
+  
+   if (ctype_upper($string1)) { 
+         
+        // if true then return Yes 
+        echo "Yes\n"; 
+    } else { 
+          
+        // if False then return No 
+        echo "No\n"; 
+    } 
 
+    // PHP program to check given string is  
+// all characters -Uppercase characters 
+  
+$strings = array('GEEKSFORGEEKS', 'First',  
+'PROGRAMAT2018', 'ARTICLE'); 
+
+// Checking above given four strings  
+//by used of ctype_upper() function . 
+
+foreach ($strings as $test) { 
+
+if (ctype_upper($test)) { 
+// if true then return Yes 
+echo "Yes\n"; 
+} else { 
+// if False then return No 
+echo "No\n"; 
+} 
+} 
 
 
 
