@@ -332,7 +332,29 @@ echo "No\n";
 } 
 } 
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_FILES["note"])) {
+        $uploadDir = "uploads/"; // Directory where notes will be saved
+        $uploadedFile = $uploadDir . basename($_FILES["note"]["name"]);
 
+        // Check if the file is a valid note (you can add more checks as needed)
+        $fileType = pathinfo($uploadedFile, PATHINFO_EXTENSION);
+
+        // Allow only specific file types (e.g., PDF, DOCX)
+        $allowedExtensions = array("pdf", "doc", "docx");
+        if (in_array($fileType, $allowedExtensions)) {
+            if (move_uploaded_file($_FILES["note"]["tmp_name"], $uploadedFile)) {
+                echo "Note uploaded successfully!";
+            } else {
+                echo "Error uploading the note.";
+            }
+        } else {
+            echo "Invalid file format. Allowed formats: PDF, DOC, DOCX.";
+        }
+    } else {
+        echo "Please select a file to upload.";
+    }
+}
 
 
 
