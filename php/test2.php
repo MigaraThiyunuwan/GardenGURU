@@ -18,6 +18,23 @@ class Book{
         $this->quantity = $quantity;
         $this->price = $price;
     }
+    public static function display($con) {
+        $con = DbConnector::getConnection();
+        $books = array();
+        try {
+            $query = "SELECT * FROM book";
+            $pstmt = $con->prepare($query);
+            $pstmt->execute();
+            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+            foreach ($rs as $row){
+                $book = new Book($row->barcode, $row->name, $row->author, $row->quantity, $row->price);
+                $books[] = $book;
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        }
+        return $books;
+        }
     
     function getBarcode() {
         return $this->barcode;
@@ -43,44 +60,27 @@ class Book{
         $this->barcode = $barcode;
     }
 
-    function setName($name) {
-        $this->name = $name;
-    }
-
-    function setAuthor($author) {
-        $this->author = $author;
-    }
-
-    function setQuantity($quantity) {
-        $this->quantity = $quantity;
-    }
-    function setPrice($price) {
-        $this->price = $price;
-    }
+    
     public function increaseQuantity($amount) { 
     }
     public function decreaseQuantity($amount) {   
     }
     public function UpdateBookDetails() {  
     }
-    public static function display($con) {
-        $con = DbConnector::getConnection();
-        $books = array();
-        try {
-            $query = "SELECT * FROM book";
-            $pstmt = $con->prepare($query);
-            $pstmt->execute();
-            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
-            foreach ($rs as $row){
-                $book = new Book($row->barcode, $row->name, $row->author, $row->quantity, $row->price);
-                $books[] = $book;
-            }
-        } catch (PDOException $exc) {
-            echo $exc->getMessage();
-        }
-        return $books;
-        }
+    
 }
+
+
+
+
+lkajfeokfokqefouqpjfcqekf;lc
+
+
+
+
+uhljjolj;nklh
+
+
 
 
 
