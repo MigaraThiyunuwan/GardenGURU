@@ -19,9 +19,6 @@ class Report
             $pstmt->bindValue(1, $orderID);
 
             $pstmt->execute();
-
-            // $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
-
             $myarray = array(); // Initialize an empty array
 
             while ($row = $pstmt->fetch(PDO::FETCH_ASSOC)) {

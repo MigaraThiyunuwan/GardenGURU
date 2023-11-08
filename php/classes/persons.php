@@ -640,6 +640,7 @@ class user extends person
             exit;
         }
     }
+    
     public function putBlog($file, $blogTitle, $blogDetails, $Date)
     {
         $tmp_name1 = $file['tmp_name'];
@@ -910,6 +911,43 @@ class Manager extends person
             $query = "DELETE FROM blog WHERE blog_id = :id";
             $pstmt = $con->prepare($query);
             $pstmt->bindParam(':id', $Blogid, PDO::PARAM_INT);
+            $a = $pstmt->execute();
+            if ($a > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+    public function deleteQuestion($questionID)
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "DELETE FROM question WHERE questionID = :id";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindParam(':id', $questionID, PDO::PARAM_INT);
+            $a = $pstmt->execute();
+            if ($a > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public function deleteAnswer($answerID)
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "DELETE FROM answer WHERE answerID = :id";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindParam(':id', $answerID, PDO::PARAM_INT);
             $a = $pstmt->execute();
             if ($a > 0) {
                 return true;

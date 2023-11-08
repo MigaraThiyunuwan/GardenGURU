@@ -1,11 +1,9 @@
 <?php
-
 namespace classes;
 use PDOException;
 use PDO;
 
 class DbConnector {
-
     private $host = "localhost";
     private $dbname = "gardenguru";
     private $dbuser = "root";

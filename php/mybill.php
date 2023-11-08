@@ -35,7 +35,7 @@ class MYPDF extends TCPDF
             $this->SetTextColor(0);
         }
         // Customer details
-     //   $this->Cell(0, 10, 'Bill To:', 0, 1);
+    
         $this->Cell(0, 10, "Receiver Name: ".$data[0][0], 0, 1);
         $this->Cell(0, 10, "Delivery Address: ".$data[0][3], 0, 1);
         $this->Cell(0, 10, "Nearest City: ".$data[0][8], 0, 1);
@@ -125,9 +125,8 @@ $pdf->AddPage();
 // column titles
 $header = array('Item', 'Qty', 'Unit Price', 'Total');
 
-// data loading
-////////////////////////////////////// $data = $pdf->LoadData('data/table_data_demo.txt');
 
+// data loading
 $data = Report::getBill($orderID);
 
 // print colored table
