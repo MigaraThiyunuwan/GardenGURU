@@ -76,8 +76,7 @@ class Report
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $total = $result['total'];
-            $roundedNumber = floor($total / 10) * 10;
-            return $roundedNumber;
+            return $total;
         } catch (PDOException $exc) {
             echo $exc->getMessage();
         }
@@ -92,8 +91,7 @@ class Report
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $total = $result['total'];
-            $roundedNumber = floor($total / 10) * 10;
-            return $roundedNumber;
+            return $total;
         } catch (PDOException $exc) {
             echo $exc->getMessage();
         }
@@ -110,8 +108,7 @@ class Report
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $total = $result['total'];
-            $roundedNumber = floor($total / 10) * 10;
-            return $roundedNumber;
+            return $total;
         } catch (PDOException $exc) {
             echo $exc->getMessage();
         }
@@ -127,8 +124,7 @@ class Report
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $total = $result['total'];
-            $roundedNumber = floor($total / 10) * 10;
-            return $roundedNumber;
+            return $total;
         } catch (PDOException $exc) {
             echo $exc->getMessage();
         }
@@ -286,7 +282,7 @@ class Report
 
                 return $total;
             }
-            return 0; // Item not found or no sales for the item.
+            return 0; 
         } catch (PDOException $exc) {
             echo $exc->getMessage();
         }

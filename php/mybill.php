@@ -1,6 +1,5 @@
 <?php
 require_once 'C:\xampp\htdocs\GardenGURU\TCPDF-main\tcpdf.php';
-//require_once './TCPDF-main/tcpdf.php';
 require_once './classes/DbConnector.php';
 require_once './classes/report.php';
 session_start();
