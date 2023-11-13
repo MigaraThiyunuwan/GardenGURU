@@ -10,13 +10,16 @@ require './classes/persons.php';
 session_start();
 $user =null;
 $manager = null;
-if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) ) {
+if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) || isset($_SESSION["admin"]) ) {
   // User is logged in, retrieve the user object
   if(isset($_SESSION["user"])){
     $user = $_SESSION["user"];
   }
   if(isset($_SESSION["manager"])){
     $manager = $_SESSION["manager"];
+  }
+  if(isset($_SESSION["admin"])){
+    $admin = $_SESSION["admin"];
   }
 } else {
   // Redirect the user to login.php if not logged in
@@ -184,7 +187,9 @@ if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) ) {
                               </a>
                             </h3>
                             <p class="product-description">
+                              <b>
                               <?php echo nl2br($description); ?>
+                              </b>
                             </p>
                             
                             <div class="product-buttons mt-4">

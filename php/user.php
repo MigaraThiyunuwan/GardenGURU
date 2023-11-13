@@ -358,7 +358,7 @@ if (isset($_SESSION["user"])) {
               <!-- <img class="img-fluid" src="img/icon/icon-3.png" alt="Icon"> -->
             </div>
             <h4 class="mb-3">Advertiesments</h4>
-            <p class="mb-4">Now you can put advertiesments to our website.</p>
+            <p class="mb-4">Advertise your plants, tools, or services to a dedicated gardening audience.</p>
             <!-- <a class="btn btn-sm" id="popbutton" href="#"><i class="fa fa-plus text-primary me-2"></i>Click here</a> -->
 
             <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#addadd"><i class="fa fa-plus text-primary me-2"></i>Click here </button>
@@ -375,7 +375,7 @@ if (isset($_SESSION["user"])) {
               <i class="fa-solid fa-question-circle fa-2xl" style="color: #256a4f;"></i>
             </div>
             <h4 class="mb-3">Ask Question</h4>
-            <p class="mb-4">Click the button to get answer from our agriculture consultants.</p>
+            <p class="mb-4">Seek expert guidance, ask questions, and connect with a community of plant enthusiasts.</p>
             <a class="btn btn-sm" href="comForum.php"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
           </div>
         </div>
@@ -390,7 +390,7 @@ if (isset($_SESSION["user"])) {
               <i class="fa-solid fa-shopping-cart fa-2xl" style="color: #256a4f;"></i>
             </div>
             <h4 class="mb-3">Buy Plants</h4>
-            <p class="mb-4">Click the button for buy plants and gardening supplies.</p>
+            <p class="mb-4">Explore and purchase a wide range of plants online, including rare and exotic varieties.</p>
             <a class="btn btn-sm" href="Selling.php"><i class="fa fa-plus text-primary me-2"></i>Click here</a>
           </div>
         </div>
@@ -405,12 +405,13 @@ if (isset($_SESSION["user"])) {
               <i class="fa-solid fa-shopping-cart fa-2xl" style="color: #256a4f;"></i>
             </div>
             <h4 class="mb-3">Add Blog</h4>
-            <p class="mb-4">Click the button for Add your post to blog page.</p>
+            <p class="mb-4">Access and contribute to knowledge through informative and engaging blog posts and articles.</p>
             <!-- <a class="btn btn-sm" id="addBlogButton" href="#"><i class="fa fa-plus text-primary me-2"></i>Click here</a> -->
             <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#putblog"><i class="fa fa-plus text-primary me-2"></i>Click here </button>
           </div>
         </div>
       </div>
+     
     </div>
 
     <div class="modal fade shadow my-5" id="addadd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">

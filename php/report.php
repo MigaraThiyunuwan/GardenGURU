@@ -51,9 +51,6 @@ if (isset($_SESSION["manager"])) {
 </head>
 
 <body>
-    <?php
-
-    ?>
 
 
     <!-- Navbar Start -->
@@ -83,6 +80,7 @@ if (isset($_SESSION["manager"])) {
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
+                <a href="./downloadReport.php" target="_blank" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">Download Report</a>
                 <?php
                 if ($user != null) {
                 ?>
@@ -122,7 +120,10 @@ if (isset($_SESSION["manager"])) {
             <div class="Reportcolumn">
                 <div class="Reportcard">
                     <p><i class="fa fa-user" style="font-size:50px;"></i></p>
-                    <h3><?php echo Report::RegisteredUsers() ?>+</h3>
+                    <?php
+                    $roundedNumber = floor(Report::RegisteredUsers() / 10) * 10;
+                    ?>
+                    <h3><?php echo $roundedNumber ?>+</h3>
                     <p>Registered Users</p>
                 </div>
             </div>
@@ -130,7 +131,10 @@ if (isset($_SESSION["manager"])) {
             <div class="Reportcolumn">
                 <div class="Reportcard">
                     <p><i class="fa fa-check" style="font-size:50px;"></i></p>
-                    <h3><?php echo Report::totalOrders() ?>+</h3>
+                    <?php
+                    $roundedNumber = floor(Report::totalOrders() / 10) * 10;
+                    ?>
+                    <h3><?php echo $roundedNumber ?>+</h3>
                     <p>Orders</p>
                 </div>
             </div>
@@ -138,7 +142,10 @@ if (isset($_SESSION["manager"])) {
             <div class="Reportcolumn">
                 <div class="Reportcard">
                     <p><i class="fa fa-smile-beam" style="font-size:50px;"></i></p>
-                    <h3><?php echo Report::happyCustomers() ?>+</h3>
+                    <?php
+                    $roundedNumber = floor(Report::happyCustomers() / 10) * 10;
+                    ?>
+                    <h3><?php echo $roundedNumber ?>+</h3>
                     <p>Happy Customers</p>
                 </div>
             </div>
@@ -146,7 +153,10 @@ if (isset($_SESSION["manager"])) {
             <div class="Reportcolumn">
                 <div class="Reportcard">
                     <p><i class="fa fa-shopping-bag" style="font-size:50px;"></i></p>
-                    <h3><?php echo Report::availableItems() ?>+</h3>
+                    <?php
+                    $roundedNumber = floor(Report::availableItems() / 10) * 10;
+                    ?>
+                    <h3><?php echo $roundedNumber ?>+</h3>
                     <p>Available Items</p>
                 </div>
             </div>
@@ -218,7 +228,7 @@ if (isset($_SESSION["manager"])) {
 
         <script>
             var yValues = [];
-            var xValues = [];                            
+            var xValues = [];
 
             var xValues = ["Ampara",
                 "Anuradhapura",
@@ -372,7 +382,7 @@ if (isset($_SESSION["manager"])) {
 
     </div>
 
-
+    
 
 
 

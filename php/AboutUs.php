@@ -302,7 +302,7 @@ if (isset($_SESSION["manager"])) {
                                                                             <textarea name="edit_description" placeholder="<?php echo $myReview ?>" class="form-control" id="text_description" rows="5" cols="40"></textarea>
                                                                             <div class="rate bg-success py-3 text-white mt-3">
 
-                                                                                <h6 class="mb-0">Rate your driver</h6>
+                                                                                <h6 class="mb-0" style="color: white;">Rate GardenGURU</h6>
 
                                                                                 <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
                                                                                 </div>
@@ -361,7 +361,7 @@ if (isset($_SESSION["manager"])) {
                                                                             <textarea name="text_description" class="form-control" id="text_description" rows="5" cols="40"></textarea>
                                                                             <div class="rate bg-success py-3 text-white mt-3">
 
-                                                                                <h6 class="mb-0">Rate your driver</h6>
+                                                                                <h6 class="mb-0" style="color: white;">Rate GardenGURU</h6>
 
                                                                                 <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
                                                                                 </div>
@@ -581,7 +581,7 @@ if (isset($_SESSION["manager"])) {
                             Full Stack Dev
                         </p>
                         <p class="text-blk feature-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Full stack guru, enjoys tackling complex problems, adept at database management, and optimizing performance.
                         </p>
                         <div class="social-icons">
                             <a href="https://www.twitter.com" target="_blank">
@@ -605,7 +605,7 @@ if (isset($_SESSION["manager"])) {
                             Full Stack Dev
                         </p>
                         <p class="text-blk feature-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Passionate Agile developer, skilled in UI/UX, thrives in fast-paced environments, and loves elegant code solutions.
                         </p>
                         <div class="social-icons">
                             <a href="https://www.twitter.com" target="_blank">
@@ -629,7 +629,7 @@ if (isset($_SESSION["manager"])) {
                             Full Stack Dev
                         </p>
                         <p class="text-blk feature-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Adept coder with a creative touch, expert in front-end design, dedicated to user experience, and proficient in problem-solving
                         </p>
                         <div class="social-icons">
                             <a href="https://www.twitter.com" target="_blank">
@@ -653,7 +653,7 @@ if (isset($_SESSION["manager"])) {
                             Full Stack Dev
                         </p>
                         <p class="text-blk feature-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Detail-oriented programmer, proficient in backend systems, adept at server-side architecture.
                         </p>
                         <div class="social-icons">
                             <a href="https://www.twitter.com" target="_blank">
@@ -677,7 +677,7 @@ if (isset($_SESSION["manager"])) {
                             Full Stack Dev
                         </p>
                         <p class="text-blk feature-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                       Full stack developer, excels in web and app development, always eager to learn new technologies.
                         </p>
                         <div class="social-icons">
                             <a href="https://www.twitter.com" target="_blank">

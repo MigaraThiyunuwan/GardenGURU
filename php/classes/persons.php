@@ -640,6 +640,7 @@ class user extends person
             exit;
         }
     }
+    
     public function putBlog($file, $blogTitle, $blogDetails, $Date)
     {
         $tmp_name1 = $file['tmp_name'];
@@ -845,21 +846,6 @@ class Manager extends person
         return $this->managerId;
     }
 
-    // public function changePassword($password)
-    // {
-    //     $dbcon = new DbConnector();
-    //     try {
-    //         $con = $dbcon->getConnection();
-    //         $query = "UPDATE manager SET mPassword = ? WHERE managerID = ?";
-    //         $pstmt = $con->prepare($query);
-    //         $pstmt->bindValue(1, $password);
-    //         $pstmt->bindValue(2, $this->managerId);
-    //         $pstmt->execute();
-    //         return ($pstmt->rowCount() > 0);
-    //     } catch (PDOException $exc) {
-    //         echo $exc->getMessage();
-    //     }
-    // }
     public function deleteUser($user_id)
     {
         try {
@@ -925,6 +911,43 @@ class Manager extends person
             $query = "DELETE FROM blog WHERE blog_id = :id";
             $pstmt = $con->prepare($query);
             $pstmt->bindParam(':id', $Blogid, PDO::PARAM_INT);
+            $a = $pstmt->execute();
+            if ($a > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+    public function deleteQuestion($questionID)
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "DELETE FROM question WHERE questionID = :id";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindParam(':id', $questionID, PDO::PARAM_INT);
+            $a = $pstmt->execute();
+            if ($a > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public function deleteAnswer($answerID)
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "DELETE FROM answer WHERE answerID = :id";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindParam(':id', $answerID, PDO::PARAM_INT);
             $a = $pstmt->execute();
             if ($a > 0) {
                 return true;
@@ -1049,41 +1072,62 @@ class Manager extends person
         }
     }
 
-    // public static function LoginManager($email, $password)
-    // {
-    //     try {
-    //         $dbcon = new DbConnector();
-    //         $con = $dbcon->getConnection();
-    //         $query = "SELECT * FROM manager WHERE mEmail = ? ";
-    //         $pstmt = $con->prepare($query);
-    //         $pstmt->bindValue(1, $email);
+    public function postNews($file, $title, $description, $content, $date)
+    {
+        $tmp_name1 = $file['tmp_name'];
+        $filename1 = $file['name'];
+        $randomString = bin2hex(random_bytes(8));
 
-    //         $pstmt->execute();
+        $allowed = array('jpeg', 'png', 'jpg', 'JPEG', 'PNG', 'JPG');
+        $ext = pathinfo($filename1, PATHINFO_EXTENSION);
 
-    //         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+        if (in_array($ext, $allowed)) {
 
-    //         foreach ($rs as $row) {
-    //             $dbpassword = $row->mPassword;
-    //             $dbFirstName = $row->mFirstName;
-    //             $dbLastName = $row->mLastName;
-    //             $dbEmail = $row->mEmail;
-    //             $dbPhoneNo = $row->mPhone;
-    //             $dbNIC = $row->mNIC;
-    //             $dbmID = $row->managerID;
-    //         };
-    //         if (password_verify($password, $dbpassword)) {
+            if ($file['size'] < 5 * 1024 * 1024) {
 
-    //             $manager = new Manager($dbFirstName, $dbLastName, $dbEmail, $dbNIC, $dbmID, $dbPhoneNo);
-    //             session_start();
-    //             $_SESSION["manager"] = $manager;
-    //             return true;
-    //         } else {
-    //             return false;
-    //         }
-    //     } catch (PDOException $exc) {
-    //         echo $exc->getMessage();
-    //     }
-    // }
+                $newFilename = $randomString . '.' . pathinfo($filename1, PATHINFO_EXTENSION);
+
+                $destination1 = '../../images/newsfeed/' . $newFilename;
+                $dbDestination = '../images/newsfeed/' . $newFilename;
+
+                if (file_exists($destination1)) {
+                    unlink($destination1);
+                }
+
+                if (move_uploaded_file($tmp_name1, $destination1)) {
+                    try {
+                        $dbcon = new DbConnector();
+                        $conn = $dbcon->getConnection();
+                        $sql = "INSERT INTO news (title, newsPostedDate, description, image, full_content) VALUES ( ?, ?, ?, ?, ?)";
+
+                        $pstmt = $conn->prepare($sql);
+                        $pstmt->bindValue(1, $title);
+                        $pstmt->bindValue(2, $date);
+                        $pstmt->bindValue(3, $description);
+                        $pstmt->bindValue(4, $dbDestination);
+                        $pstmt->bindValue(5, $content);
+
+                        if ($pstmt->execute()) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    } catch (PDOException $exc) {
+                        echo $exc->getMessage();
+                    }
+                } else {
+                    header("Location: ../manager/manageNewsFeed.php?error=3");
+                    exit();
+                }
+            } else {
+                header("Location: ../manager/manageNewsFeed.php?error=2");
+                exit();
+            }
+        } else {
+            header("Location: ../manager/manageNewsFeed.php?error=1");
+            exit();
+        }
+    }
 
     public function EditManagerDetails($firstName, $lastName, $email, $NIC, $phone)
     {
@@ -1173,43 +1217,6 @@ class Admin extends person
         return $this->adminId;
     }
 
-    // public static function adminLogin($email, $password)
-    // {
-    //     try {
-    //         $dbcon = new DbConnector();
-    //         $con = $dbcon->getConnection();
-    //         $query = "SELECT * FROM admin WHERE aEmail = ? ";
-    //         $pstmt = $con->prepare($query);
-    //         $pstmt->bindValue(1, $email);
-
-    //         $pstmt->execute();
-
-    //         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
-
-    //         foreach ($rs as $row) {
-    //             $dbpassword = $row->aPassword;
-    //             $dbFirstName = $row->aFirstName;
-    //             $dbLastName = $row->aLastName;
-    //             $dbEmail = $row->aEmail;
-    //             $dbPhoneNo = $row->aPhone;
-    //             $dbNIC = $row->aNIC;
-    //             $dbaID = $row->adminID;
-    //         }
-
-    //         if (password_verify($password, $dbpassword)) {
-
-    //             $admin = new Admin($dbFirstName, $dbLastName, $dbEmail, $dbNIC, $dbaID, $dbPhoneNo);
-    //             session_start();
-    //             $_SESSION["admin"] = $admin;
-    //             return true;
-    //         } else {
-
-    //             return false;
-    //         }
-    //     } catch (PDOException $exc) {
-    //         echo $exc->getMessage();
-    //     }
-    // }
     public function AddManager($firstname, $lastname, $email, $password, $NIC, $phone)
     {
         try {
