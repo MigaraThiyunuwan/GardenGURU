@@ -387,6 +387,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["file"])) {
     }
 }
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Define the target directory where the uploaded files will be stored
+    $targetDir = "uploads/";
+
+    // Get the file name and create the target path
+    $fileName = basename($_FILES["file"]["name"]);
+    $targetPath = $targetDir . $fileName;
+    $imageFileType = strtolower(pathinfo($targetPath, PATHINFO_EXTENSION));
+
+    // Check if the file is a JPG image
+    if ($imageFileType != "jpg" && $imageFileType != "jpeg") {
+        echo "Only JPG files are allowed.";
+    } else {
+        // Upload the file to the target directory
+        if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetPath)) {
+            echo "The file " . $fileName . " has been uploaded.";
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    }
+}
+
 
 
 
