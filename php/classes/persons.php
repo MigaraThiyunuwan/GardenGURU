@@ -17,7 +17,6 @@ class person
         $this->FirstName = $FirstName;
         $this->LastName = $LastName;
         $this->Email = $Email;
-        // $this->Password = $Password;
     }
     public function getFirstName()
     {
@@ -478,7 +477,6 @@ class user extends person
                     $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
 
                     foreach ($rs as $row) {
-                        //  $dbpassword = $row->user_Password;
                         $dbFirstName = $row->user_FirstName;
                         $dbLastName = $row->user_LastName;
                         $dbEmail = $row->user_Email;
@@ -533,7 +531,6 @@ class user extends person
             $rs = $pstmt->fetch(PDO::FETCH_OBJ);
 
             $dbexp = $rs->expdate;
-            // $dbpassword = $rs->user_Password;
             $dbFirstName = $rs->user_FirstName;
             $dbLastName = $rs->user_LastName;
             $dbEmail = $rs->user_Email;
@@ -691,7 +688,7 @@ class user extends person
     {
         $tmp_name1 = $file['tmp_name'];
         $filename1 = $file['name'];
-        $userID = $this->userId; // Assuming $this->userId holds the user's ID.
+        $userID = $this->userId; 
 
         $newFilename = $userID . '.' . pathinfo($filename1, PATHINFO_EXTENSION); // Generate the new filename.
 
@@ -797,7 +794,6 @@ class user extends person
         try {
             $dbcon = new DbConnector();
             $conn = $dbcon->getConnection();
-           // $sql = "INSERT INTO review (user_id, rate, description) VALUES ( ?, ?, ? )";
             $sql = "UPDATE review SET rate = ? , description = ? WHERE user_id = ?";
 
             $pstmt = $conn->prepare($sql);
@@ -805,6 +801,26 @@ class user extends person
             $pstmt->bindValue(2, $description);
             $pstmt->bindValue(3, $this->userId);
             if ($pstmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+
+    public function confirmDelivery($orderID)
+    {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "UPDATE orders SET deliveryStatus = ? WHERE orderID = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, "yes");
+            $pstmt->bindValue(2, $orderID);
+            $a = $pstmt->execute();
+            if ($a > 0) {
                 return true;
             } else {
                 return false;
@@ -1290,7 +1306,6 @@ class Admin extends person
                     $rs = $pstmt1->fetchAll(PDO::FETCH_OBJ);
 
                     foreach ($rs as $row) {
-                        // $dbpassword = $row->aPassword;
                         $dbFirstName = $row->aFirstName;
                         $dbLastName = $row->aLastName;
                         $dbEmail = $row->aEmail;

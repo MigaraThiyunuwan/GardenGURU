@@ -84,11 +84,20 @@ if (isset($_SESSION["manager"])) {
                 <?php
                 if ($user != null) {
                 ?>
-                    <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                    <div class="p-3 ">
+                        <a href="./user.php">
+                        <img src="<?php echo $user->getPropic() ?>" alt="avatar" class="rounded-circle me-2 " style="width: 45px; height: 45px; object-fit: cover" />
+                        </a>
+                    </div>
+                    <a href="./user.php" class="btn btn-outline-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;"><?php echo $user->getFirstName() . " ". $user->getLastName() ?></a>
                 <?php
                 } else if ($manager != null) {
                 ?>
                     <a href="./manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else if (isset($_SESSION["admin"])) {
+                ?>
+                    <a href="./admin/Admin.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
                 <?php
                 } else {
                 ?>
@@ -135,7 +144,7 @@ if (isset($_SESSION["manager"])) {
                     $roundedNumber = floor(Report::totalOrders() / 10) * 10;
                     ?>
                     <h3><?php echo $roundedNumber ?>+</h3>
-                    <p>Orders</p>
+                    <p>Recieved Orders</p>
                 </div>
             </div>
 
@@ -146,7 +155,7 @@ if (isset($_SESSION["manager"])) {
                     $roundedNumber = floor(Report::happyCustomers() / 10) * 10;
                     ?>
                     <h3><?php echo $roundedNumber ?>+</h3>
-                    <p>Happy Customers</p>
+                    <p>Completed Orderes</p>
                 </div>
             </div>
 

@@ -113,4 +113,27 @@ class Shop
             echo $exc->getMessage();
         }
     }
+    public static function notifyManager()
+    {
+        try {
+            $dbcon =  new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT ItemQuantity FROM shop";
+            $pstmt = $con->prepare($query);
+
+            $pstmt->execute();
+            if ($pstmt->rowCount() > 0) {
+                $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+                
+                foreach ($rs as $item) {
+                    if ($item->ItemQuantity < 5) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
 }

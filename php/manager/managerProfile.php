@@ -1,6 +1,7 @@
 <?php
 require_once '../classes/DbConnector.php';
 require_once '../classes/persons.php';
+require_once '../classes/shop.php';
 
 
 use classes\DbConnector;
@@ -82,7 +83,7 @@ if (isset($_SESSION["manager"])) {
 
         }
     </style>
-  
+
 </head>
 
 <body>
@@ -145,7 +146,7 @@ if (isset($_SESSION["manager"])) {
                         <div class="d-flex flex-column align-items-center text-center">
                             <img src="../../images/manager.png" alt="Admin" class="rounded-circle" width="150">
                             <div class="mt-3">
-                                <h4>Hello <?php echo $manager->getFirstName() . " " . $manager->getLastName(); ?> !</h4><br>
+                                <h4><?php echo $manager->getFirstName() . " " . $manager->getLastName(); ?> </h4><br>
                                 <a class="btn btn-outline-danger " target="" href="../processes/logout.php">Log Out</a>
                                 <a class="btn btn-outline-primary " target="" href="./managerEdit.php">Edit</a>
                             </div>
@@ -209,13 +210,24 @@ if (isset($_SESSION["manager"])) {
                                 echo "<hr>";
                             }
                             ?>
+
+                            <?php
+                            if (Shop::notifyManager()) {
+
+                                echo "<hr><b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                                Check the shop. Some items in the shop have a quantity less than 5!
+                                </div></b>";
+                            }
+
+                            ?>
+
                         </div>
                     </div>
                 </div>
             </div>
             <br>
 
-            
+
 
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">

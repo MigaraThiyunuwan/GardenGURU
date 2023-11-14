@@ -12,6 +12,7 @@ session_start();
 if (isset($_SESSION["user"])) {
   // User is logged in, retrieve the user object
   $user = $_SESSION["user"];
+  $orderID1 = "123";
 } else {
   // Redirect the user to login.php if not logged in
   header("Location: ./login.php?error=2");
@@ -123,7 +124,7 @@ if (isset($_SESSION["user"])) {
             <div class="d-flex flex-column align-items-center text-center">
               <img src="<?php echo $user->getPropic() ?>" alt="Admin" class="rounded-circle" width="150" height="150">
               <div class="mt-3">
-                <h4>Hello! <?php echo $user->getFirstName() ?></h4><br>
+                <h4><?php echo $user->getFirstName() . " " . $user->getLastName() ?></h4><br>
 
                 <a class="btn btn-outline-danger " target="" href="./processes/logout.php">Log Out</a>
                 <a class="btn btn-outline-primary " target="" href="./editUser.php">Edit</a>
@@ -291,6 +292,7 @@ if (isset($_SESSION["user"])) {
             <th>Total Amount</th>
             <th>Order Status</th>
             <th>View Bill</th>
+            <th>Delivery Status</th>
           </tr>
         </thead>
         <tbody>
@@ -333,7 +335,71 @@ if (isset($_SESSION["user"])) {
                   <!-- <button type="button" class="btn btn btn-danger" >Delete  -->
                   <a class="btn btn btn-warning" target="_blank" href="./mybill.php?orderID=<?php echo $order->orderID ?>">View Bill</a>
                 </td>
+                <td>
+                  <?php
+                  if ($order->deliveryStatus == "no") {
+                    $orderID1 = $order->orderID;
+                  ?>
+
+                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delivery<?php echo $order->orderID ?>">Not Delivered </button>
+
+                  <?php
+                  } else if ($order->deliveryStatus == "yes") {
+                  ?>
+                    <span class="btn btn-outline-success">Delivered</span>
+                  <?php
+                  }
+                  ?>
+
+
               </tr>
+
+              <div class="modal fade shadow my-5" id="delivery<?php echo $order->orderID ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div  class="modal-content" style="width: 100%; background-color: white !important;">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm Delivery Status
+                      </h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                      <div class="d-flex justify-content-between p-2">
+
+                        <div class="col">
+
+
+                          <form action="./processes/confirmDelivery.php" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                              <p class="fw-bold me-2">
+                                I have recieved my order.
+                              </p>
+                            </div>
+
+                            <input type="hidden" name="orderID" value="<?php echo $order->orderID ?>">
+
+                        </div>
+
+                      </div>
+
+                      <div class="modal-footer">
+                        <div class="row w-100">
+                          <div class="col-md-6" style="margin-bottom: 10px;">
+
+                            <button class="btn btn-success w-100 " type="submit">Confirm</button>
+                            </form>
+
+                          </div>
+                          <div class="col-md-6">
+                            <button class="btn btn-danger w-100" type="button" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
           <?php
             }
           } catch (PDOException $exc) {
@@ -411,8 +477,10 @@ if (isset($_SESSION["user"])) {
           </div>
         </div>
       </div>
-     
+
     </div>
+
+
 
     <div class="modal fade shadow my-5" id="addadd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
       <div class="modal-dialog modal-dialog-centered">
@@ -503,7 +571,7 @@ if (isset($_SESSION["user"])) {
                     <input type="file" class="form-control" id="blog_image" name="blog_image" accept="image/*" required>
                   </div>
                   <div class="row">
-                  <p class="fw-bold me-2">
+                    <p class="fw-bold me-2">
                       Blog Title:
                     </p>
                     <input type="text" class="form-control" id="blog_title" name="blog_title" required>

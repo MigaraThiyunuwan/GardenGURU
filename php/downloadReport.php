@@ -39,6 +39,7 @@ class MYPDF extends TCPDF
             $this->Cell($w[$i], 7, $header[$i], 1, 0, 'C', 1);
         }
         $this->Ln();
+        
 
         // Color and font restoration
         $this->SetFillColor(224, 235, 255);
@@ -57,6 +58,7 @@ class MYPDF extends TCPDF
             $this->Ln();
             $fill = !$fill;
         }
+        
      
 
         // Closing line
@@ -237,10 +239,10 @@ $femalePercentage = Report::femaleUserPercentage();
 
 
 $pdf->SetFillColor(0, 153, 0);
-$pdf->PieSector($xc, $yc, $r, 0, $male, 'FD', false, 0, 2);
+$pdf->PieSector($xc, $yc, $r, 0, $male, 'FD', false, 0,);
 
 $pdf->SetFillColor(153, 255, 153);
-$pdf->PieSector($xc, $yc, $r, $male, 360, 'FD', false, 0, 2);
+$pdf->PieSector($xc, $yc, $r, $male, 360, 'FD', false, 0, );
 
 // $pdf->SetFillColor(255, 0, 0);
 // $pdf->PieSector($xc, $yc, $r, 250, 20, 'FD', false, 0, 2);
@@ -265,10 +267,10 @@ $femalePercentage = Report::femaleOrderPercentage();
 
 
 $pdf->SetFillColor(0, 153, 0);
-$pdf->PieSector($xc, $yc, $r, 0, $male, 'FD', false, 0, 2);
+$pdf->PieSector($xc, $yc, $r, 0, $male, 'FD', false, 0, );
 
 $pdf->SetFillColor(153, 255, 153);
-$pdf->PieSector($xc, $yc, $r, $male, 360, 'FD', false, 0, 2);
+$pdf->PieSector($xc, $yc, $r, $male, 360, 'FD', false, 0, );
 
 // $pdf->SetFillColor(255, 0, 0);
 // $pdf->PieSector($xc, $yc, $r, 250, 20, 'FD', false, 0, 2);

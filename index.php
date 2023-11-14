@@ -93,12 +93,23 @@ if (isset($_SESSION["manager"])) {
                 <a href="./php/ContactUs.php" class="nav-item nav-link">Contact</a>
                 <?php
                 if ($user != null) {
+                    $imagePathRelative = str_replace("../", "./", $user->getPropic());
                 ?>
-                    <a href="./php/user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                    <div class="p-3 ">
+                        <a href="./php/user.php">
+                            <img src="<?php echo $imagePathRelative ?>" alt="avatar" class="rounded-circle me-2 " style="width: 45px; height: 45px; object-fit: cover" />
+                        </a>
+                    </div>
+
+                    <a href="./php/user.php" class="btn btn-outline-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;"><?php echo $user->getFirstName() . " " . $user->getLastName() ?></a>
                 <?php
                 } else if ($manager != null) {
                 ?>
                     <a href="./php/manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else if (isset($_SESSION["admin"])) {
+                ?>
+                    <a href="./php/admin/Admin.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
                 <?php
                 } else {
                 ?>
@@ -125,7 +136,29 @@ if (isset($_SESSION["manager"])) {
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
                                     <h1 class="display-1 text-white mb-5 animated slideInDown">Make Your Home Like Garden</h1>
-                                    <a href="./php/register.php" class="btn btn-primary py-sm-3 px-sm-4">Sign Up Now</a>
+                                    <!-- <a href="./php/register.php" class="btn btn-primary py-sm-3 px-sm-4">Sign Up Now</a> -->
+                                    <?php
+                                    if ($user != null) {
+                                        
+                                    ?>
+                                        <a href="./php/user.php" class="btn btn-primary py-sm-3 px-sm-4" >My Pofile</a>
+
+                                        
+                                    <?php
+                                    } else if ($manager != null) {
+                                    ?>
+                                        <a href="./php/manager/managerProfile.php" class="btn btn-primary py-sm-3 px-sm-4" >My Pofile</a>
+                                    <?php
+                                    } else if (isset($_SESSION["admin"])) {
+                                    ?>
+                                        <a href="./php/admin/Admin.php" class="btn btn-primary py-sm-3 px-sm-4" >My Pofile</a>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <a href="./php/login.php" class="btn btn-primary py-sm-3 px-sm-4" >Sign In</a>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -138,7 +171,7 @@ if (isset($_SESSION["manager"])) {
                             <div class="row justify-content-center">
                                 <div class="col-lg-7">
                                     <h1 class="display-1 text-white mb-5 animated slideInDown">Create Your Own Small Garden At Home</h1>
-                                    <a href="./php/register.php" class="btn btn-primary py-sm-3 px-sm-4">Sign Up Now</a>
+                                    <!-- <a href="./php/register.php" class="btn btn-primary py-sm-3 px-sm-4">Sign Up Now</a> -->
                                 </div>
                             </div>
                         </div>
@@ -469,12 +502,12 @@ if (isset($_SESSION["manager"])) {
                                                     </div>
                                                 </div>
                                             </div>
-                                    <?php
+                                        <?php
                                         }
                                     } catch (PDOException $exc) {
                                         echo $exc->getMessage();
                                     }
-                                    
+
                                     try {
                                         $con = $dbcon->getConnection();
 
@@ -503,13 +536,13 @@ if (isset($_SESSION["manager"])) {
                                         foreach ($rs as $item) {
                                             $imagePathRelative = str_replace("../", "./", $item->profile_picture);
 
-                                    ?>
+                                        ?>
                                             <div class="carousel-item">
                                                 <div class="media"><img class="rounded-circle img-thumbnail" src="<?php echo "" . $imagePathRelative ?>" alt="" width="75">
                                                     <div class="media-body ml-3">
                                                         <blockquote class="blockquote border-0 p-0">
                                                             <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 text-success"></i><?php echo " " . $item->description ?> <i class="fa fa-quote-right mr-3 text-success"> </i></p>
-                                                            <footer class="blockquote-footer">Registered User - 
+                                                            <footer class="blockquote-footer">Registered User -
                                                                 <cite title="Source Title"><?php echo $item->user_FirstName . " " . $item->user_LastName ?></cite>
                                                             </footer>
                                                         </blockquote>
@@ -522,7 +555,7 @@ if (isset($_SESSION["manager"])) {
                                         echo $exc->getMessage();
                                     }
                                     ?>
-                                    
+
                                 </div>
 
 

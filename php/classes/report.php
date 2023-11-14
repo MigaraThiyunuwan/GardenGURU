@@ -102,9 +102,9 @@ class Report
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
-            $query = "SELECT COUNT(*) as total FROM orders WHERE OrderStatus = ?";
+            $query = "SELECT COUNT(*) as total FROM orders WHERE deliveryStatus = ?";
             $stmt = $con->prepare($query);
-            $stmt->bindValue(1, "success");
+            $stmt->bindValue(1, "yes");
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $total = $result['total'];
