@@ -2,10 +2,22 @@
 <html lang="en">
 
 <?php
+require_once './classes/DbConnector.php';
+require_once './classes/persons.php';
+require_once './classes/cart.php';
+require_once './classes/order.php';
+require_once './classes/Security.php';
+require_once './classes/shop.php';
+
+use classes\DbConnector;
+
+$dbcon = new DbConnector();
 
 session_start();
 $user = null;
 $manager = null;
+$orderID = null;
+$order = null;
 if (isset($_SESSION["user"])) {
     // User is logged in, retrieve the user object
     $user = $_SESSION["user"];
@@ -13,6 +25,21 @@ if (isset($_SESSION["user"])) {
 if (isset($_SESSION["manager"])) {
     // User is logged in, retrieve the user object
     $manager = $_SESSION["manager"];
+}
+
+if (isset($_SESSION["order"])) {
+    // User is logged in, retrieve the user object
+    //$order = unserialize($_SESSION["order"]);
+
+    // Retrieve the serialized object from the session
+    $serializedObject = $_SESSION['order'];
+
+    // Unserialize the object
+    $order = unserialize($serializedObject);
+}
+if (isset($_SESSION["orderID"])) {
+    // User is logged in, retrieve the user object
+    $orderID = $_SESSION["orderID"];
 }
 ?>
 
@@ -31,6 +58,8 @@ if (isset($_SESSION["manager"])) {
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/Payement.css" rel="stylesheet">
+    <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+    <script src="../js/script.js"></script>
 
     <style>
         /* Center the loader */
@@ -106,17 +135,15 @@ if (isset($_SESSION["manager"])) {
             display: none;
             text-align: center;
         }
-       
+
         body {
-            
+
             /* background-image: url('../images/web.png') ; */
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: 100% 100%;
-            
+
         }
-        
-        
     </style>
 </head>
 
@@ -150,9 +177,9 @@ if (isset($_SESSION["manager"])) {
                 </div>
                 <a href="./AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="./ContactUs.php" class="nav-item nav-link">Contact</a>
-                    
+
                 <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Profile</a>
-                
+
                 <!-- <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                     <div class="dropdown-menu bg-light m-0">
@@ -170,13 +197,41 @@ if (isset($_SESSION["manager"])) {
     </div>
 
     <div id="process">
-        
-        <div class="container" style="margin-top: 100px;">
-            <div class="intro">
-                <h2 class="text-center">Payment Processing..</h2>
-            </div>
+
+    </div>
+    <script>
+        paymentGateway();
+    </script>
+    <div class="container" style="margin-top: 100px;">
+        <div class="intro">
+
         </div>
     </div>
+    </div>
+
+    <?php
+
+    if ($orderID != null) {
+        $order->setOrderID($orderID);
+        if ($order->transactionConfirm($orderID)) {
+            $cart = new Cart();
+            $shop = new Shop(null, null, null);
+            foreach ($_SESSION['cart'] as $key => $value) {
+                if ($value['ItemId'] != null) {
+                    $order->setOrderItem($value['ItemId'], $value['Quantity']);
+                    $shop->reduceQuantity($value['ItemId'], $value['Quantity']);
+                }
+            }
+
+            if ($cart->resetCart($user->getUserId())) {
+                $_SESSION['cart'] = null;
+                $_SESSION['cart'][0] = array('ItemId' => null, 'Item_Name' => null, 'Price' => null, 'Quantity' => null);
+            }
+        }
+    }
+
+
+    ?>
 
     <div style="display:none; " id="myDiv" class="animate-bottom" style="margin-top: 200px;">
         <h1>Payment success!</h1>
@@ -189,7 +244,7 @@ if (isset($_SESSION["manager"])) {
         var myVar;
 
         function myFunction() {
-            myVar = setTimeout(showPage, 3000);
+            myVar = setTimeout(showPage, 5000);
         }
 
         function showPage() {

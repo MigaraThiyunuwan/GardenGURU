@@ -128,4 +128,25 @@ class Order
             echo $e->getMessage();
         }
     }
+    public function transactionConfirm($orderID)
+    {
+        try {
+
+            $dbcon =  new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "UPDATE orders SET OrderTransaction = 'success'";
+            $pstmt = $con->prepare($query);
+            
+            $pstmt->execute();
+
+            if (($pstmt->rowCount()) > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+
+            echo $e->getMessage();
+        }
+    }
 }

@@ -173,7 +173,7 @@ if (isset($_SESSION["manager"])) {
                                         $start1 = isset($_GET['start1']) ? intval($_GET['start1']) : 0;
                                         $rows_per_page1 = 20;
 
-                                        $query = "SELECT * FROM orders ORDER BY orderID DESC LIMIT $start1, $rows_per_page1";
+                                        $query = "SELECT * FROM orders WHERE OrderTransaction = 'success' ORDER BY orderID DESC LIMIT $start1, $rows_per_page1";
                                         $pstmt = $con->prepare($query);
                                         $pstmt->execute();
                                         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);

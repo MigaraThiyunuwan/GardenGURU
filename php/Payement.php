@@ -105,10 +105,11 @@ $total = $cart->getTotal($user->getUserId());
         <div class="row">
             <div class="col-md-8">
                 <div class="card p-3">
-                    <form action="./processes/paymentprocess.php" method="POST">
-                        <h6 class="text-uppercase"><b>Payment details</b></h6>
-                        <div class="inputbox mt-3"> <input type="text" name="nameOnCard" class="form-control" required="required"> <span>Name on card</span> </div>
-                        <div class="row">
+                    <!-- <form action="./processes/paymentprocess.php" method="POST"> -->
+                    <form action="./paymentConfirm.php" method="POST">
+                        <!-- <h6 class="text-uppercase"><b>Payment details</b></h6>
+                        <div class="inputbox mt-3"> <input type="text" name="nameOnCard" class="form-control" required="required"> <span>Name on card</span> </div> -->
+                        <!-- <div class="row">
                             <div class="col-md-6">
                                 <div class="inputbox mt-3 mr-2"> <input type="text" name="cardNo" class="form-control" required="required"> <i class="fa fa-credit-card"></i> <span>Card Number</span>
                                 </div>
@@ -120,7 +121,7 @@ $total = $cart->getTotal($user->getUserId());
                                     <div class="inputbox mt-3 mr-2"> <input type="text" name="cvv" class="form-control" required="required"> <span>CVV</span> </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="mt-4 mb-4">
                             <h6 class="text-uppercase"><b>Billing Address</b></h6>
                             <div class="row mt-3">

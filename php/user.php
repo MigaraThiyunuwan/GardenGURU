@@ -299,7 +299,7 @@ if (isset($_SESSION["user"])) {
           <?php
           try {
             $con = $dbcon->getConnection();
-            $query = "SELECT * FROM orders WHERE user_id = ? ORDER BY orderID DESC";
+            $query = "SELECT * FROM orders WHERE user_id = ? AND OrderTransaction = 'success' ORDER BY orderID DESC";
             $pstmt = $con->prepare($query);
             $pstmt->bindValue(1, $user->getUserId());
             $pstmt->execute();

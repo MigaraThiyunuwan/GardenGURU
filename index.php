@@ -172,6 +172,28 @@ if (isset($_SESSION["manager"])) {
                                 <div class="col-lg-7">
                                     <h1 class="display-1 text-white mb-5 animated slideInDown">Create Your Own Small Garden At Home</h1>
                                     <!-- <a href="./php/register.php" class="btn btn-primary py-sm-3 px-sm-4">Sign Up Now</a> -->
+                                    <?php
+                                    if ($user != null) {
+                                        
+                                    ?>
+                                        <a href="./php/user.php" class="btn btn-primary py-sm-3 px-sm-4" >My Pofile</a>
+
+                                        
+                                    <?php
+                                    } else if ($manager != null) {
+                                    ?>
+                                        <a href="./php/manager/managerProfile.php" class="btn btn-primary py-sm-3 px-sm-4" >My Pofile</a>
+                                    <?php
+                                    } else if (isset($_SESSION["admin"])) {
+                                    ?>
+                                        <a href="./php/admin/Admin.php" class="btn btn-primary py-sm-3 px-sm-4" >My Pofile</a>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <a href="./php/login.php" class="btn btn-primary py-sm-3 px-sm-4" >Sign In</a>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
