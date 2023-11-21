@@ -84,7 +84,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (isset($_POST['Mod_Quantity'])) {
-
         if (isset($_SESSION['cart'])) {
             foreach ($_SESSION['cart'] as $key => $value) {
                 if ($value['ItemId'] == $_POST['ItemId']) {

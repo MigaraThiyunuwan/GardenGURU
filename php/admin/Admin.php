@@ -85,7 +85,7 @@ if (isset($_SESSION["admin"])) {
                         <div class="d-flex flex-column align-items-center text-center">
                             <img src="../../images/admin.png" alt="Admin" class="rounded-circle" width="150">
                             <div class="mt-3">
-                                <h4>Hello <?php echo $admin->getFirstName() . " " . $admin->getLastName() ?> !</h4><br>
+                                <h4> <?php echo $admin->getFirstName() . " " . $admin->getLastName() ?> </h4><br>
                                 <a class="btn btn-outline-danger " target="" href="../processes/logout.php">Log Out</a>
                                 <a class="btn btn-outline-success " target="" href="./Adminedit.php">Edit</a>
                                 <a href="./managerRegister.php"><button class="btn btn-outline-warning">Add New Manager</button></a>

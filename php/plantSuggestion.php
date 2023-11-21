@@ -82,11 +82,22 @@ if (isset($_SESSION["manager"])) {
                 <?php
                 if ($user != null) {
                 ?>
-                    <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                    <div class="p-3 ">
+                        
+                        <a href="./user.php">
+                        <img src="<?php echo $user->getPropic() ?>" alt="avatar" class="rounded-circle me-2 " style="width: 45px; height: 45px; object-fit: cover" />
+                        </a>
+                        
+                    </div>
+                    <a href="./user.php" class="btn btn-outline-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;"><?php echo $user->getFirstName() . " " . $user->getLastName() ?></a>
                 <?php
                 } else if ($manager != null) {
                 ?>
                     <a href="./manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else if (isset($_SESSION["admin"])) {
+                ?>
+                    <a href="./admin/Admin.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
                 <?php
                 } else {
                 ?>
@@ -131,15 +142,13 @@ if (isset($_SESSION["manager"])) {
                     $time = $_POST["time"];
 
                 ?>
-                    <!-- <span><b>
-                            <p style="color:MediumSeaGreen;">In <?php echo $location ?> area when you have <?php echo $sun ?> sun exposure, <?php echo $soil ?> soil,
-                                and <?php echo $water ?> water, you have <?php echo $space ?> space to gardening and when your harvest time <?php echo $time ?>, it's suitable to grow below plants.</p>
-                        </b></span> -->
+
                     <?php
 
                     try {
+
                         $con = $dbcon->getConnection();
-                        // $sql = "SELECT * FROM plant WHERE PlantID = ?";
+
                         $sql = "SELECT DISTINCT p.*
 
                         FROM plant p
@@ -168,20 +177,65 @@ if (isset($_SESSION["manager"])) {
                         $pstmt->bindValue(5, $time);
                         $pstmt->bindValue(6, $space);
                         $pstmt->execute();
-                        $plants = $pstmt->fetchAll(PDO::FETCH_OBJ);
+                        $plants = $pstmt->fetchAll(PDO::FETCH_OBJ); // Suggested plant details saved in $plants variable
 
                         foreach ($plants as $plant) {
                             $plantName = $plant->PlantName;
                             $filePath = $plant->FilePath;
                             $description = $plant->description;
-                    ?>  
+                            $instruction = $plant->instruction;
+                    ?>
                             <div class="col-md-3 col-sm-6">
                                 <div class="card card-block" style="margin-top: 10px;">
                                     <img src="<?php echo $filePath ?>" alt="Photo of sunset">
                                     <h4 class="card-title mt-3 mb-3" style="margin-left: 10px;"><?php echo $plantName ?></h4>
+
                                     <p class="card-text" style="margin-left: 10px; height: 100px;"><?php echo $description ?></p>
+                                    <!-- <button class="btn btn-success">Instructions</button> -->
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#Instructions<?php echo $plant->PlantID ?>">Instructions</button>
                                 </div>
                             </div>
+
+
+                            <div class="modal fade shadow my-5" id="Instructions<?php echo $plant->PlantID ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div style="width: 100%;" class="modal-content" style="background-color: white;">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Instructions to plant <?php echo $plantName ?>
+                                            </h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div class="d-flex justify-content-between p-2">
+
+                                                <div class="col">
+
+                                                    <div class="row">
+                                                        <p class="fw-bold me-2">
+                                                            <?php echo $instruction ?>
+
+                                                        </p>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <div class="row w-100">
+
+                                                    <div class="col-md-12">
+                                                        <button class="btn btn-success w-100" type="button" data-bs-dismiss="modal" aria-label="Close">Ok</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                 <?php
                         }
                     } catch (PDOException $exc) {

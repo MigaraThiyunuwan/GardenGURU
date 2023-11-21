@@ -8,7 +8,7 @@ class Shop
     private $ItemName;
     private $ItemQuantity;
     private $ItemPrice;
-    private $ItameImage;
+    private $ItamImage;
 
     public function __construct($ItemName, $ItemQuantity, $ItemPrice)
     {
@@ -16,7 +16,7 @@ class Shop
         $this->ItemName = $ItemName;
         $this->ItemQuantity = $ItemQuantity;
         $this->ItemPrice = $ItemPrice;
-        $this->ItameImage = null;
+        $this->ItamImage = null;
     }
 
     public function setItemId($id)
@@ -31,7 +31,7 @@ class Shop
 
     public function setItemImage($img)
     {
-        $this->ItameImage = $img;
+        $this->ItamImage = $img;
     }
 
     public function getItemId()
@@ -54,9 +54,9 @@ class Shop
         return $this->ItemPrice;
     }
 
-    public function getItameImage()
+    public function getItamImage()
     {
-        return $this->ItameImage;
+        return $this->ItamImage;
     }
 
     public function reduceQuantity($ItemId, $amount)
@@ -108,6 +108,29 @@ class Shop
                 } else {
                     return true;
                 }
+            }
+        } catch (PDOException $exc) {
+            echo $exc->getMessage();
+        }
+    }
+    public static function notifyManager()
+    {
+        try {
+            $dbcon =  new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT ItemQuantity FROM shop";
+            $pstmt = $con->prepare($query);
+
+            $pstmt->execute();
+            if ($pstmt->rowCount() > 0) {
+                $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+                
+                foreach ($rs as $item) {
+                    if ($item->ItemQuantity < 5) {
+                        return true;
+                    }
+                }
+                return false;
             }
         } catch (PDOException $exc) {
             echo $exc->getMessage();

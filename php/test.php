@@ -1,6 +1,7 @@
 <?php
 require_once 'C:\xampp\htdocs\GardenGURU\TCPDF-main\tcpdf.php';
-
+require_once './classes/DbConnector.php';
+require_once './classes/report.php';
 // extend TCPF with custom functions
 class MYPDF extends TCPDF
 {
@@ -39,20 +40,12 @@ class MYPDF extends TCPDF
         $this->SetTextColor(0);
         $this->SetFont('');
 
-
-
-
-
         $total = 123;
         $text = "Total = $total";
         // Customer details
         $customerName = 'John Doe';
         $customerAddress = '123 Main Street, Cityville, State, ZIP';
         $customerEmail = 'johndoe@example.com';
-
-
-
-
 
         // Data
         $fill = 0;

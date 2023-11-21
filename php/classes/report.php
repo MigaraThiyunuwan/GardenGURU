@@ -14,14 +14,11 @@ class Report
             FROM orders o
             JOIN orderitem oi ON o.orderID = oi.orderID
             JOIN shop s ON oi.ItemId = s.ItemId
-            WHERE o.orderID = ?";
+            WHERE o.orderID = ? AND OrderTransaction = 'success'";
             $pstmt = $con->prepare($query);
             $pstmt->bindValue(1, $orderID);
 
             $pstmt->execute();
-
-            // $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
-
             $myarray = array(); // Initialize an empty array
 
             while ($row = $pstmt->fetch(PDO::FETCH_ASSOC)) {
@@ -49,7 +46,7 @@ class Report
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
-            $query = "SELECT TotalPrice FROM orders";
+            $query = "SELECT TotalPrice FROM orders WHERE OrderTransaction = 'success'";
             $pstmt = $con->prepare($query);
 
             $pstmt->execute();
@@ -79,8 +76,7 @@ class Report
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $total = $result['total'];
-            $roundedNumber = floor($total / 10) * 10;
-            return $roundedNumber;
+            return $total;
         } catch (PDOException $exc) {
             echo $exc->getMessage();
         }
@@ -90,13 +86,12 @@ class Report
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
-            $query = "SELECT COUNT(*) as total FROM orders";
+            $query = "SELECT COUNT(*) as total FROM orders WHERE OrderTransaction = 'success'";
             $stmt = $con->prepare($query);
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $total = $result['total'];
-            $roundedNumber = floor($total / 10) * 10;
-            return $roundedNumber;
+            return $total;
         } catch (PDOException $exc) {
             echo $exc->getMessage();
         }
@@ -107,14 +102,13 @@ class Report
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
-            $query = "SELECT COUNT(*) as total FROM orders WHERE OrderStatus = ?";
+            $query = "SELECT COUNT(*) as total FROM orders WHERE deliveryStatus = ?";
             $stmt = $con->prepare($query);
-            $stmt->bindValue(1, "success");
+            $stmt->bindValue(1, "yes");
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $total = $result['total'];
-            $roundedNumber = floor($total / 10) * 10;
-            return $roundedNumber;
+            return $total;
         } catch (PDOException $exc) {
             echo $exc->getMessage();
         }
@@ -130,8 +124,7 @@ class Report
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $total = $result['total'];
-            $roundedNumber = floor($total / 10) * 10;
-            return $roundedNumber;
+            return $total;
         } catch (PDOException $exc) {
             echo $exc->getMessage();
         }
@@ -194,14 +187,14 @@ class Report
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
-            $query = "SELECT COUNT(*) as total FROM orders AS o JOIN users AS u ON o.user_id = u.user_id WHERE u.user_Gender = ?";
+            $query = "SELECT COUNT(*) as total FROM orders AS o JOIN users AS u ON o.user_id = u.user_id WHERE u.user_Gender = ? AND OrderTransaction = 'success'";
             $stmt = $con->prepare($query);
             $stmt->bindValue(1, 'Male');
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $totalMale = $result['total'];
 
-            $query1 = "SELECT COUNT(*) as total FROM orders";
+            $query1 = "SELECT COUNT(*) as total FROM orders WHERE OrderTransaction = 'success'";
             $stmt1 = $con->prepare($query1);
             $stmt1->execute();
             $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
@@ -221,7 +214,7 @@ class Report
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
-            $query = "SELECT COUNT(*) as total FROM orders AS o JOIN users AS u ON o.user_id = u.user_id WHERE u.user_Gender = ?";
+            $query = "SELECT COUNT(*) as total FROM orders AS o JOIN users AS u ON o.user_id = u.user_id WHERE u.user_Gender = ? AND OrderTransaction = 'success'";
             $stmt = $con->prepare($query);
             $stmt->bindValue(1, "Female");
             $stmt->execute();
@@ -289,7 +282,7 @@ class Report
 
                 return $total;
             }
-            return 0; // Item not found or no sales for the item.
+            return 0; 
         } catch (PDOException $exc) {
             echo $exc->getMessage();
         }

@@ -10,13 +10,16 @@ require './classes/persons.php';
 session_start();
 $user =null;
 $manager = null;
-if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) ) {
+if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) || isset($_SESSION["admin"]) ) {
   // User is logged in, retrieve the user object
   if(isset($_SESSION["user"])){
     $user = $_SESSION["user"];
   }
   if(isset($_SESSION["manager"])){
     $manager = $_SESSION["manager"];
+  }
+  if(isset($_SESSION["admin"])){
+    $admin = $_SESSION["admin"];
   }
 } else {
   // Redirect the user to login.php if not logged in
@@ -89,11 +92,20 @@ if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) ) {
         <?php
                 if ($user != null) {
                 ?>
-                    <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                    <div class="p-3 ">
+                        <a href="./user.php">
+                        <img src="<?php echo $user->getPropic() ?>" alt="avatar" class="rounded-circle me-2 " style="width: 45px; height: 45px; object-fit: cover" />
+                        </a>
+                    </div>
+                    <a href="./user.php" class="btn btn-outline-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;"><?php echo $user->getFirstName() . " ". $user->getLastName() ?></a>
                 <?php
                 } else if ($manager != null) {
                 ?>
                     <a href="./manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else if (isset($_SESSION["admin"])) {
+                ?>
+                    <a href="./admin/Admin.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
                 <?php
                 } else {
                 ?>
@@ -184,7 +196,9 @@ if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) ) {
                               </a>
                             </h3>
                             <p class="product-description">
+                              <b>
                               <?php echo nl2br($description); ?>
+                              </b>
                             </p>
                             
                             <div class="product-buttons mt-4">
