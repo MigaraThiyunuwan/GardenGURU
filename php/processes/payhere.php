@@ -24,6 +24,12 @@ if (isset($_SESSION["orderID"])) {
     $orderID = $_SESSION["orderID"];
 }
 
+
+// Visa : 4916217501611292
+// MasterCard : 5307732125531191
+// AMEX : 346781005510225
+
+
 $amount = null;
 $order_id = $orderID;
 $name = null;

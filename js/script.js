@@ -8,6 +8,7 @@ function paymentGateway(){
             // Payment completed. It can be a successful failure.
     payhere.onCompleted = function onCompleted(orderId) {
         console.log("Payment completed. OrderID:" + orderId);
+        window.location.href = "http://localhost/GardenGuru/php/payemntThankyou.php";
         // Note: validate the payment and show success or failure page to the customer
     };
 
@@ -15,6 +16,7 @@ function paymentGateway(){
     payhere.onDismissed = function onDismissed() {
         // Note: Prompt user to pay again or show an error page
         console.log("Payment dismissed");
+        window.location.href = "http://localhost/GardenGuru/php/paymentCancel.php";
     };
 
     // Error occurred

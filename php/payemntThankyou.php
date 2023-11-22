@@ -58,8 +58,6 @@ if (isset($_SESSION["orderID"])) {
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/Payement.css" rel="stylesheet">
-    <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
-    <script src="../js/script.js"></script>
 
     <style>
         /* Center the loader */
@@ -196,12 +194,10 @@ if (isset($_SESSION["orderID"])) {
 
     </div>
 
-    <div id="process">
-
+    <div style="margin-top: 200px; margin-left: 38%;" id="process">
+        <h1>Payment Processing!</h1>
     </div>
-    <script>
-        paymentGateway();
-    </script>
+
     <div class="container" style="margin-top: 100px;">
         <div class="intro">
 
@@ -234,25 +230,41 @@ if (isset($_SESSION["orderID"])) {
     ?>
 
     <div style="display:none; " id="myDiv" class="animate-bottom" style="margin-top: 200px;">
-        <h1>Payment success!</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="../images/van.png" style="width: 700px; height: 600px; margin-left: 50px;">
+            </div>
+            <div class="col-md-6" style="margin-top: 100px;">
+                <h1 >Payment success!</h1>
+                <h2 style="margin-top: 20px;">Thank you for palced your order with us.</h2>
+                <h3 style="margin-top: 20px;"> Your Order currently in waiting status and <br>check your profile for more information.</h3>
+                <a href="../index.php" class="btn btn-primary py-sm-3 px-sm-4" style="margin-top: 100px;">Back to Home</a>
+                <a href="./mybill.php" target="_blank" class="btn btn-primary py-sm-3 px-sm-4" style="margin-top: 100px;">Download Bill</a>
+            </div>
+
+
+
+            
+    
+        <!-- <h1>Payment success!</h1>
         <h2>Thank you for palced your order with us.</h2>
         <a href="../index.php" class="btn btn-primary py-sm-3 px-sm-4" style="margin-top: 100px;">Back to Home</a>
-        <a href="./mybill.php" target="_blank" class="btn btn-primary py-sm-3 px-sm-4" style="margin-top: 100px;">Download Bill</a>
+        <a href="./mybill.php" target="_blank" class="btn btn-primary py-sm-3 px-sm-4" style="margin-top: 100px;">Download Bill</a> -->
     </div>
 
-    <script>
-        var myVar;
+            <script>
+                var myVar;
 
-        function myFunction() {
-            myVar = setTimeout(showPage, 5000);
-        }
+                function myFunction() {
+                    myVar = setTimeout(showPage, 5000);
+                }
 
-        function showPage() {
-            document.getElementById("loader").style.display = "none";
-            document.getElementById("process").style.display = "none";
-            document.getElementById("myDiv").style.display = "block";
-        }
-    </script>
+                function showPage() {
+                    document.getElementById("loader").style.display = "none";
+                    document.getElementById("process").style.display = "none";
+                    document.getElementById("myDiv").style.display = "block";
+                }
+            </script>
 
 
 
