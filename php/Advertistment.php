@@ -41,6 +41,7 @@ if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) || isset($_SESSION["
   <meta content="" name="keywords">
   <meta content="" name="description">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- Customized Bootstrap Stylesheet -->
   <link href="../css/bootstrap.min.css" rel="stylesheet">
 
@@ -167,7 +168,7 @@ if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) || isset($_SESSION["
             if ($stmt->rowCount() > 0) {
               $photoCount = 1;
           ?>
-              <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+              
               <div class="container">
                 <div class="shop-default shop-cards shop-tech" >
                   <div class="row">
@@ -240,17 +241,6 @@ if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) || isset($_SESSION["
   </div>
 
 
-  <style>
-    .text-card {
-      display: none;
-      padding: 10px;
-      background-color: #f0f0f0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    
-  </style>
   <!-- Footer Start -->
   <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="container py-5">

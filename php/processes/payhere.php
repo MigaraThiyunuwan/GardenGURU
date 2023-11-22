@@ -89,5 +89,4 @@ $array["hash"] = $hash;
 
 $jsonObj = json_encode($array);
 
-
 echo $jsonObj;
