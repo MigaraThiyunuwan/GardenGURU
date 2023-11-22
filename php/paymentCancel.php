@@ -59,7 +59,7 @@ if (isset($_SESSION["orderID"])) {
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/Payement.css" rel="stylesheet">
 
-   
+
 </head>
 
 <body onload="myFunction()" style="margin:0;" class="bg-white">
@@ -107,12 +107,27 @@ if (isset($_SESSION["orderID"])) {
         </div>
     </nav>
     <!-- Navbar End -->
-  
 
-    <div id="myDiv" class="animate-bottom" style="margin-top: 200px;">
-        <h1>Payment Cancel!</h1>
+
+    <div id="myDiv" class="animate-bottom">
+        <div class="row">
+            
+            <div class="col-md-6 text-center" style="margin-top: 100px;">
+                <h1 style="margin-left: 250px; margin-top: 100px;">Payment Declined!</h1>
+                <h2 style="margin-left: 250px; margin-top: 0px;">Please Retry your transaction</h2>
+                <a href="../index.php" class="btn btn-primary py-sm-3 px-sm-4" style="margin-top: 100px; margin-left: 250px;">Back to Home</a>
+                <a href="./mycart.php" class="btn btn-primary py-sm-3 px-sm-4" style="margin-top: 100px; ">Back to Cart</a>
+            </div>
+            <div class="col-md-6" style="margin-top: 70px; ">
+                <img src="../images/cancel.webp" width="100%">
+            </div>
+
+
+        </div>
+        <!-- <h1>Payment Cancel!</h1> -->
+
         <!-- <h2>Thank you for palced your order with us.</h2> -->
-        <a href="../index.php" class="btn btn-primary py-sm-3 px-sm-4" style="margin-top: 100px;">Back to Home</a>
+        <!-- <a href="../index.php" class="btn btn-primary py-sm-3 px-sm-4" style="margin-top: 100px;">Back to Home</a> -->
         <!-- <a href="./mybill.php" target="_blank" class="btn btn-primary py-sm-3 px-sm-4" style="margin-top: 100px;">Download Bill</a> -->
     </div>
 

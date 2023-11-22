@@ -128,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $content = Security::SanitizeInput($_POST['content']);
         $currentDate = date('Y-m-d');
         // call postNews function in Manager class
-        if ($manager->postNews($_FILES['newsimage1'], $title, $description, $content, $currentDate)) { //$title, $description, $content, $date
+        if ($manager->postNews($_FILES['newsimage1'], $title, $description, $content, $currentDate)) { 
             header("Location: ../manager/manageNewsFeed.php?success=1");
         } else {
             header("Location: ../manager/manageNewsFeed.php?error=3");
