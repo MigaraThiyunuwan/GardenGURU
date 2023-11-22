@@ -43,8 +43,6 @@ if (isset($_SESSION["manager"])) {
             background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../../images/AboutUs/header_img.jpg) center center no-repeat !important;
             background-size: cover !important;
         }
-
-        
     </style>
 </head>
 
@@ -117,7 +115,7 @@ if (isset($_SESSION["manager"])) {
                     <a href="./manageUsers.php" class="w-100"><button class="btn-lg btn-success w-100">User Details</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                <a href="./manageShop.php" class="w-100"><button class="btn-lg btn-success w-100">Manage Shop</button></a>
+                    <a href="./manageShop.php" class="w-100"><button class="btn-lg btn-success w-100">Manage Shop</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
                     <button class="btn-lg btn-success w-100">Button</button>
@@ -175,7 +173,7 @@ if (isset($_SESSION["manager"])) {
                                         $start1 = isset($_GET['start1']) ? intval($_GET['start1']) : 0;
                                         $rows_per_page1 = 20;
 
-                                        $query = "SELECT * FROM orders ORDER BY orderID DESC LIMIT $start1, $rows_per_page1";
+                                        $query = "SELECT * FROM orders WHERE OrderTransaction = 'success' ORDER BY orderID DESC LIMIT $start1, $rows_per_page1";
                                         $pstmt = $con->prepare($query);
                                         $pstmt->execute();
                                         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
@@ -194,13 +192,20 @@ if (isset($_SESSION["manager"])) {
                                                     if ($order->OrderStatus == "waiting") {
                                                     ?>
                                                         <span class="btn btn-warning">Waiting</span>
-                                                    <?php
+                                                        <?php
                                                     } else if ($order->OrderStatus == "success") {
-                                                    ?>
-                                                        <span class="btn btn-success">Completed</span>
-                                                    <?php
+                                                        if ($order->deliveryStatus == "yes") {
+                                                        ?>
+                                                            <span class="btn btn-success">Delivered</span>
+                                                        <?php
+                                                        } else {
+
+                                                        ?>
+                                                            <span class="btn btn-outline-success">Completed</span>
+                                                        <?php
+                                                        }
                                                     } else if ($order->OrderStatus == "rejected") {
-                                                    ?>
+                                                        ?>
                                                         <span class="btn btn-danger">Rejected</span>
                                                     <?php
                                                     }
@@ -214,7 +219,7 @@ if (isset($_SESSION["manager"])) {
                                                         <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#confirmOrder<?php echo $order->orderID ?>">Confirm</button>
                                                     <?php
                                                     }
-                                                    
+
                                                     if ($order->OrderStatus == "success" || $order->OrderStatus == "rejected") {
                                                     ?>
                                                         <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#confirmOrder<?php echo $order->orderID ?>" disabled>Confirm</button>

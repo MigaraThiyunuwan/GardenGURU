@@ -14,7 +14,7 @@ class Report
             FROM orders o
             JOIN orderitem oi ON o.orderID = oi.orderID
             JOIN shop s ON oi.ItemId = s.ItemId
-            WHERE o.orderID = ?";
+            WHERE o.orderID = ? AND OrderTransaction = 'success'";
             $pstmt = $con->prepare($query);
             $pstmt->bindValue(1, $orderID);
 
@@ -46,7 +46,7 @@ class Report
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
-            $query = "SELECT TotalPrice FROM orders";
+            $query = "SELECT TotalPrice FROM orders WHERE OrderTransaction = 'success'";
             $pstmt = $con->prepare($query);
 
             $pstmt->execute();
@@ -86,7 +86,7 @@ class Report
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
-            $query = "SELECT COUNT(*) as total FROM orders";
+            $query = "SELECT COUNT(*) as total FROM orders WHERE OrderTransaction = 'success'";
             $stmt = $con->prepare($query);
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -102,9 +102,9 @@ class Report
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
-            $query = "SELECT COUNT(*) as total FROM orders WHERE OrderStatus = ?";
+            $query = "SELECT COUNT(*) as total FROM orders WHERE deliveryStatus = ?";
             $stmt = $con->prepare($query);
-            $stmt->bindValue(1, "success");
+            $stmt->bindValue(1, "yes");
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $total = $result['total'];
@@ -187,14 +187,14 @@ class Report
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
-            $query = "SELECT COUNT(*) as total FROM orders AS o JOIN users AS u ON o.user_id = u.user_id WHERE u.user_Gender = ?";
+            $query = "SELECT COUNT(*) as total FROM orders AS o JOIN users AS u ON o.user_id = u.user_id WHERE u.user_Gender = ? AND OrderTransaction = 'success'";
             $stmt = $con->prepare($query);
             $stmt->bindValue(1, 'Male');
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $totalMale = $result['total'];
 
-            $query1 = "SELECT COUNT(*) as total FROM orders";
+            $query1 = "SELECT COUNT(*) as total FROM orders WHERE OrderTransaction = 'success'";
             $stmt1 = $con->prepare($query1);
             $stmt1->execute();
             $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
@@ -214,7 +214,7 @@ class Report
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
-            $query = "SELECT COUNT(*) as total FROM orders AS o JOIN users AS u ON o.user_id = u.user_id WHERE u.user_Gender = ?";
+            $query = "SELECT COUNT(*) as total FROM orders AS o JOIN users AS u ON o.user_id = u.user_id WHERE u.user_Gender = ? AND OrderTransaction = 'success'   ";
             $stmt = $con->prepare($query);
             $stmt->bindValue(1, "Female");
             $stmt->execute();

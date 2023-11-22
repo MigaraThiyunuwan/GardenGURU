@@ -90,11 +90,20 @@ if (isset($_SESSION["manager"])) {
                 <?php
                 if ($user != null) {
                 ?>
-                    <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                    <div class="p-3 ">
+                        <a href="./user.php">
+                        <img src="<?php echo $user->getPropic() ?>" alt="avatar" class="rounded-circle me-2 " style="width: 45px; height: 45px; object-fit: cover" />
+                        </a>
+                    </div>
+                    <a href="./user.php" class="btn btn-outline-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;"><?php echo $user->getFirstName() . " ". $user->getLastName() ?></a>
                 <?php
                 } else if ($manager != null) {
                 ?>
                     <a href="./manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else if (isset($_SESSION["admin"])) {
+                ?>
+                    <a href="./admin/Admin.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
                 <?php
                 } else {
                 ?>
@@ -216,7 +225,7 @@ if (isset($_SESSION["manager"])) {
 
                 <div class="course-content">
                     <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                        <p class="fs-5 fw-bold text-primary">User Reviews</p>
+                        <p class="fs-5 fw-bold text-primary">User Feedbacks</p>
                         <h1 class="display-5 mb-5">What our customers say about us</h1>
                     </div>
 

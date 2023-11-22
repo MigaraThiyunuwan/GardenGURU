@@ -51,7 +51,7 @@
                 </div>
                 <a href="../AboutUs.php" class="nav-item nav-link">About</a>
                 <a href="../ContactUs.php" class="nav-item nav-link">Contact</a>
-                <a href="../user.php" class="nav-item nav-link">Profile</a>
+                <!-- <a href="../user.php" class="nav-item nav-link">Profile</a> -->
                 <!-- <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                      <div class="dropdown-menu bg-light m-0">
@@ -92,7 +92,7 @@
                                         <input type="checkbox" checked="checked" />
                                         <div class="control__indicator"></div>
                                     </label> -->
-                                    <span class="ml-auto" ><a href="#" class="forgot-pass">Forgot Password?</a></span>
+                                    <!-- <span class="ml-auto" ><a href="#" class="forgot-pass">Forgot Password?</a></span> -->
                                 </div>
 
                                 <?php

@@ -78,7 +78,7 @@ class Order
 
             $dbcon =  new DbConnector();
             $con = $dbcon->getConnection();
-            $query = "INSERT INTO orders (user_id, orderDate, TotalPrice, deliveryAddress, city, receiver, CoNum, OrderTransaction, OrderStatus) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $query = "INSERT INTO orders (user_id, orderDate, TotalPrice, deliveryAddress, city, receiver, CoNum, OrderTransaction, OrderStatus, deliveryStatus) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $pstmt = $con->prepare($query);
             $pstmt->bindValue(1, $user_id);
             $pstmt->bindValue(2, $this->orderDate);
@@ -89,6 +89,7 @@ class Order
             $pstmt->bindValue(7, $this->postalCode);
             $pstmt->bindValue(8, $this->OrderTransaction);
             $pstmt->bindValue(9, $this->OrderStatus);
+            $pstmt->bindValue(10, "no");
             $pstmt->execute();
             $orderID = $con->lastInsertId();
 
@@ -115,6 +116,27 @@ class Order
             $pstmt->bindValue(2, $itemId);
             $pstmt->bindValue(3, $quantity);
 
+            $pstmt->execute();
+
+            if (($pstmt->rowCount()) > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+
+            echo $e->getMessage();
+        }
+    }
+    public function transactionConfirm()
+    {
+        try {
+
+            $dbcon =  new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "UPDATE orders SET OrderTransaction = 'success' WHERE orderID = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $this->orderID);
             $pstmt->execute();
 
             if (($pstmt->rowCount()) > 0) {
