@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2023 at 08:20 PM
+-- Generation Time: Nov 22, 2023 at 12:54 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -97,7 +97,8 @@ INSERT INTO `answer` (`answerID`, `questionID`, `user_id`, `answerDate`, `answer
 (8, 8, 22, '2023-10-17', 'Hello, as a mango farmer, soil preparation is vital for successful mango tree growth. Begin with a soil test, ensure well-drained, sunny locations, and amend soil based on results. Adequate spacing, proper watering, and fertilization are key. Consult local experts and resources for specific guidance to ensure healthy mango trees.'),
 (9, 9, 36, '2023-10-31', 'In Galle, for successful banana cultivation, I recommend considering varieties such as [specific banana varieties suited for your region], which have proven adaptability to our local climate. Ensure well-drained, loamy soils with a pH range of 5.5 to 6.5, enriched with organic matter. Incorporate well-rotted compost before planting and use a balanced 14-14-14 NPK fertilizer at recommended intervals. Effective pest and disease management is crucial; watch for common threats like aphids, nematodes, and banana weevils. Implement regular inspection and control measures, such as using organic pesticides when necessary, to safeguard your crop&#039;s health and maximize yield. Additionally, remember to tailor your care to the specific conditions in your region to optimize banana growth and production.'),
 (10, 10, 18, '2023-10-25', 'To successfully cultivate oranges in Rathnapura, it\'s crucial to choose varieties that thrive in our climate, such as [specific orange varieties suited for your region]. These varieties are well-suited for our local conditions and have a track record of performance. Prior to planting, prepare the soil by ensuring it\'s well-draining, with a pH of around 6.0 to 7.0, and amend it with organic matter like compost or well-rotted manure. When it comes to fertilization, a balanced 10-10-10 NPK fertilizer is suitable for orange trees, and you should apply it in late winter or early spring. Regular pruning to remove dead or diseased branches and proper spacing for good air circulation is essential. Keep a watchful eye for common pests like citrus aphids, scales, and diseases like citrus canker. Implement integrated pest management techniques and consider using horticultural oils or organic insecticides when necessary. For harvesting, oranges are typically ready when they reach their full color, and they should be harvested with care to avoid damage. By following these guidelines, you can optimize your orange orchard\'s health and productivity in our region.'),
-(11, 11, 38, '2023-10-31', 'To excel in grapevine cultivation in Jaffna, you should prioritize grape varieties known to thrive in our climate. Varieties such as [specific grape varieties suited for your region] are well-suited to our local conditions and have a track record of success. Prepare the soil by ensuring it&#039;s well-draining, with a pH of around 6.0 to 7.0, and enrich it with organic matter like compost or well-rotted manure before planting. Fertilize the grapevines with a balanced NPK fertilizer, typically in early spring, to support growth and fruit development. Vigilant pest and disease management is essential. Keep an eye out for common grapevine pests like aphids, grapevine leafhoppers, and fungal diseases like powdery mildew. Implement integrated pest management strategies, including the judicious use of fungicides and insecticides when necessary. Pruning is vital to control vine growth and improve fruit quality; the timing and extent of pruning may vary based on the specific grape variety. Harvesting grapes should be done at the optimal ripeness, typically determined by taste and sugar content. By following these guidelines, you can establish a successful and productive grapevine vineyard tailored to our region&#039;s unique conditions.');
+(11, 11, 38, '2023-10-31', 'To excel in grapevine cultivation in Jaffna, you should prioritize grape varieties known to thrive in our climate. Varieties such as [specific grape varieties suited for your region] are well-suited to our local conditions and have a track record of success. Prepare the soil by ensuring it&#039;s well-draining, with a pH of around 6.0 to 7.0, and enrich it with organic matter like compost or well-rotted manure before planting. Fertilize the grapevines with a balanced NPK fertilizer, typically in early spring, to support growth and fruit development. Vigilant pest and disease management is essential. Keep an eye out for common grapevine pests like aphids, grapevine leafhoppers, and fungal diseases like powdery mildew. Implement integrated pest management strategies, including the judicious use of fungicides and insecticides when necessary. Pruning is vital to control vine growth and improve fruit quality; the timing and extent of pruning may vary based on the specific grape variety. Harvesting grapes should be done at the optimal ripeness, typically determined by taste and sugar content. By following these guidelines, you can establish a successful and productive grapevine vineyard tailored to our region&#039;s unique conditions.'),
+(16, 8, 22, '2023-11-14', 'ggggd');
 
 -- --------------------------------------------------------
 
@@ -144,8 +145,10 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cartId`, `user_id`, `ItemId`, `Item_Name`, `Price`, `Quantity`) VALUES
-(55, 2, 2, 'Impatiens', 150, 1),
-(57, 38, 2, 'Impatiens', 150, 1);
+(57, 38, 2, 'Impatiens', 150, 1),
+(87, 22, 1, 'Tomato', 80, 2),
+(105, 22, 4, 'Cabbage', 100, 1),
+(106, 2, 2, 'Impatiens', 160, 1);
 
 -- --------------------------------------------------------
 
@@ -222,7 +225,6 @@ CREATE TABLE `manager` (
 INSERT INTO `manager` (`managerID`, `mFirstName`, `mLastName`, `mEmail`, `mPassword`, `mNIC`, `mPhone`) VALUES
 (1, 'Malki', 'Madhubhashini', 'malki@gmail.com', '$2y$10$H6ux6v8yBwBxc9JfcAWb6uZzIaGq53v53OKIuaY8m4G9.HEbfZ/4W', '1234567844', '0762456784'),
 (2, 'Jane', 'Smith', 'jane.smith@example.com', 'securepass', '0987654321', '+0987654321'),
-(3, 'ruwan', 'kumara', 'ruwan@gmail.com', '$2y$10$rDoZ12WktHpldUaRg.eHR.ntTEdB4pJk1I25KI0lnCuqP0dToctFO', '1234567234', '0771314567'),
 (4, 'lashan', 'sachintha', 'lashansachintha@gmail.com', '$2y$10$oo1tX7nGMIqVEPMSifGhMOLntRLLvbW6XHqbht9TpPgtFKfkwZjZO', '12345678923', '0771314567');
 
 -- --------------------------------------------------------
@@ -311,7 +313,28 @@ INSERT INTO `orderitem` (`orderItemID`, `orderID`, `ItemId`, `itemQuantity`) VAL
 (39, 12, 12, 5),
 (40, 12, 16, 2),
 (41, 13, 2, 1),
-(42, 14, 2, 1);
+(42, 14, 2, 1),
+(43, 15, 2, 1),
+(44, 15, 7, 1),
+(45, 15, 15, 3),
+(46, 16, 1, 1),
+(47, 17, 1, 1),
+(49, 19, 5, 1),
+(50, 19, 7, 1),
+(51, 19, 9, 1),
+(52, 20, 10, 4),
+(53, 21, 12, 1),
+(54, 21, 11, 3),
+(72, 72, 2, 1),
+(73, 74, 2, 1),
+(74, 76, 2, 1),
+(75, 78, 2, 1),
+(76, 80, 3, 3),
+(81, 82, 5, 3),
+(82, 82, 1, 2),
+(83, 82, 4, 4),
+(84, 82, 2, 1),
+(85, 82, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -329,27 +352,46 @@ CREATE TABLE `orders` (
   `receiver` varchar(60) NOT NULL,
   `CoNum` int(20) NOT NULL,
   `OrderTransaction` varchar(60) NOT NULL,
-  `OrderStatus` varchar(60) NOT NULL
+  `OrderStatus` varchar(60) NOT NULL,
+  `deliveryStatus` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`orderID`, `user_id`, `orderDate`, `TotalPrice`, `deliveryAddress`, `city`, `receiver`, `CoNum`, `OrderTransaction`, `OrderStatus`) VALUES
-(2, 22, '2023-10-06', 750, 'dzgrx', 'Attanagalla', 'Ruwan kumara', 11120, 'success', 'success'),
-(3, 22, '2023-10-09', 150, 'thtr', 'Attanagalla', 'Ruwan kumara', 11120, 'success', 'success'),
-(4, 22, '2023-10-16', 1660, '56/2, Temple Rd. Kelaniya', 'Attanagalla', 'Nimal Perera', 771516783, 'success', 'success'),
-(5, 22, '2023-10-16', 2350, '23/1, Main Street, Nittambuwa', 'Nittambuwa', 'Tharindu Buddhika', 771629789, 'success', 'rejected'),
-(6, 22, '2023-10-16', 1780, '56/9, lake round, kurunegala', 'kurunegala', 'lashan sachintha', 778634967, 'success', 'success'),
-(7, 2, '2023-10-17', 930, 'No 23, Kurunegoda, Kotiyakumbura.', 'Kegalle', 'Malki Madhubhashini', 763857450, 'success', 'success'),
-(8, 15, '2023-10-17', 610, 'No.4, Galle Rd. Makuluwa', 'Galle', 'Sunura Adithya', 2147483647, 'success', 'success'),
-(9, 2, '2023-10-23', 2785, 'No 23, Kurunegoda, Kotiyakumbura.', 'Kegalle', 'Malki Madhubhashini', 771526789, 'success', 'success'),
-(10, 34, '2023-10-31', 1110, 'No. 26, Galle', 'Galle', 'Damith Asanka', 762342312, 'success', 'success'),
-(11, 37, '2023-10-31', 655, 'no.69, Medamulana, Weeraketiya', 'Hambanthota', 'Shiranthi Rajapaksha', 712349204, 'success', 'success'),
-(12, 36, '2023-10-31', 2275, 'No.91, Pelmadulla rd. Rathnapura', 'Rathnapura', 'Shashika Nisansala', 774519634, 'success', 'success'),
-(13, 2, '2023-10-31', 150, 'temple rd. kegalla', 'Kegalla', 'Malki Madhubhashini', 772445179, 'success', 'waiting'),
-(14, 38, '2023-11-05', 150, '58/1, waragoda, attanagalla.', 'Attanagalla', 'Tharindu Buddhika', 882328345, 'success', 'waiting');
+INSERT INTO `orders` (`orderID`, `user_id`, `orderDate`, `TotalPrice`, `deliveryAddress`, `city`, `receiver`, `CoNum`, `OrderTransaction`, `OrderStatus`, `deliveryStatus`) VALUES
+(2, 22, '2023-10-06', 750, 'dzgrx', 'Attanagalla', 'Ruwan kumara', 11120, 'success', 'success', 'yes'),
+(3, 22, '2023-10-09', 150, 'thtr', 'Attanagalla', 'Ruwan kumara', 11120, 'success', 'success', 'yes'),
+(4, 22, '2023-10-16', 1660, '56/2, Temple Rd. Kelaniya', 'Attanagalla', 'Nimal Perera', 771516783, 'success', 'success', 'no'),
+(5, 22, '2023-10-16', 2350, '23/1, Main Street, Nittambuwa', 'Nittambuwa', 'Tharindu Buddhika', 771629789, 'success', 'rejected', 'no'),
+(6, 22, '2023-10-16', 1780, '56/9, lake round, kurunegala', 'kurunegala', 'lashan sachintha', 778634967, 'success', 'success', 'no'),
+(7, 2, '2023-10-17', 930, 'No 23, Kurunegoda, Kotiyakumbura.', 'Kegalle', 'Malki Madhubhashini', 763857450, 'success', 'success', 'yes'),
+(8, 15, '2023-10-17', 610, 'No.4, Galle Rd. Makuluwa', 'Galle', 'Sunura Adithya', 2147483647, 'success', 'success', 'yes'),
+(9, 2, '2023-10-23', 2785, 'No 23, Kurunegoda, Kotiyakumbura.', 'Kegalle', 'Malki Madhubhashini', 771526789, 'success', 'success', 'yes'),
+(10, 34, '2023-10-31', 1110, 'No. 26, Galle', 'Galle', 'Damith Asanka', 762342312, 'success', 'success', 'yes'),
+(11, 37, '2023-10-31', 655, 'no.69, Medamulana, Weeraketiya', 'Hambanthota', 'Shiranthi Rajapaksha', 712349204, 'success', 'success', 'yes'),
+(12, 36, '2023-10-31', 2275, 'No.91, Pelmadulla rd. Rathnapura', 'Rathnapura', 'Shashika Nisansala', 774519634, 'success', 'success', 'yes'),
+(13, 2, '2023-10-31', 150, 'temple rd. kegalla', 'Kegalla', 'Malki Madhubhashini', 772445179, 'success', 'success', 'yes'),
+(14, 38, '2023-11-05', 150, '58/1, waragoda, attanagalla.', 'Attanagalla', 'Tharindu Buddhika', 882328345, 'success', 'waiting', 'no'),
+(15, 2, '2023-11-11', 650, 'temple rd. kegalla', 'Kegalle', 'Malki Madhubhashini', 771426783, 'success', 'success', 'yes'),
+(16, 22, '2023-11-14', 80, '58/1, waragoda, attanagalla.', 'Attanagalla', 'Ruwan kumara', 77245673, 'success', 'rejected', 'no'),
+(17, 22, '2023-11-14', 80, '58/1, waragoda, attanagalla.', 'Attanagalla', 'Tharindu Buddhika', 772314567, 'success', 'success', 'no'),
+(19, 15, '2023-11-14', 375, 'Colombo Rd, Galle', 'Galle', 'Sunura Adithya', 712341567, 'success', 'success', 'no'),
+(20, 36, '2023-11-14', 400, '58/1, waragoda, attanagalla.', 'Nittambuwa', 'Shashika Nisansala', 7714256, 'success', 'success', 'no'),
+(21, 34, '2023-11-14', 895, '58/1, waragoda, attanagalla.', 'Attanagalla', 'Damith Asanka', 771456172, 'success', 'waiting', 'no'),
+(72, 2, '2023-11-21', 150, '58/1, waragoda, attanagalla.', 'Attanagalla', 'test111111111', 771416968, 'success', 'success', 'no'),
+(73, 2, '2023-11-21', 150, '58/1, waragoda, attanagalla.', 'Attanagalla', 'Ruwan kumara', 771415672, 'unsuccess', 'waiting', 'no'),
+(74, 2, '2023-11-21', 150, '58/1, waragoda, attanagalla.', 'Attanagalla', 'Ruwan kumara', 771415672, 'success', 'waiting', 'no'),
+(75, 2, '2023-11-21', 150, '58/1, waragoda, attanagalla.', 'Attanagalla', 'Ruwan kumara', 771456278, 'unsuccess', 'waiting', 'no'),
+(76, 2, '2023-11-21', 150, '58/1, waragoda, attanagalla.', 'Attanagalla', 'Ruwan kumara', 771456278, 'success', 'success', 'no'),
+(77, 2, '2023-11-21', 150, '58/1, waragoda, attanagalla.', 'Attanagalla', 'last', 771314562, 'unsuccess', 'waiting', 'no'),
+(78, 2, '2023-11-21', 150, '58/1, waragoda, attanagalla.', 'Attanagalla', 'last', 771314562, 'success', 'waiting', 'no'),
+(79, 2, '2023-11-22', 600, '58/1, waragoda, attanagalla.', 'Attanagalla', 'lashan', 771415672, 'unsuccess', 'waiting', 'no'),
+(80, 2, '2023-11-22', 600, '58/1, waragoda, attanagalla.', 'Attanagalla', 'lashan 22', 661324567, 'success', 'success', 'no'),
+(82, 2, '2023-11-22', 1405, '58/1, waragoda, attanagalla.', 'Attanagalla', 'sbsb', 442312345, 'success', 'waiting', 'no'),
+(83, 22, '2023-11-22', 260, '58/1, waragoda, attanagalla.', 'Attanagalla', 'Ruwan kumara', 771314562, 'unsuccess', 'waiting', 'no'),
+(84, 2, '2023-11-22', 160, '58/1, waragoda, attanagalla.', 'Attanagalla', 'pathum', 771314567, 'unsuccess', 'waiting', 'no');
 
 -- --------------------------------------------------------
 
@@ -361,42 +403,43 @@ CREATE TABLE `plant` (
   `PlantID` int(11) NOT NULL,
   `PlantName` varchar(50) NOT NULL,
   `FilePath` varchar(100) NOT NULL,
-  `description` text DEFAULT NULL
+  `description` text DEFAULT NULL,
+  `instruction` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `plant`
 --
 
-INSERT INTO `plant` (`PlantID`, `PlantName`, `FilePath`, `description`) VALUES
-(1, 'Beans', '../images/suggesstions/beans.jpg', 'Beans are nutritious legumes, packed with protein, fiber, and vitamins, making them a versatile culinary staple.'),
-(2, 'Leeks', '../images/suggesstions/leeks.jpg', 'Leeks, with their mild onion flavor, are versatile vegetables, enhancing dishes with their unique taste and texture.'),
-(3, 'Potato', '../images/suggesstions/potato.jpeg', 'Potatoes are starchy, versatile tubers that form the basis of countless delicious dishes, from fries to mash.'),
-(4, 'Carrot', '../images/suggesstions/carrot.jpg', 'Carrots are vibrant orange root vegetables, known for their sweet flavor and high vitamin A content.'),
-(5, 'Banana', '../images/suggesstions/banana.jpg', 'Bananas are creamy, potassium-rich fruits with a natural sweetness, making them a nutritious and convenient snack choice.'),
-(6, 'Papaya', '../images/suggesstions/papaya.jpg', 'Papaya is a tropical fruit with vibrant orange flesh, known for its sweet, exotic flavor and digestive benefits.'),
-(7, 'Pineapple', '../images/suggesstions/pineapple.jpg', 'Pineapple is a tropical fruit, featuring a sweet, tangy taste and vibrant yellow flesh, perfect for refreshing treats.'),
-(8, 'Mango', '../images/suggesstions/mango.jpg', 'Mangoes are luscious tropical fruits, celebrated for their juicy, aromatic flesh and rich, exotic flavor.'),
-(9, 'Guava', '../images/suggesstions/guava.jpg', 'Guava is a tropical fruit, prized for its fragrant, pink flesh, and delightful sweet-tart taste, packed with nutrients.'),
-(10, 'Passion Fruit', '../images/suggesstions/passion.jpg', 'Passion fruit is an exotic, round fruit with aromatic seeds, celebrated for its unique flavor and health benefits.'),
-(11, 'Jackfruit', '../images/suggesstions/jackfruit.jpg', 'Jackfruit is a massive tropical fruit with fibrous, sweet flesh, popular as a meat substitute in vegan cuisine.'),
-(12, 'Avocado', '../images/suggesstions/avacado.png', 'Avocado, a creamy green fruit, is prized for its rich, buttery texture and healthy monounsaturated fats. Deliciously nutritious!'),
-(13, 'Pomegranate', '../images/suggesstions/pomegranate.jpg', 'Pomegranate, with jewel-like seeds, offers a sweet-tart taste and antioxidant richness, making it a nutritious, delightful fruit.'),
-(14, 'Dragon Fruit', '../images/suggesstions/dragon.jpg', 'Dragon fruit, visually striking with pink or yellow skin and white flesh, is sweet, tropical, and exotic.'),
-(15, 'Rambutan', '../images/suggesstions/rambutan.jpg', 'Rambutan is a hairy, tropical fruit with sweet, juicy flesh, known for its unique appearance and delightful taste.'),
-(16, 'Orange', '../images/suggesstions/orange.jpg', 'Oranges are vibrant citrus fruits, bursting with vitamin C and a zesty, sweet-tart flavor. A refreshing, healthy choice.'),
-(17, 'Lime', '../images/suggesstions/lime.jpg', 'Limes are small, tangy citrus fruits, perfect for adding zesty flavor to dishes, drinks, and desserts.'),
-(18, 'Tamarind', '../images/suggesstions/tamarind.jpeg', 'Tamarind, a tangy tropical fruit, boasts a unique sweet-sour taste and is a key ingredient in many cuisines.'),
-(19, 'Watermelon', '../images/suggesstions/watermelon.jpg', 'Watermelon is a juicy, hydrating fruit with vibrant pink flesh, perfect for quenching thirst on hot days.'),
-(20, 'Tomato', '../images/suggesstions/tomato.jpeg', 'Tomatoes are versatile red fruits, essential in various dishes, offering a blend of sweetness and acidity.'),
-(21, 'Cabbage', '../images/suggesstions/cabbage.jpg', 'Cabbage is a leafy, cruciferous vegetable, offering a mild, crisp texture and a versatile addition to meals.'),
-(22, 'Cucumber', '../images/suggesstions/cucumber.jpg', 'Cucumbers are refreshing, crisp vegetables, low in calories, and perfect for salads, snacks, and hydration.'),
-(23, 'Lettuce', '../images/suggesstions/lettuce.jpg', 'Lettuce is a leafy, green vegetable, commonly used in salads, providing a fresh, crisp, and nutritious base.'),
-(24, 'Radish', '../images/suggesstions/radish.jpg', 'Radishes are vibrant, crunchy root vegetables, adding a peppery kick to salads and enhancing culinary diversity.'),
-(25, 'Eggplant', '../images/suggesstions/eggplant.jpg', 'Eggplant, a deep purple, glossy vegetable, offers a meaty texture and absorbs flavors, perfect for diverse dishes.'),
-(26, 'Spinach', '../images/suggesstions/spinach.jpg', NULL),
-(27, 'Beetroot', '../images/suggesstions/beetroot.jpg', NULL),
-(28, 'Peas', '../images/suggesstions/peas.jpg', NULL);
+INSERT INTO `plant` (`PlantID`, `PlantName`, `FilePath`, `description`, `instruction`) VALUES
+(1, 'Beans', '../images/suggesstions/beans.jpg', 'Beans are nutritious legumes, packed with protein, fiber, and vitamins, making them a versatile culinary staple.', 'Beans are a popular and versatile crop to grow in your garden. To plant them, prepare well-drained soil after the last frost, ideally when the soil temperature is around 60°F (15°C). Plant bean seeds about 1 to 2 inches deep, spaced 2 to 4 inches apart in rows. They require full sun and adequate watering, ensuring the soil remains consistently moist but not waterlogged. Beans thrive in temperatures between 70°F to 80°F (21°C to 27°C). Support pole or trellis varieties for upright growth, and bush types will spread. Regular weeding, occasional fertilization, and monitoring for pests and diseases are key to a healthy bean crop. Harvest when the pods are firm and well-formed for optimum taste and texture. Beans are a rewarding addition to your garden, offering fresh and delicious produce.'),
+(2, 'Leeks', '../images/suggesstions/leeks.jpg', 'Leeks, with their mild onion flavor, are versatile vegetables, enhancing dishes with their unique taste and texture.', 'Beans are a popular and versatile crop to grow in your garden. To plant them, prepare well-drained soil after the last frost, ideally when the soil temperature is around 60°F (15°C). Plant bean seeds about 1 to 2 inches deep, spaced 2 to 4 inches apart in rows. They require full sun and adequate watering, ensuring the soil remains consistently moist but not waterlogged. Beans thrive in temperatures between 70°F to 80°F (21°C to 27°C). Support pole or trellis varieties for upright growth, and bush types will spread. Regular weeding, occasional fertilization, and monitoring for pests and diseases are key to a healthy bean crop. Harvest when the pods are firm and well-formed for optimum taste and texture. Beans are a rewarding addition to your garden, offering fresh and delicious produce.'),
+(3, 'Potato', '../images/suggesstions/potato.jpeg', 'Potatoes are starchy, versatile tubers that form the basis of countless delicious dishes, from fries to mash.', 'Potatoes are a staple crop and a rewarding addition to any garden. To plant them, prepare well-drained soil in early spring, providing a loose, fertile bed. Cut seed potatoes into chunks with at least one \"eye\" and plant them about 3 inches deep and 12 inches apart in rows. Potatoes thrive in full sun but tolerate partial shade. Keep the soil consistently moist, especially during the growing season. As the plants grow, mound soil around them to encourage more tuber development. Regular weeding and hilling to cover exposed potatoes protect them from light, which can turn them green and bitter. Harvest when the foliage dies back, usually in late summer or early fall, for a bountiful potato harvest.'),
+(4, 'Carrot', '../images/suggesstions/carrot.jpg', 'Carrots are vibrant orange root vegetables, known for their sweet flavor and high vitamin A content.', 'Carrots are crisp, sweet root vegetables that are easy to grow in home gardens. To plant them, choose well-drained, loose soil, free from rocks or clumps. Sow carrot seeds in early spring or late summer, about 1/4 inch deep and 2 inches apart in rows. Ensure they receive full sun and keep the soil consistently moist. Thinning seedlings is essential to prevent overcrowding, and mulching helps maintain moisture and keeps the soil cool. Carrots require regular weeding to prevent competition from other plants. Harvest when the roots reach the desired size, typically 70-80 days after planting. Enjoy fresh, flavorful carrots in salads, soups, and as snacks.'),
+(5, 'Banana', '../images/suggesstions/banana.jpg', 'Bananas are creamy, potassium-rich fruits with a natural sweetness, making them a nutritious and convenient snack choice.', 'Bananas are tropical delights with lush foliage and tasty fruit. To plant them, select a sunny, frost-free location with well-drained soil. Choose healthy banana suckers or young plants from a nursery and plant them in holes deep enough to accommodate their root ball. Maintain consistently warm temperatures (around 78-86°F or 25-30°C) and ensure regular watering to keep the soil moist. Provide mulch to conserve moisture and suppress weeds. Fertilize banana plants with a balanced, slow-release fertilizer. Protect them from strong winds and provide support for heavy fruit bunches. Prune dead leaves and manage pests and diseases for a thriving banana plantation. Enjoy the tropical bounty when the fruit matures.'),
+(6, 'Papaya', '../images/suggesstions/papaya.jpg', 'Papaya is a tropical fruit with vibrant orange flesh, known for its sweet, exotic flavor and digestive benefits.', 'Papayas are tropical wonders known for their sweet, vibrant fruit. To plant them, select a sunny, frost-free location with well-drained soil. Papaya seeds can be sown directly in the ground or started indoors in pots. Plant seeds 1/2 inch deep, and maintain warm soil temperatures (around 75-85°F or 24-29°C) for germination. Keep the soil consistently moist but not waterlogged. Papaya plants require ample space and should be planted at least 6-8 feet apart. Provide support for young plants and protect them from strong winds. Prune regularly, fertilize with balanced nutrients, and manage pests and diseases for a bountiful papaya harvest, typically within 6-9 months. Enjoy the delicious and nutritious tropical fruit.'),
+(7, 'Pineapple', '../images/suggesstions/pineapple.jpg', 'Pineapple is a tropical fruit, featuring a sweet, tangy taste and vibrant yellow flesh, perfect for refreshing treats.', 'Pineapples, the epitome of tropical sweetness, can be grown in warmer climates. To plant them, obtain a healthy pineapple crown from a mature fruit, and let it dry for a few days. Then, plant it in well-drained, sandy soil, or in a large pot if you live in a colder area. Pineapples thrive in full sun and require warm temperatures, ideally around 70-85°F (21-29°C). Keep the soil consistently moist but not waterlogged. Fertilize with a balanced fertilizer and protect young plants from harsh winds. Pineapples take time to grow, usually taking 18-24 months to bear fruit. Harvest when the fruit reaches a golden hue and enjoy the unique, tangy-sweet flavor of homegrown pineapples.'),
+(8, 'Mango', '../images/suggesstions/mango.jpg', 'Mangoes are luscious tropical fruits, celebrated for their juicy, aromatic flesh and rich, exotic flavor.', 'Mangoes, revered for their luscious, tropical flavor, thrive in warm climates. To plant them, select a sunny, frost-free location with well-drained soil. Obtain a healthy mango seed or a grafted sapling from a nursery. Plant the seed about an inch deep or transplant the sapling, keeping it well-irrigated during the establishment phase. Mango trees require full sun and warm temperatures, ideally between 70-100°F (21-38°C). Regular watering is crucial, especially during dry spells, and they benefit from a balanced fertilizer regimen. Prune for shape and size control and protect against pests and diseases. Mango trees typically bear fruit within 3-6 years and offer a delicious bounty of succulent mangoes when mature.'),
+(9, 'Guava', '../images/suggesstions/guava.jpg', 'Guava is a tropical fruit, prized for its fragrant, pink flesh, and delightful sweet-tart taste, packed with nutrients.', 'Guavas, known for their sweet-tangy flavor and rich nutritional content, are a delight to grow. To plant them, select a sunny location with well-drained soil. Guava seeds or seedlings can be planted directly in the ground or in pots. Plant them in holes with good spacing and provide consistent watering, especially during dry periods. Guavas flourish in warm, tropical or subtropical conditions with temperatures around 77-95°F (25-35°C). Fertilize with balanced nutrients to support growth and fruiting. Prune for shape and size control, and protect against pests and diseases. Guavas typically produce fruit within 2-4 years and offer a bounty of delicious, nutrient-rich fruits for your enjoyment.'),
+(10, 'Passion Fruit', '../images/suggesstions/passion.jpg', 'Passion fruit is an exotic, round fruit with aromatic seeds, celebrated for its unique flavor and health benefits.', 'Passionfruit, known for its unique, aromatic fruit and vibrant vines, is a captivating addition to any garden. To plant them, choose a sunny, well-drained location and provide support for the vigorous vines. Plant seeds or seedlings in rich, loamy soil. Passionfruit thrives in warm climates with temperatures between 68-86°F (20-30°C) and appreciates consistent moisture, especially during the growing season. Fertilize regularly with a balanced nutrient mix. Prune to control the vine\'s growth and promote air circulation. Protect against pests and diseases. Passionfruit vines typically bear fruit within 12-18 months, rewarding you with exotic, aromatic fruits that are perfect for fresh consumption or culinary use.'),
+(11, 'Jackfruit', '../images/suggesstions/jackfruit.jpg', 'Jackfruit is a massive tropical fruit with fibrous, sweet flesh, popular as a meat substitute in vegan cuisine.', 'Jackfruit, a tropical marvel, produces enormous fruits with a sweet and unique flavor. To plant them, select a sunny, frost-free location with well-drained soil. Obtain jackfruit seeds from ripe fruits and plant them in holes about 1 inch deep. Jackfruit thrives in warm, tropical climates with temperatures around 77-95°F (25-35°C). Keep the soil consistently moist, especially during the growing season. Fertilize with a balanced nutrient mix to support growth. Prune for shape and to maintain manageable size. Jackfruit trees can take several years to bear fruit, but once mature, they yield a bounty of massive, nutritious fruits that are perfect for a variety of culinary uses.'),
+(12, 'Avocado', '../images/suggesstions/avacado.png', 'Avocado, a creamy green fruit, is prized for its rich, buttery texture and healthy monounsaturated fats. Deliciously nutritious!', 'Avocado, a creamy and nutritious fruit, is a delight to grow. To plant them, select a warm, frost-free location with well-drained soil. Start with an avocado pit, sprout, or grafted seedling. Plant it in well-draining soil, ensuring proper spacing, and keep it well-irrigated, especially during the establishment phase. Avocado trees thrive in a subtropical or tropical climate with temperatures around 60-85°F (15-30°C). Fertilize with a balanced nutrient mix to encourage healthy growth. Pruning can help shape the tree and encourage fruiting. Protect against pests and diseases. Avocado trees may take several years to bear fruit, but the reward is worth the wait—delicious, buttery avocados for your culinary delights.'),
+(13, 'Pomegranate', '../images/suggesstions/pomegranate.jpg', 'Pomegranate, with jewel-like seeds, offers a sweet-tart taste and antioxidant richness, making it a nutritious, delightful fruit.', 'Pomegranate, known for its vibrant, jewel-like seeds and health benefits, is a captivating addition to any garden. To plant them, choose a sunny, well-drained location and provide proper spacing. Plant pomegranate saplings or cuttings in loamy, fertile soil. Pomegranates thrive in warm, arid climates with temperatures around 40-90°F (4-32°C). They tolerate drought but benefit from regular watering, especially in the early stages. Fertilize with a balanced nutrient mix and prune to shape the tree and encourage fruit production. Protect against pests and diseases. Pomegranate trees typically produce fruit within 2-3 years, offering a bounty of nutrient-rich, delicious seeds for fresh consumption or culinary use.'),
+(14, 'Dragon Fruit', '../images/suggesstions/dragon.jpg', 'Dragon fruit, visually striking with pink or yellow skin and white flesh, is sweet, tropical, and exotic.', 'Dragonfruit, a visually striking and exotic fruit, is a tropical treasure. To plant them, select a sunny, well-drained location with support for the climbing vines. Begin with a dragonfruit cutting or seedling, planting it in well-drained, sandy soil or a container with good drainage. Dragonfruit thrives in warm, tropical conditions with temperatures between 65-85°F (18-29°C) and requires regular watering, particularly during the growing season. Fertilize with a balanced nutrient mix and provide trellises or support for the vines to climb. Protect against pests and diseases. Dragonfruit plants typically start bearing fruit within 6-12 months, offering visually stunning, sweet, and nutritious fruits for your enjoyment.'),
+(15, 'Rambutan', '../images/suggesstions/rambutan.jpg', 'Rambutan is a hairy, tropical fruit with sweet, juicy flesh, known for its unique appearance and delightful taste.', 'Rambutan, a delectable tropical fruit, is a delight to cultivate. To plant them, choose a warm, humid location with well-drained, fertile soil. Begin with fresh rambutan seeds or seedlings, planting them in well-draining soil at the right spacing. Rambutan trees thrive in tropical climates with temperatures between 70-95°F (21-35°C) and require consistent moisture, especially during dry spells. Fertilize with a balanced nutrient mix to support growth and fruit production. Prune for shape and to manage size. Protect against pests and diseases. Rambutan trees usually start bearing fruit within 3-4 years, offering clusters of sweet, hairy fruits that are perfect for snacking and desserts.'),
+(16, 'Orange', '../images/suggesstions/orange.jpg', 'Oranges are vibrant citrus fruits, bursting with vitamin C and a zesty, sweet-tart flavor. A refreshing, healthy choice.', 'Oranges, beloved for their juicy sweetness and high vitamin C content, are a delight to grow. To plant them, select a sunny, frost-free location with well-drained soil. Start with orange trees or saplings from a reputable nursery. Plant them at the appropriate spacing and provide consistent watering, especially during dry spells. Oranges thrive in subtropical or tropical climates, with temperatures between 55-100°F (13-38°C). Fertilize with a balanced nutrient mix, and prune to shape the tree and encourage fruiting. Protect against pests and diseases. Orange trees can start bearing fruit within a few years, delivering a bounty of refreshing, nutritious oranges for fresh consumption and various culinary uses.'),
+(17, 'Lime', '../images/suggesstions/lime.jpg', 'Limes are small, tangy citrus fruits, perfect for adding zesty flavor to dishes, drinks, and desserts.', 'Limes, known for their zesty, tangy flavor, are a delightful addition to any garden. To plant them, choose a sunny, frost-free location with well-drained soil. Start with lime trees or saplings from a nursery. Plant them at the appropriate spacing, and ensure they receive regular watering, especially during dry spells. Limes thrive in subtropical or tropical climates, with temperatures between 70-100°F (21-38°C). Fertilize with a balanced nutrient mix and prune for shape and to encourage fruiting. Protect against pests and diseases. Lime trees can produce fruit within a few years, offering a generous supply of zesty, versatile limes for culinary delights and refreshing beverages.'),
+(18, 'Tamarind', '../images/suggesstions/tamarind.jpeg', 'Tamarind, a tangy tropical fruit, boasts a unique sweet-sour taste and is a key ingredient in many cuisines.', 'Tamarind, a unique and tangy fruit, is a fascinating addition to gardens. To plant them, choose a sunny, well-drained location with ample space. Start with tamarind seeds or seedlings, planting them in well-drained soil. Tamarind thrives in tropical and subtropical climates with temperatures between 77-95°F (25-35°C) and needs regular watering, particularly during the dry season. Fertilize with a balanced nutrient mix and provide support for the spreading branches. Pruning helps manage size and shape. Protect against pests and diseases. Tamarind trees can start bearing fruit within 3-5 years, yielding pods filled with a uniquely sweet and sour pulp used in a variety of culinary dishes and beverages.'),
+(19, 'Watermelon', '../images/suggesstions/watermelon.jpg', 'Watermelon is a juicy, hydrating fruit with vibrant pink flesh, perfect for quenching thirst on hot days.', 'Watermelons, synonymous with summer refreshment, are a joy to grow. To plant them, select a sunny, well-drained location with nutrient-rich soil. Sow watermelon seeds or transplant seedlings in hills or mounds, allowing adequate spacing. Watermelons thrive in warm temperatures, ideally between 70-90°F (21-32°C), and require consistent watering, especially as the fruits develop. Mulch helps conserve moisture and suppress weeds. Fertilize with a balanced nutrient mix and provide trellises or supports for vining varieties. Protect against pests and diseases, and monitor for signs of ripeness—usually a dull skin and a hollow sound when tapped. Harvest for sweet, juicy, and cooling slices of summer goodness.'),
+(20, 'Tomato', '../images/suggesstions/tomato.jpeg', 'Tomatoes are versatile red fruits, essential in various dishes, offering a blend of sweetness and acidity.', 'Tomatoes, versatile and flavorful, are a staple in home gardens. To plant them, choose a sunny location with well-drained, fertile soil. Start with tomato seeds or young seedlings, placing them in rows or containers, ensuring proper spacing. Tomatoes thrive in warm temperatures, around 70-85°F (21-29°C), and need consistent watering to maintain evenly moist soil. Mulch helps retain moisture and deter weeds. Fertilize with a balanced nutrient mix and stake or cage taller varieties for support. Regular pruning encourages airflow and reduces disease risk. Protect against common tomato pests and diseases. Harvest when ripe for an array of culinary delights, from salads to sauces.'),
+(21, 'Cabbage', '../images/suggesstions/cabbage.jpg', 'Cabbage is a leafy, cruciferous vegetable, offering a mild, crisp texture and a versatile addition to meals.', 'Cabbage, a nutritious and versatile vegetable, is easy to grow in home gardens. To plant them, select a sunny location with well-drained, fertile soil. Plant cabbage seeds or young seedlings, ensuring proper spacing and rows. Cabbage thrives in cooler temperatures, ideally around 60-70°F (15-21°C). Keep the soil consistently moist, and mulch helps to retain moisture and control weeds. Fertilize with a balanced nutrient mix. Protect against common cabbage pests like cabbage worms and aphids. Regularly monitor for maturing heads, and harvest when they are firm and fully formed. Cabbage offers a variety of culinary possibilities, from coleslaw to stir-fries, and is a valuable addition to any kitchen garden.'),
+(22, 'Cucumber', '../images/suggesstions/cucumber.jpg', 'Cucumbers are refreshing, crisp vegetables, low in calories, and perfect for salads, snacks, and hydration.', 'Cucumbers, refreshing and versatile, are a garden favorite. To plant them, choose a sunny location with well-drained, fertile soil. Plant cucumber seeds or seedlings in mounds or rows, ensuring proper spacing. Cucumbers thrive in warm temperatures, around 70-85°F (21-29°C), and require consistent watering to maintain even soil moisture. Mulch helps retain moisture and control weeds. Fertilize with a balanced nutrient mix. Trellises or supports are useful for vining varieties, and regular pruning encourages airflow. Protect against cucumber pests and diseases. Harvest cucumbers when they\'re young and tender for crisp salads or pickles. Cucumbers add a fresh, hydrating element to your garden and culinary creations.'),
+(23, 'Lettuce', '../images/suggesstions/lettuce.jpg', 'Lettuce is a leafy, green vegetable, commonly used in salads, providing a fresh, crisp, and nutritious base.', 'Lettuce, a staple in salads and sandwiches, is a straightforward and rewarding crop to grow. To plant it, choose a location with partial shade in hot climates or full sun in cooler regions, with well-drained, fertile soil. Sow lettuce seeds directly in rows or containers, ensuring proper spacing. Lettuce prefers cooler temperatures, ideally around 50-70°F (10-21°C), and needs consistent moisture. Mulch helps keep soil cool and retain moisture. Fertilize with a balanced nutrient mix. Protect against common pests like aphids and slugs. Harvest lettuce leaves as they mature for fresh, crisp greens. Lettuce offers an abundance of textures and flavors, making it a delightful addition to any garden.'),
+(24, 'Radish', '../images/suggesstions/radish.jpg', 'Radishes are vibrant, crunchy root vegetables, adding a peppery kick to salads and enhancing culinary diversity.', 'Radishes, known for their zesty, crunchy roots, are one of the quickest and easiest vegetables to grow. To plant them, choose a sunny location with well-drained soil. Sow radish seeds directly in rows or containers, ensuring proper spacing. Radishes prefer cool temperatures, typically between 50-70°F (10-21°C), and grow rapidly. Regular moisture keeps the roots from becoming woody, and consistent watering is essential. Fertilize with a balanced nutrient mix. Protect against common pests like flea beetles and aphids. Harvest radishes as soon as they reach the desired size for a peppery addition to salads, pickles, and garnishes. Radishes are a beginner\'s delight in the world of gardening.'),
+(25, 'Eggplant', '../images/suggesstions/eggplant.jpg', 'Eggplant, a deep purple, glossy vegetable, offers a meaty texture and absorbs flavors, perfect for diverse dishes.', 'Eggplants, with their rich, meaty texture and versatile culinary uses, thrive in warm climates. To plant them, choose a sunny location with well-drained, fertile soil. Start with eggplant seedlings or young plants, spacing them adequately in rows or containers. Eggplants prefer warm temperatures, around 70-85°F (21-29°C), and need regular watering to maintain even moisture in the soil. Mulching helps retain moisture and control weeds. Fertilize with a balanced nutrient mix. Protect against common eggplant pests like aphids and flea beetles. Stake or support larger varieties, and prune for optimal airflow. Harvest eggplants when they reach their glossy, mature size for delectable dishes like baba ghanoush and eggplant Parmesan.'),
+(26, 'Spinach', '../images/suggesstions/spinach.jpg', NULL, NULL),
+(27, 'Beetroot', '../images/suggesstions/beetroot.jpg', NULL, NULL),
+(28, 'Peas', '../images/suggesstions/peas.jpg', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1029,20 +1072,20 @@ CREATE TABLE `shop` (
 --
 
 INSERT INTO `shop` (`ItemId`, `ItemName`, `ItemQuantity`, `ItemPrice`, `ItemImage`) VALUES
-(1, 'Tomato', 12, 80, '../images/Selling1/veg1.jpeg'),
-(2, 'Impatiens', 25, 150, '../images/Selling1/flower12.jpeg'),
-(3, 'Grapes', 23, 200, '../images/Selling1/grapes.jpeg'),
-(4, 'Cabbage', 44, 90, '../images/Selling1/cab12.jpeg'),
-(5, 'Rose', 8, 175, '../images/Selling1/flower45.jpeg'),
+(1, 'Tomato', 5, 80, '../images/Selling1/veg1.jpeg'),
+(2, 'Impatiens', 7, 160, '../images/Selling1/flower12.jpeg'),
+(3, 'Grapes', 18, 200, '../images/Selling1/grapes.jpeg'),
+(4, 'Cabbage', 35, 100, '../images/Selling1/cab12.jpeg'),
+(5, 'Rose', 4, 175, '../images/Selling1/flower45.jpeg'),
 (6, 'pomegranate', 8, 120, '../images/Selling1/prom.jpeg'),
-(7, 'Red Chillie', 25, 50, '../images/Selling1/redp2.jpeg'),
-(8, 'Lilly', 5, 200, '../images/Selling1/lily3.jpeg'),
-(9, 'Mango', 6, 150, '../images/Selling1/mango.jpeg'),
-(10, 'Verbena', 74, 100, '../images/Selling1/purple1.jpeg'),
-(11, 'Baby Rose', 25, 200, '../images/Selling1/rose.jpeg'),
-(12, 'Sunflower', 17, 295, '../images/Selling1/wh2.jpeg'),
+(7, 'Red Chillie', 19, 50, '../images/Selling1/redp2.jpeg'),
+(8, 'Lilly', 4, 200, '../images/Selling1/lily3.jpeg'),
+(9, 'Mango', 4, 150, '../images/Selling1/mango.jpeg'),
+(10, 'Verbena', 70, 100, '../images/Selling1/purple1.jpeg'),
+(11, 'Baby Rose', 22, 200, '../images/Selling1/rose.jpeg'),
+(12, 'Sunflower', 16, 295, '../images/Selling1/wh2.jpeg'),
 (13, 'Brinjole', 76, 75, '../images/Selling1/brin1.jpeg'),
-(15, 'Corn', 5, 150, '../images/Selling1/corn.jpeg'),
+(15, 'Corn', 2, 150, '../images/Selling1/corn.jpeg'),
 (16, 'Banana', 6, 400, '../images/Selling1/2ce3976a24da11b5.jpg');
 
 -- --------------------------------------------------------
@@ -1141,8 +1184,7 @@ INSERT INTO `users` (`user_id`, `user_FirstName`, `user_LastName`, `user_Email`,
 (38, 'Mahinda', 'Rajapaksha', 'mahinda@gmail.com', '0752245147', 'Medamulana, Weeraketiya', '$2y$10$f4mGEjsEPgjVKdg3Qf.KjuNMPnc8nVNYkuEaJMHlCcXjhRwRjGni.', 'Kandy', 'Female', '../images/profile_pictures/38.jpeg', NULL, NULL),
 (39, 'gegee', 'ghehe4h', 'dxtht@gmail.com', '0883678234', '58/1, waragoda, attanagalla.', '$2y$10$oj/2oV3T9I9molqwNasJI.JPqL2FMz0xzyLBEUn36DOUBocHtm2hC', 'Kilinochchi', 'Female', '../images/profile_pictures/Default.png', NULL, NULL),
 (40, 'sfdghgh', 'dsfrhh', 'sgwsr@gmail.com', '0771536245', '58/1, waragoda, attanagalla.', '$2y$10$StFxehQ24lo/Ks1ARZr9G.P9DSbVdpAgwF2UxKEoLBCR3snnfvrei', 'Gampaha', 'Female', '../images/profile_pictures/Default.png', NULL, NULL),
-(41, 'rghweh', 'wehte', 'het@gmail.com', '0771314567', '58/1, waragoda, attanagalla.', '$2y$10$OPc4r7ilUOCEMv2gfzwHaumi1vwRlXofHeOnQ4GoNom/LzhrTlaZu', 'Gampaha', 'Male', '../images/profile_pictures/Default.png', NULL, NULL),
-(42, 'th4eth', '4ht4h', 'ghr4t5@gmail.com', '0771314567', '58/1, waragoda, attanagalla.', '$2y$10$mPSAPG92pIQuzOS.obbw/uqzMAjQf0znB85GXJ6ZIfXnWTuchhfcW', 'Kilinochchi', 'Male', '../images/profile_pictures/Default.png', NULL, NULL);
+(41, 'rghweh', 'wehte', 'het@gmail.com', '0771314567', '58/1, waragoda, attanagalla.', '$2y$10$OPc4r7ilUOCEMv2gfzwHaumi1vwRlXofHeOnQ4GoNom/LzhrTlaZu', 'Gampaha', 'Male', '../images/profile_pictures/Default.png', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1361,7 +1403,7 @@ ALTER TABLE `advertisements`
 -- AUTO_INCREMENT for table `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `answerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `answerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `blog`
@@ -1373,7 +1415,7 @@ ALTER TABLE `blog`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT for table `harvesttime`
@@ -1403,19 +1445,19 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT for table `orderitem`
 --
 ALTER TABLE `orderitem`
-  MODIFY `orderItemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `orderItemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `questionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `questionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `review`
@@ -1451,7 +1493,7 @@ ALTER TABLE `sunexposure`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `waterlevel`
