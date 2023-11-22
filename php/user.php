@@ -341,7 +341,7 @@ if (isset($_SESSION["user"])) {
                     $orderID1 = $order->orderID;
                   ?>
 
-                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delivery<?php echo $order->orderID ?>">Not Delivered </button>
+                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delivery<?php echo $order->orderID ?>" <?php if($order->OrderStatus == "waiting"){?> disabled <?php }  ?> >Not Delivered </button>
 
                   <?php
                   } else if ($order->deliveryStatus == "yes") {

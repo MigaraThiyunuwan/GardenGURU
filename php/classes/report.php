@@ -214,7 +214,7 @@ class Report
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
-            $query = "SELECT COUNT(*) as total FROM orders AS o JOIN users AS u ON o.user_id = u.user_id WHERE u.user_Gender = ? AND OrderTransaction = 'success'";
+            $query = "SELECT COUNT(*) as total FROM orders AS o JOIN users AS u ON o.user_id = u.user_id WHERE u.user_Gender = ? AND OrderTransaction = 'success'   ";
             $stmt = $con->prepare($query);
             $stmt->bindValue(1, "Female");
             $stmt->execute();

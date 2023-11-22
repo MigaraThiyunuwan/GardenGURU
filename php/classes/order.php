@@ -128,15 +128,15 @@ class Order
             echo $e->getMessage();
         }
     }
-    public function transactionConfirm($orderID)
+    public function transactionConfirm()
     {
         try {
 
             $dbcon =  new DbConnector();
             $con = $dbcon->getConnection();
-            $query = "UPDATE orders SET OrderTransaction = 'success'";
+            $query = "UPDATE orders SET OrderTransaction = 'success' WHERE orderID = ?";
             $pstmt = $con->prepare($query);
-            
+            $pstmt->bindValue(1, $this->orderID);
             $pstmt->execute();
 
             if (($pstmt->rowCount()) > 0) {

@@ -113,7 +113,7 @@ if (isset($_SESSION["manager"])) {
     <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
 
         <div class="container text-center py-5">
-            <h1 class="display-3 text-white mb-4 animated slideInDown">Best Selling</h1>
+            <h1 class="display-3 text-white mb-4 animated slideInDown">Confirm Payment</h1>
             <ol class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item">Plants make people happy!</li>
             </ol>
@@ -122,9 +122,7 @@ if (isset($_SESSION["manager"])) {
 
     <div class="container">
         <div class="row2">
-            <div class="col-lg-12 text-center border rounded bg-light my-5">
-                <h1>MY CART</h1>
-            </div>
+
             <?php
             if (isset($_GET['success'])) {
                 if ($_GET['success'] == 1) {
@@ -151,6 +149,7 @@ if (isset($_SESSION["manager"])) {
                     } else {
 
 
+
                         $address = Security::SanitizeInput($_POST['streetAddress']);
                         $city = Security::SanitizeInput($_POST['city']);
                         $receiver = Security::SanitizeInput($_POST['receiver']);
@@ -161,98 +160,151 @@ if (isset($_SESSION["manager"])) {
                         $currentDate = new DateTime();
 
 
-                        $order = new Order($user->getUserId(), $date, $address, $city, $receiver, $tel, $total);
-                        //$_SESSION['order'] = serialize($order);
+                        if (strlen($tel) === 10 && ctype_digit($tel)) {
 
-                        // Serialize the object
-                        $serializedObject = serialize($order);
+                            $order = new Order($user->getUserId(), $date, $address, $city, $receiver, $tel, $total);
+                            //$_SESSION['order'] = serialize($order);
 
-                        // Save the serialized object in the session
-                        $_SESSION['order'] = $serializedObject;
+                            // Serialize the object
+                            $serializedObject = serialize($order);
+
+                            // Save the serialized object in the session
+                            $_SESSION['order'] = $serializedObject;
 
 
-                        $order->setOrderTransaction("unsuccess");
-                        $orderID = $order->placeOrder($user->getUserId());
-                        $_SESSION['orderID'] = $orderID;
+                            $order->setOrderTransaction("unsuccess");
+                            $orderID = $order->placeOrder($user->getUserId());
+                            $_SESSION['orderID'] = $orderID;
             ?>
 
+                            <div class="col-lg-12">
+
+                                <!-- <div class="col-md-8"> -->
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <h6 class="mb-0"><b>Receiver Name</b></h6>
+                                            </div>
+                                            <div class="col-sm-8 text-secondary">
+                                                <?php echo $receiver ?>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <h6 class="mb-0"><b>Delivery Address</b></h6>
+                                            </div>
+                                            <div class="col-sm-8 text-secondary">
+                                                <?php echo $address ?>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <h6 class="mb-0"><b>City</b></h6>
+                                            </div>
+                                            <div class="col-sm-8 text-secondary">
+                                                <?php echo $city ?>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <h6 class="mb-0"><b>Contact</b></h6>
+                                            </div>
+                                            <div class="col-sm-8 text-secondary">
+                                                <?php echo $tel ?>
+                                            </div>
+                                        </div>
 
 
-                        <div class="col-lg-12">
+                                    </div>
+                                </div>
 
-                            <table class="table">
-                                <thead class="text-center">
-                                    <tr>
-                                        <!-- <th scope="col">Serial No.</th> -->
-                                        <th scope="col">Item Name</th>
-                                        <th scope="col">Item Price</th>
-                                        <th scope="col">Quantity</th>
-                                        <th scope="col">Total(Rs.)</th>
-                                        <!-- <th scope="col">Remove</th> -->
-                                    </tr>
-                                </thead>
-                                <tbody class="text-center">
+                                <div class="card mb-3">
+                                    <div class="col-lg-12 text-center border rounded bg-light my-5">
+                                        <h1>Order Items</h1>
+                                    </div>
+                                    <table class="table">
 
-                                    <?php
-                                    $total = 0;
-                                    $grandTotal = 0;
-                                    if (isset($_SESSION['cart'])) {
-                                        $serialNo = 1;
-                                        foreach ($_SESSION['cart'] as $key => $value) {
-
-                                    ?>
+                                        <thead class="text-center">
                                             <tr>
+                                                <!-- <th scope="col">Serial No.</th> -->
+                                                <th scope="col">Item Name</th>
+                                                <th scope="col">Item Price</th>
+                                                <th scope="col">Quantity</th>
+                                                <th scope="col">Total(Rs.)</th>
+                                                <!-- <th scope="col">Remove</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-center">
 
-                                                <td><?php echo $value['Item_Name']; ?></td>
-                                                <td><?php echo $value['Price']; ?><input type='hidden' class='iprice' value='<?php echo $value['Price']; ?>'></td>
+                                            <?php
+                                            $total = 0;
+                                            $grandTotal = 0;
+                                            if (isset($_SESSION['cart'])) {
+                                                $serialNo = 1;
+                                                foreach ($_SESSION['cart'] as $key => $value) {
 
-                                                <td><?php echo $value['Quantity']; ?></td>
-
-                                                <td>
+                                            ?>
                                                     <?php
                                                     if ($value['Price'] * $value['Quantity'] > 0) {
-                                                        echo $value['Price'] * $value['Quantity'];
-                                                        $grandTotal = $grandTotal + ($value['Price'] * $value['Quantity']);
-                                                    } ?></td>
+                                                    ?>
+                                                        <tr>
 
-                                            </tr>
+                                                            <td><?php echo $value['Item_Name']; ?></td>
+                                                            <td><?php echo $value['Price']; ?><input type='hidden' class='iprice' value='<?php echo $value['Price']; ?>'></td>
 
-                                    <?php
+                                                            <td><?php echo $value['Quantity']; ?></td>
 
-                                        }
-                                    }
+                                                            <td>
+                                                                <?php
+                                                                if ($value['Price'] * $value['Quantity'] > 0) {
+                                                                    echo $value['Price'] * $value['Quantity'];
+                                                                    $grandTotal = $grandTotal + ($value['Price'] * $value['Quantity']);
+                                                                } ?></td>
 
-                                    ?>
+                                                        </tr>
+                                                    <?php } ?>
 
+                                            <?php
 
+                                                }
+                                            }
 
-
-
-                                </tbody>
-                            </table>
-
-                        </div>
-
-
-                        <div class="col-lg-12">
-                            <div class="border bg-light rounded p-4">
-                                <h4>Grand Total: Rs. <?php echo  $grandTotal ?></h4>
-
-                                <br>
-                                <!-- <button class="btn btn-warning" onclick="paymentGateway();">Buy Now</button> -->
+                                            ?>
 
 
 
-                                <?php if ($grandTotal > 0) { ?>
-                                    <!-- <a href="./Payement.php" class="btn btn-primary btn-block" name="purchase" onclick="paymentGateway();">Make Purchase</a> -->
-
-                                    <!-- <button class="btn btn-success" onclick="paymentGateway();">Buy Now</button> -->
-                                    <a href="./payemntThankyou.php">
-                                        <button class="btn btn-success">Buy Now</button>
-                                    </a>
 
 
-                                    <!-- <script>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-lg-12">
+                                <div class="border bg-light rounded p-4">
+                                    <h4>Grand Total: Rs. <?php echo  $grandTotal ?></h4>
+
+                                    <br>
+                                    <!-- <button class="btn btn-warning" onclick="paymentGateway();">Buy Now</button> -->
+
+
+
+                                    <?php if ($grandTotal > 0) { ?>
+                                        <!-- <a href="./Payement.php" class="btn btn-primary btn-block" name="purchase" onclick="paymentGateway();">Make Purchase</a> -->
+
+                                        <!-- <button class="btn btn-success" onclick="paymentGateway();">Buy Now</button> -->
+                                        <!-- <a href="./payemntThankyou.php"> -->
+                                            <button class="btn btn-success" onclick="paymentGateway()">Confirm</button>
+                                        <!-- </a> -->
+
+
+                                        <!-- <script>
                                         function handleButtonClick() {
                                             // Call the paymentGateway function
                                             // paymentGateway();
@@ -264,27 +316,26 @@ if (isset($_SESSION["manager"])) {
                                         
                                     </script> -->
 
-                                <?php } ?>
-                                <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
-                                <script src="../js/script.js"></script>
+                                    <?php } ?>
+                                    <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+                                    <script src="../js/script.js"></script>
 
 
 
 
+
+                                </div>
 
                             </div>
-
-                        </div>
 
 
 
 
 
             <?php
-
-
-
-
+                        } else {
+                            header("Location: ./Payement.php?error=4");
+                        }
                     }
                 } else {
                     header("Location: ./Payement.php?error=2");
