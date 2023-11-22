@@ -67,11 +67,20 @@ $total = $cart->getTotal($user->getUserId());
                 <?php
                 if ($user != null) {
                 ?>
-                    <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                    <div class="p-3 ">
+                        <a href="./user.php">
+                        <img src="<?php echo $user->getPropic() ?>" alt="avatar" class="rounded-circle me-2 " style="width: 45px; height: 45px; object-fit: cover" />
+                        </a>
+                    </div>
+                    <a href="./user.php" class="btn btn-outline-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;"><?php echo $user->getFirstName() . " ". $user->getLastName() ?></a>
                 <?php
                 } else if ($manager != null) {
                 ?>
                     <a href="./manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else if (isset($_SESSION["admin"])) {
+                ?>
+                    <a href="./admin/Admin.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
                 <?php
                 } else {
                 ?>
@@ -86,7 +95,8 @@ $total = $cart->getTotal($user->getUserId());
     <!-- Navbar End -->
 
 
-    <div class="container1 mt-5 px-5">
+    <div class="container1 mt-5 px-5" style="margin-bottom: 240px;">
+        
 
         <div class="mb-4">
 
@@ -96,10 +106,40 @@ $total = $cart->getTotal($user->getUserId());
         <div class="row">
             <div class="col-md-8">
                 <div class="card p-3">
-                    <form action="./processes/paymentprocess.php" method="POST">
-                        <h6 class="text-uppercase"><b>Payment details</b></h6>
-                        <div class="inputbox mt-3"> <input type="text" name="nameOnCard" class="form-control" required="required"> <span>Name on card</span> </div>
-                        <div class="row">
+                <?php
+            
+            if (isset($_GET['error'])) {
+                if ($_GET['error'] == 1) {
+
+                    echo "<b><div class='alert alert-danger py-2' role='alert'>
+                        Plese Use POST Method!
+                        </div></b>";
+                }
+                if ($_GET['error'] == 2) {
+
+                    echo "<b><div class='alert alert-danger py-2' role='alert'>
+                        Press Pay Button!
+                        </div></b>";
+                }
+                if ($_GET['error'] == 3) {
+
+                    echo "<b><div class='alert alert-danger py-2' role='alert'>
+                        Plese Fill All Fields!
+                        </div></b>";
+                }
+                if ($_GET['error'] == 4) {
+
+                    echo "<b><div class='alert alert-danger py-2' role='alert'>
+                    Plese Enter a Valied phone Number!
+                        </div></b>";
+                }
+            }
+            ?>
+                    <!-- <form action="./processes/paymentprocess.php" method="POST"> -->
+                    <form action="./paymentConfirm.php" method="POST"> 
+                        <!-- <h6 class="text-uppercase"><b>Payment details</b></h6>
+                        <div class="inputbox mt-3"> <input type="text" name="nameOnCard" class="form-control" required="required"> <span>Name on card</span> </div> -->
+                        <!-- <div class="row">
                             <div class="col-md-6">
                                 <div class="inputbox mt-3 mr-2"> <input type="text" name="cardNo" class="form-control" required="required"> <i class="fa fa-credit-card"></i> <span>Card Number</span>
                                 </div>
@@ -111,7 +151,7 @@ $total = $cart->getTotal($user->getUserId());
                                     <div class="inputbox mt-3 mr-2"> <input type="text" name="cvv" class="form-control" required="required"> <span>CVV</span> </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="mt-4 mb-4">
                             <h6 class="text-uppercase"><b>Billing Address</b></h6>
                             <div class="row mt-3">
@@ -171,17 +211,17 @@ $total = $cart->getTotal($user->getUserId());
 
                 </div>
 
-                <br><br><img src="../images/logo.png" height="75px">
+                <br><img src="../images/logo.png" height="75px">
 
             </div>
 
         </div>
-
+        
     </div>
 
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s" style="margin-top: 100px;">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">

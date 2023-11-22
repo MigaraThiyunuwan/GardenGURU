@@ -65,6 +65,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+    if (isset($_POST['questionID'])) {
+        $questionID = $_POST['questionID'];
+        // call deleteQuestion function in Manager class
+        if ($manager->deleteQuestion($questionID)) {
+            header("Location: ../comForum.php?success=3");
+        } else {
+            header("Location: ../comForum.php?error=1");
+        }
+    }
+
+    if (isset($_POST['answerID'])) {
+        $answerID = $_POST['answerID'];
+        // call deleteAnswer function in Manager class
+        if ($manager->deleteAnswer($answerID)) {
+            header("Location: ../comForum.php?success=4");
+        } else {
+            header("Location: ../comForum.php?error=2");
+        }
+    }
+    
+    
+
     if (isset($_POST['ItemID']) && isset($_POST['newPrice'])) {
         $ItemID = $_POST['ItemID'];
         $newPrice = $_POST['newPrice'];
@@ -106,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $content = Security::SanitizeInput($_POST['content']);
         $currentDate = date('Y-m-d');
         // call postNews function in Manager class
-        if ($manager->postNews($_FILES['newsimage1'], $title, $description, $content, $currentDate)) { //$title, $description, $content, $date
+        if ($manager->postNews($_FILES['newsimage1'], $title, $description, $content, $currentDate)) { 
             header("Location: ../manager/manageNewsFeed.php?success=1");
         } else {
             header("Location: ../manager/manageNewsFeed.php?error=3");

@@ -43,42 +43,6 @@ if (isset($_SESSION["manager"])) {
             background: linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../../images/AboutUs/header_img.jpg) center center no-repeat !important;
             background-size: cover !important;
         }
-
-        .mybtn {
-            --c: #3A833A;
-            /* the color*/
-
-            box-shadow: 0 0 0 .1em inset var(--c);
-            --_g: linear-gradient(var(--c) 0 0) no-repeat;
-            background:
-                var(--_g) calc(var(--_p, 0%) - 100%) 0%,
-                var(--_g) calc(200% - var(--_p, 0%)) 0%,
-                var(--_g) calc(var(--_p, 0%) - 100%) 100%,
-                var(--_g) calc(200% - var(--_p, 0%)) 100%;
-            background-size: 50.5% calc(var(--_p, 0%)/2 + .5%);
-            outline-offset: .1em;
-            transition: background-size .4s, background-position 0s .4s;
-        }
-
-        button:hover {
-            --_p: 100%;
-            transition: background-position .4s, background-size 0s;
-        }
-
-        button:active {
-            box-shadow: 0 0 9e9q inset #0009;
-            background-color: var(--c);
-            color: #fff;
-        }
-
-        .mybtn {
-            font-family: system-ui, sans-serif;
-            font-size: 25px;
-            cursor: pointer;
-            padding: .1em .6em;
-            font-weight: bold;
-            border: none;
-        }
     </style>
 </head>
 
@@ -139,22 +103,22 @@ if (isset($_SESSION["manager"])) {
         <div class="row">
             <div class="row">
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                    <a href="./manageNewsFeed.php" class="w-100"><button class="mybtn w-100">News Feed</button></a>
+                    <a href="./manageNewsFeed.php" class="w-100"><button class="btn-lg btn-success w-100">News Feed</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                    <a href="./manageAdvertiesments.php" class="w-100"><button class="mybtn w-100">Advertiesment</button></a>
+                    <a href="./manageAdvertiesments.php" class="w-100"><button class="btn-lg btn-success w-100">Advertiesment</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                    <a href="./manageBlogs.php" class="w-100"><button class="mybtn w-100">Manage Blog</button></a>
+                    <a href="./manageBlogs.php" class="w-100"><button class="btn-lg btn-success w-100">Manage Blog</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                    <a href="./manageUsers.php" class="w-100"><button class="mybtn w-100">User Details</button></a>
+                    <a href="./manageUsers.php" class="w-100"><button class="btn-lg btn-success w-100">User Details</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                <a href="./manageShop.php" class="w-100"><button class="mybtn w-100">Manage Shop</button></a>
+                    <a href="./manageShop.php" class="w-100"><button class="btn-lg btn-success w-100">Manage Shop</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                    <button class="mybtn w-100">Button</button>
+                <a href="./managerProfile.php" class="w-100"><button class="btn-lg btn-success w-100">My Profile</button></a>
                 </div>
             </div>
 
@@ -191,7 +155,7 @@ if (isset($_SESSION["manager"])) {
                             <table class="table my-0">
                                 <thead>
                                     <tr>
-                                        <th> Order ID</th>
+                                        <!-- <th> Order ID</th> -->
                                         <th> Order Date</th>
                                         <th> Receiver</th>
                                         <th> Contact</th>
@@ -209,7 +173,7 @@ if (isset($_SESSION["manager"])) {
                                         $start1 = isset($_GET['start1']) ? intval($_GET['start1']) : 0;
                                         $rows_per_page1 = 20;
 
-                                        $query = "SELECT * FROM orders ORDER BY orderID DESC LIMIT $start1, $rows_per_page1";
+                                        $query = "SELECT * FROM orders WHERE OrderTransaction = 'success' ORDER BY orderID DESC LIMIT $start1, $rows_per_page1";
                                         $pstmt = $con->prepare($query);
                                         $pstmt->execute();
                                         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
@@ -219,7 +183,7 @@ if (isset($_SESSION["manager"])) {
                                     ?>
 
                                             <tr>
-                                                <td><?php echo $order->orderID; ?></td>
+                                                <!-- <td><?php echo $order->orderID; ?></td> -->
                                                 <td><?php echo $order->orderDate; ?></td>
                                                 <td><?php echo $order->receiver; ?></td>
                                                 <td><?php echo $order->CoNum; ?></td>
@@ -228,13 +192,20 @@ if (isset($_SESSION["manager"])) {
                                                     if ($order->OrderStatus == "waiting") {
                                                     ?>
                                                         <span class="btn btn-warning">Waiting</span>
-                                                    <?php
+                                                        <?php
                                                     } else if ($order->OrderStatus == "success") {
-                                                    ?>
-                                                        <span class="btn btn-success">Completed</span>
-                                                    <?php
+                                                        if ($order->deliveryStatus == "yes") {
+                                                        ?>
+                                                            <span class="btn btn-success">Delivered</span>
+                                                        <?php
+                                                        } else {
+
+                                                        ?>
+                                                            <span class="btn btn-outline-success">Completed</span>
+                                                        <?php
+                                                        }
                                                     } else if ($order->OrderStatus == "rejected") {
-                                                    ?>
+                                                        ?>
                                                         <span class="btn btn-danger">Rejected</span>
                                                     <?php
                                                     }
@@ -248,7 +219,7 @@ if (isset($_SESSION["manager"])) {
                                                         <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#confirmOrder<?php echo $order->orderID ?>">Confirm</button>
                                                     <?php
                                                     }
-                                                    
+
                                                     if ($order->OrderStatus == "success" || $order->OrderStatus == "rejected") {
                                                     ?>
                                                         <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#confirmOrder<?php echo $order->orderID ?>" disabled>Confirm</button>

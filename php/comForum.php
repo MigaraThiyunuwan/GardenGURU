@@ -89,11 +89,20 @@ if (isset($_SESSION["manager"])) {
                 <?php
                 if ($user != null) {
                 ?>
-                    <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                    <div class="p-3 ">
+                        <a href="./user.php">
+                        <img src="<?php echo $user->getPropic() ?>" alt="avatar" class="rounded-circle me-2 " style="width: 45px; height: 45px; object-fit: cover" />
+                        </a>
+                    </div>
+                    <a href="./user.php" class="btn btn-outline-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;"><?php echo $user->getFirstName() . " ". $user->getLastName() ?></a>
                 <?php
                 } else if ($manager != null) {
                 ?>
                     <a href="./manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else if (isset($_SESSION["admin"])) {
+                ?>
+                    <a href="./admin/Admin.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
                 <?php
                 } else {
                 ?>
@@ -133,9 +142,7 @@ if (isset($_SESSION["manager"])) {
                             <input type="hidden" name="date" value="<?php echo $currentDate ?>">
                             <div class="mar-top clearfix">
                                 <button class="btn btn-sm btn-primary pull-right" name="ask_question" type="submit"> <i class="fa fa-pencil fa-fw"></i> Post </button>
-                                <!-- <a class="btn btn-trans btn-icon fa fa-video-camera add-tooltip" href="#"></a>
-                                <a class="btn btn-trans btn-icon fa fa-camera add-tooltip" href="#"></a>
-                                <a class="btn btn-trans btn-icon fa fa-file add-tooltip" href="#"></a> -->
+
                             </div>
                         </form>
                     </div>
@@ -154,9 +161,41 @@ if (isset($_SESSION["manager"])) {
                                     </div></b>";
                         }
                     }
+
                     ?>
                 </div>
             <?php
+            }
+            if (isset($_SESSION["manager"])) {
+                if (isset($_GET['success'])) {
+                    if ($_GET['success'] == 3) {
+
+                        echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                                You Deleted the Question Successfully!
+                                </div></b>";
+                    }
+                    if ($_GET['success'] == 4) {
+
+                        echo "<b><div class='alert alert-success py-2' style='margin-top: 10px;' role='alert'>
+                                You Deleted the Answer Successfully!
+                                </div></b>";
+                    }
+                }
+
+                if (isset($_GET['error'])) {
+                    if ($_GET['error'] == 1) {
+
+                        echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                                Question delete failed!
+                                </div></b>";
+                    }
+                    if ($_GET['error'] == 2) {
+
+                        echo "<b><div class='alert alert-danger py-2' style='margin-top: 10px;' role='alert'>
+                                Answer delete failed!
+                                </div></b>";
+                    }
+                }
             }
             ?>
 
@@ -181,23 +220,76 @@ if (isset($_SESSION["manager"])) {
 
                 ?>
                         <div class="media-block">
-                            <a class="media-left " ><img class="rounded-circle me-2 " style="width: 50px; height: 50px; object-fit: cover" alt="Profile Picture" src="<?php echo $item->profile_picture;  ?>"></a>
+                            <a class="media-left "><img class="rounded-circle me-2 " style="width: 50px; height: 50px; object-fit: cover" alt="Profile Picture" src="<?php echo $item->profile_picture;  ?>"></a>
 
                             <div class="media-body">
                                 <div class="mar-btm" style="margin-left: 5px;">
-                                    <a  class="btn-link text-semibold media-heading box-inline"><?php echo $item->user_FirstName . " " . $item->user_LastName;  ?></a>
+                                    <a class="btn-link text-semibold media-heading box-inline"><?php echo $item->user_FirstName . " " . $item->user_LastName;  ?></a>
                                     <p class="text-muted text-sm"><i class="fa fa-regular fa-clock"></i> <?php echo $item->askDate;  ?></p>
                                 </div>
 
                                 <p style="margin-left: 5px;"><?php echo $item->question;  ?></p>
                                 <div class="pad-ver">
-                                    <!-- <div class="btn-group">
-                                    <a class="btn btn-sm btn-default btn-hover-success" href="#"><i class="fa fa-thumbs-up"></i></a>
-                                    <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i class="fa fa-thumbs-down"></i></a>
-                                </div>
-                                <a class="btn btn-sm btn-default btn-hover-primary" href="#">Comment</a> -->
                                     <button class="btn btn-outline-success toggle-comments" style="margin-left: 5px;"><i class="fa fa-reply"></i> reply</button>
+
+                                    <?php
+                                    if ($manager != null) {
+                                    ?>
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $item->questionID;  ?>">Delete Question</button>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
+
+                                <div class="modal fade shadow my-5" id="delete<?php echo $item->questionID;  ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div style="width: 100%;" class="modal-content" style="background-color: white;">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Question
+                                                </h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <div class="d-flex justify-content-between p-2">
+
+                                                    <div class="col">
+
+                                                        <form action="./processes/managerProcess.php" method="post" enctype="multipart/form-data">
+
+                                                            <div class="row">
+                                                                <p class="fw-bold me-2">
+                                                                    Are you sure to delete this Question?
+                                                                </p>
+
+
+                                                            </div>
+
+                                                            <input type="hidden" name="questionID" value="<?php echo $item->questionID ?>">
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <div class="row w-100">
+                                                        <div class="col-md-6" style="margin-bottom: 10px;">
+
+                                                            <button class="btn btn-danger w-100 " type="submit">Delete</button>
+                                                            </form>
+
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <button class="btn btn-success w-100" type="button" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <hr>
 
 
@@ -206,8 +298,8 @@ if (isset($_SESSION["manager"])) {
 
                                     <?php
                                     //$query = "SELECT * FROM answer WHERE questionID = ?";
-                                    $query = "SELECT u.user_FirstName, u.profile_picture, u.user_LastName, a.answerDate, a.answer FROM users u JOIN answer a ON u.user_id = a.user_id WHERE questionID = ?";
-                                    
+                                    $query = "SELECT u.user_FirstName, u.profile_picture, u.user_LastName, a.answerDate, a.answer, a.answerID FROM users u JOIN answer a ON u.user_id = a.user_id WHERE questionID = ? ORDER BY a.answerID ASC";
+
                                     $pstmt1 = $con->prepare($query);
                                     $pstmt1->bindValue(1, $item->questionID);
 
@@ -223,17 +315,66 @@ if (isset($_SESSION["manager"])) {
                                             <div class="media-body" style="margin-left: 5px;">
                                                 <div class="mar-btm">
                                                     <a class="btn-link text-semibold media-heading box-inline" style="margin-left: 5px;"><?php echo $item1->user_FirstName . " " . $item1->user_LastName;  ?></a>
-                                                    <p class="text-muted text-sm"  ><i class="fa fa-regular fa-clock" style="margin-right: 5px;"></i><?php echo $item1->answerDate;  ?></p>
+                                                    <p class="text-muted text-sm"><i class="fa fa-regular fa-clock" style="margin-right: 5px;"></i><?php echo $item1->answerDate;  ?></p>
                                                 </div>
                                                 <p><?php echo $item1->answer;  ?></p>
-                                                <!-- <div class="pad-ver">
-                                            <div class="btn-group">
-                                                <a class="btn btn-sm btn-default btn-hover-success active" href="#"><i class="fa fa-thumbs-up"></i> You Like it</a>
-                                                <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i class="fa fa-thumbs-down"></i></a>
-                                            </div>
-                                            <a class="btn btn-sm btn-default btn-hover-primary" href="#">Comment</a>
-                                            </div> -->
+                                                <?php
+                                                if ($manager != null) {
+                                                ?>
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAnswer<?php echo $item1->answerID;  ?>">Delete Answer</button>
+                                                <?php
+                                                }
+                                                ?>
                                                 <hr>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal fade shadow my-5" id="deleteAnswer<?php echo $item1->answerID;  ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div style="width: 100%;" class="modal-content" style="background-color: white;">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Answer
+                                                        </h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                        <div class="d-flex justify-content-between p-2">
+
+                                                            <div class="col">
+
+                                                                <form action="./processes/managerProcess.php" method="post" enctype="multipart/form-data">
+
+                                                                    <div class="row">
+                                                                        <p class="fw-bold me-2">
+                                                                            Are you sure to delete this Answer?
+                                                                        </p>
+
+
+                                                                    </div>
+
+                                                                    <input type="hidden" name="answerID" value="<?php echo $item1->answerID ?>">
+
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <div class="row w-100">
+                                                                <div class="col-md-6" style="margin-bottom: 10px;">
+
+                                                                    <button class="btn btn-danger w-100 " type="submit">Delete</button>
+                                                                    </form>
+
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <button class="btn btn-success w-100" type="button" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     <?php
@@ -249,7 +390,7 @@ if (isset($_SESSION["manager"])) {
                                                 <textarea class="form-control" rows="2" placeholder="Answer to question" name="answer"></textarea>
                                                 <?php $currentDate = date('Y-m-d'); ?>
                                                 <input type="hidden" name="date" value="<?php echo $currentDate ?>">
-                                                <input type="hidden" name="QuestionID" value="<?php echo $item->questionID?>">
+                                                <input type="hidden" name="QuestionID" value="<?php echo $item->questionID ?>">
                                                 <div class="mar-top clearfix">
                                                     <button class="btn btn-sm btn-primary pull-right" type="submit" name="giveAnswer"><i class="fa fa-pencil fa-fw"></i> Reply </button>
                                                 </div>
@@ -344,7 +485,7 @@ if (isset($_SESSION["manager"])) {
 
 
 
-            
+
         </div>
     </div>
 

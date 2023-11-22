@@ -10,13 +10,16 @@ require './classes/persons.php';
 session_start();
 $user =null;
 $manager = null;
-if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) ) {
+if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) || isset($_SESSION["admin"]) ) {
   // User is logged in, retrieve the user object
   if(isset($_SESSION["user"])){
     $user = $_SESSION["user"];
   }
   if(isset($_SESSION["manager"])){
     $manager = $_SESSION["manager"];
+  }
+  if(isset($_SESSION["admin"])){
+    $admin = $_SESSION["admin"];
   }
 } else {
   // Redirect the user to login.php if not logged in
@@ -38,6 +41,7 @@ if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) ) {
   <meta content="" name="keywords">
   <meta content="" name="description">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- Customized Bootstrap Stylesheet -->
   <link href="../css/bootstrap.min.css" rel="stylesheet">
 
@@ -89,11 +93,20 @@ if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) ) {
         <?php
                 if ($user != null) {
                 ?>
-                    <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                    <div class="p-3 ">
+                        <a href="./user.php">
+                        <img src="<?php echo $user->getPropic() ?>" alt="avatar" class="rounded-circle me-2 " style="width: 45px; height: 45px; object-fit: cover" />
+                        </a>
+                    </div>
+                    <a href="./user.php" class="btn btn-outline-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;"><?php echo $user->getFirstName() . " ". $user->getLastName() ?></a>
                 <?php
                 } else if ($manager != null) {
                 ?>
                     <a href="./manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else if (isset($_SESSION["admin"])) {
+                ?>
+                    <a href="./admin/Admin.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
                 <?php
                 } else {
                 ?>
@@ -146,7 +159,7 @@ if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) ) {
         INNER JOIN
           users u
         ON
-          a.user_id = u.user_id;";
+          a.user_id = u.user_id ORDER BY id DESC;";
           
           try {
 
@@ -155,7 +168,7 @@ if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) ) {
             if ($stmt->rowCount() > 0) {
               $photoCount = 1;
           ?>
-              <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+              
               <div class="container">
                 <div class="shop-default shop-cards shop-tech" >
                   <div class="row">
@@ -228,17 +241,6 @@ if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) ) {
   </div>
 
 
-  <style>
-    .text-card {
-      display: none;
-      padding: 10px;
-      background-color: #f0f0f0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    
-  </style>
   <!-- Footer Start -->
   <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="container py-5">

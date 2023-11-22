@@ -98,11 +98,20 @@ $newsCounter = 0;
                 <?php
                 if ($user != null) {
                 ?>
-                    <a href="./user.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                    <div class="p-3 ">
+                        <a href="./user.php">
+                        <img src="<?php echo $user->getPropic() ?>" alt="avatar" class="rounded-circle me-2 " style="width: 45px; height: 45px; object-fit: cover" />
+                        </a>
+                    </div>
+                    <a href="./user.php" class="btn btn-outline-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;"><?php echo $user->getFirstName() . " ". $user->getLastName() ?></a>
                 <?php
                 } else if ($manager != null) {
                 ?>
                     <a href="./manager/managerProfile.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
+                <?php
+                } else if (isset($_SESSION["admin"])) {
+                ?>
+                    <a href="./admin/Admin.php" class="btn btn-success" style="height: 40px; margin-top: 20px; margin-right: 15px; border-radius: 10px;">My Pofile</a>
                 <?php
                 } else {
                 ?>
@@ -154,9 +163,9 @@ $newsCounter = 0;
                                 <h2><?php echo $row['title']; ?></h2>
                             </div>
 
-                            <p id="description<?php echo $newsCounter; ?>" class="truncated"><?php echo $row['description']; ?></p>
+                            <p id="description<?php echo $newsCounter; ?>" class="truncated"><?php echo nl2br($row['description']); ?></p>
                             <button class="btn btn-outline-success" id="readMoreButton<?php echo $newsCounter; ?>">Read More</button>
-                            <p id="fullDescription<?php echo $newsCounter; ?>" style="display: none;"><?php echo $row['full_content']; ?></p>
+                            <p id="fullDescription<?php echo $newsCounter; ?>" style="display: none;"><?php echo nl2br($row['full_content']); ?></p>
                             <button class="btn btn-success" id="readLessButton<?php echo $newsCounter; ?>" style="display: none;">Read Less</button>
 
                         </div>

@@ -80,7 +80,7 @@ if (isset($_SESSION["user"])) {
                             <div class="d-flex flex-column align-items-center text-center">
                                 <img src="<?php echo $user->getPropic() ?> " alt="Admin" class="rounded-circle" width="150" height="150">
                                 <div class="mt-3">
-                                    <h4>Hello! <?php echo $user->getFirstName() . " " . $user->getLastName() ?> !</h4><br>
+                                    <h4><?php echo $user->getFirstName() . " " . $user->getLastName() ?> !</h4><br>
                                     <!--  <a class="btn btn-outline-primary " target="" href="./processes/logout.php">Log Out</a>-->
                                     <!-- <a class="btn btn-outline-primary" id="popbutton" target="#">Change Profile Picture</a> -->
                                     <button type="button" class="btn btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addQtymodel">Change Profile Picture </button>
