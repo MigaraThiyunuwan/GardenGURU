@@ -118,7 +118,7 @@ if (isset($_SESSION["manager"])) {
                     <a href="./manageShop.php" class="w-100"><button class="btn-lg btn-success w-100">Manage Shop</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                    <button class="btn-lg btn-success w-100">Button</button>
+                <a href="./managerProfile.php" class="w-100"><button class="btn-lg btn-success w-100">My Profile</button></a>
                 </div>
             </div>
 
@@ -155,7 +155,7 @@ if (isset($_SESSION["manager"])) {
                             <table class="table my-0">
                                 <thead>
                                     <tr>
-                                        <th> Order ID</th>
+                                        <!-- <th> Order ID</th> -->
                                         <th> Order Date</th>
                                         <th> Receiver</th>
                                         <th> Contact</th>
@@ -183,7 +183,7 @@ if (isset($_SESSION["manager"])) {
                                     ?>
 
                                             <tr>
-                                                <td><?php echo $order->orderID; ?></td>
+                                                <!-- <td><?php echo $order->orderID; ?></td> -->
                                                 <td><?php echo $order->orderDate; ?></td>
                                                 <td><?php echo $order->receiver; ?></td>
                                                 <td><?php echo $order->CoNum; ?></td>

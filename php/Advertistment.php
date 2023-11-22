@@ -159,7 +159,7 @@ if (isset($_SESSION["user"]) || isset($_SESSION["manager"]) || isset($_SESSION["
         INNER JOIN
           users u
         ON
-          a.user_id = u.user_id;";
+          a.user_id = u.user_id ORDER BY id DESC;";
           
           try {
 

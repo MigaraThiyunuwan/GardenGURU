@@ -123,7 +123,7 @@ if (isset($_SESSION["manager"])) {
                     <a href="./manageBlogs.php" class="w-100"><button class="btn-lg btn-success w-100">Manage Blog</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                    <button class="btn-lg btn-success w-100">Button</button>
+                <a href="./managerProfile.php" class="w-100"><button class="btn-lg btn-success w-100">My Profile</button></a>
                 </div>
             </div>
 
@@ -239,7 +239,7 @@ if (isset($_SESSION["manager"])) {
                             <table class="table my-0" id="dataTable">
                                 <thead>
                                     <tr>
-                                        <th>Item ID</th>
+                                        <!-- <th>Item ID</th> -->
                                         <th>Item Name</th>
                                         <th>Unit Price</th>
                                         <th>Change Price</th>
@@ -267,7 +267,7 @@ if (isset($_SESSION["manager"])) {
                                     ?>
 
                                             <tr>
-                                                <td><?php echo $shop->ItemId; ?></td>
+                                                <!-- <td><?php echo $shop->ItemId; ?></td> -->
                                                 <td><?php echo $shop->ItemName; ?></td>
                                                 <td><?php echo $shop->ItemPrice; ?></td>
                                                 <td>

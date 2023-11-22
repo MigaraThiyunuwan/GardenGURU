@@ -303,7 +303,7 @@ if (isset($_SESSION["manager"])) {
                                 <i class="fa-solid fa-shop fa-2xl text-primary"></i>
                             </div>
                             <h4 class="mb-3">Manage Orders</h4>
-                            <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif">add suitable caption for this. add suitable caption for this. add suitable caption for this</p>
+                            <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif">Effortlessly oversee your shop's activity with the 'Manage Orders' button. This intuitive tool on your dashboard empowers you to efficiently handle incoming orders, ensuring a seamless and organized workflow for your gardening business.</p>
                             <a class="btn btn-sm" href="./manageOrder.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>
@@ -318,7 +318,7 @@ if (isset($_SESSION["manager"])) {
                                 <i class="fa-solid fa-shop fa-2xl text-primary"></i>
                             </div>
                             <h4 class="mb-3">Manage Shop</h4>
-                            <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif">add suitable caption for this. add suitable caption for this. add suitable caption for this</p>
+                            <p class="mb-4" style="font-family: Georgia, 'Times New Roman', Times, serif">Elevate your shop's performance with the 'Manage Shop' button. This powerful feature on your dashboard enables you to effortlessly oversee and optimize your entire shop operation. Take control of inventory, update product listings, and enhance the overall shopping experience.</p>
                             <a class="btn btn-sm" href="./manageShop.php"><i class="fa fa-plus text-primary me-2"></i>Visit There</a>
                         </div>
                     </div>

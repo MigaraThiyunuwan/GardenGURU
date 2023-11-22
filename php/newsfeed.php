@@ -163,9 +163,9 @@ $newsCounter = 0;
                                 <h2><?php echo $row['title']; ?></h2>
                             </div>
 
-                            <p id="description<?php echo $newsCounter; ?>" class="truncated"><?php echo $row['description']; ?></p>
+                            <p id="description<?php echo $newsCounter; ?>" class="truncated"><?php echo nl2br($row['description']); ?></p>
                             <button class="btn btn-outline-success" id="readMoreButton<?php echo $newsCounter; ?>">Read More</button>
-                            <p id="fullDescription<?php echo $newsCounter; ?>" style="display: none;"><?php echo $row['full_content']; ?></p>
+                            <p id="fullDescription<?php echo $newsCounter; ?>" style="display: none;"><?php echo nl2br($row['full_content']); ?></p>
                             <button class="btn btn-success" id="readLessButton<?php echo $newsCounter; ?>" style="display: none;">Read Less</button>
 
                         </div>

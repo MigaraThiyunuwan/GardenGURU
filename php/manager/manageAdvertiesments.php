@@ -122,7 +122,7 @@ if (isset($_SESSION["manager"])) {
                 <a href="./manageShop.php" class="w-100"><button class="btn-lg btn-success w-100">Manage Shop</button></a>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center" style="margin-top: 5px;">
-                    <button class="btn-lg btn-success w-100">Button</button>
+                <a href="./managerProfile.php" class="w-100"><button class="btn-lg btn-success w-100">My Profile</button></a>
                 </div>
             </div>
 
@@ -157,7 +157,7 @@ if (isset($_SESSION["manager"])) {
                             <table class="table my-0" id="dataTable">
                                 <thead>
                                     <tr>
-                                        <th>Advertiesment ID</th>
+                                        <!-- <th>Advertiesment ID</th> -->
                                         <th>Advertiesment Title</th>
                                         <th>Posted Date</th>
                                         <th>Posted by</th>
@@ -192,7 +192,7 @@ if (isset($_SESSION["manager"])) {
                                     ?>
 
                                             <tr>
-                                                <td><?php echo $add->id; ?></td>
+                                                <!-- <td><?php echo $add->id; ?></td> -->
                                                 <td><?php echo $add->title; ?></td>
                                                 <td><?php echo $add->adPostedDate; ?></td>
                                                 <td><?php echo $add->user_FirstName . " " . $add->user_LastName ?></td>
