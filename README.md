@@ -66,3 +66,7 @@ Now you can access the development version of GardenGURU at ***http://localhost/
    - Click `Go` at the bottom of the page to start the import process.
 
 Your `gardenguru` database should now be set up with the tables and data defined in the .sql file.
+
+## View
+### Accessing the Live Demo
+Visit our Youtube channel to experience GardenGURU without setting up locally: [Youtube Demo](https://youtu.be/9VovBPv2RVs)
